@@ -1,0 +1,123 @@
+.button ***REMOVED***
+  height: 3rem;
+  position: relative;
+  border-radius: 0.3rem;
+  text-transform: capitalize;
+  margin-right: 1.8rem;
+  cursor: pointer;
+  font-family: Lato;
+  &:focus ***REMOVED***
+    outline: 0;
+***REMOVED***
+  > i ***REMOVED***
+    margin-right: 1.3rem;
+***REMOVED***
+  &:hover ***REMOVED***
+    &::after ***REMOVED***
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: 0.3rem;
+      content: '';
+      opacity: 0.1;
+      background: #FFFFFF;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.buttonLg ***REMOVED***
+  width: 15rem;
+***REMOVED***
+
+.buttonMd ***REMOVED***
+  width: 10rem;
+***REMOVED***
+
+.primary ***REMOVED***
+  font-weight: 500;
+  background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
+  -webkit-font-smoothing: antialiased;
+  color: white;
+  &:active ***REMOVED***
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,.15);
+***REMOVED***
+***REMOVED***
+
+.secondary ***REMOVED***
+  color: #F64D0A;
+  border: 0.1rem solid #F64D0A;
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+  &:active ***REMOVED***
+    border: 0.15rem solid #F64D0A;
+***REMOVED***
+***REMOVED***
+
+.secondaryAddType ***REMOVED***
+  height: 2.6rem;
+  color: #1C5DE7;
+  line-height: 1.6rem;
+  border: 0.1rem solid #1C5DE7;
+  font-weight: 500;
+  font-size: 1.3rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+***REMOVED***
+
+@keyframes blink ***REMOVED***
+  0% ***REMOVED***
+    opacity: .2;
+***REMOVED***
+  20% ***REMOVED***
+    opacity: 1;
+***REMOVED***
+  100% ***REMOVED***
+    opacity: .2;
+***REMOVED***
+***REMOVED***
+
+.saving ***REMOVED***
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+***REMOVED***
+
+.loader ***REMOVED***
+  height: 3rem;
+  padding: 0 0 0 1.2rem;
+  line-height: 3.2rem;
+  border-radius: 0.3rem;
+  letter-spacing: 1rem;
+  font-family: Lato;
+  cursor: not-allowed;
+  position: relative;
+  opacity: .65;
+  width: 15rem;
+  font-size: 1rem;
+  &:focus ***REMOVED***
+    outline: 0;
+***REMOVED***
+***REMOVED***
+
+.saving p ***REMOVED***
+  margin-bottom: 0;
+  animation-name: blink;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  &::before ***REMOVED***
+    content: '\F111';
+    font-family: 'FontAwesome';
+***REMOVED***
+***REMOVED***
+
+.saving p:nth-child(2) ***REMOVED***
+  animation-delay: .2s;
+***REMOVED***
+
+.saving p:nth-child(3) ***REMOVED***
+  animation-delay: .4s;
+***REMOVED***

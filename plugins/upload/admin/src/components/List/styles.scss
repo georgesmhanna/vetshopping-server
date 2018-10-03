@@ -1,0 +1,48 @@
+.listWrapper ***REMOVED***
+  margin-top: 9px;
+  padding: 0;
+
+  > div:first-child ***REMOVED***
+    margin: 0;
+***REMOVED***
+***REMOVED***
+
+.ulList ***REMOVED***
+  width: 100%;
+  padding: 0 !important;
+  list-style: none;
+  > li:nth-child(2) ***REMOVED***
+    height: 57px;
+    > div ***REMOVED***
+      line-height: 54px !important;
+***REMOVED***
+***REMOVED***
+  > li ***REMOVED***
+    width: 100%;
+    margin-top: 0;
+***REMOVED***
+
+  > li:last-child ***REMOVED***
+    > div ***REMOVED***
+      border-bottom: 0 !important;
+***REMOVED***
+    box-shadow: 0 2px 4px #E3E9F3;
+***REMOVED***
+***REMOVED***
+
+.emptyLiWrapper ***REMOVED***
+  height: 54px;
+  background-color: #fff;
+  padding-top: 5px;
+  cursor: pointer;
+  > div ***REMOVED***
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 1px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 54px;
+    text-transform: uppercase;
+***REMOVED***
+***REMOVED***

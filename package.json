@@ -1,0 +1,47 @@
+***REMOVED***
+  "name": "vetshopping",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application.",
+  "main": "./server.js",
+  "scripts": ***REMOVED***
+    "setup": "cd admin && npm run setup",
+    "start": "node server.js",
+    "strapi": "node_modules/strapi/bin/strapi.js",
+    "lint": "node_modules/.bin/eslint api/**/*.js config/**/*.js plugins/**/*.js",
+    "postinstall": "node node_modules/strapi/lib/utils/post-install.js"
+***REMOVED***,
+  "devDependencies": ***REMOVED***
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-react": "^6.8.0"
+***REMOVED***,
+  "dependencies": ***REMOVED***
+    "lodash": "4.x.x",
+    "strapi": "3.0.0-alpha.14.2",
+    "strapi-hook-mongoose": "3.0.0-alpha.14.2"
+***REMOVED***,
+  "author": ***REMOVED***
+    "name": "A Strapi developer",
+    "email": "",
+    "url": ""
+***REMOVED***,
+  "maintainers": [
+    ***REMOVED***
+      "name": "A Strapi developer",
+      "email": "",
+      "url": ""
+***REMOVED***
+  ],
+  "strapi": ***REMOVED***
+    "packageManager": "npm",
+    "uuid": "826d732f-4676-484b-9a82-d78be990f025"
+***REMOVED***,
+  "engines": ***REMOVED***
+    "node": ">= 9.0.0",
+    "npm": ">= 5.0.0"
+***REMOVED***,
+  "license": "MIT"
+***REMOVED***

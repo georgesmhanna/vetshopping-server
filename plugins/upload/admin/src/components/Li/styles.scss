@@ -1,0 +1,108 @@
+.liWrapper ***REMOVED***
+  height: 54px;
+  background-color: #fff;
+  padding-top: 5px;
+  cursor: pointer;
+***REMOVED***
+
+.liContainer ***REMOVED***
+  display: flex;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: 20px;
+  margin-right: 20px;
+  line-height: 48px;
+  border-bottom: 1px solid rgba(14,22,34,0.04);
+  justify-content: space-between;
+
+  > div:first-child ***REMOVED***
+    display: flex;
+    width: 133px;
+    > div:first-child ***REMOVED***
+      width: 51px;
+***REMOVED***
+    > div:last-child ***REMOVED***
+      width: 82px;
+***REMOVED***
+***REMOVED***
+
+  > div:nth-child(2) ***REMOVED***
+    width: calc(100% - 696px);
+    padding-right: 20px;
+***REMOVED***
+  > div:nth-child(3) ***REMOVED***
+    width: calc(100% - 596px);
+***REMOVED***
+  > div:nth-child(4) ***REMOVED***
+    width: 184px;
+    flex-shrink: 0;
+    > span ***REMOVED***
+      &:after ***REMOVED***
+        content: '\f0d8';
+        margin-left: 10px;
+        font-family: 'FontAwesome';
+***REMOVED***
+***REMOVED***
+***REMOVED***
+  > div:nth-child(5) ***REMOVED***
+    flex-shrink: 0;
+    width: 100px;
+***REMOVED***
+  > div:nth-child(6) ***REMOVED***
+    width: 147px;
+    flex-shrink: 0;
+***REMOVED***
+  > div:nth-child(7) ***REMOVED***
+    width: 116px;
+    flex-shrink: 0;
+***REMOVED***
+***REMOVED***
+
+.copied ***REMOVED***
+  background-color: #FAFAFB;
+
+  > div ***REMOVED***
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 1px;
+    text-align: center;
+    color: #868FA1;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 54px;
+    text-transform: uppercase;
+    letter-spacing: .05rem;
+***REMOVED***
+***REMOVED***
+
+.checked ***REMOVED***
+  padding-top: 20px;
+  line-height: 54px;
+  position: relative;
+  > div ***REMOVED***
+    height: 14px;
+    width: 14px;
+    margin-right: 10px;
+    background-color: #2DD210;
+    border: 1px solid rgba(16,22,34,0.10);
+    border-radius: 3px;
+    &:after ***REMOVED***
+      content: '\f00c';
+      position: absolute;
+      top: 0; left: 2px;
+      font-size: 10px;
+      font-family: 'FontAwesome';
+      font-weight: 100;
+      color: #fff;
+      transition: all .2s;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.truncate ***REMOVED***
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+***REMOVED***

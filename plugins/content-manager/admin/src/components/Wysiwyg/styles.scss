@@ -1,0 +1,115 @@
+.controlsContainer ***REMOVED***
+  display: flex;
+  background-color: #F3F4F4;
+
+  select ***REMOVED***
+    min-height: 31px !important;
+    min-width: 161px !important;
+    font-weight: 600;
+    outline: none;
+
+    &:focus, &:active***REMOVED***
+      border: 1px solid #E3E9F3;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.editorWrapper ***REMOVED***
+  min-height: 320px;
+  margin-top: .9rem;
+  border: 1px solid #F3F4F4;
+  border-radius: 0.25rem;
+  line-height: 18px!important;
+  font-size: 13px;
+  box-shadow: 0px 1px 1px rgba(104, 118, 142, 0.05);
+  background-color: #fff;
+  position: relative;
+***REMOVED***
+
+.editor ***REMOVED***
+  min-height: 303px;
+  max-height: 555px;
+  padding: 20px 20px 0 20px;
+  font-size: 16px;
+  background-color: #fff;
+  line-height: 18px !important;
+  cursor: text;
+  overflow: auto;
+
+  h1, h2, h3, h4, h5, h6 ***REMOVED***
+    margin: 0;
+    line-height: 18px !important;
+***REMOVED***
+  h1 ***REMOVED***
+    margin-top: 13px !important;
+    margin-bottom: 22px;
+***REMOVED***
+  > div ***REMOVED***
+    > div ***REMOVED***
+      > div ***REMOVED***
+        margin-bottom: 32px;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+  li ***REMOVED***
+    margin-top: 0;
+***REMOVED***
+  ul, ol ***REMOVED***
+    margin-bottom: 18px;
+***REMOVED***
+***REMOVED***
+
+.editorError ***REMOVED***
+  border-color: #ff203c !important;
+***REMOVED***
+
+.editorInput ***REMOVED***
+  height: 0;
+  width: 0;
+***REMOVED***
+
+.editorBlockquote ***REMOVED***
+  border-left: 5px solid #eee;
+  font-family: Lato;
+  font-style: italic;
+  margin: 16px 0;
+  padding: 10px 20px;
+***REMOVED***
+
+.editorCodeBlock ***REMOVED***
+  margin-bottom: 0!important;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.05);
+  font-family: Lato;
+***REMOVED***
+
+
+.fullscreenOverlay ***REMOVED***
+  position: fixed;
+  z-index: 1040;
+  top: calc(6rem + 90px);
+  left: calc(24rem + 28px);
+  right: 28px;
+  bottom: 32px;
+  display: flex;
+  background-color: transparent;
+  z-index: 99999;
+  > div ***REMOVED***
+    min-width: 50%;
+***REMOVED***
+  > div:first-child ***REMOVED***
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+***REMOVED***
+  > div:last-child ***REMOVED***
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+***REMOVED***
+***REMOVED***
+
+.editorFullScreen ***REMOVED***
+  max-height: calc(100% - 70px) !important;
+  margin-bottom: 0;
+  overflow: auto;
+***REMOVED***

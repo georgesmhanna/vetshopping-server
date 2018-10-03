@@ -1,0 +1,24 @@
+.containerWysiwyg ***REMOVED***
+  margin-bottom: 1.6rem;
+  font-size: 1.3rem;
+  font-family: 'Lato';
+***REMOVED***
+
+.wysLoader ***REMOVED***
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  > div ***REMOVED***
+    border: 4px solid #f3f3f3; /* Light grey */
+    border-top: 4px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+***REMOVED***
+***REMOVED***
+
+@keyframes spin ***REMOVED***
+  0% ***REMOVED*** transform: rotate(0deg); ***REMOVED***
+  100% ***REMOVED*** transform: rotate(360deg); ***REMOVED***
+***REMOVED***

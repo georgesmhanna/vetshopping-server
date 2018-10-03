@@ -1,0 +1,85 @@
+***REMOVED***
+  "connection": "default",
+  "collectionName": "product",
+  "info": ***REMOVED***
+    "name": "product",
+    "description": ""
+***REMOVED***,
+  "options": ***REMOVED***
+    "timestamps": true
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "name": ***REMOVED***
+      "default": "",
+      "type": "string",
+      "required": true
+***REMOVED***,
+    "images": ***REMOVED***
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+***REMOVED***,
+    "oldPrice": ***REMOVED***
+      "default": "",
+      "type": "float"
+***REMOVED***,
+    "newPrice": ***REMOVED***
+      "default": "",
+      "type": "float"
+***REMOVED***,
+    "discount": ***REMOVED***
+      "default": "",
+      "type": "float"
+***REMOVED***,
+    "ratingsCount": ***REMOVED***
+      "default": "",
+      "type": "integer"
+***REMOVED***,
+    "ratingsValue": ***REMOVED***
+      "default": "",
+      "type": "float"
+***REMOVED***,
+    "description": ***REMOVED***
+      "default": "",
+      "type": "text"
+***REMOVED***,
+    "availibilityCount": ***REMOVED***
+      "default": "",
+      "type": "integer"
+***REMOVED***,
+    "color": ***REMOVED***
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "red",
+        " blue",
+        " black",
+        " yellow"
+      ]
+***REMOVED***,
+    "size": ***REMOVED***
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "L",
+        " XL",
+        " S",
+        " M"
+      ]
+***REMOVED***,
+    "weight": ***REMOVED***
+      "default": "",
+      "type": "float"
+***REMOVED***,
+    "colors": ***REMOVED***
+      "collection": "color",
+      "via": "products",
+      "dominant": true
+***REMOVED***,
+    "category": ***REMOVED***
+      "model": "category",
+      "via": "products"
+***REMOVED***
+***REMOVED***
+***REMOVED***

@@ -1,0 +1,27 @@
+***REMOVED***
+  "parser": "babel-eslint",
+  "extends": "eslint:recommended",
+  "env": ***REMOVED***
+      "commonjs": true,
+      "es6": true,
+      "node": true,
+      "browser": false
+***REMOVED***,
+  "parserOptions": ***REMOVED***
+      "ecmaFeatures": ***REMOVED***
+          "experimentalObjectRestSpread": true,
+          "jsx": false
+***REMOVED***
+      "sourceType": "module"
+***REMOVED***,
+  "globals": ***REMOVED***
+    "strapi": true
+***REMOVED***,
+  "rules": ***REMOVED***
+    "indent": ["error", 2, ***REMOVED*** "SwitchCase": 1 ***REMOVED***],
+    "linebreak-style": ["error", "unix"],
+    "no-console": 0,
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"]
+***REMOVED***
+***REMOVED***

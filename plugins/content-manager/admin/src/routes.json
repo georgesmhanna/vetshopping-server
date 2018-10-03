@@ -1,0 +1,11 @@
+***REMOVED***
+  "/": ***REMOVED***
+    "container": "Home"
+***REMOVED***,
+  "/:slug": ***REMOVED***
+    "container": "List"
+***REMOVED***,
+  "/:slug/:id": ***REMOVED***
+    "container": "Edit"
+***REMOVED***
+***REMOVED***

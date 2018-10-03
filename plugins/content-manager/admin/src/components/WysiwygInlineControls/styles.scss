@@ -1,0 +1,123 @@
+.active ***REMOVED***
+  background-color: red;
+***REMOVED***
+
+.controlsWrapper ***REMOVED***
+  display: flex;
+  user-select: none;
+  > div:nth-child(even) ***REMOVED***
+    border-left: 0;
+    border-right: 0;
+***REMOVED***
+***REMOVED***
+
+.styleButton ***REMOVED***
+  height: 32px;
+  min-width: 32px;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(16,22,34,0.10);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover ***REMOVED***
+    background-color: #F3F4F4;
+***REMOVED***
+***REMOVED***
+
+.styleButtonActive ***REMOVED***
+  border: 0;
+  background: rgba(16,22,34,0.00);
+  box-shadow: inset 0 -1px 0 0 rgba(16,22,34,0.04), inset 0 1px 0 0 rgba(16,22,34,0.04);
+***REMOVED***
+
+.styleButtonBold ***REMOVED***
+  background-image: url('../../assets/icons/icon_bold.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+***REMOVED***
+
+.styleButtonDisabled ***REMOVED***
+  opacity: 0.7;
+  cursor: not-allowed;
+***REMOVED***
+
+.styleButtonItalic ***REMOVED***
+  background-image: url('../../assets/icons/icon_italic.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+***REMOVED***
+
+.styleButtonUnderline ***REMOVED***
+  background-image: url('../../assets/icons/icon_underline.svg');
+  background-position: center 11px;
+  background-repeat: no-repeat;
+***REMOVED***
+
+.styleButtonUL ***REMOVED***
+  background-image: url('../../assets/icons/icon_bullet-list.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+***REMOVED***
+
+.styleButtonOL ***REMOVED***
+  background-image: url('../../assets/icons/icon_numbered-list.svg');
+  background-position: center 12px;
+  background-repeat: no-repeat;
+***REMOVED***
+
+.styleButtonBlockQuote ***REMOVED***
+  background-image: url('../../assets/icons/icon_quote-block.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+***REMOVED***
+
+.styleButtonCodeBlock ***REMOVED***
+  background-image: url('../../assets/icons/icon_code-block.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+***REMOVED***
+
+.styleButtonLink ***REMOVED***
+  background-image: url('../../assets/icons/icon_link.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+***REMOVED***
+
+.styleButtonImg ***REMOVED***
+  background-image: url('../../assets/icons/icon_media.svg');
+  background-position: center;
+***REMOVED***
+
+.styleButtonStrikedOut ***REMOVED***
+  background-image: url('../../assets/icons/icon_barred.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+***REMOVED***
+
+.wysiwygInlineControls ***REMOVED***
+  height: 49px;
+  display: flex;
+  padding: 8px 3px 0 10px;
+  background-color: #F3F4F4;
+  user-select: none;
+  > div:nth-child(even) ***REMOVED***
+    border-left: 0;
+    border-right: 0;
+***REMOVED***
+  > div:first-child ***REMOVED***
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+***REMOVED***
+  > div:last-child ***REMOVED***
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-right: 1px solid rgba(16,22,34,0.10);
+***REMOVED***
+***REMOVED***
+
+.wysiwygInlineControlsFocus ***REMOVED***
+  border-color: #78caff;
+***REMOVED***

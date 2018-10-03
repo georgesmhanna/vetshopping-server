@@ -1,0 +1,16 @@
+***REMOVED***
+  "host": "localhost",
+  "port": 1337,
+  "proxy": ***REMOVED***
+    "enabled": false
+***REMOVED***,
+  "autoReload": ***REMOVED***
+    "enabled": true
+***REMOVED***,
+  "cron": ***REMOVED***
+    "enabled": false
+***REMOVED***,
+  "admin": ***REMOVED***
+    "autoOpen": true
+***REMOVED***
+***REMOVED***

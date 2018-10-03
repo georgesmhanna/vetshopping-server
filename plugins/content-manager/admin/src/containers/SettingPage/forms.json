@@ -1,0 +1,151 @@
+***REMOVED***
+  "inputs": [
+    ***REMOVED***
+      "label": ***REMOVED*** "id": "content-manager.form.Input.search" ***REMOVED***,
+      "customBootstrapClass": "col-md-4",
+      "didCheckErrors": false,
+      "errors": [],
+      "name": "search",
+      "type": "toggle",
+      "validations": ***REMOVED******REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "label": ***REMOVED*** "id": "content-manager.form.Input.filters" ***REMOVED***,
+      "customBootstrapClass": "col-md-4",
+      "didCheckErrors": false,
+      "errors": [],
+      "name": "filters",
+      "type": "toggle",
+      "validations": ***REMOVED******REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "label": ***REMOVED*** "id": "content-manager.form.Input.bulkActions" ***REMOVED***,
+      "customBootstrapClass": "col-md-4",
+      "didCheckErrors": false,
+      "errors": [],
+      "name": "bulkActions",
+      "type": "toggle",
+      "validations": ***REMOVED******REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "label": ***REMOVED*** "id": "content-manager.form.Input.pageEntries" ***REMOVED***,
+      "customBootstrapClass": "col-md-4",
+      "didCheckErrors": false,
+      "errors": [],
+      "inputDescription": ***REMOVED*** "id": "content-manager.form.Input.pageEntries.inputDescription" ***REMOVED***,
+      "name": "pageEntries",
+      "selectOptions": ["10", "20", "50", "100"],
+      "type": "select",
+      "validations": ***REMOVED******REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "label": ***REMOVED*** "id": "content-manager.form.Input.defaultSort" ***REMOVED***,
+      "customBootstrapClass": "col-md-4 ml-md-auto",
+      "didCheckErrors": false,
+      "errors": [],
+      "style": ***REMOVED*** "marginRight": "-20px" ***REMOVED***,
+      "name": "defaultSort",
+      "selectOptions": ["_id"],
+      "type": "select",
+      "validations": ***REMOVED******REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "label": "",
+      "customBootstrapClass": "col-md-1",
+      "didCheckErrors": false,
+      "errors": [],
+      
+      "name": "sort",
+      "selectOptions": ["ASC", "DESC"],
+      "type": "select",
+      "validations": ***REMOVED******REMOVED***
+***REMOVED***
+    
+  ],
+  "editList": [
+    ***REMOVED***
+      "label": ***REMOVED*** "id": "content-manager.form.Input.label" ***REMOVED***,
+      "customBootstrapClass": "col-md-7",
+      "didCheckErrors": false,
+      "errors": [],
+      "inputDescription": ***REMOVED*** "id": "content-manager.form.Input.label.inputDescription" ***REMOVED***,
+      "name": "label",
+      "type": "string",
+      "validations": ***REMOVED******REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "label": ***REMOVED*** "id": "content-manager.form.Input.sort.field" ***REMOVED***,
+      "customBootstrapClass": "col-md-6",
+      "didCheckErrors": false,
+      "errors": [],
+      "name": "sortable",
+      "style": ***REMOVED*** "marginTop": "18px" ***REMOVED***,
+      "type": "toggle",
+      "validations": ***REMOVED******REMOVED***
+***REMOVED***
+  ],
+  "editView": ***REMOVED***
+    "relationForm": [
+      ***REMOVED***
+        "label": ***REMOVED*** "id": "content-manager.form.Input.label" ***REMOVED***,
+        "customBootstrapClass": "col-md-8",
+        "didCheckErrors": false,
+        "errors": [],
+        "name": "label",
+        "placeholder": "SLUG (URL)",
+        "type": "string",
+        "validations": ***REMOVED******REMOVED***
+***REMOVED***
+      ***REMOVED***
+        "label": ***REMOVED*** "id": "content-manager.form.Input.description" ***REMOVED***,
+        "customBootstrapClass": "col-md-12",
+        "didCheckErrors": false,
+        "errors": [],
+        "name": "description",
+        "placeholder": "content-manager.form.Input.description.placeholder",
+        "type": "string",
+        "validations": ***REMOVED******REMOVED***
+***REMOVED***
+    ],
+    "fieldForm": [
+      ***REMOVED***
+        "label": ***REMOVED*** "id": "content-manager.form.Input.label" ***REMOVED***,
+        "customBootstrapClass": "col-md-8",
+        "didCheckErrors": false,
+        "errors": [],
+        "name": "label",
+        "placeholder": "SLUG (URL)",
+        "type": "string",
+        "validations": ***REMOVED******REMOVED***
+***REMOVED***
+      ***REMOVED***
+        "label": ***REMOVED*** "id": "content-manager.form.Input.disabled" ***REMOVED***,
+        "customBootstrapClass": "col-md-4",
+        "didCheckErrors": false,
+        "errors": [],
+        "name": "editable",
+        "type": "toggle",
+        "validations": ***REMOVED******REMOVED***
+***REMOVED***
+      ***REMOVED***
+        "label": ***REMOVED*** "id": "content-manager.form.Input.description" ***REMOVED***,
+        "customBootstrapClass": "col-md-12",
+        "didCheckErrors": false,
+        "errors": [],
+        "name": "description",
+        "placeholder": "content-manager.form.Input.description.placeholder",
+        "type": "string",
+        "validations": ***REMOVED******REMOVED***
+***REMOVED***
+      ***REMOVED***
+        "label": ***REMOVED*** "id": "content-manager.form.Input.placeholder" ***REMOVED***,
+        "customBootstrapClass": "col-md-12",
+        "didCheckErrors": false,
+        "errors": [],
+        "name": "placeholder",
+        "type": "string",
+        "validations": ***REMOVED******REMOVED***
+***REMOVED***
+    ]
+***REMOVED***
+***REMOVED***

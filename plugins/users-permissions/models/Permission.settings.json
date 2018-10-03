@@ -1,0 +1,39 @@
+***REMOVED***
+  "connection": "default",
+  "info": ***REMOVED***
+    "name": "permission",
+    "description": ""
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "type": ***REMOVED***
+      "type": "string",
+      "required": true,
+      "configurable": false
+***REMOVED***,
+    "controller": ***REMOVED***
+      "type": "string",
+      "required": true,
+      "configurable": false
+***REMOVED***,
+    "action": ***REMOVED***
+      "type": "string",
+      "required": true,
+      "configurable": false
+***REMOVED***,
+    "enabled": ***REMOVED***
+      "type": "boolean",
+      "required": true,
+      "configurable": false
+***REMOVED***,
+    "policy": ***REMOVED***
+      "type": "string",
+      "configurable": false
+***REMOVED***,
+    "role": ***REMOVED***
+      "model": "role",
+      "via": "permissions",
+      "plugin": "users-permissions",
+      "configurable": false
+***REMOVED***
+***REMOVED***
+***REMOVED***

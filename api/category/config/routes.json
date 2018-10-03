@@ -1,0 +1,52 @@
+***REMOVED***
+  "routes": [
+    ***REMOVED***
+      "method": "GET",
+      "path": "/categories",
+      "handler": "Category.find",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/categories/count",
+      "handler": "Category.count",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/categories/:_id",
+      "handler": "Category.findOne",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "POST",
+      "path": "/categories",
+      "handler": "Category.create",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "PUT",
+      "path": "/categories/:_id",
+      "handler": "Category.update",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "DELETE",
+      "path": "/categories/:_id",
+      "handler": "Category.destroy",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***
+  ]
+***REMOVED***

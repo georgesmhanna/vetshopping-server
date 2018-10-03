@@ -1,0 +1,209 @@
+.editor ***REMOVED***
+  max-height: 555px;
+  min-height: 303px;
+  overflow: auto;
+  padding: 20px 20px 0 20px;
+  font-size: 16px;
+  background-color: #fff;
+  line-height: 24px !important;
+  font-family: "OpenSans";
+  cursor: text;
+
+  // TODO define rules for header's margin
+  h1, h2, h3, h4, h5, h6 ***REMOVED***
+    margin: 0;
+    line-height: 24px !important;
+    font-family: "OpenSans";
+***REMOVED***
+
+  h1 ***REMOVED***
+    margin-top: 11px !important;
+    font-size: 36px;
+    font-weight: 600;
+***REMOVED***
+
+  h2 ***REMOVED***
+    margin-top: 26px;
+    font-size: 30px;
+    font-weight: 500;
+***REMOVED***
+
+  h3 ***REMOVED***
+    margin-top: 26px;
+    font-size: 24px;
+    font-weight: 500;
+***REMOVED***
+
+  h4 ***REMOVED***
+    margin-top: 26px;
+    font-size: 20px;
+    font-weight: 500;
+***REMOVED***
+
+  > div ***REMOVED***
+    > div ***REMOVED***
+      > div ***REMOVED***
+        margin-bottom: 32px;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+  li ***REMOVED***
+    margin-top: 0;
+***REMOVED***
+
+  ul, ol ***REMOVED***
+    padding: 0;
+    margin-top: 27px;
+***REMOVED***
+
+  ol ***REMOVED***
+    padding-left: 20px;
+***REMOVED***
+
+  // NOTE: we might need this later
+  span ***REMOVED***
+    white-space: pre-line;
+***REMOVED***
+***REMOVED***
+
+h1+.editorParagraph***REMOVED***
+  margin-top: 31px;
+***REMOVED***
+
+.editorParagraph+* ***REMOVED***
+  margin-bottom: -2px !important;
+***REMOVED***
+
+.editorParagraph+.editorBlockquote ***REMOVED***
+  margin-bottom: 32px !important;
+***REMOVED***
+
+.editorBlockquote+ul ***REMOVED***
+  margin-top: 38px !important;
+***REMOVED***
+
+.editorParagraph ***REMOVED***
+  color: #333740;
+  margin-top: 27px;
+  margin-bottom: -3px;
+  font-size: 16px;
+  font-weight: 400;
+***REMOVED***
+
+.editorBlockquote ***REMOVED***
+  margin-top: 41px;
+  margin-bottom: 34px;
+  font-size: 16px;
+  font-weight: 400;
+  border-left: 5px solid #eee;
+  font-style: italic;
+  padding: 10px 20px;
+***REMOVED***
+
+.unorderedList ***REMOVED***
+  padding: 0;
+  margin-left: 18px;
+***REMOVED***
+
+.editorCodeBlock ***REMOVED***
+  padding: 16px;
+  margin-top: 26px;
+  padding-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+
+  span ***REMOVED***
+    font-family: Consolas, monospace !important;
+    font-size: 12px;
+    line-height: 16px;
+    white-space: pre;
+***REMOVED***
+***REMOVED***
+
+.editorFullScreen ***REMOVED***
+  max-height: calc(100% - 70px) !important;
+  margin-bottom: 0;
+  overflow: auto;
+***REMOVED***
+
+.editorInput ***REMOVED***
+  height: 0;
+  width: 0;
+***REMOVED***
+
+.editorSelect ***REMOVED***
+  min-width: 161px;
+  margin-left: 15px;
+  margin-right: 5px;
+  > select ***REMOVED***
+    box-shadow: 0 0 0 rgba(0,0,0,0)!important;
+***REMOVED***
+***REMOVED***
+
+.fullscreenPreviewEditor ***REMOVED***
+  margin-top: 9px;
+  padding: 10px 20px;
+***REMOVED***
+
+.previewControlsWrapper ***REMOVED***
+  display: flex;
+  height: 49px;
+  width: 100%;
+  padding: 0 17px;
+  justify-content: space-between;
+  background-color: #FAFAFB;
+  line-height: 30px;
+  font-size: 12px;
+  font-family: Lato;
+  background-color: #fff;
+  border-bottom: 1px solid #F3F4F4;
+  line-height: 49px;
+  font-size: 13px;
+  > div:first-child ***REMOVED***
+    > span:last-child ***REMOVED***
+      font-size: 12px;
+***REMOVED***
+***REMOVED***
+  cursor: pointer;
+***REMOVED***
+
+.selectFullscreen ***REMOVED***
+  min-width: 115px;
+  margin-left: 15px;
+  > select ***REMOVED***
+    min-width: 110px !important;
+    box-shadow: 0 0 0 rgba(0,0,0,0)!important;
+***REMOVED***
+***REMOVED***
+
+.toggleModeButton ***REMOVED***
+  height: 32px;
+  min-width: 32px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid rgba(16,22,34,0.10);
+  border-radius: 3px;
+  background: #F3F4F4;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  &:focus, &:active ***REMOVED***
+    outline: 0;
+***REMOVED***
+***REMOVED***
+
+.toggleModeWrapper ***REMOVED***
+  margin-left: auto;
+  margin-right: 15px;
+  padding-top: 8px;
+***REMOVED***
+
+.wysiwygCollapse ***REMOVED***
+  &:after ***REMOVED***
+    content: '\f066';
+    font-family: FontAwesome;
+    margin-left: 8px;
+***REMOVED***
+***REMOVED***

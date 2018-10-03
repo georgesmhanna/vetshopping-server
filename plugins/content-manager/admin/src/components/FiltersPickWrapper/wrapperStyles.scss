@@ -1,0 +1,21 @@
+.wrapperStyle ***REMOVED***
+  margin-top: -13px;
+  > div:not(:first-child) ***REMOVED***
+    padding-top: 10px;
+***REMOVED***
+  > div:last-child ***REMOVED***
+    margin-bottom: 2px;
+***REMOVED***
+***REMOVED***
+
+.spanStyled ***REMOVED***
+  vertical-align: text-top;
+  cursor: pointer;
+
+  &:after ***REMOVED***
+    margin-left: 2px;
+    content: '\f077';
+    font-family: FontAwesome;
+    font-size: 10px;
+***REMOVED***
+***REMOVED***

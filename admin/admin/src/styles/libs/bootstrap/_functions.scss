@@ -1,0 +1,90 @@
+// Bootstrap functions
+//
+// Utility mixins and functions for evalutating source code across our variables, maps, and mixins.
+
+// Ascending
+// Used to evaluate Sass maps like our grid breakpoints.
+@mixin _assert-ascending($map, $map-name) ***REMOVED***
+  $prev-key: null;
+  $prev-num: null;
+  @each $key, $num in $map ***REMOVED***
+    @if $prev-num == null ***REMOVED***
+      // Do nothing
+***REMOVED*** @else if not comparable($prev-num, $num) ***REMOVED***
+      @warn "Potentially invalid value for #***REMOVED***$map-name***REMOVED***: This map must be in ascending order, but key '#***REMOVED***$key***REMOVED***' has value #***REMOVED***$num***REMOVED*** whose unit makes it incomparable to #***REMOVED***$prev-num***REMOVED***, the value of the previous key '#***REMOVED***$prev-key***REMOVED***' !";
+***REMOVED*** @else if $prev-num >= $num ***REMOVED***
+      @warn "Invalid value for #***REMOVED***$map-name***REMOVED***: This map must be in ascending order, but key '#***REMOVED***$key***REMOVED***' has value #***REMOVED***$num***REMOVED*** which isn't greater than #***REMOVED***$prev-num***REMOVED***, the value of the previous key '#***REMOVED***$prev-key***REMOVED***' !";
+***REMOVED***
+    $prev-key: $key;
+    $prev-num: $num;
+***REMOVED***
+***REMOVED***
+
+// Starts at zero
+// Another grid mixin that ensures the min-width of the lowest breakpoint starts at 0.
+@mixin _assert-starts-at-zero($map) ***REMOVED***
+  $values: map-values($map);
+  $first-value: nth($values, 1);
+  @if $first-value != 0 ***REMOVED***
+    @warn "First breakpoint in `$grid-breakpoints` must start at 0, but starts at #***REMOVED***$first-value***REMOVED***.";
+***REMOVED***
+***REMOVED***
+
+// Replace `$search` with `$replace` in `$string`
+// Used on our SVG icon backgrounds for custom forms.
+//
+// @author Hugo Giraudel
+// @param ***REMOVED***String***REMOVED*** $string - Initial string
+// @param ***REMOVED***String***REMOVED*** $search - Substring to replace
+// @param ***REMOVED***String***REMOVED*** $replace ('') - New value
+// @return ***REMOVED***String***REMOVED*** - Updated string
+@function str-replace($string, $search, $replace: "") ***REMOVED***
+  $index: str-index($string, $search);
+
+  @if $index ***REMOVED***
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+***REMOVED***
+
+  @return $string;
+***REMOVED***
+
+// Color contrast
+@mixin color-yiq($color) ***REMOVED***
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+
+  $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+
+  @if ($yiq >= 150) ***REMOVED***
+    color: #111;
+***REMOVED*** @else ***REMOVED***
+    color: #fff;
+***REMOVED***
+***REMOVED***
+
+// Retreive color Sass maps
+@function color($key: "blue") ***REMOVED***
+  @return map-get($colors, $key);
+***REMOVED***
+
+@function theme-color($key: "primary") ***REMOVED***
+  @return map-get($theme-colors, $key);
+***REMOVED***
+
+@function grayscale($key: "100") ***REMOVED***
+  @return map-get($grays, $key);
+***REMOVED***
+
+// Request a theme color level
+@function theme-color-level($color-name: "primary", $level: 0) ***REMOVED***
+  $color: theme-color($color-name);
+  $color-base: if($level > 0, #000, #fff);
+
+  @if $level < 0 ***REMOVED***
+    // Lighter values need a quick double negative for the Sass math to work
+    @return mix($color-base, $color, $level * -1 * $theme-color-interval);
+***REMOVED*** @else ***REMOVED***
+    @return mix($color-base, $color, $level * $theme-color-interval);
+***REMOVED***
+***REMOVED***

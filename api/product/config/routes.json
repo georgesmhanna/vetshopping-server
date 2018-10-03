@@ -1,0 +1,52 @@
+***REMOVED***
+  "routes": [
+    ***REMOVED***
+      "method": "GET",
+      "path": "/products",
+      "handler": "Product.find",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/products/count",
+      "handler": "Product.count",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/products/:_id",
+      "handler": "Product.findOne",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "POST",
+      "path": "/products",
+      "handler": "Product.create",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "PUT",
+      "path": "/products/:_id",
+      "handler": "Product.update",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "DELETE",
+      "path": "/products/:_id",
+      "handler": "Product.destroy",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***
+  ]
+***REMOVED***

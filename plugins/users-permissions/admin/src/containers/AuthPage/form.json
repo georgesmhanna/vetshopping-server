@@ -1,0 +1,116 @@
+***REMOVED***
+  "form": ***REMOVED***
+    "forgot-password": [
+      ***REMOVED***
+        "customBootstrapClass": "col-md-12",
+        "label": ***REMOVED***
+          "id": "users-permissions.Auth.form.forgot-password.email.label"
+  ***REMOVED***
+        "name": "email",
+        "type": "email",
+        "placeholder": "users-permissions.Auth.form.forgot-password.email.placeholder"
+***REMOVED***
+    ],
+    "login": [
+      ***REMOVED***
+        "customBootstrapClass": "col-md-12",
+        "label": ***REMOVED***
+          "id":  "users-permissions.Auth.form.login.username.label"
+  ***REMOVED***
+        "name": "identifier",
+        "type": "text",
+        "placeholder": "users-permissions.Auth.form.login.username.placeholder"
+***REMOVED***
+      ***REMOVED***
+        "customBootstrapClass": "col-md-12",
+        "label": ***REMOVED***
+          "id": "users-permissions.Auth.form.login.password.label"
+  ***REMOVED***
+        "name": "password",
+        "type": "password"
+***REMOVED***
+      ***REMOVED***
+        "customBootstrapClass": "col-md-6",
+        "label": ***REMOVED***
+          "id": "users-permissions.Auth.form.login.rememberMe.label"
+  ***REMOVED***
+        "name": "rememberMe",
+        "type": "checkbox"
+***REMOVED***
+    ],
+    "register": [
+      ***REMOVED***
+        "customBootstrapClass": "col-md-12",
+        "label": ***REMOVED***
+          "id": "users-permissions.Auth.form.register.username.label"
+  ***REMOVED***
+        "name": "username",
+        "type": "text",
+        "placeholder": "users-permissions.Auth.form.register.username.placeholder"
+***REMOVED***
+      ***REMOVED***
+        "customBootstrapClass": "col-md-12",
+        "label": ***REMOVED***
+          "id": "users-permissions.Auth.form.register.password.label"
+  ***REMOVED***
+        "name": "password",
+        "type": "password"
+***REMOVED***
+      ***REMOVED***
+        "customBootstrapClass": "col-md-12",
+        "label": ***REMOVED***
+          "id": "users-permissions.Auth.form.register.confirmPassword.label"
+  ***REMOVED***
+        "name": "confirmPassword",
+        "type": "password"
+***REMOVED***
+      ***REMOVED***
+        "customBootstrapClass": "col-md-12",
+        "label": ***REMOVED***
+          "id": "users-permissions.Auth.form.register.email.label"
+  ***REMOVED***
+        "name": "email",
+        "placeholder": "users-permissions.Auth.form.register.email.placeholder",
+        "type": "email"
+***REMOVED***
+      ***REMOVED***
+        "customBootstrapClass": "col-md-12",
+        "label": ***REMOVED***
+          "id": "users-permissions.Auth.form.register.news.label"
+  ***REMOVED***
+        "name": "news",
+        "type": "checkbox",
+        "value": false
+***REMOVED***
+    ],
+    "register-success": [
+      ***REMOVED***
+        "customBootstrapClass": "col-md-12",
+        "name": "email",
+        "type": "email",
+        "label": ***REMOVED***
+          "id":  "users-permissions.Auth.form.register-success.email.label"
+  ***REMOVED***
+        "placeholder": "users-permissions.Auth.form.register-success.email.placeholder"
+***REMOVED***
+    ],
+    "reset-password": [
+      ***REMOVED***
+        "customBootstrapClass": "col-md-12",
+        "name": "password",
+        "type": "password",
+        "label": ***REMOVED***
+          "id": "users-permissions.Auth.form.register.password.label"
+  ***REMOVED***
+***REMOVED***
+      ***REMOVED***
+        "customBootstrapClass": "col-md-12",
+        "name": "passwordConfirmation",
+        "type": "password",
+        "label": ***REMOVED***
+          "id": "users-permissions.Auth.form.register.confirmPassword.label"
+  ***REMOVED***
+***REMOVED***
+    ]
+***REMOVED***
+***REMOVED***

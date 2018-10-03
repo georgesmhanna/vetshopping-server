@@ -1,0 +1,421 @@
+.listContainer ***REMOVED*** /* stylelint-disable */
+  // margin-right: 15px;
+***REMOVED***
+
+.listSubContainer ***REMOVED***
+  margin: 0 3.3rem;
+  padding: 1rem 2.8rem 0rem 2.8rem;
+  border-radius: 0.2rem;
+  background-color: #FFFFFF;
+
+  box-shadow: 0 0.2rem 0.4rem 0 #E3E9F3;
+***REMOVED***
+
+.paddedTopList ***REMOVED***
+  margin-top: 2.7rem!important;
+***REMOVED***
+
+.flex ***REMOVED***
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+***REMOVED***
+
+.titleContainer ***REMOVED***
+  color: #333740;
+  font-family: Lato;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 2.2rem;
+  align-items: flex-start;
+***REMOVED***
+
+button ***REMOVED***
+  &:focus ***REMOVED***
+
+    outline: 0!important;
+***REMOVED***
+***REMOVED***
+
+.ulContainer ***REMOVED***
+  padding-top: 1.3rem;
+  margin: 0 3.3rem;
+  background-color: #FFFFFF;
+  box-shadow: 0 0.2rem 0.4rem 0 #E3E9F3;
+  > ul ***REMOVED***
+    list-style: none;
+    padding: 0;
+    > li ***REMOVED***
+      min-height: 5.2rem;
+      line-height: 5.2rem;
+      font-size: 1.3rem;
+      position: relative;
+      &:first-child .language ***REMOVED***
+        margin-top: .3rem;
+***REMOVED***
+      .language ***REMOVED***
+        margin-top: .1rem;
+***REMOVED***
+      &:last-child .borderBottom ***REMOVED***
+        border-bottom: none;
+***REMOVED***
+      &:hover ***REMOVED***
+        .hoveredLanguage ***REMOVED***
+          position: absolute;
+          top: -.2rem;
+          min-height: 5.4rem;
+          width: 100%;
+          background-color: rgba(14,22,34,0.03);
+  ***REMOVED***
+***REMOVED***
+***REMOVED***
+
+***REMOVED***
+***REMOVED***
+
+.li:first-child .language ***REMOVED***
+  margin-top: 11rem;
+***REMOVED***
+.liSpacer ***REMOVED***
+  height: .2rem!important;
+***REMOVED***
+
+.borderBottom ***REMOVED***
+  border-bottom: 1px solid rgba(14,22,34,0.04);
+
+***REMOVED***
+
+.flexLi ***REMOVED***
+  display: flex;
+  justify-content: space-between;
+  margin: 0 4.1rem 0 2.8rem;
+  position: relative;
+  align-items: center;
+***REMOVED***
+
+.flexLiLanguage ***REMOVED***
+  display: flex;
+  // justify-content: space-between;
+  margin: 0 4.1rem 0 2.8rem;
+  position: relative;
+  align-items: center;
+  > div:last-child ***REMOVED***
+    justify-content: flex-end;
+***REMOVED***
+***REMOVED***
+
+.flexLeft ***REMOVED***
+  display: flex;
+  align-items: flex-start;
+***REMOVED***
+
+.marged ***REMOVED***
+  margin-left: 1rem;
+***REMOVED***
+
+.flexed,
+.label ***REMOVED***
+  display: flex;
+***REMOVED***
+
+.label ***REMOVED***
+  align-items: center;
+  line-height: 1;
+  width: 15rem;
+  height: 5.2rem;
+  margin-left: 5rem;
+  color: #333740;
+  font-weight: 600;
+
+***REMOVED***
+
+.capitalized ***REMOVED***
+  text-transform: capitalize;
+***REMOVED***
+
+.centered ***REMOVED***
+  width: 25rem;
+  text-align: right;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  > button ***REMOVED***
+    padding: 0;
+***REMOVED***
+***REMOVED***
+
+.italicText ***REMOVED***
+  font-family: Lato;
+  color: #49515A;
+  font-style: italic;
+  height: 100%;
+  height: 5.2rem;
+  line-height: 5.2rem;
+  padding-right: 1rem;
+***REMOVED***
+
+.normal ***REMOVED***
+  font-family: Lato;
+  color: #1C5DE7;
+  cursor: pointer;
+***REMOVED***
+
+.primary ***REMOVED***
+  height: 3rem;
+  font-family: Lato!important;
+  margin-left: 1.9rem!important;
+  cursor: pointer;
+  font-family: Lato;
+  &:focus ***REMOVED***
+    outline: 0;
+***REMOVED***
+  border: none!important;
+  width: 15rem;
+  line-height: 1.6rem;
+  font-weight: 600;
+  border-radius: 3px;
+  background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
+  -webkit-font-smoothing: antialiased;
+  color: white!important;
+  &:active, &:focus, &:hover ***REMOVED***
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,.15);
+    background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
+    background-color: transparent;
+    border: none;
+ ***REMOVED***
+***REMOVED***
+
+.secondary ***REMOVED***
+  font-family: Lato;
+  color: #F64D0A;
+  border: 0.1rem solid #F64D0A;
+  background-color: transparent;
+  cursor: pointer;
+  &:hover ***REMOVED***
+    color: #F64D0A;
+    background-color: white;
+    border: 0.1rem solid #F64D0A;
+***REMOVED***
+  height: 3rem;
+  color: #F64D0A;
+  border: 0.1rem solid #F64D0A;
+  position: relative;
+  border-radius: 3px;
+***REMOVED***
+
+.bordered ***REMOVED***
+  margin-left: 3rem;
+  margin-right: 3rem;
+  border-bottom: 1px solid #F6F6F6;
+***REMOVED***
+
+.dbHost ***REMOVED***
+  width: 22rem;
+  text-align: center;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+***REMOVED***
+
+.noBorder ***REMOVED***
+  border: none!important;
+***REMOVED***
+
+.flexStart ***REMOVED***
+  justify-content: flex-start!important;
+***REMOVED***
+
+.italicText ***REMOVED***
+  color: #49515A;
+  font-style: italic;
+***REMOVED***
+
+.normal ***REMOVED***
+  color: #1C5DE7;
+  padding-top: 0rem;
+***REMOVED***
+
+.lighter ***REMOVED***
+  color: #333740;
+***REMOVED***
+
+
+.modalPosition ***REMOVED***
+  margin-top: 22rem ;
+  margin-left: 25%;
+  width: 50%!important;
+  max-width: none;
+  position: relative;
+***REMOVED***
+
+.modalBody ***REMOVED***
+  padding: 0;
+  padding-top: 2.1rem;
+
+***REMOVED***
+
+.modalFooter ***REMOVED***
+  margin-top: 1.5rem;
+  margin-bottom: 1.1rem;
+  > input ***REMOVED***
+    margin-top: 1.3rem!important;
+***REMOVED***
+  > button ***REMOVED***
+    &:focus ***REMOVED***
+      outline: 0;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.mHeader ***REMOVED***
+  padding-top: 1.6rem;
+  padding-bottom: 1rem;
+  > h4 ***REMOVED***
+    font-family: Lato;
+    font-weight: bold!important;
+    font-size: 1.8rem!important;
+
+***REMOVED***
+  > button ***REMOVED***
+    z-index: 999;
+    margin-top: -2rem;
+    margin-right: -1.5rem;
+    color: #C3C5C8;
+    opacity: 1;
+    font-size: 1.8rem;
+    font-weight: 100;
+    &:hover, &:focus ***REMOVED***
+      color: #C3C5C8;
+      opacity: 1;
+      outline: 0;
+***REMOVED***
+    > span ***REMOVED***
+      display: none;
+***REMOVED***
+    &:before ***REMOVED***
+      -webkit-font-smoothing: antialiased;
+      content: '\F00d';
+      font-family: 'FontAwesome';
+      font-weight: 400;
+      font-size: 1.2rem;
+      margin-right: 10px;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+
+.squared ***REMOVED***
+  margin-top: 1.6rem;
+  height: 2rem;
+  width: 3.5rem;
+  padding-top: .2rem;
+  border-radius: 2px;
+  color: #FFFFFF;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.6rem;
+  text-align: center;
+
+***REMOVED***
+
+.orange ***REMOVED***
+  background-color: #FFB500;
+***REMOVED***
+
+.leftSpaced ***REMOVED***
+  margin-left: 1rem;
+***REMOVED***
+
+.buttonContainer ***REMOVED***
+  > button ***REMOVED***
+    margin-right: 0;
+***REMOVED***
+***REMOVED***
+
+.trashContainer ***REMOVED***
+  // width: 5rem;
+  margin-left: 6rem;
+  cursor: pointer;
+***REMOVED***
+
+.spacer ***REMOVED***
+  height: 1.6rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid rgba(14,22,34,0.04);
+***REMOVED***
+
+.spacerSmall ***REMOVED***
+  margin-bottom: 0rem;
+***REMOVED***
+
+
+.ico ***REMOVED***
+  color: #0E1622;
+  > i ***REMOVED***
+    font-size: 1.1rem;
+***REMOVED***
+***REMOVED***
+
+
+
+.databaseFont ***REMOVED***
+  font-size: 1.3rem;
+  &:hover ***REMOVED***
+    height: 5.2rem;
+    background-color: rgba(14,22,34,0.03);
+***REMOVED***
+***REMOVED***
+
+.flagContainer ***REMOVED***
+  width: 33%;
+  margin-left: 1rem;
+  height: 5.2rem;
+  line-height: 5.2rem;
+
+  > div:first-of-type ***REMOVED***
+    background-image: url('assets/images/unknow_flag.png');
+    background-size: 1.3333em auto;
+    background-position: left center;
+***REMOVED***
+***REMOVED***
+
+
+.bottomSpacer ***REMOVED***
+  height: 1.2rem;
+  background-color: #FFFFFF;
+***REMOVED***
+
+@keyframes blink ***REMOVED***
+  0% ***REMOVED***
+    opacity: .2;
+***REMOVED***
+  20% ***REMOVED***
+    opacity: 1;
+***REMOVED***
+  100% ***REMOVED***
+    opacity: .2;
+***REMOVED***
+***REMOVED***
+
+.saving ***REMOVED***
+  margin-top: -1.2rem;
+***REMOVED***
+
+
+.saving span ***REMOVED***
+  animation-name: blink;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  font-size: 5rem;
+***REMOVED***
+
+.saving span:nth-child(2) ***REMOVED***
+  animation-delay: .2s;
+***REMOVED***
+
+.saving span:nth-child(3) ***REMOVED***
+  animation-delay: .4s;
+***REMOVED***

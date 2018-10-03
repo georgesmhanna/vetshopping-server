@@ -1,0 +1,41 @@
+.wysiwygBottomControlsWrapper ***REMOVED***
+  display: flex;
+  height: 30px;
+  width: 100%;
+  padding: 0 15px;
+  justify-content: space-between;
+  background-color: #FAFAFB;
+  line-height: 30px;
+  font-size: 13px;
+  font-family: Lato;
+  border-top: 1px dashed #e3e4e4;
+  
+  > div:first-child ***REMOVED***
+    > span:last-child ***REMOVED***
+      font-size: 12px;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+
+.fullScreenWrapper ***REMOVED***
+  cursor: pointer;
+  &:after ***REMOVED***
+    content: '\f065';
+    margin-left: 8px;
+    font-family: FontAwesome;
+    font-size: 12px;
+***REMOVED***
+***REMOVED***
+
+.underline ***REMOVED***
+  color: #1C5DE7;
+  text-decoration: underline;
+  cursor: pointer;
+***REMOVED***
+
+.dropLabel ***REMOVED***
+  > input ***REMOVED***
+    display: none;
+***REMOVED***
+***REMOVED***

@@ -1,0 +1,58 @@
+.inputCheckbox ***REMOVED***
+  margin-bottom: .5rem;
+  padding-left: 0;
+  font-size: 13px;
+
+  > div ***REMOVED***
+    height: 26px;
+    padding-left: 15px;
+    line-height: 26px;
+
+    > i ***REMOVED***
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      color: #787E8F;
+      cursor: pointer;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.label ***REMOVED***
+  margin-left: 9px;
+  cursor: pointer;
+  > input ***REMOVED***
+    display: none;
+    margin-right: 9px;
+***REMOVED***
+
+  &:before ***REMOVED***
+    content: '';
+    position: absolute;
+    left:15px; top: 6px;
+    width: 14px; height: 14px;
+    border: 1px solid rgba(16,22,34,0.15);
+    background-color: #FDFDFD;
+    border-radius: 3px;
+***REMOVED***
+***REMOVED***
+
+.checked ***REMOVED***
+  &:after ***REMOVED***
+    content: '\f00c';
+    position: absolute;
+    top: 0; left: 17px;
+    font-size: 10px;
+    font-family: 'FontAwesome';
+    font-weight: 100;
+    color: #1C5DE7;
+    transition: all .2s;
+
+***REMOVED***
+***REMOVED***
+
+.highlighted ***REMOVED***
+  border-radius: 3px;
+  background-color: #E9EAEB;
+  font-weight: 600;
+***REMOVED***

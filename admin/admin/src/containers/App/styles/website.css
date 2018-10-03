@@ -1,0 +1,25 @@
+li.header***REMOVED***
+  color: #101622 !important;
+  font-weight: 600;
+  letter-spacing: 0.07rem;
+  -webkit-font-smoothing: subpixel-antialiased;
+***REMOVED***
+
+li.chapter > a***REMOVED***
+  transition: background-color 0.15s ease;
+  -webkit-transition: background-color 0.15s ease;
+***REMOVED***
+
+li.chapter:hover > a***REMOVED***
+  background: #eee !important;
+  text-decoration: none !important;
+***REMOVED***
+
+.versions-select select***REMOVED***
+  height: 36px;
+  border: 1px solid #ccc;
+***REMOVED***
+
+.book-summary***REMOVED***
+  background-color: #f7f7f7 !important;
+***REMOVED***

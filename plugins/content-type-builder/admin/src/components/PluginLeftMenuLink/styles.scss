@@ -1,0 +1,66 @@
+.pluginLeftMenuLink ***REMOVED*** /* stylelint-disable */
+  color: #2D3138;
+***REMOVED***
+
+li:not(:first-child) ***REMOVED***
+  margin-top: 0.2rem;
+***REMOVED***
+
+.link ***REMOVED***
+  display: flex;
+  margin-left: 2rem;
+  margin-right: .5rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  min-height: 3.4rem;
+  color: #2C3138 !important;
+  text-decoration: none !important;
+  line-height: 1.6rem;
+  > div:first-child ***REMOVED***
+    width: 1.3rem;
+    margin-right: 1rem;
+    font-size: 11px;
+    > i ***REMOVED***
+      color: #666B74;
+***REMOVED***
+***REMOVED***
+  > span ***REMOVED***
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+***REMOVED***
+***REMOVED***
+
+.linkActive ***REMOVED***
+  height: 3.4rem;
+  border-radius: 0.2rem;
+  background-color: #E9EAEB;;
+  font-weight: bold;
+  text-decoration: none;
+  color: #2D3138 !important;
+  > div ***REMOVED***
+    > i ***REMOVED***
+      color: #2D3138 !important
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+
+.liInnerContainer ***REMOVED***
+  display: flex;
+  margin-left: 2rem;
+  margin-right: .5rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  min-height: 3.4rem;
+  color: #1C8FE5 !important;
+  text-decoration: none !important;
+  line-height: 1.6rem;
+  cursor: pointer;
+  > div ***REMOVED***
+    width: 1.3rem;
+    margin-right: 1rem;
+***REMOVED***
+***REMOVED***

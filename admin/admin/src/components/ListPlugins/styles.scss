@@ -1,0 +1,76 @@
+.container ***REMOVED***
+  padding-top: 1.6rem;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 4px #E3E9F3;
+***REMOVED***
+
+.titleContainer ***REMOVED***
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1.8rem;
+  padding-left: 1.8rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+***REMOVED***
+
+.ulContainer ***REMOVED***
+  width: 100%;
+  padding-top: 1.5rem;
+  > ul ***REMOVED***
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    > li ***REMOVED***
+      height: 5.4rem !important;
+      line-height: 5.4rem !important;
+      padding-right: 3.2rem;
+      padding-left: 1.5rem;
+      > div:first-child ***REMOVED***
+        margin: 0;
+        > div:first-child ***REMOVED***
+          padding-left: 0!important;
+          // margin-right: 1.5rem;
+  ***REMOVED***
+***REMOVED***
+***REMOVED***
+    > li:last-child ***REMOVED***
+      > div ***REMOVED***
+        border-bottom: none;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.pluginContent ***REMOVED***
+  text-align: left !important;
+  > span:first-child ***REMOVED***
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+***REMOVED***
+  > span:last-child ***REMOVED***
+    font-size: 13px;
+
+***REMOVED***
+***REMOVED***
+
+.icoContainer ***REMOVED***
+  width: 70px;
+  height: 36px;
+  margin: auto 0;
+  line-height: 36px;
+  text-align: center;
+  border: 1px solid rgba(28,93,231,0.1);
+  border-radius: 3px;
+  font-size: 20px;
+***REMOVED***
+
+.actionContainer ***REMOVED***
+  display: flex;
+  justify-content: flex-end;
+***REMOVED***
+
+.nameWrapper ***REMOVED***
+  display: flex;
+***REMOVED***

@@ -1,0 +1,26 @@
+***REMOVED***
+  "listPlugins": ***REMOVED***
+    "id": "app.components.LeftMenuLinkContainer.listPlugins",
+    "defaultMessage": "Plugins"
+***REMOVED***,
+  "installNewPlugin": ***REMOVED***
+    "id": "app.components.LeftMenuLinkContainer.installNewPlugin",
+    "defaultMessage": "Marketplace"
+***REMOVED***,
+  "configuration": ***REMOVED***
+    "id": "app.components.LeftMenuLinkContainer.configuration",
+    "defaultMessage": "Configurations"
+***REMOVED***,
+  "plugins": ***REMOVED***
+    "id": "app.components.LeftMenuLinkContainer.plugins",
+    "defaultMessage": "Plugins"
+***REMOVED***,
+  "general": ***REMOVED***
+    "id": "app.components.LeftMenuLinkContainer.general",
+    "defaultMessage": "General"
+***REMOVED***,
+  "noPluginsInstalled": ***REMOVED***
+    "id": "app.components.LeftMenuLinkContainer.noPluginsInstalled",
+    "defaultMessage": "No plugins installed yet"
+***REMOVED***
+***REMOVED***

@@ -1,0 +1,177 @@
+***REMOVED***
+    "Auth.form.button.register-success": "По�?лать еще раз",
+    "Auth.form.button.forgot-password.success": "По�?лать еще раз",
+    "Auth.form.button.forgot-password": "По�?лать пи�?ьмо",
+    "Auth.form.button.reset-password": "Сменить пароль",
+    "Auth.form.button.login": "Войти",
+    "Auth.form.button.register": "Готов начать",
+    "Auth.form.error.noAdminAccess": "Вы не можете получить до�?туп к панели админи�?трировани�?.",
+  
+    "Auth.form.forgot-password.email.label": "Введите ваш почтовый адре�?",
+    "Auth.form.forgot-password.email.label.success": "Пи�?ьмо у�?пешно отправлено",
+    "Auth.form.forgot-password.email.placeholder": "mysuperemail@gmail.com",
+  
+    "Auth.header.register.description": "Дл�? завершени�? у�?тановки и обе�?печени�? безопа�?но�?ти приложени�?, �?оздайте вашего первого пользовател�? (root admin) заполнив необходимую информацию ниже.", 
+    "Auth.form.header.login": "strapi",
+    "Auth.form.header.forgot-password": "strapi",
+    "Auth.form.header.register": "Добро пожаловать!",
+    "Auth.form.header.register-success": "strapi",
+  
+    "Auth.form.login.password.label": "Пароль",
+    "Auth.form.login.rememberMe.label": "Запомнить мен�?",
+    "Auth.form.login.username.label": "Им�? пользовател�?",
+    "Auth.form.login.username.placeholder": "John Doe",
+  
+    "Auth.form.register.email.label": "Email",
+    "Auth.form.register.email.placeholder": "johndoe@gmail.com",
+    "Auth.form.register.username.label": "Им�? пользовател�?",
+    "Auth.form.register.username.placeholder": "John Doe",
+    "Auth.form.register.password.label": "Пароль",
+    "Auth.form.register.confirmPassword.label": "Подтверждение парол�?",
+    "Auth.form.register.news.label": "Держите мен�? в кур�?е по поводу новых возможно�?тей и пред�?то�?щих улучшени�?х.",
+  
+    "Auth.form.register-success.email.label": "Пи�?ьмо у�?пешно отправлено по адре�?у",
+    "Auth.form.register-success.email.placeholder": "mysuperemail@gmail.com",
+  
+    "Auth.form.error.email.provide": "Укажите �?вое им�? пользовател�? или адре�? �?лектронной почты.",
+    "Auth.form.error.email.invalid": "�?еправильный адре�? �?лектронной почты.",
+    "Auth.form.error.password.provide": "Укажите �?вой пароль.",
+    "Auth.form.error.invalid": "�?едопу�?тимый идентификатор или пароль.",
+    "Auth.form.error.password.local": "Этот пользователь никогда не задавал пароль, пожалуй�?та, войдите в �?и�?тему через провайдера, и�?пользуемого при �?оздании учетной запи�?и.",
+    "Auth.form.error.password.format": "Пароль не может �?одержать �?имвол `$` больше трех раз.",
+    "Auth.form.error.user.not-exist": "Этот почтовый адре�? не �?уще�?твует.",
+    "Auth.form.error.code.provide": "�?еверный код.",
+    "Auth.form.error.password.matching": "Пароль не �?оответ�?твует.",
+    "Auth.form.error.params.provide": "�?еправильные параметры.",
+    "Auth.form.error.username.taken": "Им�? пользовател�? уже и�?пользует�?�?",
+    "Auth.form.error.email.taken": "Почтовый адре�? уже и�?пользует�?�?",
+  
+    "Auth.link.forgot-password": "Забыли пароль?",
+    "Auth.link.ready": "Готовы войти?",
+  
+    "BoundRoute.title": "Св�?зать путь �?",
+  
+    "components.Input.error.password.noMatch": "Пароль не �?овпадает",
+  
+    "Controller.input.label": "***REMOVED***label***REMOVED*** ",
+    "Controller.selectAll": "Выделить в�?е",
+  
+    "EditForm.inputSelect.label.role": "Роль по умолчанию дл�? аутентифицированных пользователей",
+    "EditForm.inputSelect.description.role": "Он при�?оединит нового аутентифицированного пользовател�? к выбранной роли.",
+    "EditForm.inputSelect.subscriptions.label": "Управление квотами на подпи�?ку",
+    "EditForm.inputSelect.subscriptions.description": "Ограничить количе�?тво подпи�?чиков на каждый IP-адре�? в ча�?.",
+    "EditForm.inputSelect.durations.label": "Длительно�?ть",
+    "EditForm.inputSelect.durations.description": "Количе�?тво ча�?ов, в течение которых пользователь не может подпи�?ать�?�?.",
+  
+    "EditForm.inputToggle.label.email": "Одна учетна�? запи�?ь на адре�? �?лектронной почты",
+    "EditForm.inputToggle.label.sign-up": "Включить реги�?трации",
+    "EditForm.inputToggle.description.email": "Запретить пользователю �?оздавать не�?колько учетных запи�?ей, и�?пользу�? один и тот же адре�? �?лектронной почты �? различными провайдерами аутентификации.",
+    "EditForm.inputToggle.description.sign-up": "Когда выключенно (OFF) проце�?�? реги�?трации запрещен. �?икто не может подпи�?ать�?�?, незави�?имо от провайдера.",
+  
+    "EditPage.cancel": "Отменить",
+    "EditPage.submit": "Сохранить",
+    "EditPage.form.roles": "Детали роли",
+    "EditPage.form.roles.label.description": "Опи�?ание",
+    "EditPage.form.roles.label.name": "�?азвание",
+    "EditPage.form.roles.label.users": "Пользователи �? �?той ролью — (***REMOVED***number***REMOVED***)",
+    "EditPage.form.roles.name.error": "Это значение об�?зательно.",
+    "EditPage.header.title": "***REMOVED***name***REMOVED*** ",
+    "EditPage.header.title.create": "Создать новую роль",
+    "EditPage.header.description": "***REMOVED***description***REMOVED*** ",
+    "EditPage.header.description.create": " ",
+  
+    "EditPage.notification.permissions.error": "Возникла ошибка при загрузке до�?тупов",
+    "EditPage.notification.policies.error": "Возникла ошибка при загрузке политики пользовател�?",
+    "EditPage.notification.role.error": "Возникла ошибка при загрузке роли",
+  
+    "HeaderNav.link.advancedSettings": "Ра�?ширенные на�?тройки",
+    "HeaderNav.link.emailTemplates": "Шаблоны пи�?ем",
+    "HeaderNav.link.providers": "Провайдеры",
+    "HeaderNav.link.roles": "Роли и до�?тупы",
+  
+    "HomePage.header.title": "Роли и до�?тупы",
+    "HomePage.header.description": "Задавай роли и до�?тупы дл�? ваших пользователей.",
+  
+    "InputSearch.placeholder": "И�?кать пользовател�?",
+  
+    "List.button.roles": "Добавить новую роль",
+    "List.button.providers": "Добавить нового провайдера",
+  
+    "List.title.emailTemplates.singular": "***REMOVED***number***REMOVED*** шаблон до�?тупен",
+    "List.title.emailTemplates.plural": "***REMOVED***number***REMOVED*** – количе�?тво до�?тупных шаблонов",
+  
+    "List.title.providers.disabled.singular": "***REMOVED***number***REMOVED*** отключен",
+    "List.title.providers.disabled.plural": "***REMOVED***number***REMOVED*** отключено",
+    "List.title.providers.enabled.singular": "***REMOVED***number***REMOVED*** провайдер включен и",
+    "List.title.providers.enabled.plural": "***REMOVED***number***REMOVED*** — количе�?тво провайдеров включено and",
+  
+    "List.title.roles.singular": "***REMOVED***number***REMOVED*** роль до�?тупна",
+    "List.title.roles.plural": "***REMOVED***number***REMOVED*** - количе�?тво до�?тупных ролей",
+  
+    "notification.error.delete": "Возникла ошибка в проце�?�?е удалени�?",
+    "notification.error.fetch": "Возникла ошибка при загрузке данных",
+    "notification.error.fetchUser": "Возникла ошибка при загрузке пользователей",
+    "notification.info.emailSent": "Пи�?ьмо отправленно",
+    "notification.success.delete": "У�?пешно удалено",
+    "notification.success.submit": "�?а�?тройки обновлены",
+  
+    "plugin.description.short": "Защитите ваш API �? проце�?�?ом полной аутентификации о�?нованом на JWT",
+    "plugin.description.long": "Защитите ваш API �? проце�?�?ом полной аутентификации о�?нованом на JWT. Этот плагин также идет �? ACL (Access Control List) возможно�?т�?ми, которые позвол�?ет вам на�?траивать до�?тупы дл�? групп пользователей.",
+  
+    "Plugin.permissions.application.description": "Задайте дей�?тви�? до�?тупные дл�? вашего проекта.",
+    "Plugin.permissions.plugins.description": "Задайте в�?е возможные дей�?тви�? дл�? ***REMOVED***name***REMOVED*** плагина.",
+  
+    "Plugins.header.title": "До�?тупы",
+    "Plugins.header.description": "Только дей�?тви�? �?в�?занные �? маршрутом показаны в �?пи�?ке.",
+  
+    "Policies.InputSelect.empty": "�?ет",
+    "Policies.InputSelect.label": "Разрешить выполнение �?того дей�?тви�? дл�?:",
+    "Policies.header.hint": "Выберите дей�?тви�? приложени�? или дей�?тви�? плагина и щелкните значок ше�?теренки, чтобы отобразить �?в�?занный маршрут",
+    "Policies.header.title": "Ра�?ширенные на�?тройки",
+  
+    "Email.template.validation_email": "Валидаци�? почтового адре�?а",
+    "Email.template.reset_password": "Сбро�? парол�?",
+    "Email.template.success_register": "Реги�?траци�? прошла у�?пешно",
+  
+    "Auth.advanced.allow_register": "",
+  
+    "PopUpForm.button.cancel": "Отменить",
+    "PopUpForm.button.save": "Сохранить",
+    "PopUpForm.header.add.providers": "Добавить нового провайдера",
+    "PopUpForm.header.edit.email-templates": "Отредактировать шаблон пи�?ьма",
+    "PopUpForm.header.edit.providers": "Отредактировать ***REMOVED***provider***REMOVED*** провайдера",
+    "PopUpForm.inputSelect.providers.label": "Выбрать провайдера",
+    "PopUpForm.Email.options.from.name.label": "�?азвание до�?тавщика",
+    "PopUpForm.Email.options.from.email.label": "Почтовый адре�? до�?тавщика",
+    "PopUpForm.Email.options.response_email.label": "Обратный почтовый адре�?",
+    "PopUpForm.Email.options.object.label": "Тема",
+    "PopUpForm.Email.options.message.label": "По�?лание",
+    "PopUpForm.Email.validation_email.options.object.placeholder": "Пожалуй�?та подтвердите ваш почтовый адре�? дл�? %APP_NAME%",
+    "PopUpForm.Email.reset_password.options.object.placeholder": "Пожалуй�?та подтвердите ваш почтовый адре�? дл�? %APP_NAME%",
+    "PopUpForm.Email.success_register.options.object.placeholder": "Пожалуй�?та подтвердите ваш почтовый адре�? дл�? %APP_NAME%",
+    "PopUpForm.Email.validation_email.options.message.placeholder": "<p>Пажалуй�?та нажмите на �?�?ылку чтобы подтвердить вашу учетную запи�?ь</p>",
+    "PopUpForm.Email.reset_password.options.message.placeholder": "<p>Пажалуй�?та нажмите на �?�?ылку чтобы подтвердить вашу учетную запи�?ь</p>",
+    "PopUpForm.Email.success_register.options.message.placeholder": "<p>Пажалуй�?та нажмите на �?�?ылку чтобы подтвердить вашу учетную запи�?ь</p>",
+    "PopUpForm.Email.options.from.email.placeholder": "johndoe@gmail.com",
+    "PopUpForm.Email.options.response_email.placeholder": "johndoe@gmail.com",
+    "PopUpForm.Email.options.from.name.placeholder": "John Doe",
+    "PopUpForm.Providers.enabled.label": "Включить",
+    "PopUpForm.Providers.enabled.description": "Е�?ли отключено, пользователь не �?может и�?пользовать �?тот провайдер.",
+    "PopUpForm.Providers.key.label": "Client ID",
+    "PopUpForm.Providers.key.placeholder": "TEXT",
+    "PopUpForm.Providers.secret.label": "Client Secret",
+    "PopUpForm.Providers.secret.placeholder": "TEXT",
+    "PopUpForm.Providers.redirectURL.front-end.label": "URL-адре�? перенаправлени�? дл�? вашего приложени�?",
+  
+  
+  
+    "PopUpForm.Providers.facebook.providerConfig.redirectURL": "URL-адре�? перенаправлени�?, который необходимо добавить в на�?тройки Facebook приложени�?",
+    "PopUpForm.Providers.google.providerConfig.redirectURL": "URL-адре�? перенаправлени�?, который необходимо добавить в на�?тройки Google приложени�?",
+    "PopUpForm.Providers.github.providerConfig.redirectURL": "URL-адре�? перенаправлени�?, который необходимо добавить в на�?тройки GitHub приложени�?",
+    "PopUpForm.Providers.linkedin2.providerConfig.redirectURL": "URL-адре�? перенаправлени�?, который необходимо добавить в на�?тройки Linkedin приложени�?",
+    "PopUpForm.Providers.twitter.providerConfig.redirectURL": "URL-адре�? перенаправлени�?, который необходимо добавить в на�?тройки Twitter приложени�?",
+  
+    "PopUpForm.Providers.callback.placeholder": "TEXT",
+    "PopUpForm.Email.email_templates.inputDescription": "Е�?ли вы не уверены как и�?пользовать переменные, ***REMOVED***link***REMOVED***",
+    "PopUpForm.Email.link.documentation": "ознакомте�?ь �? нашей документацией."
+***REMOVED***

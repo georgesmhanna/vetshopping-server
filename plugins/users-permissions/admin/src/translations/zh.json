@@ -1,0 +1,194 @@
+***REMOVED***
+  "Auth.form.button.register-success": "�?寄一次",
+  "Auth.form.button.forgot-password.success": "�?寄一次",
+  "Auth.form.button.forgot-password": "�?出 Email",
+  "Auth.form.button.reset-password": "更改密碼",
+  "Auth.form.button.login": "登入",
+  "Auth.form.button.register": "準備開始",
+  "Auth.form.error.noAdminAccess": "您將�?能進入管�?�者控制�?��?�",
+
+  "Auth.form.forgot-password.email.label": "輸入您的 Email",
+  "Auth.form.forgot-password.email.label.success": "�?功寄出 Email",
+  "Auth.form.forgot-password.email.placeholder": "mysuperemail@gmail.com",
+
+  "Auth.header.register.description":
+    "為了完�?設定，請創建第一個使用者 (最高權�?)，請填寫以下欄�?。",
+  "Auth.form.header.login": "strapi",
+  "Auth.form.header.forgot-password": "strapi",
+  "Auth.form.header.register": "歡迎!",
+  "Auth.form.header.register-success": "strapi",
+
+  "Auth.form.login.password.label": "密碼",
+  "Auth.form.login.rememberMe.label": "記�?我",
+  "Auth.form.login.username.label": "使用者�??稱",
+  "Auth.form.login.username.placeholder": "John Doe",
+
+  "Auth.form.register.email.label": "Email",
+  "Auth.form.register.email.placeholder": "johndoe@gmail.com",
+  "Auth.form.register.username.label": "使用者�??稱",
+  "Auth.form.register.username.placeholder": "John Doe",
+  "Auth.form.register.password.label": "密碼",
+  "Auth.form.register.confirmPassword.label": "確�?密碼",
+
+  "Auth.form.register-success.email.label": "Email �?功寄出",
+  "Auth.form.register-success.email.placeholder": "mysuperemail@gmail.com",
+
+  "Auth.form.error.email.provide": "請輸入使用者�??稱或 Email",
+  "Auth.form.error.email.invalid": "Email 格�?�?正確",
+  "Auth.form.error.password.provide": "請輸入您的密碼",
+  "Auth.form.error.invalid": "使用者�??稱或密碼�?正確",
+  "Auth.form.error.password.local":
+    "這個使用者還沒有設定本地密碼，請使用創建帳號時使用的供應商登入。",
+  "Auth.form.error.password.format": "您的密碼�?能包�?�這個符號 `$` 超�?�三次",
+  "Auth.form.error.user.not-exist": "這個 Email �?存在",
+  "Auth.form.error.code.provide": "�??供的數字�?正確",
+  "Auth.form.error.password.matching": "密碼�?相符",
+  "Auth.form.error.params.provide": "密碼�?正確",
+  "Auth.form.error.username.taken": "使用者�??稱已被使用",
+  "Auth.form.error.email.taken": "Email 已被使用",
+
+  "Auth.link.forgot-password": "忘記密碼？",
+  "Auth.link.ready": "準備登入了嗎？",
+
+  "BoundRoute.title": "�?定路徑到",
+
+  "components.Input.error.password.noMatch": "密碼�?相符",
+
+  "Controller.input.label": "***REMOVED***label***REMOVED*** ",
+  "Controller.selectAll": "全�?�",
+
+  "EditForm.inputSelect.label.role": "Default role for authenticated users",
+  "EditForm.inputSelect.description.role": "It will attach the new authenticated user to the selected role.",
+  "EditForm.inputSelect.subscriptions.label": "管�?�訂閱點數",
+  "EditForm.inputSelect.subscriptions.description": "�?制�?個 IP �?�?時訂閱",
+  "EditForm.inputSelect.durations.label": "時間",
+  "EditForm.inputSelect.durations.description": "�?�?時使用者訂閱失敗的數�?",
+
+  "EditForm.inputToggle.label.email": "一個帳號一個 Email",
+  "EditForm.inputToggle.label.sign-up": "啟用註冊",
+  "EditForm.inputToggle.description.email":
+    "�?止使用者用�?�一個 Email + �?�?�的供應商註冊多個帳號",
+  "EditForm.inputToggle.description.sign-up":
+    "當�?�用，註冊將被�?止，�?管用什麼供應商都沒有人�?�以訂閱。",
+
+  "EditPage.cancel": "�?�消",
+  "EditPage.submit": "儲存",
+  "EditPage.form.roles": "�?則細節",
+  "EditPage.form.roles.label.description": "說明",
+  "EditPage.form.roles.label.name": "�??稱",
+  "EditPage.form.roles.label.users": "和這個�?則有關的使用者 (***REMOVED***number***REMOVED***)",
+  "EditPage.form.roles.name.error": "這個數值必填",
+  "EditPage.header.title": "***REMOVED***name***REMOVED*** ",
+  "EditPage.header.title.create": "創建一個�?則",
+  "EditPage.header.description": "***REMOVED***description***REMOVED*** ",
+  "EditPage.header.description.create": " ",
+
+  "EditPage.notification.permissions.error": "讀�?�權�?時發生錯誤",
+  "EditPage.notification.policies.error": "讀�?�政策時發生錯誤",
+  "EditPage.notification.role.error": "讀�?��?則時發生錯誤",
+
+  "HeaderNav.link.advancedSettings": "進階設定",
+  "HeaderNav.link.emailTemplates": "Email 範本",
+  "HeaderNav.link.providers": "供應商",
+  "HeaderNav.link.roles": "�?則",
+
+  "HomePage.header.title": "使用者 & 權�?",
+  "HomePage.header.description": "為您的使用者設定�?則和權�?",
+
+  "InputSearch.placeholder": "�?�尋使用者",
+
+  "List.button.roles": "增加新�?則",
+  "List.button.providers": "增加新的供應商",
+
+  "List.title.emailTemplates.singular": "***REMOVED***number***REMOVED*** 個 Email 範本�?�用",
+  "List.title.emailTemplates.plural": "***REMOVED***number***REMOVED*** 個 Email 範本�?�用",
+
+  "List.title.providers.disabled.singular": "***REMOVED***number***REMOVED*** 已�?�用",
+  "List.title.providers.disabled.plural": "***REMOVED***number***REMOVED*** 已�?�用",
+  "List.title.providers.enabled.singular": "***REMOVED***number***REMOVED*** 個供應商已啟動",
+  "List.title.providers.enabled.plural": "***REMOVED***number***REMOVED*** 個供應商已啟動",
+
+  "List.title.roles.singular": "***REMOVED***number***REMOVED*** 個�?�用�?則",
+  "List.title.roles.plural": "***REMOVED***number***REMOVED*** 個�?�用�?則",
+
+  "notification.error.delete": "刪除項目時發生錯誤",
+  "notification.error.fetch": "讀�?�資料時發生錯誤",
+  "notification.error.fetchUser": "讀�?�使用者資料時發生錯誤",
+  "notification.info.emailSent": "Email 已寄出",
+  "notification.success.delete": "項目已刪除",
+  "notification.success.submit": "設定已更新",
+
+  "plugin.description.short": "使用 JWT �?證�?護您的 API",
+  "plugin.description.long":
+    "使用 JWT �?證�?護您的 API。這個擴充功能也使用 ACL 來讓你管�?��?�?�群組使用者的權�?。",
+
+  "Plugin.permissions.application.description": "定義您所有專案�?�用的動作",
+  "Plugin.permissions.plugins.description":
+    "為 ***REMOVED***name***REMOVED*** 擴充功能定義所有�?�用的動作",
+
+  "Plugins.header.title": "權�?",
+  "Plugins.header.description": "�?�有路徑�?定的動作顯示在下�?�",
+
+  "Policies.InputSelect.empty": "無",
+  "Policies.InputSelect.label": "授權這個動作：",
+  "Policies.header.hint":
+    "�?��?�應用程�?或擴充功能的動作然後點擊齒輪 Icon 來顯示�?定路徑",
+  "Policies.header.title": "進階設定",
+
+  "Email.template.validation_email": "Email �?證",
+  "Email.template.reset_password": "�?設密碼",
+  "Email.template.success_register": "註冊�?功",
+
+  "Auth.advanced.allow_register": "",
+
+  "PopUpForm.button.cancel": "�?�消",
+  "PopUpForm.button.save": "儲存",
+  "PopUpForm.header.add.providers": "新增供應商",
+  "PopUpForm.header.edit.email-templates": "編輯 Email 範本",
+  "PopUpForm.header.edit.providers": "編輯 ***REMOVED***provider***REMOVED*** 供應商",
+  "PopUpForm.inputSelect.providers.label": "�?�擇供應商",
+  "PopUpForm.Email.options.from.name.label": "寄件人�??稱",
+  "PopUpForm.Email.options.from.email.label": "寄件人 Email",
+  "PopUpForm.Email.options.response_email.label": "回覆 Email",
+  "PopUpForm.Email.options.object.label": "主題",
+  "PopUpForm.Email.options.message.label": "訊�?�",
+  "PopUpForm.Email.validation_email.options.object.placeholder":
+    "請確�?這個 %APP_NAME% Email 正�?正確",
+  "PopUpForm.Email.reset_password.options.object.placeholder":
+    "請確�?這個 %APP_NAME% Email 正�?正確",
+  "PopUpForm.Email.success_register.options.object.placeholder":
+    "請確�?這個 %APP_NAME% Email 正�?正確",
+  "PopUpForm.Email.validation_email.options.message.placeholder":
+    "<p>請點這個連�?來�?證您的 Email</p>",
+  "PopUpForm.Email.reset_password.options.message.placeholder":
+    "<p>請點這個連�?來�?證您的 Email</p>",
+  "PopUpForm.Email.success_register.options.message.placeholder":
+    "<p>請點這個連�?來�?證您的 Email</p>",
+  "PopUpForm.Email.options.from.email.placeholder": "johndoe@gmail.com",
+  "PopUpForm.Email.options.response_email.placeholder": "johndoe@gmail.com",
+  "PopUpForm.Email.options.from.name.placeholder": "John Doe",
+  "PopUpForm.Providers.enabled.label": "啟動",
+  "PopUpForm.Providers.enabled.description":
+    "如果�?�用，使用者將無法使用這個供應商",
+  "PopUpForm.Providers.key.label": "Client ID",
+  "PopUpForm.Providers.key.placeholder": "TEXT",
+  "PopUpForm.Providers.secret.label": "Client Secret",
+  "PopUpForm.Providers.secret.placeholder": "TEXT",
+  "PopUpForm.Providers.redirectURL.front-end.label": "您應用程�?的網�?�",
+
+  "PopUpForm.Providers.facebook.providerConfig.redirectURL":
+    "您應用程�?的網�?�在 Facebook 的設定",
+  "PopUpForm.Providers.google.providerConfig.redirectURL":
+    "您應用程�?的網�?�在 Google 的設定",
+  "PopUpForm.Providers.github.providerConfig.redirectURL":
+    "您應用程�?的網�?�在 GitHub 的設定",
+  "PopUpForm.Providers.linkedin2.providerConfig.redirectURL":
+    "您應用程�?的網�?�在 Linkedin 的設定",
+  "PopUpForm.Providers.twitter.providerConfig.redirectURL":
+    "您應用程�?的網�?�在 Twitter 的設定",
+
+  "PopUpForm.Providers.callback.placeholder": "TEXT",
+  "PopUpForm.Email.email_templates.inputDescription":
+    "如果您�?確定�?怎麼使用變數 ***REMOVED***link***REMOVED***",
+  "PopUpForm.Email.link.documentation": "查詢我們的文件"
+***REMOVED***

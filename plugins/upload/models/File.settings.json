@@ -1,0 +1,55 @@
+***REMOVED***
+  "connection": "default",
+  "info": ***REMOVED***
+    "name": "file",
+    "description": ""
+***REMOVED***,
+  "options": ***REMOVED***
+    "timestamps": true
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "name": ***REMOVED***
+      "type": "string",
+      "configurable": false,
+      "required": true
+***REMOVED***,
+    "hash": ***REMOVED***
+      "type": "string",
+      "configurable": false,
+      "required": true
+***REMOVED***,
+    "sha256": ***REMOVED***
+      "type": "string",
+      "configurable": false
+***REMOVED***,
+    "ext": ***REMOVED***
+      "type": "string",
+      "configurable": false
+***REMOVED***,
+    "mime": ***REMOVED***
+      "type": "string",
+      "configurable": false,
+      "required": true
+***REMOVED***,
+    "size": ***REMOVED***
+      "type": "string",
+      "configurable": false,
+      "required": true
+***REMOVED***,
+    "url": ***REMOVED***
+      "type": "string",
+      "configurable": false,
+      "required": true
+***REMOVED***,
+    "provider": ***REMOVED***
+      "type": "string",
+      "configurable": false,
+      "required": true
+***REMOVED***,
+    "related": ***REMOVED***
+      "collection": "*",
+      "filter": "field",
+      "configurable": false
+***REMOVED***
+***REMOVED***
+***REMOVED***

@@ -1,0 +1,45 @@
+.tableRow ***REMOVED*** /* stylelint-disable */
+  height: 54px;
+  background: #ffffff;
+
+  &:hover ***REMOVED***
+    cursor: pointer;
+    background: #F7F8F8;
+***REMOVED***
+
+  td***REMOVED***
+    height: 53px;
+    line-height: 53px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #333740;
+    border-collapse: collapse;
+    border-top: 1px solid #F1F1F2 !important;
+***REMOVED***
+***REMOVED***
+
+.truncate ***REMOVED***
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+***REMOVED***
+
+.truncated ***REMOVED***
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+***REMOVED***
+
+.actions ***REMOVED***
+  text-align: right;
+
+  i ***REMOVED***
+    margin-left: 15px;
+    font-size: 1.1rem;
+    color: #0E1622;
+
+    &:first-of-type***REMOVED***
+      margin-left: 0px;
+***REMOVED***
+***REMOVED***
+***REMOVED***

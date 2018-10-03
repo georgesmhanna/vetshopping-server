@@ -1,0 +1,32 @@
+.settingsRow ***REMOVED***
+  height: 54px;
+
+  &:hover ***REMOVED***
+    background-color: #F7F8F8;
+***REMOVED***
+  > div ***REMOVED***
+    display: flex;
+    line-height: 53px;
+    margin:  0 28px 0 36px;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(14,22,34,0.04);
+    font-size: 13px;
+    color: #333740;
+***REMOVED***
+  cursor: pointer;
+***REMOVED***
+
+.icon ***REMOVED***
+  position: absolute;
+  left: 0;
+  height: 53px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+***REMOVED***
+
+.frame ***REMOVED***
+  position: relative;
+  padding-left: 55px;
+  font-weight: 500;
+***REMOVED***

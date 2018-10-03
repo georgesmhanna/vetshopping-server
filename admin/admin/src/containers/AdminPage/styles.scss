@@ -1,0 +1,17 @@
+/* Import */
+@import '../../styles/variables/variables';
+
+.adminPage ***REMOVED*** /* stylelint-disable */
+  display: flex;
+***REMOVED***
+
+.adminPageRightWrapper ***REMOVED***
+  width: calc(100% - #***REMOVED***$left-menu-width***REMOVED***);
+***REMOVED***
+
+.adminPageSeparator ***REMOVED***
+  height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+***REMOVED***

@@ -1,0 +1,21 @@
+***REMOVED***
+  "connection": "default",
+  "collectionName": "",
+  "info": ***REMOVED***
+    "name": "color",
+    "description": ""
+***REMOVED***,
+  "options": ***REMOVED***
+    "timestamps": true
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "name": ***REMOVED***
+      "default": "",
+      "type": "string"
+***REMOVED***,
+    "products": ***REMOVED***
+      "collection": "product",
+      "via": "colors"
+***REMOVED***
+***REMOVED***
+***REMOVED***

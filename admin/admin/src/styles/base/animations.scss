@@ -1,0 +1,23 @@
+/**
+ * Notifications animation
+ **/
+
+.notification-enter ***REMOVED***
+  opacity: 0.01;
+  top: -60px;
+***REMOVED***
+
+.notification-enter.notification-enter-active ***REMOVED***
+  opacity: 1;
+  transition: all 400ms ease-in;
+  top: 0;
+***REMOVED***
+
+.notification-exit ***REMOVED***
+  opacity: 1;
+***REMOVED***
+
+.notification-exit.notification-exit-active ***REMOVED***
+  opacity: 0.01;
+  transition: all 400ms ease-in;
+***REMOVED***

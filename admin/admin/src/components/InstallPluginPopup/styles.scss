@@ -1,0 +1,199 @@
+.buttonWrapper ***REMOVED***
+  display: flex;
+  justify-content: space-between;
+  min-width: 136px;
+  height: 30px;
+  margin-left: 20px;
+  border-radius: 0.3rem;
+  background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
+
+  color: white;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+
+  cursor: pointer;
+  &:focus ***REMOVED***
+    outline: 0;
+***REMOVED***
+  > div ***REMOVED***
+    text-align: center;
+    text-transform: capitalize;
+    &:first-child ***REMOVED***
+      flex-grow: 2;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.headerButtonContainer ***REMOVED***
+  display: flex;
+  justify-content: space-between;
+  padding-top: 13px;
+  line-height: 29px;
+
+  > div ***REMOVED***
+    font-size: 13px;
+    font-style: italic;
+***REMOVED***
+
+  > div:first-child ***REMOVED***
+    > i ***REMOVED***
+      margin-right: 10px;
+***REMOVED***
+    color: #5A9E06;
+***REMOVED***
+
+  > div:nth-child(2) ***REMOVED***
+    display: flex;
+    > span:nth-child(2) ***REMOVED***
+      font-style: normal;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.headerDescription ***REMOVED***
+  height: 48px;
+  padding-top: 12px;
+  font-size: 13px;
+***REMOVED***
+
+.headerInfo ***REMOVED***
+  flex-grow: 1;
+  padding-top: 7px;
+  padding-left: 30px;
+***REMOVED***
+
+.headerWrapper ***REMOVED***
+  display: flex;
+***REMOVED***
+
+.logo ***REMOVED***
+  flex-shrink: 0;
+  width: 144px;
+  height: 144px;
+  background: #FAFAFB;
+  border: 1px solid #F3F3F7;
+  border-radius: 3px;
+  background-size: contain;
+  line-height: 144px;
+  text-align: center;
+  > img ***REMOVED***
+    min-width: 72px;
+    // max-height: 72px;
+
+***REMOVED***
+***REMOVED***
+
+.modalHeader ***REMOVED***
+  margin: 0 1.4rem !important;
+  padding: 1.4rem 0 0 0 !important;
+  border-bottom: 0 !important;
+  > button ***REMOVED***
+    margin-right: -1rem !important;
+    color: #C3C5C8;
+    opacity: 1;
+    font-size: 1.8rem;
+    font-weight: 100;
+    z-index: 999;
+    &:hover, &:focus ***REMOVED***
+      color: #C3C5C8;
+      opacity: 1;
+      outline: 0!important;
+      cursor: pointer;
+***REMOVED***
+    > span ***REMOVED***
+      display: none;
+***REMOVED***
+    &:before ***REMOVED***
+      -webkit-font-smoothing: antialiased;
+      content: '\F00d';
+      font-family: 'FontAwesome';
+      font-weight: 400;
+      font-size: 1.2rem;
+      margin-right: 10px;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.modalBody ***REMOVED***
+  padding: 5px 0px !important;
+***REMOVED***
+
+.modalPosition ***REMOVED***
+  > div ***REMOVED***
+    border:none;
+    border-radius: 2px;
+    width: 74.5rem;
+    padding-left: 0;
+    padding-right: 0;
+***REMOVED***
+***REMOVED***
+
+.name ***REMOVED***
+  padding-bottom: 1px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+***REMOVED***
+
+.navContainer ***REMOVED***
+  display: flex;
+  justify-content: space-between;
+  height: 36px;
+
+  margin-top: 38px;
+  padding: 0 30px;
+
+  background-color: #FAFAFB;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  > div ***REMOVED***
+    flex-grow: 2;
+    text-align: center;
+    line-height: 23px;
+    cursor: pointer;
+***REMOVED***
+***REMOVED***
+
+.navLink ***REMOVED***
+  border-top: 2px solid #1C5DE7;
+***REMOVED***
+
+.notAllowed ***REMOVED***
+  opacity: .3;
+  cursor: not-allowed !important;
+***REMOVED***
+.pluginDescription ***REMOVED***
+  padding: 24px 30px;
+  font-size: 13px;
+  line-height: 18px;
+***REMOVED***
+
+.ratings ***REMOVED***
+  display: flex;
+  line-height: 18px;
+
+  > div:last-child ***REMOVED***
+    padding-top: 1px;
+    font-style: italic;
+***REMOVED***
+***REMOVED***
+
+.starsContainer ***REMOVED***
+  display: flex;
+  > div ***REMOVED***
+    color: #EED348;
+    > i ***REMOVED***
+      margin-right: 2px;
+***REMOVED***
+***REMOVED***
+  > div:last-child ***REMOVED***
+    color: #B3B5B9;
+***REMOVED***
+***REMOVED***
+
+.wrapper ***REMOVED***
+  padding: 0 30px;
+***REMOVED***

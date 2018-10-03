@@ -1,0 +1,237 @@
+ /* stylelint-disable */
+.divider ***REMOVED***
+  width: 100%;
+  margin-top: 1.3rem;
+  // border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(14, 22, 34, 0.04);
+***REMOVED***
+
+
+ .headerContainer ***REMOVED***
+   position: absolute;
+   top: 0;
+   width: 100%;
+   display: flex;
+   padding: 1.6rem 2.9rem 0 2.9rem;
+ ***REMOVED***
+
+ .modalBody ***REMOVED***
+   padding: 4.9rem 2.9rem 0 2.9rem;
+ ***REMOVED***
+
+ .modalBodyAdvanced ***REMOVED***
+   padding: 2.2rem 1.4rem 0 1.4rem;
+   margin-bottom: .3rem;
+ ***REMOVED***
+
+.flex ***REMOVED***
+  display: flex;
+***REMOVED***
+
+.inputContainer ***REMOVED***
+  padding-top: 2.2rem;
+***REMOVED***
+
+.modalFooter ***REMOVED***
+ padding: 4.5rem 1rem 2.8rem 1rem;
+ border: none;
+ > button ***REMOVED***
+   height: 3rem;
+   position: relative;
+   border-radius: 0.3rem;
+   text-transform: capitalize;
+   margin-right: 1.8rem;
+   cursor: pointer;
+   font-family: Lato;
+   &:focus ***REMOVED***
+     outline: 0;
+ ***REMOVED***
+   > i ***REMOVED***
+     margin-right: 1.3rem;
+ ***REMOVED***
+   &:hover, &:active ***REMOVED***
+    &::after ***REMOVED***
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: 0.3rem;
+      content: '';
+      opacity: 0.1;
+      background: #FFFFFF;
+***REMOVED***
+***REMOVED***
+ ***REMOVED***
+***REMOVED***
+
+.modalPosition ***REMOVED***
+  padding-top: 2px;
+  > div ***REMOVED***
+    border:none;
+    border-radius: 2px;
+    width: 74.5rem;
+    padding-left: 0;
+    padding-right: 0;
+***REMOVED***
+***REMOVED***
+
+.navContainer ***REMOVED***
+  display: flex;
+  height: 3.8rem;
+  margin-left: 5rem;
+  padding-top: .6rem;
+  color: #9EA7B8;
+  font-size: 1.2rem;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  >div:last-child ***REMOVED***
+    margin-left: 3rem;
+***REMOVED***
+***REMOVED***
+
+.popUpFormHeader ***REMOVED***
+  margin: 0 2.9rem;
+  padding: 1.4rem 0 2.8rem 0;
+  // border-bottom: 1px solid black;
+  border-bottom: 1px solid #F6F6F6;
+  position: relative;
+  > button ***REMOVED***
+    z-index: 999;
+    margin-right: -1.5rem;
+    color: #C3C5C8;
+    opacity: 1;
+    font-size: 1.8rem;
+    font-weight: 100;
+    &:hover, &:focus ***REMOVED***
+      color: #C3C5C8;
+      opacity: 1;
+      outline: 0;
+***REMOVED***
+    > span ***REMOVED***
+      display: none;
+***REMOVED***
+    &:before ***REMOVED***
+      -webkit-font-smoothing: antialiased;
+      content: '\F00d';
+      font-family: 'FontAwesome';
+      font-weight: 400;
+      font-size: 1.2rem;
+      margin-right: 10px;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.popUpRelations ***REMOVED***
+  font-family: Lato;
+***REMOVED***
+
+.primary ***REMOVED***
+  height: 3rem;
+  font-family: Lato!important;
+  margin-left: 1.9rem!important;
+  cursor: pointer;
+  font-family: Lato;
+  &:focus ***REMOVED***
+    outline: 0;
+***REMOVED***
+  &:hover, &:active ***REMOVED***
+    color: white;
+    background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
+    border: none;
+***REMOVED***
+  border: none!important;
+  width: 15rem;
+  line-height: 1.6rem;
+  font-weight: 600;
+  border-radius: 3px;
+  background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
+  -webkit-font-smoothing: antialiased;
+  color: white!important;
+***REMOVED***
+
+@keyframes blink ***REMOVED***
+  0% ***REMOVED***
+    opacity: .2;
+***REMOVED***
+  20% ***REMOVED***
+    opacity: 1;
+***REMOVED***
+  100% ***REMOVED***
+    opacity: .2;
+***REMOVED***
+***REMOVED***
+
+.saving ***REMOVED***
+  margin-top: -1.2rem;
+***REMOVED***
+
+
+.saving span ***REMOVED***
+  animation-name: blink;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  font-size: 5rem;
+***REMOVED***
+
+.saving span:nth-child(2) ***REMOVED***
+  animation-delay: .2s;
+***REMOVED***
+
+.saving span:nth-child(3) ***REMOVED***
+  animation-delay: .4s;
+***REMOVED***
+
+.secondary ***REMOVED***
+  min-width: 100px;
+  font-family: Lato;
+  color: #F64D0A;
+  border: 0.1rem solid #F64D0A;
+  cursor: pointer;
+  background-color: transparent;
+  &:hover, &:active ***REMOVED***
+    color: #F64D0A;
+    background-color: white;
+    border: 0.1rem solid #F64D0A;
+***REMOVED***
+  height: 3rem;
+  color: #F64D0A;
+  border: 0.1rem solid #F64D0A;
+  position: relative;
+  border-radius: 3px;
+***REMOVED***
+
+.titleContainer ***REMOVED***
+  font-size: 1.8rem;
+  font-weight: bold;
+***REMOVED***
+
+.primaryAddShape ***REMOVED***
+  min-width: 12rem;
+  margin-left: 17px!important;
+  padding: 0 15px;
+  background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
+  border: none!important;
+  border-radius: 3px;
+  color: white;
+  font-family: Lato!important;
+  font-weight: 600;
+  &:focus ***REMOVED***
+    outline: 0;
+***REMOVED***
+  &:hover, &:active ***REMOVED***
+    border: none!important;
+    background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
+    box-shadow: inset 1px 1px 3px rgba(0,0,0,.15);
+    color: white;
+***REMOVED***
+  &:before ***REMOVED***
+    content: '\F067';
+    font-family: 'FontAwesome';
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-right: 13px;
+***REMOVED***
+  -webkit-font-smoothing: antialiased;
+***REMOVED***

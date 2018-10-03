@@ -1,0 +1,1002 @@
+***REMOVED***
+  "contentType": ***REMOVED***
+    "baseSettings": ***REMOVED***
+      "items": [
+        ***REMOVED***
+          "label": ***REMOVED***
+            "id": "content-type-builder.form.contentType.item.name"
+    ***REMOVED***
+          "name": "name",
+          "value": "",
+          "type": "string",
+          "validations": ***REMOVED***
+            "required": true
+    ***REMOVED***
+          "inputDescription": ***REMOVED***
+            "id": "content-type-builder.form.contentType.item.name.description",
+            "params": ***REMOVED***
+              "link": ***REMOVED***
+                "parent": ***REMOVED***
+                  "type": "a",
+                  "attr": ***REMOVED***
+                    "href": "https://strapi.io/documentation/concepts/concepts.html#models",
+                    "target": "_blank"
+            ***REMOVED***
+          ***REMOVED***
+                "children": ***REMOVED***
+                  "type": "FormattedMessage",
+                  "attr": ***REMOVED***
+                    "id": "content-type-builder.form.contentType.item.name.link.description"
+            ***REMOVED***
+          ***REMOVED***
+        ***REMOVED***
+      ***REMOVED***
+    ***REMOVED***
+  ***REMOVED***
+        ***REMOVED***
+          "label": ***REMOVED***
+            "id": "content-type-builder.form.contentType.item.connections"
+    ***REMOVED***
+          "name": "connection",
+          "type": "select",
+          "value": "default",
+          "items": [***REMOVED******REMOVED***],
+          "validations": ***REMOVED***
+            "required": true
+    ***REMOVED***
+  ***REMOVED***
+        ***REMOVED***
+          "label": ***REMOVED***
+            "id": "content-type-builder.form.contentType.item.description"
+    ***REMOVED***
+          "name": "description",
+          "value": "",
+          "type": "textarea",
+          "placeholder": "content-type-builder.form.contentType.item.description.placeholder",
+          "validations": ***REMOVED******REMOVED***
+  ***REMOVED***
+      ]
+***REMOVED***,
+    "advancedSettings": ***REMOVED***
+      "items": [
+        ***REMOVED***
+          "label": ***REMOVED***
+            "id": "content-type-builder.form.contentType.item.collectionName"
+    ***REMOVED***
+          "name": "collectionName",
+          "type": "string",
+          "value": "",
+          "validations": ***REMOVED******REMOVED***,
+          "inputDescription": ***REMOVED***
+            "id": "content-type-builder.form.contentType.item.collectionName.inputDescription"
+    ***REMOVED***
+  ***REMOVED***
+      ]
+***REMOVED***
+***REMOVED***,
+  "attributesDisplay": ***REMOVED***
+    "items": [
+      ***REMOVED***
+        "type": "string",
+        "description": "content-type-builder.popUpForm.attributes.string.description"
+***REMOVED***
+      ***REMOVED***
+        "type": "text",
+        "description": "content-type-builder.popUpForm.attributes.text.description"
+***REMOVED***
+      ***REMOVED***
+        "type": "number",
+        "description": "content-type-builder.popUpForm.attributes.number.description"
+***REMOVED***
+      ***REMOVED***
+        "type": "boolean",
+        "description": "content-type-builder.popUpForm.attributes.boolean.description"
+***REMOVED***
+      ***REMOVED***
+        "type": "date",
+        "description": "content-type-builder.popUpForm.attributes.date.description"
+***REMOVED***
+      ***REMOVED***
+        "type": "json",
+        "description": "content-type-builder.popUpForm.attributes.json.description"
+***REMOVED***
+      ***REMOVED***
+        "type": "email",
+        "description": "content-type-builder.popUpForm.attributes.email.description"
+***REMOVED***
+      ***REMOVED***
+        "type": "password",
+        "description": "content-type-builder.popUpForm.attributes.password.description"
+***REMOVED***
+      ***REMOVED***
+        "type": "media",
+        "description": "content-type-builder.popUpForm.attributes.media.description"
+***REMOVED***
+      ***REMOVED***
+        "type": "relation",
+        "description": "content-type-builder.popUpForm.attributes.relation.description"
+***REMOVED***
+      ***REMOVED***
+        "type": "enumeration",
+        "description": "content-type-builder.popUpForm.attributes.enumeration.description"
+***REMOVED***
+    ]
+***REMOVED***,
+  "attribute": ***REMOVED***
+    "text": ***REMOVED***
+      "baseSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.textarea.name"
+      ***REMOVED***
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+      "advancedSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.settings.default"
+      ***REMOVED***
+            "name": "params.default",
+            "type": "textarea",
+            "value": "",
+            "validations": ***REMOVED******REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.appearance.name"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.appearance.label"
+      ***REMOVED***
+            "name": "params.appearance.WYSIWYG",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.appearance.description"
+      ***REMOVED***
+            "inputStyle": ***REMOVED*** "fontWeight": "500" ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.settings.name"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField"
+      ***REMOVED***
+            "name": "params.required",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField"
+      ***REMOVED***
+            "name": "params.unique",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.minimumLength"
+      ***REMOVED***
+            "name": "params.minLength",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "items": [
+              ***REMOVED***
+                "label": "",
+                "name": "params.minLengthValue",
+                "value": "",
+                "type": "number",
+                "validations": ***REMOVED***
+                  "required": true
+          ***REMOVED***
+        ***REMOVED***
+            ]
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.maximumLength"
+      ***REMOVED***
+            "name": "params.maxLength",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "items": [
+              ***REMOVED***
+                "label": "",
+                "name": "params.maxLengthValue",
+                "value": "",
+                "type": "number",
+                "validations": ***REMOVED***
+                  "required": true
+          ***REMOVED***
+        ***REMOVED***
+            ]
+    ***REMOVED***
+        ]
+***REMOVED***
+***REMOVED***,
+    "number": ***REMOVED***
+      "baseSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.number.name"
+      ***REMOVED***
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.number.type"
+      ***REMOVED***
+            "name": "params.type",
+            "type": "select",
+            "value": "integer",
+            "items": [
+              ***REMOVED*** "name": "content-type-builder.form.attribute.item.number.type.integer", "value": "integer" ***REMOVED***,
+              ***REMOVED*** "name": "content-type-builder.form.attribute.item.number.type.float", "value": "float" ***REMOVED***,
+              ***REMOVED*** "name": "content-type-builder.form.attribute.item.number.type.decimal", "value": "decimal" ***REMOVED***
+            ],
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+      "advancedSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.settings.default"
+      ***REMOVED***
+            "name": "params.default",
+            "type": "number",
+            "value": 0,
+            "validations": ***REMOVED******REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.settings.name"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField"
+      ***REMOVED***
+            "name": "params.required",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField"
+      ***REMOVED***
+            "name": "params.unique",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.minimum"
+      ***REMOVED***
+            "name": "params.min",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "items": [
+              ***REMOVED***
+                "label": "",
+                "name": "params.minValue",
+                "value": "",
+                "type": "number",
+                "validations": ***REMOVED***
+                  "required": true
+          ***REMOVED***
+        ***REMOVED***
+            ]
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.maximum"
+      ***REMOVED***
+            "name": "params.max",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "items": [
+              ***REMOVED***
+                "label": "",
+                "name": "params.maxValue",
+                "value": "",
+                "type": "number",
+                "validations": ***REMOVED***
+                  "required": true
+          ***REMOVED***
+        ***REMOVED***
+            ]
+    ***REMOVED***
+        ]
+***REMOVED***
+***REMOVED***,
+    "string": ***REMOVED***
+      "baseSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.string.name"
+      ***REMOVED***
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+      "advancedSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.settings.default"
+      ***REMOVED***
+            "name": "params.default",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED******REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.settings.name"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField"
+      ***REMOVED***
+            "name": "params.required",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField"
+      ***REMOVED***
+            "name": "params.unique",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.minimumLength"
+      ***REMOVED***
+            "name": "params.minLength",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "items": [
+              ***REMOVED***
+                "label": "",
+                "name": "params.minLengthValue",
+                "value": "",
+                "type": "number",
+                "validations": ***REMOVED***
+                  "required": true
+          ***REMOVED***
+        ***REMOVED***
+            ]
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.maximumLength"
+      ***REMOVED***
+            "name": "params.maxLength",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "items": [
+              ***REMOVED***
+                "label": "",
+                "name": "params.maxLengthValue",
+                "value": "",
+                "type": "number",
+                "validations": ***REMOVED***
+                  "required": true
+          ***REMOVED***
+        ***REMOVED***
+            ]
+    ***REMOVED***
+        ]
+***REMOVED***
+***REMOVED***,
+    "email": ***REMOVED***
+      "baseSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.string.name"
+      ***REMOVED***
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+      "advancedSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.settings.default"
+      ***REMOVED***
+            "name": "params.default",
+            "type": "email",
+            "value": "",
+            "validations": ***REMOVED******REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.settings.name"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField"
+      ***REMOVED***
+            "name": "params.required",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField"
+      ***REMOVED***
+            "name": "params.unique",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.minimumLength"
+      ***REMOVED***
+            "name": "params.minLength",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "items": [
+              ***REMOVED***
+                "label": "",
+                "name": "params.minLengthValue",
+                "value": "",
+                "type": "number",
+                "validations": ***REMOVED***
+                  "required": true
+          ***REMOVED***
+        ***REMOVED***
+            ]
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.maximumLength"
+      ***REMOVED***
+            "name": "params.maxLength",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "items": [
+              ***REMOVED***
+                "label": "",
+                "name": "params.maxLengthValue",
+                "value": "",
+                "type": "number",
+                "validations": ***REMOVED***
+                  "required": true
+          ***REMOVED***
+        ***REMOVED***
+            ]
+    ***REMOVED***
+        ]
+***REMOVED***
+***REMOVED***,
+    "password": ***REMOVED***
+      "baseSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.string.name"
+      ***REMOVED***
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+      "advancedSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.settings.default"
+      ***REMOVED***
+            "name": "params.default",
+            "type": "password",
+            "value": "",
+            "validations": ***REMOVED******REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.settings.name"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField"
+      ***REMOVED***
+            "name": "params.required",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.minimumLength"
+      ***REMOVED***
+            "name": "params.minLength",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "items": [
+              ***REMOVED***
+                "label": "",
+                "name": "params.minLengthValue",
+                "value": "",
+                "type": "number",
+                "validations": ***REMOVED***
+                  "required": true
+          ***REMOVED***
+        ***REMOVED***
+            ]
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.maximumLength"
+      ***REMOVED***
+            "name": "params.maxLength",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "items": [
+              ***REMOVED***
+                "label": "",
+                "name": "params.maxLengthValue",
+                "value": "",
+                "type": "number",
+                "validations": ***REMOVED***
+                  "required": true
+          ***REMOVED***
+        ***REMOVED***
+            ]
+    ***REMOVED***
+        ]
+***REMOVED***
+***REMOVED***,
+    "date": ***REMOVED***
+      "baseSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.date.name"
+      ***REMOVED***
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+      "advancedSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.settings.default"
+      ***REMOVED***
+            "name": "params.default",
+            "type": "date",
+            "value": "",
+            "validations": ***REMOVED******REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.settings.name"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField"
+      ***REMOVED***
+            "name": "params.required",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField"
+      ***REMOVED***
+            "name": "params.unique",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField.description"
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+***REMOVED***,
+    "boolean": ***REMOVED***
+      "baseSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.boolean.name"
+      ***REMOVED***
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+      "advancedSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.settings.default"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.settings.default.checkboxLabel"
+      ***REMOVED***
+            "name": "params.default",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.settings.name"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField"
+      ***REMOVED***
+            "name": "params.required",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField"
+      ***REMOVED***
+            "name": "params.unique",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField.description"
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+***REMOVED***,
+    "json": ***REMOVED***
+      "baseSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.json.name"
+      ***REMOVED***
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+      "advancedSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.settings.name"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField"
+      ***REMOVED***
+            "name": "params.required",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField"
+      ***REMOVED***
+            "name": "params.unique",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField.description"
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+***REMOVED***,
+    "media": ***REMOVED***
+      "baseSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.media.name"
+      ***REMOVED***
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.media.multiple"
+      ***REMOVED***
+            "name": "params.multiple",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+      "advancedSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.settings.name"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField"
+      ***REMOVED***
+            "name": "params.required",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField"
+      ***REMOVED***
+            "name": "params.unique",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField.description"
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+***REMOVED***,
+    "relation": ***REMOVED***
+      "defineRelation": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.defineRelation.fieldName"
+      ***REMOVED***
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "placeholder": "content-type-builder.relation.attributeName.placeholder",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.defineRelation.fieldName"
+      ***REMOVED***
+            "name": "params.key",
+            "type": "string",
+            "value": "",
+            "placeholder": "content-type-builder.relation.attributeName.placeholder",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+      "advancedSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField"
+      ***REMOVED***
+            "name": "params.unique",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.customColumnName"
+      ***REMOVED***
+            "name": "params.columnName",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.customColumnName.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": "",
+            "name": "params.targetColumnName",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED******REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+***REMOVED***,
+    "enumeration": ***REMOVED***
+      "baseSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.enumeration.name"
+      ***REMOVED***
+            "name": "name",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.enumeration.rules"
+      ***REMOVED***
+            "name": "params.enumValue",
+            "type": "textarea",
+            "placeholder": "content-type-builder.form.attribute.item.enumeration.placeholder",
+            "value": false,
+            "validations": ***REMOVED***
+              "required": true
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+      "advancedSettings": ***REMOVED***
+        "items": [
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.settings.default"
+      ***REMOVED***
+            "name": "params.default",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED******REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.enumeration.graphql"
+      ***REMOVED***
+            "name": "params.enumName",
+            "type": "string",
+            "value": "",
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.enumeration.graphql.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "title": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.settings.name"
+      ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField"
+      ***REMOVED***
+            "name": "params.required",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.requiredField.description"
+      ***REMOVED***
+    ***REMOVED***
+          ***REMOVED***
+            "label": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField"
+      ***REMOVED***
+            "name": "params.unique",
+            "type": "checkbox",
+            "value": false,
+            "validations": ***REMOVED******REMOVED***,
+            "inputDescription": ***REMOVED***
+              "id": "content-type-builder.form.attribute.item.uniqueField.description"
+      ***REMOVED***
+    ***REMOVED***
+        ]
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***

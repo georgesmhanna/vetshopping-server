@@ -1,0 +1,107 @@
+// Base class
+.tooltip ***REMOVED***
+  position: absolute;
+  z-index: $zindex-tooltip;
+  display: block;
+  margin: $tooltip-margin;
+  // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+  // So reset our font and text properties to avoid inheriting weird values.
+  @include reset-text();
+  font-size: $font-size-sm;
+  // Allow breaking very long words so they don't overflow the tooltip's bounds
+  word-wrap: break-word;
+  opacity: 0;
+
+  &.show ***REMOVED*** opacity: $tooltip-opacity; ***REMOVED***
+
+  .arrow ***REMOVED***
+    position: absolute;
+    display: block;
+    width: $tooltip-arrow-width;
+    height: $tooltip-arrow-height;
+***REMOVED***
+
+  &.bs-tooltip-top ***REMOVED***
+    padding: $tooltip-arrow-width 0;
+    .arrow ***REMOVED***
+      bottom: 0;
+***REMOVED***
+
+    .arrow::before ***REMOVED***
+      margin-left: -($tooltip-arrow-width - 2);
+      content: "";
+      border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
+      border-top-color: $tooltip-arrow-color;
+***REMOVED***
+***REMOVED***
+  &.bs-tooltip-right ***REMOVED***
+    padding: 0 $tooltip-arrow-width;
+    .arrow ***REMOVED***
+      left: 0;
+***REMOVED***
+
+    .arrow::before ***REMOVED***
+      margin-top: -($tooltip-arrow-width - 2);
+      content: "";
+      border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
+      border-right-color: $tooltip-arrow-color;
+***REMOVED***
+***REMOVED***
+  &.bs-tooltip-bottom ***REMOVED***
+    padding: $tooltip-arrow-width 0;
+    .arrow ***REMOVED***
+      top: 0;
+***REMOVED***
+
+    .arrow::before ***REMOVED***
+      margin-left: -($tooltip-arrow-width - 2);
+      content: "";
+      border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
+      border-bottom-color: $tooltip-arrow-color;
+***REMOVED***
+***REMOVED***
+  &.bs-tooltip-left ***REMOVED***
+    padding: 0 $tooltip-arrow-width;
+    .arrow ***REMOVED***
+      right: 0;
+***REMOVED***
+
+    .arrow::before ***REMOVED***
+      right: 0;
+      margin-top: -($tooltip-arrow-width - 2);
+      content: "";
+      border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
+      border-left-color: $tooltip-arrow-color;
+***REMOVED***
+***REMOVED***
+  &.bs-tooltip-auto ***REMOVED***
+    &[x-placement^="top"] ***REMOVED***
+      @extend .bs-tooltip-top;
+***REMOVED***
+    &[x-placement^="right"] ***REMOVED***
+      @extend .bs-tooltip-right;
+***REMOVED***
+    &[x-placement^="bottom"] ***REMOVED***
+      @extend .bs-tooltip-bottom;
+***REMOVED***
+    &[x-placement^="left"] ***REMOVED***
+      @extend .bs-tooltip-left;
+***REMOVED***
+***REMOVED***
+
+  .arrow::before ***REMOVED***
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+***REMOVED***
+***REMOVED***
+
+// Wrapper for the tooltip content
+.tooltip-inner ***REMOVED***
+  max-width: $tooltip-max-width;
+  padding: $tooltip-padding-y $tooltip-padding-x;
+  color: $tooltip-color;
+  text-align: center;
+  background-color: $tooltip-bg;
+  @include border-radius($border-radius);
+***REMOVED***

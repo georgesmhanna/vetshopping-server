@@ -1,0 +1,81 @@
+// Form control focus state
+//
+// Generate a customized focus state and for any input with the specified color,
+// which defaults to the `@input-border-color-focus` variable.
+//
+// We highly encourage you to not customize the default value, but instead use
+// this to tweak colors on an as-needed basis. This aesthetic change is based on
+// WebKit's default styles, but applicable to a wider range of browsers. Its
+// usability and accessibility should be taken into account with any change.
+//
+// Example usage: change the default blue border and shadow to white for better
+// contrast against a dark gray background.
+@mixin form-control-focus() ***REMOVED***
+  &:focus ***REMOVED***
+    color: $input-focus-color;
+    background-color: $input-focus-bg;
+    border-color: $input-focus-border-color;
+    outline: none;
+    @include box-shadow($input-focus-box-shadow);
+***REMOVED***
+***REMOVED***
+
+
+@mixin form-validation-state($state, $color) ***REMOVED***
+
+  .form-control,
+  .custom-select ***REMOVED***
+    .was-validated &:#***REMOVED***$state***REMOVED***,
+    &.is-#***REMOVED***$state***REMOVED*** ***REMOVED***
+      border-color: $color;
+
+      &:focus ***REMOVED***
+        // box-shadow: 0 0 0 .2rem rgba($color,.25);
+***REMOVED***
+
+      ~ .invalid-feedback,
+      ~ .invalid-tooltip ***REMOVED***
+        display: block;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+
+  // TODO: redo check markup lol crap
+  .form-check-input ***REMOVED***
+    .was-validated &:#***REMOVED***$state***REMOVED***,
+    &.is-#***REMOVED***$state***REMOVED*** ***REMOVED***
+      + .form-check-label ***REMOVED***
+        color: $color;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+  // custom radios and checks
+  .custom-control-input ***REMOVED***
+    .was-validated &:#***REMOVED***$state***REMOVED***,
+    &.is-#***REMOVED***$state***REMOVED*** ***REMOVED***
+      ~ .custom-control-indicator ***REMOVED***
+        background-color: rgba($color, .25);
+***REMOVED***
+      ~ .custom-control-description ***REMOVED***
+        color: $color;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+  // custom file
+  .custom-file-input ***REMOVED***
+    .was-validated &:#***REMOVED***$state***REMOVED***,
+    &.is-#***REMOVED***$state***REMOVED*** ***REMOVED***
+      ~ .custom-file-control ***REMOVED***
+        border-color: $color;
+
+        &::before ***REMOVED*** border-color: inherit; ***REMOVED***
+***REMOVED***
+      &:focus ***REMOVED***
+        box-shadow: 0 0 0 .2rem rgba($color,.25);
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***

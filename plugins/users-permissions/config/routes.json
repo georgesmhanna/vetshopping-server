@@ -1,0 +1,269 @@
+***REMOVED***
+  "routes": [
+    ***REMOVED***
+      "method": "GET",
+      "path": "/",
+      "handler": "UsersPermissions.index",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/init",
+      "handler": "UsersPermissions.init",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/search/:id",
+      "handler": "UsersPermissions.searchUsers",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/permissions",
+      "handler": "UsersPermissions.getPermissions",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/policies",
+      "handler": "UsersPermissions.getPolicies",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/roles/:id",
+      "handler": "UsersPermissions.getRole",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/roles",
+      "handler": "UsersPermissions.getRoles",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/routes",
+      "handler": "UsersPermissions.getRoutes",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/email-templates",
+      "handler": "UsersPermissions.getEmailTemplate",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "PUT",
+      "path": "/email-templates",
+      "handler": "UsersPermissions.updateEmailTemplate",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/advanced",
+      "handler": "UsersPermissions.getAdvancedSettings",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "PUT",
+      "path": "/advanced",
+      "handler": "UsersPermissions.updateAdvancedSettings",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/providers",
+      "handler": "UsersPermissions.getProviders",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+
+    ***REMOVED***
+      "method": "PUT",
+      "path": "/providers",
+      "handler": "UsersPermissions.updateProviders",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+
+
+    ***REMOVED***
+      "method": "POST",
+      "path": "/roles",
+      "handler": "UsersPermissions.createRole",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "PUT",
+      "path": "/roles/:role",
+      "handler": "UsersPermissions.updateRole",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "DELETE",
+      "path": "/roles/:role",
+      "handler": "UsersPermissions.deleteRole",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "DELETE",
+      "path": "/providers/:provider",
+      "handler": "UsersPermissions.deleteProvider",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+
+    ***REMOVED***
+      "method": "GET",
+      "path": "/connect/*",
+      "handler": "Auth.connect",
+      "config": ***REMOVED***
+        "policies": ["plugins.users-permissions.ratelimit"],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "POST",
+      "path": "/auth/local",
+      "handler": "Auth.callback",
+      "config": ***REMOVED***
+        "policies": ["plugins.users-permissions.ratelimit"],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "POST",
+      "path": "/auth/local/register",
+      "handler": "Auth.register",
+      "config": ***REMOVED***
+        "policies": ["plugins.users-permissions.ratelimit"],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/auth/:provider/callback",
+      "handler": "Auth.callback",
+      "config": ***REMOVED***
+        "policies": [],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "POST",
+      "path": "/auth/forgot-password",
+      "handler": "Auth.forgotPassword",
+      "config": ***REMOVED***
+        "policies": ["plugins.users-permissions.ratelimit"],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "POST",
+      "path": "/auth/reset-password",
+      "handler": "Auth.changePassword",
+      "config": ***REMOVED***
+        "policies": ["plugins.users-permissions.ratelimit"],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/auth/email-confirmation",
+      "handler": "Auth.emailConfirmation",
+      "config": ***REMOVED***
+        "policies": [],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/users",
+      "handler": "User.find",
+      "config": ***REMOVED***
+        "policies": [],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/users/me",
+      "handler": "User.me",
+      "config": ***REMOVED***
+        "policies": [],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/users/:_id",
+      "handler": "User.findOne",
+      "config": ***REMOVED***
+        "policies": [],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "POST",
+      "path": "/users",
+      "handler": "User.create",
+      "config": ***REMOVED***
+        "policies": [],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "PUT",
+      "path": "/users/:_id",
+      "handler": "User.update",
+      "config": ***REMOVED***
+        "policies": [],
+        "prefix": ""
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "DELETE",
+      "path": "/users/:_id",
+      "handler": "User.destroy",
+      "config": ***REMOVED***
+        "policies": [],
+        "prefix": ""
+***REMOVED***
+***REMOVED***
+  ]
+***REMOVED***

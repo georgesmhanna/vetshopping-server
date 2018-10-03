@@ -1,0 +1,102 @@
+.isDraging ***REMOVED***
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+***REMOVED***
+
+.pluginInputFile ***REMOVED***
+  position: relative;
+  height: 146px;
+  width: 100%;
+  padding-top: 28px;
+  border: 2px dashed #E3E9F3;
+  border-radius: 2px;
+  text-align: center;
+
+  > input ***REMOVED***
+    display: none;
+***REMOVED***
+
+  .icon***REMOVED***
+    width: 82px;
+    path***REMOVED***
+      fill: #CCD0DA;
+      transition: fill .3s ease;
+***REMOVED***
+***REMOVED***
+
+  &:hover***REMOVED***
+    cursor: pointer;
+***REMOVED***
+***REMOVED***
+
+.textWrapper ***REMOVED***
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #9EA7B8;
+
+  u ***REMOVED***
+    color: #1C5DE7;
+***REMOVED***
+***REMOVED***
+
+.pluginInputFileHover ***REMOVED***
+  background-color: rgba(28,93,231,0.01) !important;
+  border: 2px dashed rgba(28,93,231,0.10) !important;
+***REMOVED***
+
+.underline ***REMOVED***
+  color: #1C5DE7;
+  text-decoration: underline;
+  cursor: pointer;
+***REMOVED***
+
+@mixin smoothBlink($firstColor, $secondColor) ***REMOVED***
+  @-webkit-keyframes blink ***REMOVED***
+    0% ***REMOVED***
+      fill: $firstColor;
+      background-color: $firstColor;
+***REMOVED***
+    26% ***REMOVED***
+      fill: $secondColor;
+      background-color: $secondColor;
+***REMOVED***
+    76% ***REMOVED***
+      fill: $firstColor;
+      background-color: $firstColor;
+***REMOVED***
+***REMOVED***
+
+  @keyframes blink ***REMOVED***
+    0% ***REMOVED***
+      fill: $firstColor;
+      background-color: $firstColor;
+***REMOVED***
+    26% ***REMOVED***
+      fill: $secondColor;
+      background-color: $secondColor;
+***REMOVED***
+    76% ***REMOVED***
+      fill: $firstColor;
+      background-color: $firstColor;
+***REMOVED***
+***REMOVED***
+
+  -webkit-animation: blink 2s linear infinite;
+  -moz-animation: blink 2s linear infinite;
+  -o-animation: blink 2s linear infinite;
+  animation: blink 2s linear infinite;
+***REMOVED***
+
+.quadrat ***REMOVED***
+  .icon***REMOVED***
+    path ***REMOVED***
+      fill: #729BEF;
+***REMOVED***
+***REMOVED***
+
+  @include smoothBlink(transparent, rgba(28, 93, 231, 0.05));
+***REMOVED***

@@ -1,0 +1,62 @@
+***REMOVED***
+  "csrf": ***REMOVED***
+    "enabled": false,
+    "key": "_csrf",
+    "secret": "_csrfSecret"
+***REMOVED***,
+  "csp": ***REMOVED***
+    "enabled": true,
+    "policy": [***REMOVED***
+        "img-src": "'self' http:"
+***REMOVED***
+      "block-all-mixed-content"
+    ]
+***REMOVED***,
+  "p3p": ***REMOVED***
+    "enabled": true,
+    "value": ""
+***REMOVED***,
+  "hsts": ***REMOVED***
+    "enabled": true,
+    "maxAge": 31536000,
+    "includeSubDomains": true
+***REMOVED***,
+  "xframe": ***REMOVED***
+    "enabled": true,
+    "value": "SAMEORIGIN"
+***REMOVED***,
+  "xss": ***REMOVED***
+    "enabled": true,
+    "mode": "block"
+***REMOVED***,
+  "cors": ***REMOVED***
+    "enabled": true,
+    "origin": "*",
+    "expose": [
+      "WWW-Authenticate",
+      "Server-Authorization"
+    ],
+    "maxAge": 31536000,
+    "credentials": true,
+    "methods": [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE",
+      "OPTIONS",
+      "HEAD"
+    ],
+    "headers": [
+      "Content-Type",
+      "Authorization",
+      "X-Frame-Options",
+      "Origin"
+    ]
+***REMOVED***,
+  "ip": ***REMOVED***
+    "enabled": false,
+    "whiteList": [],
+    "blackList": []
+***REMOVED***
+***REMOVED***

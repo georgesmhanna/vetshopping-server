@@ -1,0 +1,12 @@
+@mixin badge-variant($bg) ***REMOVED***
+  @include color-yiq($bg);
+  background-color: $bg;
+
+  &[href] ***REMOVED***
+    @include hover-focus ***REMOVED***
+      @include color-yiq($bg);
+      text-decoration: none;
+      background-color: darken($bg, 10%);
+***REMOVED***
+***REMOVED***
+***REMOVED***

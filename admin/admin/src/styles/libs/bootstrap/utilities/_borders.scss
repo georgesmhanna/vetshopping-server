@@ -1,0 +1,52 @@
+//
+// Border
+//
+
+.border          ***REMOVED*** border: 1px solid $gray-200 !important; ***REMOVED***
+.border-0        ***REMOVED*** border: 0 !important; ***REMOVED***
+.border-top-0    ***REMOVED*** border-top: 0 !important; ***REMOVED***
+.border-right-0  ***REMOVED*** border-right: 0 !important; ***REMOVED***
+.border-bottom-0 ***REMOVED*** border-bottom: 0 !important; ***REMOVED***
+.border-left-0   ***REMOVED*** border-left: 0 !important; ***REMOVED***
+
+@each $color, $value in $theme-colors ***REMOVED***
+  .border-#***REMOVED***$color***REMOVED*** ***REMOVED***
+    border-color: $value !important;
+***REMOVED***
+***REMOVED***
+
+.border-white ***REMOVED***
+  border-color: $white !important;
+***REMOVED***
+
+//
+// Border-radius
+//
+
+.rounded ***REMOVED***
+  border-radius: $border-radius !important;
+***REMOVED***
+.rounded-top ***REMOVED***
+  border-top-left-radius: $border-radius !important;
+  border-top-right-radius: $border-radius !important;
+***REMOVED***
+.rounded-right ***REMOVED***
+  border-top-right-radius: $border-radius !important;
+  border-bottom-right-radius: $border-radius !important;
+***REMOVED***
+.rounded-bottom ***REMOVED***
+  border-bottom-right-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+***REMOVED***
+.rounded-left ***REMOVED***
+  border-top-left-radius: $border-radius !important;
+  border-bottom-left-radius: $border-radius !important;
+***REMOVED***
+
+.rounded-circle ***REMOVED***
+  border-radius: 50%;
+***REMOVED***
+
+.rounded-0 ***REMOVED***
+  border-radius: 0;
+***REMOVED***

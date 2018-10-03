@@ -1,0 +1,27 @@
+.modal ***REMOVED***
+  .modal-dialog ***REMOVED***
+    max-width: 74.5rem;
+    margin: 16rem auto 3rem calc(50% - #***REMOVED***$left-menu-width***REMOVED***);
+***REMOVED***
+***REMOVED***
+
+.modal-content ***REMOVED***
+  border-radius: .2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: none;
+***REMOVED***
+
+.modal-backdrop.show ***REMOVED***
+  opacity: 0.3;
+***REMOVED***
+
+button ***REMOVED***
+  &.close ***REMOVED***
+    margin-top: -.8rem;
+    margin-right: -2rem;
+***REMOVED***
+***REMOVED***
+
+form .row ***REMOVED***
+  text-align: left;
+***REMOVED***

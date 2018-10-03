@@ -1,0 +1,131 @@
+.relationBox ***REMOVED*** /* stylelint-disable */
+  height: 13.8rem;
+  width: 21.5rem;
+  background-color: #FCFCFC;
+  box-shadow: 0 1px 2px #CAD2DF;
+  z-index: 9999;
+  border-radius: 2px;
+***REMOVED***
+
+.headerContainer ***REMOVED***
+  height: 3.6rem;
+  width: 100%;
+  padding-top: .1rem;
+  position: relative;
+  background-color: rgba(16, 22, 34, 0.04);
+  line-height: 3.6rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: visible;
+
+  > i ***REMOVED***
+    margin-right: 8px;
+    color: #323740;
+    font-size: 1.3rem;
+    font-weight: 100;
+***REMOVED***
+***REMOVED***
+
+
+.inputContainer ***REMOVED***
+  padding-top: 1rem;
+***REMOVED***
+
+.input ***REMOVED***
+  > div ***REMOVED***
+    > label ***REMOVED***
+      font-weight: 500;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.dropDown ***REMOVED***
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  top: 0; left: 0;
+  justify-content: flex-end;
+
+  > div ***REMOVED***
+    width: 100%;
+    > button ***REMOVED***
+      cursor: pointer;
+      width: 100%;
+      text-align: right;
+      background-color: transparent;
+      border: none;
+      font-size: 14px;
+      color: black;
+      &:focus, &:active, &:hover, &:visited ***REMOVED***
+        background-color: transparent!important;
+        box-shadow: none;
+        color: black;
+***REMOVED***
+***REMOVED***
+    > div ***REMOVED***
+      max-height: 180px;
+      max-width: 21.5rem;
+      overflow: scroll;
+      button ***REMOVED***
+        div ***REMOVED***
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+  ***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+.dropDownContent ***REMOVED***
+  top: 100%;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  font-family: Lato;
+  box-shadow: 0 2px 4px rgba(203, 211, 224, .5);
+
+  > div ***REMOVED***
+    min-width: 21.5rem;
+
+    > button ***REMOVED***
+      padding: 0 15px;
+
+      > div ***REMOVED***
+        cursor: pointer;
+        border-bottom: 1px solid #F6F6F6;
+        font-size: 1.3rem;
+        font-family: Lato;
+        font-weight: 400;
+        text-transform: capitalize;
+        color: #323740;
+
+        > i ***REMOVED***
+          margin-right: 8px;
+          font-size: 1.2rem;
+          font-weight: 100 !important;
+          color: #323740;
+  ***REMOVED***
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+  > div:last-of-type ***REMOVED***
+    >button ***REMOVED***
+      > div ***REMOVED***
+        border-bottom: none!important;
+***REMOVED***
+***REMOVED***
+***REMOVED***
+
+***REMOVED***
+
+.dropDown:hover .dropdownContent ***REMOVED***
+    display: block;
+***REMOVED***

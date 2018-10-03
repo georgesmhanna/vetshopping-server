@@ -1,0 +1,30 @@
+***REMOVED***
+  "connection": "default",
+  "collectionName": "category",
+  "info": ***REMOVED***
+    "name": "category",
+    "description": "Product Categories"
+***REMOVED***,
+  "options": ***REMOVED***
+    "timestamps": true
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "name": ***REMOVED***
+      "default": "",
+      "unique": true,
+      "type": "string",
+      "required": true
+***REMOVED***,
+    "hasSubCategory": ***REMOVED***
+      "default": false,
+      "type": "boolean"
+***REMOVED***,
+    "parent": ***REMOVED***
+      "model": "category"
+***REMOVED***,
+    "products": ***REMOVED***
+      "collection": "product",
+      "via": "category"
+***REMOVED***
+***REMOVED***
+***REMOVED***

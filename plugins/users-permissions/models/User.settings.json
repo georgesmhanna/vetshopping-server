@@ -1,0 +1,55 @@
+***REMOVED***
+  "connection": "default",
+  "info": ***REMOVED***
+    "name": "user",
+    "description": ""
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "username": ***REMOVED***
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+***REMOVED***,
+    "email": ***REMOVED***
+      "type": "email",
+      "minLength": 6,
+      "configurable": false,
+      "required": true
+***REMOVED***,
+    "password": ***REMOVED***
+      "type": "password",
+      "minLength": 6,
+      "configurable": false,
+      "private": true
+***REMOVED***,
+    "confirmed": ***REMOVED***
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+***REMOVED***,
+    "blocked": ***REMOVED***
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+***REMOVED***,
+    "role": ***REMOVED***
+      "model": "role",
+      "via": "users",
+      "plugin": "users-permissions",
+      "configurable": false
+***REMOVED***,
+    "firstName": ***REMOVED***
+      "default": "",
+      "type": "string",
+      "required": true
+***REMOVED***,
+    "lastName": ***REMOVED***
+      "default": "",
+      "type": "string",
+      "required": true
+***REMOVED***
+***REMOVED***,
+  "collectionName": "users-permissions_user"
+***REMOVED***

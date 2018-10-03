@@ -1,0 +1,82 @@
+.plugin ***REMOVED***
+  min-height: 5.4rem;
+
+  -webkit-font-smoothing: antialiased;
+***REMOVED***
+
+.banner ***REMOVED***
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0 28px;
+  padding-right: 43px;
+  color: #787E8F;
+  cursor: pointer;
+  > div:first-child ***REMOVED***
+    display: flex;
+    line-height: 5.3rem;
+***REMOVED***
+***REMOVED***
+
+.chevronDown ***REMOVED***
+  margin: auto;
+  margin-right: 0;
+  &:before ***REMOVED***
+    content: '\F078';
+    display: block;
+    color: #787E8F;
+    font-family: 'FontAwesome';
+    font-size: 10px;
+***REMOVED***
+***REMOVED***
+
+.chevronUp ***REMOVED***
+  margin: auto;
+  margin-right: 0;
+  &:before ***REMOVED***
+    content: '\F077';
+    display: block;
+    color: #787E8F;
+    font-family: 'FontAwesome';
+    font-size: 10px;
+***REMOVED***
+***REMOVED***
+
+
+.controllerContainer ***REMOVED***
+  > div:not(:first-child) ***REMOVED***
+    padding-top: 2.3rem;
+***REMOVED***
+  > div:last-child ***REMOVED***
+    padding-bottom: 1.8rem;
+***REMOVED***
+***REMOVED***
+
+.description ***REMOVED***
+  // width: 50%;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #8B91A0;
+  font-size: 12px;
+  font-weight: 400;
+***REMOVED***
+
+.iconContainer ***REMOVED***
+  height: 36px;
+  width: 70px;
+  margin: auto;
+  margin-right: 14px;
+  color: #333740;
+  border: 1px solid rgba(28,93,231,0.1);
+  border-radius: 3px;
+  line-height: 36px;
+  text-align: center;
+***REMOVED***
+
+.name ***REMOVED***
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+***REMOVED***

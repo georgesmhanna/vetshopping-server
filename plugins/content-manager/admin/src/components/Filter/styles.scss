@@ -1,0 +1,58 @@
+.flexWrapper ***REMOVED***
+  display: inline-block;
+  height: 30px;
+  margin-bottom: 6px;
+  margin-right: 10px;
+  padding: 0 10px;
+  background: rgba(0,126,255,0.08);
+  border: 1px solid rgba(0,126,255,0.24);
+  border-radius: 2px;
+  line-height: 28px;
+  color: #007EFF;
+  font-size: 13px;
+
+  > span***REMOVED***
+    display: inline-block;
+    margin-top: -1px;
+***REMOVED***
+
+  > span:nth-child(2) ***REMOVED***
+    font-weight: 700;
+***REMOVED***
+
+  > span:nth-child(3) ***REMOVED***
+    cursor: pointer;
+***REMOVED***
+
+  -webkit-font-smoothing: antialiased;
+***REMOVED***
+
+.remove ***REMOVED***
+  height: 28px;
+  cursor: pointer;
+  vertical-align: middle;
+
+  &:after ***REMOVED***
+    display: inline-block;
+    content: '';
+    width: 8px;
+    height: 8px;
+    margin: auto;
+    margin-top: -3px;
+    background-image: url('../../assets/images/icon-cross-blue.svg');
+***REMOVED***
+***REMOVED***
+
+
+.separatorSpan ***REMOVED***
+  height: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  line-height: 30px;
+  &:after ***REMOVED***
+    content: '';
+    height: 15px;
+    border-left: 1px solid #007EFF;
+    opacity: 0.1;
+***REMOVED***
+***REMOVED***
