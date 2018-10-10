@@ -59,16 +59,16 @@ exports.connect = (provider, query) => ***REMOVED***
   ***REMOVED***).get();
 
         if (_.isEmpty(_.find(users, ***REMOVED***provider***REMOVED***)) && !advanced.allow_register) ***REMOVED***
-          return resolve([null, [***REMOVED*** messages: [***REMOVED*** id: 'Auth.advanced.allow_register' ***REMOVED***] ***REMOVED***], 'Register action is actualy not available.']);
+          return resolve([null, [***REMOVED*** messages: [***REMOVED*** id: 'Auth.advanced.allow_register' ***REMOVED***] ***REMOVED***], 'Register action is actually not available.']);
   ***REMOVED***
-
-        const user = _.find(users, ***REMOVED***provider***REMOVED***);
+        const user = _.find(users, ***REMOVED***socialProvider: provider***REMOVED***);
+        // const user = _.find(users, ***REMOVED***provider***REMOVED***);
 
         if (!_.isEmpty(user)) ***REMOVED***
           return resolve([user, null]);
   ***REMOVED***
 
-        if (!_.isEmpty(_.find(users, user => user.provider !== provider)) && advanced.unique_email) ***REMOVED***
+        if (!_.isEmpty(_.find(users, user => user.socialProvider !== provider)) && advanced.unique_email) ***REMOVED***
           return resolve([null, [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.email.taken' ***REMOVED***] ***REMOVED***], 'Email is already taken.']);
   ***REMOVED***
 
@@ -170,8 +170,12 @@ const getProfile = async (provider, query, callback) => ***REMOVED***
           callback(err);
   ***REMOVED*** else ***REMOVED***
           callback(null, ***REMOVED***
-            username: body.displayName || body.emails[0].value,
-            email: body.emails[0].value
+            username: body.emails[0].value,
+            email: body.emails[0].value,
+            firstName: body.name.givenName,
+            lastName: body.name.familyName,
+            confirmed: true,
+            socialProvider: 'google'
     ***REMOVED***);
   ***REMOVED***
 ***REMOVED***);

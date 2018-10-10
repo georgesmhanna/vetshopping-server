@@ -21,6 +21,7 @@
   "dependencies": ***REMOVED***
     "lodash": "4.x.x",
     "strapi": "3.0.0-alpha.14.2",
+    "strapi-email-nodemailer": "^0.2.1",
     "strapi-hook-mongoose": "3.0.0-alpha.14.2"
 ***REMOVED***,
   "author": ***REMOVED***

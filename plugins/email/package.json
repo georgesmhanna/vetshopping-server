@@ -32,6 +32,7 @@
 ***REMOVED***,
   "bundleDependencies": false,
   "dependencies": ***REMOVED***
+    "nodemailer": "^4.6.8",
     "strapi-email-sendmail": "3.0.0-alpha.14.2"
 ***REMOVED***,
   "deprecated": false,

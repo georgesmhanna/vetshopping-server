@@ -52,7 +52,7 @@ module.exports = ***REMOVED***
       // Check if the user exists.
       const user = await strapi.query('user', 'users-permissions').findOne(query, ['role']);
 
-      if (_.get(await store.get(***REMOVED***key: 'advanced'***REMOVED***), 'email_confirmation') && user.confirmed !== true) ***REMOVED***
+      if (_.get(await store.get(***REMOVED***key: 'advanced'***REMOVED***), 'email_confirmation') && user && user.confirmed !== true) ***REMOVED***
         return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.confirmed' ***REMOVED***] ***REMOVED***] : 'Your account email is not confirmed.');
 ***REMOVED***
 
