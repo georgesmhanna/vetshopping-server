@@ -53,6 +53,16 @@
     "socialProvider": ***REMOVED***
       "default": "",
       "type": "string"
+***REMOVED***,
+    "image": ***REMOVED***
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+***REMOVED***,
+    "imageUrl": ***REMOVED***
+      "default": "",
+      "type": "string"
 ***REMOVED***
 ***REMOVED***,
   "collectionName": "users-permissions_user"

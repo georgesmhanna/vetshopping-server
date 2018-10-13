@@ -148,13 +148,23 @@ const getProfile = async (provider, query, callback) => ***REMOVED***
         provider: 'facebook'
 ***REMOVED***);
 
-      facebook.query().get('me?fields=name,email').auth(access_token).request((err, res, body) => ***REMOVED***
+      facebook.query().get('me?fields=name,email, first_name, last_name, picture').auth(access_token).request((err, res, body) => ***REMOVED***
         if (err) ***REMOVED***
+          console.error(err);
           callback(err);
   ***REMOVED*** else ***REMOVED***
+          console.log('georges', body);
+          console.log('georges', body.picture.data.url);
           callback(null, ***REMOVED***
-            username: body.name,
-            email: body.email
+            username: body.email,
+            email: body.email,
+            firstName: body.first_name,
+            lastName: body.last_name,
+            confirmed: true,
+            imageUrl: body.picture ?
+              (body.picture.data ?
+                (body.picture.data.url ? body.picture.data.url : '') : '') : '',
+            socialProvider: 'facebook'
     ***REMOVED***);
   ***REMOVED***
 ***REMOVED***);
@@ -174,6 +184,7 @@ const getProfile = async (provider, query, callback) => ***REMOVED***
             email: body.emails[0].value,
             firstName: body.name.givenName,
             lastName: body.name.familyName,
+            imageUrl: body.image? body.image.url:'',
             confirmed: true,
             socialProvider: 'google'
     ***REMOVED***);
