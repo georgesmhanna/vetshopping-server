@@ -80,6 +80,10 @@
     "category": ***REMOVED***
       "model": "category",
       "via": "products"
+***REMOVED***,
+    "wishlists": ***REMOVED***
+      "collection": "wishlist",
+      "via": "products"
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***

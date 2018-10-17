@@ -63,6 +63,14 @@
     "imageUrl": ***REMOVED***
       "default": "",
       "type": "string"
+***REMOVED***,
+    "wishlist": ***REMOVED***
+      "model": "wishlist",
+      "via": "user"
+***REMOVED***,
+    "address": ***REMOVED***
+      "model": "address",
+      "via": "user"
 ***REMOVED***
 ***REMOVED***,
   "collectionName": "users-permissions_user"
