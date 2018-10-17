@@ -1,0 +1,27 @@
+***REMOVED***
+  "connection": "default",
+  "collectionName": "wishlist",
+  "info": ***REMOVED***
+    "name": "wishlist",
+    "description": ""
+***REMOVED***,
+  "options": ***REMOVED***
+    "timestamps": true
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "products": ***REMOVED***
+      "collection": "product",
+      "via": "wishlists",
+      "dominant": true
+***REMOVED***,
+    "name": ***REMOVED***
+      "default": "",
+      "type": "string"
+***REMOVED***,
+    "user": ***REMOVED***
+      "model": "user",
+      "via": "wishlist",
+      "plugin": "users-permissions"
+***REMOVED***
+***REMOVED***
+***REMOVED***

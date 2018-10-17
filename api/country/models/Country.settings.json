@@ -1,0 +1,23 @@
+***REMOVED***
+  "connection": "default",
+  "collectionName": "",
+  "info": ***REMOVED***
+    "name": "country",
+    "description": ""
+***REMOVED***,
+  "options": ***REMOVED***
+    "timestamps": true
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "name": ***REMOVED***
+      "default": "",
+      "type": "string",
+      "required": true
+***REMOVED***,
+    "code": ***REMOVED***
+      "default": "",
+      "type": "string",
+      "required": true
+***REMOVED***
+***REMOVED***
+***REMOVED***

@@ -1,0 +1,67 @@
+***REMOVED***
+  "connection": "default",
+  "collectionName": "address",
+  "info": ***REMOVED***
+    "name": "address",
+    "description": ""
+***REMOVED***,
+  "options": ***REMOVED***
+    "timestamps": true
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "firstName": ***REMOVED***
+      "default": "",
+      "type": "string",
+      "required": true
+***REMOVED***,
+    "lastName": ***REMOVED***
+      "default": "",
+      "type": "string",
+      "required": true
+***REMOVED***,
+    "middleName": ***REMOVED***
+      "default": "",
+      "type": "string"
+***REMOVED***,
+    "company": ***REMOVED***
+      "default": "",
+      "type": "string"
+***REMOVED***,
+    "email": ***REMOVED***
+      "default": "",
+      "type": "email",
+      "required": true
+***REMOVED***,
+    "phoneNumber": ***REMOVED***
+      "default": "",
+      "type": "string",
+      "required": true
+***REMOVED***,
+    "city": ***REMOVED***
+      "default": "",
+      "type": "string",
+      "required": true
+***REMOVED***,
+    "stateProvince": ***REMOVED***
+      "default": "",
+      "type": "string"
+***REMOVED***,
+    "zip": ***REMOVED***
+      "default": "",
+      "type": "string"
+***REMOVED***,
+    "addressLine": ***REMOVED***
+      "default": "",
+      "type": "string",
+      "required": true
+***REMOVED***,
+    "user": ***REMOVED***
+      "model": "user",
+      "via": "address",
+      "plugin": "users-permissions"
+***REMOVED***,
+    "country": ***REMOVED***
+      "model": "country"
+***REMOVED***
+***REMOVED***
+***REMOVED***
