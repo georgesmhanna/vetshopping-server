@@ -43,6 +43,8 @@ const getProviderConfig = async (env) => ***REMOVED***
 module.exports = ***REMOVED***
   getProviderConfig,
   send: async (options, config, cb) => ***REMOVED***
+    console.log(`email options are $***REMOVED***JSON.stringify(options)***REMOVED***`);
+    console.log(`email config are $***REMOVED***JSON.stringify(config)***REMOVED***`);
     // Get email provider settings to configure the provider to use.
     if(!config) ***REMOVED***
       config = await getProviderConfig(strapi.config.environment);

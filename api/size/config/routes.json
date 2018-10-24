@@ -1,0 +1,52 @@
+***REMOVED***
+  "routes": [
+    ***REMOVED***
+      "method": "GET",
+      "path": "/sizes",
+      "handler": "Size.find",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/sizes/count",
+      "handler": "Size.count",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/sizes/:_id",
+      "handler": "Size.findOne",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "POST",
+      "path": "/sizes",
+      "handler": "Size.create",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "PUT",
+      "path": "/sizes/:_id",
+      "handler": "Size.update",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "DELETE",
+      "path": "/sizes/:_id",
+      "handler": "Size.destroy",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***
+  ]
+***REMOVED***

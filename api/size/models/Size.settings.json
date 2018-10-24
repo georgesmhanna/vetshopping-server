@@ -1,27 +1,21 @@
 ***REMOVED***
   "connection": "default",
-  "collectionName": "wishlist",
+  "collectionName": "",
   "info": ***REMOVED***
-    "name": "wishlist",
+    "name": "size",
     "description": ""
 ***REMOVED***,
   "options": ***REMOVED***
     "timestamps": true
 ***REMOVED***,
   "attributes": ***REMOVED***
-    "products": ***REMOVED***
-      "collection": "product",
-      "dominant": true,
-      "via": "wishlists"
-***REMOVED***,
     "name": ***REMOVED***
       "default": "",
       "type": "string"
 ***REMOVED***,
-    "user": ***REMOVED***
-      "model": "user",
-      "via": "wishlist",
-      "plugin": "users-permissions"
+    "products": ***REMOVED***
+      "collection": "product",
+      "via": "sizes"
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***
