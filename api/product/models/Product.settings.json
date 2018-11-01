@@ -21,23 +21,23 @@
       "required": false
 ***REMOVED***,
     "oldPrice": ***REMOVED***
-      "default": "",
+      "default": 0,
       "type": "float"
 ***REMOVED***,
     "newPrice": ***REMOVED***
-      "default": "",
+      "default": 0,
       "type": "float"
 ***REMOVED***,
     "discount": ***REMOVED***
-      "default": "",
+      "default": 0,
       "type": "float"
 ***REMOVED***,
     "ratingsCount": ***REMOVED***
-      "default": "",
+      "default": 0,
       "type": "integer"
 ***REMOVED***,
     "ratingsValue": ***REMOVED***
-      "default": "",
+      "default": 0,
       "type": "float"
 ***REMOVED***,
     "description": ***REMOVED***
@@ -45,11 +45,11 @@
       "type": "text"
 ***REMOVED***,
     "availibilityCount": ***REMOVED***
-      "default": "",
+      "default": 0,
       "type": "integer"
 ***REMOVED***,
     "weight": ***REMOVED***
-      "default": "",
+      "default": 0,
       "type": "float"
 ***REMOVED***,
     "colors": ***REMOVED***

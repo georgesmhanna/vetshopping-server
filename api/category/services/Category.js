@@ -26,6 +26,9 @@ module.exports = ***REMOVED***
       .map(ast => ast.alias)
       .join(' ');
 
+    console.log('populate', populate);
+    console.log('filters', filters);
+
     return Category
       .find()
       .where(filters.where)
@@ -35,11 +38,16 @@ module.exports = ***REMOVED***
       .populate(populate);
 ***REMOVED***,
 
-  /**
-   * Promise to fetch a/an category.
-   *
-   * @return ***REMOVED***Promise***REMOVED***
-   */
+  fetchSubCategories: (params) => ***REMOVED***
+
+
+    return Category.find().where(***REMOVED***'parent': params._id***REMOVED***);
+    /**
+     * Promise to fetch a/an category.
+     *
+     * @return ***REMOVED***Promise***REMOVED***
+     */
+***REMOVED***,
 
   fetch: (params) => ***REMOVED***
     // Select field to populate.

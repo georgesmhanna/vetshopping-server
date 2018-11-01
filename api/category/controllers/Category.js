@@ -36,6 +36,14 @@ module.exports = ***REMOVED***
     return strapi.services.category.fetch(ctx.params);
 ***REMOVED***,
 
+  findSubCategories: async (ctx) => ***REMOVED***
+    if (!ctx.params._id.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***
+      return ctx.notFound();
+***REMOVED***
+
+    return strapi.services.category.fetchSubCategories(ctx.params);
+***REMOVED***,
+
   /**
    * Count category records.
    *

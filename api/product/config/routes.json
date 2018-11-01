@@ -18,6 +18,14 @@
 ***REMOVED***,
     ***REMOVED***
       "method": "GET",
+      "path": "/productsByCategory/:_id",
+      "handler": "Product.findOneByCategory",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
       "path": "/products/:_id",
       "handler": "Product.findOne",
       "config": ***REMOVED***

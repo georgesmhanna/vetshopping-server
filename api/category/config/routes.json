@@ -25,6 +25,14 @@
 ***REMOVED***
 ***REMOVED***,
     ***REMOVED***
+      "method": "GET",
+      "path": "/categories/:_id/subcategories",
+      "handler": "Category.findSubCategories",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
       "method": "POST",
       "path": "/categories",
       "handler": "Category.create",

@@ -26,6 +26,9 @@ module.exports = ***REMOVED***
       .map(ast => ast.alias)
       .join(' ');
 
+    console.log('populate', populate);
+    console.log('filters', JSON.stringify(filters));
+
     return Product
       .find()
       .where(filters.where)
@@ -53,6 +56,19 @@ module.exports = ***REMOVED***
       .populate(populate);
 ***REMOVED***,
 
+  fetchByCategory: (params) => ***REMOVED***
+    // Select field to populate.
+    const populate = Product.associations
+      .filter(ast => ast.autoPopulate !== false)
+      .map(ast => ast.alias)
+      .join(' ');
+
+    const categoryId = params._id;
+    const subCategories =  Category.find().where(***REMOVED***'parent': categoryId***REMOVED***);
+
+    return subCategories;
+
+***REMOVED***,
   /**
    * Promise to count products.
    *
