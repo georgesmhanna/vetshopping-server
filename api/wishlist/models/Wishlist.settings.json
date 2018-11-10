@@ -12,7 +12,8 @@
     "products": ***REMOVED***
       "collection": "product",
       "dominant": true,
-      "via": "wishlists"
+      "via": "wishlists",
+      "autoPopulate": true
 ***REMOVED***,
     "name": ***REMOVED***
       "default": "",

@@ -32,7 +32,11 @@ module.exports = ***REMOVED***
       .sort(filters.sort)
       .skip(filters.start)
       .limit(filters.limit)
-      .populate(populate);
+      .populate(populate)
+      .populate(***REMOVED***
+        path: 'products',
+        populate: ***REMOVED*** path: 'images' ***REMOVED***
+***REMOVED***);
 ***REMOVED***,
 
   /**
@@ -50,7 +54,10 @@ module.exports = ***REMOVED***
 
     return Wishlist
       .findOne(_.pick(params, _.keys(Wishlist.schema.paths)))
-      .populate(populate);
+      .populate(populate).populate(***REMOVED***
+        path: 'products',
+        populate: ***REMOVED*** path: 'images' ***REMOVED***
+***REMOVED***);
 ***REMOVED***,
 
   /**

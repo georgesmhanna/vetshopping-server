@@ -41,6 +41,22 @@
 ***REMOVED***
 ***REMOVED***,
     ***REMOVED***
+      "method": "POST",
+      "path": "/wishlists/addToWishlist",
+      "handler": "Wishlist.addToWishlist",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "POST",
+      "path": "/wishlists/removeFromWishlist",
+      "handler": "Wishlist.removeFromWishlist",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
       "method": "DELETE",
       "path": "/wishlists/:_id",
       "handler": "Wishlist.destroy",

@@ -19,6 +19,7 @@
     "eslint-plugin-react": "^6.8.0"
 ***REMOVED***,
   "dependencies": ***REMOVED***
+    "heroku-releases-retry": "^1.0.3",
     "lodash": "4.x.x",
     "sanitize-html": "^1.19.1",
     "strapi": "3.0.0-alpha.14.2",

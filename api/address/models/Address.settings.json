@@ -27,11 +27,6 @@
       "default": "",
       "type": "string"
 ***REMOVED***,
-    "email": ***REMOVED***
-      "default": "",
-      "type": "email",
-      "required": true
-***REMOVED***,
     "phoneNumber": ***REMOVED***
       "default": "",
       "type": "string",

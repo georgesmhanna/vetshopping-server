@@ -18,7 +18,8 @@
       "collection": "file",
       "via": "related",
       "plugin": "upload",
-      "required": false
+      "required": false,
+      "autoPopulate": true
 ***REMOVED***,
     "oldPrice": ***REMOVED***
       "default": 0,
