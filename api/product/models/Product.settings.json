@@ -18,8 +18,7 @@
       "collection": "file",
       "via": "related",
       "plugin": "upload",
-      "required": false,
-      "autoPopulate": true
+      "required": false
 ***REMOVED***,
     "oldPrice": ***REMOVED***
       "default": 0,
@@ -30,14 +29,6 @@
       "type": "float"
 ***REMOVED***,
     "discount": ***REMOVED***
-      "default": 0,
-      "type": "float"
-***REMOVED***,
-    "ratingsCount": ***REMOVED***
-      "default": 0,
-      "type": "integer"
-***REMOVED***,
-    "ratingsValue": ***REMOVED***
       "default": 0,
       "type": "float"
 ***REMOVED***,
@@ -70,6 +61,10 @@
       "collection": "size",
       "via": "products",
       "dominant": true
+***REMOVED***,
+    "brand": ***REMOVED***
+      "model": "brand",
+      "via": "products"
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***

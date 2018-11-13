@@ -1,0 +1,29 @@
+***REMOVED***
+  "connection": "default",
+  "collectionName": "brand",
+  "info": ***REMOVED***
+    "name": "brand",
+    "description": ""
+***REMOVED***,
+  "options": ***REMOVED***
+    "timestamps": true
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "name": ***REMOVED***
+      "default": "",
+      "unique": true,
+      "type": "string",
+      "required": true
+***REMOVED***,
+    "image": ***REMOVED***
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+***REMOVED***,
+    "products": ***REMOVED***
+      "collection": "product",
+      "via": "brand"
+***REMOVED***
+***REMOVED***
+***REMOVED***
