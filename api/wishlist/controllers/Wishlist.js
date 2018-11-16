@@ -82,7 +82,7 @@ module.exports = ***REMOVED***
     // if it doesnt, add it to the list of products inside the wishlist
 
     if (!ctx.request.body.productid.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***    // if the product id is not a mongo ObjectId
-      return ctx.notFound('blabla');
+      return ctx.notFound('product id is not valid');
 ***REMOVED***
 
     if (!await strapi.services.product.fetch(***REMOVED***_id: ctx.request.body.productid***REMOVED***)) ***REMOVED***  // if the product does not exist in the db

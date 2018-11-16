@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Product.js service
+ * Order.js service
  *
  * @description: A set of functions similar to controller's actions to avoid code duplication.
  */
@@ -12,24 +12,21 @@ const _ = require('lodash');
 module.exports = ***REMOVED***
 
   /**
-   * Promise to fetch all products.
+   * Promise to fetch all orders.
    *
    * @return ***REMOVED***Promise***REMOVED***
    */
 
   fetchAll: (params) => ***REMOVED***
     // Convert `params` object to filters compatible with Mongo.
-    const filters = strapi.utils.models.convertParams('product', params);
+    const filters = strapi.utils.models.convertParams('order', params);
     // Select field to populate.
-    const populate = Product.associations
+    const populate = Order.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias)
       .join(' ');
 
-    console.log('populate', populate);
-    console.log('filters', JSON.stringify(filters));
-
-    return Product
+    return Order
       .find()
       .where(filters.where)
       .sort(filters.sort)
@@ -39,103 +36,90 @@ module.exports = ***REMOVED***
 ***REMOVED***,
 
   /**
-   * Promise to fetch a/an product.
+   * Promise to fetch a/an order.
    *
    * @return ***REMOVED***Promise***REMOVED***
    */
 
   fetch: (params) => ***REMOVED***
     // Select field to populate.
-    const populate = Product.associations
+    const populate = Order.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias)
       .join(' ');
 
-    return Product
-      .findOne(_.pick(params, _.keys(Product.schema.paths)))
-      .populate(populate).populate('images');
+    return Order
+      .findOne(_.pick(params, _.keys(Order.schema.paths)))
+      .populate(populate);
 ***REMOVED***,
 
-  fetchByCategory: (params) => ***REMOVED***
-    // Select field to populate.
-    const populate = Product.associations
-      .filter(ast => ast.autoPopulate !== false)
-      .map(ast => ast.alias)
-      .join(' ');
-
-    const categoryId = params._id;
-    const subCategories =  Category.find().where(***REMOVED***'parent': categoryId***REMOVED***);
-
-    return subCategories;
-
-***REMOVED***,
   /**
-   * Promise to count products.
+   * Promise to count orders.
    *
    * @return ***REMOVED***Promise***REMOVED***
    */
 
   count: (params) => ***REMOVED***
     // Convert `params` object to filters compatible with Mongo.
-    const filters = strapi.utils.models.convertParams('product', params);
+    const filters = strapi.utils.models.convertParams('order', params);
 
-    return Product
+    return Order
       .count()
       .where(filters.where);
 ***REMOVED***,
 
   /**
-   * Promise to add a/an product.
+   * Promise to add a/an order.
    *
    * @return ***REMOVED***Promise***REMOVED***
    */
 
   add: async (values) => ***REMOVED***
     // Extract values related to relational data.
-    const relations = _.pick(values, Product.associations.map(ast => ast.alias));
-    const data = _.omit(values, Product.associations.map(ast => ast.alias));
+    const relations = _.pick(values, Order.associations.map(ast => ast.alias));
+    const data = _.omit(values, Order.associations.map(ast => ast.alias));
 
     // Create entry with no-relational data.
-    const entry = await Product.create(data);
+    const entry = await Order.create(data);
 
     // Create relational data and return the entry.
-    return Product.updateRelations(***REMOVED*** _id: entry.id, values: relations ***REMOVED***);
+    return Order.updateRelations(***REMOVED*** _id: entry.id, values: relations ***REMOVED***);
 ***REMOVED***,
 
   /**
-   * Promise to edit a/an product.
+   * Promise to edit a/an order.
    *
    * @return ***REMOVED***Promise***REMOVED***
    */
 
   edit: async (params, values) => ***REMOVED***
     // Extract values related to relational data.
-    const relations = _.pick(values, Product.associations.map(a => a.alias));
-    const data = _.omit(values, Product.associations.map(a => a.alias));
+    const relations = _.pick(values, Order.associations.map(a => a.alias));
+    const data = _.omit(values, Order.associations.map(a => a.alias));
 
     // Update entry with no-relational data.
-    const entry = await Product.update(params, data, ***REMOVED*** multi: true ***REMOVED***);
+    const entry = await Order.update(params, data, ***REMOVED*** multi: true ***REMOVED***);
 
     // Update relational data and return the entry.
-    return Product.updateRelations(Object.assign(params, ***REMOVED*** values: relations ***REMOVED***));
+    return Order.updateRelations(Object.assign(params, ***REMOVED*** values: relations ***REMOVED***));
 ***REMOVED***,
 
   /**
-   * Promise to remove a/an product.
+   * Promise to remove a/an order.
    *
    * @return ***REMOVED***Promise***REMOVED***
    */
 
   remove: async params => ***REMOVED***
     // Select field to populate.
-    const populate = Product.associations
+    const populate = Order.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias)
       .join(' ');
 
     // Note: To get the full response of Mongo, use the `remove()` method
     // or add spent the parameter `***REMOVED*** passRawResult: true ***REMOVED***` as second argument.
-    const data = await Product
+    const data = await Order
       .findOneAndRemove(params, ***REMOVED******REMOVED***)
       .populate(populate);
 
@@ -144,7 +128,7 @@ module.exports = ***REMOVED***
 ***REMOVED***
 
     await Promise.all(
-      Product.associations.map(async association => ***REMOVED***
+      Order.associations.map(async association => ***REMOVED***
         const search = _.endsWith(association.nature, 'One') || association.nature === 'oneToMany' ? ***REMOVED*** [association.via]: data._id ***REMOVED*** : ***REMOVED*** [association.via]: ***REMOVED*** $in: [data._id] ***REMOVED*** ***REMOVED***;
         const update = _.endsWith(association.nature, 'One') || association.nature === 'oneToMany' ? ***REMOVED*** [association.via]: null ***REMOVED*** : ***REMOVED*** $pull: ***REMOVED*** [association.via]: data._id ***REMOVED*** ***REMOVED***;
 
@@ -161,22 +145,22 @@ module.exports = ***REMOVED***
 ***REMOVED***,
 
   /**
-   * Promise to search a/an product.
+   * Promise to search a/an order.
    *
    * @return ***REMOVED***Promise***REMOVED***
    */
 
   search: async (params) => ***REMOVED***
     // Convert `params` object to filters compatible with Mongo.
-    const filters = strapi.utils.models.convertParams('product', params);
+    const filters = strapi.utils.models.convertParams('order', params);
     // Select field to populate.
-    const populate = Product.associations
+    const populate = Order.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias)
       .join(' ');
 
-    const $or = Object.keys(Product.attributes).reduce((acc, curr) => ***REMOVED***
-      switch (Product.attributes[curr].type) ***REMOVED***
+    const $or = Object.keys(Order.attributes).reduce((acc, curr) => ***REMOVED***
+      switch (Order.attributes[curr].type) ***REMOVED***
         case 'integer':
         case 'float':
         case 'decimal':
@@ -200,7 +184,7 @@ module.exports = ***REMOVED***
 ***REMOVED***
 ***REMOVED***, []);
 
-    return Product
+    return Order
       .find(***REMOVED*** $or ***REMOVED***)
       .sort(filters.sort)
       .skip(filters.start)

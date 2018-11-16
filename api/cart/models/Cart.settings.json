@@ -1,0 +1,30 @@
+***REMOVED***
+  "connection": "default",
+  "collectionName": "cart",
+  "info": ***REMOVED***
+    "name": "cart",
+    "description": ""
+***REMOVED***,
+  "options": ***REMOVED***
+    "timestamps": true
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "user": ***REMOVED***
+      "model": "user",
+      "via": "cart",
+      "plugin": "users-permissions"
+***REMOVED***,
+    "name": ***REMOVED***
+      "default": "",
+      "type": "string"
+***REMOVED***,
+    "orderitems2": ***REMOVED***
+      "collection": "orderitem",
+      "via": "cart"
+***REMOVED***,
+    "orderItems": ***REMOVED***
+      "default": "",
+      "type": "json"
+***REMOVED***
+***REMOVED***
+***REMOVED***

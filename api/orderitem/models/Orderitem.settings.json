@@ -1,0 +1,39 @@
+***REMOVED***
+  "connection": "default",
+  "collectionName": "orderitem",
+  "info": ***REMOVED***
+    "name": "orderitem",
+    "description": ""
+***REMOVED***,
+  "options": ***REMOVED***
+    "timestamps": true
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "Quantity": ***REMOVED***
+      "default": 1,
+      "type": "integer",
+      "required": true
+***REMOVED***,
+    "product": ***REMOVED***
+      "model": "product"
+***REMOVED***,
+    "color": ***REMOVED***
+      "model": "color"
+***REMOVED***,
+    "size": ***REMOVED***
+      "model": "size"
+***REMOVED***,
+    "name": ***REMOVED***
+      "default": "",
+      "type": "string"
+***REMOVED***,
+    "cart": ***REMOVED***
+      "model": "cart",
+      "via": "orderitems2"
+***REMOVED***,
+    "order": ***REMOVED***
+      "model": "order",
+      "via": "orderitems"
+***REMOVED***
+***REMOVED***
+***REMOVED***

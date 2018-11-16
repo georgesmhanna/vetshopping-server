@@ -1,0 +1,52 @@
+***REMOVED***
+  "routes": [
+    ***REMOVED***
+      "method": "GET",
+      "path": "/orderitems",
+      "handler": "Orderitem.find",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/orderitems/count",
+      "handler": "Orderitem.count",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/orderitems/:_id",
+      "handler": "Orderitem.findOne",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "POST",
+      "path": "/orderitems",
+      "handler": "Orderitem.create",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "PUT",
+      "path": "/orderitems/:_id",
+      "handler": "Orderitem.update",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "DELETE",
+      "path": "/orderitems/:_id",
+      "handler": "Orderitem.destroy",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***
+  ]
+***REMOVED***

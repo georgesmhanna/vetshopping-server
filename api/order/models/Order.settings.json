@@ -1,0 +1,26 @@
+***REMOVED***
+  "connection": "default",
+  "collectionName": "order",
+  "info": ***REMOVED***
+    "name": "order",
+    "description": ""
+***REMOVED***,
+  "options": ***REMOVED***
+    "timestamps": true
+***REMOVED***,
+  "attributes": ***REMOVED***
+    "user": ***REMOVED***
+      "model": "user",
+      "via": "order",
+      "plugin": "users-permissions"
+***REMOVED***,
+    "orderNo": ***REMOVED***
+      "default": "",
+      "type": "integer"
+***REMOVED***,
+    "orderitems": ***REMOVED***
+      "collection": "orderitem",
+      "via": "order"
+***REMOVED***
+***REMOVED***
+***REMOVED***

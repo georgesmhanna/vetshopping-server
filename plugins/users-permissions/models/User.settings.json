@@ -71,6 +71,14 @@
     "address": ***REMOVED***
       "model": "address",
       "via": "user"
+***REMOVED***,
+    "cart": ***REMOVED***
+      "model": "cart",
+      "via": "user"
+***REMOVED***,
+    "order": ***REMOVED***
+      "model": "order",
+      "via": "user"
 ***REMOVED***
 ***REMOVED***,
   "collectionName": "users-permissions_user"
