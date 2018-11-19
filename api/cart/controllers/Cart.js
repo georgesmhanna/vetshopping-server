@@ -98,9 +98,9 @@ module.exports = ***REMOVED***
       return ctx.notFound('size id is not valid');
 ***REMOVED***
 
-    if (ctx.request.body.quantity && ctx.request.body.quantity < 1) ***REMOVED***    // if the product id is not a mongo ObjectId
-      return ctx.badRequest('quantity cannot be less than one');
-***REMOVED***
+    // if (ctx.request.body.quantity && ctx.request.body.quantity < 1) ***REMOVED***    // if the product id is not a mongo ObjectId
+    //   return ctx.badRequest('quantity cannot be less than one');
+    // ***REMOVED***
 
     const product = await strapi.services.product.fetch(***REMOVED***_id: ctx.request.body.productid***REMOVED***);
     console.log(`product = `, product);
@@ -132,33 +132,112 @@ module.exports = ***REMOVED***
 ***REMOVED***
 
     if (cart.orderItems && cart.orderItems.find(orderItem => orderItem.product
-        && orderItem.product._id == ctx.request.body.productid &&
-        (!orderItem.color || (orderItem.color && orderItem.color._id == ctx.request.body.colorid))
-        && (!orderItem.size || (orderItem.size && orderItem.size._id == ctx.request.body.sizeid)))) ***REMOVED***
+      && orderItem.product._id == ctx.request.body.productid &&
+      (!orderItem.color || (orderItem.color && orderItem.color._id == ctx.request.body.colorid))
+      && (!orderItem.size || (orderItem.size && orderItem.size._id == ctx.request.body.sizeid)))) ***REMOVED***
       return ctx.notFound('Order Item already added to cart');
 ***REMOVED*** // if it doesn't exist, add it to the list of products
 
     console.log('pushing new order item to cart');
-    if (cart.orderItems)
+    if (cart.orderItems) ***REMOVED***
       cart.orderItems.push(***REMOVED***
         product: product,
-        quantity: ctx.request.body.quantity || 1,
+        // quantity: ctx.request.body.quantity || 1,
         color: color,
         size: size,
         cart: cart._id,
-        image: (product.images && product.images.length > 0) ? product.images[0].url: null
+        image: (product.images && product.images.length > 0) ? product.images[0].url : null
 ***REMOVED***);
+      for (let orderItem of cart.orderItems) ***REMOVED***
+        orderItem.product = await strapi.services.product.fetch(***REMOVED***_id: orderItem.product._id***REMOVED***);
+***REMOVED***
+***REMOVED***
     else ***REMOVED***
       cart.orderItems = [];
       cart.orderItems.push(***REMOVED***
         product: product,
-        quantity: ctx.request.body.quantity || 1,
+        // quantity: ctx.request.body.quantity || 1,
         color: color,
         size: size,
-        image: (product.images && product.images.length > 0) ? product.images[0].url: null
+        image: (product.images && product.images.length > 0) ? product.images[0].url : null
 
 ***REMOVED***);
 ***REMOVED***
+
+    console.log('cart object before editing: ', cart);
+    await strapi.services.cart.edit(***REMOVED***_id: cart._id***REMOVED***, cart);
+    return strapi.services.cart.fetch(***REMOVED***_id: cart._id***REMOVED***);
+
+***REMOVED***,
+
+  removeFromCart: async (ctx, next) => ***REMOVED***
+    // find if there is a cart for user
+    // if there is not, create empty cart for user
+    // else continue
+    //  find if there is an order item already who has same properties
+    // same color, same quantity and same product id in the user cart
+    // if there is --> return error
+    // if there is not, create an order item, and automatically add it to cart order items list
+
+    // body contains: product id, color id and size id
+    console.log('....', JSON.stringify(ctx.request.body));
+    if (!ctx.request.body.productid.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***    // if the product id is not a mongo ObjectId
+      return ctx.notFound('product id is not valid');
+***REMOVED***
+
+    if (ctx.request.body.colorid && !ctx.request.body.colorid.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***    // if the product id is not a mongo ObjectId
+      return ctx.notFound('color id is not valid');
+***REMOVED***
+
+    if (ctx.request.body.sizeid && !ctx.request.body.sizeid.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***    // if the product id is not a mongo ObjectId
+      return ctx.notFound('size id is not valid');
+***REMOVED***
+
+    // if (ctx.request.body.quantity && ctx.request.body.quantity < 1) ***REMOVED***    // if the product id is not a mongo ObjectId
+    //   return ctx.badRequest('quantity cannot be less than one');
+    // ***REMOVED***
+
+    const product = await strapi.services.product.fetch(***REMOVED***_id: ctx.request.body.productid***REMOVED***);
+    console.log(`product = `, product);
+    if (!product) ***REMOVED***  // if the product does not exist in the db
+      return ctx.notFound('Product not found');
+***REMOVED***
+
+    const color = await strapi.services.color.fetch(***REMOVED***_id: ctx.request.body.colorid***REMOVED***);
+    if (ctx.request.body.colorid && !color) ***REMOVED***  // if the color does not exist in the db
+      return ctx.notFound('Color not found');
+***REMOVED***
+
+    const size = await strapi.services.size.fetch(***REMOVED***_id: ctx.request.body.sizeid***REMOVED***);
+    if (ctx.request.body.sizeid && !size) ***REMOVED***  // if the size does not exist in the db
+      return ctx.notFound('Size not found');
+***REMOVED***
+
+    let cart = await strapi.services.cart.fetch(***REMOVED***user: ctx.state.user._id***REMOVED***);   // get the cart of the loggedin user
+
+    console.log('getting cart object ==> cart = ', cart);
+    if (!cart) ***REMOVED***
+      console.log('cart is empty, creating new one');
+      return ctx.notFound('Cart not found');
+***REMOVED***
+
+    if (cart.orderItems) ***REMOVED***
+      cart.orderItems = cart.orderItems.filter(orderItem => !
+        (orderItem.product
+          && orderItem.product._id == ctx.request.body.productid &&
+          (!orderItem.color || (orderItem.color && orderItem.color._id == ctx.request.body.colorid))
+          && (!orderItem.size || (orderItem.size && orderItem.size._id == ctx.request.body.sizeid))));
+***REMOVED***
+    else ***REMOVED***
+      cart.orderItems = [];
+***REMOVED***
+
+    if (cart.orderItems) ***REMOVED***
+      for (let orderItem of cart.orderItems) ***REMOVED***
+        orderItem.product = await strapi.services.product.fetch(***REMOVED***_id: orderItem.product._id***REMOVED***);
+***REMOVED***
+***REMOVED***
+
 
     console.log('cart object before editing: ', cart);
     await strapi.services.cart.edit(***REMOVED***_id: cart._id***REMOVED***, cart);

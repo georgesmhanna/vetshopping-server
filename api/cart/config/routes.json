@@ -39,6 +39,14 @@
       "config": ***REMOVED***
         "policies": []
 ***REMOVED***
+***REMOVED***,    ***REMOVED***
+
+      "method": "POST",
+      "path": "/carts/removeFromCart",
+      "handler": "Cart.removeFromCart",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
 ***REMOVED***,
     ***REMOVED***
       "method": "PUT",
