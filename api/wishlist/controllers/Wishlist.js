@@ -138,5 +138,11 @@ module.exports = ***REMOVED***
     await strapi.services.wishlist.edit(***REMOVED***_id: wishlist._id***REMOVED***, wishlist);
     return strapi.services.wishlist.fetch(***REMOVED***_id: wishlist._id***REMOVED***);
 
-***REMOVED***
+***REMOVED***,
+
+  getCurrentWishlist: async (ctx) => ***REMOVED***
+
+    return strapi.services.wishlist.fetch(***REMOVED***user: ctx.state.user._id***REMOVED***);
+
+***REMOVED***,
 ***REMOVED***;

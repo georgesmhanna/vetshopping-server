@@ -170,6 +170,21 @@ module.exports = ***REMOVED***
 
 ***REMOVED***,
 
+  getCurrentCart: async (ctx) => ***REMOVED***
+
+    let cart = await strapi.services.cart.fetch(***REMOVED***user: ctx.state.user._id***REMOVED***);
+    if (cart && cart.orderItems && cart.orderItems.length === 0) ***REMOVED***
+      return cart;
+***REMOVED***
+    for (let orderItem of cart.orderItems) ***REMOVED***
+      orderItem.product = await strapi.services.product.fetch(***REMOVED***_id: orderItem.product._id***REMOVED***);
+***REMOVED***
+
+    return cart;
+
+
+***REMOVED***,
+
   removeFromCart: async (ctx, next) => ***REMOVED***
     // find if there is a cart for user
     // if there is not, create empty cart for user

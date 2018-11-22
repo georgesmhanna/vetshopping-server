@@ -18,6 +18,14 @@
 ***REMOVED***,
     ***REMOVED***
       "method": "GET",
+      "path": "/addresses/getCurrentAddress",
+      "handler": "Address.getCurrentAddress",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
       "path": "/addresses/:_id",
       "handler": "Address.findOne",
       "config": ***REMOVED***

@@ -18,6 +18,14 @@
 ***REMOVED***,
     ***REMOVED***
       "method": "GET",
+      "path": "/wishlists/getCurrentWishlist",
+      "handler": "Wishlist.getCurrentWishlist",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
       "path": "/wishlists/:_id",
       "handler": "Wishlist.findOne",
       "config": ***REMOVED***

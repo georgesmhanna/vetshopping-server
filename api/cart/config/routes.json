@@ -10,6 +10,14 @@
 ***REMOVED***,
     ***REMOVED***
       "method": "GET",
+      "path": "/carts/getCurrentCart",
+      "handler": "Cart.getCurrentCart",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
       "path": "/carts/count",
       "handler": "Cart.count",
       "config": ***REMOVED***

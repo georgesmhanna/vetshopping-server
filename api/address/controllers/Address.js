@@ -36,6 +36,12 @@ module.exports = ***REMOVED***
     return strapi.services.address.fetch(ctx.params);
 ***REMOVED***,
 
+  getCurrentAddress: async (ctx) => ***REMOVED***
+
+    return strapi.services.address.fetch(***REMOVED***user: ctx.state.user._id***REMOVED***);
+
+***REMOVED***,
+
   /**
    * Count address records.
    *
