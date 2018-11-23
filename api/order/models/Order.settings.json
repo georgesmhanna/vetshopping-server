@@ -18,9 +18,49 @@
       "default": "",
       "type": "integer"
 ***REMOVED***,
-    "orderitems": ***REMOVED***
-      "collection": "orderitem",
-      "via": "order"
+    "orderDate": ***REMOVED***
+      "default": "",
+      "type": "date"
+***REMOVED***,
+    "cart": ***REMOVED***
+      "default": "",
+      "type": "json"
+***REMOVED***,
+    "deliveryMethod": ***REMOVED***
+      "default": "",
+      "type": "json"
+***REMOVED***,
+    "paymentMethod": ***REMOVED***
+      "default": "",
+      "type": "string"
+***REMOVED***,
+    "address": ***REMOVED***
+      "default": "",
+      "type": "json"
+***REMOVED***,
+    "status": ***REMOVED***
+      "default": "",
+      "type": "enumeration",
+      "enum": [
+        "Processing",
+        "Shipping",
+        "On Hold",
+        "Completed"
+      ]
+***REMOVED***,
+    "invoiceScan": ***REMOVED***
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+***REMOVED***,
+    "total": ***REMOVED***
+      "default": "",
+      "type": "decimal"
+***REMOVED***,
+    "subTotal": ***REMOVED***
+      "default": "",
+      "type": "decimal"
 ***REMOVED***
 ***REMOVED***
 ***REMOVED***

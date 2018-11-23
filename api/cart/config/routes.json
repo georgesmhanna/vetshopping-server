@@ -66,6 +66,14 @@
 ***REMOVED***,
     ***REMOVED***
       "method": "DELETE",
+      "path": "/carts/removeUserCart",
+      "handler": "Cart.removeUserCart",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "DELETE",
       "path": "/carts/:_id",
       "handler": "Cart.destroy",
       "config": ***REMOVED***

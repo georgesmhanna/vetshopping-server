@@ -10,6 +10,22 @@
 ***REMOVED***,
     ***REMOVED***
       "method": "GET",
+      "path": "/orders/getUserOrders",
+      "handler": "Order.getUserOrders",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
+      "path": "/orders/getUserOrders/:_id",
+      "handler": "Order.getUserOrderById",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,
+    ***REMOVED***
+      "method": "GET",
       "path": "/orders/count",
       "handler": "Order.count",
       "config": ***REMOVED***
@@ -44,6 +60,13 @@
       "method": "DELETE",
       "path": "/orders/:_id",
       "handler": "Order.destroy",
+      "config": ***REMOVED***
+        "policies": []
+***REMOVED***
+***REMOVED***,***REMOVED***
+      "method": "DELETE",
+      "path": "/orders/removeUserOrderById/:_id",
+      "handler": "Order.removeUserOrderById",
       "config": ***REMOVED***
         "policies": []
 ***REMOVED***

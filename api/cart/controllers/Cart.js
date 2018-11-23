@@ -173,7 +173,13 @@ module.exports = ***REMOVED***
   getCurrentCart: async (ctx) => ***REMOVED***
 
     let cart = await strapi.services.cart.fetch(***REMOVED***user: ctx.state.user._id***REMOVED***);
+    if (!cart)***REMOVED***
+      return ***REMOVED***orderItems: []***REMOVED***;
+***REMOVED***
     if (cart && cart.orderItems && cart.orderItems.length === 0) ***REMOVED***
+      return cart;
+***REMOVED***
+    if (cart && !cart.orderItems) ***REMOVED***
       return cart;
 ***REMOVED***
     for (let orderItem of cart.orderItems) ***REMOVED***
@@ -257,6 +263,11 @@ module.exports = ***REMOVED***
     console.log('cart object before editing: ', cart);
     await strapi.services.cart.edit(***REMOVED***_id: cart._id***REMOVED***, cart);
     return strapi.services.cart.fetch(***REMOVED***_id: cart._id***REMOVED***);
+
+***REMOVED***,
+
+  removeUserCart: async (ctx) => ***REMOVED***
+    return strapi.services.cart.remove(***REMOVED***user: ctx.state.user._id***REMOVED***);
 
 ***REMOVED***
 ***REMOVED***;
