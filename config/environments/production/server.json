@@ -1,6 +1,6 @@
 ***REMOVED***
-  "host": "localhost",
-  "port": "$***REMOVED***process.env.PORT || 1337***REMOVED***",
+  "host": "tranquil-springs-31631.herokuapp.com",
+  "port": 0,
   "proxy": ***REMOVED***
     "enabled": false
 ***REMOVED***,
