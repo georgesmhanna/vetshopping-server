@@ -29,12 +29,12 @@ module.exports = ***REMOVED***
 
       // The identifier is required.
       if (!params.identifier) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.email.provide' ***REMOVED***] ***REMOVED***] : 'Please provide your username or your e-mail.');
+        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.email.provide'***REMOVED***]***REMOVED***] : 'Please provide your username or your e-mail.');
 ***REMOVED***
 
       // The password is required.
       if (!params.password) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.password.provide' ***REMOVED***] ***REMOVED***] : 'Please provide your password.');
+        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.password.provide'***REMOVED***]***REMOVED***] : 'Please provide your password.');
 ***REMOVED***
 
       const query = ***REMOVED******REMOVED***;
@@ -50,33 +50,33 @@ module.exports = ***REMOVED***
 ***REMOVED***
 
       // Check if the user exists.
-      const user = await strapi.query('user', 'users-permissions').findOne(query, ['role','address']);
+      const user = await strapi.query('user', 'users-permissions').findOne(query, ['role', 'address']);
 
       if (_.get(await store.get(***REMOVED***key: 'advanced'***REMOVED***), 'email_confirmation') && user && user.confirmed !== true) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.confirmed' ***REMOVED***] ***REMOVED***] : 'Your account email is not confirmed.');
+        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.confirmed'***REMOVED***]***REMOVED***] : 'Your account email is not confirmed.');
 ***REMOVED***
 
       if (!user) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.invalid' ***REMOVED***] ***REMOVED***] : 'Identifier or password invalid.');
+        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.invalid'***REMOVED***]***REMOVED***] : 'Identifier or password invalid.');
 ***REMOVED***
 
       if (user.blocked === true) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.blocked' ***REMOVED***] ***REMOVED***] : 'Your account has been blocked by the administrator.');
+        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.blocked'***REMOVED***]***REMOVED***] : 'Your account has been blocked by the administrator.');
 ***REMOVED***
 
       if (user.role.type !== 'root' && ctx.request.admin) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.noAdminAccess' ***REMOVED***] ***REMOVED***] : `You're not an administrator.`);
+        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.noAdminAccess'***REMOVED***]***REMOVED***] : `You're not an administrator.`);
 ***REMOVED***
 
       // The user never authenticated with the `local` provider.
       if (!user.password) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.password.local' ***REMOVED***] ***REMOVED***] : 'This user never set a local password, please login thanks to the provider used during account creation.');
+        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.password.local'***REMOVED***]***REMOVED***] : 'This user never set a local password, please login thanks to the provider used during account creation.');
 ***REMOVED***
 
       const validPassword = strapi.plugins['users-permissions'].services.user.validatePassword(params.password, user.password);
 
       if (!validPassword) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.invalid' ***REMOVED***] ***REMOVED***] : 'Identifier or password invalid.');
+        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.invalid'***REMOVED***]***REMOVED***] : 'Identifier or password invalid.');
 ***REMOVED*** else ***REMOVED***
         ctx.send(***REMOVED***
           jwt: strapi.plugins['users-permissions'].services.jwt.issue(_.pick(user.toJSON ? user.toJSON() : user, ['_id', 'id'])),
@@ -92,7 +92,7 @@ module.exports = ***REMOVED***
       let user, error;
       try ***REMOVED***
         [user, error] = await strapi.plugins['users-permissions'].services.providers.connect(provider, ctx.query);
-***REMOVED*** catch([user, error]) ***REMOVED***
+***REMOVED*** catch ([user, error]) ***REMOVED***
         return ctx.badRequest(null, (error === 'array') ? (ctx.request.admin ? error[0] : error[1]) : error);
 ***REMOVED***
 
@@ -111,16 +111,16 @@ module.exports = ***REMOVED***
     const params = _.assign(***REMOVED******REMOVED***, ctx.request.body, ctx.params);
 
     if (params.password && params.passwordConfirmation && params.password === params.passwordConfirmation && params.code) ***REMOVED***
-      const user = await strapi.query('user', 'users-permissions').findOne(***REMOVED*** resetPasswordToken: params.code ***REMOVED***);
+      const user = await strapi.query('user', 'users-permissions').findOne(***REMOVED***resetPasswordToken: params.code***REMOVED***);
 
       if (!user) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.code.provide' ***REMOVED***] ***REMOVED***] : 'Incorrect code provided.');
+        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.code.provide'***REMOVED***]***REMOVED***] : 'Incorrect code provided.');
 ***REMOVED***
 
       // Delete the current code
       user.resetPasswordToken = null;
 
-      user.password =  await strapi.plugins['users-permissions'].services.user.hashPassword(params);
+      user.password = await strapi.plugins['users-permissions'].services.user.hashPassword(params);
 
       // Remove relations data to update user password.
       const data = _.omit(user, strapi.plugins['users-permissions'].models.user.associations.map(ast => ast.alias));
@@ -133,9 +133,9 @@ module.exports = ***REMOVED***
         user: _.omit(user.toJSON ? user.toJSON() : user, ['password', 'resetPasswordToken'])
 ***REMOVED***);
 ***REMOVED*** else if (params.password && params.passwordConfirmation && params.password !== params.passwordConfirmation) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.password.matching' ***REMOVED***] ***REMOVED***] : 'Passwords do not match.');
+      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.password.matching'***REMOVED***]***REMOVED***] : 'Passwords do not match.');
 ***REMOVED*** else ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.params.provide' ***REMOVED***] ***REMOVED***] : 'Incorrect params provided.');
+      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.params.provide'***REMOVED***]***REMOVED***] : 'Incorrect params provided.');
 ***REMOVED***
 ***REMOVED***,
 
@@ -168,14 +168,14 @@ module.exports = ***REMOVED***
 ***REMOVED***,
 
   forgotPassword: async (ctx) => ***REMOVED***
-    const ***REMOVED*** email, url ***REMOVED*** = ctx.request.body;
+    const ***REMOVED***email, url***REMOVED*** = ctx.request.body;
 
     // Find the user user thanks to his email.
-    const user = await strapi.query('user', 'users-permissions').findOne(***REMOVED*** email ***REMOVED***);
+    const user = await strapi.query('user', 'users-permissions').findOne(***REMOVED***email***REMOVED***);
 
     // User not found.
     if (!user) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.user.not-exist' ***REMOVED***] ***REMOVED***] : 'This email does not exist.');
+      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.user.not-exist'***REMOVED***]***REMOVED***] : 'This email does not exist.');
 ***REMOVED***
 
     // Generate random token.
@@ -188,7 +188,7 @@ module.exports = ***REMOVED***
       environment: '',
       type: 'plugin',
       name: 'users-permissions'
-***REMOVED***).get(***REMOVED*** key: 'email' ***REMOVED***))['reset_password'].options;
+***REMOVED***).get(***REMOVED***key: 'email'***REMOVED***))['reset_password'].options;
 
     settings.message = await strapi.plugins['users-permissions'].services.userspermissions.template(settings.message, ***REMOVED***
       URL: url,
@@ -220,7 +220,7 @@ module.exports = ***REMOVED***
     // Update the user.
     await strapi.query('user', 'users-permissions').update(data);
 
-    ctx.send(***REMOVED*** ok: true ***REMOVED***);
+    ctx.send(***REMOVED***ok: true***REMOVED***);
 ***REMOVED***,
 
   register: async (ctx) => ***REMOVED***
@@ -235,7 +235,7 @@ module.exports = ***REMOVED***
 ***REMOVED***);
 
     if (!settings.allow_register) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.advanced.allow_register' ***REMOVED***] ***REMOVED***] : 'Register action is currently disabled.');
+      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.advanced.allow_register'***REMOVED***]***REMOVED***] : 'Register action is currently disabled.');
 ***REMOVED***
 
     const params = _.assign(ctx.request.body, ***REMOVED***
@@ -244,27 +244,27 @@ module.exports = ***REMOVED***
 
     // Password is required.
     if (!params.password) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.password.provide' ***REMOVED***] ***REMOVED***] : 'Please provide your password.');
+      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.password.provide'***REMOVED***]***REMOVED***] : 'Please provide your password.');
 ***REMOVED***
 
     // Throw an error if the password selected by the user
     // contains more than two times the symbol '$'.
     if (strapi.plugins['users-permissions'].services.user.isHashed(params.password)) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.password.format' ***REMOVED***] ***REMOVED***] : 'Your password cannot contain more than three times the symbol `$`.');
+      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.password.format'***REMOVED***]***REMOVED***] : 'Your password cannot contain more than three times the symbol `$`.');
 ***REMOVED***
 
     // Retrieve root role.
-    const root = await strapi.query('role', 'users-permissions').findOne(***REMOVED*** type: 'root' ***REMOVED***, ['users']);
+    const root = await strapi.query('role', 'users-permissions').findOne(***REMOVED***type: 'root'***REMOVED***, ['users']);
     const users = root.users || [];
 
     // First, check if the user is the first one to register as admin.
     const hasAdmin = users.length > 0;
 
     // Check if the user is the first to register
-    const role = hasAdmin === false ? root : await strapi.query('role', 'users-permissions').findOne(***REMOVED*** type: settings.default_role ***REMOVED***, []);
+    const role = hasAdmin === false ? root : await strapi.query('role', 'users-permissions').findOne(***REMOVED***type: settings.default_role***REMOVED***, []);
 
     if (!role) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.role.notFound' ***REMOVED***] ***REMOVED***] : 'Impossible to find the root role.');
+      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.role.notFound'***REMOVED***]***REMOVED***] : 'Impossible to find the root role.');
 ***REMOVED***
 
     // Check if the provided email is valid or not.
@@ -282,11 +282,11 @@ module.exports = ***REMOVED***
 ***REMOVED***);
 
     if (user && user.provider === params.provider) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.email.taken' ***REMOVED***] ***REMOVED***] : 'Email is already taken.');
+      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.email.taken'***REMOVED***]***REMOVED***] : 'Email is already taken.');
 ***REMOVED***
 
     if (user && user.provider !== params.provider && settings.unique_email) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.email.taken' ***REMOVED***] ***REMOVED***] : 'Email is already taken.');
+      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.email.taken'***REMOVED***]***REMOVED***] : 'Email is already taken.');
 ***REMOVED***
 
     try ***REMOVED***
@@ -305,8 +305,10 @@ module.exports = ***REMOVED***
 
         const settings = storeEmail['email_confirmation'] ? storeEmail['email_confirmation'].options : ***REMOVED******REMOVED***;
 
+        const url = (strapi.config.currentEnvironment.server.port !== 0) ? `http://$***REMOVED***strapi.config.currentEnvironment.server.host***REMOVED***:$***REMOVED***strapi.config.currentEnvironment.server.port***REMOVED***/auth/email-confirmation`
+          : `http://$***REMOVED***strapi.config.currentEnvironment.server.host***REMOVED***/auth/email-confirmation`;
         settings.message = await strapi.plugins['users-permissions'].services.userspermissions.template(settings.message, ***REMOVED***
-          URL: `http://$***REMOVED***strapi.config.currentEnvironment.server.host***REMOVED***:$***REMOVED***strapi.config.currentEnvironment.server.port***REMOVED***/auth/email-confirmation`,
+          URL: url,
           USER: _.omit(user.toJSON ? user.toJSON() : user, ['password', 'resetPasswordToken', 'role', 'provider']),
           CODE: jwt
   ***REMOVED***);
@@ -334,10 +336,10 @@ module.exports = ***REMOVED***
         jwt,
         user: _.omit(user.toJSON ? user.toJSON() : user, ['password', 'resetPasswordToken'])
 ***REMOVED***);
-***REMOVED*** catch(err) ***REMOVED***
+***REMOVED*** catch (err) ***REMOVED***
       const adminError = _.includes(err.message, 'username') ? 'Auth.form.error.username.taken' : 'Auth.form.error.email.taken';
 
-      ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: adminError ***REMOVED***] ***REMOVED***] : err.message);
+      ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: adminError***REMOVED***]***REMOVED***] : err.message);
 ***REMOVED***
 ***REMOVED***,
 
