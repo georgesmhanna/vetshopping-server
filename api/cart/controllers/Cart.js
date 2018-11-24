@@ -103,7 +103,6 @@ module.exports = ***REMOVED***
     // ***REMOVED***
 
     const product = await strapi.services.product.fetch(***REMOVED***_id: ctx.request.body.productid***REMOVED***);
-    console.log(`product = `, product);
     if (!product) ***REMOVED***  // if the product does not exist in the db
       return ctx.notFound('Product not found');
 ***REMOVED***
@@ -120,14 +119,12 @@ module.exports = ***REMOVED***
 
     let cart = await strapi.services.cart.fetch(***REMOVED***user: ctx.state.user._id***REMOVED***);   // get the cart of the loggedin user
 
-    console.log('getting cart object ==> cart = ', cart);
+
     if (!cart) ***REMOVED***
-      console.log('cart is empty, creating new one');
       cart = ***REMOVED******REMOVED***;
       cart.user = ctx.state.user._id;
       cart.orderItems = [];
       const addedCart = await strapi.services.cart.add(cart);
-      console.log('new cart created, ', addedCart);
       cart = addedCart;
 ***REMOVED***
 
@@ -138,7 +135,6 @@ module.exports = ***REMOVED***
       return ctx.notFound('Order Item already added to cart');
 ***REMOVED*** // if it doesn't exist, add it to the list of products
 
-    console.log('pushing new order item to cart');
     if (cart.orderItems) ***REMOVED***
       cart.orderItems.push(***REMOVED***
         product: product,
@@ -164,7 +160,6 @@ module.exports = ***REMOVED***
 ***REMOVED***);
 ***REMOVED***
 
-    console.log('cart object before editing: ', cart);
     await strapi.services.cart.edit(***REMOVED***_id: cart._id***REMOVED***, cart);
     return strapi.services.cart.fetch(***REMOVED***_id: cart._id***REMOVED***);
 
@@ -201,7 +196,6 @@ module.exports = ***REMOVED***
     // if there is not, create an order item, and automatically add it to cart order items list
 
     // body contains: product id, color id and size id
-    console.log('....', JSON.stringify(ctx.request.body));
     if (!ctx.request.body.productid.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***    // if the product id is not a mongo ObjectId
       return ctx.notFound('product id is not valid');
 ***REMOVED***
@@ -219,7 +213,6 @@ module.exports = ***REMOVED***
     // ***REMOVED***
 
     const product = await strapi.services.product.fetch(***REMOVED***_id: ctx.request.body.productid***REMOVED***);
-    console.log(`product = `, product);
     if (!product) ***REMOVED***  // if the product does not exist in the db
       return ctx.notFound('Product not found');
 ***REMOVED***
@@ -236,9 +229,7 @@ module.exports = ***REMOVED***
 
     let cart = await strapi.services.cart.fetch(***REMOVED***user: ctx.state.user._id***REMOVED***);   // get the cart of the loggedin user
 
-    console.log('getting cart object ==> cart = ', cart);
     if (!cart) ***REMOVED***
-      console.log('cart is empty, creating new one');
       return ctx.notFound('Cart not found');
 ***REMOVED***
 
@@ -259,8 +250,6 @@ module.exports = ***REMOVED***
 ***REMOVED***
 ***REMOVED***
 
-
-    console.log('cart object before editing: ', cart);
     await strapi.services.cart.edit(***REMOVED***_id: cart._id***REMOVED***, cart);
     return strapi.services.cart.fetch(***REMOVED***_id: cart._id***REMOVED***);
 

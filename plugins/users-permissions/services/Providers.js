@@ -153,8 +153,6 @@ const getProfile = async (provider, query, callback) => ***REMOVED***
           console.error(err);
           callback(err);
   ***REMOVED*** else ***REMOVED***
-          console.log('georges', body);
-          console.log('georges', body.picture.data.url);
           callback(null, ***REMOVED***
             username: body.email,
             email: body.email,

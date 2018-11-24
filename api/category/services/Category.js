@@ -26,9 +26,6 @@ module.exports = ***REMOVED***
       .map(ast => ast.alias)
       .join(' ');
 
-    console.log('populate', populate);
-    console.log('filters', filters);
-
     return Category
       .find()
       .where(filters.where)

@@ -26,7 +26,6 @@ module.exports = ***REMOVED***
       .map(ast => ast.alias)
       .join(' ');
 
-    console.log('georgessssss: ', filters);
     return Order
       .find()
       .where(filters.where)

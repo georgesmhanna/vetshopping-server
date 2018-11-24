@@ -69,7 +69,6 @@ module.exports = ***REMOVED***
 
 ***REMOVED***,
   getUserOrderById: async (ctx) => ***REMOVED***
-    console.log('params: ', ctx.params);
     if (!ctx.params._id.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***
       return ctx.notFound();
 ***REMOVED***

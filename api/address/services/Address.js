@@ -48,7 +48,6 @@ module.exports = ***REMOVED***
       .map(ast => ast.alias)
       .join(' ');
 
-    console.log('georges add ass', Address.associations);
     return Address
       .findOne(_.pick(params, _.keys(Address.schema.paths)))
       .populate(populate);
