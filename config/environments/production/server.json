@@ -1,6 +1,6 @@
 ***REMOVED***
-  "host": "tranquil-springs-31631.herokuapp.com",
-  "port": 0,
+  "host": "207.154.229.78",
+  "port": 1337,
   "proxy": ***REMOVED***
     "enabled": false
 ***REMOVED***,
@@ -11,6 +11,7 @@
     "enabled": false
 ***REMOVED***,
   "admin": ***REMOVED***
-    "autoOpen": false
+    "autoOpen": false,
+    "path": "/dashboard"
 ***REMOVED***
 ***REMOVED***
