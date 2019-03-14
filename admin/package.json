@@ -1,11 +1,11 @@
-***REMOVED***
+{
   "_from": "strapi-admin@3.0.0-alpha.14.2",
   "_id": "strapi-admin@3.0.0-alpha.14.2",
   "_inBundle": false,
   "_integrity": "sha512-oMiJhI9VSxopa0C0LpNbyWbss7Mkv4dMISFScCtTXX7H77rrKUWT1vNPtfAkkoGxHTldUa4IT81jB3JXCDuQ6Q==",
   "_location": "/strapi/strapi-admin",
-  "_phantomChildren": ***REMOVED******REMOVED***,
-  "_requested": ***REMOVED***
+  "_phantomChildren": {},
+  "_requested": {
     "type": "version",
     "registry": true,
     "raw": "strapi-admin@3.0.0-alpha.14.2",
@@ -14,7 +14,7 @@
     "rawSpec": "3.0.0-alpha.14.2",
     "saveSpec": null,
     "fetchSpec": "3.0.0-alpha.14.2"
-***REMOVED***,
+  },
   "_requiredBy": [
     "/strapi/strapi-generate-admin"
   ],
@@ -22,42 +22,42 @@
   "_shasum": "ed1ec7ac787c170967461c50f82301f4e64dab81",
   "_spec": "strapi-admin@3.0.0-alpha.14.2",
   "_where": "C:\\Users\\g.mhanna\\AppData\\Roaming\\npm\\node_modules\\strapi\\node_modules\\strapi-generate-admin",
-  "author": ***REMOVED***
+  "author": {
     "name": "Strapi"
-***REMOVED***,
-  "bugs": ***REMOVED***
+  },
+  "bugs": {
     "url": "https://github.com/strapi/strapi-admin/issues"
-***REMOVED***,
+  },
   "bundleDependencies": false,
-  "dependencies": ***REMOVED***
+  "dependencies": {
     "react-ga": "^2.4.1",
     "remove-markdown": "^0.2.2",
     "shelljs": "^0.7.8"
-***REMOVED***,
+  },
   "deprecated": false,
   "description": "Strapi Admin",
-  "devDependencies": ***REMOVED***
+  "devDependencies": {
     "sanitize.css": "^4.1.0",
     "strapi-helper-plugin": "3.0.0-alpha.14.2",
     "strapi-utils": "3.0.0-alpha.14.2"
-***REMOVED***,
-  "engines": ***REMOVED***
+  },
+  "engines": {
     "node": ">= 9.0.0",
     "npm": ">= 5.0.0"
-***REMOVED***,
+  },
   "homepage": "https://github.com/strapi/strapi-admin#readme",
   "license": "MIT",
   "maintainers": [
-    ***REMOVED***
+    {
       "name": "Strapi"
-***REMOVED***
+    }
   ],
   "name": "strapi-admin",
-  "repository": ***REMOVED***
+  "repository": {
     "type": "git",
     "url": "git://github.com/strapi/strapi-admin.git"
-***REMOVED***,
-  "scripts": ***REMOVED***
+  },
+  "scripts": {
     "analyze": "node ./node_modules/strapi-helper-plugin/lib/internals/scripts/analyze.js",
     "analyze:clean": "node ./node_modules/strapi-helper-plugin/node_modules/.bin/rimraf stats.json",
     "build": "APP_PATH=$APP_PATH npm run build:dll && node ./node_modules/strapi-helper-plugin/node_modules/.bin/cross-env NODE_ENV=production IS_ADMIN=true node ./node_modules/strapi-helper-plugin/node_modules/.bin/webpack --config ./node_modules/strapi-helper-plugin/lib/internals/webpack/webpack.prod.babel.js --color -p --progress",
@@ -70,20 +70,20 @@
     "prepublishOnly": "IS_MONOREPO=true npm run build",
     "presetup": "node ./scripts/preSetup.js",
     "prestart": "node ./node_modules/strapi-helper-plugin/node_modules/.bin/cross-env NODE_ENV=development PORT=4000 IS_ADMIN=true node ./node_modules/strapi-helper-plugin/lib/internals/scripts/loadAdminConfigurations.js",
-    "prettier": "node ./node_modules/strapi-helper-plugin/node_modules/.bin/prettier --single-quote --trailing-comma es5 --write \"***REMOVED***admin,__***REMOVED***tests,mocks***REMOVED***__***REMOVED***/**/*.js\"",
+    "prettier": "node ./node_modules/strapi-helper-plugin/node_modules/.bin/prettier --single-quote --trailing-comma es5 --write \"{admin,__{tests,mocks}__}/**/*.js\"",
     "setup": "node ./scripts/setup.js",
     "start": "node ./node_modules/strapi-helper-plugin/node_modules/.bin/cross-env NODE_ENV=development PORT=4000 IS_ADMIN=true node ./node_modules/strapi-helper-plugin/lib/server",
     "test": "echo \"Error: no test specified\""
-***REMOVED***,
+  },
   "version": "3.0.0-alpha.14.2",
   "warnings": [
-    ***REMOVED***
+    {
       "code": "ENOTSUP",
-      "required": ***REMOVED***
+      "required": {
         "node": ">= 9.0.0",
         "npm": ">= 5.0.0"
-***REMOVED***
+      },
       "pkgid": "strapi-admin@3.0.0-alpha.14.2"
-***REMOVED***
+    }
   ]
-***REMOVED***
+}

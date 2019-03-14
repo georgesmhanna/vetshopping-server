@@ -5,54 +5,54 @@
 */
 
 import React from 'react';
-import ***REMOVED*** get, includes, map, tail, toLower ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { get, includes, map, tail, toLower } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styles from './styles.scss';
 
-function BoundRoute(***REMOVED*** route ***REMOVED***) ***REMOVED***
+function BoundRoute({ route }) {
   const title = get(route, 'handler');
   const formattedRoute = get(route, 'path') ? tail(get(route, 'path').split('/')) : [];
   const [ controller = '', action = '' ] = title ? title.split('.') : [];
 
   return (
     <div className="col-md-12">
-      <div className=***REMOVED***styles.title***REMOVED***>
+      <div className={styles.title}>
         <FormattedMessage id="users-permissions.BoundRoute.title" />
         &nbsp;
-        <span>***REMOVED***controller***REMOVED***</span>
-        <span>.***REMOVED***action***REMOVED*** </span>
+        <span>{controller}</span>
+        <span>.{action} </span>
       </div>
-      <div className=***REMOVED***styles.boundRoute***REMOVED***>
-        <div className=***REMOVED***cn(styles.verb, styles[toLower(get(route, 'method'))])***REMOVED***>
-          ***REMOVED***get(route, 'method')***REMOVED***
+      <div className={styles.boundRoute}>
+        <div className={cn(styles.verb, styles[toLower(get(route, 'method'))])}>
+          {get(route, 'method')}
         </div>
-        <div className=***REMOVED***styles.path***REMOVED***>
-          ***REMOVED***map(formattedRoute, value => (
+        <div className={styles.path}>
+          {map(formattedRoute, value => (
             <span
-              key=***REMOVED***value***REMOVED***
-              style=***REMOVED***includes(value, ':') ? ***REMOVED*** color: '#787E8F' ***REMOVED*** : ***REMOVED******REMOVED******REMOVED***
+              key={value}
+              style={includes(value, ':') ? { color: '#787E8F' } : {}}
             >
-              /***REMOVED***value***REMOVED***
+              /{value}
             </span>
-          ))***REMOVED***
+          ))}
         </div>
       </div>
     </div>
   );
-***REMOVED***
+}
 
-BoundRoute.defaultProps = ***REMOVED***
-  route: ***REMOVED***
+BoundRoute.defaultProps = {
+  route: {
     handler: 'Nocontroller.error',
     method: 'GET',
     path: '/there-is-no-path',
-***REMOVED***,
-***REMOVED***;
+  },
+};
 
-BoundRoute.propTypes = ***REMOVED***
+BoundRoute.propTypes = {
   route: PropTypes.object,
-***REMOVED***;
+};
 
 export default BoundRoute;

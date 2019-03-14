@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "ConfigPage.title": "Enviar Arquivos - Configurações",
   "ConfigPage.description": "Configure a extensão para envio de arquivos",
 
@@ -9,8 +9,8 @@
 
   "EmptyLi.message": "Nenhum arquivo enviado",
 
-  "EntriesNumber.number": "***REMOVED***number***REMOVED*** arquivo encontrado",
-  "EntriesNumber.number.plural": "***REMOVED***number***REMOVED*** arquivos encontrados",
+  "EntriesNumber.number": "{number} arquivo encontrado",
+  "EntriesNumber.number.plural": "{number} arquivos encontrados",
 
   "HomePage.title": "Enviar Arquivos",
   "HomePage.description": "Ver todos os arquivos enviados",
@@ -25,12 +25,12 @@
   "ListHeader.size": "Tamanho",
   "ListHeader.related": "Relacionado à",
 
-  "PluginInputFile.text": "Arraste & solte os seus arquivos nesta area ou ***REMOVED***link***REMOVED*** um arquivo para enviar",
+  "PluginInputFile.text": "Arraste & solte os seus arquivos nesta area ou {link} um arquivo para enviar",
   "PluginInputFile.link": "selecione",
   "PluginInputFile.loading": "Seus arquivos estão sendo enviados...",
 
   "notification.config.success": "As configurações foram atualizadas",
   "notification.delete.success": "O arquivo foi removido",
   "notification.dropFile.success": "Seu arquivo foi enviado com sucesso",
-  "notification.dropFiles.success": "***REMOVED***number***REMOVED*** arquivos foram enviados com sucesso"
-***REMOVED***
+  "notification.dropFiles.success": "{number} arquivos foram enviados com sucesso"
+}

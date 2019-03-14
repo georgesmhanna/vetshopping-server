@@ -5,20 +5,20 @@
  */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import SupportUsTitle from 'components/SupportUsTitle';
 import SupportUsCta from 'components/SupportUsCta';
 
 import styles from './styles.scss';
 
-function SupportUsBanner() ***REMOVED***
+function SupportUsBanner() {
   return (
-    <div className=***REMOVED***styles.supportUsBanner***REMOVED***>
+    <div className={styles.supportUsBanner}>
       <div>
         <div>
           <SupportUsTitle />
           <FormattedMessage id="app.components.HomePage.support.content">
-            ***REMOVED***message => <p>***REMOVED***message***REMOVED***</p>***REMOVED***
+            {message => <p>{message}</p>}
           </FormattedMessage>
         </div>
         <div>
@@ -27,6 +27,6 @@ function SupportUsBanner() ***REMOVED***
       </div>
     </div>
   );
-***REMOVED***
+}
 
 export default SupportUsBanner;

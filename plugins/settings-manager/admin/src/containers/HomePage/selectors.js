@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the home state domain
@@ -25,7 +25,7 @@ const makeSelectModifiedData = () => createSelector(
 );
 
 export default selectHomePage;
-export ***REMOVED***
+export {
   selectHomePageDomain,
   makeSelectModifiedData,
-***REMOVED***;
+};

@@ -4,9 +4,9 @@
  *
  */
 
-import ***REMOVED*** fromJS, List, Map ***REMOVED*** from 'immutable';
+import { fromJS, List, Map } from 'immutable';
 
-import ***REMOVED***
+import {
   CANCEL_CHANGES,
   DELETE_DATA,
   DELETE_DATA_SUCCEEDED,
@@ -19,25 +19,25 @@ import ***REMOVED***
   SET_FORM_ERRORS,
   SUBMIT_SUCCEEDED,
   UNSET_DATA_TO_EDIT,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
-  data: fromJS(***REMOVED******REMOVED***),
-  dataToDelete: Map(***REMOVED******REMOVED***),
+const initialState = fromJS({
+  data: fromJS({}),
+  dataToDelete: Map({}),
   dataToEdit: '',
   deleteEndPoint: '',
   didCheckErrors: false,
   formErrors: List([]),
-  initialData: Map(***REMOVED******REMOVED***),
+  initialData: Map({}),
   isLoading: true,
-  modifiedData: Map(***REMOVED******REMOVED***),
+  modifiedData: Map({}),
   showButtons: false,
   didDeleteData: false,
   endPoint: 'roles',
-***REMOVED***);
+});
 
-function homePageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function homePageReducer(state = initialState, action) {
+  switch (action.type) {
     case CANCEL_CHANGES:
       return state
         .set('formErrors', List([]))
@@ -50,7 +50,7 @@ function homePageReducer(state = initialState, action) ***REMOVED***
       return state
         .updateIn(['data', state.get('endPoint')], list => list.splice(action.indexDataToDelete, 1))
         .set('deleteEndPoint', '')
-        .set('dataToDelete', Map(***REMOVED******REMOVED***))
+        .set('dataToDelete', Map({}))
         .update('didDeleteData', (v) => !v);
     case FETCH_DATA:
       return state
@@ -94,7 +94,7 @@ function homePageReducer(state = initialState, action) ***REMOVED***
         .update('modifiedData', () => state.get('initialData'));
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default homePageReducer;

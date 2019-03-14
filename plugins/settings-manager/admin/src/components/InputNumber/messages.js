@@ -3,11 +3,11 @@
  *
  * This contains all the text for the InputNumber component.
  */
-import ***REMOVED*** defineMessages ***REMOVED*** from 'react-intl';
+import { defineMessages } from 'react-intl';
 
-export default defineMessages(***REMOVED***
-  header: ***REMOVED***
+export default defineMessages({
+  header: {
     id: 'app.components.InputNumber.header',
     defaultMessage: 'This is the InputNumber component !',
-***REMOVED***,
-***REMOVED***);
+  },
+});

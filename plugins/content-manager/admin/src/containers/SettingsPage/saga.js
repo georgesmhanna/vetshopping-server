@@ -1,3 +1,3 @@
-function* defaultSaga() ***REMOVED******REMOVED***
+function* defaultSaga() {}
 
 export default defaultSaga;

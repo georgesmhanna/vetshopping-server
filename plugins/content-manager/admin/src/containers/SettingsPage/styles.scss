@@ -1,38 +1,38 @@
-.containerFluid ***REMOVED***
+.containerFluid {
   padding: 18px 30px;
-  > div:first-child ***REMOVED***
+  > div:first-child {
     max-height: 33px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.container ***REMOVED***
+.container {
   padding-top: 18px;
-  > div:last-child ***REMOVED***
-    > div ***REMOVED***
+  > div:last-child {
+    > div {
       padding-bottom: 0 !important;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.main_wrapper***REMOVED***
+.main_wrapper{
   background: #ffffff;
   padding: 22px 28px 0px;
   border-radius: 2px;
   box-shadow: 0 2px 4px #E3E9F3;
-***REMOVED***
+}
 
-.ctmForm ***REMOVED***
+.ctmForm {
   padding-top: 2.6rem;
-***REMOVED***
+}
 
-.contentTypesWrapper ***REMOVED***
+.contentTypesWrapper {
   padding-top: 9px;
   margin-left: -28px;
   margin-right: -28px;
-  > div:last-child ***REMOVED***
-    > div ***REMOVED***
+  > div:last-child {
+    > div {
 
       border-bottom: none;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

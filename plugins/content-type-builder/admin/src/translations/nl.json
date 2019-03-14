@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Modelize de data structuur van je API",
   "plugin.description.long":
   "Modelize de data structuur van je API. Maak nieuwe velden en relaties in een minuut. De bestanden worden automatisch aangemaakt en geüpdatet in jouw project",
@@ -90,7 +90,7 @@
 
   "form.contentType.item.connections": "Verbinding",
   "form.contentType.item.name": "Naam",
-  "form.contentType.item.name.description": "Content Type namen moeten enkelvoud zijn: ***REMOVED***link***REMOVED***",
+  "form.contentType.item.name.description": "Content Type namen moeten enkelvoud zijn: {link}",
   "form.contentType.item.name.link.description": "Bekijk onze documentatie",
   "form.contentType.item.description": "Beschrijving",
   "form.contentType.item.description.placeholder": "Schrijf je korte beschrijving hier...",
@@ -115,7 +115,7 @@
   "modelPage.contentType.list.relationShipTitle.singular": "relatie",
   "modelPage.attribute.relationWith": "Relatie met",
 
-  "noTableWarning.description": "Vergeet niet om de tabel `***REMOVED***modelName***REMOVED***` aan te maken in je database",
+  "noTableWarning.description": "Vergeet niet om de tabel `{modelName}` aan te maken in je database",
   "noTableWarning.infos": "Meer info",
 
   "notification.error.message": "Er is een fout opgetreden",
@@ -182,4 +182,4 @@
   "relation.manyToOne": "heeft veel",
   "relation.manyToMany": "heeft en behoord tot veel",
   "relation.attributeName.placeholder": "Bijv.: auteur, categorie, tag"
-***REMOVED***
+}

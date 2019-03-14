@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "components.DownloadDb.download": "설치 중입니다...",
   "components.DownloadDb.text": "이 작업은 시간이 조금 걸립니다. 잠시만 기다려 주세요.",
   "plugin.description.short": "프로젝트 환경을 설정하고 관리합니다.",
@@ -653,4 +653,4 @@
   "language.zu_ZA": "isiZulu (iNingizimu Afrika)",
 
   "pageNotFound": "페이지를 찾을 수 없습니다."
-***REMOVED***
+}

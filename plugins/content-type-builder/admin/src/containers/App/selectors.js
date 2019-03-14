@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the list state domain
@@ -21,26 +21,26 @@ const makeSelectMenu = () => createSelector(
   (globalSate) => globalSate.get('menu').toJS(),
 );
 
-const selectLocationState = () => ***REMOVED***
+const selectLocationState = () => {
   let prevRoutingState;
   let prevRoutingStateJS;
 
-  return state => ***REMOVED***
+  return state => {
     const routingState = state.get('route'); // or state.route
 
-    if (!routingState.equals(prevRoutingState)) ***REMOVED***
+    if (!routingState.equals(prevRoutingState)) {
       prevRoutingState = routingState;
       prevRoutingStateJS = routingState.toJS();
-***REMOVED***
+    }
 
     return prevRoutingStateJS;
-***REMOVED***;
-***REMOVED***;
+  };
+};
 
 
-export ***REMOVED***
+export {
   selectLocationState,
   makeSelectLoading,
   makeSelectMenu,
   makeSelectModels,
-***REMOVED***;
+};

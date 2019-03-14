@@ -6,75 +6,75 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** isEmpty, map, startCase ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** router ***REMOVED*** from 'app';
+import { isEmpty, map, startCase } from 'lodash';
+import { FormattedMessage } from 'react-intl';
+import { router } from 'app';
 
 import Button from 'components/Button';
 import styles from './styles.scss';
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-class ContentHeader extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  handleEdit = () => ***REMOVED***
+class ContentHeader extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  handleEdit = () => {
     router.push(this.props.editPath);
-***REMOVED***
+  }
 
-  renderButtonContainer = () => ***REMOVED***
-    if (this.props.isLoading) ***REMOVED***
+  renderButtonContainer = () => {
+    if (this.props.isLoading) {
       return (
-        <div className=***REMOVED***styles.buttonContainer***REMOVED***>
+        <div className={styles.buttonContainer}>
           <Button type="submit" primary loader />
         </div>
       );
-***REMOVED***
+    }
 
     return (
-      <div className=***REMOVED***styles.buttonContainer***REMOVED***>
-        ***REMOVED***map(this.props.buttonsContent, (button, key) => (
-          <Button key=***REMOVED***key***REMOVED*** type=***REMOVED***button.type***REMOVED*** label=***REMOVED***button.label***REMOVED*** kind=***REMOVED***button.kind***REMOVED*** onClick=***REMOVED***button.handleClick***REMOVED*** />
-        ))***REMOVED***
+      <div className={styles.buttonContainer}>
+        {map(this.props.buttonsContent, (button, key) => (
+          <Button key={key} type={button.type} label={button.label} kind={button.kind} onClick={button.handleClick} />
+        ))}
       </div>
     );
-***REMOVED***
+  }
 
-  renderContentHeader = () => ***REMOVED***
-    const description = isEmpty(this.props.description) ? '' : <FormattedMessage id=***REMOVED***this.props.description***REMOVED*** defaultMessage='***REMOVED***description***REMOVED***' values=***REMOVED******REMOVED*** description: this.props.description***REMOVED******REMOVED*** />;
+  renderContentHeader = () => {
+    const description = isEmpty(this.props.description) ? '' : <FormattedMessage id={this.props.description} defaultMessage='{description}' values={{ description: this.props.description}} />;
     const buttons = this.props.addButtons ? this.renderButtonContainer() : '';
     return (
-      <div className=***REMOVED***styles.contentHeader***REMOVED*** style=***REMOVED***this.props.styles***REMOVED***>
+      <div className={styles.contentHeader} style={this.props.styles}>
         <div>
-          <div className=***REMOVED***`$***REMOVED***styles.title***REMOVED*** $***REMOVED***styles.flex***REMOVED***`***REMOVED***>
-            <span>***REMOVED***startCase(this.props.name)***REMOVED***</span>
-            <i className=***REMOVED***`fa fa-$***REMOVED***this.props.icoType***REMOVED***`***REMOVED*** onClick=***REMOVED***this.handleEdit***REMOVED*** role="button" />
+          <div className={`${styles.title} ${styles.flex}`}>
+            <span>{startCase(this.props.name)}</span>
+            <i className={`fa fa-${this.props.icoType}`} onClick={this.handleEdit} role="button" />
           </div>
-          <div className=***REMOVED***styles.subTitle***REMOVED***>***REMOVED***description***REMOVED***</div>
+          <div className={styles.subTitle}>{description}</div>
         </div>
-        ***REMOVED***buttons***REMOVED***
+        {buttons}
       </div>
     );
-***REMOVED***
+  }
 
-  render() ***REMOVED***
-    const description = isEmpty(this.props.description) ? '' : <FormattedMessage id=***REMOVED***this.props.description***REMOVED*** />;
+  render() {
+    const description = isEmpty(this.props.description) ? '' : <FormattedMessage id={this.props.description} />;
     const buttons = this.props.addButtons ? this.renderButtonContainer() : '';
 
     if (this.props.editIcon) return this.renderContentHeader();
     return (
-      <div className=***REMOVED***styles.contentHeader***REMOVED*** style=***REMOVED***this.props.styles***REMOVED***>
+      <div className={styles.contentHeader} style={this.props.styles}>
         <div>
-          <div className=***REMOVED***styles.title***REMOVED***>
-            <FormattedMessage id=***REMOVED***this.props.name***REMOVED*** />
+          <div className={styles.title}>
+            <FormattedMessage id={this.props.name} />
           </div>
-          <div className=***REMOVED***styles.subTitle***REMOVED***>***REMOVED***description***REMOVED***</div>
+          <div className={styles.subTitle}>{description}</div>
         </div>
-        ***REMOVED***buttons***REMOVED***
+        {buttons}
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-ContentHeader.propTypes = ***REMOVED***
+ContentHeader.propTypes = {
   addButtons: PropTypes.bool,
   buttonsContent: PropTypes.array,
   description: PropTypes.string,
@@ -84,9 +84,9 @@ ContentHeader.propTypes = ***REMOVED***
   isLoading: PropTypes.bool,
   name: PropTypes.string,
   styles: PropTypes.object,
-***REMOVED***;
+};
 
-ContentHeader.defaultProps = ***REMOVED***
+ContentHeader.defaultProps = {
   addButtons: false,
   buttonsContent: [],
   description: '',
@@ -95,7 +95,7 @@ ContentHeader.defaultProps = ***REMOVED***
   icoType: 'pencil',
   isLoading: false,
   name: '',
-  styles: ***REMOVED******REMOVED***,
-***REMOVED***;
+  styles: {},
+};
 
 export default ContentHeader;

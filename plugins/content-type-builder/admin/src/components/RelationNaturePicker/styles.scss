@@ -1,4 +1,4 @@
-.relationNaturePicker ***REMOVED*** /* stylelint-disable */
+.relationNaturePicker { /* stylelint-disable */
   display: flex;
   width: 29.5rem;
   position: relative;
@@ -7,12 +7,12 @@
   padding-right: 25px;
   justify-content: space-around;
 
-  img:hover***REMOVED***
+  img:hover{
     cursor: pointer;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.relationNaturePicker::before ***REMOVED***
+.relationNaturePicker::before {
   content: '';
   position: absolute;
   top: 9.2rem;
@@ -20,9 +20,9 @@
   width: 100%;
   background-color: #1C5DE7;
   z-index: 0;
-***REMOVED***
+}
 
-.infoContainer ***REMOVED***
+.infoContainer {
   width: 95%;
   position: absolute;
   word-wrap: break-word;
@@ -30,7 +30,7 @@
   line-height: 1.8rem;
   text-align: center;
   font-size: 1.3rem;
-  > span:nth-child(2) ***REMOVED***
+  > span:nth-child(2) {
     color: #1C5DE7;
-***REMOVED***
-***REMOVED***
+  }
+}

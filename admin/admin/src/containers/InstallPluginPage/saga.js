@@ -1,5 +1,5 @@
-import ***REMOVED*** LOCATION_CHANGE ***REMOVED*** from 'react-router-redux';
-import ***REMOVED***
+import { LOCATION_CHANGE } from 'react-router-redux';
+import {
   call,
   cancel,
   fork,
@@ -7,105 +7,105 @@ import ***REMOVED***
   select,
   take,
   takeLatest,
-***REMOVED*** from 'redux-saga/effects';
+} from 'redux-saga/effects';
 
 import request from 'utils/request';
 
-import ***REMOVED*** selectLocale ***REMOVED*** from '../LanguageProvider/selectors';
-import ***REMOVED***
+import { selectLocale } from '../LanguageProvider/selectors';
+import {
   downloadPluginError,
   downloadPluginSucceeded,
   getAvailablePluginsSucceeded,
   getInstalledPluginsSucceeded,
-***REMOVED*** from './actions';
-import ***REMOVED*** DOWNLOAD_PLUGIN, GET_AVAILABLE_PLUGINS, GET_INSTALLED_PLUGINS ***REMOVED*** from './constants';
-import ***REMOVED*** makeSelectPluginToDownload ***REMOVED*** from './selectors';
+} from './actions';
+import { DOWNLOAD_PLUGIN, GET_AVAILABLE_PLUGINS, GET_INSTALLED_PLUGINS } from './constants';
+import { makeSelectPluginToDownload } from './selectors';
 
 
-export function* pluginDownload() ***REMOVED***
-  try ***REMOVED***
+export function* pluginDownload() {
+  try {
     const pluginToDownload = yield select(makeSelectPluginToDownload());
-    const opts = ***REMOVED***
+    const opts = {
       method: 'POST',
-      body: ***REMOVED***
+      body: {
         plugin: pluginToDownload,
         port: window.location.port,
-***REMOVED***
-***REMOVED***;
+      },
+    };
     const response = yield call(request, '/admin/plugins/install', opts, true);
 
-    if (response.ok) ***REMOVED***
+    if (response.ok) {
 
-      yield new Promise(resolve => ***REMOVED***
-        setTimeout(() => ***REMOVED***
+      yield new Promise(resolve => {
+        setTimeout(() => {
           resolve();
-  ***REMOVED*** 8000);
-***REMOVED***);
+        }, 8000);
+      });
 
       yield put(downloadPluginSucceeded());
       window.location.reload();
-***REMOVED***
-***REMOVED*** catch(err) ***REMOVED***
+    }
+  } catch(err) {
     yield put(downloadPluginError());
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* getAvailablePlugins() ***REMOVED***
-  try ***REMOVED***
+export function* getAvailablePlugins() {
+  try {
     // Get current locale.
     const locale = yield select(selectLocale());
 
-    const opts = ***REMOVED***
+    const opts = {
       method: 'GET',
-      headers: ***REMOVED***
+      headers: {
         'Content-Type': 'application/json',
-***REMOVED***
-      params: ***REMOVED***
+      },
+      params: {
         lang: locale,
-***REMOVED***
-***REMOVED***;
+      },
+    };
 
     let availablePlugins;
 
-    try ***REMOVED***
+    try {
       // Retrieve plugins list.
       availablePlugins = yield call(request, 'https://marketplace.strapi.io/plugins', opts);
-***REMOVED*** catch (e) ***REMOVED***
+    } catch (e) {
       availablePlugins = [];
-***REMOVED***
+    }
 
     yield put(getAvailablePluginsSucceeded(availablePlugins));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* getInstalledPlugins() ***REMOVED***
-  try ***REMOVED***
-    const opts = ***REMOVED***
+export function* getInstalledPlugins() {
+  try {
+    const opts = {
       method: 'GET',
-      headers: ***REMOVED***
+      headers: {
         'Content-Type': 'application/json',
-***REMOVED***
-***REMOVED***;
+      },
+    };
 
     let installedPlugins;
 
-    try ***REMOVED***
+    try {
       // Retrieve plugins list.
       installedPlugins = yield call(request, '/admin/plugins', opts);
-***REMOVED*** catch (e) ***REMOVED***
+    } catch (e) {
       installedPlugins = [];
-***REMOVED***
+    }
 
     yield put(getInstalledPluginsSucceeded(Object.keys(installedPlugins.plugins)));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
 // Individual exports for testing
-export default function* defaultSaga() ***REMOVED***
+export default function* defaultSaga() {
   const loadAvailablePluginsWatcher = yield fork(takeLatest, GET_AVAILABLE_PLUGINS, getAvailablePlugins);
   const loadInstalledPluginsWatcher = yield fork(takeLatest, GET_INSTALLED_PLUGINS, getInstalledPlugins);
   yield fork(takeLatest, DOWNLOAD_PLUGIN, pluginDownload);
@@ -114,4 +114,4 @@ export default function* defaultSaga() ***REMOVED***
 
   yield cancel(loadAvailablePluginsWatcher);
   yield cancel(loadInstalledPluginsWatcher);
-***REMOVED***
+}

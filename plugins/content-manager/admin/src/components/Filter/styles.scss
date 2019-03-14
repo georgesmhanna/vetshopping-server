@@ -1,4 +1,4 @@
-.flexWrapper ***REMOVED***
+.flexWrapper {
   display: inline-block;
   height: 30px;
   margin-bottom: 6px;
@@ -11,28 +11,28 @@
   color: #007EFF;
   font-size: 13px;
 
-  > span***REMOVED***
+  > span{
     display: inline-block;
     margin-top: -1px;
-***REMOVED***
+  }
 
-  > span:nth-child(2) ***REMOVED***
+  > span:nth-child(2) {
     font-weight: 700;
-***REMOVED***
+  }
 
-  > span:nth-child(3) ***REMOVED***
+  > span:nth-child(3) {
     cursor: pointer;
-***REMOVED***
+  }
 
   -webkit-font-smoothing: antialiased;
-***REMOVED***
+}
 
-.remove ***REMOVED***
+.remove {
   height: 28px;
   cursor: pointer;
   vertical-align: middle;
 
-  &:after ***REMOVED***
+  &:after {
     display: inline-block;
     content: '';
     width: 8px;
@@ -40,19 +40,19 @@
     margin: auto;
     margin-top: -3px;
     background-image: url('../../assets/images/icon-cross-blue.svg');
-***REMOVED***
-***REMOVED***
+  }
+}
 
 
-.separatorSpan ***REMOVED***
+.separatorSpan {
   height: 30px;
   margin-left: 10px;
   margin-right: 10px;
   line-height: 30px;
-  &:after ***REMOVED***
+  &:after {
     content: '';
     height: 15px;
     border-left: 1px solid #007EFF;
     opacity: 0.1;
-***REMOVED***
-***REMOVED***
+  }
+}

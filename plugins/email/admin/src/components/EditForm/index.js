@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import ***REMOVED*** findIndex, get, isEmpty, map ***REMOVED*** from 'lodash';
+import { findIndex, get, isEmpty, map } from 'lodash';
 import PropTypes from 'prop-types';
 // You can find these components in either
 // ./node_modules/strapi-helper-plugin/lib/src
@@ -14,74 +14,74 @@ import Input from 'components/InputsIndex';
 
 import styles from './styles.scss';
 
-class EditForm extends React.Component  ***REMOVED***
-  getProviderForm = () => get(this.props.settings, ['providers', this.props.selectedProviderIndex, 'auth'], ***REMOVED******REMOVED***);
+class EditForm extends React.Component  {
+  getProviderForm = () => get(this.props.settings, ['providers', this.props.selectedProviderIndex, 'auth'], {});
 
   generateSelectOptions = () => (
-    Object.keys(get(this.props.settings, 'providers', ***REMOVED******REMOVED***)).reduce((acc, current) => ***REMOVED***
-      const option = ***REMOVED***
+    Object.keys(get(this.props.settings, 'providers', {})).reduce((acc, current) => {
+      const option = {
         id: get(this.props.settings, ['providers', current, 'name']),
         value: get(this.props.settings, ['providers', current, 'provider']),
-***REMOVED***;
+      };
       acc.push(option);
       return acc;
-***REMOVED***, [])
+    }, [])
   )
 
-  render() ***REMOVED***
+  render() {
     return (
-      <div className=***REMOVED***styles.editForm***REMOVED***>
+      <div className={styles.editForm}>
         <div className="row">
           <Input
             customBootstrapClass="col-md-6"
-            inputDescription=***REMOVED******REMOVED*** id: 'email.EditForm.Input.select.inputDescription' ***REMOVED******REMOVED***
-            inputClassName=***REMOVED***styles.inputStyle***REMOVED***
-            label=***REMOVED******REMOVED*** id: 'email.EditForm.Input.select.label' ***REMOVED******REMOVED***
+            inputDescription={{ id: 'email.EditForm.Input.select.inputDescription' }}
+            inputClassName={styles.inputStyle}
+            label={{ id: 'email.EditForm.Input.select.label' }}
             name="provider"
-            onChange=***REMOVED***this.props.onChange***REMOVED***
-            selectOptions=***REMOVED***this.generateSelectOptions()***REMOVED***
+            onChange={this.props.onChange}
+            selectOptions={this.generateSelectOptions()}
             type="select"
-            value=***REMOVED***get(this.props.modifiedData, 'provider')***REMOVED***
+            value={get(this.props.modifiedData, 'provider')}
           />
         </div>
-        ***REMOVED***!isEmpty(this.getProviderForm()) && (
-          <div className=***REMOVED***styles.subFormWrapper***REMOVED***>
+        {!isEmpty(this.getProviderForm()) && (
+          <div className={styles.subFormWrapper}>
             <div className="row">
-              ***REMOVED***map(this.getProviderForm(), (value, key) => (
+              {map(this.getProviderForm(), (value, key) => (
                 <Input
-                  didCheckErrors=***REMOVED***this.props.didCheckErrors***REMOVED***
-                  errors=***REMOVED***get(this.props.formErrors, [findIndex(this.props.formErrors, ['name', key]), 'errors'])***REMOVED***
-                  key=***REMOVED***key***REMOVED***
-                  label=***REMOVED******REMOVED*** id: value.label ***REMOVED******REMOVED***
-                  name=***REMOVED***key***REMOVED***
-                  onChange=***REMOVED***this.props.onChange***REMOVED***
-                  selectOptions=***REMOVED***value.values***REMOVED***
-                  type=***REMOVED***value.type === 'enum' ? 'select' : value.type***REMOVED***
-                  validations=***REMOVED******REMOVED*** required: true ***REMOVED******REMOVED***
-                  value=***REMOVED***get(this.props.modifiedData, key, '')***REMOVED***
+                  didCheckErrors={this.props.didCheckErrors}
+                  errors={get(this.props.formErrors, [findIndex(this.props.formErrors, ['name', key]), 'errors'])}
+                  key={key}
+                  label={{ id: value.label }}
+                  name={key}
+                  onChange={this.props.onChange}
+                  selectOptions={value.values}
+                  type={value.type === 'enum' ? 'select' : value.type}
+                  validations={{ required: true }}
+                  value={get(this.props.modifiedData, key, '')}
                 />
-              ))***REMOVED***
+              ))}
             </div>
           </div>
-        )***REMOVED***
+        )}
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-EditForm.defaultProps = ***REMOVED***
-  settings: ***REMOVED***
+EditForm.defaultProps = {
+  settings: {
     providers: [],
-***REMOVED***,
-***REMOVED***;
+  },
+};
 
-EditForm.propTypes = ***REMOVED***
+EditForm.propTypes = {
   didCheckErrors: PropTypes.bool.isRequired,
   formErrors: PropTypes.array.isRequired,
   modifiedData: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   selectedProviderIndex: PropTypes.number.isRequired,
   settings: PropTypes.object,
-***REMOVED***;
+};
 
 export default EditForm;

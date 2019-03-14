@@ -8,92 +8,92 @@ const _ = require('lodash');
  * A set of functions called "actions" for `Admin`
  */
 
-module.exports = ***REMOVED***
-  getCurrentEnvironment: async ctx => ***REMOVED***
-    try ***REMOVED***
-      ctx.send(***REMOVED*** currentEnvironment: strapi.app.env ***REMOVED***);
-***REMOVED*** catch(err) ***REMOVED***
-      ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'An error occurred' ***REMOVED***] ***REMOVED***]);
-***REMOVED***
-***REMOVED***,
+module.exports = {
+  getCurrentEnvironment: async ctx => {
+    try {
+      ctx.send({ currentEnvironment: strapi.app.env });
+    } catch(err) {
+      ctx.badRequest(null, [{ messages: [{ id: 'An error occurred' }] }]);
+    }
+  },
 
-  getStrapiVersion: async ctx => ***REMOVED***
-    try ***REMOVED***
+  getStrapiVersion: async ctx => {
+    try {
       const strapiVersion = _.get(strapi.config, 'info.strapi', null);
-      return ctx.send(***REMOVED*** strapiVersion ***REMOVED***);
-***REMOVED*** catch(err) ***REMOVED***
-      return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'The version is not available' ***REMOVED***] ***REMOVED***]);
-***REMOVED***
-***REMOVED***,
+      return ctx.send({ strapiVersion });
+    } catch(err) {
+      return ctx.badRequest(null, [{ messages: [{ id: 'The version is not available' }] }]);
+    }
+  },
 
-  getGaConfig: async ctx => ***REMOVED***
-    try ***REMOVED***
+  getGaConfig: async ctx => {
+    try {
       const allowGa = _.get(strapi.config, 'info.customs.allowGa', true);
-      ctx.send(***REMOVED*** allowGa ***REMOVED***);
-***REMOVED*** catch(err) ***REMOVED***
-      ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'An error occurred' ***REMOVED***] ***REMOVED***]);
-***REMOVED***
-***REMOVED***,
+      ctx.send({ allowGa });
+    } catch(err) {
+      ctx.badRequest(null, [{ messages: [{ id: 'An error occurred' }] }]);
+    }
+  },
 
-  getLayout: async ctx => ***REMOVED***
-    try ***REMOVED***
+  getLayout: async ctx => {
+    try {
       const layout = require('../config/layout.js');
 
-      return ctx.send(***REMOVED*** layout ***REMOVED***);
-***REMOVED*** catch(err) ***REMOVED***
-      return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'An error occurred' ***REMOVED***] ***REMOVED***]);
-***REMOVED***
-***REMOVED***,
+      return ctx.send({ layout });
+    } catch(err) {
+      return ctx.badRequest(null, [{ messages: [{ id: 'An error occurred' }] }]);
+    }
+  },
 
-  installPlugin: async ctx => ***REMOVED***
-    try ***REMOVED***
-      const ***REMOVED*** plugin, port ***REMOVED*** = ctx.request.body;
+  installPlugin: async ctx => {
+    try {
+      const { plugin, port } = ctx.request.body;
       const strapiBin = path.join(process.cwd(), 'node_modules', 'strapi', 'bin', 'strapi');
 
       strapi.reload.isWatching = false;
 
-      strapi.log.info(`Installing $***REMOVED***plugin***REMOVED***...`);
+      strapi.log.info(`Installing ${plugin}...`);
       exec('node', [strapiBin, 'install', plugin, (port === '4000') ? '--dev' : '']);
 
-      ctx.send(***REMOVED*** ok: true ***REMOVED***);
+      ctx.send({ ok: true });
 
       strapi.reload();
-***REMOVED*** catch(err) ***REMOVED***
+    } catch(err) {
       strapi.reload.isWatching = true;
-      ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'An error occurred' ***REMOVED***] ***REMOVED***]);
-***REMOVED***
-***REMOVED***,
+      ctx.badRequest(null, [{ messages: [{ id: 'An error occurred' }] }]);
+    }
+  },
 
-  plugins: async ctx => ***REMOVED***
-    try ***REMOVED***
-      const plugins = Object.keys(strapi.plugins).reduce((acc, key) => ***REMOVED***
+  plugins: async ctx => {
+    try {
+      const plugins = Object.keys(strapi.plugins).reduce((acc, key) => {
         acc[key] = strapi.plugins[key].package.strapi;
 
         return acc;
-***REMOVED*** ***REMOVED******REMOVED***);
+      }, {});
 
-      ctx.send(***REMOVED*** plugins ***REMOVED***);
-***REMOVED*** catch(err) ***REMOVED***
-      ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'An error occurred' ***REMOVED***] ***REMOVED***]);
-***REMOVED***
-***REMOVED***,
+      ctx.send({ plugins });
+    } catch(err) {
+      ctx.badRequest(null, [{ messages: [{ id: 'An error occurred' }] }]);
+    }
+  },
 
-  uninstallPlugin: async ctx => ***REMOVED***
-    try ***REMOVED***
-      const ***REMOVED*** plugin ***REMOVED*** = ctx.params;
+  uninstallPlugin: async ctx => {
+    try {
+      const { plugin } = ctx.params;
       const strapiBin = path.join(process.cwd(), 'node_modules', 'strapi', 'bin', 'strapi');
 
       strapi.reload.isWatching = false;
 
-      strapi.log.info(`Uninstalling $***REMOVED***plugin***REMOVED***...`);
+      strapi.log.info(`Uninstalling ${plugin}...`);
       exec('node', [strapiBin, 'uninstall', plugin]);
 
-      ctx.send(***REMOVED*** ok: true ***REMOVED***);
+      ctx.send({ ok: true });
 
       strapi.reload();
-***REMOVED*** catch(err) ***REMOVED***
+    } catch(err) {
       strapi.reload.isWatching = true;
-      ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'An error occurred' ***REMOVED***] ***REMOVED***]);
-***REMOVED***
-***REMOVED***
-***REMOVED***;
+      ctx.badRequest(null, [{ messages: [{ id: 'An error occurred' }] }]);
+    }
+  }
+};

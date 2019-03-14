@@ -6,12 +6,12 @@
 
 /* eslint-disable new-cap */
 
-import ***REMOVED*** concat, includes, map, forEach, replace ***REMOVED*** from 'lodash';
-import ***REMOVED*** Map, List, fromJS ***REMOVED*** from 'immutable';
-import ***REMOVED*** getValidationsFromForm ***REMOVED*** from '../../utils/formValidations';
-import ***REMOVED*** storeData ***REMOVED*** from '../../utils/storeData';
+import { concat, includes, map, forEach, replace } from 'lodash';
+import { Map, List, fromJS } from 'immutable';
+import { getValidationsFromForm } from '../../utils/formValidations';
+import { storeData } from '../../utils/storeData';
 
-import ***REMOVED***
+import {
   CHANGE_INPUT,
   CHANGE_INPUT_ATTRIBUTE,
   CONNECTIONS_FETCH,
@@ -31,117 +31,117 @@ import ***REMOVED***
   SET_FORM,
   SET_FORM_ERRORS,
   UNSET_BUTTON_LOADING,
-***REMOVED*** from './constants';
+} from './constants';
 
 import forms from './forms.json';
 
-export function changeInput(key, value, isEditing) ***REMOVED***
+export function changeInput(key, value, isEditing) {
   const objectToModify = isEditing ? 'modifiedDataEdit' : 'modifiedData';
-  return ***REMOVED***
+  return {
     type: CHANGE_INPUT,
     key,
     value,
     objectToModify,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function changeInputAttribute(key, value) ***REMOVED***
-  return ***REMOVED***
+export function changeInputAttribute(key, value) {
+  return {
     type: CHANGE_INPUT_ATTRIBUTE,
     keys: ['modifiedDataAttribute'].concat(key.split('.')),
     value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function connectionsFetch() ***REMOVED***
-  return ***REMOVED***
+export function connectionsFetch() {
+  return {
     type: CONNECTIONS_FETCH,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function connectionsFetchSucceeded(data) ***REMOVED***
-  const connections = map(data.connections, (connection) => (***REMOVED*** name: connection, value: connection ***REMOVED***));
-  return ***REMOVED***
+export function connectionsFetchSucceeded(data) {
+  const connections = map(data.connections, (connection) => ({ name: connection, value: connection }));
+  return {
     type: CONNECTIONS_FETCH_SUCCEEDED,
     connections,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function contentTypeActionSucceeded() ***REMOVED***
-  return ***REMOVED***
+export function contentTypeActionSucceeded() {
+  return {
     type: CONTENT_TYPE_ACTION_SUCCEEDED,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function contentTypeCreate(newModel) ***REMOVED***
+export function contentTypeCreate(newModel) {
   const shouldSetUpdatedContentTypeProp = storeData.getIsModelTemporary() || false;
   storeData.setContentType(newModel);
 
-  return ***REMOVED***
+  return {
     type: CONTENT_TYPE_CREATE,
     shouldSetUpdatedContentTypeProp,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function contentTypeEdit(context) ***REMOVED***
-  return ***REMOVED***
+export function contentTypeEdit(context) {
+  return {
     type: CONTENT_TYPE_EDIT,
     context,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function contentTypeFetch(contentTypeName) ***REMOVED***
-  return ***REMOVED***
+export function contentTypeFetch(contentTypeName) {
+  return {
     type: CONTENT_TYPE_FETCH,
     contentTypeName,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function contentTypeFetchSucceeded(contentType) ***REMOVED***
+export function contentTypeFetchSucceeded(contentType) {
   const dataArray = [['attributes', List(contentType.model.attributes)]];
 
-  forEach(contentType.model, (value, key) => ***REMOVED***
-    if (key !== 'attributes') ***REMOVED***
+  forEach(contentType.model, (value, key) => {
+    if (key !== 'attributes') {
       dataArray.push([key, value]);
-***REMOVED***
-***REMOVED***);
+    }
+  });
 
   const data = Map(dataArray);
-  return ***REMOVED***
+  return {
     type: CONTENT_TYPE_FETCH_SUCCEEDED,
     data,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function removeContentTypeRequiredError() ***REMOVED***
-  return ***REMOVED***
+export function removeContentTypeRequiredError() {
+  return {
     type: REMOVE_CONTENT_TYPE_REQUIRED_ERROR,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function resetDidFetchModelProp() ***REMOVED***
-  return ***REMOVED***
+export function resetDidFetchModelProp() {
+  return {
     type: RESET_DID_FETCH_MODEL_PROP,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function resetFormErrors() ***REMOVED***
-  return ***REMOVED***
+export function resetFormErrors() {
+  return {
     type: RESET_FORM_ERRORS,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function resetIsFormSet() ***REMOVED***
-  return ***REMOVED***
+export function resetIsFormSet() {
+  return {
     type: RESET_IS_FORM_SET,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setAttributeForm(hash) ***REMOVED***
+export function setAttributeForm(hash) {
   const data = setAttributeFormData(hash);
-  const attributeRelation = Map(***REMOVED***
+  const attributeRelation = Map({
     name: '',
-    params: Map(***REMOVED***
+    params: Map({
       columnName: '',
       target: '',
       targetColumnName: "",
@@ -150,89 +150,89 @@ export function setAttributeForm(hash) ***REMOVED***
       required: false,
       unique: false,
       dominant: false,
-***REMOVED***),
-***REMOVED***);
+    }),
+  });
   const attribute = includes(hash, 'attributerelation') ? attributeRelation : data.attribute;
-  const formValidations = concat(getValidationsFromForm(data.form, []), ***REMOVED*** name: 'name', validations: ***REMOVED*** required: true ***REMOVED*** ***REMOVED***);
+  const formValidations = concat(getValidationsFromForm(data.form, []), { name: 'name', validations: { required: true } });
 
-  return ***REMOVED***
+  return {
     type: SET_ATTRIBUTE_FORM,
     form: data.form,
     attribute,
     formValidations,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setAttributeFormEdit(hash, contentType) ***REMOVED***
+export function setAttributeFormEdit(hash, contentType) {
   const form = setAttributeFormData(hash).form;
   const contentTypeAttribute = contentType.attributes[hash.split('::')[3]];
   const formValidations = getValidationsFromForm(form, []);
 
-  const attribute = Map(***REMOVED***
+  const attribute = Map({
     name: contentTypeAttribute.name,
     params: fromJS(contentTypeAttribute.params),
-***REMOVED***);
+  });
 
-  return ***REMOVED***
+  return {
     type: SET_ATTRIBUTE_FORM_EDIT,
     form,
     attribute,
     formValidations,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setButtonLoading() ***REMOVED***
-  return ***REMOVED***
+export function setButtonLoading() {
+  return {
     type: SET_BUTTON_LOADING,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setForm(hash) ***REMOVED***
+export function setForm(hash) {
   const form = forms[hash.split('::')[1]][hash.split('::')[2]];
   const data = getDataFromForm(forms[hash.split('::')[1]]);
   const formValidations = getValidationsFromForm(forms[hash.split('::')[1]], []);
 
-  return ***REMOVED***
+  return {
     type: SET_FORM,
     form,
     data,
     formValidations,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
 
-export function setFormErrors(formErrors) ***REMOVED***
-  return ***REMOVED***
+export function setFormErrors(formErrors) {
+  return {
     type: SET_FORM_ERRORS,
     formErrors,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function unsetButtonLoading() ***REMOVED***
-  return ***REMOVED***
+export function unsetButtonLoading() {
+  return {
     type: UNSET_BUTTON_LOADING,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
 /**
 *
-* @param  ***REMOVED***object***REMOVED*** form
-* @return ***REMOVED***object***REMOVED*** data : An object ***REMOVED*** name: value ***REMOVED***
+* @param  {object} form
+* @return {object} data : An object { name: value }
 */
 
-function getDataFromForm(form) ***REMOVED***
+function getDataFromForm(form) {
   const dataArray = [['attributes', List()]];
 
-  forEach(form, (formSection) => ***REMOVED***
+  forEach(form, (formSection) => {
     map(formSection.items, (item) => dataArray.push([item.name, item.value]));
-***REMOVED***);
+  });
 
   const data = Map(dataArray);
 
   return data;
-***REMOVED***
+}
 
-function setAttributeFormData(hash) ***REMOVED***
+function setAttributeFormData(hash) {
   const hashArray = hash.split('::');
   const formType = replace(hashArray[1], 'attribute', '');
   const settingsType = hashArray[2];
@@ -240,16 +240,16 @@ function setAttributeFormData(hash) ***REMOVED***
   const type = formType === 'number' ? 'integer' : formType;
   let defaultValue = type === 'number' ? 0 : '';
 
-  if (type === 'boolean') ***REMOVED***
+  if (type === 'boolean') {
     defaultValue = false;
-***REMOVED***
+  }
 
-  const attribute = Map(***REMOVED***
+  const attribute = Map({
     name: '',
-    params: Map(***REMOVED***
-      appearance: Map(***REMOVED***
+    params: Map({
+      appearance: Map({
         WYSIWYG: false,
-***REMOVED***),
+      }),
       type,
       default: defaultValue,
       required: false,
@@ -259,11 +259,11 @@ function setAttributeFormData(hash) ***REMOVED***
       multiple: false,
       min: false,
       max: false,
-***REMOVED***),
-***REMOVED***);
+    }),
+  });
 
-  return ***REMOVED***
+  return {
     form,
     attribute,
-***REMOVED***;
-***REMOVED***
+  };
+}

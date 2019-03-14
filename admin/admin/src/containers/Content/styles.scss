@@ -1,16 +1,16 @@
 /* Import */
 @import '../../styles/variables/variables';
 
-.content ***REMOVED*** /* stylelint-ignore */
+.content { /* stylelint-ignore */
   background: $content-background;
-  min-height: calc(100vh - #***REMOVED***$header-height***REMOVED***);
-  width: calc(100vw - #***REMOVED***$left-menu-width***REMOVED***);
+  min-height: calc(100vh - #{$header-height});
+  width: calc(100vw - #{$left-menu-width});
   margin-top: $header-height;
   margin-left: $left-menu-width;
-***REMOVED***
+}
 
-.wrapper ***REMOVED*** /* stylelint-ignore */
+.wrapper { /* stylelint-ignore */
   background: $content-background;
   min-height: 100%;
   width: 100%;
-***REMOVED***
+}

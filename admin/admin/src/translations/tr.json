@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "app.components.Button.save": "Kaydet",
   "app.components.Button.cancel": "İptal",
 
@@ -40,7 +40,7 @@
   "app.components.InputFileDetails.originalName": "Orjinal isim:",
   "app.components.InputFileDetails.size": "Boyut:",
 
-  "app.components.ImgPreview.hint": "Dosyanızı bu alana sürükleyip bırakın ya da bir dosya yüklemek için ***REMOVED***browse***REMOVED***",
+  "app.components.ImgPreview.hint": "Dosyanızı bu alana sürükleyip bırakın ya da bir dosya yüklemek için {browse}",
   "app.components.ImgPreview.hint.browse": "gözat",
 
   "app.components.InstallPluginPage.helmet": "Mağaza - Eklentiler",
@@ -69,8 +69,8 @@
   "app.components.ListPluginsPage.title": "Etklentiler",
   "app.components.ListPluginsPage.description": "Projedeki yüklenen eklentiler.",
   "app.components.listPluginsPage.deletePlugin.error": "Eklenti kaldırılırken bir hata oluştu",
-  "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED*** eklenti yüklü",
-  "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED*** eklenti yüklü",
+  "app.components.listPlugins.title.singular": "{number} eklenti yüklü",
+  "app.components.listPlugins.title.plural": "{number} eklenti yüklü",
   "app.components.listPlugins.title.none": "Yüklenen eklenti bulunmamaktadır.",
   "app.components.listPlugins.button": "Yeni eklenti ekle",
 
@@ -121,7 +121,7 @@
   "components.Input.error.attribute.key.taken": "Bu değer zaten var.",
   "components.Input.error.attribute.sameKeyAndName": "Eşit olamaz",
   "components.Input.error.validation.minSupMax": "Üstü olamaz",
-  "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+  "components.Input.error.custom-error": "{errorMessage} ",
   "components.Input.error.validation.json": "Bu JSON biçimi ile eşleşmiyor",
 
   "components.ListRow.empty": "Gösterilecek veri bulunmamaktadır.",
@@ -137,7 +137,7 @@
   "components.Wysiwyg.ToggleMode.markdown": "Markdown'a geçiş yap",
   "components.Wysiwyg.ToggleMode.preview": "Önizleme görünümü",
   "components.WysiwygBottomControls.charactersIndicators": "karakter",
-  "components.WysiwygBottomControls.uploadFiles": "Dosyanızı bu alana sürükleyip bırakın ya da bir dosya yüklemek için ***REMOVED***browse***REMOVED***",
+  "components.WysiwygBottomControls.uploadFiles": "Dosyanızı bu alana sürükleyip bırakın ya da bir dosya yüklemek için {browse}",
   "components.WysiwygBottomControls.uploadFiles.browse": "Bunları seç",
   "components.WysiwygBottomControls.fullscreen": "Genişlet",
 
@@ -162,4 +162,4 @@
   "request.error.model.unknown": "Bu model bulunmamaktadır.",
   "Users": "Kullanıcılar",
   "Analytics": "Analizler"
-***REMOVED***
+}

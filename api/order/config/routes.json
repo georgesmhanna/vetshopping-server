@@ -1,75 +1,75 @@
-***REMOVED***
+{
   "routes": [
-    ***REMOVED***
+    {
       "method": "GET",
       "path": "/orders",
       "handler": "Order.find",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/orders/getUserOrders",
       "handler": "Order.getUserOrders",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/orders/getUserOrders/:_id",
       "handler": "Order.getUserOrderById",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/orders/count",
       "handler": "Order.count",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/orders/:_id",
       "handler": "Order.findOne",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "POST",
       "path": "/orders",
       "handler": "Order.create",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "PUT",
       "path": "/orders/:_id",
       "handler": "Order.update",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "DELETE",
       "path": "/orders/:_id",
       "handler": "Order.destroy",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,***REMOVED***
+      }
+    },{
       "method": "DELETE",
       "path": "/orders/removeUserOrderById/:_id",
       "handler": "Order.removeUserOrderById",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***
+      }
+    }
   ]
-***REMOVED***
+}

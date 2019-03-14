@@ -1,7 +1,7 @@
 // Import
 @import "../../styles/variables/variables";
 
-.leftMenuFooter ***REMOVED*** /* stylelint-disable */
+.leftMenuFooter { /* stylelint-disable */
   position: absolute;
   width: 100%;
   display: flex;
@@ -19,11 +19,11 @@
   vertical-align: middle;
   color: $strapi-gray-light;
 
-  a ***REMOVED***
+  a {
     color: #0097f7;
-***REMOVED***
+  }
 
-  select***REMOVED***
+  select{
     outline: none;
-***REMOVED***
-***REMOVED***
+  }
+}

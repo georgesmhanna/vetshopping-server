@@ -9,31 +9,31 @@ import styles from 'components/SelectMany/styles.scss';
 import Content from './Content';
 
 
-function SelectManyDraggedItem(props) ***REMOVED***
-  if (props.withLiWrapper) ***REMOVED***
+function SelectManyDraggedItem(props) {
+  if (props.withLiWrapper) {
     return (
-      <li className=***REMOVED***styles.sortableListItem***REMOVED*** style=***REMOVED******REMOVED*** padding: '0 2px' ***REMOVED******REMOVED***>
-        <Content ***REMOVED***...props***REMOVED*** />
+      <li className={styles.sortableListItem} style={{ padding: '0 2px' }}>
+        <Content {...props} />
       </li>
     );
-***REMOVED***
+  }
 
-  return <Content ***REMOVED***...props***REMOVED*** />;
-***REMOVED***
+  return <Content {...props} />;
+}
 
-SelectManyDraggedItem.defaultProps = ***REMOVED***
+SelectManyDraggedItem.defaultProps = {
   index: 0,
-  onClick: () => ***REMOVED******REMOVED***,
-  onRemove: () => ***REMOVED******REMOVED***,
+  onClick: () => {},
+  onRemove: () => {},
   withLiWrapper: false,
-***REMOVED***;
+};
 
-SelectManyDraggedItem.propTypes = ***REMOVED***
+SelectManyDraggedItem.propTypes = {
   index: PropTypes.number,
   item: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   onRemove: PropTypes.func,
   withLiWrapper: PropTypes.bool,
-***REMOVED***;
+};
 
 export default SelectManyDraggedItem;

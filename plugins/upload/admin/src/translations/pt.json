@@ -1,4 +1,4 @@
-***REMOVED***
+{
     "ConfigPage.title": "Transferência - Definições",
     "ConfigPage.description": "Configure a extensão de transferência",
   
@@ -9,8 +9,8 @@
   
     "EmptyLi.message": "Sem arquivos transferidos",
   
-    "EntriesNumber.number": "***REMOVED***number***REMOVED*** arquivo encontrado",
-    "EntriesNumber.number.plural": "***REMOVED***number***REMOVED*** arquivos encontrados",
+    "EntriesNumber.number": "{number} arquivo encontrado",
+    "EntriesNumber.number.plural": "{number} arquivos encontrados",
   
     "HomePage.title": "Transferir",
     "HomePage.description": "Ver todos os ficheiros transferidos",
@@ -25,13 +25,13 @@
     "ListHeader.size": "Tamanho",
     "ListHeader.related": "Relacionado à",
   
-    "PluginInputFile.text": "Arraste & solte os seus arquivos nesta area ou ***REMOVED***link***REMOVED*** um arquivo para transferir",
+    "PluginInputFile.text": "Arraste & solte os seus arquivos nesta area ou {link} um arquivo para transferir",
     "PluginInputFile.link": "procure",
     "PluginInputFile.loading": "Seus arquivos estão sendo transferidos...",
   
     "notification.config.success": "As configurações foram actualizadas",
     "notification.delete.success": "O arquivo foi apagado",
     "notification.dropFile.success": "Seu arquivo foi transferido com sucesso",
-    "notification.dropFiles.success": "***REMOVED***number***REMOVED*** arquivos foram transferidos com sucesso"
-***REMOVED***
+    "notification.dropFiles.success": "{number} arquivos foram transferidos com sucesso"
+  }
   

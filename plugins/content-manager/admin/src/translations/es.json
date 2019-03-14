@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Ver, editar y eliminar información de su base de datos de manera rápida.",
   "plugin.description.long": "Ver, editar y eliminar información de su base de datos de manera rápida.",
   "containers.Home.pluginHeaderTitle": "Gestor de Contenido",
@@ -9,9 +9,9 @@
   "containers.Edit.delete": "Eliminar",
   "containers.Edit.reset": "Reiniciar",
   "containers.Edit.returnList": "Regresar a la lista",
-  "containers.List.addAnEntry": "Agregar nuevo ***REMOVED***entity***REMOVED***",
-  "containers.List.pluginHeaderDescription": "***REMOVED***label***REMOVED*** registros encontrados",
-  "containers.List.pluginHeaderDescription.singular": "***REMOVED***label***REMOVED*** registro encontrado",
+  "containers.List.addAnEntry": "Agregar nuevo {entity}",
+  "containers.List.pluginHeaderDescription": "{label} registros encontrados",
+  "containers.List.pluginHeaderDescription.singular": "{label} registro encontrado",
   "components.LimitSelect.itemsPerPage": "registros por página",
   "containers.List.errorFetchRecords": "Error",
 
@@ -51,14 +51,14 @@
 
   "components.Search.placeholder": "Buscar un registro...",
 
-  "components.TableDelete.entries.plural": "***REMOVED***number***REMOVED*** registros seleccionados",
-  "components.TableDelete.entries.singular": "***REMOVED***number***REMOVED*** registro seleccionado",
+  "components.TableDelete.entries.plural": "{number} registros seleccionados",
+  "components.TableDelete.entries.singular": "{number} registro seleccionado",
   "components.TableDelete.delete": "Eliminar todo",
 
 
-  "components.TableEmpty.withFilters": "No hay ***REMOVED***contentType***REMOVED*** con los filtros aplicados...",
-  "components.TableEmpty.withoutFilter": "No hay ***REMOVED***contentType***REMOVED***...",
-  "components.TableEmpty.withSearch": "No hay ***REMOVED***contentType***REMOVED*** que coincida con la búsqueda (***REMOVED***search***REMOVED***)...",
+  "components.TableEmpty.withFilters": "No hay {contentType} con los filtros aplicados...",
+  "components.TableEmpty.withoutFilter": "No hay {contentType}...",
+  "components.TableEmpty.withSearch": "No hay {contentType} que coincida con la búsqueda ({search})...",
 
   "EditRelations.title": "Datos relacionados",
 
@@ -113,4 +113,4 @@
   "popUpWarning.bodyMessage.contentType.delete.all": "¿Está seguro de querer eliminar estos registros?",
   "popUpWarning.warning.cancelAllSettings": "¿Está seguro de querer cancelar sus cambios?",
   "popUpWarning.warning.updateAllSettings": "Esto modificará todas sus configuraciones"
-***REMOVED***
+}

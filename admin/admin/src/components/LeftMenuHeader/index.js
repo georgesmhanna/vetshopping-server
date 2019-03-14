@@ -5,18 +5,18 @@
 */
 
 import React from 'react';
-import ***REMOVED*** Link ***REMOVED*** from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './styles.scss';
 
-function LeftMenuHeader() ***REMOVED***
+function LeftMenuHeader() {
   return (
-    <div className=***REMOVED***styles.leftMenuHeader***REMOVED***>
-      <Link to="/" className=***REMOVED***styles.leftMenuHeaderLink***REMOVED***>
-        <span className=***REMOVED***styles.projectName***REMOVED***></span>
+    <div className={styles.leftMenuHeader}>
+      <Link to="/" className={styles.leftMenuHeaderLink}>
+        <span className={styles.projectName}></span>
       </Link>
     </div>
   );
-***REMOVED***
+}
 
 export default LeftMenuHeader;

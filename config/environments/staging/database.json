@@ -1,0 +1,21 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "strapi-hook-mongoose",
+      "settings": {
+        "client": "mongo",
+        "uri": "",
+        "host": "ds119993.mlab.com",
+        "port": 19993,
+        "database": "vetshopping",
+        "username": "admin",
+        "password": "ol2004"
+      },
+      "options": {
+        "ssl": "false",
+        "authenticationDatabase": ""
+      }
+    }
+  }
+}

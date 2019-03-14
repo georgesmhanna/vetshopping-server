@@ -6,11 +6,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
-import ***REMOVED***
+import {
   endsWith,
   find,
   findIndex,
@@ -24,11 +24,11 @@ import ***REMOVED***
   replace,
   size,
   toNumber,
-***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+} from 'lodash';
+import { FormattedMessage } from 'react-intl';
 import Helmet from 'react-helmet';
 import Select from 'react-select';
-import ***REMOVED*** router ***REMOVED*** from 'app';
+import { router } from 'app';
 
 // design
 import ContentHeader from 'components/ContentHeader';
@@ -41,18 +41,18 @@ import RowLanguage from 'components/RowLanguage';
 import PluginLeftMenu from 'components/PluginLeftMenu';
 
 // App selectors
-import ***REMOVED*** makeSelectSections, makeSelectEnvironments ***REMOVED*** from 'containers/App/selectors';
+import { makeSelectSections, makeSelectEnvironments } from 'containers/App/selectors';
 
 // utils
 import unknowFlag from 'assets/images/unknow_flag.png';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import supportedFlags from 'utils/supportedFlags.json';
-import ***REMOVED*** checkFormValidity, getRequiredInputsDb ***REMOVED*** from '../../utils/inputValidations';
-import getFlag, ***REMOVED*** formatLanguageLocale ***REMOVED*** from '../../utils/getFlag';
+import { checkFormValidity, getRequiredInputsDb } from '../../utils/inputValidations';
+import getFlag, { formatLanguageLocale } from '../../utils/getFlag';
 import sendUpdatedParams from '../../utils/sendUpdatedParams';
 import selectHomePage from './selectors';
-import ***REMOVED***
+import {
   cancelChanges,
   changeDefaultLanguage,
   changeInput,
@@ -69,7 +69,7 @@ import ***REMOVED***
   newDatabasePost,
   setErrors,
   specificDatabaseFetch,
-***REMOVED*** from './actions';
+} from './actions';
 import reducer from './reducer';
 import saga from './sagas';
 
@@ -77,116 +77,116 @@ import styles from './styles.scss';
 import config from './config.json';
 
 /* eslint-disable react/require-default-props  */
-export class HomePage extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+export class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
     super(props);
     this.customComponents = config.customComponents;
-    this.components = ***REMOVED***
+    this.components = {
       // editForm: EditForm,
       defaultComponent: EditForm,
       list: List,
       defaultComponentWithEnvironments: HeaderNav,
-***REMOVED***;
+    };
 
     // allowing state only for database modal purpose
-    this.state = ***REMOVED***
+    this.state = {
       modal: false,
       toggleDefaultConnection: false,
-***REMOVED***;
+    };
 
     this.sendUpdatedParams = sendUpdatedParams.bind(this);
-***REMOVED***
+  }
 
-  componentDidMount() ***REMOVED***
-    if (this.props.match.params.slug) ***REMOVED***
+  componentDidMount() {
+    if (this.props.match.params.slug) {
       this.handleFetch(this.props);
-***REMOVED*** else ***REMOVED***
-      router.push(`/plugins/settings-manager/$***REMOVED***get(this.props.menuSections, ['0', 'items', '0', 'slug']) || 'application'***REMOVED***`);
-***REMOVED***
-***REMOVED***
+    } else {
+      router.push(`/plugins/settings-manager/${get(this.props.menuSections, ['0', 'items', '0', 'slug']) || 'application'}`);
+    }
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
     // check if params slug updated
-    if (this.props.match.params.slug !== nextProps.match.params.slug && nextProps.match.params.slug) ***REMOVED***
-      if (nextProps.match.params.slug) ***REMOVED***
+    if (this.props.match.params.slug !== nextProps.match.params.slug && nextProps.match.params.slug) {
+      if (nextProps.match.params.slug) {
         // get data from api if params slug updated
         this.handleFetch(nextProps);
-***REMOVED*** else ***REMOVED***
+      } else {
         // redirect user if no params slug provided
-        router.push(`/plugins/settings-manager/$***REMOVED***get(this.props.menuSections, ['0', 'items', '0', 'slug'])***REMOVED***`);
-***REMOVED***
-***REMOVED*** else if (this.props.match.params.env !== nextProps.match.params.env && nextProps.match.params.env && this.props.match.params.env) ***REMOVED***
+        router.push(`/plugins/settings-manager/${get(this.props.menuSections, ['0', 'items', '0', 'slug'])}`);
+      }
+    } else if (this.props.match.params.env !== nextProps.match.params.env && nextProps.match.params.env && this.props.match.params.env) {
       // get data if params env updated
       this.handleFetch(nextProps);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentDidUpdate(prevProps) ***REMOVED***
-    if (prevProps.home.didCreatedNewLanguage !== this.props.home.didCreatedNewLanguage) ***REMOVED***
+  componentDidUpdate(prevProps) {
+    if (prevProps.home.didCreatedNewLanguage !== this.props.home.didCreatedNewLanguage) {
       this.handleFetch(this.props);
-***REMOVED***
+    }
 
-    if (prevProps.home.didCreatedNewDb !== this.props.home.didCreatedNewDb) ***REMOVED***
+    if (prevProps.home.didCreatedNewDb !== this.props.home.didCreatedNewDb) {
       this.handleFetch(this.props);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   /* eslint-disable react/sort-comp */
   /* eslint-disable jsx-a11y/no-static-element-interactions */
-  addConnection = (e) => ***REMOVED***
+  addConnection = (e) => {
     e.preventDefault();
-    const newData = ***REMOVED******REMOVED***;
+    const newData = {};
     /* eslint-disable no-template-curly-in-string */
-    const dbName = get(this.props.home.modifiedData, 'database.connections.$***REMOVED***name***REMOVED***.name');
-    map(this.props.home.modifiedData, (data, key) => ***REMOVED***
-      const k = replace(key, '$***REMOVED***name***REMOVED***', dbName);
+    const dbName = get(this.props.home.modifiedData, 'database.connections.${name}.name');
+    map(this.props.home.modifiedData, (data, key) => {
+      const k = replace(key, '${name}', dbName);
 
-      if (key !== 'database.connections.$***REMOVED***name***REMOVED***.name') ***REMOVED***
+      if (key !== 'database.connections.${name}.name') {
         newData[k] = data;
-***REMOVED***
-***REMOVED***);
+      }
+    });
 
     const formErrors = getRequiredInputsDb(this.props.home.modifiedData, this.props.home.formErrors);
 
-    if (isEmpty(formErrors)) ***REMOVED***
+    if (isEmpty(formErrors)) {
       // this.props.setErrors([]);
       this.props.newDatabasePost(this.props.match.params.env, newData);
-***REMOVED*** else ***REMOVED***
+    } else {
       this.props.setErrors(formErrors);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  emptyDbModifiedData = () => ***REMOVED***
-    this.setState(***REMOVED*** toggleDefaultConnection: false ***REMOVED***);
+  emptyDbModifiedData = () => {
+    this.setState({ toggleDefaultConnection: false });
     this.props.emptyDbModifiedData();
-***REMOVED***
+  }
 
-  getDatabase = (databaseName) => ***REMOVED***
+  getDatabase = (databaseName) => {
     // allow state here just for modal purpose
     this.props.specificDatabaseFetch(databaseName, this.props.match.params.env);
-    // this.setState(***REMOVED*** modal: !this.state.modal ***REMOVED***);
-***REMOVED***
+    // this.setState({ modal: !this.state.modal });
+  }
 
-  handleDefaultLanguageChange = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleDefaultLanguageChange = ({ target }) => {
     // create new object configsDisplay based on store property configsDisplay
-    const configsDisplay = ***REMOVED***
+    const configsDisplay = {
       name: this.props.home.configsDisplay.name,
       description: this.props.home.configsDisplay.description,
       sections: [],
-***REMOVED***;
+    };
 
     // Find the index of the new setted language
     const activeLanguageIndex = findIndex(this.props.home.configsDisplay.sections, ['name', target.id]);
 
-    forEach(this.props.home.configsDisplay.sections, (section, key) => ***REMOVED***
+    forEach(this.props.home.configsDisplay.sections, (section, key) => {
       // set all Language active state to false
-      if (key !== activeLanguageIndex) ***REMOVED***
-        configsDisplay.sections.push(***REMOVED*** name: section.name, active: false ***REMOVED***);
-***REMOVED*** else ***REMOVED***
+      if (key !== activeLanguageIndex) {
+        configsDisplay.sections.push({ name: section.name, active: false });
+      } else {
         // set the new language active state to true
-        configsDisplay.sections.push(***REMOVED*** name: section.name, active: true ***REMOVED***);
-***REMOVED***
-***REMOVED***);
+        configsDisplay.sections.push({ name: section.name, active: true });
+      }
+    });
 
     // reset all the configs to ensure component is updated
     this.props.changeDefaultLanguage(configsDisplay, target.id);
@@ -195,66 +195,66 @@ export class HomePage extends React.Component ***REMOVED*** // eslint-disable-li
     const defaultLanguageArray = formatLanguageLocale(target.id);
 
     // Edit the new config
-    this.props.editSettings(***REMOVED*** 'language.defaultLocale': join(defaultLanguageArray, '_') ***REMOVED***, 'i18n');
-***REMOVED***
+    this.props.editSettings({ 'language.defaultLocale': join(defaultLanguageArray, '_') }, 'i18n');
+  }
 
-  handleFetch(props) ***REMOVED***
-    const apiUrl = props.match.params.env ? `$***REMOVED***props.match.params.slug***REMOVED***/$***REMOVED***props.match.params.env***REMOVED***` : props.match.params.slug;
+  handleFetch(props) {
+    const apiUrl = props.match.params.env ? `${props.match.params.slug}/${props.match.params.env}` : props.match.params.slug;
 
-    switch(props.match.params.slug) ***REMOVED***
+    switch(props.match.params.slug) {
       case 'languages':
         return this.props.languagesFetch();
       case 'databases':
         return this.props.databasesFetch(props.match.params.env);
       default:
         return this.props.configFetch(apiUrl);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleChange = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleChange = ({ target }) => {
     let value = target.type === 'number' && target.value !== '' ? toNumber(target.value) : target.value;
     let name = target.name;
 
-    if (this.props.match.params.slug === 'security') ***REMOVED***
+    if (this.props.match.params.slug === 'security') {
       // the only case where the input doesn't have a name
-      if (target.name === '') ***REMOVED***
+      if (target.name === '') {
         name = 'security.xframe.value.nested';
         value = target.value;
-***REMOVED***
-***REMOVED***
+      }
+    }
 
-    if (this.props.match.params.slug === 'databases') ***REMOVED***
-      if (name === this.props.home.dbNameTarget) ***REMOVED***
+    if (this.props.match.params.slug === 'databases') {
+      if (name === this.props.home.dbNameTarget) {
         const formErrors = value === this.props.home.addDatabaseSection.sections[1].items[0].value ?
-          [***REMOVED*** target: name, errors: [***REMOVED*** id: 'settings-manager.request.error.database.exist' ***REMOVED***] ***REMOVED***] : [];
+          [{ target: name, errors: [{ id: 'settings-manager.request.error.database.exist' }] }] : [];
         this.props.setErrors(formErrors);
-***REMOVED*** else if (endsWith(name, '.settings.client')) ***REMOVED***
-        const item = find(this.props.home.addDatabaseSection.sections[0].items[1].items, ***REMOVED*** value ***REMOVED***);
-        this.props.changeInput('database.connections.$***REMOVED***name***REMOVED***.settings.port', item.port);
-        this.props.changeInput(`database.connections.$***REMOVED***this.props.home.addDatabaseSection.sections[1].items[0].value***REMOVED***.settings.port`, item.port);
-***REMOVED*** else ***REMOVED***
+      } else if (endsWith(name, '.settings.client')) {
+        const item = find(this.props.home.addDatabaseSection.sections[0].items[1].items, { value });
+        this.props.changeInput('database.connections.${name}.settings.port', item.port);
+        this.props.changeInput(`database.connections.${this.props.home.addDatabaseSection.sections[1].items[0].value}.settings.port`, item.port);
+      } else {
         this.props.setErrors([]);
-***REMOVED***
-***REMOVED***
+      }
+    }
     this.props.changeInput(name, value);
-***REMOVED***
+  }
 
   handleChangeLanguage = (value) => this.props.changeInput('language.defaultLocale', value.value);
 
   handleCancel = () => this.props.cancelChanges();
 
-  handleSetDefaultConnectionDb = () => ***REMOVED***
+  handleSetDefaultConnectionDb = () => {
     const value = this.state.toggleDefaultConnection
       ? this.props.home.addDatabaseSection.sections[1].items[0].value
       : this.props.home.modifiedData[this.props.home.dbNameTarget];
-    const target = ***REMOVED*** name: 'database.defaultConnection', value ***REMOVED***;
-    this.handleChange(***REMOVED***target***REMOVED***);
-    this.setState(***REMOVED*** toggleDefaultConnection: !this.state.toggleDefaultConnection ***REMOVED***);
-***REMOVED***
+    const target = { name: 'database.defaultConnection', value };
+    this.handleChange({target});
+    this.setState({ toggleDefaultConnection: !this.state.toggleDefaultConnection });
+  }
 
-  handleSubmit = (e) => ***REMOVED*** // eslint-disable-line consistent-return
+  handleSubmit = (e) => { // eslint-disable-line consistent-return
     e.preventDefault();
-    const apiUrl = this.props.match.params.env ? `$***REMOVED***this.props.match.params.slug***REMOVED***/$***REMOVED***this.props.match.params.env***REMOVED***` : this.props.match.params.slug;
+    const apiUrl = this.props.match.params.env ? `${this.props.match.params.slug}/${this.props.match.params.env}` : this.props.match.params.slug;
 
     const isCreatingNewFields = this.props.match.params.slug === 'security';
     // send only updated settings
@@ -262,137 +262,137 @@ export class HomePage extends React.Component ***REMOVED*** // eslint-disable-li
     const formErrors = checkFormValidity(body, this.props.home.formValidations);
 
     if (isEmpty(body)) return strapi.notification.info('settings-manager.strapi.notification.info.settingsEqual');
-    if (isEmpty(formErrors)) ***REMOVED***
+    if (isEmpty(formErrors)) {
       this.props.editSettings(body, apiUrl);
-***REMOVED*** else ***REMOVED***
+    } else {
       this.props.setErrors(formErrors);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleSubmitEditDatabase = (databaseName) => ***REMOVED*** // eslint-disable-line consistent-return
+  handleSubmitEditDatabase = (databaseName) => { // eslint-disable-line consistent-return
     const body = this.sendUpdatedParams();
-    const apiUrl = `$***REMOVED***databaseName***REMOVED***/$***REMOVED***this.props.match.params.env***REMOVED***`;
+    const apiUrl = `${databaseName}/${this.props.match.params.env}`;
     const formErrors = checkFormValidity(body, this.props.home.formValidations, this.props.home.formErrors);
 
-    if (isEmpty(body)) ***REMOVED***
+    if (isEmpty(body)) {
       this.props.closeModal();
       return strapi.notification.info('settings-manager.strapi.notification.info.settingsEqual');
-***REMOVED***
+    }
 
 
-    if (isEmpty(formErrors)) ***REMOVED***
+    if (isEmpty(formErrors)) {
       this.props.databaseEdit(body, apiUrl);
-***REMOVED*** else ***REMOVED***
+    } else {
       this.props.setErrors(formErrors);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   // retrieve the language to delete using the target id
   handleLanguageDelete = (languaToDelete) => this.props.languageDelete(languaToDelete);
 
-  handleDatabaseDelete = (dbName) => ***REMOVED***
+  handleDatabaseDelete = (dbName) => {
     this.context.enableGlobalOverlayBlocker();
     strapi.notification.success('settings-manager.strapi.notification.success.databaseDelete');
     this.props.databaseDelete(dbName, this.props.match.params.env, this.context);
-***REMOVED***
+  }
 
   // function used for react-select option
-  optionComponent = (props) => <SelectOptionLanguage ***REMOVED***...props***REMOVED*** />;
+  optionComponent = (props) => <SelectOptionLanguage {...props} />;
 
   // custom Row rendering for the component List with params slug === languages
   renderRowLanguage = (props, key, liStyles) => (
     <RowLanguage
-      key=***REMOVED***key***REMOVED***
-      ***REMOVED***...props***REMOVED***
-      liStyles=***REMOVED***liStyles***REMOVED***
-      onDeleteLanguage=***REMOVED***this.handleLanguageDelete***REMOVED***
-      listLanguages=***REMOVED***this.props.home.listLanguages***REMOVED***
-      onDefaultLanguageChange=***REMOVED***this.handleDefaultLanguageChange***REMOVED***
+      key={key}
+      {...props}
+      liStyles={liStyles}
+      onDeleteLanguage={this.handleLanguageDelete}
+      listLanguages={this.props.home.listLanguages}
+      onDefaultLanguageChange={this.handleDefaultLanguageChange}
     />
   )
 
-  renderListTitle = () => ***REMOVED***
+  renderListTitle = () => {
     const availableContentNumber = size(this.props.home.configsDisplay.sections);
-    const title = availableContentNumber > 1 ? `list.$***REMOVED***this.props.match.params.slug***REMOVED***.title.plural` : `list.$***REMOVED***this.props.match.params.slug***REMOVED***.title.singular`;
-    const titleDisplay = title ? <FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***title***REMOVED***`***REMOVED*** /> : '';
+    const title = availableContentNumber > 1 ? `list.${this.props.match.params.slug}.title.plural` : `list.${this.props.match.params.slug}.title.singular`;
+    const titleDisplay = title ? <FormattedMessage id={`settings-manager.${title}`} /> : '';
 
-    return <span>***REMOVED***availableContentNumber***REMOVED***&nbsp;***REMOVED***titleDisplay***REMOVED***</span>;
-***REMOVED***
+    return <span>{availableContentNumber}&nbsp;{titleDisplay}</span>;
+  }
 
-  renderListButtonLabel = () => `list.$***REMOVED***this.props.match.params.slug***REMOVED***.button.label`;
+  renderListButtonLabel = () => `list.${this.props.match.params.slug}.button.label`;
 
   renderPopUpFormDatabase = (section, props, popUpStyles) => (
-    map(section.items, (item, key) => ***REMOVED***
+    map(section.items, (item, key) => {
       const isActive = props.values[this.props.home.dbNameTarget] === this.props.home.modifiedData['database.defaultConnection'] ?
-        <div className=***REMOVED***popUpStyles.rounded***REMOVED***><i className="fa fa-check" /></div> : '';
+        <div className={popUpStyles.rounded}><i className="fa fa-check" /></div> : '';
 
-      if (item.name === 'form.database.item.default') ***REMOVED***
+      if (item.name === 'form.database.item.default') {
         return (
           <div
-            key=***REMOVED***key***REMOVED***
-            className=***REMOVED***popUpStyles.defaultConnection***REMOVED***
-            id=***REMOVED***item.target***REMOVED***
-            onClick=***REMOVED***this.handleSetDefaultConnectionDb***REMOVED***
+            key={key}
+            className={popUpStyles.defaultConnection}
+            id={item.target}
+            onClick={this.handleSetDefaultConnectionDb}
           >
-            <FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***item.name***REMOVED***`***REMOVED*** />***REMOVED***isActive***REMOVED***
+            <FormattedMessage id={`settings-manager.${item.name}`} />{isActive}
           </div>
         );
-***REMOVED***
+      }
       return (
         props.renderInput(item, key)
       );
-***REMOVED***)
+    })
   )
 
   renderPopUpFormLanguage = (section) => (
-    map(section.items, (item) => ***REMOVED***
+    map(section.items, (item) => {
       const value = this.props.home.modifiedData[item.target] || this.props.home.selectOptions.options[0].value;
 
       return (
-        <div className=***REMOVED***`col-md-6`***REMOVED*** key=***REMOVED***item.name***REMOVED***>
-          <div className=***REMOVED***styles.modalLanguageLabel***REMOVED***>
-            <FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***item.name***REMOVED***`***REMOVED*** />
+        <div className={`col-md-6`} key={item.name}>
+          <div className={styles.modalLanguageLabel}>
+            <FormattedMessage id={`settings-manager.${item.name}`} />
           </div>
           <Select
-            name=***REMOVED***item.target***REMOVED***
-            value=***REMOVED***value***REMOVED***
-            options=***REMOVED***this.props.home.selectOptions.options***REMOVED***
-            onChange=***REMOVED***this.handleChangeLanguage***REMOVED***
-            valueComponent=***REMOVED***this.valueComponent***REMOVED***
-            optionComponent=***REMOVED***this.optionComponent***REMOVED***
-            clearable=***REMOVED***false***REMOVED***
+            name={item.target}
+            value={value}
+            options={this.props.home.selectOptions.options}
+            onChange={this.handleChangeLanguage}
+            valueComponent={this.valueComponent}
+            optionComponent={this.optionComponent}
+            clearable={false}
           />
-          <div className=***REMOVED***styles.popUpSpacer***REMOVED*** />
+          <div className={styles.popUpSpacer} />
         </div>
       );
-***REMOVED***)
+    })
   )
 
   renderRowDatabase = (props, key) => (
     <RowDatabase
-      key=***REMOVED***key***REMOVED***
-      data=***REMOVED***props***REMOVED***
-      getDatabase=***REMOVED***this.getDatabase***REMOVED***
-      onDeleteDatabase=***REMOVED***this.handleDatabaseDelete***REMOVED***
-      sections=***REMOVED***this.props.home.specificDatabase.sections***REMOVED***
-      values=***REMOVED***this.props.home.modifiedData***REMOVED***
-      onChange=***REMOVED***this.handleChange***REMOVED***
-      renderPopUpForm=***REMOVED***this.renderPopUpFormDatabase***REMOVED***
-      onSubmit=***REMOVED***this.handleSubmitEditDatabase***REMOVED***
-      formErrors=***REMOVED***this.props.home.formErrors***REMOVED***
-      error=***REMOVED***this.props.home.error***REMOVED***
-      resetToggleDefaultConnection=***REMOVED***this.resetToggleDefaultConnection***REMOVED***
+      key={key}
+      data={props}
+      getDatabase={this.getDatabase}
+      onDeleteDatabase={this.handleDatabaseDelete}
+      sections={this.props.home.specificDatabase.sections}
+      values={this.props.home.modifiedData}
+      onChange={this.handleChange}
+      renderPopUpForm={this.renderPopUpFormDatabase}
+      onSubmit={this.handleSubmitEditDatabase}
+      formErrors={this.props.home.formErrors}
+      error={this.props.home.error}
+      resetToggleDefaultConnection={this.resetToggleDefaultConnection}
     />
   )
 
-  renderComponent = () => ***REMOVED***
+  renderComponent = () => {
     // check if  settingName (params.slug) has a custom view display
     let specificComponent = findKey(this.customComponents, (value) => includes(value, this.props.match.params.slug));
 
-    if (!specificComponent) ***REMOVED***
+    if (!specificComponent) {
       // Check if params env : render HeaderNav component
       specificComponent = !this.props.match.params.env ? 'defaultComponent' : 'defaultComponentWithEnvironments';
-***REMOVED***
+    }
 
     // if custom view display render specificComponent
     const Component = this.components[specificComponent];
@@ -411,7 +411,7 @@ export class HomePage extends React.Component ***REMOVED*** // eslint-disable-li
     let actionBeforeOpenPopUp;
     let addListTitleMarginTop;
 
-    switch (this.props.match.params.slug) ***REMOVED***
+    switch (this.props.match.params.slug) {
       case 'languages':
         sections = this.props.home.listLanguages.sections;
 
@@ -430,93 +430,93 @@ export class HomePage extends React.Component ***REMOVED*** // eslint-disable-li
         break;
       default:
         sections = this.props.home.configsDisplay.sections;
-***REMOVED***
+    }
 
     // Custom selectOptions for languages
     const selectOptions = this.props.match.params.slug === 'languages' ? this.props.home.listLanguages : [];
     return (
       <Component
-        sections=***REMOVED***sections***REMOVED***
-        listItems=***REMOVED***this.props.home.configsDisplay.sections***REMOVED***
-        values=***REMOVED***this.props.home.modifiedData***REMOVED***
-        onChange=***REMOVED***this.handleChange***REMOVED***
-        onCancel=***REMOVED***this.handleCancel***REMOVED***
-        onSubmit=***REMOVED***this.handleSubmit***REMOVED***
-        links=***REMOVED***this.props.environments***REMOVED***
-        path=***REMOVED***this.props.location.pathname***REMOVED***
-        slug=***REMOVED***this.props.match.params.slug***REMOVED***
-        renderRow=***REMOVED***renderRow***REMOVED***
-        listTitle=***REMOVED***listTitle***REMOVED***
-        listButtonLabel=***REMOVED***listButtonLabel***REMOVED***
+        sections={sections}
+        listItems={this.props.home.configsDisplay.sections}
+        values={this.props.home.modifiedData}
+        onChange={this.handleChange}
+        onCancel={this.handleCancel}
+        onSubmit={this.handleSubmit}
+        links={this.props.environments}
+        path={this.props.location.pathname}
+        slug={this.props.match.params.slug}
+        renderRow={renderRow}
+        listTitle={listTitle}
+        listButtonLabel={listButtonLabel}
         handlei18n
-        handleListPopUpSubmit=***REMOVED***handleListPopUpSubmit***REMOVED***
-        selectOptions=***REMOVED***selectOptions***REMOVED***
-        renderPopUpForm=***REMOVED***renderPopUpForm***REMOVED***
-        renderListComponent=***REMOVED***renderListComponent***REMOVED***
-        cancelAction=***REMOVED***this.props.home.cancelAction***REMOVED***
-        actionBeforeOpenPopUp=***REMOVED***actionBeforeOpenPopUp***REMOVED***
-        addRequiredInputDesign=***REMOVED***addRequiredInputDesign***REMOVED***
-        addListTitleMarginTop=***REMOVED***addListTitleMarginTop***REMOVED***
-        formErrors=***REMOVED***this.props.home.formErrors***REMOVED***
-        error=***REMOVED***this.props.home.error***REMOVED***
-        showLoader=***REMOVED***this.props.home.showLoader***REMOVED***
+        handleListPopUpSubmit={handleListPopUpSubmit}
+        selectOptions={selectOptions}
+        renderPopUpForm={renderPopUpForm}
+        renderListComponent={renderListComponent}
+        cancelAction={this.props.home.cancelAction}
+        actionBeforeOpenPopUp={actionBeforeOpenPopUp}
+        addRequiredInputDesign={addRequiredInputDesign}
+        addListTitleMarginTop={addListTitleMarginTop}
+        formErrors={this.props.home.formErrors}
+        error={this.props.home.error}
+        showLoader={this.props.home.showLoader}
       />
     );
-***REMOVED***
+  }
 
   // Set the toggleDefaultConnection to false
-  resetToggleDefaultConnection = () => this.setState(***REMOVED*** toggleDefaultConnection: false ***REMOVED***);
+  resetToggleDefaultConnection = () => this.setState({ toggleDefaultConnection: false });
 
   // Hide database modal
-  toggle = () => this.setState(***REMOVED*** modal: !this.state.modal ***REMOVED***);
+  toggle = () => this.setState({ modal: !this.state.modal });
 
   // function used for react-select
-  valueComponent = (props) => ***REMOVED***
+  valueComponent = (props) => {
     const flagName = formatLanguageLocale(props.value.value);
     const flag = getFlag(flagName);
-    const spanStyle = includes(supportedFlags.flags, flag) ? ***REMOVED******REMOVED*** : ***REMOVED*** backgroundImage: `url($***REMOVED***unknowFlag***REMOVED***)` ***REMOVED***;
+    const spanStyle = includes(supportedFlags.flags, flag) ? {} : { backgroundImage: `url(${unknowFlag})` };
 
     return (
-      <span className=***REMOVED***`$***REMOVED***styles.flagContainer***REMOVED*** flag-icon-background flag-icon-$***REMOVED***flag***REMOVED***`***REMOVED*** style=***REMOVED***spanStyle***REMOVED***>
-        <FormattedMessage id="settings-manager.selectValue" defaultMessage='***REMOVED***language***REMOVED***' values=***REMOVED******REMOVED*** language: props.value.label***REMOVED******REMOVED*** className=***REMOVED***styles.marginLeft***REMOVED*** />
+      <span className={`${styles.flagContainer} flag-icon-background flag-icon-${flag}`} style={spanStyle}>
+        <FormattedMessage id="settings-manager.selectValue" defaultMessage='{language}' values={{ language: props.value.label}} className={styles.marginLeft} />
       </span>
     );
-***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
       <div className="container-fluid">
         <div className="row">
-          <PluginLeftMenu sections=***REMOVED***this.props.menuSections***REMOVED*** environments=***REMOVED***this.props.environments***REMOVED*** envParams=***REMOVED***this.props.match.params.env***REMOVED*** />
-          <div className=***REMOVED***`$***REMOVED***styles.home***REMOVED*** col-md-9`***REMOVED***>
+          <PluginLeftMenu sections={this.props.menuSections} environments={this.props.environments} envParams={this.props.match.params.env} />
+          <div className={`${styles.home} col-md-9`}>
             <Helmet
               title="Settings Manager"
-              meta=***REMOVED***[
-                ***REMOVED*** name: 'Settings Manager Plugin', content: 'Modify your app settings' ***REMOVED***,
-              ]***REMOVED***
+              meta={[
+                { name: 'Settings Manager Plugin', content: 'Modify your app settings' },
+              ]}
             />
             <ContentHeader
-              name=***REMOVED***this.props.home.configsDisplay.name***REMOVED***
-              description=***REMOVED***this.props.home.configsDisplay.description***REMOVED***
+              name={this.props.home.configsDisplay.name}
+              description={this.props.home.configsDisplay.description}
             />
 
-            ***REMOVED***this.renderComponent()***REMOVED***
+            {this.renderComponent()}
           </div>
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-const mapStateToProps = createStructuredSelector(***REMOVED***
+const mapStateToProps = createStructuredSelector({
   environments: makeSelectEnvironments(),
   home: selectHomePage(),
   menuSections: makeSelectSections(),
-***REMOVED***);
+});
 
-function mapDispatchToProps(dispatch) ***REMOVED***
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       cancelChanges,
       changeDefaultLanguage,
       changeInput,
@@ -533,12 +533,12 @@ function mapDispatchToProps(dispatch) ***REMOVED***
       newLanguagePost,
       setErrors,
       specificDatabaseFetch,
-***REMOVED***,
+    },
     dispatch
   );
-***REMOVED***
+}
 
-HomePage.propTypes = ***REMOVED***
+HomePage.propTypes = {
   cancelChanges: PropTypes.func.isRequired,
   changeDefaultLanguage: PropTypes.func.isRequired,
   changeInput: PropTypes.func.isRequired,
@@ -560,12 +560,12 @@ HomePage.propTypes = ***REMOVED***
   newLanguagePost: PropTypes.func.isRequired,
   setErrors: PropTypes.func.isRequired,
   specificDatabaseFetch: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer(***REMOVED*** key: 'homePage', reducer ***REMOVED***);
-const withSaga = injectSaga(***REMOVED*** key: 'homePage', saga ***REMOVED***);
+const withReducer = injectReducer({ key: 'homePage', reducer });
+const withSaga = injectSaga({ key: 'homePage', saga });
 
 export default compose(
   withReducer,

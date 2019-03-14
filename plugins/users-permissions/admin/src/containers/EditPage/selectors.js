@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the editPage state domain
@@ -30,9 +30,9 @@ const makeSelectRoleId = () => createSelector(
 );
 
 export default makeSelectEditPage;
-export ***REMOVED***
+export {
   makeSelectActionType,
   makeSelectModifiedData,
   makeSelectRoleId,
   selectEditPageDomain,
-***REMOVED***;
+};

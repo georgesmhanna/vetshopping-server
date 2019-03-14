@@ -5,18 +5,18 @@
  */
 
 import React from 'react';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-import ***REMOVED*** get, has, includes, isEmpty, size, replace, startCase, findIndex ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** NavLink ***REMOVED*** from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { bindActionCreators, compose } from 'redux';
+import { get, has, includes, isEmpty, size, replace, startCase, findIndex } from 'lodash';
+import { FormattedMessage } from 'react-intl';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ***REMOVED*** router ***REMOVED*** from 'app';
+import { router } from 'app';
 
 // Global selectors
-import ***REMOVED*** makeSelectMenu ***REMOVED*** from 'containers/App/selectors';
-import ***REMOVED*** makeSelectContentTypeUpdated ***REMOVED*** from 'containers/Form/selectors';
+import { makeSelectMenu } from 'containers/App/selectors';
+import { makeSelectContentTypeUpdated } from 'containers/Form/selectors';
 
 import AttributeRow from 'components/AttributeRow';
 import ContentHeader from 'components/ContentHeader';
@@ -30,16 +30,16 @@ import forms from 'containers/Form/forms.json';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
-import ***REMOVED*** storeData ***REMOVED*** from '../../utils/storeData';
+import { storeData } from '../../utils/storeData';
 
-import ***REMOVED***
+import {
   cancelChanges,
   deleteAttribute,
   modelFetch,
   modelFetchSucceeded,
   resetShowButtonsProps,
   submit,
-***REMOVED*** from './actions';
+} from './actions';
 
 import saga from './sagas';
 import reducer from './reducer';
@@ -54,50 +54,50 @@ availableAttributes.push('integer', 'decimal', 'float');
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/jsx-curly-brace-presence */
 
-export class ModelPage extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+export class ModelPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
     super(props);
 
-    this.state = ***REMOVED***
+    this.state = {
       contentTypeTemporary: false,
-***REMOVED***;
+    };
 
     this.popUpHeaderNavLinks = [
-      ***REMOVED*** name: 'baseSettings', message: 'content-type-builder.popUpForm.navContainer.base', nameToReplace: 'advancedSettings' ***REMOVED***,
-      ***REMOVED*** name: 'advancedSettings', message: 'content-type-builder.popUpForm.navContainer.advanced', nameToReplace: 'baseSettings' ***REMOVED***,
+      { name: 'baseSettings', message: 'content-type-builder.popUpForm.navContainer.base', nameToReplace: 'advancedSettings' },
+      { name: 'advancedSettings', message: 'content-type-builder.popUpForm.navContainer.advanced', nameToReplace: 'baseSettings' },
     ];
 
     this.contentHeaderButtons = [
-      ***REMOVED*** label: 'content-type-builder.form.button.cancel', handleClick: this.props.cancelChanges, kind: 'secondary', type: 'button' ***REMOVED***,
-      ***REMOVED*** label: 'content-type-builder.form.button.save', handleClick: this.handleSubmit, kind: 'primary', type: 'submit' ***REMOVED***,
+      { label: 'content-type-builder.form.button.cancel', handleClick: this.props.cancelChanges, kind: 'secondary', type: 'button' },
+      { label: 'content-type-builder.form.button.save', handleClick: this.handleSubmit, kind: 'primary', type: 'submit' },
     ];
-***REMOVED***
+  }
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     this.fetchModel(this.props);
-***REMOVED***
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (this.props.updatedContentType !== nextProps.updatedContentType) ***REMOVED***
-      if (this.state.contentTypeTemporary && storeData.getContentType()) ***REMOVED***
-        this.props.modelFetchSucceeded(***REMOVED*** model: storeData.getContentType() ***REMOVED***);
-***REMOVED***
-***REMOVED***
-***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (this.props.updatedContentType !== nextProps.updatedContentType) {
+      if (this.state.contentTypeTemporary && storeData.getContentType()) {
+        this.props.modelFetchSucceeded({ model: storeData.getContentType() });
+      }
+    }
+  }
 
-  componentDidUpdate(prevProps) ***REMOVED***
-    if (prevProps.match.params.modelName !== this.props.match.params.modelName) ***REMOVED***
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.modelName !== this.props.match.params.modelName) {
       this.props.resetShowButtonsProps();
       this.fetchModel(this.props);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentWillUnmount() ***REMOVED***
+  componentWillUnmount() {
     this.props.resetShowButtonsProps();
-***REMOVED***
+  }
 
   addCustomSection = (sectionStyles) => (
-    <div className=***REMOVED***sectionStyles.pluginLeftMenuSection***REMOVED***>
+    <div className={sectionStyles.pluginLeftMenuSection}>
       <p>
         <FormattedMessage id="content-type-builder.menu.section.documentation.name" />
       </p>
@@ -105,71 +105,71 @@ export class ModelPage extends React.Component ***REMOVED*** // eslint-disable-l
         <li>
           <FormattedMessage id="content-type-builder.menu.section.documentation.guide" />&nbsp;
           <FormattedMessage id="content-type-builder.menu.section.documentation.guideLink">
-            ***REMOVED***(message) => (
-              <a href="http://strapi.io/documentation/3.x.x/guides/models.html" target="_blank">***REMOVED***message***REMOVED***</a>
-            )***REMOVED***
+            {(message) => (
+              <a href="http://strapi.io/documentation/3.x.x/guides/models.html" target="_blank">{message}</a>
+            )}
           </FormattedMessage>
         </li>
-        ***REMOVED***/*<li>
+        {/*<li>
           <FormattedMessage id="content-type-builder.menu.section.documentation.tutorial" />&nbsp;
           <FormattedMessage id="content-type-builder.menu.section.documentation.tutorialLink">
-            ***REMOVED***(mess) => (
-              <Link to="#" target="_blank">***REMOVED***mess***REMOVED***</Link>
-            )***REMOVED***
+            {(mess) => (
+              <Link to="#" target="_blank">{mess}</Link>
+            )}
           </FormattedMessage>
-        </li>*/***REMOVED***
+        </li>*/}
       </ul>
     </div>
   )
 
-  fetchModel = (props) => ***REMOVED***
-    if (storeData.getIsModelTemporary() && get(storeData.getContentType(), 'name') === props.match.params.modelName) ***REMOVED***
-      this.setState(***REMOVED*** contentTypeTemporary: true ***REMOVED***);
-      this.props.modelFetchSucceeded(***REMOVED*** model: storeData.getContentType() ***REMOVED***);
-***REMOVED*** else ***REMOVED***
-      this.setState(***REMOVED*** contentTypeTemporary: false ***REMOVED***);
+  fetchModel = (props) => {
+    if (storeData.getIsModelTemporary() && get(storeData.getContentType(), 'name') === props.match.params.modelName) {
+      this.setState({ contentTypeTemporary: true });
+      this.props.modelFetchSucceeded({ model: storeData.getContentType() });
+    } else {
+      this.setState({ contentTypeTemporary: false });
       this.props.modelFetch(props.match.params.modelName);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleAddLinkClick = () => ***REMOVED***
-    if (storeData.getIsModelTemporary()) ***REMOVED***
+  handleAddLinkClick = () => {
+    if (storeData.getIsModelTemporary()) {
       strapi.notification.info('content-type-builder.notification.info.contentType.creating.notSaved');
-***REMOVED*** else ***REMOVED***
+    } else {
       this.toggleModal();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleClickAddAttribute = () => ***REMOVED***
+  handleClickAddAttribute = () => {
     // Open the modal
-    router.push(`/plugins/content-type-builder/models/$***REMOVED***this.props.match.params.modelName***REMOVED***#choose::attributes`);
-***REMOVED***
+    router.push(`/plugins/content-type-builder/models/${this.props.match.params.modelName}#choose::attributes`);
+  }
 
-  handleDelete = (attributeName) => ***REMOVED***
-    const ***REMOVED*** modelPage: ***REMOVED*** model ***REMOVED*** ***REMOVED*** = this.props;
+  handleDelete = (attributeName) => {
+    const { modelPage: { model } } = this.props;
     const index = findIndex(model.attributes, ['name', attributeName]);
     const attributeToRemove = get(model, ['attributes', index]);
     const parallelAttributeIndex = attributeToRemove.name === attributeToRemove.params.key ?
       -1 : findIndex(model.attributes, (attr) => attr.params.key === attributeName);
       
     this.props.deleteAttribute(index, this.props.match.params.modelName, parallelAttributeIndex !== -1);
-***REMOVED***
+  }
 
-  handleEditAttribute = (attributeName) => ***REMOVED***
+  handleEditAttribute = (attributeName) => {
     const index = findIndex(this.props.modelPage.model.attributes, ['name', attributeName]);
     const attribute = this.props.modelPage.model.attributes[index];
 
     // Display a notification if the attribute is not present in the ones that the ctb handles
-    if (!has(attribute.params, 'nature') && !includes(availableAttributes, attribute.params.type)) ***REMOVED***
+    if (!has(attribute.params, 'nature') && !includes(availableAttributes, attribute.params.type)) {
       return strapi.notification.info('content-type-builder.notification.info.disable');
-***REMOVED***
+    }
     const settingsType = attribute.params.type ? 'baseSettings' : 'defineRelation';
     const parallelAttributeIndex = findIndex(this.props.modelPage.model.attributes, ['name', attribute.params.key]);
-    const hasParallelAttribute = settingsType === 'defineRelation' && parallelAttributeIndex !== -1 ? `::$***REMOVED***parallelAttributeIndex***REMOVED***` : '';
+    const hasParallelAttribute = settingsType === 'defineRelation' && parallelAttributeIndex !== -1 ? `::${parallelAttributeIndex}` : '';
 
     let attributeType;
 
-    switch (attribute.params.type) ***REMOVED***
+    switch (attribute.params.type) {
       case 'integer':
       case 'float':
       case 'decimal':
@@ -177,60 +177,60 @@ export class ModelPage extends React.Component ***REMOVED*** // eslint-disable-l
         break;
       default:
         attributeType = attribute.params.type ? attribute.params.type : 'relation';
-***REMOVED***
+    }
 
-    router.push(`/plugins/content-type-builder/models/$***REMOVED***this.props.match.params.modelName***REMOVED***#edit$***REMOVED***this.props.match.params.modelName***REMOVED***::attribute$***REMOVED***attributeType***REMOVED***::$***REMOVED***settingsType***REMOVED***::$***REMOVED***index***REMOVED***$***REMOVED***hasParallelAttribute***REMOVED***`);
-***REMOVED***
+    router.push(`/plugins/content-type-builder/models/${this.props.match.params.modelName}#edit${this.props.match.params.modelName}::attribute${attributeType}::${settingsType}::${index}${hasParallelAttribute}`);
+  }
 
-  handleSubmit = () => ***REMOVED***
+  handleSubmit = () => {
     this.props.submit(this.context, this.props.match.params.modelName);
-***REMOVED***
+  }
 
-  toggleModal = () => ***REMOVED***
+  toggleModal = () => {
     const locationHash = this.props.location.hash ? '' : '#create::contentType::baseSettings';
-    router.push(`/plugins/content-type-builder/models/$***REMOVED***this.props.match.params.modelName***REMOVED***$***REMOVED***locationHash***REMOVED***`);
-***REMOVED***
+    router.push(`/plugins/content-type-builder/models/${this.props.match.params.modelName}${locationHash}`);
+  }
 
   renderAddLink = (props, customLinkStyles) => (
-    <li className=***REMOVED***customLinkStyles.pluginLeftMenuLink***REMOVED***>
-      <div className=***REMOVED***`$***REMOVED***customLinkStyles.liInnerContainer***REMOVED*** $***REMOVED***styles.iconPlus***REMOVED***`***REMOVED*** onClick=***REMOVED***this.handleAddLinkClick***REMOVED***>
+    <li className={customLinkStyles.pluginLeftMenuLink}>
+      <div className={`${customLinkStyles.liInnerContainer} ${styles.iconPlus}`} onClick={this.handleAddLinkClick}>
         <div>
-          <i className=***REMOVED***`fa $***REMOVED***props.link.icon***REMOVED***`***REMOVED*** />
+          <i className={`fa ${props.link.icon}`} />
         </div>
-        <span><FormattedMessage id=***REMOVED***`content-type-builder.$***REMOVED***props.link.name***REMOVED***`***REMOVED*** /></span>
+        <span><FormattedMessage id={`content-type-builder.${props.link.name}`} /></span>
       </div>
     </li>
   )
 
-  renderCustomLi = (row, key) => <AttributeRow key=***REMOVED***key***REMOVED*** row=***REMOVED***row***REMOVED*** onEditAttribute=***REMOVED***this.handleEditAttribute***REMOVED*** onDelete=***REMOVED***this.handleDelete***REMOVED*** />
+  renderCustomLi = (row, key) => <AttributeRow key={key} row={row} onEditAttribute={this.handleEditAttribute} onDelete={this.handleDelete} />
 
-  renderCustomLink = (props, linkStyles) => ***REMOVED***
-    if (props.link.name === 'button.contentType.add') ***REMOVED***
+  renderCustomLink = (props, linkStyles) => {
+    if (props.link.name === 'button.contentType.add') {
       return this.renderAddLink(props, linkStyles);
-***REMOVED***
+    }
 
-    const linkName = props.link.source ?  `$***REMOVED***props.link.name***REMOVED***&source=$***REMOVED***props.link.source***REMOVED***` : props.link.name;
+    const linkName = props.link.source ?  `${props.link.name}&source=${props.link.source}` : props.link.name;
     const temporary = props.link.isTemporary || this.props.modelPage.showButtons && linkName === this.props.match.params.modelName ? <FormattedMessage id="content-type-builder.contentType.temporaryDisplay" /> : '';
     const spanStyle = props.link.isTemporary || this.props.modelPage.showButtons && linkName === this.props.match.params.modelName || isEmpty(temporary) && props.link.source ? styles.leftMenuSpan : '';
-    const pluginSource = isEmpty(temporary) && props.link.source ? <FormattedMessage id="content-type-builder.from">***REMOVED***(message) => <span style=***REMOVED******REMOVED*** marginRight: '10px' ***REMOVED******REMOVED***>(***REMOVED***message***REMOVED***: ***REMOVED***props.link.source***REMOVED***)</span>***REMOVED***</FormattedMessage>: '';
+    const pluginSource = isEmpty(temporary) && props.link.source ? <FormattedMessage id="content-type-builder.from">{(message) => <span style={{ marginRight: '10px' }}>({message}: {props.link.source})</span>}</FormattedMessage>: '';
 
     return (
-      <li className=***REMOVED***linkStyles.pluginLeftMenuLink***REMOVED***>
-        <NavLink className=***REMOVED***linkStyles.link***REMOVED*** to=***REMOVED***`/plugins/content-type-builder/models/$***REMOVED***props.link.name***REMOVED***$***REMOVED***props.link.source ? `&source=$***REMOVED***props.link.source***REMOVED***` : ''***REMOVED***`***REMOVED*** activeClassName=***REMOVED***linkStyles.linkActive***REMOVED***>
+      <li className={linkStyles.pluginLeftMenuLink}>
+        <NavLink className={linkStyles.link} to={`/plugins/content-type-builder/models/${props.link.name}${props.link.source ? `&source=${props.link.source}` : ''}`} activeClassName={linkStyles.linkActive}>
           <div>
-            <i className=***REMOVED***`fa fa-caret-square-o-right`***REMOVED*** />
+            <i className={`fa fa-caret-square-o-right`} />
           </div>
-          <div className=***REMOVED***styles.contentContainer***REMOVED***>
+          <div className={styles.contentContainer}>
 
-            <span className=***REMOVED***spanStyle***REMOVED***>***REMOVED***startCase(props.link.name)***REMOVED***</span>
-            <span style=***REMOVED******REMOVED*** marginLeft: '1rem', fontStyle: 'italic' ***REMOVED******REMOVED***>***REMOVED***temporary***REMOVED******REMOVED***pluginSource***REMOVED***</span>
+            <span className={spanStyle}>{startCase(props.link.name)}</span>
+            <span style={{ marginLeft: '1rem', fontStyle: 'italic' }}>{temporary}{pluginSource}</span>
           </div>
         </NavLink>
       </li>
     );
-***REMOVED***
+  }
 
-  renderListTitle = (props, listStyles) => ***REMOVED***
+  renderListTitle = (props, listStyles) => {
     const availableNumber = size(props.listContent.attributes);
     const title = availableNumber > 1 ? 'content-type-builder.modelPage.contentType.list.title.plural'
       : 'content-type-builder.modelPage.contentType.list.title.singular';
@@ -242,91 +242,91 @@ export class ModelPage extends React.Component ***REMOVED*** // eslint-disable-l
 
     let fullTitle;
 
-    if (relationShipNumber > 0) ***REMOVED***
+    if (relationShipNumber > 0) {
       fullTitle = (
-        <div className=***REMOVED***listStyles.titleContainer***REMOVED***>
-          ***REMOVED***availableNumber***REMOVED*** <FormattedMessage id=***REMOVED***title***REMOVED*** /> <FormattedMessage id=***REMOVED***'content-type-builder.modelPage.contentType.list.title.including'***REMOVED*** /> ***REMOVED***relationShipNumber***REMOVED*** <FormattedMessage id=***REMOVED***relationShipTitle***REMOVED*** />
+        <div className={listStyles.titleContainer}>
+          {availableNumber} <FormattedMessage id={title} /> <FormattedMessage id={'content-type-builder.modelPage.contentType.list.title.including'} /> {relationShipNumber} <FormattedMessage id={relationShipTitle} />
         </div>
       );
-***REMOVED*** else ***REMOVED***
+    } else {
       fullTitle = (
-        <div className=***REMOVED***listStyles.titleContainer***REMOVED***>
-          ***REMOVED***availableNumber***REMOVED*** <FormattedMessage id=***REMOVED***title***REMOVED*** />
+        <div className={listStyles.titleContainer}>
+          {availableNumber} <FormattedMessage id={title} />
 
         </div>
       );
-***REMOVED***
+    }
     return fullTitle;
-***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     // Url to redirects the user if he modifies the temporary content type name
     const redirectRoute = replace(this.props.match.path, '/:modelName', '');
     const addButtons  = get(storeData.getContentType(), 'name') === this.props.match.params.modelName && size(get(storeData.getContentType(), 'attributes')) > 0 || this.props.modelPage.showButtons;
     const contentHeaderDescription = this.props.modelPage.model.description || 'content-type-builder.modelPage.contentHeader.emptyDescription.description';
     const content = size(this.props.modelPage.model.attributes) === 0 ?
-      <EmptyAttributesBlock title="content-type-builder.home.emptyAttributes.title" description="content-type-builder.home.emptyAttributes.description" label="content-type-builder.button.attributes.add" onClick=***REMOVED***this.handleClickAddAttribute***REMOVED*** /> :
+      <EmptyAttributesBlock title="content-type-builder.home.emptyAttributes.title" description="content-type-builder.home.emptyAttributes.description" label="content-type-builder.button.attributes.add" onClick={this.handleClickAddAttribute} /> :
       <List
-        listContent=***REMOVED***this.props.modelPage.model***REMOVED***
-        renderCustomListTitle=***REMOVED***this.renderListTitle***REMOVED***
-        listContentMappingKey=***REMOVED***'attributes'***REMOVED***
-        renderCustomLi=***REMOVED***this.renderCustomLi***REMOVED***
-        onButtonClick=***REMOVED***this.handleClickAddAttribute***REMOVED***
+        listContent={this.props.modelPage.model}
+        renderCustomListTitle={this.renderListTitle}
+        listContentMappingKey={'attributes'}
+        renderCustomLi={this.renderCustomLi}
+        onButtonClick={this.handleClickAddAttribute}
       />;
     const icoType = includes(this.props.match.params.modelName, '&source=') ? '' : 'pencil';
 
     return (
-      <div className=***REMOVED***styles.modelPage***REMOVED***>
+      <div className={styles.modelPage}>
         <div className="container-fluid">
           <div className="row">
             <PluginLeftMenu
-              sections=***REMOVED***this.props.menu***REMOVED***
-              renderCustomLink=***REMOVED***this.renderCustomLink***REMOVED***
-              addCustomSection=***REMOVED***this.addCustomSection***REMOVED***
+              sections={this.props.menu}
+              renderCustomLink={this.renderCustomLink}
+              addCustomSection={this.addCustomSection}
             />
 
             <div className="col-md-9">
-              <div className=***REMOVED***styles.componentsContainer***REMOVED***>
+              <div className={styles.componentsContainer}>
                 <ContentHeader
-                  name=***REMOVED***this.props.modelPage.model.name***REMOVED***
-                  description=***REMOVED***contentHeaderDescription***REMOVED***
-                  icoType=***REMOVED***icoType***REMOVED***
+                  name={this.props.modelPage.model.name}
+                  description={contentHeaderDescription}
+                  icoType={icoType}
                   editIcon
-                  editPath=***REMOVED***`$***REMOVED***redirectRoute***REMOVED***/$***REMOVED***this.props.match.params.modelName***REMOVED***#edit$***REMOVED***this.props.match.params.modelName***REMOVED***::contentType::baseSettings`***REMOVED***
-                  addButtons=***REMOVED***addButtons***REMOVED***
-                  handleSubmit=***REMOVED***this.props.submit***REMOVED***
-                  isLoading=***REMOVED***this.props.modelPage.showButtonLoader***REMOVED***
-                  buttonsContent=***REMOVED***this.contentHeaderButtons***REMOVED***
+                  editPath={`${redirectRoute}/${this.props.match.params.modelName}#edit${this.props.match.params.modelName}::contentType::baseSettings`}
+                  addButtons={addButtons}
+                  handleSubmit={this.props.submit}
+                  isLoading={this.props.modelPage.showButtonLoader}
+                  buttonsContent={this.contentHeaderButtons}
 
                 />
-                ***REMOVED***content***REMOVED***
+                {content}
               </div>
             </div>
           </div>
         </div>
         <Form
-          hash=***REMOVED***this.props.location.hash***REMOVED***
-          toggle=***REMOVED***this.toggleModal***REMOVED***
-          routePath=***REMOVED***`$***REMOVED***redirectRoute***REMOVED***/$***REMOVED***this.props.match.params.modelName***REMOVED***`***REMOVED***
-          popUpHeaderNavLinks=***REMOVED***this.popUpHeaderNavLinks***REMOVED***
-          menuData=***REMOVED***this.props.menu***REMOVED***
-          redirectRoute=***REMOVED***redirectRoute***REMOVED***
-          modelName=***REMOVED***this.props.match.params.modelName***REMOVED***
-          contentTypeData=***REMOVED***this.props.modelPage.model***REMOVED***
+          hash={this.props.location.hash}
+          toggle={this.toggleModal}
+          routePath={`${redirectRoute}/${this.props.match.params.modelName}`}
+          popUpHeaderNavLinks={this.popUpHeaderNavLinks}
+          menuData={this.props.menu}
+          redirectRoute={redirectRoute}
+          modelName={this.props.match.params.modelName}
+          contentTypeData={this.props.modelPage.model}
           isModelPage
-          modelLoading=***REMOVED***this.props.modelPage.modelLoading***REMOVED***
+          modelLoading={this.props.modelPage.modelLoading}
         />
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-ModelPage.contextTypes = ***REMOVED***
+ModelPage.contextTypes = {
   plugins: PropTypes.object,
   updatePlugin: PropTypes.func,
-***REMOVED***;
+};
 
-ModelPage.propTypes = ***REMOVED***
+ModelPage.propTypes = {
   cancelChanges: PropTypes.func.isRequired,
   deleteAttribute: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
@@ -338,31 +338,31 @@ ModelPage.propTypes = ***REMOVED***
   resetShowButtonsProps: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
   updatedContentType: PropTypes.bool.isRequired,
-***REMOVED***;
+};
 
-const mapStateToProps = createStructuredSelector(***REMOVED***
+const mapStateToProps = createStructuredSelector({
   menu: makeSelectMenu(),
   modelPage: selectModelPage(),
   updatedContentType: makeSelectContentTypeUpdated(),
-***REMOVED***);
+});
 
-function mapDispatchToProps(dispatch) ***REMOVED***
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       cancelChanges,
       deleteAttribute,
       modelFetch,
       modelFetchSucceeded,
       resetShowButtonsProps,
       submit,
-***REMOVED***,
+    },
     dispatch,
   );
-***REMOVED***
+}
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withSaga = injectSaga(***REMOVED*** key: 'modelPage', saga ***REMOVED***);
-const withReducer = injectReducer(***REMOVED*** key: 'modelPage', reducer ***REMOVED***);
+const withSaga = injectSaga({ key: 'modelPage', saga });
+const withReducer = injectReducer({ key: 'modelPage', reducer });
 
 export default compose(
   withReducer,

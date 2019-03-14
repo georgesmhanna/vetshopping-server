@@ -2,37 +2,37 @@
 *
 * PluginLeftMenuLink
 *   - Required props:
-*     - ***REMOVED***object***REMOVED*** Link
+*     - {object} Link
 *
 *   - Optionnal props:
-*     - ***REMOVED***function***REMOVED*** renderCustomLink : overrides the behavior of the link
+*     - {function} renderCustomLink : overrides the behavior of the link
 *
 */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** NavLink ***REMOVED*** from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './styles.scss';
 
-class PluginLeftMenuLink extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  render() ***REMOVED***
+class PluginLeftMenuLink extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
     if (this.props.renderCustomLink) return this.props.renderCustomLink(this.props, styles);
 
     const icon = this.props.customIcon || this.props.link.icon;
     return (
-      <li className=***REMOVED***styles.pluginLeftMenuLink***REMOVED***>
-        <NavLink className=***REMOVED***styles.link***REMOVED*** to=***REMOVED***`/plugins/$***REMOVED***this.props.basePath***REMOVED***/$***REMOVED***this.props.link.name***REMOVED***`***REMOVED*** activeClassName=***REMOVED***styles.linkActive***REMOVED***>
+      <li className={styles.pluginLeftMenuLink}>
+        <NavLink className={styles.link} to={`/plugins/${this.props.basePath}/${this.props.link.name}`} activeClassName={styles.linkActive}>
           <div>
-            <i className=***REMOVED***`fa $***REMOVED***icon***REMOVED***`***REMOVED*** />
+            <i className={`fa ${icon}`} />
           </div>
-          <span>***REMOVED***this.props.link.name***REMOVED***</span>
+          <span>{this.props.link.name}</span>
         </NavLink>
       </li>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-PluginLeftMenuLink.propTypes = ***REMOVED***
+PluginLeftMenuLink.propTypes = {
   basePath: PropTypes.string,
   customIcon: PropTypes.string,
   link: PropTypes.object.isRequired,
@@ -40,12 +40,12 @@ PluginLeftMenuLink.propTypes = ***REMOVED***
     PropTypes.bool,
     PropTypes.func,
   ]),
-***REMOVED***;
+};
 
-PluginLeftMenuLink.defaultProps = ***REMOVED***
+PluginLeftMenuLink.defaultProps = {
   basePath: '',
   customIcon: '',
   renderCustomLink: false,
-***REMOVED***;
+};
 
 export default PluginLeftMenuLink;

@@ -4,24 +4,24 @@
  */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
-function ClickOverHint(***REMOVED*** show ***REMOVED***) ***REMOVED***
-  if (show) ***REMOVED***
+function ClickOverHint({ show }) {
+  if (show) {
     return (
-      <div className=***REMOVED***styles.clickOverHint***REMOVED***>
+      <div className={styles.clickOverHint}>
         <FormattedMessage id="content-manager.components.DraggableAttr.edit" />
       </div>
     );
-***REMOVED***
+  }
 
   return null;
-***REMOVED***
+}
 
-ClickOverHint.propTypes = ***REMOVED***
+ClickOverHint.propTypes = {
   show: PropTypes.bool.isRequired,
-***REMOVED***;
+};
 
 export default ClickOverHint;

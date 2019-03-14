@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the installPluginPage state domain
@@ -25,7 +25,7 @@ const makeSelectPluginToDownload = () => createSelector(
 );
 
 export default makeSelectInstallPluginPage;
-export ***REMOVED***
+export {
   selectInstallPluginPageDomain,
   makeSelectPluginToDownload,
-***REMOVED***;
+};

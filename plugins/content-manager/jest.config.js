@@ -1,4 +1,4 @@
-module.exports = ***REMOVED***
+module.exports = {
   name: 'content-manager',
   displayName: 'Content Manager',
   testMatch: ['**/test/?(*.)+(spec|test).js'],
@@ -9,4 +9,4 @@ module.exports = ***REMOVED***
     '<rootDir>/out-tsc/',
     '<rootDir>/test/'
   ]
-***REMOVED***;
+};

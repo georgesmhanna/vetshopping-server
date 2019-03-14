@@ -4,33 +4,33 @@
  */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 
 import styles from './styles.scss';
 
-function BlockLink(***REMOVED*** content, isDocumentation, link, title ***REMOVED***) ***REMOVED***
+function BlockLink({ content, isDocumentation, link, title }) {
   return (
     <a
-      className=***REMOVED***cn(
+      className={cn(
         styles.blockLink,
         isDocumentation ? styles.blockLinkDocumentation : styles.blockLinkCode,
-      )***REMOVED***
-      href=***REMOVED***link***REMOVED***
+      )}
+      href={link}
       target="_blank"
     >
-      <FormattedMessage ***REMOVED***...title***REMOVED*** />
-      <FormattedMessage ***REMOVED***...content***REMOVED***>***REMOVED***message => <p>***REMOVED***message***REMOVED***</p>***REMOVED***</FormattedMessage>
+      <FormattedMessage {...title} />
+      <FormattedMessage {...content}>{message => <p>{message}</p>}</FormattedMessage>
     </a>
   );
-***REMOVED***
+}
 
-BlockLink.propTypes = ***REMOVED***
+BlockLink.propTypes = {
   content: PropTypes.object.isRequired,
   isDocumentation: PropTypes.bool.isRequired,
   link: PropTypes.string.isRequired,
   title: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
 export default BlockLink;

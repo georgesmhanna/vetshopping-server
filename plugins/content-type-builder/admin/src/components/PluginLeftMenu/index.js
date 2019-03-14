@@ -3,41 +3,41 @@
 * PluginLeftMenu
 *
 *   - Required props :
-*     - ***REMOVED***array***REMOVED*** sections : Menu section
+*     - {array} sections : Menu section
 *
 *   - Optionnal props :
-*     - ***REMOVED***function***REMOVED*** addCustomSection : Allows to add the menu a custom section
-*     - ***REMOVED***function***REMOVED*** renderCustomLink : Overrides the link behavior
+*     - {function} addCustomSection : Allows to add the menu a custom section
+*     - {function} renderCustomLink : Overrides the link behavior
 *
 */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** map ***REMOVED*** from 'lodash';
+import { map } from 'lodash';
 import PluginLeftMenuSection from 'components/PluginLeftMenuSection';
 import styles from './styles.scss';
 
-class PluginLeftMenu extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  render() ***REMOVED***
+class PluginLeftMenu extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
     const customSection = this.props.addCustomSection ? this.props.addCustomSection(styles) : '';
     return (
-      <div className=***REMOVED***`$***REMOVED***styles.pluginLeftMenu***REMOVED*** col-md-3`***REMOVED***>
-        ***REMOVED***map(this.props.sections, (section, index) => (
+      <div className={`${styles.pluginLeftMenu} col-md-3`}>
+        {map(this.props.sections, (section, index) => (
           <PluginLeftMenuSection
-            key=***REMOVED***index***REMOVED***
-            section=***REMOVED***section***REMOVED***
-            renderCustomLink=***REMOVED***this.props.renderCustomLink***REMOVED***
-            basePath=***REMOVED***this.props.basePath***REMOVED***
-            customIcon=***REMOVED***this.props.customIcon***REMOVED***
+            key={index}
+            section={section}
+            renderCustomLink={this.props.renderCustomLink}
+            basePath={this.props.basePath}
+            customIcon={this.props.customIcon}
           />
-        ))***REMOVED***
-        ***REMOVED***customSection***REMOVED***
+        ))}
+        {customSection}
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-PluginLeftMenu.propTypes = ***REMOVED***
+PluginLeftMenu.propTypes = {
   addCustomSection: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.func,
@@ -49,13 +49,13 @@ PluginLeftMenu.propTypes = ***REMOVED***
     PropTypes.func,
   ]),
   sections: PropTypes.array.isRequired,
-***REMOVED***;
+};
 
-PluginLeftMenu.defaultProps = ***REMOVED***
+PluginLeftMenu.defaultProps = {
   addCustomSection: false,
   basePath: '',
   customIcon: '',
   renderCustomLink: false,
-***REMOVED***;
+};
 
 export default PluginLeftMenu;

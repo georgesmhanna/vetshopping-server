@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "قم بتجميع هيكل البيانات الخاص بـ API الخاص بك.",
   "plugin.description.long": "قم بتجميع هيكل البيانات الخاص بـ API الخاص بك. إنشاء حقول وعلاقات جديدة في دقيقة واحدة فقط. يتم إنشاء الملفات وتحديثها تلقائيًا في مشروعك.",
   "attribute.string": "سلسلة نصية",
@@ -77,7 +77,7 @@
   "form.button.save": "حفظ",
   "form.contentType.item.connections": "الأتصال",
   "form.contentType.item.name": "الأسم",
-  "form.contentType.item.name.description": "يجب أن تكون أسماء نوع المحتوى مفردة: ***REMOVED***link***REMOVED***",
+  "form.contentType.item.name.description": "يجب أن تكون أسماء نوع المحتوى مفردة: {link}",
   "form.contentType.item.name.link.description": "تحقق من وثائقنا",
   "form.contentType.item.description": "الوصف",
   "form.contentType.item.description.placeholder": "اكتب وصفك الصغير هنا...",
@@ -97,7 +97,7 @@
   "modelPage.contentType.list.relationShipTitle.plural": "العلاقات",
   "modelPage.contentType.list.relationShipTitle.singular": "العلاقة",
   "modelPage.attribute.relationWith": "علاقة مع",
-  "noTableWarning.description": "لا تنسَ إنشاء الجدول `***REMOVED***modelName***REMOVED***` في قاعدة البيانات الخاصة بك",
+  "noTableWarning.description": "لا تنسَ إنشاء الجدول `{modelName}` في قاعدة البيانات الخاصة بك",
   "noTableWarning.infos": "مزيد من المعلومات",
   "notification.error.message": "حدث خطأ",
   "notification.info.contentType.creating.notSaved": "يرجى حفظ نوع المحتوى الحالي قبل إنشاء نوع جديد",
@@ -155,4 +155,4 @@
   "relation.manyToMany": "يملك وينتم للكثير",
   "relation.attributeName.placeholder": "مثال: المؤلف, الفئة, الوسم",
   "notification.info.enumeration": "هذا الحقل غير قابل للتحرير في الوقت الحالي ... 😮"
-***REMOVED***
+}

@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the authPage state domain
@@ -29,8 +29,8 @@ const makeSelectModifiedData = () => createSelector(
 );
 
 export default makeSelectAuthPage;
-export ***REMOVED***
+export {
   makeSelectFormType,
   makeSelectModifiedData,
   selectAuthPageDomain,
-***REMOVED***;
+};

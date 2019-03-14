@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "데이터를 쉽게 확인 하고 수정, 삭제 할 수 있습니다.",
   "plugin.description.long": "데이터를 쉽게 확인 하고 수정, 삭제 할 수 있습니다.",
   "containers.Home.pluginHeaderTitle": "콘텐츠 관리",
@@ -9,9 +9,9 @@
   "containers.Edit.delete": "삭제",
   "containers.Edit.reset": "재설정",
   "containers.Edit.returnList": "목록",
-  "containers.List.addAnEntry": "***REMOVED***entity***REMOVED*** 항목 추가",
-  "containers.List.pluginHeaderDescription": "***REMOVED***label***REMOVED***개 항목",
-  "containers.List.pluginHeaderDescription.singular": "***REMOVED***label***REMOVED***개 항목",
+  "containers.List.addAnEntry": "{entity} 항목 추가",
+  "containers.List.pluginHeaderDescription": "{label}개 항목",
+  "containers.List.pluginHeaderDescription.singular": "{label}개 항목",
   "components.LimitSelect.itemsPerPage": "항목 수 / 페이지",
   "containers.List.errorFetchRecords": "에러",
 
@@ -51,14 +51,14 @@
 
   "components.Search.placeholder": "검색 중입니다...",
 
-  "components.TableDelete.entries.plural": "***REMOVED***number***REMOVED***개 항목 선택 됨",
-  "components.TableDelete.entries.singular": "***REMOVED***number***REMOVED***개 항목 선택 됨",
+  "components.TableDelete.entries.plural": "{number}개 항목 선택 됨",
+  "components.TableDelete.entries.singular": "{number}개 항목 선택 됨",
   "components.TableDelete.delete": "모두 삭제",
 
 
-  "components.TableEmpty.withFilters": "필터 조건에 맞는 ***REMOVED***contentType***REMOVED*** 목록이 없습니다.",
-  "components.TableEmpty.withoutFilter": "***REMOVED***contentType***REMOVED*** 목록이 없습니다.",
-  "components.TableEmpty.withSearch": "\"***REMOVED***search***REMOVED***\" 검색. ***REMOVED***contentType***REMOVED*** 목록이 없습니다.",
+  "components.TableEmpty.withFilters": "필터 조건에 맞는 {contentType} 목록이 없습니다.",
+  "components.TableEmpty.withoutFilter": "{contentType} 목록이 없습니다.",
+  "components.TableEmpty.withSearch": "\"{search}\" 검색. {contentType} 목록이 없습니다.",
 
   "EditRelations.title": "관계 데이터",
 
@@ -113,4 +113,4 @@
   "popUpWarning.bodyMessage.contentType.delete.all": "모두 삭제하시겠습니까?",
   "popUpWarning.warning.cancelAllSettings": "수정 사항을 취소하시겠습니까?",
   "popUpWarning.warning.updateAllSettings": "모든 설정에 적용됩니다."
-***REMOVED***
+}

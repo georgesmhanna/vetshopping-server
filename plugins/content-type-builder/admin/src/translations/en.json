@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Modelize the data structure of your API.",
   "plugin.description.long":
     "Modelize the data structure of your API. Create new fields and relations in just a minute. The files are automatically created and updated in your project.",
@@ -90,7 +90,7 @@
 
   "form.contentType.item.connections": "Connection",
   "form.contentType.item.name": "Name",
-  "form.contentType.item.name.description": "Content Type names should be singular: ***REMOVED***link***REMOVED***",
+  "form.contentType.item.name.description": "Content Type names should be singular: {link}",
   "form.contentType.item.name.link.description": "Check out our documentation",
   "form.contentType.item.description": "Description",
   "form.contentType.item.description.placeholder": "Write your little description here...",
@@ -115,7 +115,7 @@
   "modelPage.contentType.list.relationShipTitle.singular": "relationship",
   "modelPage.attribute.relationWith": "Relation with",
 
-  "noTableWarning.description": "Don't forget to create the table `***REMOVED***modelName***REMOVED***` in your database",
+  "noTableWarning.description": "Don't forget to create the table `{modelName}` in your database",
   "noTableWarning.infos": "More info",
 
   "notification.error.message": "An error occurred",
@@ -182,4 +182,4 @@
   "relation.manyToOne": "has many",
   "relation.manyToMany": "has and belongs to many",
   "relation.attributeName.placeholder": "Ex: author, category, tag"
-***REMOVED***
+}

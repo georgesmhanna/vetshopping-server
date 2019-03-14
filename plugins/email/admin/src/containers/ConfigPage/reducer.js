@@ -4,9 +4,9 @@
  *
  */
 
-import ***REMOVED*** fromJS, List, Map ***REMOVED*** from 'immutable';
+import { fromJS, List, Map } from 'immutable';
 
-import ***REMOVED***
+import {
   GET_SETTINGS,
   GET_SETTINGS_SUCCEEDED,
   ON_CANCEL,
@@ -14,21 +14,21 @@ import ***REMOVED***
   SET_ERRORS,
   SUBMIT_ERROR,
   SUBMIT_SUCCEEDED,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   appEnvironments: List([]),
   didCheckErrors: false,
   env: '',
   formErrors: List([]),
-  initialData: Map(***REMOVED******REMOVED***),
-  modifiedData: Map(***REMOVED******REMOVED***),
-  settings: ***REMOVED******REMOVED***,
+  initialData: Map({}),
+  modifiedData: Map({}),
+  settings: {},
   submitSuccess: false,
-***REMOVED***);
+});
 
-function configPageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function configPageReducer(state = initialState, action) {
+  switch (action.type) {
     case GET_SETTINGS:
       return state.update('env', () => action.env);
     case GET_SETTINGS_SUCCEEDED:
@@ -61,7 +61,7 @@ function configPageReducer(state = initialState, action) ***REMOVED***
         .update('submitSuccess', (v) => v = !v);
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default configPageReducer;

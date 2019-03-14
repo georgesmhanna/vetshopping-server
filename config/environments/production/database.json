@@ -1,0 +1,21 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "strapi-hook-mongoose",
+      "settings": {
+        "client": "mongo",
+        "uri": "",
+        "host": "207.154.229.78",
+        "port": 27017,
+        "database": "vetvillage",
+        "username": "<<>>",
+        "password": "<<>>"
+      },
+      "options": {
+        "ssl": "false",
+        "authenticationDatabase": "vetvillage"
+      }
+    }
+  }
+}

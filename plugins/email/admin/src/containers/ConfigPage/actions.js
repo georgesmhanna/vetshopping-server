@@ -5,7 +5,7 @@
  *
  */
 
-import ***REMOVED***
+import {
   GET_SETTINGS,
   GET_SETTINGS_SUCCEEDED,
   ON_CANCEL,
@@ -14,64 +14,64 @@ import ***REMOVED***
   SUBMIT,
   SUBMIT_ERROR,
   SUBMIT_SUCCEEDED,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function getSettings(env) ***REMOVED***
-  return ***REMOVED***
+export function getSettings(env) {
+  return {
     type: GET_SETTINGS,
     env,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getSettingsSucceeded(settings, appEnvironments) ***REMOVED***
-  return ***REMOVED***
+export function getSettingsSucceeded(settings, appEnvironments) {
+  return {
     type: GET_SETTINGS_SUCCEEDED,
     appEnvironments,
     settings,
     initialData: settings.config,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onCancel() ***REMOVED***
-  return ***REMOVED***
+export function onCancel() {
+  return {
     type: ON_CANCEL,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onChange(***REMOVED*** target ***REMOVED***) ***REMOVED***
+export function onChange({ target }) {
   const keys = ['modifiedData'].concat(target.name.split('.'));
   const value = target.value;
 
-  return ***REMOVED***
+  return {
     type: ON_CHANGE,
     keys,
     value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setErrors(errors) ***REMOVED***
-  return ***REMOVED***
+export function setErrors(errors) {
+  return {
     type: SET_ERRORS,
     errors,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submit() ***REMOVED***
-  return ***REMOVED***
+export function submit() {
+  return {
     type: SUBMIT,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submitError(errors) ***REMOVED***
-  return ***REMOVED***
+export function submitError(errors) {
+  return {
     type: SUBMIT_ERROR,
     errors,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submitSucceeded(data) ***REMOVED***
-  return ***REMOVED***
+export function submitSucceeded(data) {
+  return {
     type: SUBMIT_SUCCEEDED,
     data,
-***REMOVED***;
-***REMOVED***
+  };
+}

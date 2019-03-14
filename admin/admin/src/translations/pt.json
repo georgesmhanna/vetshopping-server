@@ -1,4 +1,4 @@
-***REMOVED***
+{
     "app.components.Button.save": "Guardar",
     "app.components.Button.cancel": "Cancelar",
   
@@ -40,7 +40,7 @@
     "app.components.InputFileDetails.originalName": "Nome original:",
     "app.components.InputFileDetails.size": "Tamanho:",
   
-    "app.components.ImgPreview.hint": "Arraste & solte o seu arquivo nesta area ou ***REMOVED***browse***REMOVED*** um arquivo para fazer a transferência",
+    "app.components.ImgPreview.hint": "Arraste & solte o seu arquivo nesta area ou {browse} um arquivo para fazer a transferência",
     "app.components.ImgPreview.hint.browse": "procure",
   
     "app.components.InstallPluginPage.helmet": "Marketplace - Extensões",
@@ -69,8 +69,8 @@
     "app.components.ListPluginsPage.title": "Extensões",
     "app.components.ListPluginsPage.description": "Lista de extensões instaladas no projecto.",
     "app.components.listPluginsPage.deletePlugin.error": "Ocorreu um erro ao desinstalar extensão",
-    "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED*** de extensão instalada",
-    "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED*** de extensões instaladas",
+    "app.components.listPlugins.title.singular": "{number} de extensão instalada",
+    "app.components.listPlugins.title.plural": "{number} de extensões instaladas",
     "app.components.listPlugins.title.none": "Sem extensões instaladas",
     "app.components.listPlugins.button": "Adicionar nova Extensão",
   
@@ -121,7 +121,7 @@
     "components.Input.error.attribute.key.taken": "Este valor já existe",
     "components.Input.error.attribute.sameKeyAndName": "Não pode ser igual",
     "components.Input.error.validation.minSupMax": "Não pode ser superior",
-    "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+    "components.Input.error.custom-error": "{errorMessage} ",
     "components.Input.error.validation.json": "Isto não corresponde com o formato JSON",
   
     "components.ListRow.empty": "Nenhuma data para ser mostrada.",
@@ -137,7 +137,7 @@
     "components.Wysiwyg.ToggleMode.markdown": "Mudar para markdown",
     "components.Wysiwyg.ToggleMode.preview": "Mudar para preview",
     "components.WysiwygBottomControls.charactersIndicators": "caracteres",
-    "components.WysiwygBottomControls.uploadFiles": "Arraste e solte arquivos, cole na área de transferência ou ***REMOVED***browse***REMOVED***.",
+    "components.WysiwygBottomControls.uploadFiles": "Arraste e solte arquivos, cole na área de transferência ou {browse}.",
     "components.WysiwygBottomControls.uploadFiles.browse": "Selecione-os",
     "components.WysiwygBottomControls.fullscreen": "Expandir",
   
@@ -160,5 +160,5 @@
     "request.error.model.unknown": "Este modelo não existe",
     "Users": "Utilizadores",
     "Analytics": "Analytics"
-***REMOVED***
+  }
   

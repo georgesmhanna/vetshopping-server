@@ -1,5 +1,5 @@
-***REMOVED***
-  "session": ***REMOVED***
+{
+  "session": {
     "enabled": true,
     "client": "cookie",
     "key": "strapi.sid",
@@ -10,17 +10,17 @@
     "overwrite": true,
     "signed": false,
     "rolling": false
-***REMOVED***,
-  "logger": ***REMOVED***
+  },
+  "logger": {
     "level": "debug",
     "exposeInContext": true,
     "requests": true
-***REMOVED***,
-  "parser": ***REMOVED***
+  },
+  "parser": {
     "enabled": true,
     "multipart": true
-***REMOVED***,
-  "router": ***REMOVED***
+  },
+  "router": {
     "prefix": ""
-***REMOVED***
-***REMOVED***
+  }
+}

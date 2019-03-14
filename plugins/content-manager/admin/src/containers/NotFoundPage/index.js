@@ -10,10 +10,10 @@
  */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
-export default class NotFound extends React.Component ***REMOVED***
-  render() ***REMOVED***
+export default class NotFound extends React.Component {
+  render() {
     return (
       <div>
         <div className="container">
@@ -23,5 +23,5 @@ export default class NotFound extends React.Component ***REMOVED***
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}

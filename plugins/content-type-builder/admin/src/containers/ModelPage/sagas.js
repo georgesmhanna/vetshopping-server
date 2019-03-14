@@ -1,5 +1,5 @@
-import ***REMOVED*** LOCATION_CHANGE ***REMOVED*** from 'react-router-redux';
-import ***REMOVED***
+import { LOCATION_CHANGE } from 'react-router-redux';
+import {
   capitalize,
   cloneDeep,
   forEach,
@@ -11,97 +11,97 @@ import ***REMOVED***
   size,
   sortBy,
   unset,
-***REMOVED*** from 'lodash';
+} from 'lodash';
 import pluralize from 'pluralize';
-import ***REMOVED*** takeLatest, call, take, put, fork, cancel, select ***REMOVED*** from 'redux-saga/effects';
+import { takeLatest, call, take, put, fork, cancel, select } from 'redux-saga/effects';
 
 import request from 'utils/request';
 
-import ***REMOVED*** temporaryContentTypePosted ***REMOVED*** from 'containers/App/actions';
+import { temporaryContentTypePosted } from 'containers/App/actions';
 
-import ***REMOVED*** storeData ***REMOVED*** from '../../utils/storeData';
+import { storeData } from '../../utils/storeData';
 
-import ***REMOVED*** MODEL_FETCH, SUBMIT ***REMOVED*** from './constants';
-import ***REMOVED***
+import { MODEL_FETCH, SUBMIT } from './constants';
+import {
   modelFetchSucceeded,
   postContentTypeSucceeded,
   resetShowButtonsProps,
   setButtonLoader,
   unsetButtonLoader,
   submitActionSucceeded,
-***REMOVED*** from './actions';
-import ***REMOVED*** makeSelectModel ***REMOVED*** from './selectors';
+} from './actions';
+import { makeSelectModel } from './selectors';
 
-export function* fetchModel(action) ***REMOVED***
-  try ***REMOVED***
-    const requestUrl = `/content-type-builder/models/$***REMOVED***action.modelName.split('&source=')[0]***REMOVED***`;
-    const params = ***REMOVED******REMOVED***;
+export function* fetchModel(action) {
+  try {
+    const requestUrl = `/content-type-builder/models/${action.modelName.split('&source=')[0]}`;
+    const params = {};
     const source = action.modelName.split('&source=')[1];
 
-    if (source) ***REMOVED***
+    if (source) {
       params.source = source;
-***REMOVED***
+    }
 
-    const data = yield call(request, requestUrl, ***REMOVED*** method: 'GET', params ***REMOVED***);
+    const data = yield call(request, requestUrl, { method: 'GET', params });
 
     yield put(modelFetchSucceeded(data));
 
     yield put(unsetButtonLoader());
 
-***REMOVED*** catch(error) ***REMOVED***
+  } catch(error) {
     strapi.notification.error('notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* submitChanges(action) ***REMOVED***
-  try ***REMOVED***
+export function* submitChanges(action) {
+  try {
     // Show button loader
     yield put(setButtonLoader());
     const modelName = get(storeData.getContentType(), 'name');
     const data = yield select(makeSelectModel());
     const body = cloneDeep(data);
 
-    map(body.attributes, (attribute, index) => ***REMOVED***
+    map(body.attributes, (attribute, index) => {
       // Remove the connection key from attributes
-      if (attribute.connection) ***REMOVED***
+      if (attribute.connection) {
         unset(body.attributes[index], 'connection');
-***REMOVED***
+      }
 
-      forEach(attribute.params, (value, key) => ***REMOVED***
-        if (key === 'dominant' && get(attribute.params, 'nature') !== 'manyToMany') ***REMOVED***
+      forEach(attribute.params, (value, key) => {
+        if (key === 'dominant' && get(attribute.params, 'nature') !== 'manyToMany') {
           delete body.attributes[index].params.dominant;
-  ***REMOVED***
+        }
 
-        if (includes(key, 'Value') && key !== 'pluginValue') ***REMOVED***
+        if (includes(key, 'Value') && key !== 'pluginValue') {
           // Remove and set needed keys for params
           set(body.attributes[index].params, replace(key, 'Value', ''), value);
           unset(body.attributes[index].params, key);
-  ***REMOVED***
+        }
 
-        if (key === 'pluginValue' && value) ***REMOVED***
+        if (key === 'pluginValue' && value) {
           set(body.attributes[index].params, 'plugin', true);
-  ***REMOVED***
+        }
 
-        if (!value && key !== 'multiple' && key !== 'default') ***REMOVED***
+        if (!value && key !== 'multiple' && key !== 'default') {
           const paramsKey = includes(key, 'Value') ? replace(key,'Value', '') : key;
           unset(body.attributes[index].params, paramsKey);
-  ***REMOVED***
-***REMOVED***);
-***REMOVED***);
+        }
+      });
+    });
     const pluginModel = action.modelName.split('&source=')[1];
 
-    if (pluginModel) ***REMOVED***
+    if (pluginModel) {
       set(body, 'plugin', pluginModel);
-***REMOVED***
+    }
 
     const method = modelName === body.name ? 'POST' : 'PUT';
     const baseUrl = '/content-type-builder/models/';
-    const requestUrl = method === 'POST' ? baseUrl : `$***REMOVED***baseUrl***REMOVED***$***REMOVED***body.name***REMOVED***`;
-    const opts = ***REMOVED*** method, body ***REMOVED***;
+    const requestUrl = method === 'POST' ? baseUrl : `${baseUrl}${body.name}`;
+    const opts = { method, body };
     const response = yield call(request, requestUrl, opts, true);
 
-    if (response.ok) ***REMOVED***
-      if (method === 'POST') ***REMOVED***
+    if (response.ok) {
+      if (method === 'POST') {
         storeData.clearAppStorage();
         yield put(temporaryContentTypePosted(size(get(body, 'attributes'))));
         yield put(postContentTypeSucceeded());
@@ -109,31 +109,31 @@ export function* submitChanges(action) ***REMOVED***
         const leftMenuContentTypes = get(action.context.plugins.toJS(), ['content-manager', 'leftMenuSections']);
         const newContentType = body.name.toLowerCase();
 
-        if (leftMenuContentTypes) ***REMOVED***
-          leftMenuContentTypes[0].links.push(***REMOVED*** destination: newContentType, label: capitalize(pluralize(newContentType)) ***REMOVED***);
+        if (leftMenuContentTypes) {
+          leftMenuContentTypes[0].links.push({ destination: newContentType, label: capitalize(pluralize(newContentType)) });
           leftMenuContentTypes[0].links = sortBy(leftMenuContentTypes[0].links, 'label');
           action.context.updatePlugin('content-manager', 'leftMenuSections', leftMenuContentTypes);
-  ***REMOVED***
+        }
 
         strapi.notification.success('content-type-builder.notification.success.message.contentType.create');
 
-***REMOVED*** else ***REMOVED***
+      } else {
         strapi.notification.success('content-type-builder.notification.success.message.contentType.edit');
-***REMOVED***
+      }
 
       yield put(submitActionSucceeded());
       yield put(resetShowButtonsProps());
       // Remove loader
       yield put(unsetButtonLoader());
-***REMOVED***
+    }
 
-***REMOVED*** catch(error) ***REMOVED***
+  } catch(error) {
     strapi.notification.error(get(error, ['response', 'payload', 'message', '0', 'messages', '0', 'id'], 'notification.error'));
     yield put(unsetButtonLoader());
-***REMOVED***
-***REMOVED***
+  }
+}
 
-function* defaultSaga() ***REMOVED***
+function* defaultSaga() {
   const loadModelWatcher = yield fork(takeLatest, MODEL_FETCH, fetchModel);
   const loadSubmitChanges = yield fork(takeLatest, SUBMIT, submitChanges);
 
@@ -141,6 +141,6 @@ function* defaultSaga() ***REMOVED***
 
   yield cancel(loadModelWatcher);
   yield cancel(loadSubmitChanges);
-***REMOVED***
+}
 
 export default defaultSaga;

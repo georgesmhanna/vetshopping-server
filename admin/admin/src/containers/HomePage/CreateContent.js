@@ -5,22 +5,22 @@
  */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
-function CreateContent() ***REMOVED***
+function CreateContent() {
   return (
     <FormattedMessage id="app.components.HomePage.createBlock.content.first">
-      ***REMOVED***message => (
+      {message => (
         <p>
-          ***REMOVED***message***REMOVED***
-          <span style=***REMOVED******REMOVED*** fontStyle: 'italic', fontWeight: '500' ***REMOVED******REMOVED***>Content Type Builder</span>
+          {message}
+          <span style={{ fontStyle: 'italic', fontWeight: '500' }}>Content Type Builder</span>
           <FormattedMessage id="app.components.HomePage.createBlock.content.second" />
-          <span style=***REMOVED******REMOVED*** fontStyle: 'italic', fontWeight: '500' ***REMOVED******REMOVED***>"Quick Start"</span>
+          <span style={{ fontStyle: 'italic', fontWeight: '500' }}>"Quick Start"</span>
           <FormattedMessage id="app.components.HomePage.createBlock.content.tutorial" />
         </p>
-      )***REMOVED***
+      )}
     </FormattedMessage>
   );
-***REMOVED***
+}
 
 export default CreateContent;

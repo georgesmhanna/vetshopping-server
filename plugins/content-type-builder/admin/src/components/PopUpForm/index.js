@@ -6,21 +6,21 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** get, map, includes, split, isEmpty, findIndex ***REMOVED*** from 'lodash';
-import ***REMOVED*** Button, Modal, ModalHeader, ModalBody, ModalFooter ***REMOVED*** from 'reactstrap';
+import { FormattedMessage } from 'react-intl';
+import { get, map, includes, split, isEmpty, findIndex } from 'lodash';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Input from 'components/InputsIndex';
 import PopUpHeaderNavLink from 'components/PopUpHeaderNavLink';
 import styles from './styles.scss';
 
 /* eslint-disable react/jsx-wrap-multilines */
 
-class PopUpForm extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  createComponent = (el) => ***REMOVED***
-    if (get(el, ['inputDescription', 'params', 'link', 'children', 'type'], '') === 'FormattedMessage') ***REMOVED***
+class PopUpForm extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  createComponent = (el) => {
+    if (get(el, ['inputDescription', 'params', 'link', 'children', 'type'], '') === 'FormattedMessage') {
       return (
-        <FormattedMessage id=***REMOVED***get(el, ['inputDescription', 'params', 'link', 'children', 'attr', 'id'], 'default')***REMOVED*** defaultMessage=" ">
-          ***REMOVED***(message) => (
+        <FormattedMessage id={get(el, ['inputDescription', 'params', 'link', 'children', 'attr', 'id'], 'default')} defaultMessage=" ">
+          {(message) => (
             React.createElement(
               // Create the wrapper component
               // This line will create the link
@@ -29,10 +29,10 @@ class PopUpForm extends React.Component ***REMOVED*** // eslint-disable-line rea
               get(el, ['inputDescription', 'params', 'link', 'parent', 'attr'], ''),
               message,
             )
-          )***REMOVED***
+          )}
         </FormattedMessage>
       );
-***REMOVED***
+    }
 
     return (
       React.createElement(
@@ -46,26 +46,26 @@ class PopUpForm extends React.Component ***REMOVED*** // eslint-disable-line rea
         )
       )
     );
-***REMOVED***
+  }
 
-  handleSubmit = (e) => ***REMOVED***
+  handleSubmit = (e) => {
     this.props.onSubmit(e, false);
-***REMOVED***
+  }
 
-  renderInput = (item, key) => ***REMOVED***
+  renderInput = (item, key) => {
     // const customBootstrapClass = 'col-md-6'
     let customBootstrapClass = item.type === 'textarea' ?
       'col-md-8 offset-md-4 mr-md-5' : 'col-md-6 offset-md-6 mr-md-5';
 
     const shouldOverrideRendering = this.props.overrideRenderInputCondition ? this.props.overrideRenderInputCondition(item) : false;
 
-    if (shouldOverrideRendering) ***REMOVED***
+    if (shouldOverrideRendering) {
       return this.props.overrideRenderInput(item, key);
-***REMOVED***
+    }
 
-    if (this.props.overrideCustomBootstrapClass) ***REMOVED***
+    if (this.props.overrideCustomBootstrapClass) {
       customBootstrapClass = this.props.customBootstrapClass;
-***REMOVED***
+    }
 
     const shouldOverrideHandleBlur = this.props.overrideHandleBlurCondition ? this.props.overrideHandleBlurCondition(item) : false;
     // TODO: refacto this line..
@@ -73,110 +73,110 @@ class PopUpForm extends React.Component ***REMOVED*** // eslint-disable-line rea
     const handleBlur = shouldOverrideHandleBlur ? this.props.onBlur : false;
     const errorIndex = findIndex(this.props.formErrors, ['name', item.name]);
     const errors = errorIndex !== -1 ? this.props.formErrors[errorIndex].errors : [];
-    const inputDescription = ***REMOVED***
+    const inputDescription = {
       id: get(item, ['inputDescription', 'id'], ''),
-      params: ***REMOVED***
+      params: {
         link: this.createComponent(item),
-***REMOVED***
-***REMOVED***;
+      },
+    };
 
-    if (item.name === 'params.appearance.WYSIWYG') ***REMOVED***
+    if (item.name === 'params.appearance.WYSIWYG') {
       value = get(this.props.values, item.name, false);
-***REMOVED***
+    }
 
     return (
       <Input
-        key=***REMOVED***key***REMOVED***
-        type=***REMOVED***item.type***REMOVED***
-        onChange=***REMOVED***this.props.onChange***REMOVED***
-        onBlur=***REMOVED***handleBlur***REMOVED***
-        label=***REMOVED***item.label***REMOVED***
-        name=***REMOVED***item.name***REMOVED***
-        validations=***REMOVED***item.validations***REMOVED***
-        inputDescription=***REMOVED***inputDescription***REMOVED***
-        value=***REMOVED***value***REMOVED***
-        customBootstrapClass=***REMOVED***customBootstrapClass***REMOVED***
-        selectOptions=***REMOVED***this.props.selectOptions || []***REMOVED***
-        placeholder=***REMOVED***item.placeholder***REMOVED***
-        title=***REMOVED***item.title***REMOVED***
-        errors=***REMOVED***errors***REMOVED***
-        didCheckErrors=***REMOVED***this.props.didCheckErrors***REMOVED***
-        autoFocus=***REMOVED***key === 0 && item.type !== 'date'***REMOVED***
+        key={key}
+        type={item.type}
+        onChange={this.props.onChange}
+        onBlur={handleBlur}
+        label={item.label}
+        name={item.name}
+        validations={item.validations}
+        inputDescription={inputDescription}
+        value={value}
+        customBootstrapClass={customBootstrapClass}
+        selectOptions={this.props.selectOptions || []}
+        placeholder={item.placeholder}
+        title={item.title}
+        errors={errors}
+        didCheckErrors={this.props.didCheckErrors}
+        autoFocus={key === 0 && item.type !== 'date'}
       />
     );
-***REMOVED***
+  }
 
   renderNavContainer = () => (
-    <div className=***REMOVED***styles.navContainer***REMOVED***>
-      ***REMOVED***map(this.props.popUpHeaderNavLinks, (link, key) => (
+    <div className={styles.navContainer}>
+      {map(this.props.popUpHeaderNavLinks, (link, key) => (
         <PopUpHeaderNavLink
-          key=***REMOVED***key***REMOVED***
-          message=***REMOVED***link.message***REMOVED***
-          name=***REMOVED***link.name***REMOVED***
-          nameToReplace=***REMOVED***link.nameToReplace***REMOVED***
-          routePath=***REMOVED***this.props.routePath***REMOVED***
+          key={key}
+          message={link.message}
+          name={link.name}
+          nameToReplace={link.nameToReplace}
+          routePath={this.props.routePath}
         />
-      ))***REMOVED***
+      ))}
     </div>
   )
 
-  renderPopUpHeader = () => ***REMOVED***
-    if (this.props.renderCustomPopUpHeader) ***REMOVED***
+  renderPopUpHeader = () => {
+    if (this.props.renderCustomPopUpHeader) {
       return (this.props.renderCustomPopUpHeader);
-***REMOVED***
-    return <FormattedMessage id=***REMOVED***this.props.popUpTitle***REMOVED*** />;
-***REMOVED***
+    }
+    return <FormattedMessage id={this.props.popUpTitle} />;
+  }
 
-  renderFooter = () => ***REMOVED***
-    const ***REMOVED*** popUpFormType, buttonSubmitMessage, toggle, noButtons, onSubmit ***REMOVED*** = this.props;
+  renderFooter = () => {
+    const { popUpFormType, buttonSubmitMessage, toggle, noButtons, onSubmit } = this.props;
     const handleToggle = toggle;
 
-    if (noButtons) ***REMOVED***
-      return <div className=***REMOVED***styles.modalFooter***REMOVED*** />;
-***REMOVED***
+    if (noButtons) {
+      return <div className={styles.modalFooter} />;
+    }
 
     return (
-      <ModalFooter className=***REMOVED***styles.modalFooter***REMOVED***>
-        <Button onClick=***REMOVED***handleToggle***REMOVED*** className=***REMOVED***styles.secondary***REMOVED***><FormattedMessage id="content-type-builder.form.button.cancel" /></Button>
-        ***REMOVED***popUpFormType !== 'contentType' && <Button type="submit" onClick=***REMOVED***onSubmit***REMOVED*** className=***REMOVED***styles.primaryAddShape***REMOVED***><FormattedMessage id="content-type-builder.button.attributes.add" /></Button>***REMOVED***
-        <Button type="button" onClick=***REMOVED***this.handleSubmit***REMOVED*** className=***REMOVED***styles.primary***REMOVED***><FormattedMessage id=***REMOVED***`content-type-builder.$***REMOVED***buttonSubmitMessage***REMOVED***`***REMOVED*** /></Button>***REMOVED***' '***REMOVED***
+      <ModalFooter className={styles.modalFooter}>
+        <Button onClick={handleToggle} className={styles.secondary}><FormattedMessage id="content-type-builder.form.button.cancel" /></Button>
+        {popUpFormType !== 'contentType' && <Button type="submit" onClick={onSubmit} className={styles.primaryAddShape}><FormattedMessage id="content-type-builder.button.attributes.add" /></Button>}
+        <Button type="button" onClick={this.handleSubmit} className={styles.primary}><FormattedMessage id={`content-type-builder.${buttonSubmitMessage}`} /></Button>{' '}
       </ModalFooter>
     );
-***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     const navContainer = this.props.noNav ? '' : this.renderNavContainer();
-    const modalBodyStyle = this.props.renderModalBody ? ***REMOVED*** paddingTop: '2.3rem' ***REMOVED*** : ***REMOVED******REMOVED***;
+    const modalBodyStyle = this.props.renderModalBody ? { paddingTop: '2.3rem' } : {};
     const modalBody = this.props.renderModalBody ? this.props.renderModalBody()
       : map(this.props.form.items, (item, key ) => this.renderInput(item, key));
     
     return (
-      <div className=***REMOVED***styles.popUpForm***REMOVED***>
-        <Modal isOpen=***REMOVED***this.props.isOpen***REMOVED*** toggle=***REMOVED***this.props.toggle***REMOVED*** className=***REMOVED***`$***REMOVED***styles.modalPosition***REMOVED***`***REMOVED***>
-          <ModalHeader toggle=***REMOVED***this.props.toggle***REMOVED*** className=***REMOVED***styles.popUpFormHeader***REMOVED*** />
-          <div className=***REMOVED***styles.headerContainer***REMOVED***>
-            <div className=***REMOVED***styles.titleContainer***REMOVED***>
-              ***REMOVED***this.renderPopUpHeader()***REMOVED***
+      <div className={styles.popUpForm}>
+        <Modal isOpen={this.props.isOpen} toggle={this.props.toggle} className={`${styles.modalPosition}`}>
+          <ModalHeader toggle={this.props.toggle} className={styles.popUpFormHeader} />
+          <div className={styles.headerContainer}>
+            <div className={styles.titleContainer}>
+              {this.renderPopUpHeader()}
             </div>
-            ***REMOVED***navContainer***REMOVED***
+            {navContainer}
           </div>
-          <ModalBody className=***REMOVED***styles.modalBody***REMOVED*** style=***REMOVED***modalBodyStyle***REMOVED***>
-            <form onSubmit=***REMOVED***this.props.onSubmit***REMOVED***>
+          <ModalBody className={styles.modalBody} style={modalBodyStyle}>
+            <form onSubmit={this.props.onSubmit}>
               <div className="container-fluid">
                 <div className="row">
-                  ***REMOVED***modalBody***REMOVED***
+                  {modalBody}
                 </div>
               </div>
             </form>
           </ModalBody>
-          ***REMOVED***this.renderFooter()***REMOVED***
+          {this.renderFooter()}
         </Modal>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-PopUpForm.propTypes = ***REMOVED***
+PopUpForm.propTypes = {
   buttonSubmitMessage: PropTypes.string.isRequired,
   customBootstrapClass: PropTypes.string,
   didCheckErrors: PropTypes.bool,
@@ -226,9 +226,9 @@ PopUpForm.propTypes = ***REMOVED***
   selectOptions: PropTypes.array,
   toggle: PropTypes.func.isRequired,
   values: PropTypes.object,
-***REMOVED***;
+};
 
-PopUpForm.defaultProps = ***REMOVED***
+PopUpForm.defaultProps = {
   customBootstrapClass: 'col-md-6',
   didCheckErrors: false,
   formErrors: [],
@@ -244,7 +244,7 @@ PopUpForm.defaultProps = ***REMOVED***
   renderCustomPopUpHeader: false,
   routePath: '',
   selectOptions: [],
-  values: ***REMOVED******REMOVED***,
-***REMOVED***;
+  values: {},
+};
 
 export default PopUpForm;

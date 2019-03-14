@@ -1,10 +1,10 @@
-.plugin ***REMOVED***
+.plugin {
   min-height: 5.4rem;
 
   -webkit-font-smoothing: antialiased;
-***REMOVED***
+}
 
-.banner ***REMOVED***
+.banner {
   display: flex;
   justify-content: space-between;
 
@@ -12,47 +12,47 @@
   padding-right: 43px;
   color: #787E8F;
   cursor: pointer;
-  > div:first-child ***REMOVED***
+  > div:first-child {
     display: flex;
     line-height: 5.3rem;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.chevronDown ***REMOVED***
+.chevronDown {
   margin: auto;
   margin-right: 0;
-  &:before ***REMOVED***
+  &:before {
     content: '\F078';
     display: block;
     color: #787E8F;
     font-family: 'FontAwesome';
     font-size: 10px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.chevronUp ***REMOVED***
+.chevronUp {
   margin: auto;
   margin-right: 0;
-  &:before ***REMOVED***
+  &:before {
     content: '\F077';
     display: block;
     color: #787E8F;
     font-family: 'FontAwesome';
     font-size: 10px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 
-.controllerContainer ***REMOVED***
-  > div:not(:first-child) ***REMOVED***
+.controllerContainer {
+  > div:not(:first-child) {
     padding-top: 2.3rem;
-***REMOVED***
-  > div:last-child ***REMOVED***
+  }
+  > div:last-child {
     padding-bottom: 1.8rem;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.description ***REMOVED***
+.description {
   // width: 50%;
   display: block;
   white-space: nowrap;
@@ -61,9 +61,9 @@
   color: #8B91A0;
   font-size: 12px;
   font-weight: 400;
-***REMOVED***
+}
 
-.iconContainer ***REMOVED***
+.iconContainer {
   height: 36px;
   width: 70px;
   margin: auto;
@@ -73,10 +73,10 @@
   border-radius: 3px;
   line-height: 36px;
   text-align: center;
-***REMOVED***
+}
 
-.name ***REMOVED***
+.name {
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
-***REMOVED***
+}

@@ -6,38 +6,38 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import Button from 'components/Button';
 import PluginHeader from 'components/PluginHeader';
 import styles from './styles.scss';
 
-function EmptyAttributesView(***REMOVED*** currentModelName, history, modelEntries ***REMOVED***) ***REMOVED***
+function EmptyAttributesView({ currentModelName, history, modelEntries }) {
   return (
-    <div className=***REMOVED***styles.container***REMOVED***>
+    <div className={styles.container}>
       <PluginHeader
-        title=***REMOVED******REMOVED***
+        title={{
           id: currentModelName,
-  ***REMOVED******REMOVED***
-        description=***REMOVED******REMOVED***
+        }}
+        description={{
           id: 'content-manager.containers.List.pluginHeaderDescription',
-          values: ***REMOVED***
+          values: {
             label: modelEntries,
-    ***REMOVED***
-  ***REMOVED******REMOVED***
-        actions=***REMOVED***[]***REMOVED***
+          },
+        }}
+        actions={[]}
       />
       <div>
-        <div className=***REMOVED***styles.emptyAttributesView***REMOVED***>
+        <div className={styles.emptyAttributesView}>
           <div>
             <FormattedMessage id="content-manager.emptyAttributes.title">
-              ***REMOVED***(title) => <div className=***REMOVED***styles.title***REMOVED***>***REMOVED***title***REMOVED***</div>***REMOVED***
+              {(title) => <div className={styles.title}>{title}</div>}
             </FormattedMessage>
             <FormattedMessage id="content-manager.emptyAttributes.description">
-              ***REMOVED***(description) => <div className=***REMOVED***styles.description***REMOVED***>***REMOVED***description***REMOVED***</div>***REMOVED***
+              {(description) => <div className={styles.description}>{description}</div>}
             </FormattedMessage>
-            <div className=***REMOVED***styles.buttonContainer***REMOVED***>
+            <div className={styles.buttonContainer}>
               <Button
-                onClick=***REMOVED***() => history.push(`/plugins/content-type-builder/models/$***REMOVED***currentModelName***REMOVED***#choose::attributes`)***REMOVED***
+                onClick={() => history.push(`/plugins/content-type-builder/models/${currentModelName}#choose::attributes`)}
                 primaryAddShape
                 label="content-manager.emptyAttributes.button"
               />
@@ -47,12 +47,12 @@ function EmptyAttributesView(***REMOVED*** currentModelName, history, modelEntri
       </div>
     </div>
   );
-***REMOVED***
+}
 
-EmptyAttributesView.propTypes = ***REMOVED***
+EmptyAttributesView.propTypes = {
   currentModelName: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
   modelEntries: PropTypes.number.isRequired,
-***REMOVED***;
+};
 
 export default EmptyAttributesView;

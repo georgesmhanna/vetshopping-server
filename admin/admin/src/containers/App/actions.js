@@ -4,7 +4,7 @@
  *
  */
 
-import ***REMOVED***
+import {
   FREEZE_APP,
   LOAD_PLUGIN,
   PLUGIN_DELETED,
@@ -12,52 +12,52 @@ import ***REMOVED***
   UNFREEZE_APP,
   UNSET_HAS_USERS_PLUGIN,
   UPDATE_PLUGIN,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function freezeApp() ***REMOVED***
-  return ***REMOVED***
+export function freezeApp() {
+  return {
     type: FREEZE_APP,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function loadPlugin(newPlugin) ***REMOVED***
-  return ***REMOVED***
+export function loadPlugin(newPlugin) {
+  return {
     type: LOAD_PLUGIN,
     plugin: newPlugin,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function pluginDeleted(plugin) ***REMOVED***
-  return ***REMOVED***
+export function pluginDeleted(plugin) {
+  return {
     type: PLUGIN_DELETED,
     plugin,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function pluginLoaded(newPlugin) ***REMOVED***
-  return ***REMOVED***
+export function pluginLoaded(newPlugin) {
+  return {
     type: PLUGIN_LOADED,
     plugin: newPlugin,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function unfreezeApp() ***REMOVED***
-  return ***REMOVED***
+export function unfreezeApp() {
+  return {
     type: UNFREEZE_APP,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function unsetHasUserPlugin() ***REMOVED***
-  return ***REMOVED***
+export function unsetHasUserPlugin() {
+  return {
     type: UNSET_HAS_USERS_PLUGIN,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function updatePlugin(pluginId, updatedKey, updatedValue) ***REMOVED***
-  return ***REMOVED***
+export function updatePlugin(pluginId, updatedKey, updatedValue) {
+  return {
     type: UPDATE_PLUGIN,
     pluginId,
     updatedKey,
     updatedValue,
-***REMOVED***;
-***REMOVED***
+  };
+}

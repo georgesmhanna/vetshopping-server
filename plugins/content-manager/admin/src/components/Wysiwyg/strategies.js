@@ -1,35 +1,35 @@
 /* eslint-disable no-unused-vars */
 
-function findLinkEntities(contentBlock, callback, contentState) ***REMOVED***
-  contentBlock.findEntityRanges(character => ***REMOVED***
+function findLinkEntities(contentBlock, callback, contentState) {
+  contentBlock.findEntityRanges(character => {
     const entityKey = character.getEntity();
     return entityKey !== null && contentState.getEntity(entityKey).getType() === 'LINK';
-***REMOVED***, callback);
-***REMOVED***
+  }, callback);
+}
 
-function findAtomicEntities(contentBlock, callback, contentState) ***REMOVED***
-  contentBlock.findEntityRanges(character => ***REMOVED***
+function findAtomicEntities(contentBlock, callback, contentState) {
+  contentBlock.findEntityRanges(character => {
     const entityKey = character.getEntity();
     return entityKey !== null && contentBlock.getType() === 'atomic';
-***REMOVED***, callback);
-***REMOVED***
+  }, callback);
+}
 
-function findImageEntities(contentBlock, callback, contentState) ***REMOVED***
-  contentBlock.findEntityRanges(character => ***REMOVED***
+function findImageEntities(contentBlock, callback, contentState) {
+  contentBlock.findEntityRanges(character => {
     const entityKey = character.getEntity();
 
     return entityKey !== null && contentState.getEntity(entityKey).getType() === 'IMAGE' && !isVideoType(contentState.getEntity(entityKey).getData().src);
-***REMOVED***, callback);
-***REMOVED***
+  }, callback);
+}
 
-function findVideoEntities(contentBlock, cb, contentState) ***REMOVED***
-  contentBlock.findEntityRanges(character => ***REMOVED***
+function findVideoEntities(contentBlock, cb, contentState) {
+  contentBlock.findEntityRanges(character => {
     const entityKey = character.getEntity();
 
     return entityKey !== null && contentState.getEntity(entityKey).getType() === 'IMAGE' && isVideoType(contentState.getEntity(entityKey).getData().src);
-***REMOVED***, cb);
-***REMOVED***
+  }, cb);
+}
 
 const isVideoType = (fileName) => /\.(mp4|mpg|mpeg|mov|avi)$/i.test(fileName);
 
-export ***REMOVED*** findAtomicEntities, findLinkEntities, findImageEntities, findVideoEntities ***REMOVED***;
+export { findAtomicEntities, findLinkEntities, findImageEntities, findVideoEntities };

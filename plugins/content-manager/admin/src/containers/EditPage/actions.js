@@ -4,10 +4,10 @@
  *
  */
 
-import ***REMOVED*** get ***REMOVED*** from 'lodash';
-import ***REMOVED*** getValidationsFromForm ***REMOVED*** from 'utils/formValidations';
+import { get } from 'lodash';
+import { getValidationsFromForm } from 'utils/formValidations';
 
-import ***REMOVED***
+import {
   ADD_RELATION_ITEM,
   CHANGE_DATA,
   GET_DATA,
@@ -24,143 +24,143 @@ import ***REMOVED***
   SUBMIT,
   SUBMIT_SUCCESS,
   UNSET_LOADER,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function addRelationItem(***REMOVED*** key, value ***REMOVED***) ***REMOVED***
-  return ***REMOVED***
+export function addRelationItem({ key, value }) {
+  return {
     type: ADD_RELATION_ITEM,
     key,
     value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function changeData(***REMOVED*** target ***REMOVED***) ***REMOVED***
-  return ***REMOVED***
+export function changeData({ target }) {
+  return {
     type: CHANGE_DATA,
     keys: target.name.split('.'),
     value: target.value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getData(id, source, mainField) ***REMOVED***
-  return ***REMOVED***
+export function getData(id, source, mainField) {
+  return {
     type: GET_DATA,
     id,
     source,
     mainField,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getDataSucceeded(id, data, pluginHeaderTitle) ***REMOVED***
-  return ***REMOVED***
+export function getDataSucceeded(id, data, pluginHeaderTitle) {
+  return {
     type: GET_DATA_SUCCEEDED,
     id,
     data,
     pluginHeaderTitle,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function initModelProps(modelName, isCreating, source, attributes, displayedAttributes) ***REMOVED***
+export function initModelProps(modelName, isCreating, source, attributes, displayedAttributes) {
   const formValidations = getValidationsFromForm(
-    Object.keys(attributes).map(attr => (***REMOVED*** name: attr, validations: get(attributes, attr, ***REMOVED******REMOVED***) ***REMOVED***)),
+    Object.keys(attributes).map(attr => ({ name: attr, validations: get(attributes, attr, {}) })),
     [],
-  ).filter(field => ***REMOVED***
-    if (get(field, ['validations', 'required'], false) === true) ***REMOVED***
+  ).filter(field => {
+    if (get(field, ['validations', 'required'], false) === true) {
       return displayedAttributes.indexOf(field.name) !== -1;
-***REMOVED***
+    }
 
     return true;
-***REMOVED***);
+  });
 
-  const record = Object.keys(attributes).reduce((acc, current) => ***REMOVED***
-    if (attributes[current].default) ***REMOVED***
+  const record = Object.keys(attributes).reduce((acc, current) => {
+    if (attributes[current].default) {
       acc[current] = attributes[current].default;
-***REMOVED*** else if (attributes[current].type === 'json') ***REMOVED***
-      acc[current] = ***REMOVED******REMOVED***;
-***REMOVED***
+    } else if (attributes[current].type === 'json') {
+      acc[current] = {};
+    }
 
     return acc;
-***REMOVED***, ***REMOVED******REMOVED***);
+  }, {});
 
-  return ***REMOVED***
+  return {
     type: INIT_MODEL_PROPS,
     formValidations,
     isCreating,
     modelName,
     record,
     source,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function moveAttr(dragIndex, hoverIndex, keys) ***REMOVED***
-  return ***REMOVED***
+export function moveAttr(dragIndex, hoverIndex, keys) {
+  return {
     type: MOVE_ATTR,
     dragIndex,
     hoverIndex,
     keys,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function moveAttrEnd() ***REMOVED***
-  return ***REMOVED***
+export function moveAttrEnd() {
+  return {
     type: MOVE_ATTR_END,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onCancel() ***REMOVED***
-  return ***REMOVED***
+export function onCancel() {
+  return {
     type: ON_CANCEL,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onRemoveRelationItem(***REMOVED*** key, index ***REMOVED***) ***REMOVED***
-  return ***REMOVED***
+export function onRemoveRelationItem({ key, index }) {
+  return {
     type: ON_REMOVE_RELATION_ITEM,
     key,
     index,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function resetProps() ***REMOVED***
-  return ***REMOVED***
+export function resetProps() {
+  return {
     type: RESET_PROPS,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setFileRelations(fileRelations) ***REMOVED***
-  return ***REMOVED***
+export function setFileRelations(fileRelations) {
+  return {
     type: SET_FILE_RELATIONS,
     fileRelations,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setFormErrors(formErrors) ***REMOVED***
-  return ***REMOVED***
+export function setFormErrors(formErrors) {
+  return {
     type: SET_FORM_ERRORS,
     formErrors,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setLoader() ***REMOVED***
-  return ***REMOVED***
+export function setLoader() {
+  return {
     type: SET_LOADER,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submit() ***REMOVED***
-  return ***REMOVED***
+export function submit() {
+  return {
     type: SUBMIT,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submitSuccess() ***REMOVED***
-  return ***REMOVED***
+export function submitSuccess() {
+  return {
     type: SUBMIT_SUCCESS,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function unsetLoader() ***REMOVED***
-  return ***REMOVED***
+export function unsetLoader() {
+  return {
     type: UNSET_LOADER,
-***REMOVED***;
-***REMOVED***
+  };
+}

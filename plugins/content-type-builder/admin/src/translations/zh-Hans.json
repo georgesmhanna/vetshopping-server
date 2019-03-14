@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "给你的API的数据结构建模",
   "plugin.description.long":
     "给你的API的数据结构建模. 快速的创造新的字段(fields)和关系(relations)。将会自动在项目中创建和更新文件。",
@@ -88,7 +88,7 @@
 
   "form.contentType.item.connections": "连接",
   "form.contentType.item.name": "名称",
-  "form.contentType.item.name.description": "Content Type names should be singular: ***REMOVED***link***REMOVED***",
+  "form.contentType.item.name.description": "Content Type names should be singular: {link}",
   "form.contentType.item.name.link.description": "查看我们的文档",
   "form.contentType.item.description": "描述",
   "form.contentType.item.description.placeholder": "在这里写下你的描述...",
@@ -112,7 +112,7 @@
   "modelPage.contentType.list.relationShipTitle.singular": "relationship",
   "modelPage.attribute.relationWith": "Relation with",
 
-  "noTableWarning.description": "不要忘了在数据库里创建表 `***REMOVED***modelName***REMOVED***`",
+  "noTableWarning.description": "不要忘了在数据库里创建表 `{modelName}`",
   "noTableWarning.infos": "更多信息",
 
   "notification.error.message": "发生错误",
@@ -178,4 +178,4 @@
   "relation.manyToOne": "has many",
   "relation.manyToMany": "has and belongs to many",
   "relation.attributeName.placeholder": "Ex: author, category, tag"
-***REMOVED***
+}

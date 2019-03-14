@@ -1,55 +1,55 @@
-***REMOVED***
+{
   "inputs": [
-    ***REMOVED***
-      "label": ***REMOVED*** "id": "content-manager.form.Input.search" ***REMOVED***,
+    {
+      "label": { "id": "content-manager.form.Input.search" },
       "customBootstrapClass": "col-md-4",
       "didCheckErrors": false,
       "errors": [],
       "name": "search",
       "type": "toggle",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***,
-    ***REMOVED***
-      "label": ***REMOVED*** "id": "content-manager.form.Input.filters" ***REMOVED***,
+      "validations": {}
+    },
+    {
+      "label": { "id": "content-manager.form.Input.filters" },
       "customBootstrapClass": "col-md-4",
       "didCheckErrors": false,
       "errors": [],
       "name": "filters",
       "type": "toggle",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***,
-    ***REMOVED***
-      "label": ***REMOVED*** "id": "content-manager.form.Input.bulkActions" ***REMOVED***,
+      "validations": {}
+    },
+    {
+      "label": { "id": "content-manager.form.Input.bulkActions" },
       "customBootstrapClass": "col-md-4",
       "didCheckErrors": false,
       "errors": [],
       "name": "bulkActions",
       "type": "toggle",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***,
-    ***REMOVED***
-      "label": ***REMOVED*** "id": "content-manager.form.Input.pageEntries" ***REMOVED***,
+      "validations": {}
+    },
+    {
+      "label": { "id": "content-manager.form.Input.pageEntries" },
       "customBootstrapClass": "col-md-4",
       "didCheckErrors": false,
       "errors": [],
-      "inputDescription": ***REMOVED*** "id": "content-manager.form.Input.pageEntries.inputDescription" ***REMOVED***,
+      "inputDescription": { "id": "content-manager.form.Input.pageEntries.inputDescription" },
       "name": "pageEntries",
       "selectOptions": ["10", "20", "50", "100"],
       "type": "select",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***,
-    ***REMOVED***
-      "label": ***REMOVED*** "id": "content-manager.form.Input.defaultSort" ***REMOVED***,
+      "validations": {}
+    },
+    {
+      "label": { "id": "content-manager.form.Input.defaultSort" },
       "customBootstrapClass": "col-md-4 ml-md-auto",
       "didCheckErrors": false,
       "errors": [],
-      "style": ***REMOVED*** "marginRight": "-20px" ***REMOVED***,
+      "style": { "marginRight": "-20px" },
       "name": "defaultSort",
       "selectOptions": ["_id"],
       "type": "select",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      "validations": {}
+    },
+    {
       "label": "",
       "customBootstrapClass": "col-md-1",
       "didCheckErrors": false,
@@ -58,94 +58,94 @@
       "name": "sort",
       "selectOptions": ["ASC", "DESC"],
       "type": "select",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***
+      "validations": {}
+    }
     
   ],
   "editList": [
-    ***REMOVED***
-      "label": ***REMOVED*** "id": "content-manager.form.Input.label" ***REMOVED***,
+    {
+      "label": { "id": "content-manager.form.Input.label" },
       "customBootstrapClass": "col-md-7",
       "didCheckErrors": false,
       "errors": [],
-      "inputDescription": ***REMOVED*** "id": "content-manager.form.Input.label.inputDescription" ***REMOVED***,
+      "inputDescription": { "id": "content-manager.form.Input.label.inputDescription" },
       "name": "label",
       "type": "string",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***,
-    ***REMOVED***
-      "label": ***REMOVED*** "id": "content-manager.form.Input.sort.field" ***REMOVED***,
+      "validations": {}
+    },
+    {
+      "label": { "id": "content-manager.form.Input.sort.field" },
       "customBootstrapClass": "col-md-6",
       "didCheckErrors": false,
       "errors": [],
       "name": "sortable",
-      "style": ***REMOVED*** "marginTop": "18px" ***REMOVED***,
+      "style": { "marginTop": "18px" },
       "type": "toggle",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***
+      "validations": {}
+    }
   ],
-  "editView": ***REMOVED***
+  "editView": {
     "relationForm": [
-      ***REMOVED***
-        "label": ***REMOVED*** "id": "content-manager.form.Input.label" ***REMOVED***,
+      {
+        "label": { "id": "content-manager.form.Input.label" },
         "customBootstrapClass": "col-md-8",
         "didCheckErrors": false,
         "errors": [],
         "name": "label",
         "placeholder": "SLUG (URL)",
         "type": "string",
-        "validations": ***REMOVED******REMOVED***
-***REMOVED***
-      ***REMOVED***
-        "label": ***REMOVED*** "id": "content-manager.form.Input.description" ***REMOVED***,
+        "validations": {}
+      },
+      {
+        "label": { "id": "content-manager.form.Input.description" },
         "customBootstrapClass": "col-md-12",
         "didCheckErrors": false,
         "errors": [],
         "name": "description",
         "placeholder": "content-manager.form.Input.description.placeholder",
         "type": "string",
-        "validations": ***REMOVED******REMOVED***
-***REMOVED***
+        "validations": {}
+      }
     ],
     "fieldForm": [
-      ***REMOVED***
-        "label": ***REMOVED*** "id": "content-manager.form.Input.label" ***REMOVED***,
+      {
+        "label": { "id": "content-manager.form.Input.label" },
         "customBootstrapClass": "col-md-8",
         "didCheckErrors": false,
         "errors": [],
         "name": "label",
         "placeholder": "SLUG (URL)",
         "type": "string",
-        "validations": ***REMOVED******REMOVED***
-***REMOVED***
-      ***REMOVED***
-        "label": ***REMOVED*** "id": "content-manager.form.Input.disabled" ***REMOVED***,
+        "validations": {}
+      },
+      {
+        "label": { "id": "content-manager.form.Input.disabled" },
         "customBootstrapClass": "col-md-4",
         "didCheckErrors": false,
         "errors": [],
         "name": "editable",
         "type": "toggle",
-        "validations": ***REMOVED******REMOVED***
-***REMOVED***
-      ***REMOVED***
-        "label": ***REMOVED*** "id": "content-manager.form.Input.description" ***REMOVED***,
+        "validations": {}
+      },
+      {
+        "label": { "id": "content-manager.form.Input.description" },
         "customBootstrapClass": "col-md-12",
         "didCheckErrors": false,
         "errors": [],
         "name": "description",
         "placeholder": "content-manager.form.Input.description.placeholder",
         "type": "string",
-        "validations": ***REMOVED******REMOVED***
-***REMOVED***
-      ***REMOVED***
-        "label": ***REMOVED*** "id": "content-manager.form.Input.placeholder" ***REMOVED***,
+        "validations": {}
+      },
+      {
+        "label": { "id": "content-manager.form.Input.placeholder" },
         "customBootstrapClass": "col-md-12",
         "didCheckErrors": false,
         "errors": [],
         "name": "placeholder",
         "type": "string",
-        "validations": ***REMOVED******REMOVED***
-***REMOVED***
+        "validations": {}
+      }
     ]
-***REMOVED***
-***REMOVED***
+  }
+}

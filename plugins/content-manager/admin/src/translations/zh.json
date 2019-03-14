@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "快速瀏覽、編輯、刪除您資料庫的檔案",
   "plugin.description.long": "快速瀏覽、編輯、刪除您資料庫的檔案",
   "containers.Home.pluginHeaderTitle": "內容管理員",
@@ -10,9 +10,9 @@
   "containers.Edit.delete": "刪除",
   "containers.Edit.reset": "重設",
   "containers.Edit.returnList": "回到清單",
-  "containers.List.addAnEntry": "增加新的 ***REMOVED***entity***REMOVED***",
-  "containers.List.pluginHeaderDescription": "找到 ***REMOVED***label***REMOVED*** 筆資料",
-  "containers.List.pluginHeaderDescription.singular": "找到 ***REMOVED***label***REMOVED*** 筆資料",
+  "containers.List.addAnEntry": "增加新的 {entity}",
+  "containers.List.pluginHeaderDescription": "找到 {label} 筆資料",
+  "containers.List.pluginHeaderDescription.singular": "找到 {label} 筆資料",
   "components.LimitSelect.itemsPerPage": "每個頁面檔案數量",
   "containers.List.errorFetchRecords": "錯誤",
 
@@ -62,4 +62,4 @@
   "popUpWarning.button.confirm": "確認",
   "popUpWarning.title": "請確認",
   "popUpWarning.bodyMessage.contentType.delete": "您確定要刪除這筆資料嗎？"
-***REMOVED***
+}

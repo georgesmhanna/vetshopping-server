@@ -8,20 +8,20 @@
  * run jobs, or perform some special logic.
  */
 
-module.exports = async cb => ***REMOVED***
-  const pluginStore = strapi.store(***REMOVED***
+module.exports = async cb => {
+  const pluginStore = strapi.store({
     environment: '',
     type: 'core'
-***REMOVED***);
+  });
 
-  if (!await pluginStore.get(***REMOVED***key: 'application'***REMOVED***)) ***REMOVED***
-    const value = ***REMOVED***
+  if (!await pluginStore.get({key: 'application'})) {
+    const value = {
       name: 'Default Application',
       description: 'This API is going to be awesome!'
-***REMOVED***;
+    };
 
-    await pluginStore.set(***REMOVED***key: 'application', value***REMOVED***);
-***REMOVED***
+    await pluginStore.set({key: 'application', value});
+  }
 
   cb();
-***REMOVED***;
+};

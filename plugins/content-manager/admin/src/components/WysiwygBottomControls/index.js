@@ -6,52 +6,52 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import styles from './styles.scss';
 /* eslint-disable jsx-a11y/label-has-for */
-const WysiwygBottomControls = (***REMOVED*** isPreviewMode, onChange, onClick ***REMOVED***) => ***REMOVED***
+const WysiwygBottomControls = ({ isPreviewMode, onChange, onClick }) => {
   const browse = (
     <FormattedMessage id="components.WysiwygBottomControls.uploadFiles.browse">
-      ***REMOVED***(message) => <span className=***REMOVED***styles.underline***REMOVED***>***REMOVED***message***REMOVED***</span>***REMOVED***
+      {(message) => <span className={styles.underline}>{message}</span>}
     </FormattedMessage>
   );
 
   return (
-    <div className=***REMOVED***styles.wysiwygBottomControlsWrapper***REMOVED***>
+    <div className={styles.wysiwygBottomControlsWrapper}>
       <div>
         <label
-          className=***REMOVED***styles.dropLabel***REMOVED***
-          onClick=***REMOVED***(e) => ***REMOVED***
-            if (isPreviewMode) ***REMOVED***
+          className={styles.dropLabel}
+          onClick={(e) => {
+            if (isPreviewMode) {
               e.preventDefault();
-      ***REMOVED***
-    ***REMOVED******REMOVED***
+            }
+          }}
         >
           <FormattedMessage
             id="components.WysiwygBottomControls.uploadFiles"
-            values=***REMOVED******REMOVED*** browse ***REMOVED******REMOVED***
+            values={{ browse }}
           />
-          <input type="file" onChange=***REMOVED***onChange***REMOVED*** />
+          <input type="file" onChange={onChange} />
         </label>
       </div>
-      <div className=***REMOVED***styles.fullScreenWrapper***REMOVED*** onClick=***REMOVED***onClick***REMOVED***>
+      <div className={styles.fullScreenWrapper} onClick={onClick}>
         <FormattedMessage id="components.WysiwygBottomControls.fullscreen" />
       </div>
     </div>
   );
-***REMOVED***;
+};
 
-WysiwygBottomControls.defaultProps = ***REMOVED***
+WysiwygBottomControls.defaultProps = {
   isPreviewMode: false,
-  onChange: () => ***REMOVED******REMOVED***,
-  onClick: () => ***REMOVED******REMOVED***,
-***REMOVED***;
+  onChange: () => {},
+  onClick: () => {},
+};
 
-WysiwygBottomControls.propTypes = ***REMOVED***
+WysiwygBottomControls.propTypes = {
   isPreviewMode: PropTypes.bool,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
-***REMOVED***;
+};
 
 export default WysiwygBottomControls;

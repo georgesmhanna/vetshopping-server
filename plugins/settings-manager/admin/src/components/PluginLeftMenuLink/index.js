@@ -6,66 +6,66 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** NavLink ***REMOVED*** from 'react-router-dom';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** get, isEmpty, findIndex ***REMOVED*** from 'lodash';
+import { NavLink } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+import { get, isEmpty, findIndex } from 'lodash';
 import styles from './styles.scss';
 
-class PluginLeftMenuLink extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+class PluginLeftMenuLink extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
     super(props);
-    this.state = ***REMOVED***
+    this.state = {
       environmentIndex: 0,
-***REMOVED***;
-***REMOVED***
+    };
+  }
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     const environmentIndex = this.props.envParams ? findIndex(this.props.environments, ['name', this.props.envParams]) : 0;
-    this.setState(***REMOVED*** environmentIndex ***REMOVED***);
-***REMOVED***
+    this.setState({ environmentIndex });
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (this.state.environmentIndex === -1 && nextProps.envParams) ***REMOVED***
-      this.setState(***REMOVED*** environmentIndex: findIndex(nextProps.environments, ['name', nextProps.envParams]) ***REMOVED***);
-***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (this.state.environmentIndex === -1 && nextProps.envParams) {
+      this.setState({ environmentIndex: findIndex(nextProps.environments, ['name', nextProps.envParams]) });
+    }
 
-    if (nextProps.envParams && nextProps.envParams !== this.props.envParams) ***REMOVED***
+    if (nextProps.envParams && nextProps.envParams !== this.props.envParams) {
       const environmentIndex = findIndex(nextProps.environments, ['name', nextProps.envParams]);
-      this.setState(***REMOVED*** environmentIndex ***REMOVED***);
-***REMOVED***
-***REMOVED***
+      this.setState({ environmentIndex });
+    }
+  }
 
-  render() ***REMOVED***
+  render() {
     let url;
 
-    if (!isEmpty(this.props.environments)) ***REMOVED***
+    if (!isEmpty(this.props.environments)) {
       url = this.props.environmentsRequired ?
-        `$***REMOVED***this.props.link.slug***REMOVED***/$***REMOVED***get(this.props.environments, [this.state.environmentIndex, 'name'])***REMOVED***`
-        : `$***REMOVED***this.props.link.slug***REMOVED***`;
-***REMOVED***
+        `${this.props.link.slug}/${get(this.props.environments, [this.state.environmentIndex, 'name'])}`
+        : `${this.props.link.slug}`;
+    }
 
     return (
-      <li className=***REMOVED***styles.pluginLeftMenuLink***REMOVED***>
-        <NavLink className=***REMOVED***styles.link***REMOVED*** to=***REMOVED***`/plugins/settings-manager/$***REMOVED***url***REMOVED***`***REMOVED*** activeClassName=***REMOVED***styles.linkActive***REMOVED***>
+      <li className={styles.pluginLeftMenuLink}>
+        <NavLink className={styles.link} to={`/plugins/settings-manager/${url}`} activeClassName={styles.linkActive}>
           <div>
-            <i className=***REMOVED***`fa fa-$***REMOVED***this.props.link.icon***REMOVED***`***REMOVED*** />
+            <i className={`fa fa-${this.props.link.icon}`} />
           </div>
-          <span><FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***this.props.link.name***REMOVED***`***REMOVED*** /></span>
+          <span><FormattedMessage id={`settings-manager.${this.props.link.name}`} /></span>
         </NavLink>
       </li>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-PluginLeftMenuLink.propTypes = ***REMOVED***
+PluginLeftMenuLink.propTypes = {
   environments: PropTypes.array.isRequired,
   environmentsRequired: PropTypes.bool.isRequired,
   envParams: PropTypes.string,
   link: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
-PluginLeftMenuLink.defaultProps = ***REMOVED***
+PluginLeftMenuLink.defaultProps = {
   envParams: '',
-***REMOVED***;
+};
 
 export default PluginLeftMenuLink;

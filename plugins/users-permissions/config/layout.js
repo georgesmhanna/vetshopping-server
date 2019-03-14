@@ -1,27 +1,27 @@
-module.exports = ***REMOVED***
-  user: ***REMOVED***
-    actions: ***REMOVED***
+module.exports = {
+  user: {
+    actions: {
       create: 'User.create', // Use the User plugin's controller.
       update: 'User.update',
       destroy: 'User.destroy',
       deleteall: 'User.destroyAll',
-***REMOVED***,
-    attributes: ***REMOVED***
-      username: ***REMOVED***
+    },
+    attributes: {
+      username: {
         className: 'col-md-6'
-***REMOVED***
-      email: ***REMOVED***
+      },
+      email: {
         className: 'col-md-6'
-***REMOVED***
-      provider: ***REMOVED***
+      },
+      provider: {
         className: 'd-none'
-***REMOVED***
-      resetPasswordToken: ***REMOVED***
+      },
+      resetPasswordToken: {
         className: 'd-none'
-***REMOVED***
-      role: ***REMOVED***
+      },
+      role: {
         className: 'd-none'
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***;
+      }
+    }
+  }
+};

@@ -4,17 +4,17 @@
  */
 
 import React from 'react';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
-import ***REMOVED*** findIndex, get, isEmpty, upperFirst ***REMOVED*** from 'lodash';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+import { findIndex, get, isEmpty, upperFirst } from 'lodash';
 import cn from 'classnames';
 import HTML5Backend from 'react-dnd-html5-backend';
-import ***REMOVED*** DragDropContext ***REMOVED*** from 'react-dnd';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem ***REMOVED*** from 'reactstrap';
+import { DragDropContext } from 'react-dnd';
+import { FormattedMessage } from 'react-intl';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import PropTypes from 'prop-types';
-import ***REMOVED***
+import {
   beginMove,
   endMove,
   moveAttr,
@@ -29,8 +29,8 @@ import ***REMOVED***
   onReset,
   onSubmit,
   setLayout,
-***REMOVED*** from 'containers/App/actions';
-import ***REMOVED***
+} from 'containers/App/actions';
+import {
   makeSelectAddedField,
   makeSelectDraggedItemName,
   makeSelectGrid,
@@ -39,7 +39,7 @@ import ***REMOVED***
   makeSelectModifiedSchema,
   makeSelectShouldResetGrid,
   makeSelectSubmitSuccess,
-***REMOVED*** from 'containers/App/selectors';
+} from 'containers/App/selectors';
 import BackHeader from 'components/BackHeader';
 import Input from 'components/InputsIndex';
 import PluginHeader from 'components/PluginHeader';
@@ -50,15 +50,15 @@ import DraggableAttr from 'components/DraggableAttr';
 import VariableDraggableAttr from 'components/VariableDraggableAttr';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import ***REMOVED*** onClickEditField, onClickEditListItem, onClickEditRelation ***REMOVED*** from './actions';
+import { onClickEditField, onClickEditListItem, onClickEditRelation } from './actions';
 import forms from './forms.json';
 import reducer from './reducer';
 import saga from './saga';
 import makeSelectSettingPage from './selectors';
 import styles from './styles.scss';
 
-class SettingPage extends React.PureComponent ***REMOVED***
-  state = ***REMOVED***
+class SettingPage extends React.PureComponent {
+  state = {
     isDraggingSibling: false,
     isOpen: false,
     isOpenField: false,
@@ -67,354 +67,354 @@ class SettingPage extends React.PureComponent ***REMOVED***
     showWarningCancel: false,
     shouldSelectField: false,
     shouldSelectRelation: false,
-***REMOVED***;
+  };
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     this.handleClickEditAttr(0);
     const fields = this.getEditPageDisplayedFields();
     const relations = this.getEditPageDisplayedRelations();
-    this.props.setLayout(`$***REMOVED***this.getPath()***REMOVED***.editDisplay`);
+    this.props.setLayout(`${this.getPath()}.editDisplay`);
     
-    if (fields.length > 0) ***REMOVED***
+    if (fields.length > 0) {
       this.handleClickEditField(0);
-***REMOVED*** else if (relations.length > 0) ***REMOVED***
+    } else if (relations.length > 0) {
       this.handleClickEditRelation(0);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentDidUpdate(prevProps, prevState) ***REMOVED***
-    const ***REMOVED*** schema ***REMOVED*** = prevProps;
+  componentDidUpdate(prevProps, prevState) {
+    const { schema } = prevProps;
     const prevDisplayedFields = get(schema, ['models', ...this.getPath().split('.'), 'editDisplay', 'fields'], []);
     const prevDisplayedRelations = get(schema, ['models', ...this.getPath().split('.'), 'editDisplay', 'relations'], []);
     const currentDisplayedFields = get(this.props.schema, ['models', ...this.getPath().split('.'), 'editDisplay', 'fields'], []);
     const currentDisplayedRelations = get(this.props.schema, ['models', ...this.getPath().split('.'), 'editDisplay', 'relations'], []);
     
-    if (prevProps.submitSuccess !== this.props.submitSuccess) ***REMOVED***
+    if (prevProps.submitSuccess !== this.props.submitSuccess) {
       this.toggle();
-***REMOVED***
+    }
 
-    if (prevDisplayedFields.length === 0 && currentDisplayedFields.length > 0 && prevState.shouldSelectField !== this.state.shouldSelectField) ***REMOVED***
+    if (prevDisplayedFields.length === 0 && currentDisplayedFields.length > 0 && prevState.shouldSelectField !== this.state.shouldSelectField) {
       this.handleClickEditField(0);
-***REMOVED***
+    }
 
-    if (prevDisplayedRelations.length === 0 && currentDisplayedRelations.length > 0 && prevState.shouldSelectRelation !== this.state.shouldSelectRelation) ***REMOVED***
+    if (prevDisplayedRelations.length === 0 && currentDisplayedRelations.length > 0 && prevState.shouldSelectRelation !== this.state.shouldSelectRelation) {
       this.handleClickEditRelation(0);
-***REMOVED***
+    }
 
-    if (prevProps.addedField !== this.props.addedField) ***REMOVED***
-      this.props.setLayout(`$***REMOVED***this.getPath()***REMOVED***.editDisplay`);
-***REMOVED***
+    if (prevProps.addedField !== this.props.addedField) {
+      this.props.setLayout(`${this.getPath()}.editDisplay`);
+    }
 
-    if (prevProps.shouldResetGrid !== this.props.shouldResetGrid) ***REMOVED***
-      this.props.setLayout(`$***REMOVED***this.getPath()***REMOVED***.editDisplay`);
-***REMOVED***
-***REMOVED***
+    if (prevProps.shouldResetGrid !== this.props.shouldResetGrid) {
+      this.props.setLayout(`${this.getPath()}.editDisplay`);
+    }
+  }
 
-  componentWillUnmount() ***REMOVED***
+  componentWillUnmount() {
     // Reset the modified data
     this.props.onReset();
-***REMOVED***
+  }
 
-  getAttrData = attrName => get(this.getEditPageDisplaySettings(), ['availableFields', attrName], ***REMOVED******REMOVED***);
+  getAttrData = attrName => get(this.getEditPageDisplaySettings(), ['availableFields', attrName], {});
 
-  getDefaultSort = () => this.getValue(`$***REMOVED***this.getPath()***REMOVED***.defaultSort`, 'string');
+  getDefaultSort = () => this.getValue(`${this.getPath()}.defaultSort`, 'string');
 
-  getDropDownItems = () => ***REMOVED***
-    const name = get(this.props.schema, `models.$***REMOVED***this.getPath()***REMOVED***.primaryKey`, 'id' );
+  getDropDownItems = () => {
+    const name = get(this.props.schema, `models.${this.getPath()}.primaryKey`, 'id' );
     // The id attribute is not present on the schema so we need to add it manually
-    const defaultAttr = ***REMOVED*** [name]: ***REMOVED*** name, label: 'Id', type: 'string', searchable: true, sortable: true ***REMOVED*** ***REMOVED***;
-    const attributes = Object.assign(get(this.props.schema, `models.$***REMOVED***this.getPath()***REMOVED***.attributes`, ***REMOVED******REMOVED***), defaultAttr);
+    const defaultAttr = { [name]: { name, label: 'Id', type: 'string', searchable: true, sortable: true } };
+    const attributes = Object.assign(get(this.props.schema, `models.${this.getPath()}.attributes`, {}), defaultAttr);
 
     return Object.keys(attributes)
-      .filter(attr => ***REMOVED***
+      .filter(attr => {
         return findIndex(this.getListDisplay(), ['name', attr]) === -1 && !attributes[attr].hasOwnProperty('collection') && !attributes[attr].hasOwnProperty('model');
-***REMOVED***)
-      .map(attr => ***REMOVED***
+      })
+      .map(attr => {
         const searchable = attributes[attr].type !== 'json' && attributes[attr].type !== 'array';
-        const obj = Object.assign(attributes[attr], ***REMOVED*** name: attr, label: upperFirst(attr), searchable, sortable: searchable ***REMOVED***);
+        const obj = Object.assign(attributes[attr], { name: attr, label: upperFirst(attr), searchable, sortable: searchable });
 
         return obj;
-***REMOVED***);
-***REMOVED***
+      });
+  }
 
-  getDropDownFieldItems = () => ***REMOVED***
+  getDropDownFieldItems = () => {
     const currentDisplayedFields = this.getEditPageDisplayedFields();
-    const availableFields = get(this.props.schema, ['models', ...this.getPath().split('.'), 'editDisplay', 'availableFields'], ***REMOVED******REMOVED***);
+    const availableFields = get(this.props.schema, ['models', ...this.getPath().split('.'), 'editDisplay', 'availableFields'], {});
 
     return Object.keys(availableFields)
-      .filter(field => ***REMOVED***
+      .filter(field => {
         return currentDisplayedFields.indexOf(field) === -1;
-***REMOVED***);
-***REMOVED***
+      });
+  }
 
-  getDropDownRelationsItems = () => ***REMOVED***
+  getDropDownRelationsItems = () => {
     const currentDisplayedRelations = this.getEditPageDisplayedRelations();
 
     return this.getRelations()
-      .filter(relation => ***REMOVED***
+      .filter(relation => {
         return currentDisplayedRelations.indexOf(relation) === -1;
-***REMOVED***);
-***REMOVED***
+      });
+  }
 
-  getEditPageDisplaySettings = () => ***REMOVED***
-    return get(this.props.schema, 'models.'.concat(this.getPath().concat('.editDisplay')), ***REMOVED*** fields: [], relations: [] ***REMOVED***);
-***REMOVED***
+  getEditPageDisplaySettings = () => {
+    return get(this.props.schema, 'models.'.concat(this.getPath().concat('.editDisplay')), { fields: [], relations: [] });
+  }
   
   getEditPageDisplayedFields = () => get(this.getEditPageDisplaySettings(), ['fields'], []);
   
   getEditPageDisplayedRelations = () => get(this.getEditPageDisplaySettings(), ['relations'], []);
 
-  getLayout = () => ***REMOVED***
-    const ***REMOVED*** match: ***REMOVED*** params: ***REMOVED*** slug, endPoint ***REMOVED*** ***REMOVED***, schema: ***REMOVED*** layout ***REMOVED*** ***REMOVED*** = this.props;
+  getLayout = () => {
+    const { match: { params: { slug, endPoint } }, schema: { layout } } = this.props;
 
-    return get(layout, [endPoint || slug, 'attributes' ], ***REMOVED******REMOVED***);
-***REMOVED***
+    return get(layout, [endPoint || slug, 'attributes' ], {});
+  }
 
-  getListDisplay = () => get(this.props.schema, `models.$***REMOVED***this.getPath()***REMOVED***.listDisplay`, []);
+  getListDisplay = () => get(this.props.schema, `models.${this.getPath()}.listDisplay`, []);
 
-  getModelName = () => ***REMOVED***
-    const ***REMOVED*** match: ***REMOVED*** params: ***REMOVED*** slug, endPoint ***REMOVED*** ***REMOVED*** ***REMOVED*** = this.props;
+  getModelName = () => {
+    const { match: { params: { slug, endPoint } } } = this.props;
 
     return endPoint || slug;
-***REMOVED***
+  }
 
-  getPath = () => ***REMOVED***
-    const ***REMOVED*** match: ***REMOVED*** params: ***REMOVED*** slug, source, endPoint ***REMOVED*** ***REMOVED*** ***REMOVED*** = this.props;
+  getPath = () => {
+    const { match: { params: { slug, source, endPoint } } } = this.props;
 
     return [slug, source, endPoint]
       .filter(param => param !== undefined)
       .join('.');
-***REMOVED***
+  }
 
-  getRelationLabel = (attrName) => ***REMOVED***
+  getRelationLabel = (attrName) => {
     const attrLabel = get(this.props.schema, ['models', ...this.getPath().split('.'), 'relations', attrName, 'label'], 'iii');
     
     return attrLabel;
-***REMOVED***
+  }
 
-  getRelations = () => ***REMOVED***
-    const relations = get(this.props.schema, 'models.'.concat(this.getPath()).concat('.relations'), ***REMOVED******REMOVED***);
+  getRelations = () => {
+    const relations = get(this.props.schema, 'models.'.concat(this.getPath()).concat('.relations'), {});
     
     return Object.keys(relations)
-      .filter(relation => ***REMOVED***
+      .filter(relation => {
         const isUploadRelation = get(relations, [relation, 'plugin'], '') === 'upload';
         const isMorphSide = get(relations, [relation, 'nature'], '').toLowerCase().includes('morph') && get(relations, [relation, relation]) !== undefined;
 
         return !isUploadRelation && !isMorphSide;
-***REMOVED***);
-***REMOVED***
+      });
+  }
 
-  getSelectOptions = (input) => ***REMOVED***
-    const selectOptions = this.getListDisplay().reduce((acc, curr) => ***REMOVED***
+  getSelectOptions = (input) => {
+    const selectOptions = this.getListDisplay().reduce((acc, curr) => {
 
-      if (curr.sortable === true) ***REMOVED***
+      if (curr.sortable === true) {
         return acc.concat([curr.name]);
-***REMOVED***
+      }
 
       return acc;
-***REMOVED***, []);
+    }, []);
 
-    if (selectOptions.length === 0) ***REMOVED***
+    if (selectOptions.length === 0) {
       selectOptions.push(this.getPrimaryKey());
-***REMOVED***
+    }
 
     return input.name === 'defaultSort' ? selectOptions : input.selectOptions;
-***REMOVED***
+  }
 
-  getPluginHeaderActions = () => ***REMOVED***
+  getPluginHeaderActions = () => {
     return (
       [
-        ***REMOVED***
+        {
           label: 'content-manager.popUpWarning.button.cancel',
           kind: 'secondary',
           onClick: this.handleReset,
           type: 'button',
-  ***REMOVED***
-        ***REMOVED***
+        },
+        {
           kind: 'primary',
           label: 'content-manager.containers.Edit.submit',
           onClick: this.handleSubmit,
           type: 'submit',
-  ***REMOVED***
+        },
       ]
     );
-***REMOVED***
+  }
 
   getPrimaryKey = () => get(this.props.schema, ['models', this.getModelName()].concat(['primaryKey']), 'id');
 
-  getValue = (keys, type) => ***REMOVED***
+  getValue = (keys, type) => {
     const value =  get(this.props.schema, ['models'].concat(keys.split('.')));
 
     return type === 'toggle' ? value : value.toString();
-***REMOVED***
+  }
 
-  handleChange = (e) => ***REMOVED***
+  handleChange = (e) => {
     const defaultSort = this.getDefaultSort();
     const name = e.target.name.split('.');
     name.pop();
     const attrName = get(this.props.schema.models, name.concat(['name']));
     const isDisablingDefaultSort = attrName === defaultSort && e.target.value === false;
 
-    if (isDisablingDefaultSort) ***REMOVED***
-      const enableAttrsSort = this.getSelectOptions(***REMOVED*** name: 'defaultSort' ***REMOVED***).filter(attr => attr !== attrName);
+    if (isDisablingDefaultSort) {
+      const enableAttrsSort = this.getSelectOptions({ name: 'defaultSort' }).filter(attr => attr !== attrName);
       
-      if (enableAttrsSort.length === 0) ***REMOVED***
+      if (enableAttrsSort.length === 0) {
         strapi.notification.info('content-manager.notification.info.SettingPage.disableSort');
-***REMOVED*** else ***REMOVED***
+      } else {
         const newDefaultSort = enableAttrsSort.length === 0 ? this.getPrimaryKey() : enableAttrsSort[0];
-        const target = ***REMOVED*** name: `$***REMOVED***this.getPath()***REMOVED***.defaultSort`, value: newDefaultSort ***REMOVED***;  
-        this.props.onChangeSettings(***REMOVED*** target ***REMOVED***);
+        const target = { name: `${this.getPath()}.defaultSort`, value: newDefaultSort };  
+        this.props.onChangeSettings({ target });
         this.props.onChangeSettings(e);
-***REMOVED***
-***REMOVED*** else ***REMOVED***
+      }
+    } else {
       this.props.onChangeSettings(e);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleClickEditAttr = index => ***REMOVED***
-    const attrToEdit = get(this.props.schema, ['models'].concat(this.getPath().split('.')).concat(['listDisplay', index]), ***REMOVED******REMOVED***);
+  handleClickEditAttr = index => {
+    const attrToEdit = get(this.props.schema, ['models'].concat(this.getPath().split('.')).concat(['listDisplay', index]), {});
     this.props.onClickEditListItem(attrToEdit);
-***REMOVED***
+  }
 
-  handleClickEditField = index => ***REMOVED***
+  handleClickEditField = index => {
     const fieldToEditName = get(this.props.schema, ['models', ...this.getPath().split('.'), 'editDisplay', 'fields', index], '');
-    const fieldToEdit = get(this.props.schema, ['models', ...this.getPath().split('.'), 'editDisplay', 'availableFields', fieldToEditName], ***REMOVED******REMOVED***);
+    const fieldToEdit = get(this.props.schema, ['models', ...this.getPath().split('.'), 'editDisplay', 'availableFields', fieldToEditName], {});
     
     return this.props.onClickEditField(fieldToEdit);
-***REMOVED***
+  }
 
-  handleClickEditRelation = index => ***REMOVED***
+  handleClickEditRelation = index => {
     const relationToEditName = get(this.getEditPageDisplayedRelations(), index, '');
     const relationToEdit = get(this.props.schema, ['models', ...this.getPath().split('.'), 'relations', relationToEditName]);
 
     return this.props.onClickEditRelation(relationToEdit);
-***REMOVED***
+  }
 
-  handleConfirmReset = () => ***REMOVED***
+  handleConfirmReset = () => {
     this.props.onReset();
     this.toggleWarningCancel();
-***REMOVED***
+  }
 
   handleGoBack = () => this.props.history.goBack();
 
-  handleRemove = (index, keys) => ***REMOVED***
-    const attrToRemove = get(this.getListDisplay(), index, ***REMOVED******REMOVED***);
+  handleRemove = (index, keys) => {
+    const attrToRemove = get(this.getListDisplay(), index, {});
     const defaultSort = this.getDefaultSort();
     const isRemovingDefaultSort = defaultSort === attrToRemove.name;
     
-    if (isRemovingDefaultSort) ***REMOVED***
-      const enableAttrsSort = this.getSelectOptions(***REMOVED*** name: 'defaultSort' ***REMOVED***).filter(attr => attr !== attrToRemove.name);
+    if (isRemovingDefaultSort) {
+      const enableAttrsSort = this.getSelectOptions({ name: 'defaultSort' }).filter(attr => attr !== attrToRemove.name);
       const newDefaultSort = enableAttrsSort.length > 1 ? enableAttrsSort[0] : this.getPrimaryKey();
-      const target = ***REMOVED*** name: `$***REMOVED***this.getPath()***REMOVED***.defaultSort`, value: newDefaultSort ***REMOVED***;  
-      this.props.onChangeSettings(***REMOVED*** target ***REMOVED***);
-***REMOVED***
+      const target = { name: `${this.getPath()}.defaultSort`, value: newDefaultSort };  
+      this.props.onChangeSettings({ target });
+    }
 
     this.props.onRemove(index, keys);
-***REMOVED***
+  }
 
-  handleRemoveField = (index, keys) => ***REMOVED***
-    const ***REMOVED*** settingPage: ***REMOVED*** fieldToEdit ***REMOVED*** ***REMOVED*** = this.props;
+  handleRemoveField = (index, keys) => {
+    const { settingPage: { fieldToEdit } } = this.props;
     const fieldToEditName = get(this.props.schema, ['models', ...keys.split('.'), 'fields', index], '');
     this.manageRemove(index, keys, fieldToEditName, fieldToEdit, false);
-***REMOVED***
+  }
 
-  handleRemoveRelation = (index, keys) => ***REMOVED***
-    const ***REMOVED*** settingPage: ***REMOVED*** relationToEdit ***REMOVED*** ***REMOVED*** = this.props;
+  handleRemoveRelation = (index, keys) => {
+    const { settingPage: { relationToEdit } } = this.props;
     const relationToRemoveName = get(this.props.schema, ['models', ...keys.split('.'), index]);
     this.manageRemove(index, keys, relationToRemoveName, relationToEdit);
-***REMOVED***
+  }
 
-  manageRemove = (index, keys, itemName, data, isRelation = true) => ***REMOVED***
+  manageRemove = (index, keys, itemName, data, isRelation = true) => {
     const isRemovingSelectedItem = isRelation ? itemName === data.alias : itemName === data.name;
     const displayedRelations = this.getEditPageDisplayedRelations();
     const displayedFields = this.getEditPageDisplayedFields();
     
-    if (isRelation) ***REMOVED***
+    if (isRelation) {
       this.props.onRemoveEditViewRelationAttr(index, keys);
-***REMOVED*** else ***REMOVED***
+    } else {
       this.props.onRemoveEditViewFieldAttr(index, keys);
-***REMOVED***
+    }
 
-    if (isRemovingSelectedItem) ***REMOVED***
+    if (isRemovingSelectedItem) {
       const selectNextItemCond = isRelation ? displayedRelations.length > 2 : displayedFields.length > 2;
       const selectOtherItemCond = isRelation ? displayedFields.length > 0 : displayedRelations.length > 0;
       const selectNextFunc = isRelation ? this.handleClickEditRelation : this.handleClickEditField;
       const selectOtherFunc = !isRelation ? this.handleClickEditRelation : this.handleClickEditField;
 
-      if (selectNextItemCond) ***REMOVED***
+      if (selectNextItemCond) {
         let nextIndex = index - 1 > 0 ? index - 1 : index + 1;
 
-        if (!isRelation) ***REMOVED***
+        if (!isRelation) {
           const nextItem = get(this.getEditPageDisplayedFields(), nextIndex);
           
-          if (nextItem.includes('__col-md')) ***REMOVED***
+          if (nextItem.includes('__col-md')) {
             nextIndex = index - 2 > 0 ? index - 2 : index + 2;
-    ***REMOVED***
+          }
 
-  ***REMOVED***
+        }
         selectNextFunc(nextIndex);
-***REMOVED*** else if (selectOtherItemCond) ***REMOVED***
+      } else if (selectOtherItemCond) {
         selectOtherFunc(0);
-***REMOVED*** else ***REMOVED***
+      } else {
         const toAdd = isRelation ? this.getDropDownFieldItems()[0] : this.getDropDownRelationsItems()[0];
 
-        if (isRelation) ***REMOVED***
-          this.props.onClickAddAttrField(toAdd, `$***REMOVED***this.getPath()***REMOVED***.editDisplay.fields`);
-          this.setState(prevState => (***REMOVED*** shouldSelectField: !prevState.shouldSelectField ***REMOVED***));
-  ***REMOVED*** else ***REMOVED***
-          this.props.onClickAddAttr(toAdd, `$***REMOVED***this.getPath()***REMOVED***.editDisplay.relations`);
-          this.setState(prevState => (***REMOVED*** shouldSelectRelation: !prevState.shouldSelectRelation ***REMOVED***));
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+        if (isRelation) {
+          this.props.onClickAddAttrField(toAdd, `${this.getPath()}.editDisplay.fields`);
+          this.setState(prevState => ({ shouldSelectField: !prevState.shouldSelectField }));
+        } else {
+          this.props.onClickAddAttr(toAdd, `${this.getPath()}.editDisplay.relations`);
+          this.setState(prevState => ({ shouldSelectRelation: !prevState.shouldSelectRelation }));
+        }
+      }
+    }
+  }
 
-  handleReset = (e) => ***REMOVED***
+  handleReset = (e) => {
     e.preventDefault();
-    this.setState(***REMOVED*** showWarningCancel: true ***REMOVED***);
-***REMOVED***
+    this.setState({ showWarningCancel: true });
+  }
 
-  handleSubmit = (e) => ***REMOVED***
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.setState(***REMOVED*** showWarning: true ***REMOVED***);
-***REMOVED***
+    this.setState({ showWarning: true });
+  }
 
-  findIndexFieldToEdit = () => ***REMOVED***
-    const ***REMOVED*** settingPage: ***REMOVED*** fieldToEdit ***REMOVED*** ***REMOVED*** = this.props;
+  findIndexFieldToEdit = () => {
+    const { settingPage: { fieldToEdit } } = this.props;
 
-    if (isEmpty(fieldToEdit)) ***REMOVED***
+    if (isEmpty(fieldToEdit)) {
       return -1;
-***REMOVED***
+    }
 
     const index = this.getEditPageDisplayedFields().indexOf(fieldToEdit.name);
 
     return index;
-***REMOVED***
+  }
 
-  findIndexListItemToEdit = () => ***REMOVED***
+  findIndexListItemToEdit = () => {
     const index = findIndex(this.getListDisplay(), ['name', get(this.props.settingPage, ['listItemToEdit', 'name'])]);
 
     return index === -1 ? 0 : index;
-***REMOVED***
+  }
 
-  findIndexRelationItemToEdit = () => ***REMOVED***
-    const ***REMOVED*** settingPage: ***REMOVED*** relationToEdit ***REMOVED*** ***REMOVED*** = this.props;
+  findIndexRelationItemToEdit = () => {
+    const { settingPage: { relationToEdit } } = this.props;
 
-    if (isEmpty(relationToEdit)) ***REMOVED***
+    if (isEmpty(relationToEdit)) {
       return -1;
-***REMOVED***
+    }
 
     const index = this.getEditPageDisplayedRelations().indexOf(relationToEdit.alias);
 
     return index;
-***REMOVED***
+  }
 
-  hasRelations = () => ***REMOVED***
+  hasRelations = () => {
     return this.getRelations().length > 0;
-***REMOVED***
+  }
 
-  shouldDisplayCursorNotAllowed = (dropdownType) => ***REMOVED***
-    switch (dropdownType) ***REMOVED***
+  shouldDisplayCursorNotAllowed = (dropdownType) => {
+    switch (dropdownType) {
       case 'list':
         return this.getDropDownItems().length === 0;
       case 'relations':
@@ -423,304 +423,304 @@ class SettingPage extends React.PureComponent ***REMOVED***
         return this.getDropDownFieldItems().length === 0;
       default:
         return false;
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  toggle = () => this.setState(prevState => (***REMOVED*** showWarning: !prevState.showWarning ***REMOVED***));
+  toggle = () => this.setState(prevState => ({ showWarning: !prevState.showWarning }));
 
-  toggleWarningCancel = () => this.setState(prevState => (***REMOVED*** showWarningCancel: !prevState.showWarningCancel ***REMOVED***));
+  toggleWarningCancel = () => this.setState(prevState => ({ showWarningCancel: !prevState.showWarningCancel }));
   
-  toggleDropdown = () => ***REMOVED***
-    if (this.getDropDownItems().length > 0) ***REMOVED***
-      this.setState(prevState => (***REMOVED*** isOpen: !prevState.isOpen ***REMOVED***));
-***REMOVED***
-***REMOVED***
+  toggleDropdown = () => {
+    if (this.getDropDownItems().length > 0) {
+      this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+    }
+  }
 
-  toggleDropDownFields = () => ***REMOVED***
-    if (this.getDropDownFieldItems().length > 0) ***REMOVED***
-      this.setState(prevState => (***REMOVED*** isOpenField: !prevState.isOpenField ***REMOVED***));
-***REMOVED***
-***REMOVED***
+  toggleDropDownFields = () => {
+    if (this.getDropDownFieldItems().length > 0) {
+      this.setState(prevState => ({ isOpenField: !prevState.isOpenField }));
+    }
+  }
 
-  toggleDropdownRelations = () => ***REMOVED***
-    if (this.getDropDownRelationsItems().length > 0) ***REMOVED***
-      this.setState(prevState => (***REMOVED*** isOpenRelation: !prevState.isOpenRelation ***REMOVED***));
-***REMOVED***
-***REMOVED***
+  toggleDropdownRelations = () => {
+    if (this.getDropDownRelationsItems().length > 0) {
+      this.setState(prevState => ({ isOpenRelation: !prevState.isOpenRelation }));
+    }
+  }
 
   // We need to remove the Over state on the DraggableAttr component
-  updateSiblingHoverState = () => ***REMOVED***
-    this.setState(prevState => (***REMOVED*** isDraggingSibling: !prevState.isDraggingSibling ***REMOVED***));
-***REMOVED***;
+  updateSiblingHoverState = () => {
+    this.setState(prevState => ({ isDraggingSibling: !prevState.isDraggingSibling }));
+  };
 
-  renderDraggableAttrEditSettingsField = (attr, index) => ***REMOVED***
+  renderDraggableAttrEditSettingsField = (attr, index) => {
     return (
       <VariableDraggableAttr
-        beginMove=***REMOVED***this.props.beginMove***REMOVED***
-        data=***REMOVED***this.getAttrData(attr)***REMOVED***
-        draggedItemName=***REMOVED***this.props.draggedItemName***REMOVED***
-        endMove=***REMOVED***this.props.endMove***REMOVED***
-        grid=***REMOVED***this.props.grid***REMOVED***
-        hoverIndex=***REMOVED***this.props.hoverIndex***REMOVED***
-        id=***REMOVED***attr***REMOVED***
-        index=***REMOVED***index***REMOVED***
-        initDragLine=***REMOVED***this.props.initDragLine***REMOVED***
-        isEditing=***REMOVED***index === this.findIndexFieldToEdit()***REMOVED***
-        key=***REMOVED***attr***REMOVED***
-        keys=***REMOVED***`$***REMOVED***this.getPath()***REMOVED***.editDisplay`***REMOVED***
-        layout=***REMOVED***this.getLayout()***REMOVED***
-        name=***REMOVED***attr***REMOVED***
-        moveAttr=***REMOVED***this.props.moveVariableAttrEditView***REMOVED***
-        onRemove=***REMOVED***this.handleRemoveField***REMOVED***
-        onClickEdit=***REMOVED***this.handleClickEditField***REMOVED***
+        beginMove={this.props.beginMove}
+        data={this.getAttrData(attr)}
+        draggedItemName={this.props.draggedItemName}
+        endMove={this.props.endMove}
+        grid={this.props.grid}
+        hoverIndex={this.props.hoverIndex}
+        id={attr}
+        index={index}
+        initDragLine={this.props.initDragLine}
+        isEditing={index === this.findIndexFieldToEdit()}
+        key={attr}
+        keys={`${this.getPath()}.editDisplay`}
+        layout={this.getLayout()}
+        name={attr}
+        moveAttr={this.props.moveVariableAttrEditView}
+        onRemove={this.handleRemoveField}
+        onClickEdit={this.handleClickEditField}
       />
     );
-***REMOVED***
+  }
 
-  renderDraggableAttrEditSettingsRelation = (attr, index) => ***REMOVED***
+  renderDraggableAttrEditSettingsRelation = (attr, index) => {
     return (
       <DraggableAttr
-        index=***REMOVED***index***REMOVED***
-        isDraggingSibling=***REMOVED***false***REMOVED***
-        isEditing=***REMOVED***index === this.findIndexRelationItemToEdit()***REMOVED***
-        key=***REMOVED***attr***REMOVED***
-        keys=***REMOVED***`$***REMOVED***this.getPath()***REMOVED***.editDisplay.relations`***REMOVED***
-        name=***REMOVED***attr***REMOVED***
-        label=***REMOVED***this.getRelationLabel(attr)***REMOVED***
-        moveAttr=***REMOVED***this.props.moveAttrEditView***REMOVED***
-        onClickEdit=***REMOVED***this.handleClickEditRelation***REMOVED***
-        onRemove=***REMOVED***this.handleRemoveRelation***REMOVED***
-        updateSiblingHoverState=***REMOVED***() => ***REMOVED******REMOVED******REMOVED***
+        index={index}
+        isDraggingSibling={false}
+        isEditing={index === this.findIndexRelationItemToEdit()}
+        key={attr}
+        keys={`${this.getPath()}.editDisplay.relations`}
+        name={attr}
+        label={this.getRelationLabel(attr)}
+        moveAttr={this.props.moveAttrEditView}
+        onClickEdit={this.handleClickEditRelation}
+        onRemove={this.handleRemoveRelation}
+        updateSiblingHoverState={() => {}}
       />
     );
-***REMOVED***
+  }
 
-  renderDraggableAttrListSettings = (attr, index) => ***REMOVED***
+  renderDraggableAttrListSettings = (attr, index) => {
     return (
-      <div key=***REMOVED***attr.name***REMOVED*** className=***REMOVED***styles.draggedWrapper***REMOVED***>
-        <div>***REMOVED***index + 1***REMOVED***.</div>
+      <div key={attr.name} className={styles.draggedWrapper}>
+        <div>{index + 1}.</div>
         <DraggableAttr
-          index=***REMOVED***index***REMOVED***
-          isDraggingSibling=***REMOVED***this.state.isDraggingSibling***REMOVED***
-          isEditing=***REMOVED***index === this.findIndexListItemToEdit()***REMOVED***
-          key=***REMOVED***attr.name***REMOVED***
-          keys=***REMOVED***this.getPath()***REMOVED***
-          label=***REMOVED***attr.label***REMOVED***
-          name=***REMOVED***attr.name***REMOVED***
-          moveAttr=***REMOVED***this.props.moveAttr***REMOVED***
-          onClickEdit=***REMOVED***this.handleClickEditAttr***REMOVED***
-          onRemove=***REMOVED***this.handleRemove***REMOVED***
-          updateSiblingHoverState=***REMOVED***this.updateSiblingHoverState***REMOVED***
+          index={index}
+          isDraggingSibling={this.state.isDraggingSibling}
+          isEditing={index === this.findIndexListItemToEdit()}
+          key={attr.name}
+          keys={this.getPath()}
+          label={attr.label}
+          name={attr.name}
+          moveAttr={this.props.moveAttr}
+          onClickEdit={this.handleClickEditAttr}
+          onRemove={this.handleRemove}
+          updateSiblingHoverState={this.updateSiblingHoverState}
         />
       </div>
     );
-***REMOVED***
+  }
 
-  renderDropDownItemSettingField = item => ***REMOVED***
+  renderDropDownItemSettingField = item => {
     return (
       <DropdownItem
-        key=***REMOVED***item***REMOVED***
-        onClick=***REMOVED***() => this.props.onClickAddAttrField(item, `$***REMOVED***this.getPath()***REMOVED***.editDisplay.fields`)***REMOVED***
+        key={item}
+        onClick={() => this.props.onClickAddAttrField(item, `${this.getPath()}.editDisplay.fields`)}
       >
-        ***REMOVED***item***REMOVED***
+        {item}
       </DropdownItem>
     );
-***REMOVED***
+  }
 
-  renderDropDownItemEditSettingsRelation = item => ***REMOVED***
+  renderDropDownItemEditSettingsRelation = item => {
     return (
       <DropdownItem
-        key=***REMOVED***item***REMOVED***
-        onClick=***REMOVED***() => this.props.onClickAddAttr(item, `$***REMOVED***this.getPath()***REMOVED***.editDisplay.relations`)***REMOVED***
+        key={item}
+        onClick={() => this.props.onClickAddAttr(item, `${this.getPath()}.editDisplay.relations`)}
       >
-        ***REMOVED***item***REMOVED***
+        {item}
       </DropdownItem>
     );
-***REMOVED***
+  }
 
-  renderDropDownItemListSettings = item => ***REMOVED***
+  renderDropDownItemListSettings = item => {
     return (
       <DropdownItem
-        key=***REMOVED***item.name***REMOVED***
-        onClick=***REMOVED***() => ***REMOVED***
-          this.props.onClickAddAttr(item, `$***REMOVED***this.getPath()***REMOVED***.listDisplay`);
-  ***REMOVED******REMOVED***
+        key={item.name}
+        onClick={() => {
+          this.props.onClickAddAttr(item, `${this.getPath()}.listDisplay`);
+        }}
       >
-        ***REMOVED***item.label***REMOVED***
+        {item.label}
       </DropdownItem>
     );
-***REMOVED***
+  }
 
-  renderDropDownP = msg => <p>***REMOVED***msg***REMOVED***</p>;
+  renderDropDownP = msg => <p>{msg}</p>;
 
-  renderForm = () => ***REMOVED***
-    const ***REMOVED*** settingPage: ***REMOVED*** fieldToEdit, relationToEdit ***REMOVED*** ***REMOVED*** = this.props;
+  renderForm = () => {
+    const { settingPage: { fieldToEdit, relationToEdit } } = this.props;
     
-    if (isEmpty(fieldToEdit)) ***REMOVED***
+    if (isEmpty(fieldToEdit)) {
       return forms.editView.relationForm.map(this.renderFormEditSettingsRelation);
-***REMOVED***
+    }
     
-    if (isEmpty(relationToEdit)) ***REMOVED***
+    if (isEmpty(relationToEdit)) {
       return forms.editView.fieldForm.map(this.renderFormEditSettingsField);
-***REMOVED***
+    }
 
     return null;
-***REMOVED***
+  }
 
-  renderFormEditSettingsField = (input, i) => ***REMOVED***
-    const ***REMOVED*** onChangeSettings, schema, settingPage: ***REMOVED*** fieldToEdit: ***REMOVED*** name ***REMOVED*** ***REMOVED*** ***REMOVED*** = this.props;
+  renderFormEditSettingsField = (input, i) => {
+    const { onChangeSettings, schema, settingPage: { fieldToEdit: { name } } } = this.props;
     const path = [...this.getPath().split('.'), 'editDisplay', 'availableFields', name, input.name];
     const value = get(schema, ['models', ...path], '');  
 
     return (
       <Input
-        key=***REMOVED***i***REMOVED***
-        onChange=***REMOVED***onChangeSettings***REMOVED***
-        value=***REMOVED***value***REMOVED***
-        ***REMOVED***...input***REMOVED***
-        name=***REMOVED***path.join('.')***REMOVED***
+        key={i}
+        onChange={onChangeSettings}
+        value={value}
+        {...input}
+        name={path.join('.')}
       />
     );
-***REMOVED***
+  }
 
-  renderFormEditSettingsRelation = (input, i) => ***REMOVED***
-    const ***REMOVED*** onChangeSettings, schema, settingPage: ***REMOVED*** relationToEdit: ***REMOVED*** alias ***REMOVED*** ***REMOVED*** ***REMOVED*** = this.props;
+  renderFormEditSettingsRelation = (input, i) => {
+    const { onChangeSettings, schema, settingPage: { relationToEdit: { alias } } } = this.props;
     const path = [...this.getPath().split('.'), 'relations', alias, input.name];
     const value = get(schema, ['models', ...path], '');
 
     return  (
       <Input
-        key=***REMOVED***i***REMOVED***
-        onChange=***REMOVED***onChangeSettings***REMOVED***
-        value=***REMOVED***value***REMOVED***
-        ***REMOVED***...input***REMOVED***
-        name=***REMOVED***path.join('.')***REMOVED***
+        key={i}
+        onChange={onChangeSettings}
+        value={value}
+        {...input}
+        name={path.join('.')}
       />
     );
-***REMOVED***
+  }
 
-  renderFormListAttrSettings = (input, i) => ***REMOVED***
+  renderFormListAttrSettings = (input, i) => {
     const indexListItemToEdit = this.findIndexListItemToEdit();
-    const inputName = `$***REMOVED***this.getPath()***REMOVED***.listDisplay.$***REMOVED***indexListItemToEdit***REMOVED***.$***REMOVED***input.name***REMOVED***`;
+    const inputName = `${this.getPath()}.listDisplay.${indexListItemToEdit}.${input.name}`;
     const inputType = this.getListDisplay()[indexListItemToEdit].type;
 
-    if (indexListItemToEdit === -1) ***REMOVED***
-      return <div key=***REMOVED***i***REMOVED*** />;
-***REMOVED***
+    if (indexListItemToEdit === -1) {
+      return <div key={i} />;
+    }
 
-    if ((inputType === 'json' || inputType === 'array') && (input.name === 'sortable' || input.name === 'searchable')) ***REMOVED***
+    if ((inputType === 'json' || inputType === 'array') && (input.name === 'sortable' || input.name === 'searchable')) {
       return null;
-***REMOVED***
+    }
 
     return (
       <Input
-        key=***REMOVED***input.name***REMOVED***
-        onChange=***REMOVED***this.handleChange***REMOVED***
-        value=***REMOVED***this.getValue(inputName, input.type)***REMOVED***
-        ***REMOVED***...input***REMOVED***
-        name=***REMOVED***inputName***REMOVED***
+        key={input.name}
+        onChange={this.handleChange}
+        value={this.getValue(inputName, input.type)}
+        {...input}
+        name={inputName}
       />
     );
-***REMOVED***
+  }
 
-  renderInputMainSettings = (input, i) => ***REMOVED***
-    const inputName = `$***REMOVED***this.getPath()***REMOVED***.$***REMOVED***input.name***REMOVED***`;
+  renderInputMainSettings = (input, i) => {
+    const inputName = `${this.getPath()}.${input.name}`;
     const content = (
       <Input
-        ***REMOVED***...input***REMOVED***
-        key=***REMOVED***input.name***REMOVED***
-        name=***REMOVED***inputName***REMOVED***
-        onChange=***REMOVED***this.props.onChangeSettings***REMOVED***
-        selectOptions=***REMOVED***this.getSelectOptions(input)***REMOVED***
-        value=***REMOVED***this.getValue(inputName, input.type)***REMOVED***
+        {...input}
+        key={input.name}
+        name={inputName}
+        onChange={this.props.onChangeSettings}
+        selectOptions={this.getSelectOptions(input)}
+        value={this.getValue(inputName, input.type)}
       />
     );
 
-    if (i === 3) ***REMOVED***
+    if (i === 3) {
 
       return (
-        <React.Fragment key=***REMOVED***input.name***REMOVED***>
+        <React.Fragment key={input.name}>
           <div className="col-md-12">
-            <div className=***REMOVED***styles.separator***REMOVED*** />
+            <div className={styles.separator} />
           </div>
-          ***REMOVED***content***REMOVED***
+          {content}
         </React.Fragment>
       );
-***REMOVED*** 
+    } 
                     
     return content;
-***REMOVED***
+  }
 
-  render() ***REMOVED***
-    const ***REMOVED***
+  render() {
+    const {
       isOpen,
       isOpenField,
       isOpenRelation,
       showWarning,
       showWarningCancel,
-***REMOVED*** = this.state;
-    const ***REMOVED***
+    } = this.state;
+    const {
       onSubmit,
-***REMOVED*** = this.props;
+    } = this.props;
 
     return (
-      <form onSubmit=***REMOVED***this.handleSubmit***REMOVED***>
-        <BackHeader onClick=***REMOVED***this.handleGoBack***REMOVED*** />
-        <div className=***REMOVED***cn('container-fluid', styles.containerFluid)***REMOVED***>
+      <form onSubmit={this.handleSubmit}>
+        <BackHeader onClick={this.handleGoBack} />
+        <div className={cn('container-fluid', styles.containerFluid)}>
           <PluginHeader
-            actions=***REMOVED***this.getPluginHeaderActions()***REMOVED***
-            title=***REMOVED***`Content Manager - $***REMOVED***upperFirst(this.getModelName())***REMOVED***`***REMOVED***
-            description=***REMOVED******REMOVED*** id: 'content-manager.containers.SettingPage.pluginHeaderDescription' ***REMOVED******REMOVED***
+            actions={this.getPluginHeaderActions()}
+            title={`Content Manager - ${upperFirst(this.getModelName())}`}
+            description={{ id: 'content-manager.containers.SettingPage.pluginHeaderDescription' }}
           />
           <PopUpWarning
-            isOpen=***REMOVED***showWarning***REMOVED***
-            toggleModal=***REMOVED***this.toggle***REMOVED***
-            content=***REMOVED******REMOVED***
+            isOpen={showWarning}
+            toggleModal={this.toggle}
+            content={{
               title: 'content-manager.popUpWarning.title',
               message: 'content-manager.popUpWarning.warning.updateAllSettings',
               cancel: 'content-manager.popUpWarning.button.cancel',
               confirm: 'content-manager.popUpWarning.button.confirm',
-      ***REMOVED******REMOVED***
+            }}
             popUpWarningType="danger"
-            onConfirm=***REMOVED***onSubmit***REMOVED***
+            onConfirm={onSubmit}
           />
           <PopUpWarning
-            isOpen=***REMOVED***showWarningCancel***REMOVED***
-            toggleModal=***REMOVED***this.toggleWarningCancel***REMOVED***
-            content=***REMOVED******REMOVED***
+            isOpen={showWarningCancel}
+            toggleModal={this.toggleWarningCancel}
+            content={{
               title: 'content-manager.popUpWarning.title',
               message: 'content-manager.popUpWarning.warning.cancelAllSettings',
               cancel: 'content-manager.popUpWarning.button.cancel',
               confirm: 'content-manager.popUpWarning.button.confirm',
-      ***REMOVED******REMOVED***
+            }}
             popUpWarningType="danger"
-            onConfirm=***REMOVED***this.handleConfirmReset***REMOVED***
+            onConfirm={this.handleConfirmReset}
           />
 
-          <div className=***REMOVED***cn('row', styles.container)***REMOVED***>
+          <div className={cn('row', styles.container)}>
             <Block
               description="content-manager.containers.SettingPage.listSettings.description"
               title="content-manager.containers.SettingPage.listSettings.title"
-              style=***REMOVED******REMOVED*** marginBottom: '13px', paddingBottom: '30px' ***REMOVED******REMOVED***
+              style={{ marginBottom: '13px', paddingBottom: '30px' }}
             >
-              <div className=***REMOVED***styles.ctmForm***REMOVED***>
+              <div className={styles.ctmForm}>
                 <div className="row">
-                  ***REMOVED***/* GENERAL LIST SETTINGS FORM */***REMOVED***
+                  {/* GENERAL LIST SETTINGS FORM */}
                   <div className="col-md-12">
                     <div className="row">
-                      ***REMOVED***forms.inputs.map(this.renderInputMainSettings)***REMOVED***
+                      {forms.inputs.map(this.renderInputMainSettings)}
                     </div>
                   </div>
 
                   <div className="col-md-12">
-                    <div className=***REMOVED***styles.separatorHigher***REMOVED*** />
+                    <div className={styles.separatorHigher} />
                   </div>
                 </div>
 
-                <div className=***REMOVED***styles.listDisplayWrapper***REMOVED***>
+                <div className={styles.listDisplayWrapper}>
                   <div className="row">
 
-                    <div className=***REMOVED***cn('col-md-12', styles.draggedDescription)***REMOVED***>
+                    <div className={cn('col-md-12', styles.draggedDescription)}>
                       <FormattedMessage id="content-manager.containers.SettingPage.attributes" />
                       <p>
                         <FormattedMessage id="content-manager.containers.SettingPage.attributes.description" />
@@ -728,38 +728,38 @@ class SettingPage extends React.PureComponent ***REMOVED***
                     </div>
 
                     <div className="col-md-5">
-                      ***REMOVED***this.getListDisplay().map(this.renderDraggableAttrListSettings)***REMOVED***
+                      {this.getListDisplay().map(this.renderDraggableAttrListSettings)}
                       <div
-                        className=***REMOVED***
+                        className={
                           cn(
                             styles.dropdownWrapper,
                             isOpen && styles.dropdownWrapperOpen,
                             this.shouldDisplayCursorNotAllowed('list') && styles.dropDownNotAllowed,
                           )
-                  ***REMOVED***
+                        }
                       >
-                        <ButtonDropdown isOpen=***REMOVED***isOpen***REMOVED*** toggle=***REMOVED***this.toggleDropdown***REMOVED***>
+                        <ButtonDropdown isOpen={isOpen} toggle={this.toggleDropdown}>
                           <DropdownToggle>
                             <FormattedMessage id="content-manager.containers.SettingPage.addField">
-                              ***REMOVED***this.renderDropDownP***REMOVED***
+                              {this.renderDropDownP}
                             </FormattedMessage>
                           </DropdownToggle>
                           <DropdownMenu>
-                            ***REMOVED***this.getDropDownItems().map(this.renderDropDownItemListSettings)***REMOVED***
+                            {this.getDropDownItems().map(this.renderDropDownItemListSettings)}
                           </DropdownMenu>
                         </ButtonDropdown>
                       </div>
                     </div>
 
-                    ***REMOVED***/* LIST ATTR FORM */***REMOVED***
+                    {/* LIST ATTR FORM */}
                     <div className="col-md-7">
-                      <div className=***REMOVED***styles.editWrapper***REMOVED***>
+                      <div className={styles.editWrapper}>
                         <div className="row">
-                          ***REMOVED***forms.editList.map(this.renderFormListAttrSettings)***REMOVED***
+                          {forms.editList.map(this.renderFormListAttrSettings)}
                         </div>
                       </div>
                     </div>
-                    ***REMOVED***/* LIST ATTR FORM */***REMOVED***
+                    {/* LIST ATTR FORM */}
                   </div>
                 </div>
               </div>
@@ -768,34 +768,34 @@ class SettingPage extends React.PureComponent ***REMOVED***
             <Block
               description="content-manager.containers.SettingPage.editSettings.description"
               title="content-manager.containers.SettingPage.editSettings.title"
-              style=***REMOVED******REMOVED*** paddingBottom: '30px' ***REMOVED******REMOVED***
+              style={{ paddingBottom: '30px' }}
             >
               <div className="row">
-                <div className=***REMOVED***cn('col-md-8', styles.draggedDescription, styles.edit_settings)***REMOVED***>
+                <div className={cn('col-md-8', styles.draggedDescription, styles.edit_settings)}>
                   <FormattedMessage id="content-manager.containers.SettingPage.attributes" />
-                  <div className=***REMOVED***cn(styles.sort_wrapper, 'col-md-12', styles.padded)***REMOVED***>
+                  <div className={cn(styles.sort_wrapper, 'col-md-12', styles.padded)}>
                     <CustomDragLayer />
-                    <div className=***REMOVED***cn('row', styles.noPadding)***REMOVED***>
-                      ***REMOVED***this.getEditPageDisplayedFields().map(this.renderDraggableAttrEditSettingsField)***REMOVED***
-                      <div className=***REMOVED***cn('col-md-6')***REMOVED***>
+                    <div className={cn('row', styles.noPadding)}>
+                      {this.getEditPageDisplayedFields().map(this.renderDraggableAttrEditSettingsField)}
+                      <div className={cn('col-md-6')}>
                         <div
-                          className=***REMOVED***
+                          className={
                             cn(
                               styles.dropdownRelations,
                               styles.dropdownWrapper,
                               isOpenField && styles.dropdownWrapperOpen,
                               this.shouldDisplayCursorNotAllowed('fields') && styles.dropDownNotAllowed,
                             )
-                    ***REMOVED***
+                          }
                         >
-                          <ButtonDropdown isOpen=***REMOVED***isOpenField***REMOVED*** toggle=***REMOVED***this.toggleDropDownFields***REMOVED***>
+                          <ButtonDropdown isOpen={isOpenField} toggle={this.toggleDropDownFields}>
                             <DropdownToggle>
                               <FormattedMessage id="content-manager.containers.SettingPage.addField">
-                                ***REMOVED***this.renderDropDownP***REMOVED***
+                                {this.renderDropDownP}
                               </FormattedMessage>
                             </DropdownToggle>
                             <DropdownMenu>
-                              ***REMOVED***this.getDropDownFieldItems().map(this.renderDropDownItemSettingField)***REMOVED***
+                              {this.getDropDownFieldItems().map(this.renderDropDownItemSettingField)}
                             </DropdownMenu>
                           </ButtonDropdown>
                         </div>
@@ -804,70 +804,70 @@ class SettingPage extends React.PureComponent ***REMOVED***
                   </div>
                 </div>
 
-                ***REMOVED***/* RELATIONS SORT */***REMOVED***
-                ***REMOVED***this.hasRelations() && (
-                  <div className=***REMOVED***cn('col-md-4', styles.draggedDescription, styles.edit_settings)***REMOVED***>
+                {/* RELATIONS SORT */}
+                {this.hasRelations() && (
+                  <div className={cn('col-md-4', styles.draggedDescription, styles.edit_settings)}>
                     <FormattedMessage id="content-manager.containers.SettingPage.relations" />
-                    <div className=***REMOVED***cn(styles.sort_wrapper, 'col-md-12')***REMOVED***>
+                    <div className={cn(styles.sort_wrapper, 'col-md-12')}>
                       <div className="row">
-                        ***REMOVED***/* DRAGGABLE BLOCK */***REMOVED***
-                        ***REMOVED***this.getEditPageDisplayedRelations().map(this.renderDraggableAttrEditSettingsRelation)***REMOVED***
-                        ***REMOVED***/* DRAGGABLE BLOCK */***REMOVED***
+                        {/* DRAGGABLE BLOCK */}
+                        {this.getEditPageDisplayedRelations().map(this.renderDraggableAttrEditSettingsRelation)}
+                        {/* DRAGGABLE BLOCK */}
                         <div
-                          className=***REMOVED***
+                          className={
                             cn(
                               styles.dropdownRelations,
                               styles.dropdownWrapper,
                               isOpenRelation && styles.dropdownWrapperOpen,
                               this.shouldDisplayCursorNotAllowed('relations') && styles.dropDownNotAllowed
                             )
-                    ***REMOVED***
+                          }
                         >
-                          <ButtonDropdown isOpen=***REMOVED***isOpenRelation***REMOVED*** toggle=***REMOVED***this.toggleDropdownRelations***REMOVED***>
+                          <ButtonDropdown isOpen={isOpenRelation} toggle={this.toggleDropdownRelations}>
                             <DropdownToggle>
                               <FormattedMessage id="content-manager.containers.SettingPage.addRelationalField">
-                                ***REMOVED***this.renderDropDownP***REMOVED***
+                                {this.renderDropDownP}
                               </FormattedMessage>
                             </DropdownToggle>
                             <DropdownMenu>
-                              ***REMOVED***this.getDropDownRelationsItems().map(this.renderDropDownItemEditSettingsRelation)***REMOVED***
+                              {this.getDropDownRelationsItems().map(this.renderDropDownItemEditSettingsRelation)}
                             </DropdownMenu>
                           </ButtonDropdown>
                         </div>
                       </div>
                     </div>
                   </div>
-                )***REMOVED***
-                ***REMOVED***/* RELATIONS SORT */***REMOVED***
+                )}
+                {/* RELATIONS SORT */}
               </div>
 
-              ***REMOVED***/* EDIT MAIN ATTR FORM */***REMOVED***
+              {/* EDIT MAIN ATTR FORM */}
               <div className="row">
                 <div className="col-md-8">
-                  <div className=***REMOVED***styles.editWrapper***REMOVED***>
+                  <div className={styles.editWrapper}>
 
                     <div className="row">
-                      ***REMOVED***this.renderForm()***REMOVED***
+                      {this.renderForm()}
                     </div>
 
                   </div>
                 </div>
               </div>
-              ***REMOVED***/* EDIT MAIN ATTR FORM */***REMOVED***
+              {/* EDIT MAIN ATTR FORM */}
             </Block>
           </div>
         </div>
       </form>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-SettingPage.defaultProps = ***REMOVED***
+SettingPage.defaultProps = {
   draggedItemName: null,
   grid: [],
-***REMOVED***;
+};
 
-SettingPage.propTypes = ***REMOVED***
+SettingPage.propTypes = {
   addedField: PropTypes.bool.isRequired,
   beginMove: PropTypes.func.isRequired,
   draggedItemName: PropTypes.string,
@@ -896,11 +896,11 @@ SettingPage.propTypes = ***REMOVED***
   settingPage: PropTypes.object.isRequired,
   shouldResetGrid: PropTypes.bool.isRequired,
   submitSuccess: PropTypes.bool.isRequired,
-***REMOVED***;
+};
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators(
-    ***REMOVED***
+    {
       beginMove,
       endMove,
       moveAttr,
@@ -918,11 +918,11 @@ const mapDispatchToProps = (dispatch) => (
       onReset,
       onSubmit,
       setLayout,
-***REMOVED***,
+    },
     dispatch,
   )
 );
-const mapStateToProps = createStructuredSelector(***REMOVED***
+const mapStateToProps = createStructuredSelector({
   addedField: makeSelectAddedField(),
   draggedItemName: makeSelectDraggedItemName(),
   grid: makeSelectGrid(),
@@ -932,10 +932,10 @@ const mapStateToProps = createStructuredSelector(***REMOVED***
   settingPage: makeSelectSettingPage(),
   shouldResetGrid: makeSelectShouldResetGrid(),
   submitSuccess: makeSelectSubmitSuccess(),
-***REMOVED***);
+});
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withReducer = injectReducer(***REMOVED*** key: 'settingPage', reducer ***REMOVED***);
-const withSaga = injectSaga(***REMOVED*** key: 'settingPage', saga ***REMOVED***);
+const withReducer = injectReducer({ key: 'settingPage', reducer });
+const withSaga = injectSaga({ key: 'settingPage', saga });
 
 export default compose(
   withReducer,

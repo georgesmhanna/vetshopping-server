@@ -1,13 +1,13 @@
-.tableRow ***REMOVED*** /* stylelint-disable */
+.tableRow { /* stylelint-disable */
   height: 54px;
   background: #ffffff;
 
-  &:hover ***REMOVED***
+  &:hover {
     cursor: pointer;
     background: #F7F8F8;
-***REMOVED***
+  }
 
-  td***REMOVED***
+  td{
     height: 53px;
     line-height: 53px;
     font-size: 1.3rem;
@@ -15,31 +15,31 @@
     color: #333740;
     border-collapse: collapse;
     border-top: 1px solid #F1F1F2 !important;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.truncate ***REMOVED***
+.truncate {
   display: table;
   table-layout: fixed;
   width: 100%;
-***REMOVED***
+}
 
-.truncated ***REMOVED***
+.truncated {
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-***REMOVED***
+}
 
-.actions ***REMOVED***
+.actions {
   text-align: right;
 
-  i ***REMOVED***
+  i {
     margin-left: 15px;
     font-size: 1.1rem;
     color: #0E1622;
 
-    &:first-of-type***REMOVED***
+    &:first-of-type{
       margin-left: 0px;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

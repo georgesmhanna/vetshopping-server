@@ -3,44 +3,44 @@
 * PluginLeftMenuSection
 *
 *   - Required props:
-*     - ***REMOVED***object***REMOVED*** section
+*     - {object} section
 *
 *
 */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** map ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { map } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 import PluginLeftMenuLink from 'components/PluginLeftMenuLink';
 import styles from './styles.scss';
 
 
-class PluginLeftMenuSection extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  render() ***REMOVED***
+class PluginLeftMenuSection extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
     const links = map(this.props.section.items, (item, index) => (
       <PluginLeftMenuLink
-        key=***REMOVED***index***REMOVED***
-        link=***REMOVED***item***REMOVED***
-        renderCustomLink=***REMOVED***this.props.renderCustomLink***REMOVED***
-        basePath=***REMOVED***this.props.basePath***REMOVED***
-        customIcon=***REMOVED***this.props.customIcon***REMOVED***
+        key={index}
+        link={item}
+        renderCustomLink={this.props.renderCustomLink}
+        basePath={this.props.basePath}
+        customIcon={this.props.customIcon}
       />
     ));
     return (
-      <div className=***REMOVED***styles.pluginLeftMenuSection***REMOVED***>
+      <div className={styles.pluginLeftMenuSection}>
         <p>
-          <FormattedMessage id=***REMOVED***`content-type-builder.$***REMOVED***this.props.section.name***REMOVED***`***REMOVED*** />
+          <FormattedMessage id={`content-type-builder.${this.props.section.name}`} />
         </p>
         <ul>
-          ***REMOVED***links***REMOVED***
+          {links}
         </ul>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-PluginLeftMenuSection.propTypes = ***REMOVED***
+PluginLeftMenuSection.propTypes = {
   basePath: PropTypes.string,
   customIcon: PropTypes.string,
   renderCustomLink: PropTypes.oneOfType([
@@ -48,12 +48,12 @@ PluginLeftMenuSection.propTypes = ***REMOVED***
     PropTypes.func,
   ]),
   section: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
-PluginLeftMenuSection.defaultProps = ***REMOVED***
+PluginLeftMenuSection.defaultProps = {
   basePath: '',
   customIcon: '',
   renderCustomLink: false,
-***REMOVED***;
+};
 
 export default PluginLeftMenuSection;

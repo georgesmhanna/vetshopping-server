@@ -1,4 +1,4 @@
-***REMOVED***
+{
 	"plugin.description.short": "Veloce modo di vedere, modificare e cancellare i dati presenti nel database.",
 	"plugin.description.long": "Veloce modo di vedere, modificare e cancellare i dati presenti nel database.",
 	"containers.Home.pluginHeaderTitle": "Content Manager",
@@ -9,9 +9,9 @@
 	"containers.Edit.delete": "Elimina",
 	"containers.Edit.reset": "Resetta",
 	"containers.Edit.returnList": "Tornare alla lista",
-	"containers.List.addAnEntry": "Aggiungi un Nuovo ***REMOVED***entity***REMOVED***",
-	"containers.List.pluginHeaderDescription": "***REMOVED***label***REMOVED*** voci non trovato",
-	"containers.List.pluginHeaderDescription.singular": "***REMOVED***label***REMOVED*** voce trovati",
+	"containers.List.addAnEntry": "Aggiungi un Nuovo {entity}",
+	"containers.List.pluginHeaderDescription": "{label} voci non trovato",
+	"containers.List.pluginHeaderDescription.singular": "{label} voce trovati",
 	"components.LimitSelect.itemsPerPage": "Elementi per pagina",
   "containers.List.errorFetchRecords": "Errore",
   "containers.SettingPage.addField" : "Aggiungi un nuovo campo",
@@ -46,13 +46,13 @@
   
   "components.Search.placeholder": "Ricerca di una voce...",
   
-	"components.TableDelete.entries.plural": "***REMOVED***number***REMOVED*** voci selezionate",
-	"components.TableDelete.entries.singular": "***REMOVED***number***REMOVED*** voce selezionata",
+	"components.TableDelete.entries.plural": "{number} voci selezionate",
+	"components.TableDelete.entries.singular": "{number} voce selezionata",
   "components.TableDelete.delete": "Eliminare tutti",
   
-	"components.TableEmpty.withFilters": "Non vi è alcun ***REMOVED***contentType***REMOVED*** con l'applicazione di filtri...",
-	"components.TableEmpty.withoutFilter": "Non vi è alcun ***REMOVED***contentType***REMOVED***...",
-	"components.TableEmpty.withSearch": "Non vi è alcun ***REMOVED***contentType***REMOVED*** corrispondente alla ricerca (***REMOVED***search***REMOVED***)...",
+	"components.TableEmpty.withFilters": "Non vi è alcun {contentType} con l'applicazione di filtri...",
+	"components.TableEmpty.withoutFilter": "Non vi è alcun {contentType}...",
+	"components.TableEmpty.withSearch": "Non vi è alcun {contentType} corrispondente alla ricerca ({search})...",
   
   "EditRelations.title": "Dati relazionali",
 
@@ -112,4 +112,4 @@
   "popUpWarning.warning.cancelAllSettings" : "Sei sicuro di voler cancellare le tue modifiche?",
   "popUpWarning.warning.updateAllSettings" : "Questa operazione modificherà tutte le tue impostazioni"
   
-***REMOVED***
+}

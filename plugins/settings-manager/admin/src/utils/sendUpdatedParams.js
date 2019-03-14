@@ -1,40 +1,40 @@
-import ***REMOVED*** forEach, includes, replace, trimStart, split, unset ***REMOVED*** from 'lodash';
+import { forEach, includes, replace, trimStart, split, unset } from 'lodash';
 
-export default function sendUpdatedParams(isCreatingNewFields) ***REMOVED***
+export default function sendUpdatedParams(isCreatingNewFields) {
   const prevSettings = this.props.home.initialData;
-  const body = ***REMOVED******REMOVED***;
+  const body = {};
 
-  forEach(this.props.home.modifiedData, (value, key) => ***REMOVED***
-    if (value !== prevSettings[key] && key !== 'security.xframe.value.nested') ***REMOVED***
+  forEach(this.props.home.modifiedData, (value, key) => {
+    if (value !== prevSettings[key] && key !== 'security.xframe.value.nested') {
       body[key] = value;
-***REMOVED***
+    }
 
-    if (isCreatingNewFields && value && key !== 'security.xframe.value.nested') ***REMOVED***
+    if (isCreatingNewFields && value && key !== 'security.xframe.value.nested') {
       body[key] = value;
-***REMOVED***
+    }
 
-    else if (key === 'security.xframe.value.nested' && prevSettings['security.xframe.value.nested'] !== this.props.home.modifiedData['security.xframe.value.nested'] && this.props.home.modifiedData['security.xframe.value'] === 'ALLOW-FROM') ***REMOVED***
+    else if (key === 'security.xframe.value.nested' && prevSettings['security.xframe.value.nested'] !== this.props.home.modifiedData['security.xframe.value.nested'] && this.props.home.modifiedData['security.xframe.value'] === 'ALLOW-FROM') {
 
-      const xFrameValue = `ALLOW-FROM.ALLOW-FROM $***REMOVED***trimStart(replace(this.props.home.modifiedData['security.xframe.value.nested'], 'ALLOW-FROM', ''))***REMOVED***`;
+      const xFrameValue = `ALLOW-FROM.ALLOW-FROM ${trimStart(replace(this.props.home.modifiedData['security.xframe.value.nested'], 'ALLOW-FROM', ''))}`;
       body['security.xframe.value'] = xFrameValue;
-***REMOVED***
-***REMOVED***);
+    }
+  });
 
   const disabledSections = [];
 
   // Check all sections that depends on a toggle
-  forEach(body, (bodyValue, target) => ***REMOVED***
+  forEach(body, (bodyValue, target) => {
     if (includes(target, 'enabled') && !bodyValue) disabledSections.push(split(target, '.')[1]);
-***REMOVED***);
+  });
 
   // Remove disabled values
-  forEach(disabledSections, (sectionName) => ***REMOVED***
-    forEach(body, (v, bodyKey) => ***REMOVED***
-      if (!includes(bodyKey, 'enabled') && includes(bodyKey, sectionName)) ***REMOVED***
+  forEach(disabledSections, (sectionName) => {
+    forEach(body, (v, bodyKey) => {
+      if (!includes(bodyKey, 'enabled') && includes(bodyKey, sectionName)) {
         unset(body, bodyKey);
-***REMOVED***
-***REMOVED***);
-***REMOVED***);
+      }
+    });
+  });
 
   return body;
-***REMOVED***
+}

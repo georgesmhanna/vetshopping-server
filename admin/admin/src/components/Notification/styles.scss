@@ -1,7 +1,7 @@
 /* Import */
 @import '../../styles/variables/variables';
 
-.notification ***REMOVED***
+.notification {
   position: relative;
   display: flex;
   align-items: stretch;
@@ -18,24 +18,24 @@
 
   // The last notification must appear from
   // the background of the previous one.
-  &:last-child ***REMOVED***
+  &:last-child {
     z-index: 1;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.notification:hover ***REMOVED***
+.notification:hover {
   cursor: pointer;
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-***REMOVED***
+}
 
-.notificationIcon ***REMOVED***
+.notificationIcon {
   position: relative;
   display: block;
   width: 60px;
   text-align: center;
   font-size: 2.4rem;
 
-  &:before ***REMOVED***
+  &:before {
     position: absolute;
     top: calc(50% - 10px); left: calc(50% - 10px);
     width: 20px;
@@ -46,27 +46,27 @@
     color: $brand-success;
     font-size: 1.2rem;
     text-align: center;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.notificationContent ***REMOVED***
+.notificationContent {
   display: flex;
   align-items: center;
   width: 220px;
   margin: 0;
   padding-right: 10px;
   border-right: 1px solid rgba(255, 255, 255, 0.3);
-***REMOVED***
+}
 
-.notificationTitle ***REMOVED***
+.notificationTitle {
   margin-bottom: 0;
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.8rem;
-***REMOVED***
+}
 
 
-.notificationClose ***REMOVED***
+.notificationClose {
   cursor: pointer;
   opacity: 0.6;
   position: relative;
@@ -78,48 +78,48 @@
   transition: opacity 0.1s ease;
   -webkit-font-smoothing: antialiased;
 
-  &:hover ***REMOVED***
+  &:hover {
     opacity: 1;
-***REMOVED***
+  }
 
-  &:before ***REMOVED***
+  &:before {
     position: absolute;
     top: calc(50% - 6px);
     height: 100%;
     font-size: 1.3rem;
     font-weight: 100!important;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.notificationSuccess***REMOVED***
+.notificationSuccess{
   background: linear-gradient(100deg , #FFFFFF 50%, rgba(39, 183, 15, .05)), $white;
-***REMOVED***
+}
 
-.notificationWarning ***REMOVED***
+.notificationWarning {
   background: linear-gradient(100deg , #FFFFFF 50%, rgba(250, 156, 0, .05)), $white;
 
-  .notificationIcon:before ***REMOVED***
+  .notificationIcon:before {
     padding-top: 4px;
     border-color: $brand-warning;
     color: $brand-warning;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.notificationError ***REMOVED***
+.notificationError {
   background: linear-gradient(100deg , #FFFFFF 50%, rgba(255, 93, 0, .05)), $white;
 
-  .notificationIcon:before ***REMOVED***
+  .notificationIcon:before {
     padding-top: 4px;
     border-color: $brand-danger;
     color: $brand-danger;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.notificationInfo ***REMOVED***
+.notificationInfo {
   background: linear-gradient(100deg , #FFFFFF 50%, rgba(28, 93, 231, .05)), $white;
 
-  .notificationIcon:before ***REMOVED***
+  .notificationIcon:before {
     border-color: $brand-primary;
     color: $brand-primary;
-***REMOVED***
-***REMOVED***
+  }
+}

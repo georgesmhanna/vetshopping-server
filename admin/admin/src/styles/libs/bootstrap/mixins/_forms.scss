@@ -10,72 +10,72 @@
 //
 // Example usage: change the default blue border and shadow to white for better
 // contrast against a dark gray background.
-@mixin form-control-focus() ***REMOVED***
-  &:focus ***REMOVED***
+@mixin form-control-focus() {
+  &:focus {
     color: $input-focus-color;
     background-color: $input-focus-bg;
     border-color: $input-focus-border-color;
     outline: none;
     @include box-shadow($input-focus-box-shadow);
-***REMOVED***
-***REMOVED***
+  }
+}
 
 
-@mixin form-validation-state($state, $color) ***REMOVED***
+@mixin form-validation-state($state, $color) {
 
   .form-control,
-  .custom-select ***REMOVED***
-    .was-validated &:#***REMOVED***$state***REMOVED***,
-    &.is-#***REMOVED***$state***REMOVED*** ***REMOVED***
+  .custom-select {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
       border-color: $color;
 
-      &:focus ***REMOVED***
+      &:focus {
         // box-shadow: 0 0 0 .2rem rgba($color,.25);
-***REMOVED***
+      }
 
       ~ .invalid-feedback,
-      ~ .invalid-tooltip ***REMOVED***
+      ~ .invalid-tooltip {
         display: block;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
 
 
   // TODO: redo check markup lol crap
-  .form-check-input ***REMOVED***
-    .was-validated &:#***REMOVED***$state***REMOVED***,
-    &.is-#***REMOVED***$state***REMOVED*** ***REMOVED***
-      + .form-check-label ***REMOVED***
+  .form-check-input {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      + .form-check-label {
         color: $color;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
 
   // custom radios and checks
-  .custom-control-input ***REMOVED***
-    .was-validated &:#***REMOVED***$state***REMOVED***,
-    &.is-#***REMOVED***$state***REMOVED*** ***REMOVED***
-      ~ .custom-control-indicator ***REMOVED***
+  .custom-control-input {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      ~ .custom-control-indicator {
         background-color: rgba($color, .25);
-***REMOVED***
-      ~ .custom-control-description ***REMOVED***
+      }
+      ~ .custom-control-description {
         color: $color;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
 
   // custom file
-  .custom-file-input ***REMOVED***
-    .was-validated &:#***REMOVED***$state***REMOVED***,
-    &.is-#***REMOVED***$state***REMOVED*** ***REMOVED***
-      ~ .custom-file-control ***REMOVED***
+  .custom-file-input {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      ~ .custom-file-control {
         border-color: $color;
 
-        &::before ***REMOVED*** border-color: inherit; ***REMOVED***
-***REMOVED***
-      &:focus ***REMOVED***
+        &::before { border-color: inherit; }
+      }
+      &:focus {
         box-shadow: 0 0 0 .2rem rgba($color,.25);
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
+}

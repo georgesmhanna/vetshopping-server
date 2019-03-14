@@ -1,52 +1,52 @@
-***REMOVED***
+{
   "routes": [
-    ***REMOVED***
+    {
       "method": "GET",
       "path": "/colors",
       "handler": "Color.find",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/colors/count",
       "handler": "Color.count",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/colors/:_id",
       "handler": "Color.findOne",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "POST",
       "path": "/colors",
       "handler": "Color.create",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "PUT",
       "path": "/colors/:_id",
       "handler": "Color.update",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "DELETE",
       "path": "/colors/:_id",
       "handler": "Color.destroy",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***
+      }
+    }
   ]
-***REMOVED***
+}

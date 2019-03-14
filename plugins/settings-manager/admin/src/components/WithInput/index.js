@@ -8,16 +8,16 @@ import React from 'react';
 import styles from './styles.scss';
 
 /* eslint-disable react/require-default-props  */
-const WithInput = (InnerInput) => class extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  render() ***REMOVED***
+const WithInput = (InnerInput) => class extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
     return (
       <InnerInput
-        ***REMOVED***...this.props***REMOVED***
-        ***REMOVED***...this.state***REMOVED***
-        styles=***REMOVED***styles***REMOVED***
+        {...this.props}
+        {...this.state}
+        styles={styles}
       />
     );
-***REMOVED***
-***REMOVED***;
+  }
+};
 
 export default WithInput;

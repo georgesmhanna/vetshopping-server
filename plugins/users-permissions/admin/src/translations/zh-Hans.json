@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "Auth.form.button.register-success": "再次发送",
   "Auth.form.button.forgot-password.success": "再次发送",
   "Auth.form.button.forgot-password": "发送电子邮件",
@@ -53,7 +53,7 @@
 
   "components.Input.error.password.noMatch": "密码不匹配",
 
-  "Controller.input.label": "***REMOVED***label***REMOVED*** ",
+  "Controller.input.label": "{label} ",
   "Controller.selectAll": "选择全部",
 
   "EditForm.inputSelect.label.role": "认证用户的默认角色",
@@ -73,11 +73,11 @@
   "EditPage.form.roles": "角色详情",
   "EditPage.form.roles.label.description": "描述",
   "EditPage.form.roles.label.name": "名称",
-  "EditPage.form.roles.label.users": "与此角色相关联的用户数: (***REMOVED***number***REMOVED***)",
+  "EditPage.form.roles.label.users": "与此角色相关联的用户数: ({number})",
   "EditPage.form.roles.name.error": "此值是必需的。",
-  "EditPage.header.title": "***REMOVED***name***REMOVED*** ",
+  "EditPage.header.title": "{name} ",
   "EditPage.header.title.create": "创建一个新角色",
-  "EditPage.header.description": "***REMOVED***description***REMOVED*** ",
+  "EditPage.header.description": "{description} ",
   "EditPage.header.description.create": " ",
 
   "EditPage.notification.permissions.error": "获取权限(permission)时出错",
@@ -97,16 +97,16 @@
   "List.button.roles": "添加新角色",
   "List.button.providers": "添加新供应商",
 
-  "List.title.emailTemplates.singular": "***REMOVED***number***REMOVED*** 电子邮件模板是可用的",
-  "List.title.emailTemplates.plural": "***REMOVED***number***REMOVED*** 电子邮件模板是可用的",
+  "List.title.emailTemplates.singular": "{number} 电子邮件模板是可用的",
+  "List.title.emailTemplates.plural": "{number} 电子邮件模板是可用的",
 
-  "List.title.providers.disabled.singular": "***REMOVED***number***REMOVED*** 被禁用",
-  "List.title.providers.disabled.plural": "***REMOVED***number***REMOVED*** 被禁用",
-  "List.title.providers.enabled.singular": "***REMOVED***number***REMOVED*** 个供应商被启用, ",
-  "List.title.providers.enabled.plural": "***REMOVED***number***REMOVED*** 个供应商被启用, ",
+  "List.title.providers.disabled.singular": "{number} 被禁用",
+  "List.title.providers.disabled.plural": "{number} 被禁用",
+  "List.title.providers.enabled.singular": "{number} 个供应商被启用, ",
+  "List.title.providers.enabled.plural": "{number} 个供应商被启用, ",
 
-  "List.title.roles.singular": "***REMOVED***number***REMOVED*** 个角色可用",
-  "List.title.roles.plural": "***REMOVED***number***REMOVED*** 角色可用",
+  "List.title.roles.singular": "{number} 个角色可用",
+  "List.title.roles.plural": "{number} 角色可用",
 
   "notification.error.delete": "删除数据时出错",
   "notification.error.fetch": "获取数据时出错",
@@ -119,7 +119,7 @@
   "plugin.description.long": "使用基于JWT的完整身份验证过程来保护API。这个插件还有一个ACL策略，允许你管理用户组之间的权限。",
 
   "Plugin.permissions.application.description": "定义所有项目的允许操作。",
-  "Plugin.permissions.plugins.description": "定义 ***REMOVED***name***REMOVED*** 插件所有允许的操作。",
+  "Plugin.permissions.plugins.description": "定义 {name} 插件所有允许的操作。",
 
   "Plugins.header.title": "权限",
   "Plugins.header.description": "下面只列出路由绑定的操作。",
@@ -139,7 +139,7 @@
   "PopUpForm.button.save": "保存",
   "PopUpForm.header.add.providers": "增加新的供应商(Provider)",
   "PopUpForm.header.edit.email-templates": "编辑电子邮件模版",
-  "PopUpForm.header.edit.providers": "编译 ***REMOVED***provider***REMOVED*** 供应商",
+  "PopUpForm.header.edit.providers": "编译 {provider} 供应商",
   "PopUpForm.inputSelect.providers.label": "选择供应商",
   "PopUpForm.Email.options.from.name.label": "Shipper name",
   "PopUpForm.Email.options.from.email.label": "Shipper email",
@@ -172,6 +172,6 @@
   "PopUpForm.Providers.twitter.providerConfig.redirectURL": "Twitter应用中配置的重定向URL",
 
   "PopUpForm.Providers.callback.placeholder": "TEXT",
-  "PopUpForm.Email.email_templates.inputDescription": "如果你不确定如何使用变量， ***REMOVED***link***REMOVED***",
+  "PopUpForm.Email.email_templates.inputDescription": "如果你不确定如何使用变量， {link}",
   "PopUpForm.Email.link.documentation": "看看我们的文档。"
-***REMOVED***
+}

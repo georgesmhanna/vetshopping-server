@@ -3,9 +3,9 @@
  * EditPage actions
  *
  */
-import ***REMOVED*** fromJS, List, Map ***REMOVED*** from 'immutable';
-import ***REMOVED*** get, replace, toString ***REMOVED*** from 'lodash';
-import ***REMOVED***
+import { fromJS, List, Map } from 'immutable';
+import { get, replace, toString } from 'lodash';
+import {
   ADD_USER,
   GET_PERMISSIONS,
   GET_PERMISSIONS_SUCCEEDED,
@@ -32,207 +32,207 @@ import ***REMOVED***
   SUBMIT,
   SUBMIT_ERROR,
   SUBMIT_SUCCEEDED,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function addUser(newUser) ***REMOVED***
-  return ***REMOVED***
+export function addUser(newUser) {
+  return {
     type: ADD_USER,
     newUser,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getPermissions() ***REMOVED***
-  return ***REMOVED***
+export function getPermissions() {
+  return {
     type: GET_PERMISSIONS,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getPermissionsSucceeded(data) ***REMOVED***
+export function getPermissionsSucceeded(data) {
   const permissions = Map(fromJS(data.permissions));
 
-  return ***REMOVED***
+  return {
     type: GET_PERMISSIONS_SUCCEEDED,
     permissions,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
 
-export function getPolicies() ***REMOVED***
-  return ***REMOVED***
+export function getPolicies() {
+  return {
     type: GET_POLICIES,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getPoliciesSucceeded(policies) ***REMOVED***
-  const formattedPolicies = policies.policies.reduce((acc, current) => ***REMOVED***
-    acc.push(***REMOVED*** value: current ***REMOVED***);
+export function getPoliciesSucceeded(policies) {
+  const formattedPolicies = policies.policies.reduce((acc, current) => {
+    acc.push({ value: current });
 
     return acc;
-***REMOVED***,[]);
+  },[]);
 
-  return ***REMOVED***
+  return {
     type: GET_POLICIES_SUCCEEDED,
-    policies: [***REMOVED*** name: 'users-permissions.Policies.InputSelect.empty', value: '' ***REMOVED***].concat(formattedPolicies),
-***REMOVED***;
-***REMOVED***
+    policies: [{ name: 'users-permissions.Policies.InputSelect.empty', value: '' }].concat(formattedPolicies),
+  };
+}
 
-export function getRole(id) ***REMOVED***
-  return ***REMOVED***
+export function getRole(id) {
+  return {
     type: GET_ROLE,
     id,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getRoleSucceeded(data) ***REMOVED***
-  const form = Map(***REMOVED***
+export function getRoleSucceeded(data) {
+  const form = Map({
     name: get(data, ['role', 'name']),
     description: get(data, ['role', 'description']),
     users: List(get(data, ['role', 'users'])),
     permissions: Map(fromJS(get(data, ['role', 'permissions']))),
-***REMOVED***);
+  });
 
-  return ***REMOVED***
+  return {
     type: GET_ROLE_SUCCEEDED,
     form,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getRoutesSucceeded(routes) ***REMOVED***
-  return ***REMOVED***
+export function getRoutesSucceeded(routes) {
+  return {
     type: GET_ROUTES_SUCCEEDED,
     routes,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getUser(user) ***REMOVED***
-  return ***REMOVED***
+export function getUser(user) {
+  return {
     type: GET_USER,
     user,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getUserSucceeded(users) ***REMOVED***
-  return ***REMOVED***
+export function getUserSucceeded(users) {
+  return {
     type: GET_USER_SUCCEEDED,
     users: users.filter(o => toString(o.role) !== '0'),
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onCancel() ***REMOVED***
-  return ***REMOVED***
+export function onCancel() {
+  return {
     type: ON_CANCEL,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onChangeInput(***REMOVED*** target ***REMOVED***) ***REMOVED***
+export function onChangeInput({ target }) {
   const keys = ['modifiedData'].concat(target.name.split('.'));
 
-  return ***REMOVED***
+  return {
     type: ON_CHANGE_INPUT,
     keys,
     value: target.value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onClickAdd(itemToAdd) ***REMOVED***
-  return ***REMOVED***
+export function onClickAdd(itemToAdd) {
+  return {
     type: ON_CLICK_ADD,
     itemToAdd,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onClickDelete(itemToDelete) ***REMOVED***
-  return ***REMOVED***
+export function onClickDelete(itemToDelete) {
+  return {
     type: ON_CLICK_DELETE,
     itemToDelete,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export const resetProps = () => (***REMOVED***
+export const resetProps = () => ({
   type: RESET_PROPS,
-***REMOVED***);
+});
 
-export function resetShouldDisplayPoliciesHint() ***REMOVED***
-  return ***REMOVED***
+export function resetShouldDisplayPoliciesHint() {
+  return {
     type: RESET_SHOULD_DISPLAY_POLICIES_HINT,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function selectAllActions(name, shouldEnable) ***REMOVED***
-  return ***REMOVED***
+export function selectAllActions(name, shouldEnable) {
+  return {
     type: SELECT_ALL_ACTIONS,
     keys: ['modifiedData'].concat(name.split('.')),
     shouldEnable,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setActionType(action) ***REMOVED***
+export function setActionType(action) {
   const actionType = action === 'create' ? 'POST' : 'PUT';
 
-  return ***REMOVED***
+  return {
     type: SET_ACTION_TYPE,
     actionType,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setErrors(formErrors) ***REMOVED***
-  return ***REMOVED***
+export function setErrors(formErrors) {
+  return {
     type: SET_ERRORS,
     formErrors,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setForm() ***REMOVED***
-  const form = Map(***REMOVED***
+export function setForm() {
+  const form = Map({
     name: '',
     description: '',
     users: List([]),
-    permissions: Map(***REMOVED******REMOVED***),
-***REMOVED***);
+    permissions: Map({}),
+  });
 
-  return ***REMOVED***
+  return {
     type: SET_FORM,
     form,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setInputPoliciesPath(path) ***REMOVED***
+export function setInputPoliciesPath(path) {
   const inputPath = replace(path, 'enabled', 'policy');
 
-  return ***REMOVED***
+  return {
     type: SET_INPUT_POLICIES_PATH,
     inputPath,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setRoleId(roleId) ***REMOVED***
-  return ***REMOVED***
+export function setRoleId(roleId) {
+  return {
     type: SET_ROLE_ID,
     roleId,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setShouldDisplayPolicieshint() ***REMOVED***
-  return ***REMOVED***
+export function setShouldDisplayPolicieshint() {
+  return {
     type: SET_SHOULD_DISPLAY_POLICIES_HINT,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submit() ***REMOVED***
-  return ***REMOVED***
+export function submit() {
+  return {
     type: SUBMIT,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submitError(errors) ***REMOVED***
-  return ***REMOVED***
+export function submitError(errors) {
+  return {
     type: SUBMIT_ERROR,
     errors,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submitSucceeded() ***REMOVED***
-  return ***REMOVED***
+export function submitSucceeded() {
+  return {
     type: SUBMIT_SUCCEEDED,
-***REMOVED***;
-***REMOVED***
+  };
+}

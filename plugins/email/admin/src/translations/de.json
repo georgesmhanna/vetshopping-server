@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "ConfigPage.title": "E-Mail - Einstellungen",
   "ConfigPage.description": "E-Mail-Plugin konfigurieren",
   
@@ -11,4 +11,4 @@
 
   "plugin.description.short": "Zum Versand von E-Mails.",
   "plugin.description.long": "Zum Versand von E-Mails."
-***REMOVED***
+}

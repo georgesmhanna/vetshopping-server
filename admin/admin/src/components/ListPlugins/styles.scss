@@ -1,61 +1,61 @@
-.container ***REMOVED***
+.container {
   padding-top: 1.6rem;
   background-color: #FFFFFF;
   box-shadow: 0 2px 4px #E3E9F3;
-***REMOVED***
+}
 
-.titleContainer ***REMOVED***
+.titleContainer {
   display: flex;
   justify-content: space-between;
   padding-right: 1.8rem;
   padding-left: 1.8rem;
   font-size: 1.8rem;
   font-weight: bold;
-***REMOVED***
+}
 
-.ulContainer ***REMOVED***
+.ulContainer {
   width: 100%;
   padding-top: 1.5rem;
-  > ul ***REMOVED***
+  > ul {
     margin: 0;
     padding: 0;
     list-style: none;
-    > li ***REMOVED***
+    > li {
       height: 5.4rem !important;
       line-height: 5.4rem !important;
       padding-right: 3.2rem;
       padding-left: 1.5rem;
-      > div:first-child ***REMOVED***
+      > div:first-child {
         margin: 0;
-        > div:first-child ***REMOVED***
+        > div:first-child {
           padding-left: 0!important;
           // margin-right: 1.5rem;
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
-    > li:last-child ***REMOVED***
-      > div ***REMOVED***
+        }
+      }
+    }
+    > li:last-child {
+      > div {
         border-bottom: none;
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
+}
 
-.pluginContent ***REMOVED***
+.pluginContent {
   text-align: left !important;
-  > span:first-child ***REMOVED***
+  > span:first-child {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.7px;
     text-transform: uppercase;
-***REMOVED***
-  > span:last-child ***REMOVED***
+  }
+  > span:last-child {
     font-size: 13px;
 
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.icoContainer ***REMOVED***
+.icoContainer {
   width: 70px;
   height: 36px;
   margin: auto 0;
@@ -64,13 +64,13 @@
   border: 1px solid rgba(28,93,231,0.1);
   border-radius: 3px;
   font-size: 20px;
-***REMOVED***
+}
 
-.actionContainer ***REMOVED***
+.actionContainer {
   display: flex;
   justify-content: flex-end;
-***REMOVED***
+}
 
-.nameWrapper ***REMOVED***
+.nameWrapper {
   display: flex;
-***REMOVED***
+}

@@ -1,6 +1,6 @@
-***REMOVED***
+{
   "timeout": 100,
-  "load": ***REMOVED***
+  "load": {
     "before": [
       "responseTime",
       "logger",
@@ -15,5 +15,5 @@
       "parser",
       "router"
     ]
-***REMOVED***
-***REMOVED***
+  }
+}

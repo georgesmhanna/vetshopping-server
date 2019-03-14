@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "ConfigPage.title": "Upload - Instellingen",
   "ConfigPage.description": "Configureer de upload extensie",
 
@@ -9,8 +9,8 @@
 
   "EmptyLi.message": "Er zijn geen geüploade bestanden",
 
-  "EntriesNumber.number": "***REMOVED***number***REMOVED*** bestand gevonden",
-  "EntriesNumber.number.plural": "***REMOVED***number***REMOVED*** bestanden gevonden",
+  "EntriesNumber.number": "{number} bestand gevonden",
+  "EntriesNumber.number.plural": "{number} bestanden gevonden",
 
   "HomePage.title": "Upload",
   "HomePage.description": "Bekijk alle geüploade bestanden",
@@ -25,12 +25,12 @@
   "ListHeader.size": "Grootte",
   "ListHeader.related": "Gerelateerd aan",
 
-  "PluginInputFile.text": "Sleep bestanden in dit gebied of ***REMOVED***link***REMOVED*** van een bestand om te uploaden",
+  "PluginInputFile.text": "Sleep bestanden in dit gebied of {link} van een bestand om te uploaden",
   "PluginInputFile.link": "doorbladeren",
   "PluginInputFile.loading": "Je bestanden worden geüpload...",
 
   "notification.config.success": "De instellingen zijn geüpdatet",
   "notification.delete.success": "Het bestand is verwijderd",
   "notification.dropFile.success": "Je bestand is geüpload",
-  "notification.dropFiles.success": "***REMOVED***number***REMOVED*** bestanden zijn geüpload"
-***REMOVED***
+  "notification.dropFiles.success": "{number} bestanden zijn geüpload"
+}

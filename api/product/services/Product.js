@@ -9,15 +9,15 @@
 // Public dependencies.
 const _ = require('lodash');
 
-module.exports = ***REMOVED***
+module.exports = {
 
   /**
    * Promise to fetch all products.
    *
-   * @return ***REMOVED***Promise***REMOVED***
+   * @return {Promise}
    */
 
-  fetchAll: (params) => ***REMOVED***
+  fetchAll: (params) => {
     // Convert `params` object to filters compatible with Mongo.
     const filters = strapi.utils.models.convertParams('product', params);
     // Select field to populate.
@@ -33,15 +33,15 @@ module.exports = ***REMOVED***
       .skip(filters.start)
       .limit(filters.limit)
       .populate(populate);
-***REMOVED***,
+  },
 
   /**
    * Promise to fetch a/an product.
    *
-   * @return ***REMOVED***Promise***REMOVED***
+   * @return {Promise}
    */
 
-  fetch: (params) => ***REMOVED***
+  fetch: (params) => {
     // Select field to populate.
     const populate = Product.associations
       .filter(ast => ast.autoPopulate !== false)
@@ -51,9 +51,9 @@ module.exports = ***REMOVED***
     return Product
       .findOne(_.pick(params, _.keys(Product.schema.paths)))
       .populate(populate).populate('images');
-***REMOVED***,
+  },
 
-  fetchByCategory: (params) => ***REMOVED***
+  fetchByCategory: (params) => {
     // Select field to populate.
     const populate = Product.associations
       .filter(ast => ast.autoPopulate !== false)
@@ -61,33 +61,33 @@ module.exports = ***REMOVED***
       .join(' ');
 
     const categoryId = params._id;
-    const subCategories =  Category.find().where(***REMOVED***'parent': categoryId***REMOVED***);
+    const subCategories =  Category.find().where({'parent': categoryId});
 
     return subCategories;
 
-***REMOVED***,
+  },
   /**
    * Promise to count products.
    *
-   * @return ***REMOVED***Promise***REMOVED***
+   * @return {Promise}
    */
 
-  count: (params) => ***REMOVED***
+  count: (params) => {
     // Convert `params` object to filters compatible with Mongo.
     const filters = strapi.utils.models.convertParams('product', params);
 
     return Product
       .count()
       .where(filters.where);
-***REMOVED***,
+  },
 
   /**
    * Promise to add a/an product.
    *
-   * @return ***REMOVED***Promise***REMOVED***
+   * @return {Promise}
    */
 
-  add: async (values) => ***REMOVED***
+  add: async (values) => {
     // Extract values related to relational data.
     const relations = _.pick(values, Product.associations.map(ast => ast.alias));
     const data = _.omit(values, Product.associations.map(ast => ast.alias));
@@ -96,34 +96,34 @@ module.exports = ***REMOVED***
     const entry = await Product.create(data);
 
     // Create relational data and return the entry.
-    return Product.updateRelations(***REMOVED*** _id: entry.id, values: relations ***REMOVED***);
-***REMOVED***,
+    return Product.updateRelations({ _id: entry.id, values: relations });
+  },
 
   /**
    * Promise to edit a/an product.
    *
-   * @return ***REMOVED***Promise***REMOVED***
+   * @return {Promise}
    */
 
-  edit: async (params, values) => ***REMOVED***
+  edit: async (params, values) => {
     // Extract values related to relational data.
     const relations = _.pick(values, Product.associations.map(a => a.alias));
     const data = _.omit(values, Product.associations.map(a => a.alias));
 
     // Update entry with no-relational data.
-    const entry = await Product.update(params, data, ***REMOVED*** multi: true ***REMOVED***);
+    const entry = await Product.update(params, data, { multi: true });
 
     // Update relational data and return the entry.
-    return Product.updateRelations(Object.assign(params, ***REMOVED*** values: relations ***REMOVED***));
-***REMOVED***,
+    return Product.updateRelations(Object.assign(params, { values: relations }));
+  },
 
   /**
    * Promise to remove a/an product.
    *
-   * @return ***REMOVED***Promise***REMOVED***
+   * @return {Promise}
    */
 
-  remove: async params => ***REMOVED***
+  remove: async params => {
     // Select field to populate.
     const populate = Product.associations
       .filter(ast => ast.autoPopulate !== false)
@@ -131,39 +131,39 @@ module.exports = ***REMOVED***
       .join(' ');
 
     // Note: To get the full response of Mongo, use the `remove()` method
-    // or add spent the parameter `***REMOVED*** passRawResult: true ***REMOVED***` as second argument.
+    // or add spent the parameter `{ passRawResult: true }` as second argument.
     const data = await Product
-      .findOneAndRemove(params, ***REMOVED******REMOVED***)
+      .findOneAndRemove(params, {})
       .populate(populate);
 
-    if (!data) ***REMOVED***
+    if (!data) {
       return data;
-***REMOVED***
+    }
 
     await Promise.all(
-      Product.associations.map(async association => ***REMOVED***
-        const search = _.endsWith(association.nature, 'One') || association.nature === 'oneToMany' ? ***REMOVED*** [association.via]: data._id ***REMOVED*** : ***REMOVED*** [association.via]: ***REMOVED*** $in: [data._id] ***REMOVED*** ***REMOVED***;
-        const update = _.endsWith(association.nature, 'One') || association.nature === 'oneToMany' ? ***REMOVED*** [association.via]: null ***REMOVED*** : ***REMOVED*** $pull: ***REMOVED*** [association.via]: data._id ***REMOVED*** ***REMOVED***;
+      Product.associations.map(async association => {
+        const search = _.endsWith(association.nature, 'One') || association.nature === 'oneToMany' ? { [association.via]: data._id } : { [association.via]: { $in: [data._id] } };
+        const update = _.endsWith(association.nature, 'One') || association.nature === 'oneToMany' ? { [association.via]: null } : { $pull: { [association.via]: data._id } };
 
         // Retrieve model.
         const model = association.plugin ?
           strapi.plugins[association.plugin].models[association.model || association.collection] :
           strapi.models[association.model || association.collection];
 
-        return model.update(search, update, ***REMOVED*** multi: true ***REMOVED***);
-***REMOVED***)
+        return model.update(search, update, { multi: true });
+      })
     );
 
     return data;
-***REMOVED***,
+  },
 
   /**
    * Promise to search a/an product.
    *
-   * @return ***REMOVED***Promise***REMOVED***
+   * @return {Promise}
    */
 
-  search: async (params) => ***REMOVED***
+  search: async (params) => {
     // Convert `params` object to filters compatible with Mongo.
     const filters = strapi.utils.models.convertParams('product', params);
     // Select field to populate.
@@ -172,36 +172,36 @@ module.exports = ***REMOVED***
       .map(ast => ast.alias)
       .join(' ');
 
-    const $or = Object.keys(Product.attributes).reduce((acc, curr) => ***REMOVED***
-      switch (Product.attributes[curr].type) ***REMOVED***
+    const $or = Object.keys(Product.attributes).reduce((acc, curr) => {
+      switch (Product.attributes[curr].type) {
         case 'integer':
         case 'float':
         case 'decimal':
-          if (!_.isNaN(_.toNumber(params._q))) ***REMOVED***
-            return acc.concat(***REMOVED*** [curr]: params._q ***REMOVED***);
-    ***REMOVED***
+          if (!_.isNaN(_.toNumber(params._q))) {
+            return acc.concat({ [curr]: params._q });
+          }
 
           return acc;
         case 'string':
         case 'text':
         case 'password':
-          return acc.concat(***REMOVED*** [curr]: ***REMOVED*** $regex: params._q, $options: 'i' ***REMOVED*** ***REMOVED***);
+          return acc.concat({ [curr]: { $regex: params._q, $options: 'i' } });
         case 'boolean':
-          if (params._q === 'true' || params._q === 'false') ***REMOVED***
-            return acc.concat(***REMOVED*** [curr]: params._q === 'true' ***REMOVED***);
-    ***REMOVED***
+          if (params._q === 'true' || params._q === 'false') {
+            return acc.concat({ [curr]: params._q === 'true' });
+          }
 
           return acc;
         default:
           return acc;
-***REMOVED***
-***REMOVED***, []);
+      }
+    }, []);
 
     return Product
-      .find(***REMOVED*** $or ***REMOVED***)
+      .find({ $or })
       .sort(filters.sort)
       .skip(filters.start)
       .limit(filters.limit)
       .populate(populate);
-***REMOVED***
-***REMOVED***;
+  }
+};

@@ -4,14 +4,14 @@
  * Home container styles
  */
 
- .containerFluid ***REMOVED*** /* stylelint-disable */
+ .containerFluid { /* stylelint-disable */
    padding: 18px 30px;
 
-  p ***REMOVED***
+  p {
     display: block;
     margin: 0;
     padding-bottom: 14px;
     line-height: 18px;
     text-align: left;
-***REMOVED***
-***REMOVED***
+  }
+}

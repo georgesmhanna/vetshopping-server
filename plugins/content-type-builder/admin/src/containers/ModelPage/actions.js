@@ -3,10 +3,10 @@
  * ModelPage actions
  *
  */
-import ***REMOVED*** cloneDeep, findIndex, forEach, get, includes, map, set ***REMOVED*** from 'lodash';
-import ***REMOVED*** storeData ***REMOVED*** from '../../utils/storeData';
+import { cloneDeep, findIndex, forEach, get, includes, map, set } from 'lodash';
+import { storeData } from '../../utils/storeData';
 
-import ***REMOVED***
+import {
   ADD_ATTRIBUTE_RELATION_TO_CONTENT_TYPE,
   ADD_ATTRIBUTE_TO_CONTENT_TYPE,
   CANCEL_CHANGES,
@@ -23,153 +23,153 @@ import ***REMOVED***
   RESET_SHOW_BUTTONS_PROPS,
   UNSET_BUTTON_LOADER,
   UPDATE_CONTENT_TYPE,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function addAttributeRelationToContentType(newAttribute) ***REMOVED***
-  return ***REMOVED***
+export function addAttributeRelationToContentType(newAttribute) {
+  return {
     type: ADD_ATTRIBUTE_RELATION_TO_CONTENT_TYPE,
     newAttribute,
     parallelAttribute: setParallelAttribute(newAttribute),
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function addAttributeToContentType(newAttribute) ***REMOVED***
-  return ***REMOVED***
+export function addAttributeToContentType(newAttribute) {
+  return {
     type: ADD_ATTRIBUTE_TO_CONTENT_TYPE,
     newAttribute,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function cancelChanges() ***REMOVED***
-  return ***REMOVED***
+export function cancelChanges() {
+  return {
     type: CANCEL_CHANGES,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function editContentTypeAttribute(modifiedAttribute, attributePosition, shouldAddParralAttribute) ***REMOVED***
-  return ***REMOVED***
+export function editContentTypeAttribute(modifiedAttribute, attributePosition, shouldAddParralAttribute) {
+  return {
     type: EDIT_CONTENT_TYPE_ATTRIBUTE,
     modifiedAttribute,
     attributePosition,
     shouldAddParralAttribute,
     parallelAttribute: setParallelAttribute(modifiedAttribute),
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function editContentTypeAttributeRelation(modifiedAttribute, attributePosition, parallelAttributePosition, shouldRemoveParallelAttribute) ***REMOVED***
-  return ***REMOVED***
+export function editContentTypeAttributeRelation(modifiedAttribute, attributePosition, parallelAttributePosition, shouldRemoveParallelAttribute) {
+  return {
     type: EDIT_CONTENT_TYPE_ATTRIBUTE_RELATION,
     modifiedAttribute,
     attributePosition,
     parallelAttribute: setParallelAttribute(modifiedAttribute),
     parallelAttributePosition,
     shouldRemoveParallelAttribute,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function deleteAttribute(position, modelName, shouldRemoveParallelAttribute) ***REMOVED***
+export function deleteAttribute(position, modelName, shouldRemoveParallelAttribute) {
   const temporaryContentType = storeData.getContentType();
 
-  if (get(temporaryContentType, 'name') === modelName) ***REMOVED***
+  if (get(temporaryContentType, 'name') === modelName) {
     const attributeKey = temporaryContentType.attributes[position].params.key;
     temporaryContentType.attributes.splice(position, 1);
 
-    if (shouldRemoveParallelAttribute) ***REMOVED***
+    if (shouldRemoveParallelAttribute) {
       temporaryContentType.attributes.splice(findIndex(temporaryContentType.attributes, ['name', attributeKey]), 1);
-***REMOVED***
+    }
 
     const updatedContentType = temporaryContentType;
     storeData.setContentType(updatedContentType);
-***REMOVED***
+  }
 
-  return ***REMOVED***
+  return {
     type: DELETE_ATTRIBUTE,
     position,
     modelName,
     shouldRemoveParallelAttribute,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function defaultAction() ***REMOVED***
-  return ***REMOVED***
+export function defaultAction() {
+  return {
     type: DEFAULT_ACTION,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function modelFetch(modelName) ***REMOVED***
-  return ***REMOVED***
+export function modelFetch(modelName) {
+  return {
     type: MODEL_FETCH,
     modelName,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function modelFetchSucceeded(data) ***REMOVED***
+export function modelFetchSucceeded(data) {
   const model = data;
   const defaultKeys = ['required', 'unique', 'type', 'key', 'target', 'nature', 'targetColumnName', 'columnName', 'multiple', 'default', 'appearance'];
 
-  forEach(model.model.attributes, (attribute, index) => ***REMOVED***
-    map(attribute.params, (value, key) => ***REMOVED***
-      if (!includes(defaultKeys, key) && value) ***REMOVED***
-        set(model.model.attributes[index].params, `$***REMOVED***key***REMOVED***Value`, value);
+  forEach(model.model.attributes, (attribute, index) => {
+    map(attribute.params, (value, key) => {
+      if (!includes(defaultKeys, key) && value) {
+        set(model.model.attributes[index].params, `${key}Value`, value);
         set(model.model.attributes[index].params, key, true);
-***REMOVED***
-***REMOVED***);
-***REMOVED***);
+      }
+    });
+  });
 
-  return ***REMOVED***
+  return {
     type: MODEL_FETCH_SUCCEEDED,
     model,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function postContentTypeSucceeded() ***REMOVED***
-  return ***REMOVED***
+export function postContentTypeSucceeded() {
+  return {
     type: POST_CONTENT_TYPE_SUCCEEDED,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function resetShowButtonsProps() ***REMOVED***
-  return ***REMOVED***
+export function resetShowButtonsProps() {
+  return {
     type: RESET_SHOW_BUTTONS_PROPS,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setButtonLoader() ***REMOVED***
-  return ***REMOVED***
+export function setButtonLoader() {
+  return {
     type: SET_BUTTON_LOADER,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submit(context, modelName) ***REMOVED***
-  return ***REMOVED***
+export function submit(context, modelName) {
+  return {
     type: SUBMIT,
     context,
     modelName,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submitActionSucceeded() ***REMOVED***
-  return ***REMOVED***
+export function submitActionSucceeded() {
+  return {
     type: SUBMIT_ACTION_SUCCEEDED,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function unsetButtonLoader() ***REMOVED***
-  return ***REMOVED***
+export function unsetButtonLoader() {
+  return {
     type: UNSET_BUTTON_LOADER,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function updateContentType(data) ***REMOVED***
-  return ***REMOVED***
+export function updateContentType(data) {
+  return {
     type: UPDATE_CONTENT_TYPE,
     data,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
 
 
-function setParallelAttribute(data) ***REMOVED***
+function setParallelAttribute(data) {
   const parallelAttribute = cloneDeep(data);
 
   parallelAttribute.params.key = data.name;
@@ -178,7 +178,7 @@ function setParallelAttribute(data) ***REMOVED***
   parallelAttribute.params.targetColumnName = data.params.columnName;
   parallelAttribute.params.dominant = false;
   
-  switch (data.params.nature) ***REMOVED***
+  switch (data.params.nature) {
     case 'manyToOne':
       parallelAttribute.params.nature = 'oneToMany';
       break;
@@ -187,8 +187,8 @@ function setParallelAttribute(data) ***REMOVED***
       break;
     default:
     //
-***REMOVED***
+  }
 
 
   return parallelAttribute;
-***REMOVED***
+}

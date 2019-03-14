@@ -1,13 +1,13 @@
-.starsContainer ***REMOVED***
+.starsContainer {
   display: flex;
   margin-right: 10px;
-  > div ***REMOVED***
+  > div {
     color: #EEA348;
-    > i ***REMOVED***
+    > i {
       margin-right: 2px;
-***REMOVED***
-***REMOVED***
-  > div:last-child ***REMOVED***
+    }
+  }
+  > div:last-child {
     color: #B3B5B9;
-***REMOVED***
-***REMOVED***
+  }
+}

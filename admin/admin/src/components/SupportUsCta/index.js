@@ -4,20 +4,20 @@
  */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import styles from './styles.scss';
 
-function SupportUsCta() ***REMOVED***
+function SupportUsCta() {
   return (
     <FormattedMessage id="app.components.HomePage.support.link">
-      ***REMOVED***message => (
-        <a href="https://strapi.io/shop" target="_blank" className=***REMOVED***styles.supportUsCta***REMOVED***>
-          ***REMOVED***message***REMOVED***
+      {message => (
+        <a href="https://strapi.io/shop" target="_blank" className={styles.supportUsCta}>
+          {message}
         </a>
-      )***REMOVED***
+      )}
     </FormattedMessage>
   );
-***REMOVED***
+}
 
 export default SupportUsCta;

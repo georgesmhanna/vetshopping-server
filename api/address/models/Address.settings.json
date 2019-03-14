@@ -1,62 +1,62 @@
-***REMOVED***
+{
   "connection": "default",
   "collectionName": "address",
-  "info": ***REMOVED***
+  "info": {
     "name": "address",
     "description": ""
-***REMOVED***,
-  "options": ***REMOVED***
+  },
+  "options": {
     "timestamps": true
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "firstName": ***REMOVED***
+  },
+  "attributes": {
+    "firstName": {
       "default": "",
       "type": "string",
       "required": true
-***REMOVED***,
-    "lastName": ***REMOVED***
+    },
+    "lastName": {
       "default": "",
       "type": "string",
       "required": true
-***REMOVED***,
-    "middleName": ***REMOVED***
+    },
+    "middleName": {
       "default": "",
       "type": "string"
-***REMOVED***,
-    "company": ***REMOVED***
+    },
+    "company": {
       "default": "",
       "type": "string"
-***REMOVED***,
-    "phoneNumber": ***REMOVED***
+    },
+    "phoneNumber": {
       "default": "",
       "type": "string",
       "required": true
-***REMOVED***,
-    "city": ***REMOVED***
+    },
+    "city": {
       "default": "",
       "type": "string",
       "required": true
-***REMOVED***,
-    "stateProvince": ***REMOVED***
+    },
+    "stateProvince": {
       "default": "",
       "type": "string"
-***REMOVED***,
-    "zip": ***REMOVED***
+    },
+    "zip": {
       "default": "",
       "type": "string"
-***REMOVED***,
-    "addressLine": ***REMOVED***
+    },
+    "addressLine": {
       "default": "",
       "type": "string",
       "required": true
-***REMOVED***,
-    "user": ***REMOVED***
+    },
+    "user": {
       "model": "user",
       "via": "address",
       "plugin": "users-permissions"
-***REMOVED***,
-    "country": ***REMOVED***
+    },
+    "country": {
       "model": "country"
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

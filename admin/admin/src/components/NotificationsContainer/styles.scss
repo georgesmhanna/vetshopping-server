@@ -1,7 +1,7 @@
 /* Import */
 @import '../../styles/variables/variables';
 
-.notificationsContainer ***REMOVED*** /* stylelint-disable */
+.notificationsContainer { /* stylelint-disable */
   position: absolute;
   top: 72px;
   left: 240px;
@@ -11,4 +11,4 @@
   width: 300px;
   margin: 0 auto;
   overflow-y: hidden;
-***REMOVED***
+}

@@ -1,27 +1,27 @@
-***REMOVED***
+{
   "parser": "babel-eslint",
   "extends": "eslint:recommended",
-  "env": ***REMOVED***
+  "env": {
       "commonjs": true,
       "es6": true,
       "node": true,
       "browser": false
-***REMOVED***,
-  "parserOptions": ***REMOVED***
-      "ecmaFeatures": ***REMOVED***
+  },
+  "parserOptions": {
+      "ecmaFeatures": {
           "experimentalObjectRestSpread": true,
           "jsx": false
-***REMOVED***
+      },
       "sourceType": "module"
-***REMOVED***,
-  "globals": ***REMOVED***
+  },
+  "globals": {
     "strapi": true
-***REMOVED***,
-  "rules": ***REMOVED***
-    "indent": ["error", 2, ***REMOVED*** "SwitchCase": 1 ***REMOVED***],
+  },
+  "rules": {
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "linebreak-style": ["error", "unix"],
     "no-console": 0,
     "quotes": ["error", "single"],
     "semi": ["error", "always"]
-***REMOVED***
-***REMOVED***
+  }
+}

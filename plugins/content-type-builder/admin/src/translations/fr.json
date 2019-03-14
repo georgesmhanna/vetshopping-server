@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Modélisez la structure de données de votre API.",
   "plugin.description.long":
     "Modélisez la structure de données de votre API. Créer des nouveaux champs et relations en un instant. Les fichiers se créent et se mettent à jour automatiquement.",
@@ -91,7 +91,7 @@
 
   "form.contentType.item.connections": "Connexion",
   "form.contentType.item.name": "Nom",
-  "form.contentType.item.name.description": "Les noms de modèles doivent être au singulier, ***REMOVED***link***REMOVED***",
+  "form.contentType.item.name.description": "Les noms de modèles doivent être au singulier, {link}",
   "form.contentType.item.name.link.description": "regardez la documentation",
   "form.contentType.item.description": "Description",
   "form.contentType.item.description.placeholder": "Ecrivez votre petite description ici...",
@@ -117,7 +117,7 @@
 
   "modelPage.attribute.relationWith": "Relation avec",
 
-  "noTableWarning.description": "N'oubliez pas de créer la table `***REMOVED***modelName***REMOVED***` dans votre database",
+  "noTableWarning.description": "N'oubliez pas de créer la table `{modelName}` dans votre database",
   "noTableWarning.infos": "Plus d'infos",
 
   "notification.error.message": "Une erreur est survenue",
@@ -183,4 +183,4 @@
   "relation.manyToOne": "a plusieurs",
   "relation.manyToMany": "a plusieurs",
   "relation.attributeName.placeholder": "Ex: auteur, catégorie, tag"
-***REMOVED***
+}

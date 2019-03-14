@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** findIndex, forEach, has, isObject , join, pullAt, split, includes***REMOVED*** from 'lodash';
+import { findIndex, forEach, has, isObject , join, pullAt, split, includes} from 'lodash';
 
 import InputNumber from 'components/InputNumber';
 import InputText from 'components/InputText';
@@ -18,8 +18,8 @@ import config from './config.json';
 import styles from './styles.scss';
 
 /* eslint-disable react/require-default-props  */
-const WithFormSection = (InnerComponent) => class extends React.Component ***REMOVED***
-  static propTypes = ***REMOVED***
+const WithFormSection = (InnerComponent) => class extends React.Component {
+  static propTypes = {
     addRequiredInputDesign: PropTypes.bool,
     cancelAction: PropTypes.bool,
     formErrors: PropTypes.array,
@@ -29,64 +29,64 @@ const WithFormSection = (InnerComponent) => class extends React.Component ***REM
       PropTypes.array,
     ]),
     values: PropTypes.object,
-***REMOVED***
+  }
 
-  constructor(props) ***REMOVED***
+  constructor(props) {
     super(props);
-    this.state = ***REMOVED***
+    this.state = {
       hasNestedInput: false,
       showNestedForm: false,
       inputWithNestedForm: '',
-***REMOVED***;
+    };
 
-    this.inputs = ***REMOVED***
+    this.inputs = {
       string: InputText,
       password: InputPassword,
       number: InputNumber,
       boolean: InputToggle,
       enum: InputEnum,
       select: InputSelect,
-***REMOVED***;
-***REMOVED***
+    };
+  }
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     // check if there is inside a section an input that requires nested input to display it on the entire line
-    if (isObject(this.props.section)) ***REMOVED***
+    if (isObject(this.props.section)) {
       this.checkForNestedForm(this.props);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (nextProps.section !== this.props.section || nextProps.cancelAction !== this.props.cancelAction) ***REMOVED***
-      this.setState(***REMOVED*** showNestedForm: false, hasNestedInput: false, inputWithNestedForm: '' ***REMOVED***);
-      if (isObject(nextProps.section)) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.section !== this.props.section || nextProps.cancelAction !== this.props.cancelAction) {
+      this.setState({ showNestedForm: false, hasNestedInput: false, inputWithNestedForm: '' });
+      if (isObject(nextProps.section)) {
         this.checkForNestedForm(nextProps);
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
 
-  checkForNestedForm(props) ***REMOVED***
-    forEach(props.section.items, (input) => ***REMOVED***
-      if(has(input, 'items')) ***REMOVED***
-        this.setState(***REMOVED*** hasNestedInput: true, inputWithNestedForm: input.target ***REMOVED***);
+  checkForNestedForm(props) {
+    forEach(props.section.items, (input) => {
+      if(has(input, 'items')) {
+        this.setState({ hasNestedInput: true, inputWithNestedForm: input.target });
 
-        if (props.values[input.target]) ***REMOVED***
-          this.setState(***REMOVED*** showNestedForm: true ***REMOVED***);
-  ***REMOVED***
-***REMOVED***
-***REMOVED***);
-***REMOVED***
+        if (props.values[input.target]) {
+          this.setState({ showNestedForm: true });
+        }
+      }
+    });
+  }
 
-  handleChange = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleChange = ({ target }) => {
     // display nestedForm if the selected input has a nested form
-    if (target.name === this.state.inputWithNestedForm) ***REMOVED***
-      this.setState(***REMOVED*** showNestedForm: target.value ***REMOVED***);
-***REMOVED***
+    if (target.name === this.state.inputWithNestedForm) {
+      this.setState({ showNestedForm: target.value });
+    }
 
-    this.props.onChange(***REMOVED*** target ***REMOVED***);
-***REMOVED***
+    this.props.onChange({ target });
+  }
 
-  renderInput = (props, key) => ***REMOVED***
+  renderInput = (props, key) => {
     const Input = this.inputs[props.type];
     const inputValue = this.props.values[props.target];
     // retrieve options for the select input
@@ -113,33 +113,33 @@ const WithFormSection = (InnerComponent) => class extends React.Component ***REM
 
     return (
       <Input
-        customBootstrapClass=***REMOVED***customBootstrapClass***REMOVED***
-        key=***REMOVED***key***REMOVED***
-        handleChange=***REMOVED***handleChange***REMOVED***
-        name=***REMOVED***props.name***REMOVED***
-        target=***REMOVED***props.target***REMOVED***
-        isChecked=***REMOVED***inputValue***REMOVED***
-        selectOptions=***REMOVED***selectOptions***REMOVED***
-        validations=***REMOVED***props.validations***REMOVED***
-        value=***REMOVED***inputValue***REMOVED***
-        addRequiredInputDesign=***REMOVED***this.props.addRequiredInputDesign***REMOVED***
-        hiddenLabel=***REMOVED***hiddenLabel***REMOVED***
-        inputDescription=***REMOVED***props.description***REMOVED***
-        errors=***REMOVED***errors***REMOVED***
+        customBootstrapClass={customBootstrapClass}
+        key={key}
+        handleChange={handleChange}
+        name={props.name}
+        target={props.target}
+        isChecked={inputValue}
+        selectOptions={selectOptions}
+        validations={props.validations}
+        value={inputValue}
+        addRequiredInputDesign={this.props.addRequiredInputDesign}
+        hiddenLabel={hiddenLabel}
+        inputDescription={props.description}
+        errors={errors}
       />
     );
-***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
       <InnerComponent
-        ***REMOVED***...this.props***REMOVED***
-        showNestedForm=***REMOVED***this.state.showNestedForm***REMOVED***
-        renderInput=***REMOVED***this.renderInput***REMOVED***
-        styles=***REMOVED***styles***REMOVED***
+        {...this.props}
+        showNestedForm={this.state.showNestedForm}
+        renderInput={this.renderInput}
+        styles={styles}
       />
     );
-***REMOVED***
-***REMOVED***;
+  }
+};
 
 export default WithFormSection;

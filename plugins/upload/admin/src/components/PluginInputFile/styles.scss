@@ -1,12 +1,12 @@
-.isDraging ***REMOVED***
+.isDraging {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-***REMOVED***
+}
 
-.pluginInputFile ***REMOVED***
+.pluginInputFile {
   position: relative;
   height: 146px;
   width: 100%;
@@ -15,88 +15,88 @@
   border-radius: 2px;
   text-align: center;
 
-  > input ***REMOVED***
+  > input {
     display: none;
-***REMOVED***
+  }
 
-  .icon***REMOVED***
+  .icon{
     width: 82px;
-    path***REMOVED***
+    path{
       fill: #CCD0DA;
       transition: fill .3s ease;
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  &:hover***REMOVED***
+  &:hover{
     cursor: pointer;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.textWrapper ***REMOVED***
+.textWrapper {
   margin-top: 10px;
   text-align: center;
   font-size: 13px;
   color: #9EA7B8;
 
-  u ***REMOVED***
+  u {
     color: #1C5DE7;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.pluginInputFileHover ***REMOVED***
+.pluginInputFileHover {
   background-color: rgba(28,93,231,0.01) !important;
   border: 2px dashed rgba(28,93,231,0.10) !important;
-***REMOVED***
+}
 
-.underline ***REMOVED***
+.underline {
   color: #1C5DE7;
   text-decoration: underline;
   cursor: pointer;
-***REMOVED***
+}
 
-@mixin smoothBlink($firstColor, $secondColor) ***REMOVED***
-  @-webkit-keyframes blink ***REMOVED***
-    0% ***REMOVED***
+@mixin smoothBlink($firstColor, $secondColor) {
+  @-webkit-keyframes blink {
+    0% {
       fill: $firstColor;
       background-color: $firstColor;
-***REMOVED***
-    26% ***REMOVED***
+    }
+    26% {
       fill: $secondColor;
       background-color: $secondColor;
-***REMOVED***
-    76% ***REMOVED***
+    }
+    76% {
       fill: $firstColor;
       background-color: $firstColor;
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  @keyframes blink ***REMOVED***
-    0% ***REMOVED***
+  @keyframes blink {
+    0% {
       fill: $firstColor;
       background-color: $firstColor;
-***REMOVED***
-    26% ***REMOVED***
+    }
+    26% {
       fill: $secondColor;
       background-color: $secondColor;
-***REMOVED***
-    76% ***REMOVED***
+    }
+    76% {
       fill: $firstColor;
       background-color: $firstColor;
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   -webkit-animation: blink 2s linear infinite;
   -moz-animation: blink 2s linear infinite;
   -o-animation: blink 2s linear infinite;
   animation: blink 2s linear infinite;
-***REMOVED***
+}
 
-.quadrat ***REMOVED***
-  .icon***REMOVED***
-    path ***REMOVED***
+.quadrat {
+  .icon{
+    path {
       fill: #729BEF;
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   @include smoothBlink(transparent, rgba(28, 93, 231, 0.05));
-***REMOVED***
+}

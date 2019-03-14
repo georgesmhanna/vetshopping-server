@@ -13,8 +13,8 @@ import React from 'react';
 
 import NotFound from 'components/NotFound';
 
-export default class NotFoundPage extends React.Component ***REMOVED***
-  render() ***REMOVED***
-    return <NotFound ***REMOVED***...this.props***REMOVED*** />;
-***REMOVED***
-***REMOVED***
+export default class NotFoundPage extends React.Component {
+  render() {
+    return <NotFound {...this.props} />;
+  }
+}

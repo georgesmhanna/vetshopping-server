@@ -4,7 +4,7 @@
  *
  */
 
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
 * Direct selector to the listPage state domain
@@ -51,11 +51,11 @@ const makeSelectSource = () => createSelector(
 );
 
 export default makeSelectEditPage;
-export ***REMOVED***
+export {
   makeSelectFileRelations,
   makeSelectIsCreating,
   makeSelectModelName,
   makeSelectRecord,
   makeSelectSource,
   selectEditPageDomain,
-***REMOVED***;
+};

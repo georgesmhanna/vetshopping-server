@@ -6,123 +6,123 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** Collapse ***REMOVED*** from 'reactstrap';
-import ***REMOVED*** capitalize, get, isEmpty, map ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { Collapse } from 'reactstrap';
+import { capitalize, get, isEmpty, map } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 
 import Controller from 'components/Controller';
 
 import styles from './styles.scss';
 
-class Plugin extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  state = ***REMOVED*** collapse: false ***REMOVED***;
+class Plugin extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  state = { collapse: false };
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     // Open the application's permissions section if there are APIs
-    if (this.props.name === 'application' && !isEmpty(get(this.props.plugin, 'controllers'))) ***REMOVED***
+    if (this.props.name === 'application' && !isEmpty(get(this.props.plugin, 'controllers'))) {
       this.props.changePluginSelected('application');
-      this.setState(***REMOVED*** collapse: !this.state.collapse ***REMOVED***);
-***REMOVED***
-***REMOVED***
+      this.setState({ collapse: !this.state.collapse });
+    }
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (nextProps.pluginSelected !== this.props.pluginSelected && nextProps.pluginSelected !== this.props.name) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.pluginSelected !== this.props.pluginSelected && nextProps.pluginSelected !== this.props.name) {
       this.context.resetShouldDisplayPoliciesHint();
-      this.setState(***REMOVED*** collapse: false ***REMOVED***);
-***REMOVED***
-***REMOVED***
+      this.setState({ collapse: false });
+    }
+  }
 
-  handleClick = () => ***REMOVED***
+  handleClick = () => {
     this.props.changePluginSelected(this.props.name);
 
-    if (!isEmpty(get(this.props.plugin, 'controllers'))) ***REMOVED***
-      this.setState(***REMOVED*** collapse: !this.state.collapse ***REMOVED***);
-***REMOVED***
+    if (!isEmpty(get(this.props.plugin, 'controllers'))) {
+      this.setState({ collapse: !this.state.collapse });
+    }
 
-    if (this.state.collapse) ***REMOVED***
+    if (this.state.collapse) {
       this.context.resetShouldDisplayPoliciesHint();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  render() ***REMOVED***
-    const divStyle = this.state.collapse ? ***REMOVED*** marginBottom: '.4rem' ***REMOVED*** : ***REMOVED******REMOVED***;
+  render() {
+    const divStyle = this.state.collapse ? { marginBottom: '.4rem' } : {};
     const icon = get(this.props.plugin, ['information', 'logo']);
     const emptyApplication = !isEmpty(get(this.props.plugin, 'controllers'));
 
-    if (!emptyApplication) ***REMOVED***
+    if (!emptyApplication) {
       return <div />;
-***REMOVED***
+    }
 
     return (
-      <div className=***REMOVED***styles.plugin***REMOVED*** style=***REMOVED***divStyle***REMOVED***>
-        <div className=***REMOVED***styles.banner***REMOVED*** onClick=***REMOVED***this.handleClick***REMOVED***>
+      <div className={styles.plugin} style={divStyle}>
+        <div className={styles.banner} onClick={this.handleClick}>
           <div>
-            ***REMOVED***this.props.name !== 'application' && (
-              <div className=***REMOVED***styles.iconContainer***REMOVED***>
-                ***REMOVED***icon &&  <img src=***REMOVED***icon***REMOVED*** alt="icon" />***REMOVED***
+            {this.props.name !== 'application' && (
+              <div className={styles.iconContainer}>
+                {icon &&  <img src={icon} alt="icon" />}
               </div>
-            )***REMOVED***
-            <div className=***REMOVED***styles.name***REMOVED***>***REMOVED***this.props.name***REMOVED***</div>
+            )}
+            <div className={styles.name}>{this.props.name}</div>
             &nbsp;—&nbsp;
-            <div className=***REMOVED***styles.description***REMOVED***>
-              ***REMOVED***this.props.name === 'application' ? (
+            <div className={styles.description}>
+              {this.props.name === 'application' ? (
                 <FormattedMessage
                   id="users-permissions.Plugin.permissions.application.description"
                 />
               ) : (
                 <FormattedMessage
                   id="users-permissions.Plugin.permissions.plugins.description"
-                  values=***REMOVED******REMOVED*** name: capitalize(this.props.name) ***REMOVED******REMOVED***
+                  values={{ name: capitalize(this.props.name) }}
                 />
-              )***REMOVED***
+              )}
             </div>
           </div>
-          ***REMOVED*** emptyApplication && <div className=***REMOVED***this.state.collapse ? styles.chevronUp : styles.chevronDown***REMOVED***></div> ***REMOVED***
+          { emptyApplication && <div className={this.state.collapse ? styles.chevronUp : styles.chevronDown}></div> }
         </div>
-        <Collapse isOpen=***REMOVED***this.state.collapse***REMOVED***>
+        <Collapse isOpen={this.state.collapse}>
           <div />
-          <div className=***REMOVED***styles.controllerContainer***REMOVED***>
-            ***REMOVED***map(get(this.props.plugin, 'controllers'), (controllerActions, key) => (
+          <div className={styles.controllerContainer}>
+            {map(get(this.props.plugin, 'controllers'), (controllerActions, key) => (
               <Controller
-                inputNamePath=***REMOVED***`permissions.$***REMOVED***this.props.name***REMOVED***`***REMOVED***
-                isOpen=***REMOVED***this.state.collapse***REMOVED***
-                key=***REMOVED***key***REMOVED***
-                name=***REMOVED***key***REMOVED***
-                actions=***REMOVED***controllerActions***REMOVED***
-                resetInputBackground=***REMOVED***this.state.resetInputBackground***REMOVED***
+                inputNamePath={`permissions.${this.props.name}`}
+                isOpen={this.state.collapse}
+                key={key}
+                name={key}
+                actions={controllerActions}
+                resetInputBackground={this.state.resetInputBackground}
               />
-            ))***REMOVED***
+            ))}
           </div>
         </Collapse>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-Plugin.contextTypes = ***REMOVED***
+Plugin.contextTypes = {
   plugins: PropTypes.object.isRequired,
   resetShouldDisplayPoliciesHint: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
-Plugin.defaultProps = ***REMOVED***
+Plugin.defaultProps = {
   name: '',
-  plugin: ***REMOVED***
+  plugin: {
     description: 'users-permissions.Plugin.permissions.description.empty',
-    controllers: ***REMOVED******REMOVED***,
-    information: ***REMOVED******REMOVED***,
-***REMOVED***,
-***REMOVED***;
+    controllers: {},
+    information: {},
+  },
+};
 
-Plugin.propTypes = ***REMOVED***
+Plugin.propTypes = {
   changePluginSelected: PropTypes.func.isRequired,
   name: PropTypes.string,
-  plugin: PropTypes.shape(***REMOVED***
+  plugin: PropTypes.shape({
     description: PropTypes.string,
-    information: PropTypes.shape(***REMOVED***
+    information: PropTypes.shape({
       logo: PropTypes.string,
-***REMOVED***),
-***REMOVED***),
+    }),
+  }),
   pluginSelected: PropTypes.string.isRequired,
-***REMOVED***;
+};
 
 export default Plugin;

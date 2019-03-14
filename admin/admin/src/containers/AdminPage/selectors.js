@@ -3,7 +3,7 @@
  *  AdminPage selectors
  */
 
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
 * Direct selector to the homePage state domain

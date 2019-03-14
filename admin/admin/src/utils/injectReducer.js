@@ -7,30 +7,30 @@ import getInjectors from './reducerInjectors';
 /**
  * Dynamically injects a reducer
  *
- * @param ***REMOVED***string***REMOVED*** key A key of the reducer
- * @param ***REMOVED***function***REMOVED*** reducer A reducer that will be injected
+ * @param {string} key A key of the reducer
+ * @param {function} reducer A reducer that will be injected
  *
  */
-export default (***REMOVED*** key, reducer ***REMOVED***) => (WrappedComponent) => ***REMOVED***
-  class ReducerInjector extends React.Component ***REMOVED***
+export default ({ key, reducer }) => (WrappedComponent) => {
+  class ReducerInjector extends React.Component {
     static WrappedComponent = WrappedComponent;
-    static displayName = `withReducer($***REMOVED***(WrappedComponent.displayName || WrappedComponent.name || 'Component')***REMOVED***)`;
-    static contextTypes = ***REMOVED***
+    static displayName = `withReducer(${(WrappedComponent.displayName || WrappedComponent.name || 'Component')})`;
+    static contextTypes = {
       store: PropTypes.object.isRequired,
-***REMOVED***;
+    };
 
-    componentWillMount() ***REMOVED***
-      const ***REMOVED*** injectReducer ***REMOVED*** = this.injectors;
+    componentWillMount() {
+      const { injectReducer } = this.injectors;
 
       injectReducer(key, reducer);
-***REMOVED***
+    }
 
     injectors = getInjectors(this.context.store);
 
-    render() ***REMOVED***
-      return <WrappedComponent ***REMOVED***...this.props***REMOVED*** />;
-***REMOVED***
-***REMOVED***
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
+  }
 
   return hoistNonReactStatics(ReducerInjector, WrappedComponent);
-***REMOVED***;
+};

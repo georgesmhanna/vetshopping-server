@@ -12,84 +12,84 @@ import CustomInputCheckbox from 'components/CustomInputCheckbox';
 
 import styles from './styles.scss';
 
-class TableHeader extends React.Component ***REMOVED***
-  handleChangeSort(name) ***REMOVED***
-    if (this.props.sort === name) ***REMOVED***
-      this.props.onChangeSort(`-$***REMOVED***name***REMOVED***`);
-***REMOVED*** else if (this.props.sort === `-$***REMOVED***name***REMOVED***`) ***REMOVED***
+class TableHeader extends React.Component {
+  handleChangeSort(name) {
+    if (this.props.sort === name) {
+      this.props.onChangeSort(`-${name}`);
+    } else if (this.props.sort === `-${name}`) {
       this.props.onChangeSort(this.props.primaryKey);
-***REMOVED*** else ***REMOVED***
+    } else {
       this.props.onChangeSort(name);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  renderBulk = () => ***REMOVED***
-    if (this.props.enableBulkActions) ***REMOVED***
+  renderBulk = () => {
+    if (this.props.enableBulkActions) {
       return (
         <th key="bulk_action">
           <CustomInputCheckbox
-            entriesToDelete=***REMOVED***this.props.entriesToDelete***REMOVED***
+            entriesToDelete={this.props.entriesToDelete}
             isAll
             name="all"
-            onChange=***REMOVED***this.props.onClickSelectAll***REMOVED***
-            value=***REMOVED***this.props.value***REMOVED***
+            onChange={this.props.onClickSelectAll}
+            value={this.props.value}
           />
         </th>
       );
-***REMOVED***
+    }
 
     return null;
-***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     // Generate headers list
-    const headers = this.props.headers.map((header, i) => ***REMOVED***
+    const headers = this.props.headers.map((header, i) => {
       // Define sort icon
       let icon;
 
-      if (this.props.sort === header.name || this.props.sort === 'id' && header.name === '_id') ***REMOVED***
-        icon = <i className=***REMOVED***`fa fa-sort-asc $***REMOVED***styles.iconAsc***REMOVED***`***REMOVED*** />;
-***REMOVED*** else if (this.props.sort === `-$***REMOVED***header.name***REMOVED***`) ***REMOVED***
-        icon = <i className=***REMOVED***`fa fa-sort-asc $***REMOVED***styles.iconDesc***REMOVED***`***REMOVED*** />;
-***REMOVED***
+      if (this.props.sort === header.name || this.props.sort === 'id' && header.name === '_id') {
+        icon = <i className={`fa fa-sort-asc ${styles.iconAsc}`} />;
+      } else if (this.props.sort === `-${header.name}`) {
+        icon = <i className={`fa fa-sort-asc ${styles.iconDesc}`} />;
+      }
 
       return (
         <th // eslint-disable-line jsx-a11y/no-static-element-interactions
-          key=***REMOVED***i***REMOVED***
-          onClick=***REMOVED***() => ***REMOVED***
-            if (header.sortable) ***REMOVED***
+          key={i}
+          onClick={() => {
+            if (header.sortable) {
               this.handleChangeSort(header.name);
-      ***REMOVED***
-    ***REMOVED******REMOVED***
+            }
+          }}
         >
           <span>
-            ***REMOVED***header.label***REMOVED***
-            ***REMOVED***icon***REMOVED***
+            {header.label}
+            {icon}
           </span>
 
         </th>
       );
-***REMOVED***);
+    });
 
     // Add empty th for actions column.
     headers.push(<th key="th_action"></th>);
 
     return (
-      <thead className=***REMOVED***cn(styles.tableHeader, this.props.enableBulkActions && styles.withBulk)***REMOVED***>
+      <thead className={cn(styles.tableHeader, this.props.enableBulkActions && styles.withBulk)}>
         <tr >
-          ***REMOVED***[this.renderBulk()].concat(headers)***REMOVED***
+          {[this.renderBulk()].concat(headers)}
         </tr>
       </thead>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-TableHeader.defaultProps = ***REMOVED***
+TableHeader.defaultProps = {
   enableBulkActions: true,
   value: false,
-***REMOVED***;
+};
 
-TableHeader.propTypes = ***REMOVED***
+TableHeader.propTypes = {
   enableBulkActions: PropTypes.bool,
   entriesToDelete: PropTypes.array.isRequired,
   headers: PropTypes.array.isRequired,
@@ -98,6 +98,6 @@ TableHeader.propTypes = ***REMOVED***
   primaryKey: PropTypes.string.isRequired,
   sort: PropTypes.string.isRequired,
   value: PropTypes.bool,
-***REMOVED***;
+};
 
 export default TableHeader;

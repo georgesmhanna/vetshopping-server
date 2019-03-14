@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Visualisez, modifiez et supprimez les données de votre base de données.",
   "plugin.description.long": "Visualisez, modifiez et supprimez les données de votre base de données.",
   "containers.Home.pluginHeaderTitle": "Type de contenu",
@@ -12,9 +12,9 @@
   "containers.Edit.addAnItem": "Ajouter un élément...",
   "containers.Edit.clickToJump": "Cliquer pour voir l'entrée",
   "containers.Edit.seeDetails": "Détails",
-  "containers.List.addAnEntry": "Ajouter ***REMOVED***entity***REMOVED***",
-  "containers.List.pluginHeaderDescription": "***REMOVED***label***REMOVED*** entrées trouvées",
-  "containers.List.pluginHeaderDescription.singular": "***REMOVED***label***REMOVED*** entrée trouvée",
+  "containers.List.addAnEntry": "Ajouter {entity}",
+  "containers.List.pluginHeaderDescription": "{label} entrées trouvées",
+  "containers.List.pluginHeaderDescription.singular": "{label} entrée trouvée",
   "components.LimitSelect.itemsPerPage": "Éléments par page",
   "containers.List.errorFetchRecords": "Erreur",
   "containers.SettingsPage.Block.contentType.title": "Types de contenu",
@@ -55,13 +55,13 @@
   
   "components.Search.placeholder": "Rechercher une entrée...",
   
-  "components.TableDelete.entries.plural": "***REMOVED***number***REMOVED*** entrées sélectionnées",
-  "components.TableDelete.entries.singular": "***REMOVED***number***REMOVED*** entrée sélectionnée",
+  "components.TableDelete.entries.plural": "{number} entrées sélectionnées",
+  "components.TableDelete.entries.singular": "{number} entrée sélectionnée",
   "components.TableDelete.delete": "Tout supprimer",
   
-  "components.TableEmpty.withFilters": "Aucun ***REMOVED***contentType***REMOVED*** n'a été trouvé avec ces filtres...",
-  "components.TableEmpty.withoutFilter": "Aucun ***REMOVED***contentType***REMOVED*** n'a été trouvé...",
-  "components.TableEmpty.withSearch": "Aucun ***REMOVED***contentType***REMOVED*** n'a été trouvé avec cette recherche (***REMOVED***search***REMOVED***)...",
+  "components.TableEmpty.withFilters": "Aucun {contentType} n'a été trouvé avec ces filtres...",
+  "components.TableEmpty.withoutFilter": "Aucun {contentType} n'a été trouvé...",
+  "components.TableEmpty.withSearch": "Aucun {contentType} n'a été trouvé avec cette recherche ({search})...",
   
   "components.FilterOptions.button.apply": "Appliquer",
   "components.FilterOptions.FILTER_TYPES.=": "est",
@@ -132,4 +132,4 @@
   "popUpWarning.warning.updateAllSettings": "Cela modifiera tous vos précédents paramètres.",
 
   "pageNotFound" : "Page non trouvée"
-***REMOVED***
+}

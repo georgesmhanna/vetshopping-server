@@ -1,20 +1,20 @@
-.controlsContainer ***REMOVED***
+.controlsContainer {
   display: flex;
   background-color: #F3F4F4;
 
-  select ***REMOVED***
+  select {
     min-height: 31px !important;
     min-width: 161px !important;
     font-weight: 600;
     outline: none;
 
-    &:focus, &:active***REMOVED***
+    &:focus, &:active{
       border: 1px solid #E3E9F3;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.editorWrapper ***REMOVED***
+.editorWrapper {
   min-height: 320px;
   margin-top: .9rem;
   border: 1px solid #F3F4F4;
@@ -24,9 +24,9 @@
   box-shadow: 0px 1px 1px rgba(104, 118, 142, 0.05);
   background-color: #fff;
   position: relative;
-***REMOVED***
+}
 
-.editor ***REMOVED***
+.editor {
   min-height: 303px;
   max-height: 555px;
   padding: 20px 20px 0 20px;
@@ -36,55 +36,55 @@
   cursor: text;
   overflow: auto;
 
-  h1, h2, h3, h4, h5, h6 ***REMOVED***
+  h1, h2, h3, h4, h5, h6 {
     margin: 0;
     line-height: 18px !important;
-***REMOVED***
-  h1 ***REMOVED***
+  }
+  h1 {
     margin-top: 13px !important;
     margin-bottom: 22px;
-***REMOVED***
-  > div ***REMOVED***
-    > div ***REMOVED***
-      > div ***REMOVED***
+  }
+  > div {
+    > div {
+      > div {
         margin-bottom: 32px;
-***REMOVED***
-***REMOVED***
-***REMOVED***
-  li ***REMOVED***
+      }
+    }
+  }
+  li {
     margin-top: 0;
-***REMOVED***
-  ul, ol ***REMOVED***
+  }
+  ul, ol {
     margin-bottom: 18px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.editorError ***REMOVED***
+.editorError {
   border-color: #ff203c !important;
-***REMOVED***
+}
 
-.editorInput ***REMOVED***
+.editorInput {
   height: 0;
   width: 0;
-***REMOVED***
+}
 
-.editorBlockquote ***REMOVED***
+.editorBlockquote {
   border-left: 5px solid #eee;
   font-family: Lato;
   font-style: italic;
   margin: 16px 0;
   padding: 10px 20px;
-***REMOVED***
+}
 
-.editorCodeBlock ***REMOVED***
+.editorCodeBlock {
   margin-bottom: 0!important;
   padding: 5px;
   background-color: rgba(0, 0, 0, 0.05);
   font-family: Lato;
-***REMOVED***
+}
 
 
-.fullscreenOverlay ***REMOVED***
+.fullscreenOverlay {
   position: fixed;
   z-index: 1040;
   top: calc(6rem + 90px);
@@ -94,22 +94,22 @@
   display: flex;
   background-color: transparent;
   z-index: 99999;
-  > div ***REMOVED***
+  > div {
     min-width: 50%;
-***REMOVED***
-  > div:first-child ***REMOVED***
+  }
+  > div:first-child {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-***REMOVED***
-  > div:last-child ***REMOVED***
+  }
+  > div:last-child {
     border-left: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.editorFullScreen ***REMOVED***
+.editorFullScreen {
   max-height: calc(100% - 70px) !important;
   margin-bottom: 0;
   overflow: auto;
-***REMOVED***
+}

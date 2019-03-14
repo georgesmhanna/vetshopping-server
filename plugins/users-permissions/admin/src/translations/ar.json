@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "Auth.form.button.register-success": "إعادة الإرسال",
   "Auth.form.button.forgot-password.success": "إعادة الإرسال",
   "Auth.form.button.forgot-password": "إرسال للبريد",
@@ -53,7 +53,7 @@
 
   "components.Input.error.password.noMatch": "كلمات السر لا تتطابق",
 
-  "Controller.input.label": "***REMOVED***label***REMOVED*** ",
+  "Controller.input.label": "{label} ",
   "Controller.selectAll": "تحديد الكل",
 
   "EditForm.inputSelect.label.role": "الدور الافتراضي للمستخدمين المصادقين",
@@ -73,11 +73,11 @@
   "EditPage.form.roles": "تفاصيل الدور",
   "EditPage.form.roles.label.description": "الوصف",
   "EditPage.form.roles.label.name": "الأسم",
-  "EditPage.form.roles.label.users": "المستخدمون المرتبطون بهذا الدور (***REMOVED***number***REMOVED***)",
+  "EditPage.form.roles.label.users": "المستخدمون المرتبطون بهذا الدور ({number})",
   "EditPage.form.roles.name.error": "القيمة مطلوبة.",
-  "EditPage.header.title": "***REMOVED***name***REMOVED*** ",
+  "EditPage.header.title": "{name} ",
   "EditPage.header.title.create": "إنشاء دور جديد",
-  "EditPage.header.description": "***REMOVED***description***REMOVED*** ",
+  "EditPage.header.description": "{description} ",
   "EditPage.header.description.create": " ",
 
   "EditPage.notification.permissions.error": "حدث خطأ أثناء جلب الأذونات",
@@ -97,16 +97,16 @@
   "List.button.roles": "إضافة دور جديد",
   "List.button.providers": "إضافة موفر جديد",
 
-  "List.title.emailTemplates.singular": "يتوفر ***REMOVED***number***REMOVED*** نموذج للبريد الإلكتروني",
-  "List.title.emailTemplates.plural": "يتوفر ***REMOVED***number***REMOVED*** نماذج للبريد الإلكتروني",
+  "List.title.emailTemplates.singular": "يتوفر {number} نموذج للبريد الإلكتروني",
+  "List.title.emailTemplates.plural": "يتوفر {number} نماذج للبريد الإلكتروني",
 
-  "List.title.providers.disabled.singular": "***REMOVED***number***REMOVED*** معطل",
-  "List.title.providers.disabled.plural": "***REMOVED***number***REMOVED*** معطلين",
-  "List.title.providers.enabled.singular": "يتم تمكين ***REMOVED***number***REMOVED*** مزود و",
-  "List.title.providers.enabled.plural": "يتم تمكين ***REMOVED***number***REMOVED*** مزودين و",
+  "List.title.providers.disabled.singular": "{number} معطل",
+  "List.title.providers.disabled.plural": "{number} معطلين",
+  "List.title.providers.enabled.singular": "يتم تمكين {number} مزود و",
+  "List.title.providers.enabled.plural": "يتم تمكين {number} مزودين و",
 
-  "List.title.roles.singular": "***REMOVED***number***REMOVED*** دور متوفر",
-  "List.title.roles.plural": "***REMOVED***number***REMOVED*** ادوار متوفرة",
+  "List.title.roles.singular": "{number} دور متوفر",
+  "List.title.roles.plural": "{number} ادوار متوفرة",
 
   "notification.error.delete": "حدث خطأ أثناء محاولة حذف العنصر",
   "notification.error.fetch": "حدث خطأ أثناء محاولة جلب البيانات",
@@ -119,7 +119,7 @@
   "plugin.description.long": "حماية الـAPI الخاص بك مع عملية مصادقة كاملة استناداً إلى JWT. يأتي هذا الملحق أيضًا مع إستراتيجية ACL التي تسمح لك بإدارة الأذونات بين مجموعات المستخدمين.",
 
   "Plugin.permissions.application.description": "حدد جميع الإجراءات المسموح بها لمشروعك.",
-  "Plugin.permissions.plugins.description": "حدد جميع الإجراءات المسموح بها للإضافة ***REMOVED***name***REMOVED***.",
+  "Plugin.permissions.plugins.description": "حدد جميع الإجراءات المسموح بها للإضافة {name}.",
 
   "Plugins.header.title": "الصلاحيات",
   "Plugins.header.description": "يتم سرد الإجراءات المحددة المرتبطة بالمسار أدناه.",
@@ -139,7 +139,7 @@
   "PopUpForm.button.save": "حفظ",
   "PopUpForm.header.add.providers": "إضافة موفر جديد",
   "PopUpForm.header.edit.email-templates": "تحرير قوالب البريد الإلكتروني",
-  "PopUpForm.header.edit.providers": "تحرير موفر ***REMOVED***provider***REMOVED***",
+  "PopUpForm.header.edit.providers": "تحرير موفر {provider}",
   "PopUpForm.inputSelect.providers.label": "اختر الموفر",
   "PopUpForm.Email.options.from.name.label": "أسم المورد",
   "PopUpForm.Email.options.from.email.label": "البريد الإلكتروني للشاحن",
@@ -172,6 +172,6 @@
   "PopUpForm.Providers.twitter.providerConfig.redirectURL": "عنوان URL لإعادة التوجيه لإضافتة تكوين تطبيق Twitter",
 
   "PopUpForm.Providers.callback.placeholder": "نص",
-  "PopUpForm.Email.email_templates.inputDescription": "إذا كنت غير متأكد من كيفية استخدام المتغيرات ، ***REMOVED***link***REMOVED***",
+  "PopUpForm.Email.email_templates.inputDescription": "إذا كنت غير متأكد من كيفية استخدام المتغيرات ، {link}",
   "PopUpForm.Email.link.documentation": "تحقق من وثائقنا."
-***REMOVED***
+}

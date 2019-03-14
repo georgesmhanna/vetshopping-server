@@ -1,4 +1,4 @@
-.close ***REMOVED***
+.close {
   float: right;
   font-size: $close-font-size;
   font-weight: $close-font-weight;
@@ -7,12 +7,12 @@
   text-shadow: $close-text-shadow;
   opacity: .5;
 
-  @include hover-focus ***REMOVED***
+  @include hover-focus {
     color: $close-color;
     text-decoration: none;
     opacity: .75;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 // Additional properties for button version
 // iOS requires the button element instead of an anchor tag.
@@ -20,10 +20,10 @@
 // See https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
 
 // scss-lint:disable QualifyingElement
-button.close ***REMOVED***
+button.close {
   padding: 0;
   background: transparent;
   border: 0;
   -webkit-appearance: none;
-***REMOVED***
+}
 // scss-lint:enable QualifyingElement

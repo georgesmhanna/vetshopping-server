@@ -1,28 +1,28 @@
-.inputEnum ***REMOVED*** /* stylelint-disable */
+.inputEnum { /* stylelint-disable */
   // margin-top: 1.8rem;
   margin-top: -.3rem;
 
 
-  .button.active***REMOVED***
+  .button.active{
     box-shadow: inset 0px 1px 3px rgba(0,0,0,0.1);
 
-    &:first-of-type***REMOVED***
+    &:first-of-type{
       box-shadow: inset -1px 1px 3px rgba(0,0,0,0.1);
-***REMOVED***
+    }
 
-    &:last-of-type***REMOVED***
+    &:last-of-type{
       box-shadow: inset 1px 1px 3px rgba(0,0,0,0.1);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-***REMOVED***
+}
 
-.enumLabel ***REMOVED***
+.enumLabel {
   margin-bottom: 0.4rem;
   font-weight: 500;
-***REMOVED***
+}
 
-.button ***REMOVED***
+.button {
   height: 3.4rem;
   margin-top: .6rem;
   margin-bottom: 2.8rem;
@@ -35,15 +35,15 @@
   font-weight: 600;
   font-size: 1.2rem;
   letter-spacing: 0.07rem;
-  &:hover ***REMOVED***
+  &:hover {
     z-index: 0 !important;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.active ***REMOVED***
+.active {
   -webkit-font-smoothing: antialiased;
   background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
   font-family: Lato!important;
   font-weight: 800;
   color: white !important;
-***REMOVED***
+}

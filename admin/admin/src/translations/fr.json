@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "app.components.Button.save": "Save",
   "app.components.Button.cancel": "Cancel",
 
@@ -34,7 +34,7 @@
   "app.components.BlockLink.code": "Apps d'exemple",
   "app.components.BlockLink.code.content": "Apprenez en testant les projets développés par la communauté.",
 
-  "app.components.ImgPreview.hint": "Drag & drop dans cette zone ou ***REMOVED***browse***REMOVED*** un fichier à télécharger",
+  "app.components.ImgPreview.hint": "Drag & drop dans cette zone ou {browse} un fichier à télécharger",
   "app.components.ImgPreview.hint.browse": "recherchez",
 
   "app.components.InputFile.newFile": "Ajouter un  nouveau fichier",
@@ -69,8 +69,8 @@
   "app.components.ListPluginsPage.title": "Plugins",
   "app.components.ListPluginsPage.description": "Liste des plugins installés dans le projet.",
   "app.components.listPluginsPage.deletePlugin.error": "Une erreur est survenue pendant la désintallation",
-  "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED*** est disponible",
-  "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED*** sont disponibles",
+  "app.components.listPlugins.title.singular": "{number} est disponible",
+  "app.components.listPlugins.title.plural": "{number} sont disponibles",
   "app.components.listPlugins.title.none": "Aucun plugin n'est installé",
   "app.components.listPlugins.button": "Ajouter un Nouveau Plugin",
 
@@ -121,7 +121,7 @@
   "components.Input.error.attribute.key.taken": "Cette valeur existe déjà",
   "components.Input.error.attribute.sameKeyAndName": "Ne peuvent pas être égaux",
   "components.Input.error.validation.minSupMax": "Ne peut pas être plus grand",
-  "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+  "components.Input.error.custom-error": "{errorMessage} ",
   "components.Input.error.validation.json": "Le format JSON n'est pas respecté",
 
   "components.ListRow.empty": "Il n'y a pas de données à afficher.",
@@ -137,7 +137,7 @@
   "components.Wysiwyg.ToggleMode.markdown": "Retour au markdown",
   "components.Wysiwyg.ToggleMode.preview": "Voir la preview",
   "components.WysiwygBottomControls.charactersIndicators": "charactères",
-  "components.WysiwygBottomControls.uploadFiles": "Ajouter des fichiers en les 'droppant', ***REMOVED***browse***REMOVED***, ou en les collant depuis le presse-papier",
+  "components.WysiwygBottomControls.uploadFiles": "Ajouter des fichiers en les 'droppant', {browse}, ou en les collant depuis le presse-papier",
   "components.WysiwygBottomControls.uploadFiles.browse": "en les selectionnant",
   "components.WysiwygBottomControls.fullscreen": "Plein écran",
 
@@ -163,4 +163,4 @@
   "Roles & Permissions": "Rôles et autorisations",
   "New entry": "Nouvelle entrée",
   "request.error.model.unknown": "Le model n'existe pas"
-***REMOVED***
+}

@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the list state domain
@@ -6,21 +6,21 @@ import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
 
 const selectGlobalDomain = () => state => state.get('global');
 
-const selectLocationState = () => ***REMOVED***
+const selectLocationState = () => {
   let prevRoutingState;
   let prevRoutingStateJS;
 
-  return state => ***REMOVED***
+  return state => {
     const routingState = state.get('route'); // or state.route
 
-    if (!routingState.equals(prevRoutingState)) ***REMOVED***
+    if (!routingState.equals(prevRoutingState)) {
       prevRoutingState = routingState;
       prevRoutingStateJS = routingState.toJS();
-***REMOVED***
+    }
 
     return prevRoutingStateJS;
-***REMOVED***;
-***REMOVED***;
+  };
+};
 
 const makeSelectSections = () => createSelector(
   selectGlobalDomain(),
@@ -37,10 +37,10 @@ const makeSelectLoading = () => createSelector(
   (globalSate) => globalSate.get('loading'),
 );
 
-export ***REMOVED***
+export {
   makeSelectEnvironments,
   makeSelectLoading,
   makeSelectSections,
   selectLocationState,
-***REMOVED***;
+};
 export default selectGlobalDomain;

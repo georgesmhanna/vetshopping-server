@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the configPage state domain
@@ -25,7 +25,7 @@ const makeSelectModifiedData = () => createSelector(
 );
 
 export default selectConfigPage;
-export ***REMOVED***
+export {
   makeSelectEnv,
   makeSelectModifiedData,
-***REMOVED***;
+};

@@ -6,59 +6,59 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** CSSTransition, TransitionGroup ***REMOVED*** from 'react-transition-group';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import Notification from 'components/Notification';
 
 import styles from './styles.scss';
 
-class NotificationsContainer extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  render() ***REMOVED***
-    if (this.props.notifications.length === 0) ***REMOVED***
+class NotificationsContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
+    if (this.props.notifications.length === 0) {
       return (false);
-***REMOVED***
+    }
 
     const notifications = this.props.notifications.map((notification, i) => (
       <CSSTransition
-        key=***REMOVED***i***REMOVED***
+        key={i}
         classNames="notification"
-        timeout=***REMOVED******REMOVED***
+        timeout={{
           enter: 500,
           exit: 300,
-  ***REMOVED******REMOVED***
+        }}
       >
         <Notification
-          key=***REMOVED***notification.id***REMOVED***
-          onHideNotification=***REMOVED***this.props.onHideNotification***REMOVED***
-          notification=***REMOVED***notification***REMOVED***
+          key={notification.id}
+          onHideNotification={this.props.onHideNotification}
+          notification={notification}
         />
       </CSSTransition>
     ));
 
     return (
-      <TransitionGroup className=***REMOVED***styles.notificationsContainer***REMOVED***>
-        ***REMOVED***notifications***REMOVED***
+      <TransitionGroup className={styles.notificationsContainer}>
+        {notifications}
       </TransitionGroup>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-NotificationsContainer.defaultProps = ***REMOVED***
+NotificationsContainer.defaultProps = {
   notifications: [
-    ***REMOVED***
+    {
       id: 1,
       message: 'app.utils.defaultMessage',
       status: 'success',
-***REMOVED***,
+    },
   ],
-***REMOVED***;
+};
 
-NotificationsContainer.propTypes = ***REMOVED***
+NotificationsContainer.propTypes = {
   notifications: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.array,
   ]),
   onHideNotification: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
 export default NotificationsContainer;

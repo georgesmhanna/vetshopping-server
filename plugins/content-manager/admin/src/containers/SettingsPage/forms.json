@@ -1,42 +1,42 @@
-***REMOVED***
+{
   "inputs": [
-    ***REMOVED***
-      "label": ***REMOVED*** "id": "content-manager.form.Input.search" ***REMOVED***,
+    {
+      "label": { "id": "content-manager.form.Input.search" },
       "customBootstrapClass": "col-md-4",
       "didCheckErrors": false,
       "errors": [],
       "name": "generalSettings.search",
       "type": "toggle",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***,
-    ***REMOVED***
-      "label": ***REMOVED*** "id": "content-manager.form.Input.filters" ***REMOVED***,
+      "validations": {}
+    },
+    {
+      "label": { "id": "content-manager.form.Input.filters" },
       "customBootstrapClass": "col-md-4",
       "didCheckErrors": false,
       "errors": [],
       "name": "generalSettings.filters",
       "type": "toggle",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***,
-    ***REMOVED***
-      "label": ***REMOVED*** "id": "content-manager.form.Input.bulkActions" ***REMOVED***,
+      "validations": {}
+    },
+    {
+      "label": { "id": "content-manager.form.Input.bulkActions" },
       "customBootstrapClass": "col-md-4",
       "didCheckErrors": false,
       "errors": [],
       "name": "generalSettings.bulkActions",
       "type": "toggle",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***,
-    ***REMOVED***
-      "label": ***REMOVED*** "id": "content-manager.form.Input.pageEntries" ***REMOVED***,
+      "validations": {}
+    },
+    {
+      "label": { "id": "content-manager.form.Input.pageEntries" },
       "customBootstrapClass": "col-md-3",
       "didCheckErrors": false,
       "errors": [],
-      "inputDescription": ***REMOVED*** "id": "content-manager.form.Input.pageEntries.inputDescription" ***REMOVED***,
+      "inputDescription": { "id": "content-manager.form.Input.pageEntries.inputDescription" },
       "name": "generalSettings.pageEntries",
       "selectOptions": ["10", "20", "50", "100"],
       "type": "select",
-      "validations": ***REMOVED******REMOVED***
-***REMOVED***
+      "validations": {}
+    }
   ]
-***REMOVED***
+}

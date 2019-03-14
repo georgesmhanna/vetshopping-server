@@ -1,29 +1,29 @@
-***REMOVED***
+{
   "connection": "default",
   "collectionName": "brand",
-  "info": ***REMOVED***
+  "info": {
     "name": "brand",
     "description": ""
-***REMOVED***,
-  "options": ***REMOVED***
+  },
+  "options": {
     "timestamps": true
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "name": ***REMOVED***
+  },
+  "attributes": {
+    "name": {
       "default": "",
       "unique": true,
       "type": "string",
       "required": true
-***REMOVED***,
-    "image": ***REMOVED***
+    },
+    "image": {
       "model": "file",
       "via": "related",
       "plugin": "upload",
       "required": false
-***REMOVED***,
-    "products": ***REMOVED***
+    },
+    "products": {
       "collection": "product",
       "via": "brand"
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

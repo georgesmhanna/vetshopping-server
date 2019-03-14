@@ -1,15 +1,15 @@
 // Import
 @import "../../styles/variables/variables";
 
-.item ***REMOVED***
+.item {
   position: relative;
   overflow: hidden;
 
-  &:not(:first-child) ***REMOVED***
+  &:not(:first-child) {
     margin-top: 0;
-***REMOVED***
+  }
 
-  .plugin ***REMOVED***
+  .plugin {
     cursor: pointer;
     position: absolute;
     top: 10px; left: calc(100% - 4px);
@@ -18,7 +18,7 @@
     height: 20px;
     transition: right 1s ease-in-out;
 
-    span***REMOVED***
+    span{
       display: inline-block;
       overflow: hidden;
       width: auto;
@@ -32,14 +32,14 @@
       transition: transform .3s ease-in-out;
       white-space: pre;
 
-      &:hover***REMOVED***
+      &:hover{
         transform: translateX(calc(-100% + 9px));
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
+}
 
-.link ***REMOVED***
+.link {
   padding-top: .9rem;
   padding-bottom: 0.2rem;
   padding-left: 1.6rem;
@@ -51,29 +51,29 @@
   display: block;
   -webkit-font-smoothing: antialiased;
 
-  &:hover ***REMOVED***
+  &:hover {
     color: $white;
     background: $left-menu-link-hover;
     border-left: 0.3rem solid $strapi-blue;
     text-decoration: none;
-***REMOVED***
+  }
 
-  &:focus ***REMOVED***
+  &:focus {
     color: $white;
     text-decoration: none;
-***REMOVED***
+  }
 
-  &:visited ***REMOVED***
+  &:visited {
     color: $left-menu-link-color;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.linkActive ***REMOVED***
+.linkActive {
   color: $white !important;
   border-left: 0.3rem solid $strapi-blue;
-***REMOVED***
+}
 
-.linkIcon ***REMOVED***
+.linkIcon {
   position: relative;
   margin-right: 1.2rem;
   font-size: 1.2rem;
@@ -81,9 +81,9 @@
   height: 1.2rem;
   padding-bottom: 0.2rem;
   text-align: center;
-***REMOVED***
+}
 
-.linkLabel ***REMOVED***
+.linkLabel {
   display: inline-block;
   padding-right: 1rem;
-***REMOVED***
+}

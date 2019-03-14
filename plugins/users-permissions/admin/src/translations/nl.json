@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "Auth.form.button.register-success": "Opnieuw versturen",
   "Auth.form.button.forgot-password.success": "Opnieuw versturen",
   "Auth.form.button.forgot-password": "E-mail versturen",
@@ -53,7 +53,7 @@
 
   "components.Input.error.password.noMatch": "Wachtwoorden komen niet overeen",
 
-  "Controller.input.label": "***REMOVED***label***REMOVED*** ",
+  "Controller.input.label": "{label} ",
   "Controller.selectAll": "Alles selecteren",
 
   "EditForm.inputSelect.label.role": "Standaard rol voor geautoriseerde gebruikers",
@@ -73,11 +73,11 @@
   "EditPage.form.roles": "Rol details",
   "EditPage.form.roles.label.description": "Beschrijving",
   "EditPage.form.roles.label.name": "Naam",
-  "EditPage.form.roles.label.users": "Gebruikers geassocieerd met deze rol (***REMOVED***number***REMOVED***)",
+  "EditPage.form.roles.label.users": "Gebruikers geassocieerd met deze rol ({number})",
   "EditPage.form.roles.name.error": "Deze waarde is verplicht.",
-  "EditPage.header.title": "***REMOVED***name***REMOVED*** ",
+  "EditPage.header.title": "{name} ",
   "EditPage.header.title.create": "Nieuwe rol aanmaken",
-  "EditPage.header.description": "***REMOVED***description***REMOVED*** ",
+  "EditPage.header.description": "{description} ",
   "EditPage.header.description.create": " ",
 
   "EditPage.notification.permissions.error": "Er is een fout opgetreden tijdens het ophalen van de permissies",
@@ -97,16 +97,16 @@
   "List.button.roles": "Nieuwe rol toevoegen",
   "List.button.providers": "Nieuwe leverancier toevoegen",
 
-  "List.title.emailTemplates.singular": "***REMOVED***number***REMOVED*** e-mail sjabloon beschikbaar",
-  "List.title.emailTemplates.plural": "***REMOVED***number***REMOVED*** e-mail sjablonen beschikbaar",
+  "List.title.emailTemplates.singular": "{number} e-mail sjabloon beschikbaar",
+  "List.title.emailTemplates.plural": "{number} e-mail sjablonen beschikbaar",
 
-  "List.title.providers.disabled.singular": "***REMOVED***number***REMOVED*** is uitgeschakeld",
-  "List.title.providers.disabled.plural": "***REMOVED***number***REMOVED*** zijn uitgeschakeld",
-  "List.title.providers.enabled.singular": "***REMOVED***number***REMOVED*** leverancier is ingeschakeld en",
-  "List.title.providers.enabled.plural": "***REMOVED***number***REMOVED*** leveranciers zijn ingeschakeld en",
+  "List.title.providers.disabled.singular": "{number} is uitgeschakeld",
+  "List.title.providers.disabled.plural": "{number} zijn uitgeschakeld",
+  "List.title.providers.enabled.singular": "{number} leverancier is ingeschakeld en",
+  "List.title.providers.enabled.plural": "{number} leveranciers zijn ingeschakeld en",
 
-  "List.title.roles.singular": "***REMOVED***number***REMOVED*** rol is beschikbaar",
-  "List.title.roles.plural": "***REMOVED***number***REMOVED*** rollen zijn beschikbaar",
+  "List.title.roles.singular": "{number} rol is beschikbaar",
+  "List.title.roles.plural": "{number} rollen zijn beschikbaar",
 
   "notification.error.delete": "Er is een fout opgetreden tijdens het verwijderen van dit item",
   "notification.error.fetch": "Er is een fout opgetreden tijdens het ophalen van de data",
@@ -119,7 +119,7 @@
   "plugin.description.long": "Beveilig je API met een volledig authenticatie proces op JWT. Deze extensie komt ook met een ACL strategie welke ervoor zorgt dat je de permissies tussen groepen van gebruikers kan beheren.",
 
   "Plugin.permissions.application.description": "Voer alle toegestane acties van je project in.",
-  "Plugin.permissions.plugins.description": "Voer alle toegestane acties in voor extensie ***REMOVED***name***REMOVED***.",
+  "Plugin.permissions.plugins.description": "Voer alle toegestane acties in voor extensie {name}.",
 
   "Plugins.header.title": "Permissies",
   "Plugins.header.description": "Alleen acties gekoppeld aan een route worden hieronder weergegeven.",
@@ -139,7 +139,7 @@
   "PopUpForm.button.save": "Opslaan",
   "PopUpForm.header.add.providers": "Nieuwe leverancier toevoegen",
   "PopUpForm.header.edit.email-templates": "E-mail sjablonen aanpassen",
-  "PopUpForm.header.edit.providers": "Leverancier ***REMOVED***provider***REMOVED*** aanpassen",
+  "PopUpForm.header.edit.providers": "Leverancier {provider} aanpassen",
   "PopUpForm.inputSelect.providers.label": "Kies een leverancier",
   "PopUpForm.Email.options.from.name.label": "Afzender naam",
   "PopUpForm.Email.options.from.email.label": "Afzender e-mail",
@@ -170,6 +170,6 @@
   "PopUpForm.Providers.twitter.providerConfig.redirectURL": "De doorstuur URL om in je Twitter applicatie configuratie te zetten",
 
   "PopUpForm.Providers.callback.placeholder": "TEXT",
-  "PopUpForm.Email.email_templates.inputDescription": "Als je niet zeker weet hoe je variabelen moet gebruiken, ***REMOVED***link***REMOVED***",
+  "PopUpForm.Email.email_templates.inputDescription": "Als je niet zeker weet hoe je variabelen moet gebruiken, {link}",
   "PopUpForm.Email.link.documentation": "bekijk onze documentatie."
-***REMOVED***
+}

@@ -1,56 +1,56 @@
-.plugins ***REMOVED***
+.plugins {
   padding-top: 1.8rem;
-***REMOVED***
+}
 
-.pluginsContainer ***REMOVED***
+.pluginsContainer {
   padding-top: 1.9rem;
-  > div ***REMOVED***
+  > div {
     border-bottom: 1px solid white;
 
-    &:last-child***REMOVED***
+    &:last-child{
       border-bottom: none;
-***REMOVED***
-***REMOVED***
-  > div:not(:first-child) ***REMOVED***
+    }
+  }
+  > div:not(:first-child) {
     background: linear-gradient(315deg, rgba(255,255,255,0) 0%, rgba(227, 233, 243, 0.54) 100%);
-    > div ***REMOVED***
+    > div {
       line-height: 5.2rem;
-***REMOVED***
-    > div:nth-child(2) ***REMOVED***
-      >div:first-child ***REMOVED***
+    }
+    > div:nth-child(2) {
+      >div:first-child {
         min-height: 1.8rem;
         background: #ffffff;
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
+}
 
-.headerContainer ***REMOVED***
+.headerContainer {
   padding: 0 28px;
 
-  > div:first-child ***REMOVED***
+  > div:first-child {
     margin-bottom: 2px;
     color: #333740;
     font-family: Lato;
     font-size: 1.8rem;
     font-weight: 600;
     line-height: 2.1rem;
-***REMOVED***
-  > div:last-child ***REMOVED***
+  }
+  > div:last-child {
     margin-top: 0rem;
     color: #787E8F;
     font-size: 1.2rem;
     line-height: 1.5rem;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.wrapper ***REMOVED***
+.wrapper {
   margin: 0 -15px;
   padding: 0;
-***REMOVED***
+}
 
-.pluginsGradient ***REMOVED***
-  > div:first-child ***REMOVED***
+.pluginsGradient {
+  > div:first-child {
     background: linear-gradient(315deg, rgba(255,255,255,0) 0%, rgba(227, 233, 243, 0.54) 100%) !important;
-***REMOVED***
-***REMOVED***
+  }
+}

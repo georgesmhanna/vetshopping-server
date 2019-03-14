@@ -6,52 +6,52 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** isFunction, isObject ***REMOVED*** from 'lodash';
+import { FormattedMessage } from 'react-intl';
+import { isFunction, isObject } from 'lodash';
 import cn from 'classnames';
 import LoadingBar from 'components/LoadingBar';
 
 import styles from './styles.scss';
 
-function Sub(***REMOVED*** bordered, content, link, name, style, title, underline ***REMOVED***) ***REMOVED***
-  if (isObject(title)) ***REMOVED***
+function Sub({ bordered, content, link, name, style, title, underline }) {
+  if (isObject(title)) {
     return (
-      <div className=***REMOVED***cn(styles.subWrapper, bordered && styles.subBordered)***REMOVED***>
-        <FormattedMessage ***REMOVED***...title***REMOVED***>
-          ***REMOVED***message => <span className=***REMOVED***cn(underline && styles.underlinedTitle)***REMOVED***>***REMOVED***message***REMOVED******REMOVED***name***REMOVED***</span>***REMOVED***
+      <div className={cn(styles.subWrapper, bordered && styles.subBordered)}>
+        <FormattedMessage {...title}>
+          {message => <span className={cn(underline && styles.underlinedTitle)}>{message}{name}</span>}
         </FormattedMessage>
-        ***REMOVED***content()***REMOVED***
+        {content()}
       </div>
     );
-***REMOVED***
+  }
 
   return (
-    <a className=***REMOVED***cn(styles.subWrapper, bordered && styles.subBordered, styles.link)***REMOVED*** href=***REMOVED***`https://blog.strapi.io/$***REMOVED***link***REMOVED***`***REMOVED*** target="_blank">
-      <span>***REMOVED***title***REMOVED***</span>
-      ***REMOVED***title === '' && <LoadingBar />***REMOVED***
-      ***REMOVED***content === '' && <LoadingBar style=***REMOVED******REMOVED*** width: '40%' ***REMOVED******REMOVED*** />***REMOVED***
-      <p style=***REMOVED***style***REMOVED***>
-        ***REMOVED***isFunction(content) ? content() : content***REMOVED***
+    <a className={cn(styles.subWrapper, bordered && styles.subBordered, styles.link)} href={`https://blog.strapi.io/${link}`} target="_blank">
+      <span>{title}</span>
+      {title === '' && <LoadingBar />}
+      {content === '' && <LoadingBar style={{ width: '40%' }} />}
+      <p style={style}>
+        {isFunction(content) ? content() : content}
       </p>
     </a>
   );
-***REMOVED***
+}
 
-Sub.defaultProps = ***REMOVED***
+Sub.defaultProps = {
   bordered: false,
   content: () => '',
   link: '',
   name: '',
-  style: ***REMOVED******REMOVED***,
-  title: ***REMOVED***
+  style: {},
+  title: {
     id: 'app.utils.defaultMessage',
     defaultMessage: 'app.utils.defaultMessage',
-    values: ***REMOVED******REMOVED***,
-***REMOVED***,
+    values: {},
+  },
   underline: false,
-***REMOVED***;
+};
 
-Sub.propTypes = ***REMOVED***
+Sub.propTypes = {
   bordered: PropTypes.bool,
   content: PropTypes.oneOfType([
     PropTypes.func,
@@ -65,6 +65,6 @@ Sub.propTypes = ***REMOVED***
     PropTypes.string,
   ]),
   underline: PropTypes.bool,
-***REMOVED***;
+};
 
 export default Sub;

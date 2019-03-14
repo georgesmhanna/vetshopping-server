@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "ConfigPage.title": "الرفع - الإعدادات",
   "ConfigPage.description": "تهئية إضافة الرفع",
 
@@ -9,8 +9,8 @@
 
   "EmptyLi.message": "لا توجد ملفات تم تحميلها",
 
-  "EntriesNumber.number": "***REMOVED***number***REMOVED*** ملف وجد",
-  "EntriesNumber.number.plural": "***REMOVED***number***REMOVED*** ملفات وجدة",
+  "EntriesNumber.number": "{number} ملف وجد",
+  "EntriesNumber.number.plural": "{number} ملفات وجدة",
 
   "HomePage.title": "رفع",
   "HomePage.description": "اكتشف كل الملفات التي تم تحميلها",
@@ -25,12 +25,12 @@
   "ListHeader.size": "الحجم",
   "ListHeader.related": "متعلق بـ",
 
-  "PluginInputFile.text": "اسحب الملفات وأسقطها في هذه المنطقة أو ***REMOVED***link***REMOVED*** من ملف لتحميله",
+  "PluginInputFile.text": "اسحب الملفات وأسقطها في هذه المنطقة أو {link} من ملف لتحميله",
   "PluginInputFile.link": "متصفح",
   "PluginInputFile.loading": "يجري تحميل ملفاتك...",
 
   "notification.config.success": "تم تحديث الإعدادات",
   "notification.delete.success": "تم حذف الملف",
   "notification.dropFile.success": "تم تحميل ملفك",
-  "notification.dropFiles.success": "***REMOVED***number***REMOVED*** ملفات تم تحميلها"
-***REMOVED***
+  "notification.dropFiles.success": "{number} ملفات تم تحميلها"
+}

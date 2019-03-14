@@ -1,6 +1,6 @@
 // Dependencies.
-import ***REMOVED*** LOCATION_CHANGE ***REMOVED*** from 'react-router-redux';
-import ***REMOVED***
+import { LOCATION_CHANGE } from 'react-router-redux';
+import {
   call,
   cancel,
   fork,
@@ -8,113 +8,113 @@ import ***REMOVED***
   select,
   take,
   takeLatest,
-***REMOVED*** from 'redux-saga/effects';
+} from 'redux-saga/effects';
 
 // Utils.
 import request from 'utils/request';
 
 // Actions
-import ***REMOVED***
+import {
   deleteDataSuccess,
   deleteSeveralDataSuccess,
   getDataSucceeded,
-***REMOVED*** from './actions';
+} from './actions';
 // Constants
-import ***REMOVED***
+import {
   DELETE_DATA,
   DELETE_SEVERAL_DATA,
   GET_DATA,
-***REMOVED*** from './constants';
+} from './constants';
 // Selectors
-import ***REMOVED***
+import {
   makeSelectFilters,
   makeSelectParams,
-***REMOVED*** from './selectors';
+} from './selectors';
 
-export function* dataGet(action) ***REMOVED***
-  try ***REMOVED***
-    const ***REMOVED*** _limit, _page, _sort, _q ***REMOVED*** = yield select(makeSelectParams());
+export function* dataGet(action) {
+  try {
+    const { _limit, _page, _sort, _q } = yield select(makeSelectParams());
     const filters = yield select(makeSelectFilters());
     const source = action.source;
     const currentModel = action.currentModel;
-    const countURL = `/content-manager/explorer/$***REMOVED***currentModel***REMOVED***/count`;
+    const countURL = `/content-manager/explorer/${currentModel}/count`;
     // Params to get the model's records
-    const recordsURL = `/content-manager/explorer/$***REMOVED***currentModel***REMOVED***`;
-    const filtersObj = filters.reduce((acc, curr) => ***REMOVED***
-      const key = curr.filter === '=' ? curr.attr : `$***REMOVED***curr.attr***REMOVED***$***REMOVED***curr.filter***REMOVED***`;
-      const filter = ***REMOVED***
+    const recordsURL = `/content-manager/explorer/${currentModel}`;
+    const filtersObj = filters.reduce((acc, curr) => {
+      const key = curr.filter === '=' ? curr.attr : `${curr.attr}${curr.filter}`;
+      const filter = {
         [key]: curr.value,
-***REMOVED***;
+      };
       acc = Object.assign(acc, filter);
 
       return acc;
-***REMOVED***, ***REMOVED******REMOVED***);
+    }, {});
 
     const _start = (_page - 1 ) * _limit;
-    const sortValue = _sort.includes('-') ? `$***REMOVED***_sort.replace('-', '')***REMOVED***:DESC` : `$***REMOVED***_sort***REMOVED***:ASC`;
-    const params = Object.assign(filtersObj, ***REMOVED***
+    const sortValue = _sort.includes('-') ? `${_sort.replace('-', '')}:DESC` : `${_sort}:ASC`;
+    const params = Object.assign(filtersObj, {
       _limit,
       _start,
       _sort: sortValue,
       source,
-***REMOVED***);
+    });
 
-    if (_q !== '') ***REMOVED***
+    if (_q !== '') {
       params._q = _q;
-***REMOVED***
+    }
     
     const response = yield [
-      call(request, countURL, ***REMOVED*** method: 'GET', params ***REMOVED***),
-      call(request, recordsURL, ***REMOVED*** method: 'GET', params ***REMOVED***),
+      call(request, countURL, { method: 'GET', params }),
+      call(request, recordsURL, { method: 'GET', params }),
     ];
 
     yield put(getDataSucceeded(response));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* dataDelete(***REMOVED*** id, modelName, source ***REMOVED***) ***REMOVED***
-  try ***REMOVED***
-    const requestUrl = `/content-manager/explorer/$***REMOVED***modelName***REMOVED***/$***REMOVED***id***REMOVED***`;
-    const params = ***REMOVED******REMOVED***;
+export function* dataDelete({ id, modelName, source }) {
+  try {
+    const requestUrl = `/content-manager/explorer/${modelName}/${id}`;
+    const params = {};
 
-    if (source !== undefined) ***REMOVED***
+    if (source !== undefined) {
       params.source = source;
-***REMOVED***
+    }
 
-    yield call(request, requestUrl, ***REMOVED***
+    yield call(request, requestUrl, {
       method: 'DELETE',
       params,
-***REMOVED***);
+    });
 
     strapi.notification.success('content-manager.success.record.delete');
 
     yield put(deleteDataSuccess(id));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('content-manager.error.record.delete');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* dataDeleteAll(***REMOVED*** entriesToDelete, model, source ***REMOVED***) ***REMOVED***
-  try ***REMOVED***
-    const params = Object.assign(entriesToDelete, source !== undefined ? ***REMOVED*** source ***REMOVED*** : ***REMOVED******REMOVED***);
+export function* dataDeleteAll({ entriesToDelete, model, source }) {
+  try {
+    const params = Object.assign(entriesToDelete, source !== undefined ? { source } : {});
     
-    yield call(request, `/content-manager/explorer/deleteAll/$***REMOVED***model***REMOVED***`, ***REMOVED***
+    yield call(request, `/content-manager/explorer/deleteAll/${model}`, {
       method: 'DELETE',
       params,
-***REMOVED***);
+    });
 
     yield put(deleteSeveralDataSuccess());
-    yield call(dataGet, ***REMOVED*** currentModel: model, source ***REMOVED***);
+    yield call(dataGet, { currentModel: model, source });
     strapi.notification.success('content-manager.success.record.delete');
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('content-manager.error.record.delete');
-***REMOVED***
-***REMOVED***
+  }
+}
 
 // All sagas to be loaded
-function* defaultSaga() ***REMOVED***
+function* defaultSaga() {
   const loadDataWatcher = yield fork(takeLatest, GET_DATA, dataGet);
   yield fork(takeLatest, DELETE_DATA, dataDelete);
   yield fork(takeLatest, DELETE_SEVERAL_DATA, dataDeleteAll);
@@ -122,6 +122,6 @@ function* defaultSaga() ***REMOVED***
   yield take(LOCATION_CHANGE);
 
   yield cancel(loadDataWatcher);
-***REMOVED***
+}
 
 export default defaultSaga;

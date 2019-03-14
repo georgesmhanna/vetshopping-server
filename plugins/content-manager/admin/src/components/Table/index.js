@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** toString ***REMOVED*** from 'lodash';
+import { toString } from 'lodash';
 
 import TableDelete from 'components/TableDelete';
 import TableHeader from 'components/TableHeader';
@@ -16,74 +16,74 @@ import TableLoading from 'components/TableLoading';
 
 import styles from './styles.scss';
 
-class Table extends React.Component ***REMOVED***
-  render() ***REMOVED***
+class Table extends React.Component {
+  render() {
     const rows = this.props.records.length === 0 ?
       (
         <TableEmpty
-          filters=***REMOVED***this.props.filters***REMOVED***
-          colspan=***REMOVED***this.props.enableBulkActions ? this.props.headers.length + 1 : this.props.headers.length***REMOVED***
-          contentType=***REMOVED***this.props.routeParams.slug***REMOVED***
-          search=***REMOVED***this.props.search***REMOVED***
+          filters={this.props.filters}
+          colspan={this.props.enableBulkActions ? this.props.headers.length + 1 : this.props.headers.length}
+          contentType={this.props.routeParams.slug}
+          search={this.props.search}
         />
       ) :
       this.props.records.map((record, key) => (
         <TableRow
-          enableBulkActions=***REMOVED***this.props.enableBulkActions***REMOVED***
-          onChange=***REMOVED***this.props.onClickSelect***REMOVED***
-          key=***REMOVED***key***REMOVED***
-          destination=***REMOVED***`$***REMOVED***this.props.route.path.replace(':slug', this.props.routeParams.slug)***REMOVED***/$***REMOVED***record[this.props.primaryKey]***REMOVED***`***REMOVED***
-          headers=***REMOVED***this.props.headers***REMOVED***
-          record=***REMOVED***record***REMOVED***
-          history=***REMOVED***this.props.history***REMOVED***
-          primaryKey=***REMOVED***this.props.primaryKey***REMOVED***
-          onDelete=***REMOVED***this.props.handleDelete***REMOVED***
-          redirectUrl=***REMOVED***this.props.redirectUrl***REMOVED***
-          value=***REMOVED***this.props.entriesToDelete.indexOf(toString(record.id)) !== -1***REMOVED***
+          enableBulkActions={this.props.enableBulkActions}
+          onChange={this.props.onClickSelect}
+          key={key}
+          destination={`${this.props.route.path.replace(':slug', this.props.routeParams.slug)}/${record[this.props.primaryKey]}`}
+          headers={this.props.headers}
+          record={record}
+          history={this.props.history}
+          primaryKey={this.props.primaryKey}
+          onDelete={this.props.handleDelete}
+          redirectUrl={this.props.redirectUrl}
+          value={this.props.entriesToDelete.indexOf(toString(record.id)) !== -1}
         />
       ));
     const entriesToDeleteNumber = this.props.entriesToDelete.length;
 
     return (
-      <table className=***REMOVED***`table $***REMOVED***styles.table***REMOVED***`***REMOVED***>
+      <table className={`table ${styles.table}`}>
         <TableHeader
-          enableBulkActions=***REMOVED***this.props.enableBulkActions***REMOVED***
-          onClickSelectAll=***REMOVED***this.props.onClickSelectAll***REMOVED***
-          value=***REMOVED***this.props.deleteAllValue***REMOVED***
-          headers=***REMOVED***this.props.headers***REMOVED***
-          onChangeSort=***REMOVED***this.props.onChangeSort***REMOVED***
-          sort=***REMOVED***this.props.sort***REMOVED***
-          primaryKey=***REMOVED***this.props.primaryKey***REMOVED***
-          entriesToDelete=***REMOVED***this.props.entriesToDelete***REMOVED***
+          enableBulkActions={this.props.enableBulkActions}
+          onClickSelectAll={this.props.onClickSelectAll}
+          value={this.props.deleteAllValue}
+          headers={this.props.headers}
+          onChangeSort={this.props.onChangeSort}
+          sort={this.props.sort}
+          primaryKey={this.props.primaryKey}
+          entriesToDelete={this.props.entriesToDelete}
         />
         <tbody>
-          ***REMOVED*** entriesToDeleteNumber > 0 && (
+          { entriesToDeleteNumber > 0 && (
             <TableDelete
-              colspan=***REMOVED***this.props.headers.length + 1***REMOVED***
-              number=***REMOVED***entriesToDeleteNumber***REMOVED***
-              onToggleDeleteAll=***REMOVED***this.props.onToggleDeleteAll***REMOVED***
+              colspan={this.props.headers.length + 1}
+              number={entriesToDeleteNumber}
+              onToggleDeleteAll={this.props.onToggleDeleteAll}
             />
-          )***REMOVED***
-          ***REMOVED***this.props.showLoader ? <TableLoading colspan=***REMOVED***this.props.headers.length + 1***REMOVED*** /> : rows***REMOVED***
+          )}
+          {this.props.showLoader ? <TableLoading colspan={this.props.headers.length + 1} /> : rows}
         </tbody>
       </table>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-Table.contextTypes = ***REMOVED***
+Table.contextTypes = {
   router: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
-Table.defaultProps = ***REMOVED***
+Table.defaultProps = {
   enableBulkActions: true,
   entriesToDelete: [],
-  handleDelete: () => ***REMOVED******REMOVED***,
+  handleDelete: () => {},
   search: '',
   showLoader: false,
-***REMOVED***;
+};
 
-Table.propTypes = ***REMOVED***
+Table.propTypes = {
   deleteAllValue: PropTypes.bool.isRequired,
   enableBulkActions: PropTypes.bool,
   entriesToDelete: PropTypes.array,
@@ -106,6 +106,6 @@ Table.propTypes = ***REMOVED***
   search: PropTypes.string,
   showLoader: PropTypes.bool,
   sort: PropTypes.string.isRequired,
-***REMOVED***;
+};
 
 export default Table;

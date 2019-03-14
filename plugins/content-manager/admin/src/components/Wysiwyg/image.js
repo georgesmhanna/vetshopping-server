@@ -8,15 +8,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Image = props => ***REMOVED***
-  const ***REMOVED*** alt, height, src, width ***REMOVED*** = props.contentState.getEntity(props.entityKey).getData();
+const Image = props => {
+  const { alt, height, src, width } = props.contentState.getEntity(props.entityKey).getData();
 
-  return <img alt=***REMOVED***alt***REMOVED*** src=***REMOVED***src***REMOVED*** height=***REMOVED***height***REMOVED*** width=***REMOVED***width***REMOVED*** style=***REMOVED******REMOVED*** maxWidth: '100%' ***REMOVED******REMOVED*** />;
-***REMOVED***;
+  return <img alt={alt} src={src} height={height} width={width} style={{ maxWidth: '100%' }} />;
+};
 
-Image.propTypes = ***REMOVED***
+Image.propTypes = {
   contentState: PropTypes.object.isRequired,
   entityKey: PropTypes.string.isRequired,
-***REMOVED***;
+};
 
 export default Image;

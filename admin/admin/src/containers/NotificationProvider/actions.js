@@ -4,36 +4,36 @@
  *
  */
 
-import ***REMOVED*** dispatch ***REMOVED*** from 'app';
+import { dispatch } from 'app';
 
-import ***REMOVED***
+import {
   SHOW_NOTIFICATION,
   HIDE_NOTIFICATION,
-***REMOVED*** from './constants';
+} from './constants';
 
 let nextNotificationId = 0;
 
-export function showNotification(message, status) ***REMOVED***
+export function showNotification(message, status) {
   nextNotificationId++; // eslint-disable-line no-plusplus
 
   // Start timeout to hide the notification
-  ((id) => ***REMOVED***
-    setTimeout(() => ***REMOVED***
+  ((id) => {
+    setTimeout(() => {
       dispatch(hideNotification(id));
-***REMOVED***, 2500);
-***REMOVED***)(nextNotificationId);
+    }, 2500);
+  })(nextNotificationId);
 
-  return ***REMOVED***
+  return {
     type: SHOW_NOTIFICATION,
     message,
     status,
     id: nextNotificationId,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function hideNotification(id) ***REMOVED***
-  return ***REMOVED***
+export function hideNotification(id) {
+  return {
     type: HIDE_NOTIFICATION,
     id,
-***REMOVED***;
-***REMOVED***
+  };
+}

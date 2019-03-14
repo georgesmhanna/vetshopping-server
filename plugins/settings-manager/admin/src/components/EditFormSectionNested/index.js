@@ -6,82 +6,82 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** has, map, forEach ***REMOVED*** from 'lodash';
+import { has, map, forEach } from 'lodash';
 
 // HOC
 import EditFormSectionSubNested from 'components/EditFormSectionSubNested';
 import WithFormSection from 'components/WithFormSection';
 
 /* eslint-disable react/require-default-props  */
-class EditFormSectionNested extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+class EditFormSectionNested extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
     super(props);
-    this.state = ***REMOVED***
+    this.state = {
       hasNestedInput: false,
       showNestedForm: false,
       inputWithNestedForm: '',
-***REMOVED***;
-***REMOVED***
-  componentDidMount() ***REMOVED***
+    };
+  }
+  componentDidMount() {
     // check if there is inside a section an input that requires nested input to display it on the entire line
     // TODO add logic in withform section HOC
-    if (this.props.section) ***REMOVED***
+    if (this.props.section) {
       this.checkForNestedForm(this.props);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (nextProps.value !== this.props.values) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.props.values) {
       this.checkForNestedForm(nextProps);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  checkForNestedForm(props) ***REMOVED***
-    forEach(props.section, (input) => ***REMOVED***
-      if (input.type === 'enum') ***REMOVED***
-        forEach(input.items, (item) => ***REMOVED***
-          if (has(item, 'items')) ***REMOVED***
-            this.setState(***REMOVED*** hasNestedInput: true, inputWithNestedForm: input.target, section: item.items ***REMOVED***);
+  checkForNestedForm(props) {
+    forEach(props.section, (input) => {
+      if (input.type === 'enum') {
+        forEach(input.items, (item) => {
+          if (has(item, 'items')) {
+            this.setState({ hasNestedInput: true, inputWithNestedForm: input.target, section: item.items });
 
-            if (props.values[input.target] === item.value) ***REMOVED***
-              this.setState(***REMOVED*** showNestedForm: true ***REMOVED***);
-      ***REMOVED*** else ***REMOVED***
-              this.setState(***REMOVED*** showNestedForm: false ***REMOVED***);
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***);
-***REMOVED***
-***REMOVED***);
-***REMOVED***
+            if (props.values[input.target] === item.value) {
+              this.setState({ showNestedForm: true });
+            } else {
+              this.setState({ showNestedForm: false });
+            }
+          }
+        });
+      }
+    });
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
-      <div className=***REMOVED***`$***REMOVED***this.props.styles.padded***REMOVED*** $***REMOVED***this.props.styles.nesTedFormContainer***REMOVED***`***REMOVED***>
+      <div className={`${this.props.styles.padded} ${this.props.styles.nesTedFormContainer}`}>
         <div className="row">
-          ***REMOVED***map(this.props.section, (item, key) => ***REMOVED***
-            if (this.state.showNestedForm) ***REMOVED***
+          {map(this.props.section, (item, key) => {
+            if (this.state.showNestedForm) {
               return (
-                <div key=***REMOVED***key***REMOVED*** style=***REMOVED******REMOVED***width: '100%'***REMOVED******REMOVED***>
-                  ***REMOVED***this.props.renderInput(item, key)***REMOVED***
+                <div key={key} style={{width: '100%'}}>
+                  {this.props.renderInput(item, key)}
                   <EditFormSectionSubNested
-                    section=***REMOVED***this.state.section***REMOVED***
-                    values=***REMOVED***this.props.values***REMOVED***
-                    onChange=***REMOVED***this.props.onChange***REMOVED***
-                    formErrors=***REMOVED***this.props.formErrors***REMOVED***
+                    section={this.state.section}
+                    values={this.props.values}
+                    onChange={this.props.onChange}
+                    formErrors={this.props.formErrors}
                   />
                 </div>
               );
-      ***REMOVED***
+            }
 
             return this.props.renderInput(item, key);
-    ***REMOVED***)***REMOVED***
+          })}
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-EditFormSectionNested.propTypes = ***REMOVED***
+EditFormSectionNested.propTypes = {
   formErrors: PropTypes.array,
   onChange: PropTypes.func,
   renderInput: PropTypes.func,
@@ -92,6 +92,6 @@ EditFormSectionNested.propTypes = ***REMOVED***
   styles: PropTypes.object,
   value: PropTypes.object,
   values: PropTypes.object,
-***REMOVED***;
+};
 
 export default WithFormSection(EditFormSectionNested); // eslint-disable-line new-cap

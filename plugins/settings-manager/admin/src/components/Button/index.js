@@ -7,49 +7,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import styles from './styles.scss';
 
 /* eslint-disable react/require-default-props  */
-class Button extends React.Component ***REMOVED***
+class Button extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
-  render() ***REMOVED***
-    const label = this.props.handlei18n ? <FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***this.props.label***REMOVED***`***REMOVED*** /> : this.props.label;
+  render() {
+    const label = this.props.handlei18n ? <FormattedMessage id={`settings-manager.${this.props.label}`} /> : this.props.label;
     const addShape = this.props.addShape ? <i className="fa fa-plus" /> : '';
 
-    const buttonProps = Object.assign(***REMOVED******REMOVED***, this.props);
+    const buttonProps = Object.assign({}, this.props);
     const propsToDelete = ['addShape', 'buttonBackground', 'buttonSize', 'handlei18n', 'label', 'loader'];
 
     propsToDelete.map((value) => delete buttonProps[value]);
 
-    if (this.props.loader) ***REMOVED***
+    if (this.props.loader) {
       return (
         <button
           type="button"
-          className=***REMOVED***cn(styles.loader, styles.primary)***REMOVED***
+          className={cn(styles.loader, styles.primary)}
           disabled
         >
-          <div className=***REMOVED***styles.saving***REMOVED***>
+          <div className={styles.saving}>
             <p></p><p></p><p></p>
           </div>
         </button>
       );
-***REMOVED***
+    }
     return (
-      <button className=***REMOVED***`$***REMOVED***styles[this.props.buttonSize]***REMOVED*** $***REMOVED***styles[this.props.buttonBackground]***REMOVED*** $***REMOVED***styles.button***REMOVED***`***REMOVED*** ***REMOVED***...buttonProps***REMOVED***>
-        ***REMOVED***addShape***REMOVED******REMOVED***label***REMOVED***
+      <button className={`${styles[this.props.buttonSize]} ${styles[this.props.buttonBackground]} ${styles.button}`} {...buttonProps}>
+        {addShape}{label}
       </button>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-Button.propTypes = ***REMOVED***
+Button.propTypes = {
   addShape: PropTypes.bool,
   buttonBackground: PropTypes.string,
   buttonSize: PropTypes.string,
   handlei18n: PropTypes.bool,
   label: PropTypes.string,
   loader: PropTypes.bool,
-***REMOVED***;
+};
 
 export default Button;

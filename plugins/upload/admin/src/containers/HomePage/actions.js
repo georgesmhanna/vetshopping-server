@@ -4,7 +4,7 @@
  *
  */
 
-import ***REMOVED***
+import {
   CHANGE_PARAMS,
   DELETE_DATA,
   DELETE_SUCCESS,
@@ -17,91 +17,91 @@ import ***REMOVED***
   SET_LOADING,
   SET_PARAMS,
   UNSET_LOADING,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function changeParams(***REMOVED*** target ***REMOVED***) ***REMOVED***
-  return ***REMOVED***
+export function changeParams({ target }) {
+  return {
     type: CHANGE_PARAMS,
     keys: target.name.split('.'),
     value: target.value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function deleteData(dataToDelete) ***REMOVED***
-  return ***REMOVED***
+export function deleteData(dataToDelete) {
+  return {
     type: DELETE_DATA,
     dataToDelete,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function deleteSuccess() ***REMOVED***
-  return ***REMOVED***
+export function deleteSuccess() {
+  return {
     type: DELETE_SUCCESS,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function dropSuccess(newFiles) ***REMOVED***
-  return ***REMOVED***
+export function dropSuccess(newFiles) {
+  return {
     type: DROP_SUCCESS,
     newFiles,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getData() ***REMOVED***
-  return ***REMOVED***
+export function getData() {
+  return {
     type: GET_DATA,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getDataSuccess(data, entriesNumber) ***REMOVED***
-  return ***REMOVED***
+export function getDataSuccess(data, entriesNumber) {
+  return {
     type: GET_DATA_SUCCESS,
     data,
     entriesNumber,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onDrop(***REMOVED*** dataTransfer: ***REMOVED*** files ***REMOVED*** ***REMOVED***) ***REMOVED***
-  const formData = Object.keys(files).reduce((acc, current) => ***REMOVED***
+export function onDrop({ dataTransfer: { files } }) {
+  const formData = Object.keys(files).reduce((acc, current) => {
     acc.append('files', files[current]);
     return acc;
-***REMOVED***, new FormData());
+  }, new FormData());
 
-  return ***REMOVED***
+  return {
     type: ON_DROP,
     formData,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onSearch(***REMOVED*** target ***REMOVED***) ***REMOVED***
-  return ***REMOVED***
+export function onSearch({ target }) {
+  return {
     type: ON_SEARCH,
     value: target.value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setLoading() ***REMOVED***
-  return ***REMOVED***
+export function setLoading() {
+  return {
     type: SET_LOADING,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setParams(params) ***REMOVED***
-  return ***REMOVED***
+export function setParams(params) {
+  return {
     type: SET_PARAMS,
     params,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onSearchSuccess(data) ***REMOVED***
-  return ***REMOVED***
+export function onSearchSuccess(data) {
+  return {
     type: ON_SEARCH_SUCCESS,
     data,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function unsetLoading() ***REMOVED***
-  return ***REMOVED***
+export function unsetLoading() {
+  return {
     type: UNSET_LOADING,
-***REMOVED***;
-***REMOVED***
+  };
+}

@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the notificationProvider state domain
@@ -25,7 +25,7 @@ const selectNotifications = () => createSelector(
 );
 
 export default selectNotificationProvider;
-export ***REMOVED***
+export {
   selectNotificationProviderDomain,
   selectNotifications,
-***REMOVED***;
+};

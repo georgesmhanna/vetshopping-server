@@ -6,104 +6,104 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** isEmpty, includes, mapKeys, reject, map, isObject, size ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { isEmpty, includes, mapKeys, reject, map, isObject, size } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 import WithInput from 'components/WithInput';
 
 /* eslint-disable react/require-default-props  */
-class InputPassword extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
+class InputPassword extends React.Component { // eslint-disable-line react/prefer-stateless-function
   /* eslint-disable jsx-a11y/no-static-element-interactions */
-  constructor(props) ***REMOVED***
+  constructor(props) {
     super(props);
-    this.state = ***REMOVED***
+    this.state = {
       errors: [],
       hasInitialValue: false,
       type: true,
-***REMOVED***;
-***REMOVED***
+    };
+  }
 
-  componentDidMount() ***REMOVED***
-    if (this.props.value && !isEmpty(this.props.value)) ***REMOVED***
-      this.setState(***REMOVED*** hasInitialValue: true ***REMOVED***);
-***REMOVED***
-***REMOVED***
+  componentDidMount() {
+    if (this.props.value && !isEmpty(this.props.value)) {
+      this.setState({ hasInitialValue: true });
+    }
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (!this.isSame(nextProps)) ***REMOVED***
-      this.setState(***REMOVED*** errors: nextProps.errors ***REMOVED***);
-***REMOVED***
-***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (!this.isSame(nextProps)) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
 
-  handleBlur = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleBlur = ({ target }) => {
     // prevent error display if input is initially empty
-    if (!isEmpty(target.value) || this.state.hasInitialValue) ***REMOVED***
+    if (!isEmpty(target.value) || this.state.hasInitialValue) {
       // validates basic string validations
       // add custom logic here such as alerts...
       const errors = this.validate(target.value);
-      this.setState(***REMOVED*** errors, hasInitialValue: true ***REMOVED***);
-***REMOVED***
-***REMOVED***
+      this.setState({ errors, hasInitialValue: true });
+    }
+  }
 
-  isSame = (nextProps) => ***REMOVED***
+  isSame = (nextProps) => {
     return size(this.props.errors) === size(nextProps.errors) && this.props.errors.every((error, index) => error.id === nextProps.errors[index].id);
-***REMOVED***
+  }
   // Basic string validations
-  validate = (value) => ***REMOVED***
+  validate = (value) => {
     let errors = [];
     // handle i18n
-    const requiredError = ***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***;
-    mapKeys(this.props.validations, (validationValue, validationKey) => ***REMOVED***
-      switch (validationKey) ***REMOVED***
+    const requiredError = { id: 'settings-manager.request.error.validation.required' };
+    mapKeys(this.props.validations, (validationValue, validationKey) => {
+      switch (validationKey) {
         case 'maxLength':
-          if (value.length > validationValue) ***REMOVED***
-            errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.maxLength' ***REMOVED***);
-    ***REMOVED***
+          if (value.length > validationValue) {
+            errors.push({ id: 'settings-manager.request.error.validation.maxLength' });
+          }
           break;
         case 'minLength':
-          if (value.length < validationValue) ***REMOVED***
-            errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.minLength' ***REMOVED***);
-    ***REMOVED***
+          if (value.length < validationValue) {
+            errors.push({ id: 'settings-manager.request.error.validation.minLength' });
+          }
           break;
         case 'required':
-          if (value.length === 0) ***REMOVED***
-            errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***);
-    ***REMOVED***
+          if (value.length === 0) {
+            errors.push({ id: 'settings-manager.request.error.validation.required' });
+          }
           break;
         case 'regex':
-          if (!new RegExp(validationValue).test(value)) ***REMOVED***
-            errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.regex' ***REMOVED***);
-    ***REMOVED***
+          if (!new RegExp(validationValue).test(value)) {
+            errors.push({ id: 'settings-manager.request.error.validation.regex' });
+          }
           break;
         default:
           errors = [];
-***REMOVED***
-***REMOVED***);
+      }
+    });
 
-    if (includes(errors, requiredError)) ***REMOVED***
+    if (includes(errors, requiredError)) {
       errors = reject(errors, (error) => error !== requiredError);
-***REMOVED***
+    }
     return errors;
-***REMOVED***
+  }
 
-  handleShowPassword = () => this.setState(***REMOVED*** type: !this.state.type ***REMOVED***)
+  handleShowPassword = () => this.setState({ type: !this.state.type })
 
-  renderErrors = () => ***REMOVED*** // eslint-disable-line consistent-return
-    if (!this.props.noErrorsDescription) ***REMOVED***
+  renderErrors = () => { // eslint-disable-line consistent-return
+    if (!this.props.noErrorsDescription) {
       return (
-        map(this.state.errors, (error, key) => ***REMOVED***
+        map(this.state.errors, (error, key) => {
           const displayError = isObject(error) && error.id
-            ? <FormattedMessage id=***REMOVED***error***REMOVED*** />
+            ? <FormattedMessage id={error} />
             : error;
           return (
-            <div key=***REMOVED***key***REMOVED*** className="form-control-feedback invalid-feedback" style=***REMOVED******REMOVED*** fontSize: '1.3rem' ***REMOVED******REMOVED***>***REMOVED***displayError***REMOVED***</div>
+            <div key={key} className="form-control-feedback invalid-feedback" style={{ fontSize: '1.3rem' }}>{displayError}</div>
           );
-  ***REMOVED***)
+        })
       );
-***REMOVED***
-***REMOVED***
+    }
+  }
 
 
-  render() ***REMOVED***
+  render() {
     const inputValue = this.props.value || '';
     // override default onBlur
     const handleBlur = this.props.handleBlur || this.handleBlur;
@@ -115,40 +115,40 @@ class InputPassword extends React.Component ***REMOVED*** // eslint-disable-line
 
     const type = this.state.type ? 'password' : 'text';
 
-    const color = this.state.type ? ***REMOVED*** color: '#9EA7B8' ***REMOVED*** : ***REMOVED*** color: 'black' ***REMOVED***;
+    const color = this.state.type ? { color: '#9EA7B8' } : { color: 'black' };
 
     return (
-      <div className=***REMOVED***`$***REMOVED***bootStrapClass***REMOVED***`***REMOVED***>
-        <div className=***REMOVED***`$***REMOVED***this.props.styles.inputText***REMOVED*** $***REMOVED***bootStrapClassDanger***REMOVED***`***REMOVED***>
-          <label htmlFor=***REMOVED***this.props.name***REMOVED***><FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***this.props.name***REMOVED***`***REMOVED*** /></label>
-          <FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***placeholder***REMOVED***`***REMOVED***>
-            ***REMOVED***(message) => (
+      <div className={`${bootStrapClass}`}>
+        <div className={`${this.props.styles.inputText} ${bootStrapClassDanger}`}>
+          <label htmlFor={this.props.name}><FormattedMessage id={`settings-manager.${this.props.name}`} /></label>
+          <FormattedMessage id={`settings-manager.${placeholder}`}>
+            {(message) => (
               <input
-                name=***REMOVED***this.props.target***REMOVED***
-                id=***REMOVED***this.props.name***REMOVED***
-                onBlur=***REMOVED***handleBlur***REMOVED***
-                onFocus=***REMOVED***this.props.handleFocus***REMOVED***
-                onChange=***REMOVED***this.props.handleChange***REMOVED***
-                value=***REMOVED***inputValue***REMOVED***
-                type=***REMOVED***type***REMOVED***
-                className=***REMOVED***`form-control $***REMOVED***!isEmpty(this.state.errors) ? 'form-control-danger is-invalid' : ''***REMOVED***`***REMOVED***
-                placeholder=***REMOVED***message***REMOVED***
+                name={this.props.target}
+                id={this.props.name}
+                onBlur={handleBlur}
+                onFocus={this.props.handleFocus}
+                onChange={this.props.handleChange}
+                value={inputValue}
+                type={type}
+                className={`form-control ${!isEmpty(this.state.errors) ? 'form-control-danger is-invalid' : ''}`}
+                placeholder={message}
                 autoComplete="off"
               />
-            )***REMOVED***
+            )}
           </FormattedMessage>
-          <small>***REMOVED***this.props.inputDescription***REMOVED***</small>
-          ***REMOVED***this.renderErrors()***REMOVED***
+          <small>{this.props.inputDescription}</small>
+          {this.renderErrors()}
         </div>
-        <div className=***REMOVED***this.props.styles.insideInput***REMOVED*** onClick=***REMOVED***this.handleShowPassword***REMOVED*** style=***REMOVED***color***REMOVED***>
+        <div className={this.props.styles.insideInput} onClick={this.handleShowPassword} style={color}>
           <i className="fa fa-eye" />
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-InputPassword.propTypes = ***REMOVED***
+InputPassword.propTypes = {
   customBootstrapClass: PropTypes.string,
   deactivateErrorHighlight: PropTypes.bool,
   errors: PropTypes.array,
@@ -163,6 +163,6 @@ InputPassword.propTypes = ***REMOVED***
   target: PropTypes.string,
   validations: PropTypes.object,
   value: PropTypes.string,
-***REMOVED***;
+};
 
 export default WithInput(InputPassword); // eslint-disable-line new-cap

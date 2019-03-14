@@ -1,60 +1,60 @@
-@mixin hover ***REMOVED***
+@mixin hover {
   // TODO: re-enable along with mq4-hover-shim
-//  @if $enable-hover-media-query ***REMOVED***
+//  @if $enable-hover-media-query {
 //    // See Media Queries Level 4: https://drafts.csswg.org/mediaqueries/#hover
 //    // Currently shimmed by https://github.com/twbs/mq4-hover-shim
-//    @media (hover: hover) ***REMOVED***
-//      &:hover ***REMOVED*** @content ***REMOVED***
-//***REMOVED***
-//***REMOVED***
-//  @else ***REMOVED***
+//    @media (hover: hover) {
+//      &:hover { @content }
+//    }
+//  }
+//  @else {
 // scss-lint:disable Indentation
-    &:hover ***REMOVED*** @content ***REMOVED***
+    &:hover { @content }
 // scss-lint:enable Indentation
-//***REMOVED***
-***REMOVED***
+//  }
+}
 
 
-@mixin hover-focus ***REMOVED***
-  @if $enable-hover-media-query ***REMOVED***
-    &:focus ***REMOVED*** @content ***REMOVED***
-    @include hover ***REMOVED*** @content ***REMOVED***
-***REMOVED*** @else ***REMOVED***
+@mixin hover-focus {
+  @if $enable-hover-media-query {
+    &:focus { @content }
+    @include hover { @content }
+  } @else {
     &:focus,
-    &:hover ***REMOVED***
+    &:hover {
       @content
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-@mixin plain-hover-focus ***REMOVED***
-  @if $enable-hover-media-query ***REMOVED***
+@mixin plain-hover-focus {
+  @if $enable-hover-media-query {
     &,
-    &:focus ***REMOVED***
+    &:focus {
       @content
-***REMOVED***
-    @include hover ***REMOVED*** @content ***REMOVED***
-***REMOVED*** @else ***REMOVED***
+    }
+    @include hover { @content }
+  } @else {
     &,
     &:focus,
-    &:hover ***REMOVED***
+    &:hover {
       @content
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-@mixin hover-focus-active ***REMOVED***
-  @if $enable-hover-media-query ***REMOVED***
+@mixin hover-focus-active {
+  @if $enable-hover-media-query {
     &:focus,
-    &:active ***REMOVED***
+    &:active {
       @content
-***REMOVED***
-    @include hover ***REMOVED*** @content ***REMOVED***
-***REMOVED*** @else ***REMOVED***
+    }
+    @include hover { @content }
+  } @else {
     &:focus,
     &:active,
-    &:hover ***REMOVED***
+    &:hover {
       @content
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

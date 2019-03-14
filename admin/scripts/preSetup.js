@@ -21,23 +21,23 @@ shell.rm('-rf', path.resolve(appPath, 'package-lock.json'));
 shell.rm('-rf', path.resolve(appPath, 'admin', 'package-lock.json'));
 
 // Install the project dependencies.
-shell.exec(`cd "$***REMOVED***appPath***REMOVED***" && npm install --ignore-scripts`, ***REMOVED***
+shell.exec(`cd "${appPath}" && npm install --ignore-scripts`, {
   silent
-***REMOVED***);
+});
 
 // Install the administration dependencies.
-shell.exec(`cd "$***REMOVED***path.resolve(appPath, 'admin')***REMOVED***" && npm install`, ***REMOVED***
+shell.exec(`cd "${path.resolve(appPath, 'admin')}" && npm install`, {
   silent
-***REMOVED***);
+});
 
-if (isDevelopmentMode) ***REMOVED***
-  shell.exec(`cd "$***REMOVED***path.resolve(appPath, 'admin')***REMOVED***" && npm link strapi-helper-plugin && npm link strapi-utils`, ***REMOVED***
+if (isDevelopmentMode) {
+  shell.exec(`cd "${path.resolve(appPath, 'admin')}" && npm link strapi-helper-plugin && npm link strapi-utils`, {
     silent
-***REMOVED***);
-***REMOVED*** else ***REMOVED***
-  shell.exec(`cd "$***REMOVED***path.resolve(appPath, 'admin', 'node_modules', 'strapi-helper-plugin')***REMOVED***" && npm install`, ***REMOVED***
+  });
+} else {
+  shell.exec(`cd "${path.resolve(appPath, 'admin', 'node_modules', 'strapi-helper-plugin')}" && npm install`, {
     silent
-***REMOVED***);
-***REMOVED***
+  });
+}
 
 shell.echo('Packaged installed successfully');

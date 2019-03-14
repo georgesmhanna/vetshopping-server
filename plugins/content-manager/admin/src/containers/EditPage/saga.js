@@ -1,6 +1,6 @@
-import ***REMOVED*** LOCATION_CHANGE ***REMOVED*** from 'react-router-redux';
-import ***REMOVED*** findIndex, get, isArray, isEmpty, includes, isNumber, isString, map ***REMOVED*** from 'lodash';
-import ***REMOVED***
+import { LOCATION_CHANGE } from 'react-router-redux';
+import { findIndex, get, isArray, isEmpty, includes, isNumber, isString, map } from 'lodash';
+import {
   call,
   cancel,
   fork,
@@ -8,47 +8,47 @@ import ***REMOVED***
   select,
   take,
   takeLatest,
-***REMOVED*** from 'redux-saga/effects';
+} from 'redux-saga/effects';
 
-import ***REMOVED*** makeSelectSchema ***REMOVED*** from 'containers/App/selectors';
+import { makeSelectSchema } from 'containers/App/selectors';
 
 // Utils.
 import cleanData from 'utils/cleanData';
 import request from 'utils/request';
 import templateObject from 'utils/templateObject';
 
-import ***REMOVED***
+import {
   getDataSucceeded,
   setFormErrors,
   setLoader,
   submitSuccess,
   unsetLoader,
-***REMOVED*** from './actions';
-import ***REMOVED*** GET_DATA, SUBMIT ***REMOVED*** from './constants';
-import ***REMOVED***
+} from './actions';
+import { GET_DATA, SUBMIT } from './constants';
+import {
   makeSelectFileRelations,
   makeSelectIsCreating,
   makeSelectModelName,
   makeSelectRecord,
   makeSelectSource,
-***REMOVED*** from './selectors';
+} from './selectors';
 
-function* dataGet(action) ***REMOVED***
-  try ***REMOVED***
+function* dataGet(action) {
+  try {
     const modelName = yield select(makeSelectModelName());
-    const params = ***REMOVED*** source: action.source ***REMOVED***;
+    const params = { source: action.source };
     const [response] = yield [
-      call(request, `/content-manager/explorer/$***REMOVED***modelName***REMOVED***/$***REMOVED***action.id***REMOVED***`, ***REMOVED*** method: 'GET', params ***REMOVED***),
+      call(request, `/content-manager/explorer/${modelName}/${action.id}`, { method: 'GET', params }),
     ];
-    const pluginHeaderTitle = yield call(templateObject, ***REMOVED*** mainField: action.mainField ***REMOVED***, response);
+    const pluginHeaderTitle = yield call(templateObject, { mainField: action.mainField }, response);
 
     yield put(getDataSucceeded(action.id, response, pluginHeaderTitle.mainField));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('content-manager.error.record.fetch');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* submit() ***REMOVED***
+export function* submit() {
   const currentModelName = yield select(makeSelectModelName());
   const fileRelations = yield select(makeSelectFileRelations());
   const isCreating = yield select(makeSelectIsCreating());
@@ -57,115 +57,115 @@ export function* submit() ***REMOVED***
   const schema = yield select(makeSelectSchema());
   let shouldAddTranslationSuffix = false;
   // Remove the updated_at & created_at fields so it is updated correctly when using Postgres or MySQL db
-  if (record.updated_at) ***REMOVED***
+  if (record.updated_at) {
     delete record.created_at;
     delete record.updated_at;
-***REMOVED***
+  }
 
   // Remove the updatedAt & createdAt fields so it is updated correctly when using MongoDB
-  if (record.updatedAt) ***REMOVED***
+  if (record.updatedAt) {
     delete record.createdAt;
     delete record.updatedAt;
-***REMOVED***
+  }
 
-  try ***REMOVED***
+  try {
     // Show button loader
     yield put(setLoader());
-    const recordCleaned = Object.keys(record).reduce((acc, current) => ***REMOVED***
+    const recordCleaned = Object.keys(record).reduce((acc, current) => {
       const attrType = source !== 'content-manager' ? get(schema, ['models', 'plugins', source, currentModelName, 'fields', current, 'type'], null) : get(schema, ['models', currentModelName, 'fields', current, 'type'], null);
       const cleanedData = attrType === 'json' ? record[current] : cleanData(record[current], 'value', 'id');
 
 
-      if (isString(cleanedData) || isNumber(cleanedData)) ***REMOVED***
+      if (isString(cleanedData) || isNumber(cleanedData)) {
         acc.append(current, cleanedData);
-***REMOVED*** else if (findIndex(fileRelations, ['name', current]) !== -1) ***REMOVED***
+      } else if (findIndex(fileRelations, ['name', current]) !== -1) {
         // Don't stringify the file
-        map(record[current], (file) => ***REMOVED***
-          if (file instanceof File) ***REMOVED***
+        map(record[current], (file) => {
+          if (file instanceof File) {
             return acc.append(current, file);
-    ***REMOVED***
+          }
 
           return acc.append(current, JSON.stringify(file));
-  ***REMOVED***);
+        });
 
-        if (isEmpty(record[current])) ***REMOVED***
+        if (isEmpty(record[current])) {
           // Send an empty array if relation is manyToManyMorph else an object
-          const data = get(fileRelations, [findIndex(fileRelations, ['name', current]), 'multiple']) ? [] : ***REMOVED******REMOVED***;
+          const data = get(fileRelations, [findIndex(fileRelations, ['name', current]), 'multiple']) ? [] : {};
           acc.append(current, JSON.stringify(data));
-  ***REMOVED***
-***REMOVED*** else ***REMOVED***
+        }
+      } else {
         acc.append(current,  JSON.stringify(cleanedData));
-***REMOVED***
+      }
 
       return acc;
-***REMOVED***, new FormData());
+    }, new FormData());
 
     // Helper to visualize FormData
-    // for(var pair of recordCleaned.entries()) ***REMOVED***
+    // for(var pair of recordCleaned.entries()) {
     //   console.log(pair[0]+ ', '+ pair[1]);
-    // ***REMOVED***
+    // }
 
     const id = isCreating ? '' : record.id || record._id;
-    const params = ***REMOVED*** source ***REMOVED***;
+    const params = { source };
     // Change the request helper default headers so we can pass a FormData
-    const headers = ***REMOVED***
+    const headers = {
       'X-Forwarded-Host': 'strapi',
-***REMOVED***;
+    };
 
-    const requestUrl = `/content-manager/explorer/$***REMOVED***currentModelName***REMOVED***/$***REMOVED***id***REMOVED***`;
+    const requestUrl = `/content-manager/explorer/${currentModelName}/${id}`;
 
     // Call our request helper (see 'utils/request')
     // Pass false and false as arguments so the request helper doesn't stringify
     // the body and doesn't watch for the server to restart
-    yield call(request, requestUrl, ***REMOVED***
+    yield call(request, requestUrl, {
       method: isCreating ? 'POST' : 'PUT',
       headers,
       body: recordCleaned,
       params,
-***REMOVED***, false, false);
+    }, false, false);
 
     strapi.notification.success('content-manager.success.record.save');
     // Redirect the user to the ListPage container
     yield put(submitSuccess());
 
-***REMOVED*** catch(err) ***REMOVED***
-    if (isArray(err.response.payload.message)) ***REMOVED***
-      const errors = err.response.payload.message.reduce((acc, current) => ***REMOVED***
-        const error = current.messages.reduce((acc, current) => ***REMOVED***
-          if (includes(current.id, 'Auth')) ***REMOVED***
-            acc.id = `users-permissions.$***REMOVED***current.id***REMOVED***`;
+  } catch(err) {
+    if (isArray(err.response.payload.message)) {
+      const errors = err.response.payload.message.reduce((acc, current) => {
+        const error = current.messages.reduce((acc, current) => {
+          if (includes(current.id, 'Auth')) {
+            acc.id = `users-permissions.${current.id}`;
             shouldAddTranslationSuffix = true;
 
             return acc;
-    ***REMOVED***
+          }
           acc.errorMessage = current.id;
 
           return acc;
-  ***REMOVED*** ***REMOVED*** id: 'components.Input.error.custom-error', errorMessage: '' ***REMOVED***);
+        }, { id: 'components.Input.error.custom-error', errorMessage: '' });
         acc.push(error);
 
         return acc;
-***REMOVED*** []);
+      }, []);
 
       const name = get(err.response.payload.message, ['0', 'messages', '0', 'field', '0']);
 
-      yield put(setFormErrors([***REMOVED*** name, errors ***REMOVED***]));
-***REMOVED***
+      yield put(setFormErrors([{ name, errors }]));
+    }
 
     const notifErrorPrefix = source === 'users-permissions' && shouldAddTranslationSuffix ? 'users-permissions.' : '';
-    strapi.notification.error(`$***REMOVED***notifErrorPrefix***REMOVED***$***REMOVED***get(err.response, ['payload', 'message', '0', 'messages', '0', 'id'], isCreating ? 'content-manager.error.record.create' : 'content-manager.error.record.update')***REMOVED***`);
-***REMOVED*** finally ***REMOVED***
+    strapi.notification.error(`${notifErrorPrefix}${get(err.response, ['payload', 'message', '0', 'messages', '0', 'id'], isCreating ? 'content-manager.error.record.create' : 'content-manager.error.record.update')}`);
+  } finally {
     yield put(unsetLoader());
-***REMOVED***
-***REMOVED***
+  }
+}
 
-function* defaultSaga() ***REMOVED***
+function* defaultSaga() {
   const loadDataWatcher = yield fork(takeLatest, GET_DATA, dataGet);
   yield fork(takeLatest, SUBMIT, submit);
 
   yield take(LOCATION_CHANGE);
 
   yield cancel(loadDataWatcher);
-***REMOVED***
+}
 
 export default defaultSaga;

@@ -1,74 +1,74 @@
-.listRow ***REMOVED***
+.listRow {
 
-***REMOVED***
+}
 
-.container ***REMOVED*** /* stylelint-disable */
+.container { /* stylelint-disable */
   margin: 0 3.2rem 0 1.9rem ;
   padding: 0 1.4rem 0 0rem;
   border-bottom: 1px solid rgba(14,22,34,0.04);
   color: #333740;
   font-size: 1.3rem;
-  > div ***REMOVED***
+  > div {
     padding: 0;
     align-self: center;
-***REMOVED***
-  > div:first-child***REMOVED***
+  }
+  > div:first-child{
     padding-left: 1.4rem;
-***REMOVED***
-  > div:last-child ***REMOVED***
+  }
+  > div:last-child {
     text-align: right;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.flex ***REMOVED***
+.flex {
   display: flex;
   padding-left: 7px;
   font-weight: 600;
   // text-transform: capitalize;
-  > div:first-child ***REMOVED***
+  > div:first-child {
     width: 17px;
     padding-top: 2px;
-    > i ***REMOVED***
+    > i {
       font-size: 15px;
-***REMOVED***
-***REMOVED***
-  > div:last-child ***REMOVED***
+    }
+  }
+  > div:last-child {
     width: 80%;
     margin-left: 54px;
     padding-left: 7px;
     text-align: left;
     font-weight: 500 !important;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.li ***REMOVED***
+.li {
   margin-top: 0!important;
   position: relative;
   height: 5.4rem;
   line-height: 5.4rem;
   cursor: pointer;
-  &:hover ***REMOVED***
+  &:hover {
     background-color: #F7F8F8;
-***REMOVED***
+  }
 
-  div ***REMOVED***
+  div {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.wrapper ***REMOVED***
-  > div:first-child ***REMOVED***
+.wrapper {
+  > div:first-child {
     text-align: left;
-***REMOVED***
-  > div:nth-of-type(2) ***REMOVED***
+  }
+  > div:nth-of-type(2) {
     text-align: center;
-***REMOVED***
-  strong ***REMOVED***
+  }
+  strong {
     font-weight: 600;
-***REMOVED***
-  b ***REMOVED***
+  }
+  b {
     font-weight: 500;
-***REMOVED***
-***REMOVED***
+  }
+}

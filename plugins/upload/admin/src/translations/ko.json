@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "ConfigPage.title": "업로드 설정",
   "ConfigPage.description": "업로드 플러그인 설정",
 
@@ -9,8 +9,8 @@
 
   "EmptyLi.message": "업로드된 파일이 없습니다.",
 
-  "EntriesNumber.number": "***REMOVED***number***REMOVED***개의 파일이 있습니다.",
-  "EntriesNumber.number.plural": "***REMOVED***number***REMOVED***개의 파일이 있습니다.",
+  "EntriesNumber.number": "{number}개의 파일이 있습니다.",
+  "EntriesNumber.number.plural": "{number}개의 파일이 있습니다.",
 
   "HomePage.title": "파일 업로드",
   "HomePage.description": "파일을 업로드하고 관리합니다.",
@@ -25,12 +25,12 @@
   "ListHeader.size": "크기",
   "ListHeader.related": "연관",
 
-  "PluginInputFile.text": "업로드 할 파일을 끌어 넣거나 ***REMOVED***link***REMOVED*** 하세요",
+  "PluginInputFile.text": "업로드 할 파일을 끌어 넣거나 {link} 하세요",
   "PluginInputFile.link": "선택",
   "PluginInputFile.loading": "파일을 업로드합니다.",
 
   "notification.config.success": "설정을 업데이트했습니다.",
   "notification.delete.success": "파일을 삭제했습니다.",
   "notification.dropFile.success": "파일을 업로드했습니다.",
-  "notification.dropFiles.success": "***REMOVED***number***REMOVED***개의 파일을 업로드 했습니다."
-***REMOVED***
+  "notification.dropFiles.success": "{number}개의 파일을 업로드 했습니다."
+}

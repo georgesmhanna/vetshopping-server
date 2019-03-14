@@ -1,7 +1,7 @@
-.pluginLeftMenuSection ***REMOVED*** /* stylelint-disable */
+.pluginLeftMenuSection { /* stylelint-disable */
   margin-top: 3.3rem;
 
-  > p ***REMOVED***
+  > p {
     -webkit-font-smoothing: antialiased;
     margin: 0;
     padding-left: 1.5rem;
@@ -12,11 +12,11 @@
     font-size: 1.1rem;
     font-weight: bold;
     text-transform: uppercase;
-***REMOVED***
-  > ul ***REMOVED***
+  }
+  > ul {
     margin: 1rem 0 0 -1.5rem;
     padding: 0;
     list-style: none;
     font-size: 1.3rem;
-***REMOVED***
-***REMOVED***
+  }
+}

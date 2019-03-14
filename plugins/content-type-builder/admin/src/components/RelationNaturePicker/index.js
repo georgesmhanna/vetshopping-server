@@ -6,9 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** map, startCase ***REMOVED*** from 'lodash';
+import { map, startCase } from 'lodash';
 import pluralize from 'pluralize';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import RelationIco from 'components/RelationIco';
 
@@ -25,42 +25,42 @@ import OneToOneSelected from '../../assets/images/one_to_one_selected.svg';
 
 import styles from './styles.scss';
 
-class RelationNaturePicker extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+class RelationNaturePicker extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
     super(props);
     this.icos = [
-      ***REMOVED***
+      {
         name: 'oneWay',
         ico: OneWay,
         icoSelected: OneWaySelected,
-***REMOVED***
-      ***REMOVED***
+      },
+      {
         name: 'oneToOne',
         ico: OneToOne,
         icoSelected: OneToOneSelected,
-***REMOVED***
-      ***REMOVED***
+      },
+      {
         name: 'oneToMany',
         ico: OneToMany,
         icoSelected: OneToManySelected,
-***REMOVED***
-      ***REMOVED***
+      },
+      {
         name: 'manyToOne',
         ico: ManyToOne,
         icoSelected: ManyToOneSelected,
-***REMOVED***
-      ***REMOVED***
+      },
+      {
         name: 'manyToMany',
         ico: ManyToMany,
         icoSelected: ManyToManySelected,
-***REMOVED***
+      },
     ];
-***REMOVED***
-  render() ***REMOVED***
+  }
+  render() {
     let contentTypeName = startCase(this.props.contentTypeName);
     let contentTypeTarget = startCase(this.props.contentTypeTarget);
 
-    switch (this.props.selectedIco) ***REMOVED***
+    switch (this.props.selectedIco) {
       case 'oneWay':
         break;
       case 'oneToMany':
@@ -76,42 +76,42 @@ class RelationNaturePicker extends React.Component ***REMOVED*** // eslint-disab
         break;
       default:
 
-***REMOVED***
+    }
 
-    const relationText = this.props.selectedIco ? <FormattedMessage id=***REMOVED***`content-type-builder.relation.$***REMOVED***this.props.selectedIco***REMOVED***`***REMOVED***  /> : '';
+    const relationText = this.props.selectedIco ? <FormattedMessage id={`content-type-builder.relation.${this.props.selectedIco}`}  /> : '';
 
     return (
-      <div className=***REMOVED***styles.relationNaturePicker***REMOVED***>
-        ***REMOVED***map(this.icos, (value, key) => (
-          <RelationIco key=***REMOVED***key***REMOVED*** ico=***REMOVED***this.props.selectedIco === value.name ? value.icoSelected : value.ico***REMOVED*** name=***REMOVED***value.name***REMOVED*** onChange=***REMOVED***this.props.onChange***REMOVED*** />
-        ))***REMOVED***
-        <div className=***REMOVED***styles.infoContainer***REMOVED***>
+      <div className={styles.relationNaturePicker}>
+        {map(this.icos, (value, key) => (
+          <RelationIco key={key} ico={this.props.selectedIco === value.name ? value.icoSelected : value.ico} name={value.name} onChange={this.props.onChange} />
+        ))}
+        <div className={styles.infoContainer}>
           <span>
-            ***REMOVED***contentTypeName***REMOVED***
+            {contentTypeName}
           </span>
           &nbsp;
-          ***REMOVED***relationText***REMOVED***
+          {relationText}
           &nbsp;
           <span>
-            ***REMOVED***contentTypeTarget***REMOVED***
+            {contentTypeTarget}
           </span>
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-RelationNaturePicker.propTypes = ***REMOVED***
+RelationNaturePicker.propTypes = {
   contentTypeName: PropTypes.string,
   contentTypeTarget: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   selectedIco: PropTypes.string,
-***REMOVED***;
+};
 
-RelationNaturePicker.defaultProps = ***REMOVED***
+RelationNaturePicker.defaultProps = {
   contentTypeName: '',
   contentTypeTarget: '',
   selectedIco: 'oneToOne',
-***REMOVED***;
+};
 
 export default RelationNaturePicker;

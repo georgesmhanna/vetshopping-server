@@ -4,15 +4,15 @@
  *
  */
 
-import ***REMOVED*** fromJS ***REMOVED*** from 'immutable';
+import { fromJS } from 'immutable';
 
-const initialState = fromJS(***REMOVED******REMOVED***);
+const initialState = fromJS({});
 
-function appReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function appReducer(state = initialState, action) {
+  switch (action.type) {
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default appReducer;

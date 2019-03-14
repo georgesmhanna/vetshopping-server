@@ -1,20 +1,20 @@
-.policies ***REMOVED***
+.policies {
   min-height: 100%;
   background-color: #F6F6F6;
-***REMOVED***
+}
 
-.header ***REMOVED***
+.header {
   margin-bottom: 1.1rem;
   padding-top: 2.8rem;
   font-size: 18px;
   font-weight: 700;
   line-height: 3.6rem;
-***REMOVED***
+}
 
-.inputWrapper ***REMOVED***
-  > div:nth-child(2) ***REMOVED***
-    > label ***REMOVED***
+.inputWrapper {
+  > div:nth-child(2) {
+    > label {
       // font-weight: 800!important;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

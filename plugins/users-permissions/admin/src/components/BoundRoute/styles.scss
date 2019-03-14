@@ -1,12 +1,12 @@
-.boundRoute ***REMOVED***
+.boundRoute {
   display: flex;
   height: 2.4rem;
   border-radius: 3px;
   background-color: #E9EAEB;
   line-height: 2.4rem;
-***REMOVED***
+}
 
-.verb ***REMOVED***
+.verb {
   padding: 0 1rem;
   border-radius: 3px;
   color: #FFFFFF;
@@ -14,46 +14,46 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-***REMOVED***
+}
 
-.path ***REMOVED***
+.path {
   padding: 0 1rem;
   font-size: 13px;
   font-weight: 600;
   color: #333740;
-***REMOVED***
+}
 
-.title ***REMOVED***
+.title {
   margin-bottom: 3rem;
   padding-top: 1.1rem;
   color: #333740;
   font-size: 18px;
   font-weight: 600;
 
-  > span:not(:first-child) ***REMOVED***
+  > span:not(:first-child) {
     color: #787E8F;
     font-size: 16px;
     font-weight: 500;
-***REMOVED***
+  }
 
-  > span:last-child ***REMOVED***
+  > span:last-child {
     color: #1642E1;
     font-weight: 600;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.get ***REMOVED***
+.get {
   background-color: #008DFE;
-***REMOVED***
+}
 
-.post ***REMOVED***
+.post {
   background-color: #69BA05;
-***REMOVED***
+}
 
-.put ***REMOVED***
+.put {
   background-color: #F68E0E;
-***REMOVED***
+}
 
-.delete ***REMOVED***
+.delete {
   background-color: #F64D0A;
-***REMOVED***
+}

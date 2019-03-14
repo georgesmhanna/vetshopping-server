@@ -10,106 +10,106 @@ import cn from 'classnames';
 
 import styles from './styles.scss';
 
-class InputCheckboxPlugin extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  state = ***REMOVED*** showBackground: false, showCog: false ***REMOVED***;
+class InputCheckboxPlugin extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  state = { showBackground: false, showCog: false };
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
     // Remove background if another input is selected
-    if (nextProps.inputSelected !== this.props.inputSelected && nextProps.inputSelected !== this.props.name) ***REMOVED***
-      this.setState(***REMOVED*** showBackground: false ***REMOVED***);
-***REMOVED***
+    if (nextProps.inputSelected !== this.props.inputSelected && nextProps.inputSelected !== this.props.name) {
+      this.setState({ showBackground: false });
+    }
 
-    if (!nextProps.isOpen) ***REMOVED***
-      this.setState(***REMOVED*** showBackground: false, showCog: false ***REMOVED***);
-***REMOVED***
-***REMOVED***
+    if (!nextProps.isOpen) {
+      this.setState({ showBackground: false, showCog: false });
+    }
+  }
 
-  handleChange = () => ***REMOVED***
-    const target = ***REMOVED***
+  handleChange = () => {
+    const target = {
       type: 'checkbox',
       name: this.props.name,
       value: !this.props.value,
-***REMOVED***;
+    };
 
     // Don't show the label background if the user unselects the input
-    if (!this.props.value) ***REMOVED***
-      this.setState(***REMOVED*** showBackground: true ***REMOVED***);
+    if (!this.props.value) {
+      this.setState({ showBackground: true });
       // Tell the Parent component that another input has been selected
       this.props.setNewInputSelected(this.props.name);
       // Tell the policies component to show the associated routes
       this.context.setShouldDisplayPolicieshint();
       this.context.setInputPoliciesPath(this.props.name);
-***REMOVED*** else ***REMOVED***
-      this.setState(***REMOVED*** showBackground: false, showCog: false ***REMOVED***);
+    } else {
+      this.setState({ showBackground: false, showCog: false });
       this.props.setNewInputSelected('');
-***REMOVED***
+    }
 
-    this.context.onChange(***REMOVED*** target ***REMOVED***);
-***REMOVED***
+    this.context.onChange({ target });
+  }
 
-  handleClick = () => ***REMOVED***
-    this.setState(***REMOVED*** showBackground: !this.state.showBackground ***REMOVED***);
+  handleClick = () => {
+    this.setState({ showBackground: !this.state.showBackground });
     this.props.setNewInputSelected(this.props.name);
     this.context.setInputPoliciesPath(this.props.name);
 
-    if (this.state.showBackground) ***REMOVED***
+    if (this.state.showBackground) {
       this.context.resetShouldDisplayPoliciesHint();
-***REMOVED*** else ***REMOVED***
+    } else {
       this.context.setShouldDisplayPolicieshint();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
       <div
-        className=***REMOVED***cn(styles.inputCheckbox, 'col-md-4')***REMOVED***
-        onMouseEnter=***REMOVED***() => ***REMOVED***
-          if (this.props.value) ***REMOVED***
-            this.setState(***REMOVED*** showCog: true ***REMOVED***);
-    ***REMOVED***
-  ***REMOVED******REMOVED***
-        onMouseLeave=***REMOVED***() => this.setState(***REMOVED*** showCog: false ***REMOVED***)***REMOVED***
+        className={cn(styles.inputCheckbox, 'col-md-4')}
+        onMouseEnter={() => {
+          if (this.props.value) {
+            this.setState({ showCog: true });
+          }
+        }}
+        onMouseLeave={() => this.setState({ showCog: false })}
       >
-        <div className=***REMOVED***cn('form-check', this.state.showBackground ? styles.highlighted : '')***REMOVED***>
-          <label className=***REMOVED***cn('form-check-label', styles.label, this.props.value ? styles.checked : '')***REMOVED*** htmlFor=***REMOVED***this.props.name***REMOVED***>
+        <div className={cn('form-check', this.state.showBackground ? styles.highlighted : '')}>
+          <label className={cn('form-check-label', styles.label, this.props.value ? styles.checked : '')} htmlFor={this.props.name}>
             <input
               className="form-check-input"
-              defaultChecked=***REMOVED***this.props.value***REMOVED***
-              id=***REMOVED***this.props.name***REMOVED***
-              name=***REMOVED***this.props.name***REMOVED***
-              onChange=***REMOVED***this.handleChange***REMOVED***
+              defaultChecked={this.props.value}
+              id={this.props.name}
+              name={this.props.name}
+              onChange={this.handleChange}
               type="checkbox"
             />
-            ***REMOVED***this.props.label***REMOVED***
+            {this.props.label}
           </label>
-          ***REMOVED***this.state.showCog || this.state.showBackground ? (
-            <i className="fa fa-cog" onClick=***REMOVED***this.handleClick***REMOVED*** />
-          ) : ''***REMOVED***
+          {this.state.showCog || this.state.showBackground ? (
+            <i className="fa fa-cog" onClick={this.handleClick} />
+          ) : ''}
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-InputCheckboxPlugin.contextTypes = ***REMOVED***
+InputCheckboxPlugin.contextTypes = {
   onChange: PropTypes.func.isRequired,
   resetShouldDisplayPoliciesHint: PropTypes.func.isRequired,
   setInputPoliciesPath: PropTypes.func.isRequired,
   setShouldDisplayPolicieshint: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
-InputCheckboxPlugin.defaultProps = ***REMOVED***
+InputCheckboxPlugin.defaultProps = {
   label: '',
   value: false,
-***REMOVED***;
+};
 
-InputCheckboxPlugin.propTypes = ***REMOVED***
+InputCheckboxPlugin.propTypes = {
   inputSelected: PropTypes.string.isRequired,
   isOpen: PropTypes.bool.isRequired,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   setNewInputSelected: PropTypes.func.isRequired,
   value: PropTypes.bool,
-***REMOVED***;
+};
 
 export default InputCheckboxPlugin;

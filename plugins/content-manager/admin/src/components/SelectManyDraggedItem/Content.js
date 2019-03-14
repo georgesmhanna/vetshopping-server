@@ -5,44 +5,44 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import IconRemove from 'assets/images/icon_remove.svg';
 import styles from 'components/SelectMany/styles.scss';
 
-function Content(***REMOVED*** index, item, onClick, onRemove ***REMOVED***) ***REMOVED***
+function Content({ index, item, onClick, onRemove }) {
   return (
     <React.Fragment>
       <div>
-        <div className=***REMOVED***styles.dragHandle***REMOVED***><span /></div>
+        <div className={styles.dragHandle}><span /></div>
         <FormattedMessage id="content-manager.containers.Edit.clickToJump">
-          ***REMOVED***title => (
+          {title => (
             <span
-              onClick=***REMOVED***() => onClick(item)***REMOVED***
-              title=***REMOVED***title***REMOVED***
+              onClick={() => onClick(item)}
+              title={title}
             >
-              ***REMOVED***item.label***REMOVED***
+              {item.label}
             </span>
-          )***REMOVED***
+          )}
         </FormattedMessage>
       </div>
-      <div className=***REMOVED***styles.selectManyDraggedItemActions***REMOVED***>
-        <img src=***REMOVED***IconRemove***REMOVED*** alt="Remove Icon" onClick=***REMOVED***() => onRemove(index)***REMOVED*** />
+      <div className={styles.selectManyDraggedItemActions}>
+        <img src={IconRemove} alt="Remove Icon" onClick={() => onRemove(index)} />
       </div>
     </React.Fragment>
   );
-***REMOVED***
+}
 
-Content.defaultProps = ***REMOVED***
+Content.defaultProps = {
   index: 0,
-  onClick: () => ***REMOVED******REMOVED***,
-  onRemove: () => ***REMOVED******REMOVED***,
-***REMOVED***;
+  onClick: () => {},
+  onRemove: () => {},
+};
 
-Content.propTypes = ***REMOVED***
+Content.propTypes = {
   index: PropTypes.number,
   item: PropTypes.object.isRequired,
   onClick: PropTypes.func,
   onRemove: PropTypes.func,
-***REMOVED***;
+};
 
 export default Content;

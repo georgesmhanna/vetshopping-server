@@ -6,43 +6,43 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** get, map, some ***REMOVED*** from 'lodash';
+import { get, map, some } from 'lodash';
 import cn from 'classnames';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import InputCheckbox from 'components/InputCheckboxPlugin';
 import styles from './styles.scss';
 
-class Controller extends React.Component ***REMOVED***
-  state = ***REMOVED*** inputSelected: '', checked: false ***REMOVED***;
+class Controller extends React.Component {
+  state = { inputSelected: '', checked: false };
 
-  setNewInputSelected = (name) => ***REMOVED***
-    this.setState(***REMOVED*** inputSelected: name, checked: false ***REMOVED***);
-***REMOVED***
+  setNewInputSelected = (name) => {
+    this.setState({ inputSelected: name, checked: false });
+  }
 
-  handleChange = () => ***REMOVED***
-    this.setState(***REMOVED*** checked: !this.state.checked ***REMOVED***);
-    this.context.selectAllActions(`$***REMOVED***this.props.inputNamePath***REMOVED***.controllers.$***REMOVED***this.props.name***REMOVED***`, !this.isAllActionsSelected());
-***REMOVED***
+  handleChange = () => {
+    this.setState({ checked: !this.state.checked });
+    this.context.selectAllActions(`${this.props.inputNamePath}.controllers.${this.props.name}`, !this.isAllActionsSelected());
+  }
 
   isAllActionsSelected = () => !some(this.props.actions, ['enabled', false]);
 
-  render() ***REMOVED***
+  render() {
     return (
-      <div className=***REMOVED***styles.controller***REMOVED***>
-        <div className=***REMOVED***styles.controllerHeader***REMOVED***>
-          <div>***REMOVED***this.props.name***REMOVED***</div>
-          <div className=***REMOVED***styles.separator***REMOVED***></div>
+      <div className={styles.controller}>
+        <div className={styles.controllerHeader}>
+          <div>{this.props.name}</div>
+          <div className={styles.separator}></div>
           <div>
-            <div className=***REMOVED***cn(styles.inputCheckbox)***REMOVED***>
+            <div className={cn(styles.inputCheckbox)}>
               <div className="form-check">
-                <label className=***REMOVED***cn('form-check-label', styles.label, this.state.checked ? styles.checked : '')***REMOVED*** htmlFor=***REMOVED***this.props.name***REMOVED***>
+                <label className={cn('form-check-label', styles.label, this.state.checked ? styles.checked : '')} htmlFor={this.props.name}>
                   <input
                     className="form-check-input"
-                    checked=***REMOVED***this.state.checked***REMOVED***
-                    id=***REMOVED***this.props.name***REMOVED***
-                    name=***REMOVED***this.props.name***REMOVED***
-                    onChange=***REMOVED***this.handleChange***REMOVED***
+                    checked={this.state.checked}
+                    id={this.props.name}
+                    name={this.props.name}
+                    onChange={this.handleChange}
                     type="checkbox"
                   />
                   <FormattedMessage id="users-permissions.Controller.selectAll" />
@@ -52,38 +52,38 @@ class Controller extends React.Component ***REMOVED***
           </div>
         </div>
         <div className="row">
-          ***REMOVED***map(Object.keys(this.props.actions).sort(), (actionKey) => (
+          {map(Object.keys(this.props.actions).sort(), (actionKey) => (
             <InputCheckbox
-              inputSelected=***REMOVED***this.state.inputSelected***REMOVED***
-              isOpen=***REMOVED***this.props.isOpen***REMOVED***
-              key=***REMOVED***actionKey***REMOVED***
-              label=***REMOVED***actionKey***REMOVED***
-              name=***REMOVED***`$***REMOVED***this.props.inputNamePath***REMOVED***.controllers.$***REMOVED***this.props.name***REMOVED***.$***REMOVED***actionKey***REMOVED***.enabled`***REMOVED***
-              setNewInputSelected=***REMOVED***this.setNewInputSelected***REMOVED***
-              value=***REMOVED***get(this.props.actions[actionKey], 'enabled')***REMOVED***
+              inputSelected={this.state.inputSelected}
+              isOpen={this.props.isOpen}
+              key={actionKey}
+              label={actionKey}
+              name={`${this.props.inputNamePath}.controllers.${this.props.name}.${actionKey}.enabled`}
+              setNewInputSelected={this.setNewInputSelected}
+              value={get(this.props.actions[actionKey], 'enabled')}
             />
-          ))***REMOVED***
+          ))}
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-Controller.contextTypes = ***REMOVED***
+Controller.contextTypes = {
   selectAllActions: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
-Controller.defaultProps = ***REMOVED***
-  actions: ***REMOVED******REMOVED***,
+Controller.defaultProps = {
+  actions: {},
   inputNamePath: 'permissions.application',
   name: '',
-***REMOVED***;
+};
 
-Controller.propTypes = ***REMOVED***
+Controller.propTypes = {
   actions: PropTypes.object,
   inputNamePath: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   name: PropTypes.string,
-***REMOVED***;
+};
 
 export default Controller;

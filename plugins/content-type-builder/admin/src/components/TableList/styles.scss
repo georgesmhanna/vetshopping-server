@@ -1,55 +1,55 @@
-.tableListContainer ***REMOVED*** /* stylelint-disable */
+.tableListContainer { /* stylelint-disable */
   padding: 2rem 0 0rem 0;
   background: #FFFFFF;
   font-family: Lato;
   box-shadow: 0 2px 4px #E3E9F3;
-***REMOVED***
+}
 
-.headerContainer ***REMOVED***
+.headerContainer {
   width: 100%;
   padding: 0 1rem 0 3rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
-***REMOVED***
+}
 
-.titleContainer ***REMOVED***
+.titleContainer {
   color: #333740;
   font-size: 1.8rem;
   font-weight: bold;
   line-height: 2.2rem;
-***REMOVED***
+}
 
-.ulContainer ***REMOVED***
+.ulContainer {
   margin-top: 1.6rem;
   width: 100%;
-  > ul ***REMOVED***
+  > ul {
     margin: 0;
     padding: 0;
     list-style: none;
-    > li:first-child ***REMOVED***
+    > li:first-child {
       margin-top: 0.1rem;
       border-radius: 2px 2px 0 0;
       background-color: #F3F3F4;
-***REMOVED***
-    > li:not(:first-child) ***REMOVED***
+    }
+    > li:not(:first-child) {
       margin-top: 0!important;
-***REMOVED***
-    > li:nth-child(2) ***REMOVED***
+    }
+    > li:nth-child(2) {
       min-height: 5.7rem;
       padding-top: .3rem;
-***REMOVED***
-    > li:last-child ***REMOVED***
+    }
+    > li:last-child {
       margin-bottom: 0;
-      .liInnerContainer ***REMOVED***
+      .liInnerContainer {
         border-bottom: none;
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
+}
 
-.liHeaderContainer ***REMOVED***
+.liHeaderContainer {
   height: 3rem;
   margin: 0;
   padding: 0 4.6rem .3rem 1.9rem;
@@ -57,62 +57,62 @@
 
   line-height: 1.6rem;
   font-weight: 600;
-  > div ***REMOVED***
+  > div {
     padding: 0;
     align-self: center;
-***REMOVED***
-  > div:last-child ***REMOVED***
+  }
+  > div:last-child {
     text-align: right;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.liInnerContainer ***REMOVED***
+.liInnerContainer {
   margin: 0 3.2rem 0 1.9rem ;
   padding: 0 1.4rem 0 0rem;
   border-bottom: 1px solid rgba(14,22,34,0.04);
   color: #333740;
   font-size: 1.3rem;
-  > div ***REMOVED***
+  > div {
     padding: 0;
     align-self: center;
-***REMOVED***
-  > div:first-child***REMOVED***
+  }
+  > div:first-child{
     padding-left: 1.4rem;
-***REMOVED***
-  > div:last-child ***REMOVED***
+  }
+  > div:last-child {
     text-align: right;
-***REMOVED***
-  > div:nth-child(2) ***REMOVED***
+  }
+  > div:nth-child(2) {
     font-weight: 600;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 
-.italic ***REMOVED***
+.italic {
     font-weight: 600;
-  > span:nth-child(2) ***REMOVED***
+  > span:nth-child(2) {
     font-style: italic;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.nameContainer ***REMOVED***
+.nameContainer {
   display: flex;
   // justify-content: space-between;
-  > span:first-child ***REMOVED***
+  > span:first-child {
     display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 
-***REMOVED***
-  > i ***REMOVED***
+  }
+  > i {
     align-self: center;
     margin-right: 52px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.descriptionContainer ***REMOVED***
-  > div ***REMOVED***
+.descriptionContainer {
+  > div {
     display: block;
     padding-left: 15px;
     padding-right: 15px;
@@ -120,5 +120,5 @@
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
-***REMOVED***
-***REMOVED***
+  }
+}

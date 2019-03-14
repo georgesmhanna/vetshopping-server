@@ -1,36 +1,36 @@
-***REMOVED***
+{
   "routes": [
-    ***REMOVED***
+    {
       "method": "POST",
       "path": "/",
       "handler": "Email.send",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/environments",
       "handler": "Email.getEnvironments",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/settings/:environment",
       "handler": "Email.getSettings",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "PUT",
       "path": "/settings/:environment",
       "handler": "Email.updateSettings",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***
+      }
+    }
   ]
-***REMOVED***
+}

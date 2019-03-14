@@ -1,11 +1,11 @@
-***REMOVED***
-  "/": ***REMOVED***
+{
+  "/": {
     "container": "Home"
-***REMOVED***,
-  "/:slug": ***REMOVED***
+  },
+  "/:slug": {
     "container": "List"
-***REMOVED***,
-  "/:slug/:id": ***REMOVED***
+  },
+  "/:slug/:id": {
     "container": "Edit"
-***REMOVED***
-***REMOVED***
+  }
+}

@@ -1,23 +1,23 @@
-.subBordered ***REMOVED***
+.subBordered {
   margin-bottom: 18px;
   border-bottom: 1px solid #F7F8F8;
-***REMOVED***
+}
 
-.subWrapper ***REMOVED***
+.subWrapper {
   position: relative;
   line-height: 18px;
   text-decoration: none;
 
-  > span ***REMOVED***
+  > span {
     text-decoration: none;
     font-family: Lato-Bold;
     font-size: 20px;
     color: #333740;
     letter-spacing: 0;
     transition: color .2s ease;
-***REMOVED***
+  }
 
-  p ***REMOVED***
+  p {
     text-decoration: none;
     display: block;
     max-width: calc(100% - 150px);
@@ -25,22 +25,22 @@
     color: #333740;
     font-size: 14px;
     transition: color .2s ease;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 
-.underlinedTitle ***REMOVED***
+.underlinedTitle {
   border-bottom: 3px solid #F0B41E;
-***REMOVED***
+}
 
-.link***REMOVED***
-  &:hover, &:focus, &:active***REMOVED***
+.link{
+  &:hover, &:focus, &:active{
     text-decoration: none;
-***REMOVED***
+  }
 
-  &:hover***REMOVED***
-    > span, p ***REMOVED***
+  &:hover{
+    > span, p {
       color: lighten(#333740, 20%);
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

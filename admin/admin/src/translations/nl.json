@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "app.components.Button.save": "Opslaan",
   "app.components.Button.cancel": "Annuleren",
 
@@ -40,7 +40,7 @@
   "app.components.InputFileDetails.originalName": "Orginele naam:",
   "app.components.InputFileDetails.size": "Grootte:",
 
-  "app.components.ImgPreview.hint": "Sleep je bestand in dit gedeelte of ***REMOVED***browse***REMOVED*** voor een bestand om te uploaden",
+  "app.components.ImgPreview.hint": "Sleep je bestand in dit gedeelte of {browse} voor een bestand om te uploaden",
   "app.components.ImgPreview.hint.browse": "blader",
 
   "app.components.InstallPluginPage.helmet": "Marktplaats - Extensies",
@@ -69,8 +69,8 @@
   "app.components.ListPluginsPage.title": "Extensies",
   "app.components.ListPluginsPage.description": "Lijst van alle plugins voor dit project",
   "app.components.listPluginsPage.deletePlugin.error": "Er is een fout opgetreden tijdens het verwijderen van de plugin",
-  "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED*** extensie is geïnstalleerd",
-  "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED*** extensies zijn geïnstalleerd",
+  "app.components.listPlugins.title.singular": "{number} extensie is geïnstalleerd",
+  "app.components.listPlugins.title.plural": "{number} extensies zijn geïnstalleerd",
   "app.components.listPlugins.title.none": "Geen extensies geïnstalleerd",
   "app.components.listPlugins.button": "Nieuwe extensie toevoegen",
 
@@ -121,7 +121,7 @@
   "components.Input.error.attribute.key.taken": "Deze waarde bestaat al.",
   "components.Input.error.attribute.sameKeyAndName": "Mag niet gelijk zijn.",
   "components.Input.error.validation.minSupMax": "Mag niet superieur zijn.",
-  "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+  "components.Input.error.custom-error": "{errorMessage} ",
   "components.Input.error.validation.json": "Dit komt niet overeen met het JSON formaat",
 
   "components.ListRow.empty": "Er is geen data beschikbaar.",
@@ -137,7 +137,7 @@
   "components.Wysiwyg.ToggleMode.markdown": "Overschakelen naar markdown",
   "components.Wysiwyg.ToggleMode.preview": "Overschakelen naar voorbeeld",
   "components.WysiwygBottomControls.charactersIndicators": "karakters",
-  "components.WysiwygBottomControls.uploadFiles": "Sleep bestanden, plak ze of ***REMOVED***browse***REMOVED***.",
+  "components.WysiwygBottomControls.uploadFiles": "Sleep bestanden, plak ze of {browse}.",
   "components.WysiwygBottomControls.uploadFiles.browse": "selecteer ze",
   "components.WysiwygBottomControls.fullscreen": "Uitklappen",
 
@@ -162,4 +162,4 @@
   "request.error.model.unknown": "Dit model bestaat niet",
   "Users": "Gebruikers",
   "Analytics": "Analytics"
-***REMOVED***
+}

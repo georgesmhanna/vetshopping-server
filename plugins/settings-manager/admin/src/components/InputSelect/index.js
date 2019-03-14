@@ -6,54 +6,54 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** isEmpty, map ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { isEmpty, map } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 import styles from './styles.scss';
 
 /* eslint-disable react/require-default-props  */
-class InputSelect extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  componentDidMount() ***REMOVED***
+class InputSelect extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
     // Init the select value
-    if (this.props.selectOptions[0].value !== '' && isEmpty(this.props.value)) ***REMOVED***
-      const target = ***REMOVED*** name: this.props.target, value: this.props.selectOptions[0].value***REMOVED***;
-      this.props.handleChange(***REMOVED*** target ***REMOVED***);
-***REMOVED***
-***REMOVED***
+    if (this.props.selectOptions[0].value !== '' && isEmpty(this.props.value)) {
+      const target = { name: this.props.target, value: this.props.selectOptions[0].value  };
+      this.props.handleChange({ target });
+    }
+  }
 
-  render() ***REMOVED***
+  render() {
     const bootStrapClass = this.props.customBootstrapClass ? this.props.customBootstrapClass : 'col-md-6';
     const requiredClass = this.props.validations.required && this.props.addRequiredInputDesign ? styles.requiredClass : '';
 
     return (
-      <div className=***REMOVED***`$***REMOVED***styles.input***REMOVED*** $***REMOVED***requiredClass***REMOVED*** $***REMOVED***bootStrapClass***REMOVED***`***REMOVED***>
-        <label htmlFor=***REMOVED***this.props.name***REMOVED***>
-          <FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***this.props.name***REMOVED***`***REMOVED*** />
+      <div className={`${styles.input} ${requiredClass} ${bootStrapClass}`}>
+        <label htmlFor={this.props.name}>
+          <FormattedMessage id={`settings-manager.${this.props.name}`} />
         </label>
         <select
           className="form-control"
-          id=***REMOVED***this.props.name***REMOVED***
-          name=***REMOVED***this.props.target***REMOVED***
-          onChange=***REMOVED***this.props.handleChange***REMOVED***
-          value=***REMOVED***this.props.value***REMOVED***
+          id={this.props.name}
+          name={this.props.target}
+          onChange={this.props.handleChange}
+          value={this.props.value}
         >
-          ***REMOVED***map(this.props.selectOptions, (option, key) => (
+          {map(this.props.selectOptions, (option, key) => (
             option.name ?
-              <FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***option.name***REMOVED***`***REMOVED*** key=***REMOVED***key***REMOVED***>
-                ***REMOVED***(message) => (
-                  <option value=***REMOVED***option.value***REMOVED***>
-                    ***REMOVED***message***REMOVED***
+              <FormattedMessage id={`settings-manager.${option.name}`} key={key}>
+                {(message) => (
+                  <option value={option.value}>
+                    {message}
                   </option>
-                )***REMOVED***
+                )}
               </FormattedMessage> :
-              <option value=***REMOVED***option.value***REMOVED*** key=***REMOVED***key***REMOVED***>***REMOVED***option.name***REMOVED***</option>
-          ))***REMOVED***
+              <option value={option.value} key={key}>{option.name}</option>
+          ))}
         </select>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-InputSelect.propTypes = ***REMOVED***
+InputSelect.propTypes = {
   addRequiredInputDesign: PropTypes.bool,
   customBootstrapClass: PropTypes.string,
   handleChange: PropTypes.func,
@@ -65,6 +65,6 @@ InputSelect.propTypes = ***REMOVED***
   target: PropTypes.string,
   validations: PropTypes.object,
   value: PropTypes.string,
-***REMOVED***;
+};
 
 export default InputSelect;

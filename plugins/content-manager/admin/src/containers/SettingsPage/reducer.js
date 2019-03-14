@@ -3,15 +3,15 @@
  * SettingsPage reducer
  */
 
-import ***REMOVED*** fromJS ***REMOVED*** from 'immutable';
+import { fromJS } from 'immutable';
 
-const initialState = fromJS(***REMOVED******REMOVED***);
+const initialState = fromJS({});
 
-function settingsPageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function settingsPageReducer(state = initialState, action) {
+  switch (action.type) {
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default settingsPageReducer;

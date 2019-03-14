@@ -1,29 +1,29 @@
 // Shared constants
-import ***REMOVED***
+import {
   DISABLE_GLOBAL_OVERLAY_BLOCKER,
   ENABLE_GLOBAL_OVERLAY_BLOCKER,
-***REMOVED*** from 'constants/overlayBlocker';
+} from 'constants/overlayBlocker';
 
-import ***REMOVED*** fromJS ***REMOVED*** from 'immutable';
+import { fromJS } from 'immutable';
 
-import ***REMOVED***
+import {
   FREEZE_APP,
   PLUGIN_DELETED,
   PLUGIN_LOADED,
   UNFREEZE_APP,
   UNSET_HAS_USERS_PLUGIN,
   UPDATE_PLUGIN,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   blockApp: false,
   hasUserPlugin: true,
-  plugins: ***REMOVED******REMOVED***,
+  plugins: {},
   showGlobalAppBlocker: true,
-***REMOVED***);
+});
 
-function appReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function appReducer(state = initialState, action) {
+  switch (action.type) {
     case DISABLE_GLOBAL_OVERLAY_BLOCKER:
       return state.set('showGlobalAppBlocker', false);
     case ENABLE_GLOBAL_OVERLAY_BLOCKER:
@@ -42,7 +42,7 @@ function appReducer(state = initialState, action) ***REMOVED***
       return state.set('hasUserPlugin', false);
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default appReducer;

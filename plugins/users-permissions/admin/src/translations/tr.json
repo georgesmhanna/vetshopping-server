@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "Auth.form.button.register-success": "Tekrar gönderin",
   "Auth.form.button.forgot-password.success": "Tekrar gönderin",
   "Auth.form.button.forgot-password": "E-posta gönder",
@@ -53,7 +53,7 @@
 
   "components.Input.error.password.noMatch": "Parolalar uyuşmuyor",
 
-  "Controller.input.label": "***REMOVED***label***REMOVED*** ",
+  "Controller.input.label": "{label} ",
   "Controller.selectAll": "Hepsini seç",
 
   "EditForm.inputSelect.label.role": "Kimliği doğrulanmış kullanıcılar için varsayılan rol",
@@ -73,11 +73,11 @@
   "EditPage.form.roles": "Rol detayları",
   "EditPage.form.roles.label.description": "Açıklama",
   "EditPage.form.roles.label.name": "İsim",
-  "EditPage.form.roles.label.users": "Bu rolle ilişkili kullanıcılar (***REMOVED***number***REMOVED***)",
+  "EditPage.form.roles.label.users": "Bu rolle ilişkili kullanıcılar ({number})",
   "EditPage.form.roles.name.error": "Zorunlu alandır.",
-  "EditPage.header.title": "***REMOVED***name***REMOVED*** ",
+  "EditPage.header.title": "{name} ",
   "EditPage.header.title.create": "Yeni bir rol oluştur",
-  "EditPage.header.description": "***REMOVED***description***REMOVED*** ",
+  "EditPage.header.description": "{description} ",
   "EditPage.header.description.create": " ",
 
   "EditPage.notification.permissions.error": "İzinler getirilirken bir hata oluştu.",
@@ -97,16 +97,16 @@
   "List.button.roles": "Yeni Rol Ekle",
   "List.button.providers": "AYeni Sağlayıcı Ekle",
 
-  "List.title.emailTemplates.singular": "***REMOVED***number***REMOVED*** e-posta şablonu kullanılabilir",
-  "List.title.emailTemplates.plural": "***REMOVED***number***REMOVED*** e-posta şablonları kullanılabilir",
+  "List.title.emailTemplates.singular": "{number} e-posta şablonu kullanılabilir",
+  "List.title.emailTemplates.plural": "{number} e-posta şablonları kullanılabilir",
 
-  "List.title.providers.disabled.singular": "***REMOVED***number***REMOVED*** devre dışı",
-  "List.title.providers.disabled.plural": "***REMOVED***number***REMOVED*** devre dışı",
-  "List.title.providers.enabled.singular": "***REMOVED***number***REMOVED*** sağlayıcı etkinleştirilmiş ve",
-  "List.title.providers.enabled.plural": "***REMOVED***number***REMOVED*** sağlayıcılar etkinleştirilmiş ve",
+  "List.title.providers.disabled.singular": "{number} devre dışı",
+  "List.title.providers.disabled.plural": "{number} devre dışı",
+  "List.title.providers.enabled.singular": "{number} sağlayıcı etkinleştirilmiş ve",
+  "List.title.providers.enabled.plural": "{number} sağlayıcılar etkinleştirilmiş ve",
 
-  "List.title.roles.singular": "***REMOVED***number***REMOVED*** rol kullanılabilir",
-  "List.title.roles.plural": "***REMOVED***number***REMOVED*** roller kullanılabilir",
+  "List.title.roles.singular": "{number} rol kullanılabilir",
+  "List.title.roles.plural": "{number} roller kullanılabilir",
 
   "notification.error.delete": "Öğe silinirken bir hata oluştu",
   "notification.error.fetch": "Verileri getirmeye çalışılırken bir hata oluştu",
@@ -119,7 +119,7 @@
   "plugin.description.long": "Servisinizi JWT'ye dayalı tam bir kimlik doğrulama işlemi ile koruyun. Bu eklenti, kullanıcı grupları arasındaki izinleri yönetmenize izin veren bir ACL stratejisiyle de gelir.",
 
   "Plugin.permissions.application.description": "Projenizin izin verilen tüm eylemlerini tanımlayın.",
-  "Plugin.permissions.plugins.description": "***REMOVED***name***REMOVED*** eklentisi için izin verilen tüm eylemleri tanımlayın.",
+  "Plugin.permissions.plugins.description": "{name} eklentisi için izin verilen tüm eylemleri tanımlayın.",
 
   "Plugins.header.title": "İzinler",
   "Plugins.header.description": "Yalnızca bir güzergahla sınırlandırılan işlemler aşağıda listelenmiştir.",
@@ -139,7 +139,7 @@
   "PopUpForm.button.save": "Kaydet",
   "PopUpForm.header.add.providers": "Yeni Sağlayıcı Ekle",
   "PopUpForm.header.edit.email-templates": "E-posta Şablonlarını Düzenle",
-  "PopUpForm.header.edit.providers": "***REMOVED***sağlayıcı***REMOVED*** sağlayıcını düzenle",
+  "PopUpForm.header.edit.providers": "{sağlayıcı} sağlayıcını düzenle",
   "PopUpForm.inputSelect.providers.label": "Sağlayıcıyı seçin",
   "PopUpForm.Email.options.from.name.label": "Gönderenin adı",
   "PopUpForm.Email.options.from.email.label": "Gönderenin E-posta",
@@ -170,6 +170,6 @@
   "PopUpForm.Providers.twitter.providerConfig.redirectURL": "Twitter uygulama yapılandırmalarınıza eklenecek yönlendirme URL'si",
 
   "PopUpForm.Providers.callback.placeholder": "METİN",
-  "PopUpForm.Email.email_templates.inputDescription": "Değişkenleri nasıl kullanacağınızdan emin değilseniz, ***REMOVED***link***REMOVED***",
+  "PopUpForm.Email.email_templates.inputDescription": "Değişkenleri nasıl kullanacağınızdan emin değilseniz, {link}",
   "PopUpForm.Email.link.documentation": "dokümanlarımıza göz atın."
-***REMOVED***
+}

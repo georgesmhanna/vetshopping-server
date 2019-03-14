@@ -1,52 +1,52 @@
 const _ = require('lodash');
 
-module.exports = ***REMOVED***
-  find: async function (params, populate, raw = false) ***REMOVED***
-    return this.query(function(qb) ***REMOVED***
-      _.forEach(params.where, (where, key) => ***REMOVED***
-        if (_.isArray(where.value) && where.symbol !== 'IN') ***REMOVED***
-          for (const value in where.value) ***REMOVED***
+module.exports = {
+  find: async function (params, populate, raw = false) {
+    return this.query(function(qb) {
+      _.forEach(params.where, (where, key) => {
+        if (_.isArray(where.value) && where.symbol !== 'IN') {
+          for (const value in where.value) {
             qb[value ? 'where' : 'orWhere'](key, where.symbol, where.value[value]);
-    ***REMOVED***
-  ***REMOVED*** else ***REMOVED***
+          }
+        } else {
           qb.where(key, where.symbol, where.value);
-  ***REMOVED***
-***REMOVED***);
+        }
+      });
 
-      if (params.sort) ***REMOVED***
+      if (params.sort) {
         qb.orderBy(params.sort.key, params.sort.order);
-***REMOVED***
+      }
 
-      if (params.skip) ***REMOVED***
+      if (params.skip) {
         qb.offset(_.toNumber(params.skip));
-***REMOVED***
+      }
 
-      if (params.limit) ***REMOVED***
+      if (params.limit) {
         qb.limit(_.toNumber(params.limit));
-***REMOVED***
-***REMOVED***).fetchAll(***REMOVED***
+      }
+    }).fetchAll({
       withRelated: populate || this.associations.map(x => x.alias)
-***REMOVED***).then(data => raw ? data.toJSON() : data);
-***REMOVED***,
+    }).then(data => raw ? data.toJSON() : data);
+  },
 
-  count: async function (params = ***REMOVED******REMOVED***) ***REMOVED***
+  count: async function (params = {}) {
     return await this
       .forge()
-      .query(qb => ***REMOVED***
-        _.forEach(params.where, (where, key) => ***REMOVED***
-          if (_.isArray(where.value)) ***REMOVED***
-            for (const value in where.value) ***REMOVED***
+      .query(qb => {
+        _.forEach(params.where, (where, key) => {
+          if (_.isArray(where.value)) {
+            for (const value in where.value) {
               qb[value ? 'where' : 'orWhere'](key, where.symbol, where.value[value]);
-      ***REMOVED***
-    ***REMOVED*** else ***REMOVED***
+            }
+          } else {
             qb.where(key, where.symbol, where.value);
-    ***REMOVED***
-  ***REMOVED***);
-***REMOVED***)
+          }
+        });
+      })
       .count();
-***REMOVED***,
+  },
 
-  search: async function (params, populate, raw = false) ***REMOVED***
+  search: async function (params, populate, raw = false) {
     const associations = this.associations.map(x => x.alias);
     const searchText = Object.keys(this._attributes)
       .filter(attribute => attribute !== this.primaryKey && !associations.includes(attribute))
@@ -66,58 +66,58 @@ module.exports = ***REMOVED***
 
     const query = (params.search || '').replace(/[^a-zA-Z0-9.-\s]+/g, '');
 
-    return this.query(qb => ***REMOVED***
+    return this.query(qb => {
       // Search in columns which are not text value.
-      searchNoText.forEach(attribute => ***REMOVED***
-        qb.orWhereRaw(`LOWER($***REMOVED***attribute***REMOVED***) LIKE '%$***REMOVED***_.toLower(query)***REMOVED***%'`);
-***REMOVED***);
+      searchNoText.forEach(attribute => {
+        qb.orWhereRaw(`LOWER(${attribute}) LIKE '%${_.toLower(query)}%'`);
+      });
 
-      if (!_.isNaN(_.toNumber(query))) ***REMOVED***
-        searchInt.forEach(attribute => ***REMOVED***
-          qb.orWhereRaw(`$***REMOVED***attribute***REMOVED*** = $***REMOVED***_.toNumber(query)***REMOVED***`);
-  ***REMOVED***);
-***REMOVED***
+      if (!_.isNaN(_.toNumber(query))) {
+        searchInt.forEach(attribute => {
+          qb.orWhereRaw(`${attribute} = ${_.toNumber(query)}`);
+        });
+      }
 
-      if (query === 'true' || query === 'false') ***REMOVED***
-        searchBool.forEach(attribute => ***REMOVED***
-          qb.orWhereRaw(`$***REMOVED***attribute***REMOVED*** = $***REMOVED***_.toNumber(query === 'true')***REMOVED***`);
-  ***REMOVED***);
-***REMOVED***
+      if (query === 'true' || query === 'false') {
+        searchBool.forEach(attribute => {
+          qb.orWhereRaw(`${attribute} = ${_.toNumber(query === 'true')}`);
+        });
+      }
 
       // Search in columns with text using index.
-      switch (this.client) ***REMOVED***
-        case 'pg': ***REMOVED***
+      switch (this.client) {
+        case 'pg': {
           const searchQuery = searchText.map(attribute =>
             _.toLower(attribute) === attribute
-              ? `to_tsvector($***REMOVED***attribute***REMOVED***)`
-              : `to_tsvector('$***REMOVED***attribute***REMOVED***')`
+              ? `to_tsvector(${attribute})`
+              : `to_tsvector('${attribute}')`
           );
 
-          qb.orWhereRaw(`$***REMOVED***searchQuery.join(' || ')***REMOVED*** @@ to_tsquery(?)`, query);
+          qb.orWhereRaw(`${searchQuery.join(' || ')} @@ to_tsquery(?)`, query);
           break;
-  ***REMOVED***
+        }
         default:
-          qb.orWhereRaw(`MATCH($***REMOVED***searchText.join(',')***REMOVED***) AGAINST(? IN BOOLEAN MODE)`, `*$***REMOVED***query***REMOVED****`);
+          qb.orWhereRaw(`MATCH(${searchText.join(',')}) AGAINST(? IN BOOLEAN MODE)`, `*${query}*`);
           break;
-***REMOVED***
+      }
 
-      if (params.sort) ***REMOVED***
+      if (params.sort) {
         qb.orderBy(params.sort.key, params.sort.order);
-***REMOVED***
+      }
 
-      if (params.skip) ***REMOVED***
+      if (params.skip) {
         qb.offset(_.toNumber(params.skip));
-***REMOVED***
+      }
 
-      if (params.limit) ***REMOVED***
+      if (params.limit) {
         qb.limit(_.toNumber(params.limit));
-***REMOVED***
-***REMOVED***).fetchAll(***REMOVED***
+      }
+    }).fetchAll({
       width: populate || associations
-***REMOVED***).then(data => raw ? data.toJSON() : data);
-***REMOVED***,
+    }).then(data => raw ? data.toJSON() : data);
+  },
 
-  countSearch: async function (params = ***REMOVED******REMOVED***) ***REMOVED***
+  countSearch: async function (params = {}) {
     const associations = this.associations.map(x => x.alias);
     const searchText = Object.keys(this._attributes)
       .filter(attribute => attribute !== this.primaryKey && !associations.includes(attribute))
@@ -138,132 +138,132 @@ module.exports = ***REMOVED***
     const query = (params.search || '').replace(/[^a-zA-Z0-9.-\s]+/g, '');
 
 
-    return this.query(qb => ***REMOVED***
+    return this.query(qb => {
       // Search in columns which are not text value.
-      searchNoText.forEach(attribute => ***REMOVED***
-        qb.orWhereRaw(`LOWER($***REMOVED***attribute***REMOVED***) LIKE '%$***REMOVED***_.toLower(query)***REMOVED***%'`);
-***REMOVED***);
+      searchNoText.forEach(attribute => {
+        qb.orWhereRaw(`LOWER(${attribute}) LIKE '%${_.toLower(query)}%'`);
+      });
 
-      if (!_.isNaN(_.toNumber(query))) ***REMOVED***
-        searchInt.forEach(attribute => ***REMOVED***
-          qb.orWhereRaw(`$***REMOVED***attribute***REMOVED*** = $***REMOVED***_.toNumber(query)***REMOVED***`);
-  ***REMOVED***);
-***REMOVED***
+      if (!_.isNaN(_.toNumber(query))) {
+        searchInt.forEach(attribute => {
+          qb.orWhereRaw(`${attribute} = ${_.toNumber(query)}`);
+        });
+      }
 
-      if (query === 'true' || query === 'false') ***REMOVED***
-        searchBool.forEach(attribute => ***REMOVED***
-          qb.orWhereRaw(`$***REMOVED***attribute***REMOVED*** = $***REMOVED***_.toNumber(query === 'true')***REMOVED***`);
-  ***REMOVED***);
-***REMOVED***
+      if (query === 'true' || query === 'false') {
+        searchBool.forEach(attribute => {
+          qb.orWhereRaw(`${attribute} = ${_.toNumber(query === 'true')}`);
+        });
+      }
 
       // Search in columns with text using index.
-      switch (this.client) ***REMOVED***
-        case 'pg': ***REMOVED***
+      switch (this.client) {
+        case 'pg': {
           const searchQuery = searchText.map(attribute =>
             _.toLower(attribute) === attribute
-              ? `to_tsvector($***REMOVED***attribute***REMOVED***)`
-              : `to_tsvector('$***REMOVED***attribute***REMOVED***')`
+              ? `to_tsvector(${attribute})`
+              : `to_tsvector('${attribute}')`
           );
 
-          qb.orWhereRaw(`$***REMOVED***searchQuery.join(' || ')***REMOVED*** @@ to_tsquery(?)`, query);
+          qb.orWhereRaw(`${searchQuery.join(' || ')} @@ to_tsquery(?)`, query);
           break;
-  ***REMOVED***
+        }
         default:
-          qb.orWhereRaw(`MATCH($***REMOVED***searchText.join(',')***REMOVED***) AGAINST(? IN BOOLEAN MODE)`, `*$***REMOVED***query***REMOVED****`);
+          qb.orWhereRaw(`MATCH(${searchText.join(',')}) AGAINST(? IN BOOLEAN MODE)`, `*${query}*`);
           break;
-***REMOVED***
-***REMOVED***).count();
-***REMOVED***,
+      }
+    }).count();
+  },
 
-  findOne: async function (params, populate) ***REMOVED***
+  findOne: async function (params, populate) {
     const record = await this
-      .forge(***REMOVED***
+      .forge({
         [this.primaryKey]: params[this.primaryKey]
-***REMOVED***)
-      .fetch(***REMOVED***
+      })
+      .fetch({
         withRelated: populate || this.associations.map(x => x.alias)
-***REMOVED***);
+      });
 
     const data = record.toJSON ? record.toJSON() : record;
 
     // Retrieve data manually.
-    if (_.isEmpty(populate)) ***REMOVED***
+    if (_.isEmpty(populate)) {
       const arrayOfPromises = this.associations
         .filter(association => ['manyMorphToOne', 'manyMorphToMany'].includes(association.nature))
-        .map(association => ***REMOVED*** // eslint-disable-line no-unused-vars
+        .map(association => { // eslint-disable-line no-unused-vars
           return this.morph.forge()
-            .where(***REMOVED***
-              [`$***REMOVED***this.collectionName***REMOVED***_id`]: params[this.primaryKey]
-      ***REMOVED***)
+            .where({
+              [`${this.collectionName}_id`]: params[this.primaryKey]
+            })
             .fetchAll();
-  ***REMOVED***);
+        });
 
       const related = await Promise.all(arrayOfPromises);
 
-      related.forEach((value, index) => ***REMOVED***
+      related.forEach((value, index) => {
         data[this.associations[index].alias] = value ? value.toJSON() : value;
-***REMOVED***);
-***REMOVED***
+      });
+    }
 
     return data;
-***REMOVED***,
+  },
 
-  create: async function (params) ***REMOVED***
+  create: async function (params) {
     // Exclude relationships.
-    const values = Object.keys(params.values).reduce((acc, current) => ***REMOVED***
-      if (this._attributes[current] && this._attributes[current].type) ***REMOVED***
+    const values = Object.keys(params.values).reduce((acc, current) => {
+      if (this._attributes[current] && this._attributes[current].type) {
         acc[current] = params.values[current];
-***REMOVED***
+      }
 
       return acc;
-***REMOVED***, ***REMOVED******REMOVED***);
+    }, {});
 
     const request = await this
       .forge(values)
       .save()
-      .catch((err) => ***REMOVED***
-        if (err.detail) ***REMOVED***
+      .catch((err) => {
+        if (err.detail) {
           const field = _.last(_.words(err.detail.split('=')[0]));
-          err = ***REMOVED*** message: `This $***REMOVED***field***REMOVED*** is already taken`, field ***REMOVED***;
-  ***REMOVED***
+          err = { message: `This ${field} is already taken`, field };
+        }
 
         throw err;
-***REMOVED***);
+      });
 
     const entry = request.toJSON ? request.toJSON() : request;
 
-    const relations = this.associations.reduce((acc, association) => ***REMOVED***
+    const relations = this.associations.reduce((acc, association) => {
       acc[association.alias] = params.values[association.alias];
       return acc;
-***REMOVED***, ***REMOVED******REMOVED***);
+    }, {});
 
-    return module.exports.update.call(this, ***REMOVED***
+    return module.exports.update.call(this, {
       [this.primaryKey]: entry[this.primaryKey],
-      values: _.assign(***REMOVED***
+      values: _.assign({
         id: entry[this.primaryKey]
-***REMOVED*** relations)
-***REMOVED***);
-***REMOVED***,
+      }, relations)
+    });
+  },
 
-  update: async function (params) ***REMOVED***
+  update: async function (params) {
     // Call the business logic located in the hook.
     // This function updates no-relational and relational data.
     return this.updateRelations(params);
-***REMOVED***,
+  },
 
-  delete: async function (params) ***REMOVED***
+  delete: async function (params) {
     return await this
-      .forge(***REMOVED***
+      .forge({
         [this.primaryKey]: params.id
-***REMOVED***)
+      })
       .destroy();
-***REMOVED***,
+  },
 
-  deleteMany: async function (params) ***REMOVED***
+  deleteMany: async function (params) {
     return await this
-      .query(function(qb) ***REMOVED***
+      .query(function(qb) {
         return qb.whereIn('id', params.id);
-***REMOVED***)
+      })
       .destroy();
-***REMOVED***
-***REMOVED***;
+  }
+};

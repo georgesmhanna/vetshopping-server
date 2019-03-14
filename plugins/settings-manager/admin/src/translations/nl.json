@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "components.DownloadDb.download": "Installatie is bezig...",
   "components.DownloadDb.text": "Dit kan even duren. Bedankt voor je geduld.",
   "plugin.description.short": "Configureer je project binnen enkele seconden.",
@@ -653,4 +653,4 @@
   "language.zu_ZA": "isiZulu (iNingizimu Afrika)",
 
   "pageNotFound": "Pagina niet gevonden"
-***REMOVED***
+}

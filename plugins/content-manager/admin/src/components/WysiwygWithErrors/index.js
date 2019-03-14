@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** isEmpty, isFunction ***REMOVED*** from 'lodash';
+import { isEmpty, isFunction } from 'lodash';
 import cn from 'classnames';
 
 // Design
@@ -21,51 +21,51 @@ import validateInput from 'utils/inputsValidations';
 
 import styles from './styles.scss';
 
-class WysiwygWithErrors extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  state = ***REMOVED*** errors: [], hasInitialValue: false ***REMOVED***;
+class WysiwygWithErrors extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  state = { errors: [], hasInitialValue: false };
 
-  componentDidMount() ***REMOVED***
-    const ***REMOVED*** value, errors ***REMOVED*** = this.props;
+  componentDidMount() {
+    const { value, errors } = this.props;
 
     // Prevent the input from displaying an error when the user enters and leaves without filling it
-    if (!isEmpty(value)) ***REMOVED***
-      this.setState(***REMOVED*** hasInitialValue: true ***REMOVED***);
-***REMOVED***
+    if (!isEmpty(value)) {
+      this.setState({ hasInitialValue: true });
+    }
 
     // Display input error if it already has some
-    if (!isEmpty(errors)) ***REMOVED***
-      this.setState(***REMOVED*** errors ***REMOVED***);
-***REMOVED***
-***REMOVED***
+    if (!isEmpty(errors)) {
+      this.setState({ errors });
+    }
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
     // Show required error if the input's value is received after the compo is mounted
-    if (!isEmpty(nextProps.value) && !this.state.hasInitialValue) ***REMOVED***
-      this.setState(***REMOVED*** hasInitialValue: true ***REMOVED***);
-***REMOVED***
+    if (!isEmpty(nextProps.value) && !this.state.hasInitialValue) {
+      this.setState({ hasInitialValue: true });
+    }
 
     // Check if errors have been updated during validations
-    if (nextProps.didCheckErrors !== this.props.didCheckErrors) ***REMOVED***
+    if (nextProps.didCheckErrors !== this.props.didCheckErrors) {
       // Remove from the state the errors that have already been set
       const errors = isEmpty(nextProps.errors) ? [] : nextProps.errors;
-      this.setState(***REMOVED*** errors ***REMOVED***);
-***REMOVED***
-***REMOVED***
+      this.setState({ errors });
+    }
+  }
 
   /**
    * Set the errors depending on the validations given to the input
-   * @param  ***REMOVED***Object***REMOVED*** target
+   * @param  {Object} target
    */
-  handleBlur = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleBlur = ({ target }) => {
     // Prevent from displaying error if the input is initially isEmpty
-    if (!isEmpty(target.value) || this.state.hasInitialValue) ***REMOVED***
+    if (!isEmpty(target.value) || this.state.hasInitialValue) {
       const errors = validateInput(target.value, this.props.validations);
-      this.setState(***REMOVED*** errors, hasInitialValue: true ***REMOVED***);
-***REMOVED***
-***REMOVED***
+      this.setState({ errors, hasInitialValue: true });
+    }
+  }
 
-  render() ***REMOVED***
-    const ***REMOVED***
+  render() {
+    const {
       autoFocus,
       className,
       customBootstrapClass,
@@ -90,62 +90,62 @@ class WysiwygWithErrors extends React.Component ***REMOVED*** // eslint-disable-
       style,
       tabIndex,
       value,
-***REMOVED*** = this.props;
+    } = this.props;
     const handleBlur = isFunction(onBlur) ? onBlur : this.handleBlur;
 
     let spacer = !isEmpty(inputDescription) ? <InputSpacer /> : <div />;
 
-    if (!noErrorsDescription && !isEmpty(this.state.errors)) ***REMOVED***
+    if (!noErrorsDescription && !isEmpty(this.state.errors)) {
       spacer = <div />;
-***REMOVED***
+    }
 
     return (
       <div
-        className=***REMOVED***cn(
+        className={cn(
           styles.containerWysiwyg,
           customBootstrapClass,
           !isEmpty(className) && className,
-        )***REMOVED***
-        style=***REMOVED***style***REMOVED***
+        )}
+        style={style}
       >
         <Label
-          className=***REMOVED***labelClassName***REMOVED***
-          htmlFor=***REMOVED***name***REMOVED***
-          message=***REMOVED***label***REMOVED***
-          style=***REMOVED***labelStyle***REMOVED***
+          className={labelClassName}
+          htmlFor={name}
+          message={label}
+          style={labelStyle}
         />
         <Wysiwyg
-          autoFocus=***REMOVED***autoFocus***REMOVED***
-          className=***REMOVED***inputClassName***REMOVED***
-          disabled=***REMOVED***disabled***REMOVED***
-          deactivateErrorHighlight=***REMOVED***deactivateErrorHighlight***REMOVED***
-          error=***REMOVED***!isEmpty(this.state.errors)***REMOVED***
-          name=***REMOVED***name***REMOVED***
-          onBlur=***REMOVED***handleBlur***REMOVED***
-          onChange=***REMOVED***onChange***REMOVED***
-          placeholder=***REMOVED***placeholder***REMOVED***
-          resetProps=***REMOVED***resetProps***REMOVED***
-          style=***REMOVED***inputStyle***REMOVED***
-          tabIndex=***REMOVED***tabIndex***REMOVED***
-          value=***REMOVED***value***REMOVED***
+          autoFocus={autoFocus}
+          className={inputClassName}
+          disabled={disabled}
+          deactivateErrorHighlight={deactivateErrorHighlight}
+          error={!isEmpty(this.state.errors)}
+          name={name}
+          onBlur={handleBlur}
+          onChange={onChange}
+          placeholder={placeholder}
+          resetProps={resetProps}
+          style={inputStyle}
+          tabIndex={tabIndex}
+          value={value}
         />
         <InputDescription
-          className=***REMOVED***inputDescriptionClassName***REMOVED***
-          message=***REMOVED***inputDescription***REMOVED***
-          style=***REMOVED***inputDescriptionStyle***REMOVED***
+          className={inputDescriptionClassName}
+          message={inputDescription}
+          style={inputDescriptionStyle}
         />
         <InputErrors
-          className=***REMOVED***errorsClassName***REMOVED***
-          errors=***REMOVED***!noErrorsDescription && this.state.errors || []***REMOVED***
-          style=***REMOVED***errorsStyle***REMOVED***
+          className={errorsClassName}
+          errors={!noErrorsDescription && this.state.errors || []}
+          style={errorsStyle}
         />
-        ***REMOVED***spacer***REMOVED***
+        {spacer}
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-WysiwygWithErrors.defaultProps = ***REMOVED***
+WysiwygWithErrors.defaultProps = {
   autoFocus: false,
   className: '',
   customBootstrapClass: 'col-md-12',
@@ -154,25 +154,25 @@ WysiwygWithErrors.defaultProps = ***REMOVED***
   disabled: false,
   errors: [],
   errorsClassName: '',
-  errorsStyle: ***REMOVED******REMOVED***,
+  errorsStyle: {},
   inputClassName: '',
   inputDescription: '',
   inputDescriptionClassName: '',
-  inputDescriptionStyle: ***REMOVED******REMOVED***,
-  inputStyle: ***REMOVED******REMOVED***,
+  inputDescriptionStyle: {},
+  inputStyle: {},
   label: '',
   labelClassName: '',
-  labelStyle: ***REMOVED******REMOVED***,
+  labelStyle: {},
   noErrorsDescription: false,
   onBlur: false,
   placeholder: '',
   resetProps: false,
-  style: ***REMOVED******REMOVED***,
+  style: {},
   tabIndex: '0',
-  validations: ***REMOVED******REMOVED***,
-***REMOVED***;
+  validations: {},
+};
 
-WysiwygWithErrors.propTypes = ***REMOVED***
+WysiwygWithErrors.propTypes = {
   autoFocus: PropTypes.bool,
   className: PropTypes.string,
   customBootstrapClass: PropTypes.string,
@@ -186,10 +186,10 @@ WysiwygWithErrors.propTypes = ***REMOVED***
   inputDescription: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
-    PropTypes.shape(***REMOVED***
+    PropTypes.shape({
       id: PropTypes.string,
       params: PropTypes.object,
-***REMOVED***),
+    }),
   ]),
   inputDescriptionClassName: PropTypes.string,
   inputDescriptionStyle: PropTypes.object,
@@ -197,10 +197,10 @@ WysiwygWithErrors.propTypes = ***REMOVED***
   label: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
-    PropTypes.shape(***REMOVED***
+    PropTypes.shape({
       id: PropTypes.string,
       params: PropTypes.object,
-***REMOVED***),
+    }),
   ]),
   labelClassName: PropTypes.string,
   labelStyle: PropTypes.object,
@@ -217,6 +217,6 @@ WysiwygWithErrors.propTypes = ***REMOVED***
   tabIndex: PropTypes.string,
   validations: PropTypes.object,
   value: PropTypes.string.isRequired,
-***REMOVED***;
+};
 
 export default WysiwygWithErrors;

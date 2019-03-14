@@ -1,4 +1,4 @@
-***REMOVED***
+{
     "app.components.Button.save": "Speichern",
     "app.components.Button.cancel": "Abbrechen",
 
@@ -39,7 +39,7 @@
     "app.components.InputFileDetails.originalName": "Original Name:",
     "app.components.InputFileDetails.size": "Größe:",
 
-    "app.components.ImgPreview.hint": "Ziehe eine Datei hierher oder ***REMOVED***browse***REMOVED*** eine Datei zum hochladen aus",
+    "app.components.ImgPreview.hint": "Ziehe eine Datei hierher oder {browse} eine Datei zum hochladen aus",
     "app.components.ImgPreview.hint.browse": "wähle",
 
     "app.components.InstallPluginPage.helmet": "Marktplatz - Plugins",
@@ -68,8 +68,8 @@
     "app.components.ListPluginsPage.title": "Plugins",
     "app.components.ListPluginsPage.description": "Liste aller im Projekt installierten Plugins.",
     "app.components.listPluginsPage.deletePlugin.error": "Bei der Entfernung des Plugins ist ein Fehler aufgetreten",
-    "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED*** Plugin ist installiert",
-    "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED*** Plugins sind installiert",
+    "app.components.listPlugins.title.singular": "{number} Plugin ist installiert",
+    "app.components.listPlugins.title.plural": "{number} Plugins sind installiert",
     "app.components.listPlugins.title.none": "Es ist kein Plugin installiert",
     "app.components.listPlugins.button": "Neues Plugin hinzufügen",
 
@@ -122,7 +122,7 @@
     "components.Input.error.attribute.key.taken": "Dieser Wert existiert bereits",
     "components.Input.error.attribute.sameKeyAndName": "Darf nicht gleich sein",
     "components.Input.error.validation.minSupMax": "Darf nicht höher sein",
-    "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+    "components.Input.error.custom-error": "{errorMessage} ",
 
     "components.ListRow.empty": "Es gibt keine Daten.",
 
@@ -137,7 +137,7 @@
     "components.Wysiwyg.ToggleMode.markdown": "Wechsel zu Markdown",
     "components.Wysiwyg.ToggleMode.preview": "Wechsel zur Vorschau",
     "components.WysiwygBottomControls.charactersIndicators": "Zeichen",
-    "components.WysiwygBottomControls.uploadFiles": "Ziehe eine Datei hierher, ***REMOVED***browse***REMOVED*** eine Datei zum hochladen aus oder füge sie aus der Zwischenablage ein.",
+    "components.WysiwygBottomControls.uploadFiles": "Ziehe eine Datei hierher, {browse} eine Datei zum hochladen aus oder füge sie aus der Zwischenablage ein.",
     "components.WysiwygBottomControls.uploadFiles.browse": "wähle",
     "components.WysiwygBottomControls.fullscreen": "Vergrößern",
 
@@ -163,4 +163,4 @@
     "Roles & Permissions" : "Rollen & Berechtigungen",
     "New entry": "Neuer Eintrag",
     "request.error.model.unknown": "Dieses Schema existiert nicht"
-***REMOVED***
+  }

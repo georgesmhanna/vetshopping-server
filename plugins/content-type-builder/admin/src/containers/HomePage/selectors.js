@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the homePage state domain
@@ -20,6 +20,6 @@ const selectHomePage = () => createSelector(
 );
 
 export default selectHomePage;
-export ***REMOVED***
+export {
   selectHomePageDomain,
-***REMOVED***;
+};

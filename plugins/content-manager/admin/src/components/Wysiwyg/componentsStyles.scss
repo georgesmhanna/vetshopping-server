@@ -1,4 +1,4 @@
-.editor ***REMOVED***
+.editor {
   max-height: 555px;
   min-height: 303px;
   overflow: auto;
@@ -10,88 +10,88 @@
   cursor: text;
 
   // TODO define rules for header's margin
-  h1, h2, h3, h4, h5, h6 ***REMOVED***
+  h1, h2, h3, h4, h5, h6 {
     margin: 0;
     line-height: 24px !important;
     font-family: "OpenSans";
-***REMOVED***
+  }
 
-  h1 ***REMOVED***
+  h1 {
     margin-top: 11px !important;
     font-size: 36px;
     font-weight: 600;
-***REMOVED***
+  }
 
-  h2 ***REMOVED***
+  h2 {
     margin-top: 26px;
     font-size: 30px;
     font-weight: 500;
-***REMOVED***
+  }
 
-  h3 ***REMOVED***
+  h3 {
     margin-top: 26px;
     font-size: 24px;
     font-weight: 500;
-***REMOVED***
+  }
 
-  h4 ***REMOVED***
+  h4 {
     margin-top: 26px;
     font-size: 20px;
     font-weight: 500;
-***REMOVED***
+  }
 
-  > div ***REMOVED***
-    > div ***REMOVED***
-      > div ***REMOVED***
+  > div {
+    > div {
+      > div {
         margin-bottom: 32px;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
 
-  li ***REMOVED***
+  li {
     margin-top: 0;
-***REMOVED***
+  }
 
-  ul, ol ***REMOVED***
+  ul, ol {
     padding: 0;
     margin-top: 27px;
-***REMOVED***
+  }
 
-  ol ***REMOVED***
+  ol {
     padding-left: 20px;
-***REMOVED***
+  }
 
   // NOTE: we might need this later
-  span ***REMOVED***
+  span {
     white-space: pre-line;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-h1+.editorParagraph***REMOVED***
+h1+.editorParagraph{
   margin-top: 31px;
-***REMOVED***
+}
 
-.editorParagraph+* ***REMOVED***
+.editorParagraph+* {
   margin-bottom: -2px !important;
-***REMOVED***
+}
 
-.editorParagraph+.editorBlockquote ***REMOVED***
+.editorParagraph+.editorBlockquote {
   margin-bottom: 32px !important;
-***REMOVED***
+}
 
-.editorBlockquote+ul ***REMOVED***
+.editorBlockquote+ul {
   margin-top: 38px !important;
-***REMOVED***
+}
 
-.editorParagraph ***REMOVED***
+.editorParagraph {
   color: #333740;
   margin-top: 27px;
   margin-bottom: -3px;
   font-size: 16px;
   font-weight: 400;
-***REMOVED***
+}
 
-.editorBlockquote ***REMOVED***
+.editorBlockquote {
   margin-top: 41px;
   margin-bottom: 34px;
   font-size: 16px;
@@ -99,54 +99,54 @@ h1+.editorParagraph***REMOVED***
   border-left: 5px solid #eee;
   font-style: italic;
   padding: 10px 20px;
-***REMOVED***
+}
 
-.unorderedList ***REMOVED***
+.unorderedList {
   padding: 0;
   margin-left: 18px;
-***REMOVED***
+}
 
-.editorCodeBlock ***REMOVED***
+.editorCodeBlock {
   padding: 16px;
   margin-top: 26px;
   padding-bottom: 0;
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 3px;
 
-  span ***REMOVED***
+  span {
     font-family: Consolas, monospace !important;
     font-size: 12px;
     line-height: 16px;
     white-space: pre;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.editorFullScreen ***REMOVED***
+.editorFullScreen {
   max-height: calc(100% - 70px) !important;
   margin-bottom: 0;
   overflow: auto;
-***REMOVED***
+}
 
-.editorInput ***REMOVED***
+.editorInput {
   height: 0;
   width: 0;
-***REMOVED***
+}
 
-.editorSelect ***REMOVED***
+.editorSelect {
   min-width: 161px;
   margin-left: 15px;
   margin-right: 5px;
-  > select ***REMOVED***
+  > select {
     box-shadow: 0 0 0 rgba(0,0,0,0)!important;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.fullscreenPreviewEditor ***REMOVED***
+.fullscreenPreviewEditor {
   margin-top: 9px;
   padding: 10px 20px;
-***REMOVED***
+}
 
-.previewControlsWrapper ***REMOVED***
+.previewControlsWrapper {
   display: flex;
   height: 49px;
   width: 100%;
@@ -160,24 +160,24 @@ h1+.editorParagraph***REMOVED***
   border-bottom: 1px solid #F3F4F4;
   line-height: 49px;
   font-size: 13px;
-  > div:first-child ***REMOVED***
-    > span:last-child ***REMOVED***
+  > div:first-child {
+    > span:last-child {
       font-size: 12px;
-***REMOVED***
-***REMOVED***
+    }
+  }
   cursor: pointer;
-***REMOVED***
+}
 
-.selectFullscreen ***REMOVED***
+.selectFullscreen {
   min-width: 115px;
   margin-left: 15px;
-  > select ***REMOVED***
+  > select {
     min-width: 110px !important;
     box-shadow: 0 0 0 rgba(0,0,0,0)!important;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.toggleModeButton ***REMOVED***
+.toggleModeButton {
   height: 32px;
   min-width: 32px;
   padding-left: 10px;
@@ -189,21 +189,21 @@ h1+.editorParagraph***REMOVED***
   font-weight: 500;
   text-align: center;
   cursor: pointer;
-  &:focus, &:active ***REMOVED***
+  &:focus, &:active {
     outline: 0;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.toggleModeWrapper ***REMOVED***
+.toggleModeWrapper {
   margin-left: auto;
   margin-right: 15px;
   padding-top: 8px;
-***REMOVED***
+}
 
-.wysiwygCollapse ***REMOVED***
-  &:after ***REMOVED***
+.wysiwygCollapse {
+  &:after {
     content: '\f066';
     font-family: FontAwesome;
     margin-left: 8px;
-***REMOVED***
-***REMOVED***
+  }
+}

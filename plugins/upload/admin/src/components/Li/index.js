@@ -6,8 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** CopyToClipboard ***REMOVED*** from 'react-copy-to-clipboard';
+import { FormattedMessage } from 'react-intl';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import cn from 'classnames';
 import moment from 'moment';
 
@@ -18,22 +18,22 @@ import PopUpWarning from 'components/PopUpWarning';
 import styles from './styles.scss';
 
 /* eslint-disable react/no-string-refs */
-class Li extends React.Component ***REMOVED***
-  state = ***REMOVED*** isOpen: false, copied: false ***REMOVED***;
+class Li extends React.Component {
+  state = { isOpen: false, copied: false };
 
-  componentDidUpdate(prevProps, prevState) ***REMOVED***
-    if (prevState.copied !== this.state.copied && this.state.copied) ***REMOVED***
-      setTimeout(() => ***REMOVED***
-        this.setState(***REMOVED*** copied: false ***REMOVED***);
-***REMOVED*** 3000);
-***REMOVED***
-***REMOVED***
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.copied !== this.state.copied && this.state.copied) {
+      setTimeout(() => {
+        this.setState({ copied: false });
+      }, 3000);
+    }
+  }
 
-  getUnit = (value) => ***REMOVED***
+  getUnit = (value) => {
     let unit;
     let divider;
     
-    switch (true) ***REMOVED***
+    switch (true) {
       case value > 1000000:
         unit = 'GB';
         divider = 1000000;
@@ -49,26 +49,26 @@ class Li extends React.Component ***REMOVED***
       default:
         unit = 'KB';
         divider = 1;
-***REMOVED***
+    }
 
-    return ***REMOVED*** divider, unit ***REMOVED***;
-***REMOVED***
+    return { divider, unit };
+  }
 
-  handleClick = (e) => ***REMOVED***
+  handleClick = (e) => {
     e.preventDefault();
     const aTag = document.getElementById('aTag');
     aTag.click();
-***REMOVED***
+  }
 
-  handleDelete = (e) => ***REMOVED***
+  handleDelete = (e) => {
     e.preventDefault();
     this.context.deleteData(this.props.item);
-***REMOVED***
+  }
 
   renderLiCopied = () => (
-    <li className=***REMOVED***cn(styles.liWrapper, styles.copied)***REMOVED***>
+    <li className={cn(styles.liWrapper, styles.copied)}>
       <div>
-        <div className=***REMOVED***styles.checked***REMOVED***>
+        <div className={styles.checked}>
           <div />
         </div>
         <div>
@@ -78,90 +78,90 @@ class Li extends React.Component ***REMOVED***
     </li>
   );
 
-  render() ***REMOVED***
-    const ***REMOVED*** item ***REMOVED*** = this.props;
+  render() {
+    const { item } = this.props;
 
-    if (this.state.copied) ***REMOVED***
+    if (this.state.copied) {
       return this.renderLiCopied();
-***REMOVED***
+    }
 
     const icons = [
-      // ***REMOVED***
+      // {
       //   icoType: item.private ? 'lock' : 'unlock',
-      //   onClick: () => ***REMOVED******REMOVED***,
-      // ***REMOVED***,
-      ***REMOVED***
+      //   onClick: () => {},
+      // },
+      {
         icoType: 'eye',
         onClick: this.handleClick,
-***REMOVED***
-      ***REMOVED***
+      },
+      {
         icoType: 'trash',
-        onClick: () => this.setState(***REMOVED*** isOpen: true ***REMOVED***),
-***REMOVED***
+        onClick: () => this.setState({ isOpen: true }),
+      },
     ];
 
     return (
-      <CopyToClipboard text=***REMOVED***item.url***REMOVED*** onCopy=***REMOVED***() => this.setState(***REMOVED***copied: true***REMOVED***)***REMOVED***>
-        <li className=***REMOVED***styles.liWrapper***REMOVED***>
-          <a href=***REMOVED***item.url***REMOVED*** target="_blank" style=***REMOVED******REMOVED*** display: 'none' ***REMOVED******REMOVED*** id="aTag">nothing</a>
-          <div className=***REMOVED***styles.liContainer***REMOVED***>
+      <CopyToClipboard text={item.url} onCopy={() => this.setState({copied: true})}>
+        <li className={styles.liWrapper}>
+          <a href={item.url} target="_blank" style={{ display: 'none' }} id="aTag">nothing</a>
+          <div className={styles.liContainer}>
             <div>
               <div />
-              <FileIcon fileType=***REMOVED***item.ext***REMOVED*** />
+              <FileIcon fileType={item.ext} />
             </div>
-            ***REMOVED***['hash', 'name', 'updatedAt', 'size', 'relatedTo', ''].map((value, key) => ***REMOVED***
-              if (value === 'updatedAt') ***REMOVED***
+            {['hash', 'name', 'updatedAt', 'size', 'relatedTo', ''].map((value, key) => {
+              if (value === 'updatedAt') {
                 return (
-                  <div key=***REMOVED***key***REMOVED*** className=***REMOVED***styles.truncate***REMOVED***>***REMOVED***moment(item[value]).format('YYYY/MM/DD - HH:mm')***REMOVED***</div>
+                  <div key={key} className={styles.truncate}>{moment(item[value]).format('YYYY/MM/DD - HH:mm')}</div>
                 );
-        ***REMOVED***
+              }
 
-              if (value === 'size') ***REMOVED***
-                const ***REMOVED*** divider, unit ***REMOVED*** = this.getUnit(item[value]);
+              if (value === 'size') {
+                const { divider, unit } = this.getUnit(item[value]);
                 const size = item[value]/divider;
 
                 return (
-                  <div key=***REMOVED***key***REMOVED*** className=***REMOVED***styles.truncate***REMOVED***>***REMOVED***Math.round(size * 100) / 100 ***REMOVED***&nbsp;***REMOVED***unit***REMOVED***</div>
+                  <div key={key} className={styles.truncate}>{Math.round(size * 100) / 100 }&nbsp;{unit}</div>
                 );
-        ***REMOVED***
+              }
 
-              if (value !== '') ***REMOVED***
+              if (value !== '') {
                 return (
-                  <div key=***REMOVED***key***REMOVED*** className=***REMOVED***styles.truncate***REMOVED***>***REMOVED***item[value]***REMOVED***</div>
+                  <div key={key} className={styles.truncate}>{item[value]}</div>
                 );
-        ***REMOVED***
+              }
 
-              return <IcoContainer key=***REMOVED***key***REMOVED*** icons=***REMOVED***icons***REMOVED*** />;
-      ***REMOVED***)***REMOVED***
+              return <IcoContainer key={key} icons={icons} />;
+            })}
           </div>
           <PopUpWarning
-            isOpen=***REMOVED***this.state.isOpen***REMOVED***
-            onConfirm=***REMOVED***this.handleDelete***REMOVED***
-            toggleModal=***REMOVED***() => this.setState(***REMOVED*** isOpen: false ***REMOVED***)***REMOVED***
+            isOpen={this.state.isOpen}
+            onConfirm={this.handleDelete}
+            toggleModal={() => this.setState({ isOpen: false })}
           />
         </li>
       </CopyToClipboard>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-Li.contextTypes = ***REMOVED***
+Li.contextTypes = {
   deleteData: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
-Li.defaultProps = ***REMOVED***
-  item: ***REMOVED***
+Li.defaultProps = {
+  item: {
     type: 'pdf',
     hash: '1234',
     name: 'avatar.pdf',
     updated: '20/11/2017 19:29:54',
     size: '24 B',
     relatedTo: 'John Doe',
-***REMOVED***,
-***REMOVED***;
+  },
+};
 
-Li.propTypes = ***REMOVED***
+Li.propTypes = {
   item: PropTypes.object,
-***REMOVED***;
+};
 
 export default Li;

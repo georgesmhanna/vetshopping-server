@@ -1,23 +1,23 @@
-.headerContainer ***REMOVED***
+.headerContainer {
   position: absolute;
   top: 0;
   width: 100%;
   display: flex;
   padding: 1.6rem 2.9rem 0 2.9rem;
-  > div ***REMOVED***
+  > div {
     font-size: 1.8rem;
     font-weight: bold;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.modalBody ***REMOVED***
+.modalBody {
   padding: 2.2rem 1.4rem 0 1.4rem;
-***REMOVED***
+}
 
-.modalFooter ***REMOVED***
+.modalFooter {
   padding: 1.1rem 1rem 2.8rem 1rem;
   border: none;
-  > button ***REMOVED***
+  > button {
     height: 3rem;
     position: relative;
     border-radius: 0.3rem;
@@ -25,14 +25,14 @@
     margin-right: 1.8rem;
     cursor: pointer;
     font-family: Lato;
-    &:focus ***REMOVED***
+    &:focus {
       outline: 0;
-***REMOVED***
-    > i ***REMOVED***
+    }
+    > i {
       margin-right: 1.3rem;
-***REMOVED***
-    &:hover ***REMOVED***
-     &::after ***REMOVED***
+    }
+    &:hover {
+     &::after {
        position: absolute;
        width: 100%;
        height: 100%;
@@ -42,61 +42,61 @@
        content: '';
        opacity: 0.1;
        background: #FFFFFF;
- ***REMOVED***
- ***REMOVED***
-***REMOVED***
-***REMOVED***
+     }
+   }
+  }
+}
 
-.modalHeader ***REMOVED***
+.modalHeader {
   margin: 0 2.9rem;
   padding: 1.4rem 0 2.8rem 0;
   border-bottom: 1px solid #F6F6F6;
   position: relative;
-  > button ***REMOVED***
+  > button {
     margin-right: -2.5rem !important;
     color: #C3C5C8;
     opacity: 1;
     font-size: 1.8rem;
     font-weight: 100;
     z-index: 999;
-    &:hover, &:focus ***REMOVED***
+    &:hover, &:focus {
       color: #C3C5C8;
       opacity: 1;
       outline: 0!important;
-***REMOVED***
-    > span ***REMOVED***
+    }
+    > span {
       display: none;
-***REMOVED***
-    &:before ***REMOVED***
+    }
+    &:before {
       -webkit-font-smoothing: antialiased;
       content: '\F00d';
       font-family: 'FontAwesome';
       font-weight: 400;
       font-size: 1.2rem;
       margin-right: 10px;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.modalPosition ***REMOVED***
-  > div ***REMOVED***
+.modalPosition {
+  > div {
     border:none;
     border-radius: 2px;
     width: 74.5rem;
     padding-left: 0;
     padding-right: 0;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.primary ***REMOVED***
+.primary {
   height: 3rem;
   font-family: Lato!important;
   margin-left: 1.9rem!important;
   cursor: pointer;
   font-family: Lato;
-  &:focus ***REMOVED***
+  &:focus {
     outline: 0;
-***REMOVED***
+  }
   border: none!important;
   width: 15rem;
   line-height: 1.6rem;
@@ -105,81 +105,81 @@
   background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
   -webkit-font-smoothing: antialiased;
   color: white!important;
-  &:hover, &:active ***REMOVED***
+  &:hover, &:active {
     border: none!important;
     background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
     color: white;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-@keyframes blink ***REMOVED***
-  0% ***REMOVED***
+@keyframes blink {
+  0% {
     opacity: .2;
-***REMOVED***
-  20% ***REMOVED***
+  }
+  20% {
     opacity: 1;
-***REMOVED***
-  100% ***REMOVED***
+  }
+  100% {
     opacity: .2;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.saving ***REMOVED***
+.saving {
   margin-top: -1.2rem;
-***REMOVED***
+}
 
 
-.saving span ***REMOVED***
+.saving span {
   animation-name: blink;
   animation-duration: 1.4s;
   animation-iteration-count: infinite;
   animation-fill-mode: both;
   font-size: 5rem;
-***REMOVED***
+}
 
-.saving span:nth-child(2) ***REMOVED***
+.saving span:nth-child(2) {
   animation-delay: .2s;
-***REMOVED***
+}
 
-.saving span:nth-child(3) ***REMOVED***
+.saving span:nth-child(3) {
   animation-delay: .4s;
-***REMOVED***
+}
 
 
-.secondary ***REMOVED***
+.secondary {
   min-width: 100px;
   font-family: Lato;
   color: #F64D0A;
   border: 0.1rem solid #F64D0A;
   cursor: pointer;
   background-color: transparent;
-  &:hover, &:active ***REMOVED***
+  &:hover, &:active {
     color: #F64D0A;
     background-color: white;
     border: 0.1rem solid #F64D0A;
-***REMOVED***
+  }
   height: 3rem;
   color: #F64D0A;
   border: 0.1rem solid #F64D0A;
   position: relative;
   border-radius: 3px;
-***REMOVED***
+}
 
-.separator ***REMOVED***
+.separator {
   width: 100%;
   margin: 14px 15px 20px 15px;
   border-bottom: 2px solid #F6F6F6;
-***REMOVED***
+}
 
 
-.providerDisabled ***REMOVED***
-  > div ***REMOVED***
-    &:last-child ***REMOVED***
-      > input ***REMOVED***
-        &:disabled ***REMOVED***
+.providerDisabled {
+  > div {
+    &:last-child {
+      > input {
+        &:disabled {
           background-color: #FAFAFB !important;
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+      }
+    }
+  }
+}

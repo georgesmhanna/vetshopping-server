@@ -4,7 +4,7 @@
  *
  */
 
-import ***REMOVED***
+import {
   HIDE_LOGIN_ERRORS_INPUT,
   ON_CHANGE_INPUT,
   SET_ERRORS,
@@ -12,96 +12,96 @@ import ***REMOVED***
   SUBMIT,
   SUBMIT_ERROR,
   SUBMIT_SUCCEEDED,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function hideLoginErrorsInput(value) ***REMOVED***
-  return ***REMOVED***
+export function hideLoginErrorsInput(value) {
+  return {
     type: HIDE_LOGIN_ERRORS_INPUT,
     value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onChangeInput(***REMOVED*** target ***REMOVED***) ***REMOVED***
-  return ***REMOVED***
+export function onChangeInput({ target }) {
+  return {
     type: ON_CHANGE_INPUT,
     key: target.name,
     value: target.value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setErrors(formErrors) ***REMOVED***
-  return ***REMOVED***
+export function setErrors(formErrors) {
+  return {
     type: SET_ERRORS,
     formErrors,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setForm(formType, email) ***REMOVED***
+export function setForm(formType, email) {
   let data;
 
-  switch (formType) ***REMOVED***
+  switch (formType) {
     case 'forgot-password':
-      data = ***REMOVED***
+      data = {
         email: '',
-***REMOVED***;
+      };
 
       break;
     case 'login':
-      data = ***REMOVED***
+      data = {
         identifier: '',
         password: '',
         rememberMe: true,
-***REMOVED***;
+      };
 
       break;
     case 'register':
-      data = ***REMOVED***
+      data = {
         username: '',
         password: '',
         confirmPassword: '',
         email: '',
         news: false,
-***REMOVED***;
+      };
       break;
     case 'register-success':
-      data = ***REMOVED***
+      data = {
         email,
-***REMOVED***;
+      };
       break;
     case 'reset-password':
-      data = ***REMOVED***
+      data = {
         password: '',
         passwordConfirmation: '',
         code: email,
-***REMOVED***;
+      };
       break;
     default:
-      data = ***REMOVED******REMOVED***;
-***REMOVED***
+      data = {};
+  }
 
-  return ***REMOVED***
+  return {
     type: SET_FORM,
     data,
     formType,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submit(context) ***REMOVED***
-  return ***REMOVED***
+export function submit(context) {
+  return {
     type: SUBMIT,
     context,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submitError(formErrors) ***REMOVED***
-  return ***REMOVED***
+export function submitError(formErrors) {
+  return {
     type: SUBMIT_ERROR,
     formErrors,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submitSucceeded() ***REMOVED***
-  return ***REMOVED***
+export function submitSucceeded() {
+  return {
     type: SUBMIT_SUCCEEDED,
-***REMOVED***;
-***REMOVED***
+  };
+}

@@ -1,4 +1,4 @@
-.authPage ***REMOVED***
+.authPage {
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -6,9 +6,9 @@
   background: #FAFAFB;
   height: 100vh;
   -webkit-font-smoothing: antialiased;
-***REMOVED***
+}
 
-.wrapper ***REMOVED***
+.wrapper {
   height: 22.1rem;
   width: 685px;
   text-align: center;
@@ -17,34 +17,34 @@
   font-size: 1.4rem;
   font-family: Lato;
 
-***REMOVED***
-.errorsContainer ***REMOVED***
+}
+.errorsContainer {
   margin-top: -21px;
   margin-bottom: 18px;
   color: #ff203c;
-***REMOVED***
-.headerContainer ***REMOVED***
-  > span ***REMOVED***
+}
+.headerContainer {
+  > span {
     line-height: 36px;
     font-size: 24px;
     font-weight: 600;
-***REMOVED***
-  > img ***REMOVED***
+  }
+  > img {
     margin-top: 1px;
     height: 40px;
-***REMOVED***
+  }
 
-***REMOVED***
-.headerDescription ***REMOVED***
+}
+.headerDescription {
   width: 41.6rem;
   text-align: center;
   margin: auto;
   padding: 13px 30px 0 30px;
   line-height: 18px;
   color: #333740;
-***REMOVED***
+}
 
-.formContainer ***REMOVED***
+.formContainer {
   min-height: 20rem;
   width: 41.6rem;
   margin: 1.4rem auto;
@@ -53,66 +53,66 @@
   border-radius: 2px;
   background-color: #FFFFFF;
   box-shadow: 0 2px 4px 0 #E3E9F3;
-***REMOVED***
+}
 
-.loginButton ***REMOVED***
+.loginButton {
   margin-top: -6px;
   padding-right: 0;
   text-align: right;
 
-  > button ***REMOVED***
+  > button {
     margin-right: 1.6rem;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.buttonContainer ***REMOVED***
+.buttonContainer {
   padding-top: 1rem;
-***REMOVED***
+}
 
-.linkContainer ***REMOVED***
+.linkContainer {
   padding-top: 1.8rem;
-  > a ***REMOVED***
+  > a {
     color: #262931;
     font-size: 13px;
-    &:hover, &:active, &:focus ***REMOVED***
+    &:hover, &:active, &:focus {
       text-decoration: none;
       outline: 0;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.bordered ***REMOVED***
+.bordered {
   border-top: 2px solid #1C5DE7;
-***REMOVED***
+}
 
-.borderedSuccess ***REMOVED***
+.borderedSuccess {
   border-top: 2px solid #5A9E06;
-***REMOVED***
+}
 
-.logoContainer ***REMOVED***
+.logoContainer {
   position: absolute;
   left: 30px; bottom: 30px;
 
-  > img ***REMOVED***
+  > img {
     height: 34px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.buttonForgotSuccess ***REMOVED***
+.buttonForgotSuccess {
   border: 1px solid #5A9E06;
   color: #5A9E06;
-***REMOVED***
+}
 
-.forgotSuccess ***REMOVED***
+.forgotSuccess {
   width: 100%;
   // margin-top: -2px;
   text-align: center;
   color: #5A9E06;
   font-size: 13px;
   font-weight: 500;
-  > p ***REMOVED***
+  > p {
     margin-top: 17px;
     margin-bottom: 18px;
     color: #333740;
-***REMOVED***
-***REMOVED***
+  }
+}

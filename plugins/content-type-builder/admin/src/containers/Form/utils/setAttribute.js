@@ -1,9 +1,9 @@
-import ***REMOVED*** cloneDeep, forEach, includes, set, unset, replace ***REMOVED*** from 'lodash';
+import { cloneDeep, forEach, includes, set, unset, replace } from 'lodash';
 
 /* eslint-disable consistent-return */
 
-export default function setParallelAttribute(newAttribute) ***REMOVED***
-  if (newAttribute.params.target === this.props.modelName) ***REMOVED***
+export default function setParallelAttribute(newAttribute) {
+  if (newAttribute.params.target === this.props.modelName) {
     const parallelAttribute = cloneDeep(newAttribute);
     parallelAttribute.name = newAttribute.params.key;
     parallelAttribute.params.key = newAttribute.name;
@@ -11,8 +11,8 @@ export default function setParallelAttribute(newAttribute) ***REMOVED***
     parallelAttribute.params.targetColumnName = newAttribute.params.columnName;
     parallelAttribute.params.dominant = false;
 
-    if (newAttribute.params.nature) ***REMOVED***
-      switch (newAttribute.params.nature) ***REMOVED***
+    if (newAttribute.params.nature) {
+      switch (newAttribute.params.nature) {
         case 'manyToOne':
           parallelAttribute.params.nature = 'oneToMany';
           break;
@@ -21,22 +21,22 @@ export default function setParallelAttribute(newAttribute) ***REMOVED***
           break;
         default:
         //
-***REMOVED***
-***REMOVED***
+      }
+    }
     return parallelAttribute;
-***REMOVED***
+  }
   return;
-***REMOVED***
+}
 
-export function setTempAttribute() ***REMOVED***
+export function setTempAttribute() {
   const newAttribute = cloneDeep(this.props.modifiedDataAttribute);
 
-  forEach(newAttribute.params, (value, key) => ***REMOVED***
-    if (includes(key, 'Value')) ***REMOVED***
+  forEach(newAttribute.params, (value, key) => {
+    if (includes(key, 'Value')) {
       set(newAttribute.params, replace(key, 'Value', ''), value);
       unset(newAttribute.params, key);
-***REMOVED***
-***REMOVED***);
+    }
+  });
 
   return newAttribute;
-***REMOVED***
+}

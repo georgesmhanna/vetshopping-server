@@ -10,7 +10,7 @@
 
 process.chdir(__dirname);
 
-(() => ***REMOVED***
+(() => {
   const strapi = require('strapi');
   strapi.start();
-***REMOVED***)();
+})();

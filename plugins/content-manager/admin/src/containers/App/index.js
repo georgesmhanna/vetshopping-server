@@ -6,12 +6,12 @@
  */
 
 import React from 'react';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import ***REMOVED*** isEmpty, get ***REMOVED*** from 'lodash';
-import ***REMOVED*** Switch, Route ***REMOVED*** from 'react-router-dom';
+import { isEmpty, get } from 'lodash';
+import { Switch, Route } from 'react-router-dom';
 
 import injectSaga from 'utils/injectSaga';
 import getQueryParameters from 'utils/getQueryParameters';
@@ -23,49 +23,49 @@ import SettingPage from 'containers/SettingPage';
 import LoadingIndicatorPage from 'components/LoadingIndicatorPage';
 import EmptyAttributesView from 'components/EmptyAttributesView';
 
-import ***REMOVED***
+import {
   loadModels,
-***REMOVED*** from './actions';
-import ***REMOVED*** makeSelectLoading, makeSelectModelEntries, makeSelectSchema ***REMOVED*** from './selectors';
+} from './actions';
+import { makeSelectLoading, makeSelectModelEntries, makeSelectSchema } from './selectors';
 
 import saga from './sagas';
 
-class App extends React.Component ***REMOVED***
-  componentDidMount() ***REMOVED***
+class App extends React.Component {
+  componentDidMount() {
     this.props.loadModels();
-***REMOVED***
+  }
 
-  render() ***REMOVED***
-    if (this.props.loading) ***REMOVED***
+  render() {
+    if (this.props.loading) {
       return <LoadingIndicatorPage />;
-***REMOVED***
+    }
 
     const currentModelName = this.props.location.pathname.split('/')[3];
     const source = getQueryParameters(this.props.location.search, 'source');
     const attrPath = source === 'content-manager' ? ['models', currentModelName, 'fields'] : ['models', 'plugins', source, currentModelName, 'fields'];
 
-    if (currentModelName && source && isEmpty(get(this.props.schema, attrPath))) ***REMOVED***
-      return <EmptyAttributesView currentModelName=***REMOVED***currentModelName***REMOVED*** history=***REMOVED***this.props.history***REMOVED*** modelEntries=***REMOVED***this.props.modelEntries***REMOVED*** />;
-***REMOVED***
+    if (currentModelName && source && isEmpty(get(this.props.schema, attrPath))) {
+      return <EmptyAttributesView currentModelName={currentModelName} history={this.props.history} modelEntries={this.props.modelEntries} />;
+    }
 
     return (
       <div className="content-manager">
         <Switch>
-          <Route path="/plugins/content-manager/ctm-configurations/:slug/:source?/:endPoint?" component=***REMOVED***SettingPage***REMOVED*** />
-          <Route path="/plugins/content-manager/ctm-configurations" component=***REMOVED***SettingsPage***REMOVED*** />
-          <Route path="/plugins/content-manager/:slug/:id" component=***REMOVED***EditPage***REMOVED*** />
-          <Route path="/plugins/content-manager/:slug" component=***REMOVED***ListPage***REMOVED*** />
+          <Route path="/plugins/content-manager/ctm-configurations/:slug/:source?/:endPoint?" component={SettingPage} />
+          <Route path="/plugins/content-manager/ctm-configurations" component={SettingsPage} />
+          <Route path="/plugins/content-manager/:slug/:id" component={EditPage} />
+          <Route path="/plugins/content-manager/:slug" component={ListPage} />
         </Switch>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-App.contextTypes = ***REMOVED***
+App.contextTypes = {
   router: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
-App.propTypes = ***REMOVED***
+App.propTypes = {
   history: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   loadModels: PropTypes.func.isRequired,
@@ -75,25 +75,25 @@ App.propTypes = ***REMOVED***
     PropTypes.bool,
     PropTypes.object,
   ]).isRequired,
-***REMOVED***;
+};
 
-export function mapDispatchToProps(dispatch) ***REMOVED***
+export function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       loadModels,
-***REMOVED***,
+    },
     dispatch,
   );
-***REMOVED***
+}
 
-const mapStateToProps = createStructuredSelector(***REMOVED***
+const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   modelEntries: makeSelectModelEntries(),
   schema: makeSelectSchema(),
-***REMOVED***);
+});
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withSaga = injectSaga(***REMOVED*** key: 'global', saga ***REMOVED***);
+const withSaga = injectSaga({ key: 'global', saga });
 
 export default compose(
   withSaga,

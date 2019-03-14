@@ -4,25 +4,25 @@
  *
  */
 
-import ***REMOVED*** fromJS, Map ***REMOVED*** from 'immutable';
+import { fromJS, Map } from 'immutable';
 
-import ***REMOVED***
+import {
   GET_CURR_ENV_SUCCEEDED,
   GET_GA_STATUS_SUCCEEDED,
   GET_LAYOUT_SUCCEEDED,
   GET_STRAPI_VERSION_SUCCEEDED,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   allowGa: true,
   currentEnvironment: 'development',
   isLoading: true,
-  layout: Map(***REMOVED******REMOVED***),
+  layout: Map({}),
   strapiVersion: '3',
-***REMOVED***);
+});
 
-function adminPageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function adminPageReducer(state = initialState, action) {
+  switch (action.type) {
     case GET_CURR_ENV_SUCCEEDED:
       return state
         .update('isLoading', () => false)
@@ -35,7 +35,7 @@ function adminPageReducer(state = initialState, action) ***REMOVED***
       return state.update('strapiVersion', () => action.strapiVersion);
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default adminPageReducer;

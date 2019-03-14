@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Modelice la estructura de datos de su API.",
   "plugin.description.long":
     "Modelice la estructura de datos de su API. Cree nuevos campos y relaciones en sólo un minuto. Los archivos se crean y actualizan automáticamente en el proyecto.",
@@ -90,7 +90,7 @@
 
   "form.contentType.item.connections": "Conexión",
   "form.contentType.item.name": "Nombre",
-  "form.contentType.item.name.description": "Los nombres de los tipos de contenido deben ser singulares: ***REMOVED***link***REMOVED***",
+  "form.contentType.item.name.description": "Los nombres de los tipos de contenido deben ser singulares: {link}",
   "form.contentType.item.name.link.description": "Consulte nuestra documentación",
   "form.contentType.item.description": "Descripción",
   "form.contentType.item.description.placeholder": "Escribe aquí tu breve descripción...",
@@ -115,7 +115,7 @@
   "modelPage.contentType.list.relationShipTitle.singular": "vinculacion",
   "modelPage.attribute.relationWith": "Vinculación con",
 
-  "noTableWarning.description": "No olvide crear la tabla `***REMOVED***modelName***REMOVED***` en su base de datos",
+  "noTableWarning.description": "No olvide crear la tabla `{modelName}` en su base de datos",
   "noTableWarning.infos": "Más información",
 
   "notification.error.message": "Se ha producido un error",
@@ -182,4 +182,4 @@
   "relation.manyToOne": "tiene muchos",
   "relation.manyToMany": "tiene y pertenece a muchos",
   "relation.attributeName.placeholder": "Ej: autor, categoría, etiqueta"
-***REMOVED***
+}

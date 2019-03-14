@@ -6,12 +6,12 @@ For example if you want to display only the `user` content type you have to edit
 `my-project/admin/config/layout.js` as follows:
 
 ```js
-module.exports = ***REMOVED***
+module.exports = {
   contentTypesToShow: [
-    ***REMOVED***
+    {
       label: '',
       destination: 'user'
-***REMOVED***
+    }
   ],
-***REMOVED***;
+};
 ```

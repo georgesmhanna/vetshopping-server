@@ -1,6 +1,6 @@
-***REMOVED***
-  "(/:slug(/:env))": ***REMOVED***
+{
+  "(/:slug(/:env))": {
     "name": "homePage",
     "container": "HomePage"
-***REMOVED***
-***REMOVED***
+  }
+}

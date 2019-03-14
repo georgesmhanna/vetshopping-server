@@ -4,34 +4,34 @@
  *
  */
 
-import ***REMOVED*** fromJS, Map ***REMOVED*** from 'immutable';
-import ***REMOVED***
+import { fromJS, Map } from 'immutable';
+import {
   DELETE_PLUGIN_SUCCEEDED,
   GET_APP_CURRENT_ENV_SUCCEEDED,
   GET_PLUGINS_SUCCEEDED,
   ON_DELETE_PLUGIN_CLICK,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   currentEnvironment: 'development',
   deleteActionSucceeded: false,
   isLoading: true,
-  plugins: Map(***REMOVED******REMOVED***),
+  plugins: Map({}),
   pluginToDelete: '',
-***REMOVED***);
+});
 
-function listPluginsPageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
-    case DELETE_PLUGIN_SUCCEEDED: ***REMOVED***
-      if (action.plugin) ***REMOVED***
+function listPluginsPageReducer(state = initialState, action) {
+  switch (action.type) {
+    case DELETE_PLUGIN_SUCCEEDED: {
+      if (action.plugin) {
         return state
           .deleteIn(['plugins', action.plugin])
           .set('deleteActionSucceeded', !state.get('deleteActionSucceeded'));
-***REMOVED***
+      }
 
       return state
         .set('deleteActionSucceeded', !state.get('deleteActionSucceeded'));
-***REMOVED***
+    }
     case GET_APP_CURRENT_ENV_SUCCEEDED:
       return state.update('currentEnvironment', () => action.currentEnvironment);
     case GET_PLUGINS_SUCCEEDED:
@@ -43,7 +43,7 @@ function listPluginsPageReducer(state = initialState, action) ***REMOVED***
         .set('pluginToDelete', action.pluginToDelete);
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default listPluginsPageReducer;

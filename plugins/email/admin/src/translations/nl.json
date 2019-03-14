@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "ConfigPage.title": "E-mail - Instellingen",
   "ConfigPage.description": "Configureer de e-mail extensie",
 
@@ -11,4 +11,4 @@
   "plugin.description.long": "Verstuur e-mails.",
 
   "notification.config.success": "De instellingen zijn opgeslagen."
-***REMOVED***
+}

@@ -6,8 +6,8 @@ import invariant from 'invariant';
 /**
  * Validate the shape of redux store
  */
-export default function checkStore(store) ***REMOVED***
-  const shape = ***REMOVED***
+export default function checkStore(store) {
+  const shape = {
     dispatch: isFunction,
     subscribe: isFunction,
     getState: isFunction,
@@ -15,9 +15,9 @@ export default function checkStore(store) ***REMOVED***
     runSaga: isFunction,
     injectedReducers: isObject,
     injectedSagas: isObject,
-***REMOVED***;
+  };
   invariant(
     conformsTo(store, shape),
     '(app/utils...) injectors: Expected a valid redux store'
   );
-***REMOVED***
+}

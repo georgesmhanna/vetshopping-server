@@ -4,8 +4,8 @@
  *
  */
 
-import ***REMOVED*** fromJS, Map, List ***REMOVED*** from 'immutable';
-import ***REMOVED***
+import { fromJS, Map, List } from 'immutable';
+import {
   ADD_RELATION_ITEM,
   CHANGE_DATA,
   GET_DATA_SUCCEEDED,
@@ -20,40 +20,40 @@ import ***REMOVED***
   SET_LOADER,
   SUBMIT_SUCCESS,
   UNSET_LOADER,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   didCheckErrors: true,
   fileRelations: List([]),
   formErrors: List([]),
   formValidations: List([]),
   isCreating: false,
   id: '',
-  initialRecord: Map(***REMOVED******REMOVED***),
+  initialRecord: Map({}),
   isDraggingSibling: false,
   isLoading: true,
   modelName: '',
   pluginHeaderTitle: 'New Entry',
-  record: fromJS(***REMOVED******REMOVED***),
+  record: fromJS({}),
   resetProps: false,
   showLoader: false,
   source: 'content-manager',
   submitSuccess: false,
-***REMOVED***);
+});
 
-function editPageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function editPageReducer(state = initialState, action) {
+  switch (action.type) {
     case ADD_RELATION_ITEM:
       return state
-        .updateIn(['record', action.key], (list) => ***REMOVED***
-          if (List.isList(list)) ***REMOVED***
+        .updateIn(['record', action.key], (list) => {
+          if (List.isList(list)) {
             return list 
               .push(action.value);
-    ***REMOVED***
+          }
           
           return List([])
             .push(action.value);
-  ***REMOVED***);
+        });
     case CHANGE_DATA:
       return state.updateIn(action.keys, () => action.value);
     case GET_DATA_SUCCEEDED:
@@ -72,11 +72,11 @@ function editPageReducer(state = initialState, action) ***REMOVED***
         .update('source', () => action.source);
     case MOVE_ATTR:
       return state
-        .updateIn(['record', action.keys], list => ***REMOVED***
+        .updateIn(['record', action.keys], list => {
           return list
             .delete(action.dragIndex)
             .insert(action.hoverIndex, list.get(action.dragIndex));
-  ***REMOVED***)
+        })
         .update('isDraggingSibling', () => true);
     case MOVE_ATTR_END:
       return state.update('isDraggingSibling', () => false);
@@ -88,10 +88,10 @@ function editPageReducer(state = initialState, action) ***REMOVED***
         .update('resetProps', (v) => v = !v);
     case ON_REMOVE_RELATION_ITEM:
       return state
-        .updateIn(['record', action.key], (list) => ***REMOVED***
+        .updateIn(['record', action.key], (list) => {
           return list 
             .delete(action.index);
-  ***REMOVED***);
+        });
     case RESET_PROPS:
       return initialState;
     case SET_FILE_RELATIONS:
@@ -109,7 +109,7 @@ function editPageReducer(state = initialState, action) ***REMOVED***
       return state.update('showLoader', () => false);
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default editPageReducer;

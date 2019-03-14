@@ -1,5 +1,5 @@
 // Base class
-.tooltip ***REMOVED***
+.tooltip {
   position: absolute;
   z-index: $zindex-tooltip;
   display: block;
@@ -12,96 +12,96 @@
   word-wrap: break-word;
   opacity: 0;
 
-  &.show ***REMOVED*** opacity: $tooltip-opacity; ***REMOVED***
+  &.show { opacity: $tooltip-opacity; }
 
-  .arrow ***REMOVED***
+  .arrow {
     position: absolute;
     display: block;
     width: $tooltip-arrow-width;
     height: $tooltip-arrow-height;
-***REMOVED***
+  }
 
-  &.bs-tooltip-top ***REMOVED***
+  &.bs-tooltip-top {
     padding: $tooltip-arrow-width 0;
-    .arrow ***REMOVED***
+    .arrow {
       bottom: 0;
-***REMOVED***
+    }
 
-    .arrow::before ***REMOVED***
+    .arrow::before {
       margin-left: -($tooltip-arrow-width - 2);
       content: "";
       border-width: $tooltip-arrow-width $tooltip-arrow-width 0;
       border-top-color: $tooltip-arrow-color;
-***REMOVED***
-***REMOVED***
-  &.bs-tooltip-right ***REMOVED***
+    }
+  }
+  &.bs-tooltip-right {
     padding: 0 $tooltip-arrow-width;
-    .arrow ***REMOVED***
+    .arrow {
       left: 0;
-***REMOVED***
+    }
 
-    .arrow::before ***REMOVED***
+    .arrow::before {
       margin-top: -($tooltip-arrow-width - 2);
       content: "";
       border-width: $tooltip-arrow-width $tooltip-arrow-width $tooltip-arrow-width 0;
       border-right-color: $tooltip-arrow-color;
-***REMOVED***
-***REMOVED***
-  &.bs-tooltip-bottom ***REMOVED***
+    }
+  }
+  &.bs-tooltip-bottom {
     padding: $tooltip-arrow-width 0;
-    .arrow ***REMOVED***
+    .arrow {
       top: 0;
-***REMOVED***
+    }
 
-    .arrow::before ***REMOVED***
+    .arrow::before {
       margin-left: -($tooltip-arrow-width - 2);
       content: "";
       border-width: 0 $tooltip-arrow-width $tooltip-arrow-width;
       border-bottom-color: $tooltip-arrow-color;
-***REMOVED***
-***REMOVED***
-  &.bs-tooltip-left ***REMOVED***
+    }
+  }
+  &.bs-tooltip-left {
     padding: 0 $tooltip-arrow-width;
-    .arrow ***REMOVED***
+    .arrow {
       right: 0;
-***REMOVED***
+    }
 
-    .arrow::before ***REMOVED***
+    .arrow::before {
       right: 0;
       margin-top: -($tooltip-arrow-width - 2);
       content: "";
       border-width: $tooltip-arrow-width 0 $tooltip-arrow-width $tooltip-arrow-width;
       border-left-color: $tooltip-arrow-color;
-***REMOVED***
-***REMOVED***
-  &.bs-tooltip-auto ***REMOVED***
-    &[x-placement^="top"] ***REMOVED***
+    }
+  }
+  &.bs-tooltip-auto {
+    &[x-placement^="top"] {
       @extend .bs-tooltip-top;
-***REMOVED***
-    &[x-placement^="right"] ***REMOVED***
+    }
+    &[x-placement^="right"] {
       @extend .bs-tooltip-right;
-***REMOVED***
-    &[x-placement^="bottom"] ***REMOVED***
+    }
+    &[x-placement^="bottom"] {
       @extend .bs-tooltip-bottom;
-***REMOVED***
-    &[x-placement^="left"] ***REMOVED***
+    }
+    &[x-placement^="left"] {
       @extend .bs-tooltip-left;
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  .arrow::before ***REMOVED***
+  .arrow::before {
     position: absolute;
     border-color: transparent;
     border-style: solid;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 // Wrapper for the tooltip content
-.tooltip-inner ***REMOVED***
+.tooltip-inner {
   max-width: $tooltip-max-width;
   padding: $tooltip-padding-y $tooltip-padding-x;
   color: $tooltip-color;
   text-align: center;
   background-color: $tooltip-bg;
   @include border-radius($border-radius);
-***REMOVED***
+}

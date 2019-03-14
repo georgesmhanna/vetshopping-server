@@ -6,9 +6,9 @@
 
 import React from 'react';
 import Select from 'react-select';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import ***REMOVED*** cloneDeep, isArray, isNull, isUndefined, get, findIndex, isEmpty ***REMOVED*** from 'lodash';
+import { cloneDeep, isArray, isNull, isUndefined, get, findIndex, isEmpty } from 'lodash';
 
 // Utils.
 import request from 'utils/request';
@@ -21,139 +21,139 @@ import SortableList from './SortableList';
 // CSS.
 import styles from './styles.scss';
 
-class SelectMany extends React.PureComponent ***REMOVED***
-  state = ***REMOVED***
+class SelectMany extends React.PureComponent {
+  state = {
     isLoading: true,
     options: [],
     toSkip: 0,
-***REMOVED***;
+  };
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     this.getOptions('');
-***REMOVED***
+  }
 
-  componentDidUpdate(prevProps, prevState) ***REMOVED***
-    if (isEmpty(prevProps.record) && !isEmpty(this.props.record)) ***REMOVED***
+  componentDidUpdate(prevProps, prevState) {
+    if (isEmpty(prevProps.record) && !isEmpty(this.props.record)) {
       const values = (get(this.props.record, this.props.relation.alias) || [])
         .map(el => (el.id || el._id));
 
-      const options = this.state.options.filter(el => ***REMOVED***
+      const options = this.state.options.filter(el => {
         return !values.includes(el.value.id || el.value._id);
-***REMOVED***);
+      });
 
       this.state.options = options;
-***REMOVED***
+    }
 
-    if (prevState.toSkip !== this.state.toSkip) ***REMOVED***
+    if (prevState.toSkip !== this.state.toSkip) {
       this.getOptions('');
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  getOptions = query => ***REMOVED***
-    const params = ***REMOVED***
+  getOptions = query => {
+    const params = {
       _limit: 20,
       _start: this.state.toSkip,
       source: this.props.relation.plugin || 'content-manager',
-***REMOVED***;
+    };
 
     // Set `query` parameter if necessary
-    if (query) ***REMOVED***
+    if (query) {
       delete params._limit;
       delete params._skip;
-      params[`$***REMOVED***this.props.relation.displayedAttribute***REMOVED***_contains`] = query;
-***REMOVED***
+      params[`${this.props.relation.displayedAttribute}_contains`] = query;
+    }
     // Request URL
-    const requestUrl = `/content-manager/explorer/$***REMOVED***this.props.relation.model ||
-      this.props.relation.collection***REMOVED***`;
+    const requestUrl = `/content-manager/explorer/${this.props.relation.model ||
+      this.props.relation.collection}`;
 
     // Call our request helper (see 'utils/request')
-    return request(requestUrl, ***REMOVED***
+    return request(requestUrl, {
       method: 'GET',
       params,
-***REMOVED***)
-      .then(response => ***REMOVED***
+    })
+      .then(response => {
         const options = isArray(response)
-          ? response.map(item => (***REMOVED***
+          ? response.map(item => ({
             value: item,
-            label: templateObject(***REMOVED*** mainField: this.props.relation.displayedAttribute ***REMOVED***, item)
+            label: templateObject({ mainField: this.props.relation.displayedAttribute }, item)
               .mainField,
-    ***REMOVED***))
+          }))
           : [
-            ***REMOVED***
+            {
               value: response,
               label: response[this.props.relation.displayedAttribute],
-      ***REMOVED***
+            },
           ];
 
         const newOptions = cloneDeep(this.state.options);
-        options.map(option => ***REMOVED***
+        options.map(option => {
           // Don't add the values when searching
-          if (findIndex(newOptions, o => o.value.id === option.value.id) === -1) ***REMOVED***
+          if (findIndex(newOptions, o => o.value.id === option.value.id) === -1) {
             return newOptions.push(option);
-    ***REMOVED***
-  ***REMOVED***);
+          }
+        });
 
-        return this.setState(***REMOVED***
+        return this.setState({
           options: newOptions,
           isLoading: false,
-  ***REMOVED***);
-***REMOVED***)
-      .catch(() => ***REMOVED***
+        });
+      })
+      .catch(() => {
         strapi.notification.error('content-manager.notification.error.relationship.fetch');
-***REMOVED***);
-***REMOVED***;
+      });
+  };
 
-  handleChange = value => ***REMOVED***
+  handleChange = value => {
     // Remove new added value from available option;
     this.state.options = this.state.options.filter(el => 
       !((el.value._id || el.value.id) === (value.value.id || value.value._id))
     );
 
-    this.props.onAddRelationalItem(***REMOVED***
+    this.props.onAddRelationalItem({
       key: this.props.relation.alias,
       value: value.value,
-***REMOVED***);
-***REMOVED***;
+    });
+  };
 
-  handleBottomScroll = () => ***REMOVED***
-    this.setState(prevState => ***REMOVED***
-      return ***REMOVED***
+  handleBottomScroll = () => {
+    this.setState(prevState => {
+      return {
         toSkip: prevState.toSkip + 20,
-***REMOVED***;
-***REMOVED***);
-***REMOVED***
+      };
+    });
+  }
 
-  handleRemove = (index) => ***REMOVED***
+  handleRemove = (index) => {
     const values = get(this.props.record, this.props.relation.alias);
 
     // Add removed value from available option;
-    const toAdd = ***REMOVED***
+    const toAdd = {
       value: values[index],
-      label: templateObject(***REMOVED*** mainField: this.props.relation.displayedAttribute ***REMOVED***, values[index]).mainField,
-***REMOVED***;
+      label: templateObject({ mainField: this.props.relation.displayedAttribute }, values[index]).mainField,
+    };
 
-    this.setState(prevState => (***REMOVED***
+    this.setState(prevState => ({
       options: prevState.options.concat([toAdd]),
-***REMOVED***));
+    }));
 
-    this.props.onRemoveRelationItem(***REMOVED***
+    this.props.onRemoveRelationItem({
       key: this.props.relation.alias,
       index,
-***REMOVED***);
-***REMOVED***
+    });
+  }
 
   // Redirect to the edit page
-  handleClick = (item = ***REMOVED******REMOVED***) => ***REMOVED***
-    this.props.onRedirect(***REMOVED***
+  handleClick = (item = {}) => {
+    this.props.onRedirect({
       model: this.props.relation.collection || this.props.relation.model,
       id: item.value.id || item.value._id,
       source: this.props.relation.plugin,
-***REMOVED***);
-***REMOVED***
+    });
+  }
 
-  render() ***REMOVED***
+  render() {
     const description = this.props.relation.description ? (
-      <p>***REMOVED***this.props.relation.description***REMOVED***</p>
+      <p>{this.props.relation.description}</p>
     ) : (
       ''
     );
@@ -161,57 +161,57 @@ class SelectMany extends React.PureComponent ***REMOVED***
 
     /* eslint-disable jsx-a11y/label-has-for */
     return (
-      <div className=***REMOVED***`form-group $***REMOVED***styles.selectMany***REMOVED*** $***REMOVED***value.length > 4 && styles.selectManyUpdate***REMOVED***`***REMOVED***>
-        <label htmlFor=***REMOVED***this.props.relation.alias***REMOVED***>***REMOVED***this.props.relation.alias***REMOVED*** <span>(***REMOVED***value.length***REMOVED***)</span></label>
-        ***REMOVED***description***REMOVED***
+      <div className={`form-group ${styles.selectMany} ${value.length > 4 && styles.selectManyUpdate}`}>
+        <label htmlFor={this.props.relation.alias}>{this.props.relation.alias} <span>({value.length})</span></label>
+        {description}
         <Select
-          className=***REMOVED***`$***REMOVED***styles.select***REMOVED***`***REMOVED***
-          id=***REMOVED***this.props.relation.alias***REMOVED***
-          isLoading=***REMOVED***this.state.isLoading***REMOVED***
-          onChange=***REMOVED***this.handleChange***REMOVED***
-          onMenuScrollToBottom=***REMOVED***this.handleBottomScroll***REMOVED***
-          options=***REMOVED***this.state.options***REMOVED***    
-          placeholder=***REMOVED***<FormattedMessage id='content-manager.containers.Edit.addAnItem' />***REMOVED***
+          className={`${styles.select}`}
+          id={this.props.relation.alias}
+          isLoading={this.state.isLoading}
+          onChange={this.handleChange}
+          onMenuScrollToBottom={this.handleBottomScroll}
+          options={this.state.options}    
+          placeholder={<FormattedMessage id='content-manager.containers.Edit.addAnItem' />}
         />
         <SortableList
-          items=***REMOVED***
+          items={
             isNull(value) || isUndefined(value) || value.size === 0
               ? null
-              : value.map(item => ***REMOVED***
+              : value.map(item => {
 
-                if (item) ***REMOVED***
-                  return ***REMOVED***
+                if (item) {
+                  return {
                     value: get(item, 'value') || item,
                     label:
                         get(item, 'label') ||
-                        templateObject(***REMOVED*** mainField: this.props.relation.displayedAttribute ***REMOVED***, item)
+                        templateObject({ mainField: this.props.relation.displayedAttribute }, item)
                           .mainField ||
                         item.id,
-            ***REMOVED***;
-          ***REMOVED***
-        ***REMOVED***)
-    ***REMOVED***
-          isDraggingSibling=***REMOVED***this.props.isDraggingSibling***REMOVED***
-          keys=***REMOVED***this.props.relation.alias***REMOVED***
-          moveAttr=***REMOVED***this.props.moveAttr***REMOVED***
-          moveAttrEnd=***REMOVED***this.props.moveAttrEnd***REMOVED***
-          onRemove=***REMOVED***this.handleRemove***REMOVED***
-          distance=***REMOVED***1***REMOVED***
-          onClick=***REMOVED***this.handleClick***REMOVED***
+                  };
+                }
+              })
+          }
+          isDraggingSibling={this.props.isDraggingSibling}
+          keys={this.props.relation.alias}
+          moveAttr={this.props.moveAttr}
+          moveAttrEnd={this.props.moveAttrEnd}
+          onRemove={this.handleRemove}
+          distance={1}
+          onClick={this.handleClick}
         />
       </div>
     );
     /* eslint-disable jsx-a11y/label-has-for */
-***REMOVED***
-***REMOVED***
+  }
+}
 
-SelectMany.defaultProps = ***REMOVED***
+SelectMany.defaultProps = {
   isDraggingSibling: false,
-  moveAttr: () => ***REMOVED******REMOVED***,
-  moveAttrEnd: () => ***REMOVED******REMOVED***,
-***REMOVED***;
+  moveAttr: () => {},
+  moveAttrEnd: () => {},
+};
 
-SelectMany.propTypes = ***REMOVED***
+SelectMany.propTypes = {
   isDraggingSibling: PropTypes.bool,
   moveAttr: PropTypes.func,
   moveAttrEnd: PropTypes.func,
@@ -220,6 +220,6 @@ SelectMany.propTypes = ***REMOVED***
   onRemoveRelationItem: PropTypes.func.isRequired,
   record: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]).isRequired,
   relation: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
 export default SelectMany;

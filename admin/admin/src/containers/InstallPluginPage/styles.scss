@@ -1,27 +1,27 @@
-.containerFluid ***REMOVED***
+.containerFluid {
   padding: 18px 30px !important;
-  > div:first-child ***REMOVED***
+  > div:first-child {
     max-height: 33px;
     margin-bottom: 48px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.inputContainer ***REMOVED***
+.inputContainer {
   padding-top: 7px;
   background-color: #fff;
-  > div ***REMOVED***
-    > div ***REMOVED***
+  > div {
+    > div {
       margin-bottom: 0!important;
-***REMOVED***
-    > div:nth-child(3) ***REMOVED***
+    }
+    > div:nth-child(3) {
       display: none;
-***REMOVED***
-    > label ***REMOVED***
+    }
+    > label {
       display: none!important;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.wrapper ***REMOVED***
+.wrapper {
   padding-top: .3rem;
-***REMOVED***
+}

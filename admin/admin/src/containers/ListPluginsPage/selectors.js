@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the listPluginsPage state domain
@@ -45,11 +45,11 @@ const makeSelectIsLoading = () => createSelector(
 );
 
 export default makeSelectListPluginsPage;
-export ***REMOVED***
+export {
   makeSelectCurrentEnv,
   makeSelectIsLoading,
   selectListPluginsPageDomain,
   makeSelectPluginToDelete,
   makeSelectPluginDeleteAction,
   makeSelectPlugins,
-***REMOVED***;
+};

@@ -8,61 +8,61 @@
 
 const _ = require('lodash');
 
-module.exports = ***REMOVED***
-  send: async (ctx) => ***REMOVED***
+module.exports = {
+  send: async (ctx) => {
     // Retrieve provider configuration.
-    const config = await strapi.store(***REMOVED***
+    const config = await strapi.store({
       environment: strapi.config.environment,
       type: 'plugin',
       name: 'email'
-***REMOVED***).get(***REMOVED*** key: 'provider' ***REMOVED***);
+    }).get({ key: 'provider' });
 
     // Verify if the file email is enable.
-    if (config.enabled === false) ***REMOVED***
+    if (config.enabled === false) {
       strapi.log.error('Email is disabled');
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED*** messages: [***REMOVED*** id: 'Email.status.disabled' ***REMOVED***] ***REMOVED***] : 'Emailis disabled');
-***REMOVED***
+      return ctx.badRequest(null, ctx.request.admin ? [{ messages: [{ id: 'Email.status.disabled' }] }] : 'Emailis disabled');
+    }
 
     // Something is wrong
-    if (ctx.status === 400) ***REMOVED***
+    if (ctx.status === 400) {
       return;
-***REMOVED***
+    }
 
     let options = ctx.request.body;
 
     await strapi.plugins.email.services.email.send(options, config);
 
     // Send 200 `ok`
-    ctx.send(***REMOVED******REMOVED***);
-***REMOVED***,
+    ctx.send({});
+  },
 
-  getEnvironments: async (ctx) => ***REMOVED***
-    const environments =  _.map(_.keys(strapi.config.environments), environment => ***REMOVED***
-      return ***REMOVED***
+  getEnvironments: async (ctx) => {
+    const environments =  _.map(_.keys(strapi.config.environments), environment => {
+      return {
         name: environment,
         active: (strapi.config.environment === environment)
-***REMOVED***;
-***REMOVED***);
+      };
+    });
 
-    ctx.send(***REMOVED*** environments ***REMOVED***);
-***REMOVED***,
+    ctx.send({ environments });
+  },
 
-  getSettings: async (ctx) => ***REMOVED***
+  getSettings: async (ctx) => {
     let config = await strapi.plugins.email.services.email.getProviderConfig(ctx.params.environment);
 
-    ctx.send(***REMOVED***
+    ctx.send({
       providers: strapi.plugins.email.config.providers,
       config
-***REMOVED***);
-***REMOVED***,
+    });
+  },
 
-  updateSettings: async (ctx) => ***REMOVED***
-    await strapi.store(***REMOVED***
+  updateSettings: async (ctx) => {
+    await strapi.store({
       environment: ctx.params.environment,
       type: 'plugin',
       name: 'email'
-***REMOVED***).set(***REMOVED***key: 'provider', value: ctx.request.body***REMOVED***);
+    }).set({key: 'provider', value: ctx.request.body});
 
-    ctx.send(***REMOVED***ok: true***REMOVED***);
-***REMOVED***,
-***REMOVED***;
+    ctx.send({ok: true});
+  },
+};

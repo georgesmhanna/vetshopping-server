@@ -1,15 +1,15 @@
-import ***REMOVED*** isPlainObject, isFunction ***REMOVED*** from 'lodash';
+import { isPlainObject, isFunction } from 'lodash';
 
-export const bindLayout = function (object) ***REMOVED***
-  return Object.keys(object).reduce((acc, current) => ***REMOVED***
-    if (isPlainObject(object[current])) ***REMOVED***
+export const bindLayout = function (object) {
+  return Object.keys(object).reduce((acc, current) => {
+    if (isPlainObject(object[current])) {
       acc[current] = bindLayout.call(this, object[current]);
-***REMOVED*** else if (isFunction(object[current])) ***REMOVED***
+    } else if (isFunction(object[current])) {
       acc[current] = object[current].bind(this);
-***REMOVED*** else ***REMOVED***
+    } else {
       acc[current] = object[current];
-***REMOVED***
+    }
 
     return acc;
-***REMOVED***, ***REMOVED******REMOVED***);
-***REMOVED***;
+  }, {});
+};

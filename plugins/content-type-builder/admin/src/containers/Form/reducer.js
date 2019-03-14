@@ -4,9 +4,9 @@
  *
  */
 
-import ***REMOVED*** fromJS, List, Map ***REMOVED*** from 'immutable';
-import ***REMOVED*** findIndex ***REMOVED*** from 'lodash';
-import ***REMOVED***
+import { fromJS, List, Map } from 'immutable';
+import { findIndex } from 'lodash';
+import {
   CHANGE_INPUT,
   CHANGE_INPUT_ATTRIBUTE,
   CONNECTIONS_FETCH_SUCCEEDED,
@@ -22,11 +22,11 @@ import ***REMOVED***
   SET_FORM_ERRORS,
   SET_BUTTON_LOADING,
   UNSET_BUTTON_LOADING,
-***REMOVED*** from './constants';
+} from './constants';
 
 /* eslint-disable new-cap */
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   didCheckErrors: false,
   selectOptionsFetchSucceeded: false,
   selectOptions: List(),
@@ -42,10 +42,10 @@ const initialState = fromJS(***REMOVED***
   shouldRefetchContentType: false,
   updatedContentType: false,
   showButtonLoading: false,
-***REMOVED***);
+});
 
-function formReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function formReducer(state = initialState, action) {
+  switch (action.type) {
     case CHANGE_INPUT:
       return state
         .updateIn([action.objectToModify, action.key], () => action.value);
@@ -61,15 +61,15 @@ function formReducer(state = initialState, action) ***REMOVED***
         .set('initialDataEdit', state.get('modifiedDataEdit'))
         .set('updatedContentType', !state.get('updatedContentType'))
         .set('isFormSet', false);
-    case CONTENT_TYPE_CREATE: ***REMOVED***
-      if (action.shouldSetUpdatedContentTypeProp) ***REMOVED***
+    case CONTENT_TYPE_CREATE: {
+      if (action.shouldSetUpdatedContentTypeProp) {
         return state
           .set('isFormSet', false)
           .set('updatedContentType', !state.get('updatedContentType'));
-***REMOVED***
+      }
 
       return state.set('isFormSet', false);
-***REMOVED***
+    }
     case CONTENT_TYPE_FETCH_SUCCEEDED:
       return state
         .set('initialDataEdit', action.data)
@@ -85,41 +85,41 @@ function formReducer(state = initialState, action) ***REMOVED***
     case RESET_IS_FORM_SET:
       return state
         .set('isFormSet', false)
-        .update('modifiedData', () => Map(***REMOVED******REMOVED***));
-    case SET_ATTRIBUTE_FORM: ***REMOVED***
-      if (state.get('isFormSet')) ***REMOVED***
+        .update('modifiedData', () => Map({}));
+    case SET_ATTRIBUTE_FORM: {
+      if (state.get('isFormSet')) {
         return state
           .set('form', Map(action.form))
           .set('didCheckErrors', !state.get('didCheckErrors'));
-***REMOVED***
+      }
 
       return state
         .set('isFormSet', true)
         .set('form', Map(action.form))
         .set('formValidations', List(action.formValidations))
         .set('modifiedDataAttribute', action.attribute);
-***REMOVED***
-    case SET_ATTRIBUTE_FORM_EDIT: ***REMOVED***
-      if (state.get('isFormSet')) ***REMOVED***
+    }
+    case SET_ATTRIBUTE_FORM_EDIT: {
+      if (state.get('isFormSet')) {
         return state
           .set('form', Map(action.form))
           .set('didCheckErrors', !state.get('didCheckErrors'));
-***REMOVED***
+      }
 
       return state
         .set('isFormSet', true)
         .set('form', Map(action.form))
         .set('formValidations', List(action.formValidations))
         .set('modifiedDataAttribute', action.attribute);
-***REMOVED***
+    }
     case SET_BUTTON_LOADING:
       return state.set('showButtonLoading', true);
     case UNSET_BUTTON_LOADING:
       return state.set('showButtonLoading', false);
-    case SET_FORM: ***REMOVED***
-      if (state.get('isFormSet')) ***REMOVED***
+    case SET_FORM: {
+      if (state.get('isFormSet')) {
         return state.set('form', Map(action.form));
-***REMOVED***
+      }
 
       return state
         .set('isFormSet', true)
@@ -127,14 +127,14 @@ function formReducer(state = initialState, action) ***REMOVED***
         .set('formValidations', List(action.formValidations))
         .set('initialData', action.data)
         .set('modifiedData', action.data);
-***REMOVED***
+    }
     case SET_FORM_ERRORS:
       return state
         .set('formErrors', List(action.formErrors))
         .set('didCheckErrors', !state.get('didCheckErrors'));
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default formReducer;

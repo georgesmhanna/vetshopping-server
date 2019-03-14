@@ -6,26 +6,26 @@
  */
 
 import React from 'react';
-import ***REMOVED*** Switch, Route ***REMOVED*** from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 // Utils
-import ***REMOVED*** pluginId ***REMOVED*** from 'app';
+import { pluginId } from 'app';
 
 // Containers
 import ConfigPage from 'containers/ConfigPage';
 import HomePage from 'containers/HomePage';
 import NotFoundPage from 'containers/NotFoundPage';
 
-function App() ***REMOVED***
+function App() {
   return (
-    <div className=***REMOVED***pluginId***REMOVED***>
+    <div className={pluginId}>
       <Switch>
-        <Route path=***REMOVED***`/plugins/$***REMOVED***pluginId***REMOVED***/configurations/:env`***REMOVED*** component=***REMOVED***ConfigPage***REMOVED*** exact />
-        <Route path=***REMOVED***`/plugins/$***REMOVED***pluginId***REMOVED***`***REMOVED*** component=***REMOVED***HomePage***REMOVED*** exact />
-        <Route component=***REMOVED***NotFoundPage***REMOVED*** />
+        <Route path={`/plugins/${pluginId}/configurations/:env`} component={ConfigPage} exact />
+        <Route path={`/plugins/${pluginId}`} component={HomePage} exact />
+        <Route component={NotFoundPage} />
       </Switch>
     </div>
   );
-***REMOVED***
+}
 
 export default App;

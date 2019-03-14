@@ -1,76 +1,76 @@
-***REMOVED***
+{
   "routes": [
-    ***REMOVED***
+    {
       "method": "GET",
       "path": "/wishlists",
       "handler": "Wishlist.find",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/wishlists/count",
       "handler": "Wishlist.count",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/wishlists/getCurrentWishlist",
       "handler": "Wishlist.getCurrentWishlist",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/wishlists/:_id",
       "handler": "Wishlist.findOne",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "POST",
       "path": "/wishlists",
       "handler": "Wishlist.create",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "PUT",
       "path": "/wishlists/:_id",
       "handler": "Wishlist.update",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "POST",
       "path": "/wishlists/addToWishlist",
       "handler": "Wishlist.addToWishlist",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "POST",
       "path": "/wishlists/removeFromWishlist",
       "handler": "Wishlist.removeFromWishlist",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "DELETE",
       "path": "/wishlists/:_id",
       "handler": "Wishlist.destroy",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***
+      }
+    }
   ]
-***REMOVED***
+}

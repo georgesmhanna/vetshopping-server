@@ -4,51 +4,51 @@
  *
  */
 
-import ***REMOVED***
+import {
   GET_APP_CURRENT_ENV_SUCCEEDED,
   GET_PLUGINS,
   GET_PLUGINS_SUCCEEDED,
   ON_DELETE_PLUGIN_CLICK,
   ON_DELETE_PLUGIN_CONFIRM,
   DELETE_PLUGIN_SUCCEEDED,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function getAppCurrentEnvSucceeded(currentEnvironment) ***REMOVED***
-  return ***REMOVED***
+export function getAppCurrentEnvSucceeded(currentEnvironment) {
+  return {
     type: GET_APP_CURRENT_ENV_SUCCEEDED,
     currentEnvironment,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getPlugins() ***REMOVED***
-  return ***REMOVED***
+export function getPlugins() {
+  return {
     type: GET_PLUGINS,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getPluginsSucceeded(***REMOVED*** plugins ***REMOVED***) ***REMOVED***
-  return ***REMOVED***
+export function getPluginsSucceeded({ plugins }) {
+  return {
     type: GET_PLUGINS_SUCCEEDED,
     plugins,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onDeletePluginClick(***REMOVED*** target ***REMOVED***) ***REMOVED***
-  return ***REMOVED***
+export function onDeletePluginClick({ target }) {
+  return {
     type: ON_DELETE_PLUGIN_CLICK,
     pluginToDelete: target.id,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onDeletePluginConfirm() ***REMOVED***
-  return ***REMOVED***
+export function onDeletePluginConfirm() {
+  return {
     type: ON_DELETE_PLUGIN_CONFIRM,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function deletePluginSucceeded(plugin) ***REMOVED***
-  return ***REMOVED***
+export function deletePluginSucceeded(plugin) {
+  return {
     type: DELETE_PLUGIN_SUCCEEDED,
     plugin,
-***REMOVED***;
-***REMOVED***
+  };
+}

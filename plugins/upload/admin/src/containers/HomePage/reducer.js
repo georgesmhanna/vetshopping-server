@@ -4,9 +4,9 @@
  *
  */
 
-import ***REMOVED*** fromJS, List, Map ***REMOVED*** from 'immutable';
+import { fromJS, List, Map } from 'immutable';
 
-import ***REMOVED***
+import {
   CHANGE_PARAMS,
   DELETE_SUCCESS,
   DROP_SUCCESS,
@@ -16,24 +16,24 @@ import ***REMOVED***
   SET_LOADING,
   SET_PARAMS,
   UNSET_LOADING,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   deleteSuccess: false,
   dataToDelete: '',
   entriesNumber: 0,
   uploadFilesLoading: false,
   search: '',
   uploadedFiles: List([]),
-  params: Map(***REMOVED***
+  params: Map({
     _sort: 'hash',
     _limit: 10,
     _page: 1,
-***REMOVED***),
-***REMOVED***);
+  }),
+});
 
-function homePageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function homePageReducer(state = initialState, action) {
+  switch (action.type) {
     case CHANGE_PARAMS:
       return state.updateIn(action.keys, () => action.value);
     case DELETE_SUCCESS:
@@ -57,7 +57,7 @@ function homePageReducer(state = initialState, action) ***REMOVED***
       return state.update('uploadFilesLoading', () => false);
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default homePageReducer;

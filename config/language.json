@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "enabled": true,
   "defaultLocale": "en_us",
   "modes": [
@@ -10,4 +10,4 @@
     "tld"
   ],
   "cookieName": "locale"
-***REMOVED***
+}

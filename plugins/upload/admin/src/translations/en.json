@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "ConfigPage.title": "Upload - Settings",
   "ConfigPage.description": "Configure the upload plugin",
 
@@ -9,8 +9,8 @@
 
   "EmptyLi.message": "There are no uploaded files",
 
-  "EntriesNumber.number": "***REMOVED***number***REMOVED*** file found",
-  "EntriesNumber.number.plural": "***REMOVED***number***REMOVED*** files found",
+  "EntriesNumber.number": "{number} file found",
+  "EntriesNumber.number.plural": "{number} files found",
 
   "HomePage.title": "Upload",
   "HomePage.description": "Discover all the uploaded files",
@@ -25,12 +25,12 @@
   "ListHeader.size": "Size",
   "ListHeader.related": "Related to",
 
-  "PluginInputFile.text": "Drag & drop your files into this area or ***REMOVED***link***REMOVED*** from a file to upload",
+  "PluginInputFile.text": "Drag & drop your files into this area or {link} from a file to upload",
   "PluginInputFile.link": "browse",
   "PluginInputFile.loading": "Your files are being uploaded...",
 
   "notification.config.success": "The settings has been updated",
   "notification.delete.success": "The file has been deleted",
   "notification.dropFile.success": "Your file has been uploaded",
-  "notification.dropFiles.success": "***REMOVED***number***REMOVED*** files have been uploaded"
-***REMOVED***
+  "notification.dropFiles.success": "{number} files have been uploaded"
+}

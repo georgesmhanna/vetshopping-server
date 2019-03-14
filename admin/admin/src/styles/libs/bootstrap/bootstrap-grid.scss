@@ -7,20 +7,20 @@
 // Box sizing, responsive, and more
 //
 
-@at-root ***REMOVED***
-  @-ms-viewport ***REMOVED*** width: device-width; ***REMOVED***
-***REMOVED***
+@at-root {
+  @-ms-viewport { width: device-width; }
+}
 
-html ***REMOVED***
+html {
   box-sizing: border-box;
   -ms-overflow-style: scrollbar;
-***REMOVED***
+}
 
 *,
 *::before,
-*::after ***REMOVED***
+*::after {
   box-sizing: inherit;
-***REMOVED***
+}
 
 @import "functions";
 @import "variables";

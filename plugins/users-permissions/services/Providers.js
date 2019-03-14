@@ -15,145 +15,145 @@ const Purest = require('purest');
  * Connect thanks to a third-party provider.
  *
  *
- * @param ***REMOVED***String***REMOVED***    provider
- * @param ***REMOVED***String***REMOVED***    access_token
+ * @param {String}    provider
+ * @param {String}    access_token
  *
- * @return  ***REMOVED*******REMOVED***
+ * @return  {*}
  */
 
-exports.connect = (provider, query) => ***REMOVED***
+exports.connect = (provider, query) => {
   const access_token = query.access_token || query.code || query.oauth_token;
 
-  return new Promise((resolve, reject) => ***REMOVED***
-    if (!access_token) ***REMOVED***
-      return reject(null, ***REMOVED***
+  return new Promise((resolve, reject) => {
+    if (!access_token) {
+      return reject(null, {
         message: 'No access_token.'
-***REMOVED***);
-***REMOVED***
+      });
+    }
 
     // Get the profile.
-    getProfile(provider, query, async (err, profile) => ***REMOVED***
-      if (err) ***REMOVED***
+    getProfile(provider, query, async (err, profile) => {
+      if (err) {
         return reject(err);
-***REMOVED***
+      }
 
       // We need at least the mail.
-      if (!profile.email) ***REMOVED***
-        return reject([***REMOVED***
+      if (!profile.email) {
+        return reject([{
           message: 'Email was not available.'
-  ***REMOVED*** null]);
-***REMOVED***
+        }, null]);
+      }
 
-      try ***REMOVED***
-        const users = await strapi.query('user', 'users-permissions').find(***REMOVED***
-          where: ***REMOVED***
+      try {
+        const users = await strapi.query('user', 'users-permissions').find({
+          where: {
             email: profile.email
-    ***REMOVED***
-  ***REMOVED***);
+          }
+        });
 
-        const advanced = await strapi.store(***REMOVED***
+        const advanced = await strapi.store({
           environment: '',
           type: 'plugin',
           name: 'users-permissions',
           key: 'advanced'
-  ***REMOVED***).get();
+        }).get();
 
-        if (_.isEmpty(_.find(users, ***REMOVED***provider***REMOVED***)) && !advanced.allow_register) ***REMOVED***
-          return resolve([null, [***REMOVED*** messages: [***REMOVED*** id: 'Auth.advanced.allow_register' ***REMOVED***] ***REMOVED***], 'Register action is actually not available.']);
-  ***REMOVED***
-        const user = _.find(users, ***REMOVED***socialProvider: provider***REMOVED***);
-        // const user = _.find(users, ***REMOVED***provider***REMOVED***);
+        if (_.isEmpty(_.find(users, {provider})) && !advanced.allow_register) {
+          return resolve([null, [{ messages: [{ id: 'Auth.advanced.allow_register' }] }], 'Register action is actually not available.']);
+        }
+        const user = _.find(users, {socialProvider: provider});
+        // const user = _.find(users, {provider});
 
-        if (!_.isEmpty(user)) ***REMOVED***
+        if (!_.isEmpty(user)) {
           return resolve([user, null]);
-  ***REMOVED***
+        }
 
-        if (!_.isEmpty(_.find(users, user => user.socialProvider !== provider)) && advanced.unique_email) ***REMOVED***
-          return resolve([null, [***REMOVED*** messages: [***REMOVED*** id: 'Auth.form.error.email.taken' ***REMOVED***] ***REMOVED***], 'Email is already taken.']);
-  ***REMOVED***
+        if (!_.isEmpty(_.find(users, user => user.socialProvider !== provider)) && advanced.unique_email) {
+          return resolve([null, [{ messages: [{ id: 'Auth.form.error.email.taken' }] }], 'Email is already taken.']);
+        }
 
         // Retrieve default role.
-        const defaultRole = await strapi.query('role', 'users-permissions').findOne(***REMOVED*** type: advanced.default_role ***REMOVED***, []);
+        const defaultRole = await strapi.query('role', 'users-permissions').findOne({ type: advanced.default_role }, []);
 
         // Create the new user.
-        const params = _.assign(profile, ***REMOVED***
+        const params = _.assign(profile, {
           provider: provider,
           role: defaultRole._id || defaultRole.id
-  ***REMOVED***);
+        });
 
         const createdUser = await strapi.query('user', 'users-permissions').create(params);
 
         return resolve([createdUser, null]);
-***REMOVED*** catch (err) ***REMOVED***
+      } catch (err) {
         reject([null, err]);
-***REMOVED***
-***REMOVED***);
-***REMOVED***);
-***REMOVED***;
+      }
+    });
+  });
+};
 
 /**
  * Helper to get profiles
  *
- * @param ***REMOVED***String***REMOVED***   provider
- * @param ***REMOVED***Function***REMOVED*** callback
+ * @param {String}   provider
+ * @param {Function} callback
  */
 
-const getProfile = async (provider, query, callback) => ***REMOVED***
+const getProfile = async (provider, query, callback) => {
   const access_token = query.access_token || query.code || query.oauth_token;
 
-  const grant = await strapi.store(***REMOVED***
+  const grant = await strapi.store({
     environment: '',
     type: 'plugin',
     name: 'users-permissions',
     key: 'grant'
-***REMOVED***).get();
+  }).get();
 
-  switch (provider) ***REMOVED***
-    case 'discord': ***REMOVED***
-      const discord = new Purest(***REMOVED***
+  switch (provider) {
+    case 'discord': {
+      const discord = new Purest({
         provider: 'discord',
-        config: ***REMOVED***
-          'discord': ***REMOVED***
-            'https://discordapp.com/api/': ***REMOVED***
-              '__domain': ***REMOVED***
-                'auth': ***REMOVED***
-                  'auth': ***REMOVED***'bearer': '[0]'***REMOVED***
-          ***REMOVED***
-        ***REMOVED***
-              '***REMOVED***endpoint***REMOVED***': ***REMOVED***
-                '__path': ***REMOVED***
+        config: {
+          'discord': {
+            'https://discordapp.com/api/': {
+              '__domain': {
+                'auth': {
+                  'auth': {'bearer': '[0]'}
+                }
+              },
+              '{endpoint}': {
+                '__path': {
                   'alias': '__default'
-          ***REMOVED***
-        ***REMOVED***
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***);
-      discord.query().get('users/@me').auth(access_token).request((err, res, body) => ***REMOVED***
-        if (err) ***REMOVED***
+                }
+              }
+            }
+          }
+        }
+      });
+      discord.query().get('users/@me').auth(access_token).request((err, res, body) => {
+        if (err) {
           callback(err);
-  ***REMOVED*** else ***REMOVED***
+        } else {
           // Combine username and discriminator because discord username is not unique
-          var username = `$***REMOVED***body.username***REMOVED***#$***REMOVED***body.discriminator***REMOVED***`;
-          callback(null, ***REMOVED***
+          var username = `${body.username}#${body.discriminator}`;
+          callback(null, {
             username: username,
             email: body.email
-    ***REMOVED***);
-  ***REMOVED***
-***REMOVED***);
+          });
+        }
+      });
       break;
-***REMOVED***
-    case 'facebook': ***REMOVED***
-      const facebook = new Purest(***REMOVED***
+    }
+    case 'facebook': {
+      const facebook = new Purest({
         provider: 'facebook'
-***REMOVED***);
+      });
 
-      facebook.query().get('me?fields=name,email, first_name, last_name, picture').auth(access_token).request((err, res, body) => ***REMOVED***
-        if (err) ***REMOVED***
+      facebook.query().get('me?fields=name,email, first_name, last_name, picture').auth(access_token).request((err, res, body) => {
+        if (err) {
           console.error(err);
           callback(err);
-  ***REMOVED*** else ***REMOVED***
-          callback(null, ***REMOVED***
+        } else {
+          callback(null, {
             username: body.email,
             email: body.email,
             firstName: body.first_name,
@@ -163,21 +163,21 @@ const getProfile = async (provider, query, callback) => ***REMOVED***
               (body.picture.data ?
                 (body.picture.data.url ? body.picture.data.url : '') : '') : '',
             socialProvider: 'facebook'
-    ***REMOVED***);
-  ***REMOVED***
-***REMOVED***);
+          });
+        }
+      });
       break;
-***REMOVED***
-    case 'google': ***REMOVED***
-      const google = new Purest(***REMOVED***
+    }
+    case 'google': {
+      const google = new Purest({
         provider: 'google'
-***REMOVED***);
+      });
 
-      google.query('plus').get('people/me').auth(access_token).request((err, res, body) => ***REMOVED***
-        if (err) ***REMOVED***
+      google.query('plus').get('people/me').auth(access_token).request((err, res, body) => {
+        if (err) {
           callback(err);
-  ***REMOVED*** else ***REMOVED***
-          callback(null, ***REMOVED***
+        } else {
+          callback(null, {
             username: body.emails[0].value,
             email: body.emails[0].value,
             firstName: body.name.givenName,
@@ -185,99 +185,99 @@ const getProfile = async (provider, query, callback) => ***REMOVED***
             imageUrl: body.image? body.image.url:'',
             confirmed: true,
             socialProvider: 'google'
-    ***REMOVED***);
-  ***REMOVED***
-***REMOVED***);
+          });
+        }
+      });
       break;
-***REMOVED***
-    case 'github': ***REMOVED***
-      const github = new Purest(***REMOVED***
+    }
+    case 'github': {
+      const github = new Purest({
         provider: 'github',
-        defaults: ***REMOVED***
-          headers: ***REMOVED***
+        defaults: {
+          headers: {
             'user-agent': 'strapi'
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***);
+          }
+        }
+      });
 
-      request.post(***REMOVED***
+      request.post({
         url: 'https://github.com/login/oauth/access_token',
-        form: ***REMOVED***
+        form: {
           client_id: grant.github.key,
           client_secret: grant.github.secret,
           code: access_token
-  ***REMOVED***
-***REMOVED*** (err, res, body) => ***REMOVED***
-        github.query().get('user').auth(body.split('&')[0].split('=')[1]).request((err, res, body) => ***REMOVED***
-          if (err) ***REMOVED***
+        }
+      }, (err, res, body) => {
+        github.query().get('user').auth(body.split('&')[0].split('=')[1]).request((err, res, body) => {
+          if (err) {
             callback(err);
-    ***REMOVED*** else ***REMOVED***
-            callback(null, ***REMOVED***
+          } else {
+            callback(null, {
               username: body.login,
               email: body.email
-      ***REMOVED***);
-    ***REMOVED***
-  ***REMOVED***);
-***REMOVED***);
+            });
+          }
+        });
+      });
       break;
-***REMOVED***
-    case 'microsoft': ***REMOVED***
-      const microsoft = new Purest(***REMOVED***
+    }
+    case 'microsoft': {
+      const microsoft = new Purest({
         provider: 'microsoft',
-        config:***REMOVED***
-          'microsoft': ***REMOVED***
-            'https://graph.microsoft.com': ***REMOVED***
-              '__domain': ***REMOVED***
-                'auth': ***REMOVED***
-                  'auth': ***REMOVED***'bearer': '[0]'***REMOVED***
-          ***REMOVED***
-        ***REMOVED***
-              '[version]/***REMOVED***endpoint***REMOVED***': ***REMOVED***
-                '__path': ***REMOVED***
+        config:{
+          'microsoft': {
+            'https://graph.microsoft.com': {
+              '__domain': {
+                'auth': {
+                  'auth': {'bearer': '[0]'}
+                }
+              },
+              '[version]/{endpoint}': {
+                '__path': {
                   'alias': '__default',
                   'version': 'v1.0'
-          ***REMOVED***
-        ***REMOVED***
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***);
+                }
+              }
+            }
+          }
+        }
+      });
 
-      microsoft.query().get('me').auth(access_token).request((err, res, body) => ***REMOVED***
-        if (err) ***REMOVED***
+      microsoft.query().get('me').auth(access_token).request((err, res, body) => {
+        if (err) {
           callback(err);
-  ***REMOVED*** else ***REMOVED***
-          callback(null, ***REMOVED***
+        } else {
+          callback(null, {
             username: body.userPrincipalName,
             email: body.userPrincipalName
-    ***REMOVED***);
-  ***REMOVED***
-***REMOVED***);
+          });
+        }
+      });
       break;
-***REMOVED***
-    case 'twitter': ***REMOVED***
-      const twitter = new Purest(***REMOVED***
+    }
+    case 'twitter': {
+      const twitter = new Purest({
         provider: 'twitter',
         key: grant.twitter.key,
         secret: grant.twitter.secret
-***REMOVED***);
+      });
 
-      twitter.query().get('account/verify_credentials').auth(access_token, query.access_secret).qs(***REMOVED***screen_name: query['raw[screen_name]'], include_email: 'true'***REMOVED***).request((err, res, body) => ***REMOVED***
-        if (err) ***REMOVED***
+      twitter.query().get('account/verify_credentials').auth(access_token, query.access_secret).qs({screen_name: query['raw[screen_name]'], include_email: 'true'}).request((err, res, body) => {
+        if (err) {
           callback(err);
-  ***REMOVED*** else ***REMOVED***
-          callback(null, ***REMOVED***
+        } else {
+          callback(null, {
             username: body.screen_name,
             email: body.email
-    ***REMOVED***);
-  ***REMOVED***
-***REMOVED***);
+          });
+        }
+      });
       break;
-***REMOVED***
+    }
     default:
-      callback(***REMOVED***
+      callback({
         message: 'Unknown provider.'
-***REMOVED***);
+      });
       break;
-***REMOVED***
-***REMOVED***;
+  }
+};

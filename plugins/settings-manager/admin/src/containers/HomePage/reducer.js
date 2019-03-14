@@ -4,9 +4,9 @@
  *
  */
 
-import ***REMOVED*** fromJS, Map, OrderedMap ***REMOVED*** from 'immutable';
-import ***REMOVED*** remove, sortBy ***REMOVED*** from 'lodash';
-import ***REMOVED***
+import { fromJS, Map, OrderedMap } from 'immutable';
+import { remove, sortBy } from 'lodash';
+import {
   CONFIG_FETCH_SUCCEEDED,
   CHANGE_DEFAULT_LANGUAGE,
   CHANGE_INPUT,
@@ -27,31 +27,31 @@ import ***REMOVED***
   SET_ERRORS,
   SET_LOADER,
   UNSET_LOADER,
-***REMOVED*** from './constants';
+} from './constants';
 
 /* eslint-disable new-cap */
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   loading: true,
   cancelAction: false,
-  configsDisplay: OrderedMap(***REMOVED******REMOVED***),
-  initialData: Map(***REMOVED******REMOVED***),
-  modifiedData: Map(***REMOVED******REMOVED***),
-  listLanguages: Map(***REMOVED******REMOVED***),
-  addDatabaseSection: Map(***REMOVED******REMOVED***),
+  configsDisplay: OrderedMap({}),
+  initialData: Map({}),
+  modifiedData: Map({}),
+  listLanguages: Map({}),
+  addDatabaseSection: Map({}),
   didCreatedNewLanguage: false,
   didCreatedNewDb: false,
-  specificDatabase: OrderedMap(***REMOVED******REMOVED***),
+  specificDatabase: OrderedMap({}),
   dbNameTarget: '',
-  selectOptions: Map(***REMOVED******REMOVED***),
+  selectOptions: Map({}),
   formValidations: [],
   formErrors: [],
   error: false,
   showLoader: false,
-***REMOVED***);
+});
 /* eslint-disable no-case-declarations */
 
-function homePageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function homePageReducer(state = initialState, action) {
+  switch (action.type) {
     case CONFIG_FETCH_SUCCEEDED:
       return state
         .set('loading', false)
@@ -134,12 +134,12 @@ function homePageReducer(state = initialState, action) ***REMOVED***
       const defaultDbConnection = state.getIn(['modifiedData', 'database.defaultConnection']);
       return state
         .set('modifiedData', Map())
-        .set('dbNameTarget', 'database.connections.$***REMOVED***name***REMOVED***.name') // eslint-disable-line no-template-curly-in-string
+        .set('dbNameTarget', 'database.connections.${name}.name') // eslint-disable-line no-template-curly-in-string
         .set('formErrors', [])
         .setIn(['modifiedData', 'database.defaultConnection'], defaultDbConnection);
     case NEW_LANGUAGE_POST:
       const sections = state.getIn(['configsDisplay', 'sections']);
-      sections.push(***REMOVED*** active: false, name: state.getIn(['modifiedData', 'language.defaultLocale']) ***REMOVED***);
+      sections.push({ active: false, name: state.getIn(['modifiedData', 'language.defaultLocale']) });
       const newSections = sortBy(sections, (o) => o.name);
       return state.setIn(['configsDisplay', 'sections'], newSections);
     case SET_ERRORS:
@@ -151,7 +151,7 @@ function homePageReducer(state = initialState, action) ***REMOVED***
       return state.set('showLoader', false);
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default homePageReducer;

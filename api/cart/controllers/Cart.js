@@ -6,77 +6,77 @@
  * @description: A set of functions called "actions" for managing `Cart`.
  */
 
-module.exports = ***REMOVED***
+module.exports = {
 
   /**
    * Retrieve cart records.
    *
-   * @return ***REMOVED***Object|Array***REMOVED***
+   * @return {Object|Array}
    */
 
-  find: async (ctx) => ***REMOVED***
-    if (ctx.query._q) ***REMOVED***
+  find: async (ctx) => {
+    if (ctx.query._q) {
       return strapi.services.cart.search(ctx.query);
-***REMOVED*** else ***REMOVED***
+    } else {
       return strapi.services.cart.fetchAll(ctx.query);
-***REMOVED***
-***REMOVED***,
+    }
+  },
 
   /**
    * Retrieve a cart record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  findOne: async (ctx) => ***REMOVED***
-    if (!ctx.params._id.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***
+  findOne: async (ctx) => {
+    if (!ctx.params._id.match(/^[0-9a-fA-F]{24}$/)) {
       return ctx.notFound();
-***REMOVED***
+    }
 
     return strapi.services.cart.fetch(ctx.params);
-***REMOVED***,
+  },
 
   /**
    * Count cart records.
    *
-   * @return ***REMOVED***Number***REMOVED***
+   * @return {Number}
    */
 
-  count: async (ctx) => ***REMOVED***
+  count: async (ctx) => {
     return strapi.services.cart.count(ctx.query);
-***REMOVED***,
+  },
 
   /**
    * Create a/an cart record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  create: async (ctx) => ***REMOVED***
+  create: async (ctx) => {
     return strapi.services.cart.add(ctx.request.body);
-***REMOVED***,
+  },
 
   /**
    * Update a/an cart record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  update: async (ctx, next) => ***REMOVED***
+  update: async (ctx, next) => {
     return strapi.services.cart.edit(ctx.params, ctx.request.body);
-***REMOVED***,
+  },
 
   /**
    * Destroy a/an cart record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  destroy: async (ctx, next) => ***REMOVED***
+  destroy: async (ctx, next) => {
     return strapi.services.cart.remove(ctx.params);
-***REMOVED***,
+  },
 
-  addToCart: async (ctx, next) => ***REMOVED***
+  addToCart: async (ctx, next) => {
     // find if there is a cart for user
     // if there is not, create empty cart for user
     // else continue
@@ -86,107 +86,107 @@ module.exports = ***REMOVED***
     // if there is not, create an order item, and automatically add it to cart order items list
 
     // body contains: product id, color id and size id
-    if (!ctx.request.body.productid.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***    // if the product id is not a mongo ObjectId
+    if (!ctx.request.body.productid.match(/^[0-9a-fA-F]{24}$/)) {    // if the product id is not a mongo ObjectId
       return ctx.notFound('product id is not valid');
-***REMOVED***
+    }
 
-    if (ctx.request.body.colorid && !ctx.request.body.colorid.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***    // if the product id is not a mongo ObjectId
+    if (ctx.request.body.colorid && !ctx.request.body.colorid.match(/^[0-9a-fA-F]{24}$/)) {    // if the product id is not a mongo ObjectId
       return ctx.notFound('color id is not valid');
-***REMOVED***
+    }
 
-    if (ctx.request.body.sizeid && !ctx.request.body.sizeid.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***    // if the product id is not a mongo ObjectId
+    if (ctx.request.body.sizeid && !ctx.request.body.sizeid.match(/^[0-9a-fA-F]{24}$/)) {    // if the product id is not a mongo ObjectId
       return ctx.notFound('size id is not valid');
-***REMOVED***
+    }
 
-    // if (ctx.request.body.quantity && ctx.request.body.quantity < 1) ***REMOVED***    // if the product id is not a mongo ObjectId
+    // if (ctx.request.body.quantity && ctx.request.body.quantity < 1) {    // if the product id is not a mongo ObjectId
     //   return ctx.badRequest('quantity cannot be less than one');
-    // ***REMOVED***
+    // }
 
-    const product = await strapi.services.product.fetch(***REMOVED***_id: ctx.request.body.productid***REMOVED***);
-    if (!product) ***REMOVED***  // if the product does not exist in the db
+    const product = await strapi.services.product.fetch({_id: ctx.request.body.productid});
+    if (!product) {  // if the product does not exist in the db
       return ctx.notFound('Product not found');
-***REMOVED***
+    }
 
-    const color = await strapi.services.color.fetch(***REMOVED***_id: ctx.request.body.colorid***REMOVED***);
-    if (ctx.request.body.colorid && !color) ***REMOVED***  // if the color does not exist in the db
+    const color = await strapi.services.color.fetch({_id: ctx.request.body.colorid});
+    if (ctx.request.body.colorid && !color) {  // if the color does not exist in the db
       return ctx.notFound('Color not found');
-***REMOVED***
+    }
 
-    const size = await strapi.services.size.fetch(***REMOVED***_id: ctx.request.body.sizeid***REMOVED***);
-    if (ctx.request.body.sizeid && !size) ***REMOVED***  // if the size does not exist in the db
+    const size = await strapi.services.size.fetch({_id: ctx.request.body.sizeid});
+    if (ctx.request.body.sizeid && !size) {  // if the size does not exist in the db
       return ctx.notFound('Size not found');
-***REMOVED***
+    }
 
-    let cart = await strapi.services.cart.fetch(***REMOVED***user: ctx.state.user._id***REMOVED***);   // get the cart of the loggedin user
+    let cart = await strapi.services.cart.fetch({user: ctx.state.user._id});   // get the cart of the loggedin user
 
 
-    if (!cart) ***REMOVED***
-      cart = ***REMOVED******REMOVED***;
+    if (!cart) {
+      cart = {};
       cart.user = ctx.state.user._id;
       cart.orderItems = [];
       const addedCart = await strapi.services.cart.add(cart);
       cart = addedCart;
-***REMOVED***
+    }
 
     if (cart.orderItems && cart.orderItems.find(orderItem => orderItem.product
       && orderItem.product._id == ctx.request.body.productid &&
       (!orderItem.color || (orderItem.color && orderItem.color._id == ctx.request.body.colorid))
-      && (!orderItem.size || (orderItem.size && orderItem.size._id == ctx.request.body.sizeid)))) ***REMOVED***
+      && (!orderItem.size || (orderItem.size && orderItem.size._id == ctx.request.body.sizeid)))) {
       return ctx.notFound('Order Item already added to cart');
-***REMOVED*** // if it doesn't exist, add it to the list of products
+    } // if it doesn't exist, add it to the list of products
 
-    if (cart.orderItems) ***REMOVED***
-      cart.orderItems.push(***REMOVED***
+    if (cart.orderItems) {
+      cart.orderItems.push({
         product: product,
         // quantity: ctx.request.body.quantity || 1,
         color: color,
         size: size,
         cart: cart._id,
         image: (product.images && product.images.length > 0) ? product.images[0].url : null
-***REMOVED***);
-      for (let orderItem of cart.orderItems) ***REMOVED***
-        orderItem.product = await strapi.services.product.fetch(***REMOVED***_id: orderItem.product._id***REMOVED***);
-***REMOVED***
-***REMOVED***
-    else ***REMOVED***
+      });
+      for (let orderItem of cart.orderItems) {
+        orderItem.product = await strapi.services.product.fetch({_id: orderItem.product._id});
+      }
+    }
+    else {
       cart.orderItems = [];
-      cart.orderItems.push(***REMOVED***
+      cart.orderItems.push({
         product: product,
         // quantity: ctx.request.body.quantity || 1,
         color: color,
         size: size,
         image: (product.images && product.images.length > 0) ? product.images[0].url : null
 
-***REMOVED***);
-***REMOVED***
+      });
+    }
 
-    await strapi.services.cart.edit(***REMOVED***_id: cart._id***REMOVED***, cart);
-    return strapi.services.cart.fetch(***REMOVED***_id: cart._id***REMOVED***);
+    await strapi.services.cart.edit({_id: cart._id}, cart);
+    return strapi.services.cart.fetch({_id: cart._id});
 
-***REMOVED***,
+  },
 
-  getCurrentCart: async (ctx) => ***REMOVED***
+  getCurrentCart: async (ctx) => {
 
-    let cart = await strapi.services.cart.fetch(***REMOVED***user: ctx.state.user._id***REMOVED***);
-    if (!cart)***REMOVED***
-      return ***REMOVED***orderItems: []***REMOVED***;
-***REMOVED***
-    if (cart && cart.orderItems && cart.orderItems.length === 0) ***REMOVED***
+    let cart = await strapi.services.cart.fetch({user: ctx.state.user._id});
+    if (!cart){
+      return {orderItems: []};
+    }
+    if (cart && cart.orderItems && cart.orderItems.length === 0) {
       return cart;
-***REMOVED***
-    if (cart && !cart.orderItems) ***REMOVED***
+    }
+    if (cart && !cart.orderItems) {
       return cart;
-***REMOVED***
-    for (let orderItem of cart.orderItems) ***REMOVED***
-      orderItem.product = await strapi.services.product.fetch(***REMOVED***_id: orderItem.product._id***REMOVED***);
-***REMOVED***
+    }
+    for (let orderItem of cart.orderItems) {
+      orderItem.product = await strapi.services.product.fetch({_id: orderItem.product._id});
+    }
 
     return cart;
 
 
-***REMOVED***,
+  },
 
-  removeFromCart: async (ctx, next) => ***REMOVED***
+  removeFromCart: async (ctx, next) => {
     // find if there is a cart for user
     // if there is not, create empty cart for user
     // else continue
@@ -196,67 +196,67 @@ module.exports = ***REMOVED***
     // if there is not, create an order item, and automatically add it to cart order items list
 
     // body contains: product id, color id and size id
-    if (!ctx.request.body.productid.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***    // if the product id is not a mongo ObjectId
+    if (!ctx.request.body.productid.match(/^[0-9a-fA-F]{24}$/)) {    // if the product id is not a mongo ObjectId
       return ctx.notFound('product id is not valid');
-***REMOVED***
+    }
 
-    if (ctx.request.body.colorid && !ctx.request.body.colorid.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***    // if the product id is not a mongo ObjectId
+    if (ctx.request.body.colorid && !ctx.request.body.colorid.match(/^[0-9a-fA-F]{24}$/)) {    // if the product id is not a mongo ObjectId
       return ctx.notFound('color id is not valid');
-***REMOVED***
+    }
 
-    if (ctx.request.body.sizeid && !ctx.request.body.sizeid.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***    // if the product id is not a mongo ObjectId
+    if (ctx.request.body.sizeid && !ctx.request.body.sizeid.match(/^[0-9a-fA-F]{24}$/)) {    // if the product id is not a mongo ObjectId
       return ctx.notFound('size id is not valid');
-***REMOVED***
+    }
 
-    // if (ctx.request.body.quantity && ctx.request.body.quantity < 1) ***REMOVED***    // if the product id is not a mongo ObjectId
+    // if (ctx.request.body.quantity && ctx.request.body.quantity < 1) {    // if the product id is not a mongo ObjectId
     //   return ctx.badRequest('quantity cannot be less than one');
-    // ***REMOVED***
+    // }
 
-    const product = await strapi.services.product.fetch(***REMOVED***_id: ctx.request.body.productid***REMOVED***);
-    if (!product) ***REMOVED***  // if the product does not exist in the db
+    const product = await strapi.services.product.fetch({_id: ctx.request.body.productid});
+    if (!product) {  // if the product does not exist in the db
       return ctx.notFound('Product not found');
-***REMOVED***
+    }
 
-    const color = await strapi.services.color.fetch(***REMOVED***_id: ctx.request.body.colorid***REMOVED***);
-    if (ctx.request.body.colorid && !color) ***REMOVED***  // if the color does not exist in the db
+    const color = await strapi.services.color.fetch({_id: ctx.request.body.colorid});
+    if (ctx.request.body.colorid && !color) {  // if the color does not exist in the db
       return ctx.notFound('Color not found');
-***REMOVED***
+    }
 
-    const size = await strapi.services.size.fetch(***REMOVED***_id: ctx.request.body.sizeid***REMOVED***);
-    if (ctx.request.body.sizeid && !size) ***REMOVED***  // if the size does not exist in the db
+    const size = await strapi.services.size.fetch({_id: ctx.request.body.sizeid});
+    if (ctx.request.body.sizeid && !size) {  // if the size does not exist in the db
       return ctx.notFound('Size not found');
-***REMOVED***
+    }
 
-    let cart = await strapi.services.cart.fetch(***REMOVED***user: ctx.state.user._id***REMOVED***);   // get the cart of the loggedin user
+    let cart = await strapi.services.cart.fetch({user: ctx.state.user._id});   // get the cart of the loggedin user
 
-    if (!cart) ***REMOVED***
+    if (!cart) {
       return ctx.notFound('Cart not found');
-***REMOVED***
+    }
 
-    if (cart.orderItems) ***REMOVED***
+    if (cart.orderItems) {
       cart.orderItems = cart.orderItems.filter(orderItem => !
         (orderItem.product
           && orderItem.product._id == ctx.request.body.productid &&
           (!orderItem.color || (orderItem.color && orderItem.color._id == ctx.request.body.colorid))
           && (!orderItem.size || (orderItem.size && orderItem.size._id == ctx.request.body.sizeid))));
-***REMOVED***
-    else ***REMOVED***
+    }
+    else {
       cart.orderItems = [];
-***REMOVED***
+    }
 
-    if (cart.orderItems) ***REMOVED***
-      for (let orderItem of cart.orderItems) ***REMOVED***
-        orderItem.product = await strapi.services.product.fetch(***REMOVED***_id: orderItem.product._id***REMOVED***);
-***REMOVED***
-***REMOVED***
+    if (cart.orderItems) {
+      for (let orderItem of cart.orderItems) {
+        orderItem.product = await strapi.services.product.fetch({_id: orderItem.product._id});
+      }
+    }
 
-    await strapi.services.cart.edit(***REMOVED***_id: cart._id***REMOVED***, cart);
-    return strapi.services.cart.fetch(***REMOVED***_id: cart._id***REMOVED***);
+    await strapi.services.cart.edit({_id: cart._id}, cart);
+    return strapi.services.cart.fetch({_id: cart._id});
 
-***REMOVED***,
+  },
 
-  removeUserCart: async (ctx) => ***REMOVED***
-    return strapi.services.cart.remove(***REMOVED***user: ctx.state.user._id***REMOVED***);
+  removeUserCart: async (ctx) => {
+    return strapi.services.cart.remove({user: ctx.state.user._id});
 
-***REMOVED***
-***REMOVED***;
+  }
+};

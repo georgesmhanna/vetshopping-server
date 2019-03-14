@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "Auth.form.button.register-success": "Wyślij ponownie",
   "Auth.form.button.forgot-password.success": "Wyślij ponownie",
   "Auth.form.button.forgot-password": "Wyślij e-mail",
@@ -52,7 +52,7 @@
 
   "components.Input.error.password.noMatch": "Hasło nie pasuje",
 
-  "Controller.input.label": "***REMOVED***label***REMOVED*** ",
+  "Controller.input.label": "{label} ",
   "Controller.selectAll": "Zaznacz wszystko",
 
   "EditForm.inputSelect.label.role": "Domyślna rola dla uwierzytelnionych użytkowników",
@@ -72,11 +72,11 @@
   "EditPage.form.roles": "Szczegóły",
   "EditPage.form.roles.label.description": "Opis",
   "EditPage.form.roles.label.name": "Nazwa",
-  "EditPage.form.roles.label.users": "Użytkownicy powiązani z tą rolą (***REMOVED***number***REMOVED***)",
+  "EditPage.form.roles.label.users": "Użytkownicy powiązani z tą rolą ({number})",
   "EditPage.form.roles.name.error": "Wpisanie wartości dla tego atrybutu jest wymagane.",
-  "EditPage.header.title": "***REMOVED***name***REMOVED*** ",
+  "EditPage.header.title": "{name} ",
   "EditPage.header.title.create": "Rola",
-  "EditPage.header.description": "***REMOVED***description***REMOVED*** ",
+  "EditPage.header.description": "{description} ",
   "EditPage.header.description.create": " ",
 
   "EditPage.notification.permissions.error": "Wystąpił błąd podczas pobierania uprawnień",
@@ -96,16 +96,16 @@
   "List.button.roles": "Rola",
   "List.button.providers": "Dostawca",
 
-  "List.title.emailTemplates.singular": "***REMOVED***number***REMOVED*** szablon e-mail jest dostępny",
-  "List.title.emailTemplates.plural": "***REMOVED***number***REMOVED*** szablonów e-mail jest dostępnych",
+  "List.title.emailTemplates.singular": "{number} szablon e-mail jest dostępny",
+  "List.title.emailTemplates.plural": "{number} szablonów e-mail jest dostępnych",
 
-  "List.title.providers.disabled.singular": "***REMOVED***number***REMOVED*** jest wyłączony",
-  "List.title.providers.disabled.plural": "***REMOVED***number***REMOVED*** jest wyłączonych",
-  "List.title.providers.enabled.singular": "***REMOVED***number***REMOVED*** dostawca jest włączony i",
-  "List.title.providers.enabled.plural": "***REMOVED***number***REMOVED*** dostawców jest włączonych i",
+  "List.title.providers.disabled.singular": "{number} jest wyłączony",
+  "List.title.providers.disabled.plural": "{number} jest wyłączonych",
+  "List.title.providers.enabled.singular": "{number} dostawca jest włączony i",
+  "List.title.providers.enabled.plural": "{number} dostawców jest włączonych i",
 
-  "List.title.roles.singular": "***REMOVED***number***REMOVED*** rola jest dostępna",
-  "List.title.roles.plural": "***REMOVED***number***REMOVED*** ról jest dostępnych",
+  "List.title.roles.singular": "{number} rola jest dostępna",
+  "List.title.roles.plural": "{number} ról jest dostępnych",
 
   "notification.error.delete": "Wystąpił błąd podczas usuwania pozycji",
   "notification.error.fetch": "Wystąpił błąd podczas pobierania danych",
@@ -117,7 +117,7 @@
   "plugin.description.long": "Chroń API za pomocą procesu pełnego uwierzytelniania opartego na JWT. Ta wtyczka zawiera również strategię ACL, która pozwala zarządzać uprawnieniami między grupami użytkowników.",
 
   "Plugin.permissions.application.description": "Określ dozwolone działania w projekcie.",
-  "Plugin.permissions.plugins.description": "Określ dozwolone działania w wtyczce ***REMOVED***name***REMOVED***.",
+  "Plugin.permissions.plugins.description": "Określ dozwolone działania w wtyczce {name}.",
 
   "Plugins.header.title": "Uprawnienia",
   "Plugins.header.description": "Jedynie akcje związane z wywoływaniami wymienionymi poniżej.",
@@ -137,7 +137,7 @@
   "PopUpForm.button.save": "Zapisz",
   "PopUpForm.header.add.providers": "Dostawca",
   "PopUpForm.header.edit.email-templates": "Zmień szablony e-mail",
-  "PopUpForm.header.edit.providers": "Edytuj dostawcę ***REMOVED***provider***REMOVED***",
+  "PopUpForm.header.edit.providers": "Edytuj dostawcę {provider}",
   "PopUpForm.inputSelect.providers.label": "Dostawca",
   "PopUpForm.Email.options.from.name.label": "Nazwa nadawcy",
   "PopUpForm.Email.options.from.email.label": "Email nadawcy",
@@ -170,6 +170,6 @@
   "PopUpForm.Providers.twitter.providerConfig.redirectURL": "Adres przekierowania do dodania w aplikacji Twitter",
 
   "PopUpForm.Providers.callback.placeholder": "TEKST",
-  "PopUpForm.Email.email_templates.inputDescription": "Nie wiesz jak skonfigurować zmienne? ***REMOVED***link***REMOVED***",
+  "PopUpForm.Email.email_templates.inputDescription": "Nie wiesz jak skonfigurować zmienne? {link}",
   "PopUpForm.Email.link.documentation": "Zajrzyj do dokumentacji."
-***REMOVED***
+}

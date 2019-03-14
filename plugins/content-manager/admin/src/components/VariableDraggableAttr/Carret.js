@@ -7,16 +7,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
-const Carret = (***REMOVED*** style ***REMOVED***) => ***REMOVED***
-  return <div style=***REMOVED***style***REMOVED*** className=***REMOVED***styles.carret***REMOVED*** />;
-***REMOVED***;
+const Carret = ({ style }) => {
+  return <div style={style} className={styles.carret} />;
+};
 
-Carret.defaultProps = ***REMOVED***
-  style: ***REMOVED******REMOVED***,
-***REMOVED***;
+Carret.defaultProps = {
+  style: {},
+};
 
-Carret.propTypes = ***REMOVED***
+Carret.propTypes = {
   style: PropTypes.object,
-***REMOVED***;
+};
 
 export default Carret;

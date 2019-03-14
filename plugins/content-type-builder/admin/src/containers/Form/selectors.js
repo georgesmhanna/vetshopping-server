@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the form state domain
@@ -50,7 +50,7 @@ const makeSelectContentTypeUpdated = () => createSelector(
 );
 
 export default selectForm;
-export ***REMOVED***
+export {
   selectFormDomain,
   makeSelectDidFetchModel,
   makeSelectInitialDataEdit,
@@ -58,4 +58,4 @@ export ***REMOVED***
   makeSelectModifiedDataEdit,
   makeSelectShouldRefetchContentType,
   makeSelectContentTypeUpdated,
-***REMOVED***;
+};

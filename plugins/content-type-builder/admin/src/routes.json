@@ -1,10 +1,10 @@
-***REMOVED***
-  "/": ***REMOVED***
+{
+  "/": {
     "name": "homePage",
     "container": "HomePage"
-***REMOVED***,
-  "/models/:modelName": ***REMOVED***
+  },
+  "/models/:modelName": {
     "name": "modelPage",
     "container": "ModelPage"
-***REMOVED***
-***REMOVED***
+  }
+}

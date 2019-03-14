@@ -2,22 +2,22 @@
  * Notifications animation
  **/
 
-.notification-enter ***REMOVED***
+.notification-enter {
   opacity: 0.01;
   top: -60px;
-***REMOVED***
+}
 
-.notification-enter.notification-enter-active ***REMOVED***
+.notification-enter.notification-enter-active {
   opacity: 1;
   transition: all 400ms ease-in;
   top: 0;
-***REMOVED***
+}
 
-.notification-exit ***REMOVED***
+.notification-exit {
   opacity: 1;
-***REMOVED***
+}
 
-.notification-exit.notification-exit-active ***REMOVED***
+.notification-exit.notification-exit-active {
   opacity: 0.01;
   transition: all 400ms ease-in;
-***REMOVED***
+}

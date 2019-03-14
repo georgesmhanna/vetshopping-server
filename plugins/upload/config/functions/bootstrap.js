@@ -12,59 +12,59 @@ const path = require('path');
 const fs = require('fs');
 const _ = require('lodash');
 
-module.exports = async cb => ***REMOVED***
+module.exports = async cb => {
   // set plugin store
-  const pluginStore = strapi.store(***REMOVED***
+  const pluginStore = strapi.store({
     environment: strapi.config.environment,
     type: 'plugin',
     name: 'upload'
-***REMOVED***);
+  });
 
   strapi.plugins.upload.config.providers = [];
 
-  const loadProviders = (basePath, cb) => ***REMOVED***
-    fs.readdir(path.join(basePath, 'node_modules'), async (err, node_modules) => ***REMOVED***
+  const loadProviders = (basePath, cb) => {
+    fs.readdir(path.join(basePath, 'node_modules'), async (err, node_modules) => {
       // get all upload provider
-      const uploads = _.filter(node_modules, (node_module) => ***REMOVED***
+      const uploads = _.filter(node_modules, (node_module) => {
         return _.startsWith(node_module, ('strapi-upload'));
-***REMOVED***);
+      });
 
       // mount all providers to get configs
-      _.forEach(uploads, (node_module) => ***REMOVED***
+      _.forEach(uploads, (node_module) => {
         strapi.plugins.upload.config.providers.push(
-          require(path.join(`$***REMOVED***basePath***REMOVED***/node_modules/$***REMOVED***node_module***REMOVED***`))
+          require(path.join(`${basePath}/node_modules/${node_module}`))
         );
-***REMOVED***);
+      });
 
-      try ***REMOVED***
+      try {
         // if provider config not exit set one by default
-        const config = await pluginStore.get(***REMOVED***key: 'provider'***REMOVED***);
+        const config = await pluginStore.get({key: 'provider'});
 
-        if (!config) ***REMOVED***
-          const provider = _.find(strapi.plugins.upload.config.providers, ***REMOVED***provider: 'local'***REMOVED***);
+        if (!config) {
+          const provider = _.find(strapi.plugins.upload.config.providers, {provider: 'local'});
 
-          const value = _.assign(***REMOVED******REMOVED***, provider, ***REMOVED***
+          const value = _.assign({}, provider, {
             enabled: true,
             // by default limit size to 1 GB
             sizeLimit: 1000000
-    ***REMOVED***);
+          });
 
-          await pluginStore.set(***REMOVED***key: 'provider', value***REMOVED***);
-  ***REMOVED***
-***REMOVED*** catch (err) ***REMOVED***
-        strapi.log.error(`Can't load $***REMOVED***config.provider***REMOVED*** upload provider.`);
-        strapi.log.warn(`Please install strapi-upload-$***REMOVED***config.provider***REMOVED*** --save in $***REMOVED***path.join(strapi.config.appPath, 'plugins', 'upload')***REMOVED*** folder.`);
+          await pluginStore.set({key: 'provider', value});
+        }
+      } catch (err) {
+        strapi.log.error(`Can't load ${config.provider} upload provider.`);
+        strapi.log.warn(`Please install strapi-upload-${config.provider} --save in ${path.join(strapi.config.appPath, 'plugins', 'upload')} folder.`);
         strapi.stop();
-***REMOVED***
+      }
 
       cb();
-***REMOVED***);
-***REMOVED***;
+    });
+  };
 
   // Load providers from the plugins' node_modules.
-  loadProviders(path.join(strapi.config.appPath, 'plugins', 'upload'), () => ***REMOVED***
+  loadProviders(path.join(strapi.config.appPath, 'plugins', 'upload'), () => {
     // Load providers from the root node_modules.
     loadProviders(path.join(strapi.config.appPath), cb);
-***REMOVED***);
+  });
 
-***REMOVED***;
+};

@@ -22,7 +22,7 @@ import 'codemirror/theme/blackboard.css';
 import 'codemirror/theme/monokai.css';
 import 'codemirror/theme/cobalt.css';
 
-import ***REMOVED*** isEmpty, isObject, trimStart ***REMOVED*** from 'lodash';
+import { isEmpty, isObject, trimStart } from 'lodash';
 import jsonlint from './jsonlint';
 import styles from './styles.scss';
 
@@ -32,16 +32,16 @@ const parse = JSON.parse;
 const DEFAULT_THEME = 'monokai';
 const THEMES = ['blackboard', 'cobalt', 'monokai', '3024-day', '3024-night', 'liquibyte', 'xq-dark'];
 
-class InputJSON extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
+class InputJSON extends React.Component {
+  constructor(props) {
     super(props);
     this.editor = React.createRef();
-    this.state = ***REMOVED*** error: false, markedText: null ***REMOVED***;
-***REMOVED***
+    this.state = { error: false, markedText: null };
+  }
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     // Init codemirror component
-    this.codeMirror = cm.fromTextArea(this.editor.current, ***REMOVED***
+    this.codeMirror = cm.fromTextArea(this.editor.current, {
       autoCloseBrackets: true,
       lineNumbers: true,
       matchBrackets: true,
@@ -50,35 +50,35 @@ class InputJSON extends React.Component ***REMOVED***
       styleSelectedText: true,
       tabSize: 2,
       theme: DEFAULT_THEME,
-***REMOVED***);
+    });
     this.codeMirror.on('change', this.handleChange);
     this.codeMirror.on('blur', this.handleBlur);
 
     this.setSize();
     this.setInitValue();
-***REMOVED***
+  }
 
-  componentDidUpdate(prevProps) ***REMOVED***
-    if (isEmpty(prevProps.value) && !isEmpty(this.props.value) && !this.state.hasInitValue) ***REMOVED***
+  componentDidUpdate(prevProps) {
+    if (isEmpty(prevProps.value) && !isEmpty(this.props.value) && !this.state.hasInitValue) {
       this.setInitValue();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  setInitValue = () => ***REMOVED***
-    const ***REMOVED*** value ***REMOVED*** = this.props;
+  setInitValue = () => {
+    const { value } = this.props;
 
-    if (isObject(value) && value !== null) ***REMOVED***
-      try ***REMOVED***
+    if (isObject(value) && value !== null) {
+      try {
         parse(stringify(value));
-        this.setState(***REMOVED*** hasInitValue: true ***REMOVED***);
+        this.setState({ hasInitValue: true });
 
         return this.codeMirror.setValue(stringify(value, null, 2));
-***REMOVED*** catch(err) ***REMOVED***
+      } catch(err) {
 
-        return this.setState(***REMOVED*** error: true ***REMOVED***);
-***REMOVED***
-***REMOVED***
-***REMOVED***
+        return this.setState({ error: true });
+      }
+    }
+  }
 
   setSize = () => this.codeMirror.setSize('100%', 'auto');
 
@@ -90,7 +90,7 @@ class InputJSON extends React.Component ***REMOVED***
 
   getValue = () => this.codeMirror.getValue();
 
-  markSelection = (***REMOVED*** message ***REMOVED***) => ***REMOVED***
+  markSelection = ({ message }) => {
     let line = parseInt(
       message
         .split(':')[0]
@@ -100,102 +100,102 @@ class InputJSON extends React.Component ***REMOVED***
 
     let content = this.getContentAtLine(line);
 
-    if (content === '***REMOVED***') ***REMOVED***
+    if (content === '{') {
       line = line + 1;
       content = this.getContentAtLine(line);
-***REMOVED***
+    }
     const chEnd = content.length;
     const chStart = chEnd - trimStart(content, ' ').length;
-    const markedText = this.codeMirror.markText(***REMOVED*** line, ch: chStart ***REMOVED***, ***REMOVED*** line, ch: chEnd ***REMOVED***, ***REMOVED*** className: styles.colored ***REMOVED***);
-    this.setState(***REMOVED*** markedText ***REMOVED***);
-***REMOVED***
+    const markedText = this.codeMirror.markText({ line, ch: chStart }, { line, ch: chEnd }, { className: styles.colored });
+    this.setState({ markedText });
+  }
 
   timer = null;
 
-  handleBlur = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
-    const ***REMOVED*** name, onBlur ***REMOVED*** = this.props;
+  handleBlur = ({ target }) => {
+    const { name, onBlur } = this.props;
   
-    if (target === undefined) ***REMOVED*** // codemirror catches multiple events
-      onBlur(***REMOVED***
-        target: ***REMOVED***
+    if (target === undefined) { // codemirror catches multiple events
+      onBlur({
+        target: {
           name,
           type: 'json',
           value: this.getValue(),
-  ***REMOVED***
-***REMOVED***);
+        },
+      });
 
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleChange = () => ***REMOVED***
-    const ***REMOVED*** hasInitValue ***REMOVED*** = this.state;
-    const ***REMOVED*** name, onChange ***REMOVED*** = this.props;
+  handleChange = () => {
+    const { hasInitValue } = this.state;
+    const { name, onChange } = this.props;
     let value = this.codeMirror.getValue();
 
-    try ***REMOVED***
+    try {
       value = parse(value);
-***REMOVED*** catch(err) ***REMOVED***
+    } catch(err) {
       // Silent
-***REMOVED***
+    }
 
     // Update the parent
-    onChange(***REMOVED***
-      target: ***REMOVED***
+    onChange({
+      target: {
         name,
         value,
         type: 'json',
-***REMOVED***
-***REMOVED***);
+      },
+    });
 
-    if (!hasInitValue) ***REMOVED***
-      this.setState(***REMOVED*** hasInitValue: true ***REMOVED***);
-***REMOVED***
+    if (!hasInitValue) {
+      this.setState({ hasInitValue: true });
+    }
 
     // Remove higlight error
-    if (this.state.markedText) ***REMOVED***
+    if (this.state.markedText) {
       this.state.markedText.clear();
-      this.setState(***REMOVED*** markedText: null, error: null ***REMOVED***);
-***REMOVED***
+      this.setState({ markedText: null, error: null });
+    }
     
     clearTimeout(this.timer);
     this.timer = setTimeout(() => this.testJSON(this.codeMirror.getValue()), WAIT);
-***REMOVED***
+  }
 
-  testJSON = (value) => ***REMOVED***
-    try ***REMOVED***
+  testJSON = (value) => {
+    try {
       jsonlint.parse(value);
-***REMOVED*** catch(err) ***REMOVED***
+    } catch(err) {
       this.markSelection(err);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  render() ***REMOVED***
-    if (this.state.error) ***REMOVED***
+  render() {
+    if (this.state.error) {
       return <div>error json</div>;
-***REMOVED***
+    }
 
     return (
-      <div className=***REMOVED***styles.jsonWrapper***REMOVED***>
-        <textarea ref=***REMOVED***this.editor***REMOVED*** autoComplete='off' defaultValue="" />
-        <select className=***REMOVED***styles.select***REMOVED*** onChange=***REMOVED***(***REMOVED*** target ***REMOVED***) => this.setTheme(target.value)***REMOVED*** defaultValue=***REMOVED***DEFAULT_THEME***REMOVED***>
-          ***REMOVED***THEMES.sort().map(theme => <option key=***REMOVED***theme***REMOVED*** value=***REMOVED***theme***REMOVED***>***REMOVED***theme***REMOVED***</option>)***REMOVED***
+      <div className={styles.jsonWrapper}>
+        <textarea ref={this.editor} autoComplete='off' defaultValue="" />
+        <select className={styles.select} onChange={({ target }) => this.setTheme(target.value)} defaultValue={DEFAULT_THEME}>
+          {THEMES.sort().map(theme => <option key={theme} value={theme}>{theme}</option>)}
         </select>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-InputJSON.defaultProps = ***REMOVED***
-  onBlur: () => ***REMOVED******REMOVED***,
-  onChange: () => ***REMOVED******REMOVED***,
+InputJSON.defaultProps = {
+  onBlur: () => {},
+  onChange: () => {},
   value: null,
-***REMOVED***;
+};
 
-InputJSON.propTypes = ***REMOVED***
+InputJSON.propTypes = {
   name: PropTypes.string.isRequired,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   value: PropTypes.object,
-***REMOVED***;
+};
 
 export default InputJSON;

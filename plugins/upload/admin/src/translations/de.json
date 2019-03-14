@@ -1,4 +1,4 @@
-***REMOVED***
+{
 
   "ConfigPage.title": "Hochladen - Einstellungen",
   "ConfigPage.description": "Konfiguriere das Hochladen-Plugin",
@@ -10,8 +10,8 @@
 
   "EmptyLi.message": "Es gibt keine hochgeladenen Dateien",
 
-  "EntriesNumber.number": "***REMOVED***number***REMOVED*** Datei gefunden",
-  "EntriesNumber.number.plural": "***REMOVED***number***REMOVED*** Dateien gefunden",
+  "EntriesNumber.number": "{number} Datei gefunden",
+  "EntriesNumber.number.plural": "{number} Dateien gefunden",
 
   "HomePage.title": "Dateien hochladen",
   "HomePage.description": "Übersicht über alle hochgeladenen Dateien.",
@@ -26,12 +26,12 @@
   "ListHeader.size": "Größe",
   "ListHeader.related": "Verbunden mit",
 
-  "PluginInputFile.text": "Ziehe eine Datei hierher oder ***REMOVED***link***REMOVED*** eine Datei zum hochladen aus",
+  "PluginInputFile.text": "Ziehe eine Datei hierher oder {link} eine Datei zum hochladen aus",
   "PluginInputFile.link": "wähle",
   "PluginInputFile.loading": "Deine Dateien werden hochgeladen...",
   
   "notification.delete.success": "Die Datei wurde gelöscht",
   "notification.dropFile.success": "Deine Datei wurde hochgeladen",
-  "notification.dropFiles.success": "***REMOVED***number***REMOVED*** Dateien wurden hochgeladen",
+  "notification.dropFiles.success": "{number} Dateien wurden hochgeladen",
   "notification.config.success": "Die Einstellungen wurden aktualisiert"
-***REMOVED***
+}

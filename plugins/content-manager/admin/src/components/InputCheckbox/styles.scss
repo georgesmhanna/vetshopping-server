@@ -1,6 +1,6 @@
-.checked ***REMOVED***
+.checked {
   font-weight: 500;
-  &:after ***REMOVED***
+  &:after {
     content: '\f00c';
     position: absolute;
     top: 1px; left: 17px;
@@ -9,37 +9,37 @@
     font-weight: 100;
     color: #1C5DE7;
     transition: all .2s;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.inputCheckboxCTM ***REMOVED***
+.inputCheckboxCTM {
   padding-left: 0;
   font-size: 13px;
-  &:active, :focus ***REMOVED***
+  &:active, :focus {
     outline: 0 !important;
-***REMOVED***
-  > div ***REMOVED***
-    &:active, :focus ***REMOVED***
+  }
+  > div {
+    &:active, :focus {
       outline: 0 !important;
-***REMOVED***
+    }
     height: 27px;
     margin: 0!important;
     padding-left: 15px;
     line-height: 27px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.inputCheckbockCTMLabel ***REMOVED***
+.inputCheckbockCTMLabel {
   margin: 0;
   margin-left: 9px;
   color: #333740 !important;
   cursor: pointer;
-  > input ***REMOVED***
+  > input {
     display: none;
     margin-right: 9px;
-***REMOVED***
+  }
 
-  &:before ***REMOVED***
+  &:before {
     content: '';
     position: absolute;
     left:15px; top: 7px;
@@ -47,5 +47,5 @@
     border: 1px solid rgba(16,22,34,0.15);
     background-color: #FDFDFD;
     border-radius: 3px;
-***REMOVED***
-***REMOVED***
+  }
+}

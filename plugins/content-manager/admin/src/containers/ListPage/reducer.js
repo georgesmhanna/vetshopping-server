@@ -4,11 +4,11 @@
  *
  */
 
-import ***REMOVED*** fromJS, List, Map ***REMOVED*** from 'immutable';
-import ***REMOVED*** toString ***REMOVED*** from 'lodash';
+import { fromJS, List, Map } from 'immutable';
+import { toString } from 'lodash';
 
 // ListPage constants
-import ***REMOVED***
+import {
   ADD_ATTR,
   ADD_FILTER,
   CHANGE_PARAMS,
@@ -30,11 +30,11 @@ import ***REMOVED***
   SET_PARAMS,
   SUBMIT,
   ON_TOGGLE_DELETE_ALL,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   appliedFilters: List([]),
-  count: fromJS(***REMOVED******REMOVED***),
+  count: fromJS({}),
   currentModel: '',
   didChangeDisplayedFields: false,
   displayedFields: fromJS([]),
@@ -43,42 +43,42 @@ const initialState = fromJS(***REMOVED***
   filtersUpdated: false,
   filterToFocus: null,
   isLoading: true,
-  params: Map(***REMOVED***
+  params: Map({
     _limit: 10,
     _page: 1,
     _sort: '',
     _q: '',
-***REMOVED***),
-  records: fromJS(***REMOVED******REMOVED***),
+  }),
+  records: fromJS({}),
   showFilter: false,
   showWarningDeleteAll: false,
   updatingParams: false,
-***REMOVED***);
+});
 
-function listPageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function listPageReducer(state = initialState, action) {
+  switch (action.type) {
     case ADD_ATTR:
       return state
-        .update('displayedFields', list => ***REMOVED***
-          if (action.index !== -1) ***REMOVED***
+        .update('displayedFields', list => {
+          if (action.index !== -1) {
             return list.splice(action.index, 0, fromJS(action.attr));
-    ***REMOVED***
+          }
 
           return list.push(fromJS(action.attr));
-  ***REMOVED***)
+        })
         .update('didChangeDisplayedFields', v => !v);
     case ADD_FILTER:
       return state.update('appliedFilters', list => list.push(Map(action.filter)));
     case DELETE_DATA_SUCCESS:
       return state
         .updateIn(['records', state.get('currentModel')], (list) => (
-          list.filter(obj => ***REMOVED***
-            if (obj._id) ***REMOVED***
+          list.filter(obj => {
+            if (obj._id) {
               return obj._id !== action.id;
-      ***REMOVED***
+            }
 
             return obj.id !== parseInt(action.id, 10);
-    ***REMOVED***)
+          })
         ))
         .updateIn(['count', state.get('currentModel')], v => v = v - 1);
     case DELETE_SEVERAL_DATA_SUCCESS:
@@ -88,32 +88,32 @@ function listPageReducer(state = initialState, action) ***REMOVED***
     case CHANGE_PARAMS:
       return state
         .updateIn(action.keys, () => action.value)
-        .update('filters', list => ***REMOVED***
+        .update('filters', list => {
           // Remove the filters
-          if (action.keys.indexOf('_q') !== -1) ***REMOVED***
+          if (action.keys.indexOf('_q') !== -1) {
             return List([]);
-    ***REMOVED***
+          }
           return list;
-  ***REMOVED***)
-        .update('filtersUpdated', v => ***REMOVED***
+        })
+        .update('filtersUpdated', v => {
           // Change the URI
-          if (action.keys.indexOf('_q') !== -1) ***REMOVED***
+          if (action.keys.indexOf('_q') !== -1) {
             return !v;
-    ***REMOVED***
+          }
 
           return v;
-  ***REMOVED***)
+        })
         .update('updatingParams', () => true);
     case GET_DATA:
       return state
         .update('isLoading', () => true)
         .update('currentModel', () => action.currentModel)
-        .update('updatingParams', v => ***REMOVED***
-          if (action.setUpdatingParams) ***REMOVED***
+        .update('updatingParams', v => {
+          if (action.setUpdatingParams) {
             return true;
-    ***REMOVED***
+          }
           return v;
-  ***REMOVED***);
+        });
     case GET_DATA_SUCCEEDED:
       return state
         .update('entriesToDelete', () => List([]))
@@ -129,25 +129,25 @@ function listPageReducer(state = initialState, action) ***REMOVED***
         .update('filters', list => list.splice(action.index, 1))
         .update('filtersUpdated', v => v = !v);
     case ON_CLICK_SELECT:
-      return state.update('entriesToDelete', list => ***REMOVED***
+      return state.update('entriesToDelete', list => {
         const index = state.get('entriesToDelete').indexOf(toString(action.id));
 
-        if (index !== -1) ***REMOVED***
+        if (index !== -1) {
           return list.splice(index, 1);
-  ***REMOVED***
+        }
 
         return list.concat(toString(action.id));
-***REMOVED***);
+      });
     case ON_CLICK_SELECT_ALL:
-      return state.update('entriesToDelete', () => ***REMOVED***
-        if (state.get('entriesToDelete').size === 0) ***REMOVED***
+      return state.update('entriesToDelete', () => {
+        if (state.get('entriesToDelete').size === 0) {
           return state
             .getIn(['records', state.get('currentModel')])
             .reduce((acc, current) => acc.concat(List([toString(current.id)])), List([]));
-  ***REMOVED***
+        }
 
         return List([]);
-***REMOVED***);
+      });
     case ON_TOGGLE_FILTERS:
       return state
         .update('filterToFocus', () => null)
@@ -165,9 +165,9 @@ function listPageReducer(state = initialState, action) ***REMOVED***
         .update('filtersUpdated', v => v = !v);
     case REMOVE_ATTR:
       return state
-        .update('displayedFields', list => ***REMOVED***
+        .update('displayedFields', list => {
           return list.splice(action.index, 1);
-  ***REMOVED***)
+        })
         .update('didChangeDisplayedFields', v => !v);
     case REMOVE_FILTER:
       return state.update('appliedFilters', list => list.splice(action.index, 1));
@@ -193,7 +193,7 @@ function listPageReducer(state = initialState, action) ***REMOVED***
       return state.update('showWarningDeleteAll', v => v = !v);
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default listPageReducer;

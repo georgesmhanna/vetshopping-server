@@ -1,29 +1,29 @@
 import request from 'utils/request';
 
-const shouldRenderCompo = (plugin) => new Promise((resolve, reject) => ***REMOVED***
+const shouldRenderCompo = (plugin) => new Promise((resolve, reject) => {
   request('/settings-manager/autoReload')
-    .then(response => ***REMOVED***
+    .then(response => {
       plugin.preventComponentRendering = !response.autoReload.enabled;
-      plugin.blockerComponentProps = ***REMOVED***
+      plugin.blockerComponentProps = {
         blockerComponentTitle: 'components.AutoReloadBlocker.header',
         blockerComponentDescription: 'components.AutoReloadBlocker.description',
         blockerComponentIcon: 'fa-refresh',
         blockerComponentContent: 'renderIde',
-***REMOVED***;
+      };
 
-      if (response.environment !== 'development') ***REMOVED***
+      if (response.environment !== 'development') {
         plugin.preventComponentRendering = true;
-        plugin.blockerComponentProps = ***REMOVED***
+        plugin.blockerComponentProps = {
           blockerComponentTitle: 'components.ProductionBlocker.header',
           blockerComponentDescription: 'components.ProductionBlocker.description',
           blockerComponentIcon: 'fa-ban',
           blockerComponentContent: 'renderButton',
-  ***REMOVED***;
-***REMOVED***
+        };
+      }
 
       return resolve(plugin);
-***REMOVED***)
+    })
     .catch(err => reject(err));
-***REMOVED***);
+});
 
 export default shouldRenderCompo;

@@ -6,11 +6,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-// import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
-import ***REMOVED*** injectIntl ***REMOVED*** from 'react-intl';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-import ***REMOVED*** isEmpty ***REMOVED*** from 'lodash';
+import { connect } from 'react-redux';
+// import { createStructuredSelector } from 'reselect';
+import { injectIntl } from 'react-intl';
+import { bindActionCreators, compose } from 'redux';
+import { isEmpty } from 'lodash';
 
 // You can find these components in either
 // ./node_modules/strapi-helper-plugin/lib/src
@@ -32,14 +32,14 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
 // Actions
-import ***REMOVED***
+import {
   changeParams,
   deleteData,
   getData,
   onDrop,
   onSearch,
   setParams,
-***REMOVED*** from './actions';
+} from './actions';
 
 // Selectors
 import selectHomePage from './selectors';
@@ -50,143 +50,143 @@ import styles from './styles.scss';
 import reducer from './reducer';
 import saga from './saga';
 
-export class HomePage extends React.Component ***REMOVED***
+export class HomePage extends React.Component {
   getChildContext = () => (
-    ***REMOVED***
+    {
       deleteData: this.props.deleteData,
-***REMOVED***
+    }
   );
 
-  componentWillMount() ***REMOVED***
-    if (!isEmpty(this.props.location.search)) ***REMOVED***
+  componentWillMount() {
+    if (!isEmpty(this.props.location.search)) {
       const _page = parseInt(this.getURLParams('_page'), 10);
       const _limit = parseInt(this.getURLParams('_limit'), 10);
       const _sort = this.getURLParams('_sort');
 
-      this.props.setParams(***REMOVED*** _limit, _page, _sort ***REMOVED***);
-***REMOVED***
-***REMOVED***
-  componentDidMount() ***REMOVED***
+      this.props.setParams({ _limit, _page, _sort });
+    }
+  }
+  componentDidMount() {
     this.props.getData();
-***REMOVED***
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (nextProps.deleteSuccess !== this.props.deleteSuccess) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.deleteSuccess !== this.props.deleteSuccess) {
       this.props.getData();
-***REMOVED***
-    if (nextProps.location.search !== this.props.location.search) ***REMOVED***
+    }
+    if (nextProps.location.search !== this.props.location.search) {
       this.props.getData();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   getURLParams = (type) => getQueryParameters(this.props.location.search, type);
 
-  changeSort = (name) => ***REMOVED***
-    const ***REMOVED*** params: ***REMOVED*** _limit, _page ***REMOVED*** ***REMOVED*** = this.props;
-    const target = ***REMOVED***
+  changeSort = (name) => {
+    const { params: { _limit, _page } } = this.props;
+    const target = {
       name: 'params._sort',
       value: name,
-***REMOVED***;
-    const search = `_page=$***REMOVED***_page***REMOVED***&_limit=$***REMOVED***_limit***REMOVED***&_sort=$***REMOVED***name***REMOVED***`;
+    };
+    const search = `_page=${_page}&_limit=${_limit}&_sort=${name}`;
 
-    this.props.changeParams(***REMOVED*** target ***REMOVED***);
-    this.props.history.push(***REMOVED***
+    this.props.changeParams({ target });
+    this.props.history.push({
       pathname: this.props.history.pathname,
       search,
-***REMOVED***);
-***REMOVED***
+    });
+  }
 
-  handleChangeParams = (e) => ***REMOVED***
-    const ***REMOVED*** history, params ***REMOVED*** = this.props;
+  handleChangeParams = (e) => {
+    const { history, params } = this.props;
     const search = e.target.name === 'params._limit' ?
-      `_page=$***REMOVED***params._page***REMOVED***&_limit=$***REMOVED***e.target.value***REMOVED***&_sort=$***REMOVED***params._sort***REMOVED***`
-      : `_page=$***REMOVED***e.target.value***REMOVED***&_limit=$***REMOVED***params._limit***REMOVED***&_sort=$***REMOVED***params._sort***REMOVED***`;
-    this.props.history.push(***REMOVED***
+      `_page=${params._page}&_limit=${e.target.value}&_sort=${params._sort}`
+      : `_page=${e.target.value}&_limit=${params._limit}&_sort=${params._sort}`;
+    this.props.history.push({
       pathname: history.pathname,
       search,
-***REMOVED***);
+    });
 
     this.props.changeParams(e);
-***REMOVED***
+  }
 
   renderInputSearch = () => (
     <InputSearch
       autoFocus
       name="search"
-      onChange=***REMOVED***this.props.onSearch***REMOVED***
+      onChange={this.props.onSearch}
       placeholder="upload.HomePage.InputSearch.placeholder"
-      style=***REMOVED******REMOVED*** marginTop: '-10px' ***REMOVED******REMOVED***
-      value=***REMOVED***this.props.search***REMOVED***
+      style={{ marginTop: '-10px' }}
+      value={this.props.search}
     />
   )
 
-  render() ***REMOVED***
+  render() {
     return (
       <ContainerFluid>
-        <div className=***REMOVED***styles.homePageUpload***REMOVED***>
+        <div className={styles.homePageUpload}>
           <PluginHeader
-            title=***REMOVED******REMOVED***
+            title={{
               id: 'upload.HomePage.title',
-      ***REMOVED******REMOVED***
-            description=***REMOVED******REMOVED***
+            }}
+            description={{
               id: 'upload.HomePage.description',
-      ***REMOVED******REMOVED***
-            overrideRendering=***REMOVED***this.renderInputSearch***REMOVED***
+            }}
+            overrideRendering={this.renderInputSearch}
           />
         </div>
         <PluginInputFile
           name="files"
-          onDrop=***REMOVED***this.props.onDrop***REMOVED***
-          showLoader=***REMOVED***this.props.uploadFilesLoading***REMOVED***
+          onDrop={this.props.onDrop}
+          showLoader={this.props.uploadFilesLoading}
         />
-        <div className=***REMOVED***styles.entriesWrapper***REMOVED***>
+        <div className={styles.entriesWrapper}>
           <div>
-            ***REMOVED***/* NOTE: Prepare for bulk actions***REMOVED***
+            {/* NOTE: Prepare for bulk actions}
               <InputSelect
               name="bulkAction"
-              onChange=***REMOVED***() => console.log('change')***REMOVED***
-              selectOptions=***REMOVED***[***REMOVED*** value: 'select all'***REMOVED***]***REMOVED***
-              style=***REMOVED******REMOVED*** minWidth: '200px', height: '32px', marginTop: '-8px' ***REMOVED******REMOVED***
+              onChange={() => console.log('change')}
+              selectOptions={[{ value: 'select all'}]}
+              style={{ minWidth: '200px', height: '32px', marginTop: '-8px' }}
               />
-            */***REMOVED***
+            */}
           </div>
-          <EntriesNumber number=***REMOVED***this.props.entriesNumber***REMOVED*** />
+          <EntriesNumber number={this.props.entriesNumber} />
         </div>
         <List
-          data=***REMOVED***this.props.uploadedFiles***REMOVED***
-          changeSort=***REMOVED***this.changeSort***REMOVED***
-          sort=***REMOVED***this.props.params._sort***REMOVED***
+          data={this.props.uploadedFiles}
+          changeSort={this.changeSort}
+          sort={this.props.params._sort}
         />
         <div className="col-md-12">
           <PageFooter
-            count=***REMOVED***this.props.entriesNumber***REMOVED***
-            onChangeParams=***REMOVED***this.handleChangeParams***REMOVED***
-            params=***REMOVED***this.props.params***REMOVED***
+            count={this.props.entriesNumber}
+            onChangeParams={this.handleChangeParams}
+            params={this.props.params}
           />
         </div>
       </ContainerFluid>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-HomePage.childContextTypes = ***REMOVED***
+HomePage.childContextTypes = {
   deleteData: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
-HomePage.contextTypes = ***REMOVED***
+HomePage.contextTypes = {
   router: PropTypes.object,
-***REMOVED***;
+};
 
-HomePage.defaultProps = ***REMOVED***
-  params: ***REMOVED***
+HomePage.defaultProps = {
+  params: {
     _limit: 10,
     _page: 1,
     _sort: 'updatedAt',
-***REMOVED***,
+  },
   uploadedFiles: [],
-***REMOVED***;
+};
 
-HomePage.propTypes = ***REMOVED***
+HomePage.propTypes = {
   changeParams: PropTypes.func.isRequired,
   deleteData: PropTypes.func.isRequired,
   deleteSuccess: PropTypes.bool.isRequired,
@@ -201,28 +201,28 @@ HomePage.propTypes = ***REMOVED***
   setParams: PropTypes.func.isRequired,
   uploadedFiles: PropTypes.arrayOf(PropTypes.object),
   uploadFilesLoading: PropTypes.bool.isRequired,
-***REMOVED***;
+};
 
-function mapDispatchToProps(dispatch) ***REMOVED***
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       changeParams,
       deleteData,
       getData,
       onDrop,
       onSearch,
       setParams,
-***REMOVED***,
+    },
     dispatch,
   );
-***REMOVED***
+}
 
 const mapStateToProps = selectHomePage();
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer(***REMOVED*** key: 'homePage', reducer ***REMOVED***);
-const withSaga = injectSaga(***REMOVED*** key: 'homePage', saga ***REMOVED***);
+const withReducer = injectReducer({ key: 'homePage', reducer });
+const withSaga = injectSaga({ key: 'homePage', saga });
 
 export default compose(
   withReducer,

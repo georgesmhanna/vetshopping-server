@@ -1,19 +1,19 @@
-import ***REMOVED*** get, includes, isArray, set, omit ***REMOVED*** from 'lodash';
-import ***REMOVED*** call, fork, takeLatest, put, select ***REMOVED*** from 'redux-saga/effects';
+import { get, includes, isArray, set, omit } from 'lodash';
+import { call, fork, takeLatest, put, select } from 'redux-saga/effects';
 import auth from 'utils/auth';
 import request from 'utils/request';
 
-import ***REMOVED*** makeSelectFormType, makeSelectModifiedData ***REMOVED*** from './selectors';
-import ***REMOVED*** hideLoginErrorsInput, submitError, submitSucceeded ***REMOVED*** from './actions';
-import ***REMOVED*** SUBMIT ***REMOVED*** from './constants';
+import { makeSelectFormType, makeSelectModifiedData } from './selectors';
+import { hideLoginErrorsInput, submitError, submitSucceeded } from './actions';
+import { SUBMIT } from './constants';
 
-export function* submitForm(action) ***REMOVED***
-  try ***REMOVED***
+export function* submitForm(action) {
+  try {
     const formType = yield select(makeSelectFormType());
     const body = yield select(makeSelectModifiedData());
     let requestURL;
 
-    switch (formType) ***REMOVED***
+    switch (formType) {
       case 'login':
         requestURL = '/auth/local';
         break;
@@ -25,81 +25,81 @@ export function* submitForm(action) ***REMOVED***
         break;
       case 'forgot-password':
         requestURL = '/auth/forgot-password';
-        set(body, 'url', `$***REMOVED***strapi.backendURL***REMOVED***/admin/plugins/users-permissions/auth/reset-password`);
+        set(body, 'url', `${strapi.backendURL}/admin/plugins/users-permissions/auth/reset-password`);
         break;
       default:
 
-***REMOVED***
+    }
 
-    const response = yield call(request, requestURL, ***REMOVED*** method: 'POST', body: omit(body, 'news') ***REMOVED***);
+    const response = yield call(request, requestURL, { method: 'POST', body: omit(body, 'news') });
 
-    if (response.jwt) ***REMOVED***
+    if (response.jwt) {
       yield call(auth.setToken, response.jwt, body.rememberMe);
       yield call(auth.setUserInfo, response.user, body.rememberMe);
-***REMOVED***
+    }
 
-    if (formType === 'register') ***REMOVED***
+    if (formType === 'register') {
       action.context.updatePlugin('users-permissions', 'hasAdminUser', true);
 
-      if (body.news) ***REMOVED***
-        try ***REMOVED***
-          yield call(request, 'https://analytics.strapi.io/register', ***REMOVED***
+      if (body.news) {
+        try {
+          yield call(request, 'https://analytics.strapi.io/register', {
             method: 'POST',
             body: omit(body, ['password', 'confirmPassword']),
-    ***REMOVED***);
-  ***REMOVED*** catch (e) ***REMOVED***
+          });
+        } catch (e) {
           // Silent.
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+      }
+    }
 
     yield put(submitSucceeded());
-***REMOVED*** catch(error) ***REMOVED***
+  } catch(error) {
     const formType = yield select(makeSelectFormType());
 
-    if (isArray(get(error, ['response', 'payload', 'message']))) ***REMOVED***
+    if (isArray(get(error, ['response', 'payload', 'message']))) {
 
-      const errors = error.response.payload.message.reduce((acc, key) => ***REMOVED***
-        const err = key.messages.reduce((acc, key) => ***REMOVED***
-          acc.id = `users-permissions.$***REMOVED***key.id***REMOVED***`;
+      const errors = error.response.payload.message.reduce((acc, key) => {
+        const err = key.messages.reduce((acc, key) => {
+          acc.id = `users-permissions.${key.id}`;
 
           return acc;
-  ***REMOVED*** ***REMOVED*** id: '' ***REMOVED***);
+        }, { id: '' });
 
         acc.push(err);
 
         return acc;
-***REMOVED*** []);
+      }, []);
 
       let formErrors;
 
-      switch (formType) ***REMOVED***
+      switch (formType) {
         case 'forgot-password':
-          formErrors = [***REMOVED*** name: 'email', errors ***REMOVED***];
+          formErrors = [{ name: 'email', errors }];
           break;
         case 'login':
-          formErrors = [***REMOVED*** name: 'identifier', errors ***REMOVED***, ***REMOVED*** name: 'password', errors ***REMOVED***];
+          formErrors = [{ name: 'identifier', errors }, { name: 'password', errors }];
           yield put(hideLoginErrorsInput(true));
           break;
         case 'reset-password':
-          formErrors = [***REMOVED*** name: 'password', errors: [***REMOVED*** id: 'users-permissions.Auth.form.error.password.matching' ***REMOVED***] ***REMOVED***];
+          formErrors = [{ name: 'password', errors: [{ id: 'users-permissions.Auth.form.error.password.matching' }] }];
           break;
-        case 'register': ***REMOVED***
+        case 'register': {
           const target = includes(get(errors, ['0', 'id']), 'username') ? 'username' : 'email';
-          formErrors = [***REMOVED*** name: target, errors ***REMOVED***];
+          formErrors = [{ name: target, errors }];
           break;
-  ***REMOVED***
+        }
         default:
 
-***REMOVED***
+      }
 
       yield put(submitError(formErrors));
-***REMOVED*** else ***REMOVED***
+    } else {
       strapi.notification.error('notification.error');
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-export default function* defaultSaga() ***REMOVED***
+export default function* defaultSaga() {
   yield fork(takeLatest, SUBMIT, submitForm);
-***REMOVED***
+}

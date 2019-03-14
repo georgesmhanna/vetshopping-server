@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "app.components.ComingSoonPage.comingSoon": "即將推出",
   "app.components.ComingSoonPage.featuresNotAvailable": "這個功能正在開發中",
 
@@ -14,7 +14,7 @@
   "app.components.HomePage.createBlock.content.second": "\u0020plugin will help you to define the data structure of your models. If you’re new here, we highly recommend you to follow our\u0020",
   "app.components.HomePage.createBlock.content.tutorial": "\u0020tutorial.",
 
-  "app.components.InputFile.newFile": "增加新檔案 ***REMOVED***browse***REMOVED***",
+  "app.components.InputFile.newFile": "增加新檔案 {browse}",
   "app.components.InputFileDetails.open": "Open in a new tab",
   "app.components.ImgPreview.hint":
     "將您要上傳的檔案拖拉到這個框框，或是瀏覽檔案",
@@ -50,8 +50,8 @@
   "app.components.ListPluginsPage.description": "這個專案安裝的擴充功能列表",
   "app.components.listPluginsPage.deletePlugin.error":
     "解除安裝擴充功能時發生了錯誤",
-  "app.components.listPlugins.title.singular": "安裝了 ***REMOVED***number***REMOVED*** 個擴充功能",
-  "app.components.listPlugins.title.plural": "安裝了 ***REMOVED***number***REMOVED*** 個擴充功能",
+  "app.components.listPlugins.title.singular": "安裝了 {number} 個擴充功能",
+  "app.components.listPlugins.title.plural": "安裝了 {number} 個擴充功能",
   "app.components.listPlugins.title.none": "目前沒有安裝任何擴充功能",
   "app.components.listPlugins.button": "安裝新的擴充功能",
 
@@ -104,7 +104,7 @@
   "components.Input.error.attribute.key.taken": "這個數值已經存在了",
   "components.Input.error.attribute.sameKeyAndName": "不能等於",
   "components.Input.error.validation.minSupMax": "不能高過",
-  "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+  "components.Input.error.custom-error": "{errorMessage} ",
 
   "components.ListRow.empty": "沒有資料可以顯示",
 
@@ -119,7 +119,7 @@
   "components.Wysiwyg.ToggleMode.markdown": "Switch to markdown",
   "components.Wysiwyg.ToggleMode.preview": "Switch to preview",
   "components.WysiwygBottomControls.charactersIndicators": "characters",
-  "components.WysiwygBottomControls.uploadFiles": "Attach files by dragging & dropping, ***REMOVED***browse***REMOVED***, or pasting from the clipboard.",
+  "components.WysiwygBottomControls.uploadFiles": "Attach files by dragging & dropping, {browse}, or pasting from the clipboard.",
   "components.WysiwygBottomControls.uploadFiles.browse": "selecting them",
   "components.WysiwygBottomControls.fullscreen": "Expand",
 
@@ -137,4 +137,4 @@
   "Role": "權限",
   "New entry": "新入口",
   "request.error.model.unknown": "這個資料不存在"
-***REMOVED***
+}

@@ -3,7 +3,7 @@
  * SettingPage selectors
  */
 
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
 * Direct selector to the settingPage state domain

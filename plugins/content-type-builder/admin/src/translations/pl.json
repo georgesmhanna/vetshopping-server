@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Modeluj strukturę danych swojego API.",
   "plugin.description.long":
     "Modeluj strukturę danych swojego API. Twórz atrybuty i relacje w minutę. Pliki są automatycznie tworzone i aktualizowane w twoim projekcie.",
@@ -114,7 +114,7 @@
   "modelPage.contentType.list.relationShipTitle.singular": "relacja",
   "modelPage.attribute.relationWith": "Relacja z",
 
-  "noTableWarning.description": "Nie zapomnij stworzyć tabeli `***REMOVED***modelName***REMOVED***` w bazie danych.",
+  "noTableWarning.description": "Nie zapomnij stworzyć tabeli `{modelName}` w bazie danych.",
   "noTableWarning.infos": "Więcej informacji",
 
   "notification.error.message": "Wystąpił błąd",
@@ -181,4 +181,4 @@
   "relation.manyToOne": "zawiera wiele",
   "relation.manyToMany": "zawiera i należy do wielu",
   "relation.attributeName.placeholder": "Np: autor, kategoria, tag"
-***REMOVED***
+}

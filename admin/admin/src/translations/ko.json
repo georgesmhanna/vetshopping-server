@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "app.components.Button.save": "저장",
   "app.components.Button.cancel": "취소",
 
@@ -40,7 +40,7 @@
   "app.components.InputFileDetails.originalName": "원래 파일 이름:",
   "app.components.InputFileDetails.size": "크기:",
 
-  "app.components.ImgPreview.hint": "파일을 끌어 놓거나 ***REMOVED***browse***REMOVED*** 하세요.",
+  "app.components.ImgPreview.hint": "파일을 끌어 놓거나 {browse} 하세요.",
   "app.components.ImgPreview.hint.browse": "선택",
 
   "app.components.InstallPluginPage.helmet": "마켓플레이스 - 플러그인",
@@ -69,8 +69,8 @@
   "app.components.ListPluginsPage.title": "플러그인",
   "app.components.ListPluginsPage.description": "이 프로젝트에 설치된 플러그인 목록입니다.",
   "app.components.listPluginsPage.deletePlugin.error": "플러그인을 제거하는데 에러가 발생했습니다.",
-  "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED***개의 플러그인이 설치됐습니다.",
-  "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED***개의 플러그인이 설치됐습니다.",
+  "app.components.listPlugins.title.singular": "{number}개의 플러그인이 설치됐습니다.",
+  "app.components.listPlugins.title.plural": "{number}개의 플러그인이 설치됐습니다.",
   "app.components.listPlugins.title.none": "설치된 플러그인이 없습니다.",
   "app.components.listPlugins.button": "새로운 플러그인 추가하기",
 
@@ -121,7 +121,7 @@
   "components.Input.error.attribute.key.taken": "이미 사용중인 키입니다.",
   "components.Input.error.attribute.sameKeyAndName": "같은 값을 사용할 수 없습니다.",
   "components.Input.error.validation.minSupMax": "이 보다 더 클 수 없습니다.",
-  "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+  "components.Input.error.custom-error": "{errorMessage} ",
   "components.Input.error.validation.json": "JSON 형식이 아닙니다.",
 
   "components.ListRow.empty": "데이터가 없습니다.",
@@ -137,7 +137,7 @@
   "components.Wysiwyg.ToggleMode.markdown": "마크다운",
   "components.Wysiwyg.ToggleMode.preview": "미리보기",
   "components.WysiwygBottomControls.charactersIndicators": "문자 표시기",
-  "components.WysiwygBottomControls.uploadFiles": "파일을 끌어 놓으세요. 혹은 클립보드에서 붙혀넣거나 ***REMOVED***browse***REMOVED*** 하세요.",
+  "components.WysiwygBottomControls.uploadFiles": "파일을 끌어 놓으세요. 혹은 클립보드에서 붙혀넣거나 {browse} 하세요.",
   "components.WysiwygBottomControls.uploadFiles.browse": "선택",
   "components.WysiwygBottomControls.fullscreen": "전체화면",
 
@@ -162,4 +162,4 @@
   "request.error.model.unknown": "모델이 없습니다.",
   "Users": "User",
   "Analytics": "통계"
-***REMOVED***
+}

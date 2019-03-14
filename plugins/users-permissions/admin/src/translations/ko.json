@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "Auth.form.button.register-success": "다시 보내기",
   "Auth.form.button.forgot-password.success": "다시 보내기",
   "Auth.form.button.forgot-password": "메일 보내기",
@@ -53,7 +53,7 @@
 
   "components.Input.error.password.noMatch": "패스워드가 일치하지 않습니다.",
 
-  "Controller.input.label": "***REMOVED***label***REMOVED*** ",
+  "Controller.input.label": "{label} ",
   "Controller.selectAll": "전체 선택",
 
   "EditForm.inputSelect.label.role": "인증된 사용자의 기본 역할(role)",
@@ -73,11 +73,11 @@
   "EditPage.form.roles": "역할(role) 세부설정",
   "EditPage.form.roles.label.description": "설명",
   "EditPage.form.roles.label.name": "이름",
-  "EditPage.form.roles.label.users": "이 역할(role)에 속한 사용자 (***REMOVED***number***REMOVED***)",
+  "EditPage.form.roles.label.users": "이 역할(role)에 속한 사용자 ({number})",
   "EditPage.form.roles.name.error": "내용을 입력해 주세요.",
-  "EditPage.header.title": "***REMOVED***name***REMOVED*** ",
+  "EditPage.header.title": "{name} ",
   "EditPage.header.title.create": "새로운 역할(role) 생성",
-  "EditPage.header.description": "***REMOVED***description***REMOVED*** ",
+  "EditPage.header.description": "{description} ",
   "EditPage.header.description.create": " ",
 
   "EditPage.notification.permissions.error": "권한(permissions)을 가져오는데 에러가 발생했습니다.",
@@ -97,16 +97,16 @@
   "List.button.roles": "새 역할(role) 추가",
   "List.button.providers": "새 프로바이더(provider) 추가",
 
-  "List.title.emailTemplates.singular": "***REMOVED***number***REMOVED***개의 이메일 템플릿이 있습니다.",
-  "List.title.emailTemplates.plural": "***REMOVED***number***REMOVED***개의 이메일 템플릿이 있습니다.",
+  "List.title.emailTemplates.singular": "{number}개의 이메일 템플릿이 있습니다.",
+  "List.title.emailTemplates.plural": "{number}개의 이메일 템플릿이 있습니다.",
 
-  "List.title.providers.disabled.singular": "***REMOVED***number***REMOVED***개 사용 불가능",
-  "List.title.providers.disabled.plural": "***REMOVED***number***REMOVED***개 사용 불가능",
-  "List.title.providers.enabled.singular": "***REMOVED***number***REMOVED***개 사용 가능, ",
-  "List.title.providers.enabled.plural": "***REMOVED***number***REMOVED***개 사용 가능, ",
+  "List.title.providers.disabled.singular": "{number}개 사용 불가능",
+  "List.title.providers.disabled.plural": "{number}개 사용 불가능",
+  "List.title.providers.enabled.singular": "{number}개 사용 가능, ",
+  "List.title.providers.enabled.plural": "{number}개 사용 가능, ",
 
-  "List.title.roles.singular": "***REMOVED***number***REMOVED***개의 역할(role)이 있습니다.",
-  "List.title.roles.plural": "***REMOVED***number***REMOVED***개의 역할(role)이 있습니다.",
+  "List.title.roles.singular": "{number}개의 역할(role)이 있습니다.",
+  "List.title.roles.plural": "{number}개의 역할(role)이 있습니다.",
 
   "notification.error.delete": "항목을 삭제하는데 에러가 발생했습니다.",
   "notification.error.fetch": "데이터를 가져오는데 에러가 발생했습니다.",
@@ -119,7 +119,7 @@
   "plugin.description.long": "JWT 기반의 인증 프로세스로 API를 보호하세요. 이 플러그인에서 사용자 그룹간 권한을 관리할 수 있는 ACL 전략도 설정할 수 있습니다.",
 
   "Plugin.permissions.application.description": "프로젝트에서 허용할 액션을 설정합니다.",
-  "Plugin.permissions.plugins.description": "***REMOVED***name***REMOVED*** 플러그인에서 허용할 액션을 설정합니다.",
+  "Plugin.permissions.plugins.description": "{name} 플러그인에서 허용할 액션을 설정합니다.",
 
   "Plugins.header.title": "권한(Permissions)",
   "Plugins.header.description": "라우트(route)에 연결된 액션만 표시됩니다.",
@@ -139,7 +139,7 @@
   "PopUpForm.button.save": "저장",
   "PopUpForm.header.add.providers": "새 프로바이더(provider) 추가",
   "PopUpForm.header.edit.email-templates": "이메일 템플릿 수정",
-  "PopUpForm.header.edit.providers": "***REMOVED***provider***REMOVED*** 프로바이더(Provider) 설정",
+  "PopUpForm.header.edit.providers": "{provider} 프로바이더(Provider) 설정",
   "PopUpForm.inputSelect.providers.label": "프로바이더(provider) 선택",
   "PopUpForm.Email.options.from.name.label": "보내는 사람",
   "PopUpForm.Email.options.from.email.label": "보내는 이메일",
@@ -170,6 +170,6 @@
   "PopUpForm.Providers.twitter.providerConfig.redirectURL": "Twitter",
 
   "PopUpForm.Providers.callback.placeholder": "TEXT",
-  "PopUpForm.Email.email_templates.inputDescription": "이메일 템플릿 문법은 이 ***REMOVED***link***REMOVED***를 확인하세요.",
+  "PopUpForm.Email.email_templates.inputDescription": "이메일 템플릿 문법은 이 {link}를 확인하세요.",
   "PopUpForm.Email.link.documentation": "문서"
-***REMOVED***
+}

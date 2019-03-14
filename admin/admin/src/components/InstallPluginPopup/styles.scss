@@ -1,4 +1,4 @@
-.buttonWrapper ***REMOVED***
+.buttonWrapper {
   display: flex;
   justify-content: space-between;
   min-width: 136px;
@@ -13,61 +13,61 @@
   font-weight: 600;
 
   cursor: pointer;
-  &:focus ***REMOVED***
+  &:focus {
     outline: 0;
-***REMOVED***
-  > div ***REMOVED***
+  }
+  > div {
     text-align: center;
     text-transform: capitalize;
-    &:first-child ***REMOVED***
+    &:first-child {
       flex-grow: 2;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.headerButtonContainer ***REMOVED***
+.headerButtonContainer {
   display: flex;
   justify-content: space-between;
   padding-top: 13px;
   line-height: 29px;
 
-  > div ***REMOVED***
+  > div {
     font-size: 13px;
     font-style: italic;
-***REMOVED***
+  }
 
-  > div:first-child ***REMOVED***
-    > i ***REMOVED***
+  > div:first-child {
+    > i {
       margin-right: 10px;
-***REMOVED***
+    }
     color: #5A9E06;
-***REMOVED***
+  }
 
-  > div:nth-child(2) ***REMOVED***
+  > div:nth-child(2) {
     display: flex;
-    > span:nth-child(2) ***REMOVED***
+    > span:nth-child(2) {
       font-style: normal;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.headerDescription ***REMOVED***
+.headerDescription {
   height: 48px;
   padding-top: 12px;
   font-size: 13px;
-***REMOVED***
+}
 
-.headerInfo ***REMOVED***
+.headerInfo {
   flex-grow: 1;
   padding-top: 7px;
   padding-left: 30px;
-***REMOVED***
+}
 
-.headerWrapper ***REMOVED***
+.headerWrapper {
   display: flex;
-***REMOVED***
+}
 
-.logo ***REMOVED***
+.logo {
   flex-shrink: 0;
   width: 144px;
   height: 144px;
@@ -77,66 +77,66 @@
   background-size: contain;
   line-height: 144px;
   text-align: center;
-  > img ***REMOVED***
+  > img {
     min-width: 72px;
     // max-height: 72px;
 
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.modalHeader ***REMOVED***
+.modalHeader {
   margin: 0 1.4rem !important;
   padding: 1.4rem 0 0 0 !important;
   border-bottom: 0 !important;
-  > button ***REMOVED***
+  > button {
     margin-right: -1rem !important;
     color: #C3C5C8;
     opacity: 1;
     font-size: 1.8rem;
     font-weight: 100;
     z-index: 999;
-    &:hover, &:focus ***REMOVED***
+    &:hover, &:focus {
       color: #C3C5C8;
       opacity: 1;
       outline: 0!important;
       cursor: pointer;
-***REMOVED***
-    > span ***REMOVED***
+    }
+    > span {
       display: none;
-***REMOVED***
-    &:before ***REMOVED***
+    }
+    &:before {
       -webkit-font-smoothing: antialiased;
       content: '\F00d';
       font-family: 'FontAwesome';
       font-weight: 400;
       font-size: 1.2rem;
       margin-right: 10px;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.modalBody ***REMOVED***
+.modalBody {
   padding: 5px 0px !important;
-***REMOVED***
+}
 
-.modalPosition ***REMOVED***
-  > div ***REMOVED***
+.modalPosition {
+  > div {
     border:none;
     border-radius: 2px;
     width: 74.5rem;
     padding-left: 0;
     padding-right: 0;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.name ***REMOVED***
+.name {
   padding-bottom: 1px;
   font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
-***REMOVED***
+}
 
-.navContainer ***REMOVED***
+.navContainer {
   display: flex;
   justify-content: space-between;
   height: 36px;
@@ -149,51 +149,51 @@
   font-weight: 600;
   text-transform: capitalize;
 
-  > div ***REMOVED***
+  > div {
     flex-grow: 2;
     text-align: center;
     line-height: 23px;
     cursor: pointer;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.navLink ***REMOVED***
+.navLink {
   border-top: 2px solid #1C5DE7;
-***REMOVED***
+}
 
-.notAllowed ***REMOVED***
+.notAllowed {
   opacity: .3;
   cursor: not-allowed !important;
-***REMOVED***
-.pluginDescription ***REMOVED***
+}
+.pluginDescription {
   padding: 24px 30px;
   font-size: 13px;
   line-height: 18px;
-***REMOVED***
+}
 
-.ratings ***REMOVED***
+.ratings {
   display: flex;
   line-height: 18px;
 
-  > div:last-child ***REMOVED***
+  > div:last-child {
     padding-top: 1px;
     font-style: italic;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.starsContainer ***REMOVED***
+.starsContainer {
   display: flex;
-  > div ***REMOVED***
+  > div {
     color: #EED348;
-    > i ***REMOVED***
+    > i {
       margin-right: 2px;
-***REMOVED***
-***REMOVED***
-  > div:last-child ***REMOVED***
+    }
+  }
+  > div:last-child {
     color: #B3B5B9;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.wrapper ***REMOVED***
+.wrapper {
   padding: 0 30px;
-***REMOVED***
+}

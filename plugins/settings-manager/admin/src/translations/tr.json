@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "components.DownloadDb.download": "Kurulum devam ediyor...",
   "components.DownloadDb.text": "Bu birkaç dakika sürebilir. Sabrınız için teşekkürler.",
   "plugin.description.short": "Projenizi hemen yapılandırın.",
@@ -653,4 +653,4 @@
   "language.zu_ZA": "isiZulu (iNingizimu Afrika)",
 
   "pageNotFound": "Sayfa bulunamadı"
-***REMOVED***
+}

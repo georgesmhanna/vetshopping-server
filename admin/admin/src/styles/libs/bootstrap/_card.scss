@@ -2,7 +2,7 @@
 // Base styles
 //
 
-.card ***REMOVED***
+.card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -12,212 +12,212 @@
   background-clip: border-box;
   border: $card-border-width solid $card-border-color;
   @include border-radius($card-border-radius);
-***REMOVED***
+}
 
-.card-body ***REMOVED***
+.card-body {
   // Enable `flex-grow: 1` for decks and groups so that card blocks take up
   // as much space as possible, ensuring footers are aligned to the bottom.
   flex: 1 1 auto;
   padding: $card-spacer-x;
-***REMOVED***
+}
 
-.card-title ***REMOVED***
+.card-title {
   margin-bottom: $card-spacer-y;
-***REMOVED***
+}
 
-.card-subtitle ***REMOVED***
+.card-subtitle {
   margin-top: -($card-spacer-y / 2);
   margin-bottom: 0;
-***REMOVED***
+}
 
-.card-text:last-child ***REMOVED***
+.card-text:last-child {
   margin-bottom: 0;
-***REMOVED***
+}
 
-.card-link ***REMOVED***
-  @include hover ***REMOVED***
+.card-link {
+  @include hover {
     text-decoration: none;
-***REMOVED***
+  }
 
-  + .card-link ***REMOVED***
+  + .card-link {
     margin-left: $card-spacer-x;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.card ***REMOVED***
-  > .list-group:first-child ***REMOVED***
-    .list-group-item:first-child ***REMOVED***
+.card {
+  > .list-group:first-child {
+    .list-group-item:first-child {
       @include border-top-radius($card-border-radius);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  > .list-group:last-child ***REMOVED***
-    .list-group-item:last-child ***REMOVED***
+  > .list-group:last-child {
+    .list-group-item:last-child {
       @include border-bottom-radius($card-border-radius);
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 
 //
 // Optional textual caps
 //
 
-.card-header ***REMOVED***
+.card-header {
   padding: $card-spacer-y $card-spacer-x;
   margin-bottom: 0; // Removes the default margin-bottom of <hN>
   background-color: $card-cap-bg;
   border-bottom: $card-border-width solid $card-border-color;
 
-  &:first-child ***REMOVED***
+  &:first-child {
     @include border-radius($card-inner-border-radius $card-inner-border-radius 0 0);
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.card-footer ***REMOVED***
+.card-footer {
   padding: $card-spacer-y $card-spacer-x;
   background-color: $card-cap-bg;
   border-top: $card-border-width solid $card-border-color;
 
-  &:last-child ***REMOVED***
+  &:last-child {
     @include border-radius(0 0 $card-inner-border-radius $card-inner-border-radius);
-***REMOVED***
-***REMOVED***
+  }
+}
 
 
 //
 // Header navs
 //
 
-.card-header-tabs ***REMOVED***
+.card-header-tabs {
   margin-right: -($card-spacer-x / 2);
   margin-bottom: -$card-spacer-y;
   margin-left: -($card-spacer-x / 2);
   border-bottom: 0;
-***REMOVED***
+}
 
-.card-header-pills ***REMOVED***
+.card-header-pills {
   margin-right: -($card-spacer-x / 2);
   margin-left: -($card-spacer-x / 2);
-***REMOVED***
+}
 
 // Card image
-.card-img-overlay ***REMOVED***
+.card-img-overlay {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   padding: $card-img-overlay-padding;
-***REMOVED***
+}
 
-.card-img ***REMOVED***
+.card-img {
   width: 100%; // Required because we use flexbox and this inherently applies align-self: stretch
   @include border-radius($card-inner-border-radius);
-***REMOVED***
+}
 
 // Card image caps
-.card-img-top ***REMOVED***
+.card-img-top {
   width: 100%; // Required because we use flexbox and this inherently applies align-self: stretch
   @include border-top-radius($card-inner-border-radius);
-***REMOVED***
+}
 
-.card-img-bottom ***REMOVED***
+.card-img-bottom {
   width: 100%; // Required because we use flexbox and this inherently applies align-self: stretch
   @include border-bottom-radius($card-inner-border-radius);
-***REMOVED***
+}
 
 
 // Card deck
 
-@include media-breakpoint-up(sm) ***REMOVED***
-  .card-deck ***REMOVED***
+@include media-breakpoint-up(sm) {
+  .card-deck {
     display: flex;
     flex-flow: row wrap;
     margin-right: -$card-deck-margin;
     margin-left: -$card-deck-margin;
 
-    .card ***REMOVED***
+    .card {
       display: flex;
       flex: 1 0 0%;
       flex-direction: column;
       margin-right: $card-deck-margin;
       margin-left: $card-deck-margin;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 
 //
 // Card groups
 //
 
-@include media-breakpoint-up(sm) ***REMOVED***
-  .card-group ***REMOVED***
+@include media-breakpoint-up(sm) {
+  .card-group {
     display: flex;
     flex-flow: row wrap;
 
-    .card ***REMOVED***
+    .card {
       flex: 1 0 0%;
 
-      + .card ***REMOVED***
+      + .card {
         margin-left: 0;
         border-left: 0;
-***REMOVED***
+      }
 
       // Handle rounded corners
-      @if $enable-rounded ***REMOVED***
-        &:first-child ***REMOVED***
+      @if $enable-rounded {
+        &:first-child {
           @include border-right-radius(0);
 
-          .card-img-top ***REMOVED***
+          .card-img-top {
             border-top-right-radius: 0;
-    ***REMOVED***
-          .card-img-bottom ***REMOVED***
+          }
+          .card-img-bottom {
             border-bottom-right-radius: 0;
-    ***REMOVED***
-  ***REMOVED***
-        &:last-child ***REMOVED***
+          }
+        }
+        &:last-child {
           @include border-left-radius(0);
 
-          .card-img-top ***REMOVED***
+          .card-img-top {
             border-top-left-radius: 0;
-    ***REMOVED***
-          .card-img-bottom ***REMOVED***
+          }
+          .card-img-bottom {
             border-bottom-left-radius: 0;
-    ***REMOVED***
-  ***REMOVED***
+          }
+        }
 
-        &:not(:first-child):not(:last-child) ***REMOVED***
+        &:not(:first-child):not(:last-child) {
           border-radius: 0;
 
           .card-img-top,
-          .card-img-bottom ***REMOVED***
+          .card-img-bottom {
             border-radius: 0;
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+          }
+        }
+      }
+    }
+  }
+}
 
 
 //
 // Columns
 //
 
-.card-columns ***REMOVED***
-  .card ***REMOVED***
+.card-columns {
+  .card {
     margin-bottom: $card-columns-margin;
-***REMOVED***
+  }
 
-  @include media-breakpoint-up(sm) ***REMOVED***
+  @include media-breakpoint-up(sm) {
     column-count: $card-columns-count;
     column-gap: $card-columns-gap;
 
-    .card ***REMOVED***
+    .card {
       display: inline-block; // Don't let them vertically span multiple columns
       width: 100%; // Don't let their width change
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

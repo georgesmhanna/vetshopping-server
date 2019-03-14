@@ -1,5 +1,5 @@
-import ***REMOVED*** LOCATION_CHANGE ***REMOVED*** from 'react-router-redux';
-import ***REMOVED***
+import { LOCATION_CHANGE } from 'react-router-redux';
+import {
   call,
   cancel,
   fork,
@@ -7,109 +7,109 @@ import ***REMOVED***
   select,
   take,
   takeLatest,
-***REMOVED*** from 'redux-saga/effects';
+} from 'redux-saga/effects';
 
 import request from 'utils/request';
 
-import ***REMOVED***
+import {
   getPermissionsSucceeded,
   getPoliciesSucceeded,
   getRoleSucceeded,
   getRoutesSucceeded,
   getUserSucceeded,
   submitSucceeded,
-***REMOVED*** from './actions';
+} from './actions';
 
-import ***REMOVED***
+import {
   GET_PERMISSIONS,
   GET_POLICIES,
   GET_ROLE,
   GET_USER,
   SUBMIT,
-***REMOVED*** from './constants';
+} from './constants';
 
-import ***REMOVED***
+import {
   makeSelectActionType,
   makeSelectModifiedData,
   makeSelectRoleId,
-***REMOVED*** from './selectors';
+} from './selectors';
 
-export function* fetchUser(action) ***REMOVED***
-  try ***REMOVED***
-    const data = yield call(request, `/users-permissions/search/$***REMOVED***action.user***REMOVED***`, ***REMOVED*** method: 'GET' ***REMOVED***);
+export function* fetchUser(action) {
+  try {
+    const data = yield call(request, `/users-permissions/search/${action.user}`, { method: 'GET' });
 
     yield put(getUserSucceeded(data));
-***REMOVED*** catch(error) ***REMOVED***
+  } catch(error) {
     strapi.notification.error('users-permissions.notification.error.fetchUser');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* permissionsGet() ***REMOVED***
-  try ***REMOVED***
-    const response = yield call(request, '/users-permissions/permissions', ***REMOVED***
+export function* permissionsGet() {
+  try {
+    const response = yield call(request, '/users-permissions/permissions', {
       method: 'GET',
-      params: ***REMOVED***
+      params: {
         lang: strapi.currentLanguage,
-***REMOVED***
-***REMOVED***);
+      },
+    });
 
     yield put(getPermissionsSucceeded(response));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('users-permissions.EditPage.notification.permissions.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* policiesGet() ***REMOVED***
-  try ***REMOVED***
+export function* policiesGet() {
+  try {
     const response = yield [
-      call(request, '/users-permissions/policies', ***REMOVED*** method: 'GET' ***REMOVED***),
-      call(request, '/users-permissions/routes', ***REMOVED*** method: 'GET' ***REMOVED***),
+      call(request, '/users-permissions/policies', { method: 'GET' }),
+      call(request, '/users-permissions/routes', { method: 'GET' }),
     ];
 
     yield put(getPoliciesSucceeded(response[0]));
     yield put(getRoutesSucceeded(response[1]));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('users-permissions.EditPage.notification.policies.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* roleGet(action) ***REMOVED***
-  try ***REMOVED***
-    const role = yield call(request, `/users-permissions/roles/$***REMOVED***action.id***REMOVED***`, ***REMOVED***
+export function* roleGet(action) {
+  try {
+    const role = yield call(request, `/users-permissions/roles/${action.id}`, {
       method: 'GET',
-      params: ***REMOVED***
+      params: {
         lang: strapi.currentLanguage,
-***REMOVED***
-***REMOVED***);
+      },
+    });
 
     yield put(getRoleSucceeded(role));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('users-permissions.EditPage.notification.role.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* submit() ***REMOVED***
-  try ***REMOVED***
+export function* submit() {
+  try {
     const actionType = yield select(makeSelectActionType());
     const body = yield select(makeSelectModifiedData());
     const roleId = yield select(makeSelectRoleId());
-    const opts = ***REMOVED***
+    const opts = {
       method: actionType,
       body,
-***REMOVED***;
+    };
 
-    const requestURL = actionType === 'POST' ? '/users-permissions/roles' : `/users-permissions/roles/$***REMOVED***roleId***REMOVED***`;
+    const requestURL = actionType === 'POST' ? '/users-permissions/roles' : `/users-permissions/roles/${roleId}`;
     const response = yield call(request, requestURL, opts);
 
-    if (response.ok) ***REMOVED***
+    if (response.ok) {
       yield put(submitSucceeded());
-***REMOVED***
-***REMOVED*** catch(error) ***REMOVED***
+    }
+  } catch(error) {
     console.log(error); // eslint-disable-line no-console
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export default function* defaultSaga() ***REMOVED***
+export default function* defaultSaga() {
   const loadPermissionsWatcher = yield fork(takeLatest, GET_PERMISSIONS, permissionsGet);
   const loadPoliciesWatcher = yield fork(takeLatest, GET_POLICIES, policiesGet);
   const loadRoleWatcher = yield fork(takeLatest, GET_ROLE, roleGet);
@@ -122,4 +122,4 @@ export default function* defaultSaga() ***REMOVED***
   yield cancel(loadPermissionsWatcher);
   yield cancel(loadPoliciesWatcher);
   yield cancel(loadRoleWatcher);
-***REMOVED***
+}

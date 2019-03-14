@@ -6,13 +6,13 @@
 
 import React from 'react';
 import moment from 'moment';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import ***REMOVED*** cloneDeep, findIndex, get, includes, isEmpty, isObject, toNumber, toString, replace ***REMOVED*** from 'lodash';
+import { cloneDeep, findIndex, get, includes, isEmpty, isObject, toNumber, toString, replace } from 'lodash';
 import HTML5Backend from 'react-dnd-html5-backend';
-import ***REMOVED*** DragDropContext ***REMOVED*** from 'react-dnd';
+import { DragDropContext } from 'react-dnd';
 import cn from 'classnames';
 // You can find these components in either
 // ./node_modules/strapi-helper-plugin/lib/src
@@ -27,15 +27,15 @@ import CustomDragLayer from 'components/CustomDragLayer';
 import Edit from 'components/Edit';
 import EditRelations from 'components/EditRelations';
 // App selectors
-import ***REMOVED*** makeSelectSchema ***REMOVED*** from 'containers/App/selectors';
+import { makeSelectSchema } from 'containers/App/selectors';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import getQueryParameters from 'utils/getQueryParameters';
-import ***REMOVED*** bindLayout ***REMOVED*** from 'utils/bindLayout';
+import { bindLayout } from 'utils/bindLayout';
 import inputValidations from 'utils/inputsValidations';
-import ***REMOVED*** generateRedirectURI ***REMOVED*** from 'containers/ListPage/utils';
-import ***REMOVED*** checkFormValidity ***REMOVED*** from 'utils/formValidations';
-import ***REMOVED***
+import { generateRedirectURI } from 'containers/ListPage/utils';
+import { checkFormValidity } from 'utils/formValidations';
+import {
   addRelationItem,
   changeData,
   getData,
@@ -48,249 +48,249 @@ import ***REMOVED***
   setFileRelations,
   setFormErrors,
   submit,
-***REMOVED*** from './actions';
+} from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import makeSelectEditPage from './selectors';
 import styles from './styles.scss';
 
-export class EditPage extends React.Component ***REMOVED***
-  state = ***REMOVED*** showWarning: false ***REMOVED***;
+export class EditPage extends React.Component {
+  state = { showWarning: false };
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     this.initComponent(this.props);
-***REMOVED***
+  }
 
-  componentDidUpdate(prevProps) ***REMOVED***
-    if (prevProps.location.pathname !== this.props.location.pathname) ***REMOVED***
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
       this.props.resetProps();
       this.initComponent(this.props);
-***REMOVED***
+    }
 
-    if (prevProps.editPage.submitSuccess !== this.props.editPage.submitSuccess) ***REMOVED***
-      if (!isEmpty(this.props.location.search) && includes(this.props.location.search, '?redirectUrl')) ***REMOVED***
+    if (prevProps.editPage.submitSuccess !== this.props.editPage.submitSuccess) {
+      if (!isEmpty(this.props.location.search) && includes(this.props.location.search, '?redirectUrl')) {
         const redirectUrl = this.props.location.search.split('?redirectUrl=')[1];
 
-        this.props.history.push(***REMOVED***
+        this.props.history.push({
           pathname: redirectUrl.split('?')[0],
           search: redirectUrl.split('?')[1],
-  ***REMOVED***);
-***REMOVED*** else ***REMOVED***
-        this.props.history.push(***REMOVED***
+        });
+      } else {
+        this.props.history.push({
           pathname: replace(this.props.location.pathname, '/create', ''),
-          search: `?source=$***REMOVED***this.getSource()***REMOVED***`,
-  ***REMOVED***);
-***REMOVED***
-***REMOVED***
-***REMOVED***
+          search: `?source=${this.getSource()}`,
+        });
+      }
+    }
+  }
 
-  componentWillUnmount() ***REMOVED***
+  componentWillUnmount() {
     this.props.resetProps();
-***REMOVED***
+  }
 
   /**
    * Retrieve the model's displayed relations
-   * @return ***REMOVED***Array***REMOVED***
+   * @return {Array}
    */
-  getDisplayedRelations = () => ***REMOVED***
+  getDisplayedRelations = () => {
     return get(this.getSchema(), ['editDisplay', 'relations'], []);
-***REMOVED***
+  }
 
   /**
    * Retrieve the model's custom layout
    *
    */
   getLayout = () => (
-    bindLayout.call(this, get(this.props.schema, ['layout', this.getModelName()], ***REMOVED******REMOVED***))
+    bindLayout.call(this, get(this.props.schema, ['layout', this.getModelName()], {}))
   )
 
   /**
    *
    *
-   * @type ***REMOVED***[type]***REMOVED***
+   * @type {[type]}
    */
-  getAttributeValidations = (name) => get(this.props.editPage.formValidations, [findIndex(this.props.editPage.formValidations, ['name', name]), 'validations'], ***REMOVED******REMOVED***)
+  getAttributeValidations = (name) => get(this.props.editPage.formValidations, [findIndex(this.props.editPage.formValidations, ['name', name]), 'validations'], {})
 
   getDisplayedFields = () => get(this.getSchema(), ['editDisplay', 'fields'], []);
 
   /**
    * Retrieve the model
-   * @type ***REMOVED***Object***REMOVED***
+   * @type {Object}
    */
   getModel = () => get(this.props.schema, ['models', this.getModelName()]) || get(this.props.schema, ['models', 'plugins', this.getSource(), this.getModelName()]);
 
   /**
    * Retrieve specific attribute
-   * @type ***REMOVED***String***REMOVED*** name
+   * @type {String} name
    */
   getModelAttribute = (name) => get(this.getModelAttributes(), name);
 
   /**
    * Retrieve the model's attributes
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
   getModelAttributes = () => this.getModel().attributes;
 
   /**
    * Retrieve the model's name
-   * @return ***REMOVED***String***REMOVED*** model's name
+   * @return {String} model's name
    */
   getModelName = () => this.props.match.params.slug.toLowerCase();
 
   /**
    * Retrieve model's schema
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
   getSchema = () => this.getSource() !== 'content-manager' ?
     get(this.props.schema, ['models', 'plugins', this.getSource(), this.getModelName()])
     : get(this.props.schema, ['models', this.getModelName()]);
 
-  getPluginHeaderTitle = () => ***REMOVED***
-    if (this.isCreating()) ***REMOVED***
+  getPluginHeaderTitle = () => {
+    if (this.isCreating()) {
       return toString(this.props.editPage.pluginHeaderTitle);
-***REMOVED***
+    }
 
     return this.props.match.params.id;
-***REMOVED***
+  }
 
   /**
    * Retrieve the model's source
-   * @return ***REMOVED***String***REMOVED***
+   * @return {String}
    */
   getSource = () => getQueryParameters(this.props.location.search, 'source');
 
   /**
    * Initialize component
    */
-  initComponent = (props) => ***REMOVED***
+  initComponent = (props) => {
     this.props.initModelProps(this.getModelName(), this.isCreating(), this.getSource(), this.getModelAttributes(), this.getDisplayedFields());
 
-    if (!this.isCreating()) ***REMOVED***
+    if (!this.isCreating()) {
       const mainField = get(this.getModel(), 'info.mainField') || this.getModel().primaryKey;
       this.props.getData(props.match.params.id, this.getSource(), mainField);
-***REMOVED***
+    }
 
     // Get all relations made with the upload plugin
-    const fileRelations = Object.keys(get(this.getSchema(), 'relations', ***REMOVED******REMOVED***)).reduce((acc, current) => ***REMOVED***
-      const association = get(this.getSchema(), ['relations', current], ***REMOVED******REMOVED***);
+    const fileRelations = Object.keys(get(this.getSchema(), 'relations', {})).reduce((acc, current) => {
+      const association = get(this.getSchema(), ['relations', current], {});
 
-      if (association.plugin === 'upload' && association[association.type] === 'file') ***REMOVED***
-        const relation = ***REMOVED***
+      if (association.plugin === 'upload' && association[association.type] === 'file') {
+        const relation = {
           name: current,
           multiple: association.nature === 'manyToManyMorph',
-  ***REMOVED***;
+        };
 
         acc.push(relation);
-***REMOVED***
+      }
       return acc;
-***REMOVED***, []);
+    }, []);
 
     // Update the reducer so we can use it to create the appropriate FormData in the saga
     this.props.setFileRelations(fileRelations);
-***REMOVED***
+  }
 
-  handleAddRelationItem = (***REMOVED*** key, value ***REMOVED***) => ***REMOVED***
-    this.props.addRelationItem(***REMOVED***
+  handleAddRelationItem = ({ key, value }) => {
+    this.props.addRelationItem({
       key,
       value,
-***REMOVED***);
-***REMOVED***
+    });
+  }
 
-  handleBlur = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleBlur = ({ target }) => {
     const defaultValue = get(this.getModelAttribute(target.name), 'default');
 
-    if (isEmpty(target.value) && defaultValue && target.value !== false) ***REMOVED***
-      return this.props.changeData(***REMOVED***
-        target: ***REMOVED***
-          name: `record.$***REMOVED***target.name***REMOVED***`,
+    if (isEmpty(target.value) && defaultValue && target.value !== false) {
+      return this.props.changeData({
+        target: {
+          name: `record.${target.name}`,
           value: defaultValue,
-  ***REMOVED***
-***REMOVED***);
-***REMOVED***
+        },
+      });
+    }
 
     const errorIndex = findIndex(this.props.editPage.formErrors, ['name', target.name]);
     const errors = inputValidations(target.value, this.getAttributeValidations(target.name), target.type);
     const formErrors = cloneDeep(this.props.editPage.formErrors);
 
-    if (errorIndex === -1 && !isEmpty(errors)) ***REMOVED***
-      formErrors.push(***REMOVED*** name: target.name, errors ***REMOVED***);
-***REMOVED*** else if (errorIndex !== -1 && isEmpty(errors)) ***REMOVED***
+    if (errorIndex === -1 && !isEmpty(errors)) {
+      formErrors.push({ name: target.name, errors });
+    } else if (errorIndex !== -1 && isEmpty(errors)) {
       formErrors.splice(errorIndex, 1);
-***REMOVED*** else if (!isEmpty(errors)) ***REMOVED***
-      formErrors.splice(errorIndex, 1, ***REMOVED*** name: target.name, errors ***REMOVED***);
-***REMOVED***
+    } else if (!isEmpty(errors)) {
+      formErrors.splice(errorIndex, 1, { name: target.name, errors });
+    }
 
     return this.props.setFormErrors(formErrors);
-***REMOVED***
+  }
 
-  handleChange = (e) => ***REMOVED***
+  handleChange = (e) => {
     let value = e.target.value;
     // Check if date
-    if (isObject(e.target.value) && e.target.value._isAMomentObject === true) ***REMOVED***
+    if (isObject(e.target.value) && e.target.value._isAMomentObject === true) {
       value = moment(e.target.value).format('YYYY-MM-DD HH:mm:ss');
-***REMOVED*** else if (['float', 'integer', 'biginteger', 'decimal'].indexOf(get(this.getSchema(), ['fields', e.target.name, 'type'])) !== -1) ***REMOVED***
+    } else if (['float', 'integer', 'biginteger', 'decimal'].indexOf(get(this.getSchema(), ['fields', e.target.name, 'type'])) !== -1) {
       value = toNumber(e.target.value);
-***REMOVED***
+    }
 
-    const target = ***REMOVED***
-      name: `record.$***REMOVED***e.target.name***REMOVED***`,
+    const target = {
+      name: `record.${e.target.name}`,
       value,
-***REMOVED***;
+    };
 
-    this.props.changeData(***REMOVED*** target ***REMOVED***);
-***REMOVED***
+    this.props.changeData({ target });
+  }
 
-  handleConfirm = () => ***REMOVED***
+  handleConfirm = () => {
     this.props.onCancel();
     this.toggle();
-***REMOVED***
+  }
 
   handleGoBack = () => this.props.history.goBack();
 
-  handleRedirect = (***REMOVED*** model, id, source = 'content-manager'***REMOVED***) => ***REMOVED***
+  handleRedirect = ({ model, id, source = 'content-manager'}) => {
     /* eslint-disable */
-    switch (model) ***REMOVED***
+    switch (model) {
       case 'permission':
       case 'role':
       case 'file':
         // Exclude special models which are handled by plugins.
-        if (source !== 'content-manager') ***REMOVED***
+        if (source !== 'content-manager') {
           break;
-  ***REMOVED***
+        }
       default:
-        const pathname = `$***REMOVED***this.props.match.path.replace(':slug', model).replace(':id', id)***REMOVED***`;
+        const pathname = `${this.props.match.path.replace(':slug', model).replace(':id', id)}`;
 
-        this.props.history.push(***REMOVED***
+        this.props.history.push({
           pathname,
-          search: `?source=$***REMOVED***source***REMOVED***&redirectURI=$***REMOVED***generateRedirectURI(***REMOVED*** model, search: `?source=$***REMOVED***source***REMOVED***` ***REMOVED***)***REMOVED***`,
-  ***REMOVED***);
-***REMOVED***
+          search: `?source=${source}&redirectURI=${generateRedirectURI({ model, search: `?source=${source}` })}`,
+        });
+    }
     /* eslint-enable */
-***REMOVED***
+  }
 
-  handleSubmit = (e) => ***REMOVED***
+  handleSubmit = (e) => {
     e.preventDefault();
     const formErrors = checkFormValidity(this.generateFormFromRecord(), this.props.editPage.formValidations);
 
-    if (isEmpty(formErrors)) ***REMOVED***
+    if (isEmpty(formErrors)) {
       this.props.submit();
-***REMOVED***
+    }
 
     this.props.setFormErrors(formErrors);
-***REMOVED***
+  }
 
-  hasDisplayedRelations = () => ***REMOVED***
+  hasDisplayedRelations = () => {
     return this.getDisplayedRelations().length > 0;
-***REMOVED***
+  }
 
-  hasDisplayedFields = () => ***REMOVED***
+  hasDisplayedFields = () => {
     return get(this.getModel(), ['editDisplay', 'fields'], []).length > 0;
-***REMOVED***
+  }
 
   isCreating = () => this.props.match.params.id === 'create';
 
   isRelationComponentNull = () => (
-    Object.keys(get(this.getSchema(), 'relations', ***REMOVED******REMOVED***)).filter(relation => (
+    Object.keys(get(this.getSchema(), 'relations', {})).filter(relation => (
       get(this.getSchema(), ['relations', relation, 'plugin']) !== 'upload' &&
       (!get(this.getSchema(), ['relations', relation, 'nature'], '').toLowerCase().includes('morph') || !get(this.getSchema(), ['relations', relation, relation]))
     )).length === 0
@@ -298,160 +298,160 @@ export class EditPage extends React.Component ***REMOVED***
 
   // NOTE: technical debt that needs to be redone
   generateFormFromRecord = () => (
-    Object.keys(this.getModelAttributes()).reduce((acc, current) => ***REMOVED***
+    Object.keys(this.getModelAttributes()).reduce((acc, current) => {
       acc[current] = get(this.props.editPage.record, current, '');
 
       return acc;
-***REMOVED***, ***REMOVED******REMOVED***)
+    }, {})
   )
 
   pluginHeaderActions =  () => (
     [
-      ***REMOVED***
+      {
         label: 'content-manager.containers.Edit.reset',
         kind: 'secondary',
         onClick: this.toggle,
         type: 'button',
         disabled: this.showLoaders(),
-***REMOVED***
-      ***REMOVED***
+      },
+      {
         kind: 'primary',
         label: 'content-manager.containers.Edit.submit',
         onClick: this.handleSubmit,
         type: 'submit',
         loader: this.props.editPage.showLoader,
-        style: this.props.editPage.showLoader ? ***REMOVED*** marginRight: '18px' ***REMOVED*** : ***REMOVED******REMOVED***,
+        style: this.props.editPage.showLoader ? { marginRight: '18px' } : {},
         disabled: this.showLoaders(),
-***REMOVED***
+      },
     ]
   );
 
-  showLoaders = () => ***REMOVED***
-    const ***REMOVED*** editPage: ***REMOVED*** isLoading ***REMOVED***, schema: ***REMOVED*** layout ***REMOVED*** ***REMOVED*** = this.props;
+  showLoaders = () => {
+    const { editPage: { isLoading }, schema: { layout } } = this.props;
 
     return isLoading && !this.isCreating() || isLoading && get(layout, this.getModelName()) === undefined;
-***REMOVED***
+  }
 
-  toggle = () => this.setState(prevState => (***REMOVED*** showWarning: !prevState.showWarning ***REMOVED***));
+  toggle = () => this.setState(prevState => ({ showWarning: !prevState.showWarning }));
 
-  renderEdit = () => ***REMOVED***
-    const ***REMOVED*** editPage, location: ***REMOVED*** search ***REMOVED*** ***REMOVED*** = this.props;
+  renderEdit = () => {
+    const { editPage, location: { search } } = this.props;
     const source = getQueryParameters(search, 'source');
     const basePath = '/plugins/content-manager/ctm-configurations';
     const pathname = source !== 'content-manager'
-      ? `$***REMOVED***basePath***REMOVED***/plugins/$***REMOVED***source***REMOVED***/$***REMOVED***this.getModelName()***REMOVED***`
-      : `$***REMOVED***basePath***REMOVED***/$***REMOVED***this.getModelName()***REMOVED***`;
+      ? `${basePath}/plugins/${source}/${this.getModelName()}`
+      : `${basePath}/${this.getModelName()}`;
 
-    if (this.showLoaders()) ***REMOVED***
+    if (this.showLoaders()) {
       return (
-        <div className=***REMOVED***!this.hasDisplayedRelations() ? 'col-lg-12' : 'col-lg-9'***REMOVED***>
-          <div className=***REMOVED***styles.main_wrapper***REMOVED***>
+        <div className={!this.hasDisplayedRelations() ? 'col-lg-12' : 'col-lg-9'}>
+          <div className={styles.main_wrapper}>
             <LoadingIndicator />
           </div>
         </div>
       );
-***REMOVED***
+    }
 
-    if (!this.hasDisplayedFields()) ***REMOVED***
+    if (!this.hasDisplayedFields()) {
       return (
-        <div className=***REMOVED***!this.hasDisplayedRelations() ? 'col-lg-12' : 'col-lg-9'***REMOVED***>
+        <div className={!this.hasDisplayedRelations() ? 'col-lg-12' : 'col-lg-9'}>
           <EmptyAttributesBlock
             description="content-manager.components.EmptyAttributesBlock.description"
             label="content-manager.components.EmptyAttributesBlock.button"
-            onClick=***REMOVED***() => this.props.history.push(pathname)***REMOVED***
+            onClick={() => this.props.history.push(pathname)}
           />
         </div>
       );
-***REMOVED***
+    }
 
     return (
-      <div className=***REMOVED***!this.hasDisplayedRelations() ? 'col-lg-12' : 'col-lg-9'***REMOVED***>
-        <div className=***REMOVED***styles.main_wrapper***REMOVED***>
+      <div className={!this.hasDisplayedRelations() ? 'col-lg-12' : 'col-lg-9'}>
+        <div className={styles.main_wrapper}>
           <Edit
-            attributes=***REMOVED***this.getModelAttributes()***REMOVED***
-            didCheckErrors=***REMOVED***editPage.didCheckErrors***REMOVED***
-            formValidations=***REMOVED***editPage.formValidations***REMOVED***
-            formErrors=***REMOVED***editPage.formErrors***REMOVED***
-            layout=***REMOVED***this.getLayout()***REMOVED***
-            modelName=***REMOVED***this.getModelName()***REMOVED***
-            onBlur=***REMOVED***this.handleBlur***REMOVED***
-            onChange=***REMOVED***this.handleChange***REMOVED***
-            record=***REMOVED***editPage.record***REMOVED***
-            resetProps=***REMOVED***editPage.resetProps***REMOVED***
-            schema=***REMOVED***this.getSchema()***REMOVED***
+            attributes={this.getModelAttributes()}
+            didCheckErrors={editPage.didCheckErrors}
+            formValidations={editPage.formValidations}
+            formErrors={editPage.formErrors}
+            layout={this.getLayout()}
+            modelName={this.getModelName()}
+            onBlur={this.handleBlur}
+            onChange={this.handleChange}
+            record={editPage.record}
+            resetProps={editPage.resetProps}
+            schema={this.getSchema()}
           />
         </div>
       </div>
     );
-***REMOVED***
+  }
 
-  render() ***REMOVED***
-    const ***REMOVED*** editPage, moveAttr, moveAttrEnd ***REMOVED*** = this.props;
-    const ***REMOVED*** showWarning ***REMOVED*** = this.state;
+  render() {
+    const { editPage, moveAttr, moveAttrEnd } = this.props;
+    const { showWarning } = this.state;
 
     return (
       <div>
-        <form onSubmit=***REMOVED***this.handleSubmit***REMOVED***>
-          <BackHeader onClick=***REMOVED***this.handleGoBack***REMOVED*** />
+        <form onSubmit={this.handleSubmit}>
+          <BackHeader onClick={this.handleGoBack} />
           <CustomDragLayer />
-          <div className=***REMOVED***cn('container-fluid', styles.containerFluid)***REMOVED***>
+          <div className={cn('container-fluid', styles.containerFluid)}>
             <PluginHeader
-              actions=***REMOVED***this.pluginHeaderActions()***REMOVED***
-              title=***REMOVED******REMOVED*** id: this.getPluginHeaderTitle() ***REMOVED******REMOVED***
+              actions={this.pluginHeaderActions()}
+              title={{ id: this.getPluginHeaderTitle() }}
             />
             <PopUpWarning
-              isOpen=***REMOVED***showWarning***REMOVED***
-              toggleModal=***REMOVED***this.toggle***REMOVED***
-              content=***REMOVED******REMOVED***
+              isOpen={showWarning}
+              toggleModal={this.toggle}
+              content={{
                 title: 'content-manager.popUpWarning.title',
                 message: 'content-manager.popUpWarning.warning.cancelAllSettings',
                 cancel: 'content-manager.popUpWarning.button.cancel',
                 confirm: 'content-manager.popUpWarning.button.confirm',
-        ***REMOVED******REMOVED***
+              }}
               popUpWarningType="danger"
-              onConfirm=***REMOVED***this.handleConfirm***REMOVED***
+              onConfirm={this.handleConfirm}
             />
             <div className="row">
-              ***REMOVED***this.renderEdit()***REMOVED***
-              ***REMOVED***this.hasDisplayedRelations() && (
-                <div className=***REMOVED***cn('col-lg-3')***REMOVED***>
-                  <div className=***REMOVED***styles.sub_wrapper***REMOVED***>
-                    ***REMOVED***this.hasDisplayedRelations() && (
+              {this.renderEdit()}
+              {this.hasDisplayedRelations() && (
+                <div className={cn('col-lg-3')}>
+                  <div className={styles.sub_wrapper}>
+                    {this.hasDisplayedRelations() && (
                       <EditRelations
-                        changeData=***REMOVED***this.props.changeData***REMOVED***
-                        currentModelName=***REMOVED***this.getModelName()***REMOVED***
-                        displayedRelations=***REMOVED***this.getDisplayedRelations()***REMOVED***
-                        isDraggingSibling=***REMOVED***editPage.isDraggingSibling***REMOVED***
-                        location=***REMOVED***this.props.location***REMOVED***
-                        moveAttr=***REMOVED***moveAttr***REMOVED***
-                        moveAttrEnd=***REMOVED***moveAttrEnd***REMOVED***
-                        onAddRelationalItem=***REMOVED***this.handleAddRelationItem***REMOVED***
-                        onRedirect=***REMOVED***this.handleRedirect***REMOVED***
-                        onRemoveRelationItem=***REMOVED***this.props.onRemoveRelationItem***REMOVED***
-                        record=***REMOVED***editPage.record***REMOVED***
-                        schema=***REMOVED***this.getSchema()***REMOVED***
+                        changeData={this.props.changeData}
+                        currentModelName={this.getModelName()}
+                        displayedRelations={this.getDisplayedRelations()}
+                        isDraggingSibling={editPage.isDraggingSibling}
+                        location={this.props.location}
+                        moveAttr={moveAttr}
+                        moveAttrEnd={moveAttrEnd}
+                        onAddRelationalItem={this.handleAddRelationItem}
+                        onRedirect={this.handleRedirect}
+                        onRemoveRelationItem={this.props.onRemoveRelationItem}
+                        record={editPage.record}
+                        schema={this.getSchema()}
                       />
-                    )***REMOVED***
+                    )}
                   </div>
                 </div>
-              )***REMOVED***
+              )}
             </div>
           </div>
         </form>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-EditPage.contextTypes = ***REMOVED***
+EditPage.contextTypes = {
   plugins: PropTypes.object,
-***REMOVED***;
+};
 
-EditPage.defaultProps = ***REMOVED***
-  schema: ***REMOVED******REMOVED***,
-***REMOVED***;
+EditPage.defaultProps = {
+  schema: {},
+};
 
-EditPage.propTypes = ***REMOVED***
+EditPage.propTypes = {
   addRelationItem: PropTypes.func.isRequired,
   changeData: PropTypes.func.isRequired,
   editPage: PropTypes.object.isRequired,
@@ -469,11 +469,11 @@ EditPage.propTypes = ***REMOVED***
   setFileRelations: PropTypes.func.isRequired,
   setFormErrors: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
-function mapDispatchToProps(dispatch) ***REMOVED***
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       addRelationItem,
       changeData,
       getData,
@@ -486,20 +486,20 @@ function mapDispatchToProps(dispatch) ***REMOVED***
       setFileRelations,
       setFormErrors,
       submit,
-***REMOVED***,
+    },
     dispatch,
   );
-***REMOVED***
+}
 
-const mapStateToProps = createStructuredSelector(***REMOVED***
+const mapStateToProps = createStructuredSelector({
   editPage: makeSelectEditPage(),
   schema: makeSelectSchema(),
-***REMOVED***);
+});
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer(***REMOVED*** key: 'editPage', reducer ***REMOVED***);
-const withSaga = injectSaga(***REMOVED*** key: 'editPage', saga ***REMOVED***);
+const withReducer = injectReducer({ key: 'editPage', reducer });
+const withSaga = injectSaga({ key: 'editPage', saga });
 
 export default compose(
   withReducer,

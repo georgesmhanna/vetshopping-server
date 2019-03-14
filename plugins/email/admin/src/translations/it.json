@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "ConfigPage.title": "Email - Impostazioni",
   "ConfigPage.description": "Configura il plugin Email",
   
@@ -13,4 +13,4 @@
 
 
   "notification.config.success": "Le impostazioni sono state aggiornate"
-***REMOVED***
+}

@@ -4,7 +4,7 @@
  *
  */
 
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
 * Direct selector to the listPage state domain
@@ -36,8 +36,8 @@ const makeSelectFilters = () => createSelector(
 );
 
 export default makeSelectListPage;
-export ***REMOVED***
+export {
   makeSelectParams,
   makeSelectFilters,
   selectListPageDomain,
-***REMOVED***;
+};

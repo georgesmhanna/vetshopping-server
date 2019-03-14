@@ -4,14 +4,14 @@
  */
 
 import React from 'react';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 import cn from 'classnames';
-import ***REMOVED*** get, sortBy ***REMOVED*** from 'lodash';
+import { get, sortBy } from 'lodash';
 import PropTypes from 'prop-types';
-import ***REMOVED*** onChange, onSubmit, onReset ***REMOVED*** from 'containers/App/actions';
-import ***REMOVED*** makeSelectModifiedSchema, makeSelectSubmitSuccess ***REMOVED*** from 'containers/App/selectors';
+import { onChange, onSubmit, onReset } from 'containers/App/actions';
+import { makeSelectModifiedSchema, makeSelectSubmitSuccess } from 'containers/App/selectors';
 import Input from 'components/InputsIndex';
 import PluginHeader from 'components/PluginHeader';
 import PopUpWarning from 'components/PopUpWarning';
@@ -24,167 +24,167 @@ import saga from './saga';
 import styles from './styles.scss';
 import forms from './forms.json';
 
-class SettingsPage extends React.PureComponent ***REMOVED***
-  state = ***REMOVED*** showWarning: false, showWarningCancel: false ***REMOVED***;
+class SettingsPage extends React.PureComponent {
+  state = { showWarning: false, showWarningCancel: false };
 
-  componentDidUpdate(prevProps) ***REMOVED***
-    if (prevProps.submitSuccess !== this.props.submitSuccess) ***REMOVED***
+  componentDidUpdate(prevProps) {
+    if (prevProps.submitSuccess !== this.props.submitSuccess) {
       this.toggle();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentWillUnmount() ***REMOVED***
+  componentWillUnmount() {
     this.props.onReset();
-***REMOVED***
+  }
   
-  getModels = (data = this.props.schema.models, destination = '/') => ***REMOVED***
-    const models = Object.keys(data).reduce((acc, curr) => ***REMOVED***
-      if (curr !== 'plugins') ***REMOVED***
+  getModels = (data = this.props.schema.models, destination = '/') => {
+    const models = Object.keys(data).reduce((acc, curr) => {
+      if (curr !== 'plugins') {
   
-        if (!data[curr].fields && _.isObject(data[curr])) ***REMOVED***
-          return this.getModels(data[curr], `$***REMOVED***destination***REMOVED***$***REMOVED***curr***REMOVED***/`);
-  ***REMOVED***
+        if (!data[curr].fields && _.isObject(data[curr])) {
+          return this.getModels(data[curr], `${destination}${curr}/`);
+        }
         
-        return acc.concat([***REMOVED*** name: curr, destination: `$***REMOVED***destination***REMOVED***$***REMOVED***curr***REMOVED***` ***REMOVED***]);
-***REMOVED*** 
+        return acc.concat([{ name: curr, destination: `${destination}${curr}` }]);
+      } 
     
-      return this.getModels(data[curr], `$***REMOVED***destination***REMOVED***$***REMOVED***curr***REMOVED***/`);
-***REMOVED***, []);
+      return this.getModels(data[curr], `${destination}${curr}/`);
+    }, []);
 
     return sortBy(
       models.filter(obj => obj.name !== 'permission' && obj.name !== 'role'),
       ['name'],
     );
-***REMOVED***
+  }
 
   getPluginHeaderActions = () => (
     [
-      ***REMOVED***
+      {
         label: 'content-manager.popUpWarning.button.cancel',
         kind: 'secondary',
         onClick: this.handleReset,
         type: 'button',
-***REMOVED***
-      ***REMOVED***
+      },
+      {
         kind: 'primary',
         label: 'content-manager.containers.Edit.submit',
         onClick: this.handleSubmit,
         type: 'submit',
-***REMOVED***
+      },
     ]
   );
 
-  getValue = (input) => ***REMOVED***
-    const ***REMOVED*** schema: ***REMOVED*** generalSettings ***REMOVED*** ***REMOVED*** = this.props;
+  getValue = (input) => {
+    const { schema: { generalSettings } } = this.props;
     const value = get(generalSettings, input.name.split('.')[1], input.type === 'toggle' ? false : 10);
 
     return input.type === 'toggle' ? value : value.toString();
-***REMOVED***
+  }
 
-  handleClick = (destination) => ***REMOVED***
-    const ***REMOVED*** location: ***REMOVED*** pathname ***REMOVED*** ***REMOVED*** = this.props;
-    this.props.history.push(`$***REMOVED***pathname***REMOVED***$***REMOVED***destination***REMOVED***`);
-***REMOVED***
+  handleClick = (destination) => {
+    const { location: { pathname } } = this.props;
+    this.props.history.push(`${pathname}${destination}`);
+  }
 
-  handleConfirmReset = () => ***REMOVED***
+  handleConfirmReset = () => {
     this.props.onReset();
     this.toggleWarningCancel();
-***REMOVED***
+  }
 
-  handleReset = (e) => ***REMOVED***
+  handleReset = (e) => {
     e.preventDefault();
-    this.setState(***REMOVED*** showWarningCancel: true ***REMOVED***);
-***REMOVED***
+    this.setState({ showWarningCancel: true });
+  }
 
-  handleSubmit = (e) => ***REMOVED***
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.setState(***REMOVED*** showWarning: true ***REMOVED***);
-***REMOVED***
+    this.setState({ showWarning: true });
+  }
 
-  toggle = () => this.setState(prevState => (***REMOVED*** showWarning: !prevState.showWarning ***REMOVED***));
+  toggle = () => this.setState(prevState => ({ showWarning: !prevState.showWarning }));
 
-  toggleWarningCancel = () => this.setState(prevState => (***REMOVED*** showWarningCancel: !prevState.showWarningCancel ***REMOVED***));
+  toggleWarningCancel = () => this.setState(prevState => ({ showWarningCancel: !prevState.showWarningCancel }));
 
   renderForm = input => (
     <Input
-      key=***REMOVED***input.name***REMOVED***
-      onChange=***REMOVED***this.props.onChange***REMOVED***
-      value=***REMOVED***this.getValue(input)***REMOVED***
-      ***REMOVED***...input***REMOVED***
+      key={input.name}
+      onChange={this.props.onChange}
+      value={this.getValue(input)}
+      {...input}
     />
   );
 
-  renderRow = model => <SettingsRow key=***REMOVED***model.name***REMOVED*** ***REMOVED***...model***REMOVED*** onClick=***REMOVED***this.handleClick***REMOVED*** />;
+  renderRow = model => <SettingsRow key={model.name} {...model} onClick={this.handleClick} />;
 
-  render() ***REMOVED***
-    const ***REMOVED*** showWarning, showWarningCancel ***REMOVED*** = this.state;
-    const ***REMOVED*** onSubmit ***REMOVED*** = this.props;
+  render() {
+    const { showWarning, showWarningCancel } = this.state;
+    const { onSubmit } = this.props;
 
     return (
-      <div className=***REMOVED***cn('container-fluid', styles.containerFluid)***REMOVED***>
+      <div className={cn('container-fluid', styles.containerFluid)}>
         <PluginHeader
-          actions=***REMOVED***this.getPluginHeaderActions()***REMOVED***
+          actions={this.getPluginHeaderActions()}
           title="Content Manager"
-          description=***REMOVED******REMOVED*** id: 'content-manager.containers.SettingsPage.pluginHeaderDescription' ***REMOVED******REMOVED***
+          description={{ id: 'content-manager.containers.SettingsPage.pluginHeaderDescription' }}
         />
         <PopUpWarning
-          isOpen=***REMOVED***showWarning***REMOVED***
-          toggleModal=***REMOVED***this.toggle***REMOVED***
-          content=***REMOVED******REMOVED***
+          isOpen={showWarning}
+          toggleModal={this.toggle}
+          content={{
             title: 'content-manager.popUpWarning.title',
             message: 'content-manager.popUpWarning.warning.updateAllSettings',
             cancel: 'content-manager.popUpWarning.button.cancel',
             confirm: 'content-manager.popUpWarning.button.confirm',
-    ***REMOVED******REMOVED***
+          }}
           popUpWarningType="danger"
-          onConfirm=***REMOVED***onSubmit***REMOVED***
+          onConfirm={onSubmit}
         />
         <PopUpWarning
-          isOpen=***REMOVED***showWarningCancel***REMOVED***
-          toggleModal=***REMOVED***this.toggleWarningCancel***REMOVED***
-          content=***REMOVED******REMOVED***
+          isOpen={showWarningCancel}
+          toggleModal={this.toggleWarningCancel}
+          content={{
             title: 'content-manager.popUpWarning.title',
             message: 'content-manager.popUpWarning.warning.cancelAllSettings',
             cancel: 'content-manager.popUpWarning.button.cancel',
             confirm: 'content-manager.popUpWarning.button.confirm',
-    ***REMOVED******REMOVED***
+          }}
           popUpWarningType="danger"
-          onConfirm=***REMOVED***this.handleConfirmReset***REMOVED***
+          onConfirm={this.handleConfirmReset}
         />
-        <div className=***REMOVED***cn('row', styles.container)***REMOVED***>
+        <div className={cn('row', styles.container)}>
           <Block
             description="content-manager.containers.SettingsPage.Block.generalSettings.description"
             title="content-manager.containers.SettingsPage.Block.generalSettings.title"
           >
-            <form onSubmit=***REMOVED***this.handleSubmit***REMOVED*** className=***REMOVED***styles.ctmForm***REMOVED***>
+            <form onSubmit={this.handleSubmit} className={styles.ctmForm}>
               <div className="row">
                 <div className="col-md-12">
                   <div className="row">
-                    ***REMOVED***forms.inputs.map(this.renderForm)***REMOVED***
+                    {forms.inputs.map(this.renderForm)}
                   </div>
                 </div>
               </div>
             </form>
           </Block>
-          ***REMOVED***/* LIST */***REMOVED***
+          {/* LIST */}
           <Block
             title="content-manager.containers.SettingsPage.Block.contentType.title"
             description="content-manager.containers.SettingsPage.Block.contentType.description"
           >
-            <div className=***REMOVED***styles.contentTypesWrapper***REMOVED***>
-              ***REMOVED***this.getModels().map(this.renderRow)***REMOVED***
+            <div className={styles.contentTypesWrapper}>
+              {this.getModels().map(this.renderRow)}
             </div>
           </Block>
-          ***REMOVED***/* LIST */***REMOVED***
+          {/* LIST */}
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-SettingsPage.defaultProps = ***REMOVED******REMOVED***;
+SettingsPage.defaultProps = {};
 
-SettingsPage.propTypes = ***REMOVED***
+SettingsPage.propTypes = {
   history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -192,25 +192,25 @@ SettingsPage.propTypes = ***REMOVED***
   onSubmit: PropTypes.func.isRequired,
   schema: PropTypes.object.isRequired,
   submitSuccess: PropTypes.bool.isRequired,
-***REMOVED***;
+};
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators(
-    ***REMOVED***
+    {
       onChange,
       onReset,
       onSubmit,
-***REMOVED***,
+    },
     dispatch,
   )
 );
-const mapStateToProps = createStructuredSelector(***REMOVED***
+const mapStateToProps = createStructuredSelector({
   schema: makeSelectModifiedSchema(),
   submitSuccess: makeSelectSubmitSuccess(),
-***REMOVED***);
+});
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withReducer = injectReducer(***REMOVED*** key: 'settingsPage', reducer ***REMOVED***);
-const withSaga = injectSaga(***REMOVED*** key: 'settingsPage', saga ***REMOVED***);
+const withReducer = injectReducer({ key: 'settingsPage', reducer });
+const withSaga = injectSaga({ key: 'settingsPage', saga });
 
 export default compose(
   withReducer,

@@ -7,8 +7,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import ***REMOVED*** isEmpty, replace ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { isEmpty, replace } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 
 // Temporary picture
 import Button from 'components/Button';
@@ -21,126 +21,126 @@ import styles from './styles.scss';
 import Screenshot from './screenshot.png';
 
 /* eslint-disable react/no-unused-state */
-class PluginCard extends React.Component ***REMOVED***
-  state = ***REMOVED*** isOpen: false, boostrapCol: 'col-lg-4' ***REMOVED***;
+class PluginCard extends React.Component {
+  state = { isOpen: false, boostrapCol: 'col-lg-4' };
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     this.shouldOpenModal(this.props);
     window.addEventListener('resize', this.setBoostrapCol);
     this.setBoostrapCol();
-***REMOVED***
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (nextProps.history.location.hash !== this.props.history.location.hash) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.history.location.hash !== this.props.history.location.hash) {
       this.shouldOpenModal(nextProps);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentWillUnmount() ***REMOVED***
+  componentWillUnmount() {
     window.removeEventListener('resize', this.setBoostrapCol);
-***REMOVED***
+  }
 
-  setBoostrapCol = () => ***REMOVED***
+  setBoostrapCol = () => {
     let boostrapCol = 'col-lg-4';
 
-    if (window.innerWidth > 1680) ***REMOVED***
+    if (window.innerWidth > 1680) {
       boostrapCol = 'col-lg-3';
-***REMOVED***
+    }
 
-    if (window.innerWidth > 2300) ***REMOVED***
+    if (window.innerWidth > 2300) {
       boostrapCol = 'col-lg-2';
-***REMOVED***
+    }
 
-    this.setState(***REMOVED*** boostrapCol ***REMOVED***);
-***REMOVED***
+    this.setState({ boostrapCol });
+  }
 
-  handleClick = () => ***REMOVED***
-    if (this.props.plugin.id !== 'support-us') ***REMOVED***
-      this.props.history.push(***REMOVED***
+  handleClick = () => {
+    if (this.props.plugin.id !== 'support-us') {
+      this.props.history.push({
         pathname: this.props.history.location.pathname,
-        hash: `$***REMOVED***this.props.plugin.id***REMOVED***::description`,
-***REMOVED***);
-***REMOVED*** else ***REMOVED***
+        hash: `${this.props.plugin.id}::description`,
+      });
+    } else {
       this.aTag.click();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleDownloadPlugin = (e) => ***REMOVED***
-    if (!this.props.isAlreadyInstalled && this.props.plugin.id !== 'support-us') ***REMOVED***
+  handleDownloadPlugin = (e) => {
+    if (!this.props.isAlreadyInstalled && this.props.plugin.id !== 'support-us') {
       this.props.downloadPlugin(e);
-***REMOVED*** else if (this.props.plugin.id === 'support-us') ***REMOVED***
+    } else if (this.props.plugin.id === 'support-us') {
       this.aTag.click();
-***REMOVED*** else ***REMOVED***
+    } else {
       this.props.history.push('/list-plugins');
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  shouldOpenModal = (props) => ***REMOVED***
-    this.setState(***REMOVED*** isOpen: !isEmpty(props.history.location.hash) ***REMOVED***);
-***REMOVED***
+  shouldOpenModal = (props) => {
+    this.setState({ isOpen: !isEmpty(props.history.location.hash) });
+  }
 
-  render() ***REMOVED***
+  render() {
     const buttonClass = !this.props.isAlreadyInstalled || this.props.showSupportUsButton ? styles.primary : styles.secondary;
 
     let buttonLabel = this.props.isAlreadyInstalled ? 'app.components.PluginCard.Button.label.install' : 'app.components.PluginCard.Button.label.download';
 
-    if (this.props.showSupportUsButton) ***REMOVED***
+    if (this.props.showSupportUsButton) {
       buttonLabel = 'app.components.PluginCard.Button.label.support';
-***REMOVED***
+    }
 
     const pluginIcon = (
-      <div className=***REMOVED***styles.frame***REMOVED***>
-        <span className=***REMOVED***styles.helper***REMOVED*** />
-        <img src=***REMOVED***`$***REMOVED***this.props.plugin.id === 'support-us' ? logoTShirt : this.props.plugin.logo***REMOVED***`***REMOVED*** alt="icon" />
+      <div className={styles.frame}>
+        <span className={styles.helper} />
+        <img src={`${this.props.plugin.id === 'support-us' ? logoTShirt : this.props.plugin.logo}`} alt="icon" />
       </div>
     );
 
-    const descriptions = ***REMOVED***
-      short: this.props.plugin.id === 'support-us' ? <FormattedMessage id=***REMOVED***this.props.plugin.description.short***REMOVED*** /> : this.props.plugin.description.short,
-      long: this.props.plugin.id === 'support-us' ? <FormattedMessage id=***REMOVED***this.props.plugin.description.long || this.props.plugin.description.short***REMOVED*** /> : this.props.plugin.description.long || this.props.plugin.description.short,
-***REMOVED***;
+    const descriptions = {
+      short: this.props.plugin.id === 'support-us' ? <FormattedMessage id={this.props.plugin.description.short} /> : this.props.plugin.description.short,
+      long: this.props.plugin.id === 'support-us' ? <FormattedMessage id={this.props.plugin.description.long || this.props.plugin.description.short} /> : this.props.plugin.description.long || this.props.plugin.description.short,
+    };
 
     return (
-      <div className=***REMOVED***cn(this.state.boostrapCol, styles.pluginCard)***REMOVED*** onClick=***REMOVED***this.handleClick***REMOVED***>
-        <div className=***REMOVED***styles.wrapper***REMOVED***>
-          <div className=***REMOVED***styles.cardTitle***REMOVED***>
-            ***REMOVED***pluginIcon***REMOVED***
-            <div>***REMOVED***this.props.plugin.name***REMOVED***</div>
+      <div className={cn(this.state.boostrapCol, styles.pluginCard)} onClick={this.handleClick}>
+        <div className={styles.wrapper}>
+          <div className={styles.cardTitle}>
+            {pluginIcon}
+            <div>{this.props.plugin.name}</div>
           </div>
-          <div className=***REMOVED***styles.cardDescription***REMOVED***>
-            ***REMOVED***descriptions.short***REMOVED***
+          <div className={styles.cardDescription}>
+            {descriptions.short}
             &nbsp;<FormattedMessage id="app.components.PluginCard.more-details" />
           </div>
-          <div className=***REMOVED***styles.cardScreenshot***REMOVED*** style=***REMOVED******REMOVED*** backgroundImage: `url($***REMOVED***Screenshot***REMOVED***)` ***REMOVED******REMOVED***>
+          <div className={styles.cardScreenshot} style={{ backgroundImage: `url(${Screenshot})` }}>
 
           </div>
-          <div className=***REMOVED***styles.cardPrice***REMOVED***>
+          <div className={styles.cardPrice}>
             <div>
-              <i className=***REMOVED***`fa fa-$***REMOVED***this.props.plugin.isCompatible ? 'check' : 'times'***REMOVED***`***REMOVED*** />
-              <FormattedMessage id=***REMOVED***`app.components.PluginCard.compatible$***REMOVED***this.props.plugin.id === 'support-us' ? 'Community' : ''***REMOVED***`***REMOVED*** />
+              <i className={`fa fa-${this.props.plugin.isCompatible ? 'check' : 'times'}`} />
+              <FormattedMessage id={`app.components.PluginCard.compatible${this.props.plugin.id === 'support-us' ? 'Community' : ''}`} />
             </div>
-            <div>***REMOVED***this.props.plugin.price !== 0 ? `$***REMOVED***this.props.plugin.price***REMOVED***€` : ''***REMOVED***</div>
+            <div>{this.props.plugin.price !== 0 ? `${this.props.plugin.price}€` : ''}</div>
           </div>
-          <div className=***REMOVED***styles.cardFooter***REMOVED*** onClick=***REMOVED***e => e.stopPropagation()***REMOVED***>
-            <div className=***REMOVED***styles.ratings***REMOVED***>
-              ***REMOVED***/*<StarsContainer ratings=***REMOVED***this.props.plugin.ratings***REMOVED*** />
+          <div className={styles.cardFooter} onClick={e => e.stopPropagation()}>
+            <div className={styles.ratings}>
+              {/*<StarsContainer ratings={this.props.plugin.ratings} />
               <div>
-                <span style=***REMOVED******REMOVED*** fontWeight: '600', color: '#333740' ***REMOVED******REMOVED***>***REMOVED***this.props.plugin.ratings***REMOVED***</span>
-                <span style=***REMOVED******REMOVED*** fontWeight: '500', color: '#666666' ***REMOVED******REMOVED***>/5</span>
+                <span style={{ fontWeight: '600', color: '#333740' }}>{this.props.plugin.ratings}</span>
+                <span style={{ fontWeight: '500', color: '#666666' }}>/5</span>
               </div>
-              */***REMOVED***
+              */}
               <Official />
             </div>
             <div>
               <Button
-                className=***REMOVED***cn(buttonClass, styles.button)***REMOVED***
-                label=***REMOVED***buttonLabel***REMOVED***
-                onClick=***REMOVED***this.handleDownloadPlugin***REMOVED***
+                className={cn(buttonClass, styles.button)}
+                label={buttonLabel}
+                onClick={this.handleDownloadPlugin}
               />
               <a
                 href="https://strapi.io/shop"
-                style=***REMOVED******REMOVED*** display: 'none' ***REMOVED******REMOVED***
-                ref=***REMOVED***(a) => ***REMOVED*** this.aTag = a; ***REMOVED******REMOVED***
+                style={{ display: 'none' }}
+                ref={(a) => { this.aTag = a; }}
                 target="_blank"
               >
                 &nbsp;
@@ -149,34 +149,34 @@ class PluginCard extends React.Component ***REMOVED***
           </div>
         </div>
         <InstallPluginPopup
-          history=***REMOVED***this.props.history***REMOVED***
-          isAlreadyInstalled=***REMOVED***this.props.isAlreadyInstalled***REMOVED***
-          isOpen=***REMOVED***!isEmpty(this.props.history.location.hash) && replace(this.props.history.location.hash.split('::')[0], '#', '') === this.props.plugin.id***REMOVED***
-          plugin=***REMOVED***this.props.plugin***REMOVED***
+          history={this.props.history}
+          isAlreadyInstalled={this.props.isAlreadyInstalled}
+          isOpen={!isEmpty(this.props.history.location.hash) && replace(this.props.history.location.hash.split('::')[0], '#', '') === this.props.plugin.id}
+          plugin={this.props.plugin}
         />
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-PluginCard.defaultProps = ***REMOVED***
+PluginCard.defaultProps = {
   isAlreadyInstalled: false,
-  plugin: ***REMOVED***
+  plugin: {
     description: '',
     id: '',
     name: '',
     price: 0,
     ratings: 5,
-***REMOVED***,
+  },
   showSupportUsButton: false,
-***REMOVED***;
+};
 
-PluginCard.propTypes = ***REMOVED***
+PluginCard.propTypes = {
   downloadPlugin: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   isAlreadyInstalled: PropTypes.bool,
   plugin: PropTypes.object,
   showSupportUsButton: PropTypes.bool,
-***REMOVED***;
+};
 
 export default PluginCard;

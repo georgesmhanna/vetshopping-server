@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED***
+import {
   CompositeDecorator,
   ContentState,
   convertFromHTML,
@@ -15,19 +15,19 @@ import ***REMOVED***
   genKey,
   Entity,
   CharacterMetadata,
-***REMOVED*** from 'draft-js';
-import ***REMOVED*** List, OrderedSet, Repeat, fromJS ***REMOVED*** from 'immutable';
+} from 'draft-js';
+import { List, OrderedSet, Repeat, fromJS } from 'immutable';
 import cn from 'classnames';
-import ***REMOVED*** isEmpty, toArray ***REMOVED*** from 'lodash';
+import { isEmpty, toArray } from 'lodash';
 
 import WysiwygEditor from 'components/WysiwygEditor';
 import converter from './converter';
-import ***REMOVED***
+import {
   findAtomicEntities,
   findLinkEntities,
   findImageEntities,
   findVideoEntities,
-***REMOVED*** from './strategies';
+} from './strategies';
 
 import Image from './image';
 import Link from './link';
@@ -35,8 +35,8 @@ import Video from './video';
 
 import styles from './componentsStyles.scss';
 /* eslint-disable react/no-unused-state */
-function getBlockStyle(block) ***REMOVED***
-  switch (block.getType()) ***REMOVED***
+function getBlockStyle(block) {
+  switch (block.getType()) {
     case 'blockquote':
       return styles.editorBlockquote;
     case 'code-block':
@@ -54,131 +54,131 @@ function getBlockStyle(block) ***REMOVED***
     case 'header-six':
     default:
       return null;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 const decorator = new CompositeDecorator([
-  ***REMOVED***
+  {
     strategy: findLinkEntities,
     component: Link,
-***REMOVED***,
-  ***REMOVED***
+  },
+  {
     strategy: findImageEntities,
     component: Image,
-***REMOVED***,
-  ***REMOVED***
+  },
+  {
     strategy: findVideoEntities,
     component: Video,
-***REMOVED***,
-  ***REMOVED***
+  },
+  {
     strategy: findAtomicEntities,
     component: Link,
-***REMOVED***,
+  },
 ]);
 
-const getBlockSpecForElement = aElement => (***REMOVED***
+const getBlockSpecForElement = aElement => ({
   contentType: 'link',
   aHref: aElement.href,
   aInnerHTML: aElement.innerHTML,
-***REMOVED***);
+});
 
 const elementToBlockSpecElement = element => wrapBlockSpec(getBlockSpecForElement(element));
 
-const wrapBlockSpec = blockSpec => ***REMOVED***
-  if (blockSpec == null) ***REMOVED***
+const wrapBlockSpec = blockSpec => {
+  if (blockSpec == null) {
     return null;
-***REMOVED***
+  }
   const tempEl = document.createElement('blockquote');
   // stringify meta data and insert it as text content of temp HTML element. We will later extract
   // and parse it.
   tempEl.innerText = JSON.stringify(blockSpec);
   return tempEl;
-***REMOVED***;
+};
 
-const replaceElement = (oldEl, newEl) => ***REMOVED***
-  if (!(newEl instanceof HTMLElement)) ***REMOVED***
+const replaceElement = (oldEl, newEl) => {
+  if (!(newEl instanceof HTMLElement)) {
     return;
-***REMOVED***
+  }
   const parentNode = oldEl.parentNode;
   return parentNode.replaceChild(newEl, oldEl);
-***REMOVED***;
+};
 
 const aReplacer = aElement => replaceElement(aElement, elementToBlockSpecElement(aElement));
 
-const createContentBlock = (blockData = ***REMOVED******REMOVED***) => ***REMOVED***
-  const ***REMOVED*** key, type, text, data, inlineStyles, entityData ***REMOVED*** = blockData;
+const createContentBlock = (blockData = {}) => {
+  const { key, type, text, data, inlineStyles, entityData } = blockData;
 
-  let blockSpec = ***REMOVED***
+  let blockSpec = {
     type: type !== null && type !== undefined ? type : 'unstyled',
     text: text !== null && text !== undefined ? text : '',
     key: key !== null && key !== undefined ? key : genKey(),
-***REMOVED***;
+  };
 
-  if (data) ***REMOVED***
+  if (data) {
     blockSpec.data = fromJS(data);
-***REMOVED***
+  }
 
-  if (inlineStyles || entityData) ***REMOVED***
+  if (inlineStyles || entityData) {
     let entityKey;
-    if (entityData) ***REMOVED***
-      const ***REMOVED*** type, mutability, data ***REMOVED*** = entityData;
+    if (entityData) {
+      const { type, mutability, data } = entityData;
       entityKey = Entity.create(type, mutability, data);
-***REMOVED*** else ***REMOVED***
+    } else {
       entityKey = null;
-***REMOVED***
+    }
     const style = OrderedSet(inlineStyles || []);
     const charData = CharacterMetadata.applyEntity(
-      CharacterMetadata.create(***REMOVED*** style, entityKey ***REMOVED***),
+      CharacterMetadata.create({ style, entityKey }),
       entityKey,
     );
     blockSpec.characterList = List(Repeat(charData, text.length));
-***REMOVED***
+  }
   return new ContentBlock(blockSpec);
-***REMOVED***;
+};
 
-class PreviewWysiwyg extends React.PureComponent ***REMOVED***
-  state = ***REMOVED*** editorState: EditorState.createEmpty(), isMounted: false ***REMOVED***;
+class PreviewWysiwyg extends React.PureComponent {
+  state = { editorState: EditorState.createEmpty(), isMounted: false };
 
-  componentDidMount() ***REMOVED***
-    const ***REMOVED*** data ***REMOVED*** = this.props;
-    this.setState(***REMOVED*** isMounted: true ***REMOVED***);
+  componentDidMount() {
+    const { data } = this.props;
+    this.setState({ isMounted: true });
 
-    if (!isEmpty(data)) ***REMOVED***
+    if (!isEmpty(data)) {
       this.previewHTML(data);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   // NOTE: This is not optimal and this lifecycle should be removed
   // I couldn't find a better way to decrease the fullscreen preview's data conversion time
   // Trying with componentDidUpdate didn't work
-  UNSAFE_componentWillUpdate(nextProps, nextState) ***REMOVED***
-    if (nextProps.data !== this.props.data) ***REMOVED***
-      new Promise(resolve => ***REMOVED***
-        setTimeout(() => ***REMOVED***
-          if (nextProps.data === this.props.data && nextState.isMounted) ***REMOVED***
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
+    if (nextProps.data !== this.props.data) {
+      new Promise(resolve => {
+        setTimeout(() => {
+          if (nextProps.data === this.props.data && nextState.isMounted) {
             // I use an handler here to update the state wich is fine since the condition above prevent
             // from entering into an infinite loop
             this.previewHTML(nextProps.data);
-    ***REMOVED***
+          }
           resolve();
-  ***REMOVED*** 300);
-***REMOVED***);
-***REMOVED***
-***REMOVED***
+        }, 300);
+      });
+    }
+  }
 
-  componentWillUnmount() ***REMOVED***
-    this.setState(***REMOVED*** isMounted: false ***REMOVED***);
-***REMOVED***
+  componentWillUnmount() {
+    this.setState({ isMounted: false });
+  }
 
-  getClassName = () => ***REMOVED***
-    if (this.context.isFullscreen) ***REMOVED***
+  getClassName = () => {
+    if (this.context.isFullscreen) {
       return cn(styles.editor, styles.editorFullScreen, styles.fullscreenPreviewEditor);
-***REMOVED***
+    }
 
     return styles.editor;
-***REMOVED***;
+  };
 
-  previewHTML = rawContent => ***REMOVED***
+  previewHTML = rawContent => {
     const initHtml = isEmpty(rawContent) ? '<p></p>' : rawContent;
     const html = new DOMParser().parseFromString(converter.makeHtml(initHtml), 'text/html');
     toArray(html.getElementsByTagName('a')) // Retrieve all the links <a> tags
@@ -191,71 +191,71 @@ class PreviewWysiwyg extends React.PureComponent ***REMOVED***
     // create custom code block
     let blocksFromHTML = convertFromHTML(html.body.innerHTML);
 
-    if (blocksFromHTML.contentBlocks) ***REMOVED***
-      blocksFromHTML = blocksFromHTML.contentBlocks.reduce((acc, block) => ***REMOVED***
-        if (block.getType() === 'blockquote') ***REMOVED***
-          try ***REMOVED***
-            const ***REMOVED*** aHref, aInnerHTML ***REMOVED*** = JSON.parse(block.getText());
-            const entityData = ***REMOVED***
+    if (blocksFromHTML.contentBlocks) {
+      blocksFromHTML = blocksFromHTML.contentBlocks.reduce((acc, block) => {
+        if (block.getType() === 'blockquote') {
+          try {
+            const { aHref, aInnerHTML } = JSON.parse(block.getText());
+            const entityData = {
               type: 'LINK',
               mutability: 'IMMUTABLE',
-              data: ***REMOVED***
+              data: {
                 aHref,
                 aInnerHTML,
-        ***REMOVED***
-      ***REMOVED***;
+              },
+            };
 
             const blockSpec = Object.assign(
-              ***REMOVED*** type: 'atomic', text: ' ', key: block.getKey() ***REMOVED***,
-              ***REMOVED*** entityData ***REMOVED***,
+              { type: 'atomic', text: ' ', key: block.getKey() },
+              { entityData },
             );
             const atomicBlock = createContentBlock(blockSpec); // Create an atomic block so we can identify it easily
 
             return acc.concat([atomicBlock]);
-    ***REMOVED*** catch (err) ***REMOVED***
+          } catch (err) {
             return acc.concat(block);
-    ***REMOVED***
-  ***REMOVED***
+          }
+        }
 
         return acc.concat(block);
-***REMOVED*** []);
+      }, []);
 
       const contentState = ContentState.createFromBlockArray(blocksFromHTML);
 
-      return this.setState(***REMOVED*** editorState: EditorState.createWithContent(contentState, decorator) ***REMOVED***);
-***REMOVED***
+      return this.setState({ editorState: EditorState.createWithContent(contentState, decorator) });
+    }
 
-    return this.setState(***REMOVED*** editorState: EditorState.createEmpty() ***REMOVED***);
-***REMOVED***;
+    return this.setState({ editorState: EditorState.createEmpty() });
+  };
 
-  render() ***REMOVED***
-    const ***REMOVED*** placeholder ***REMOVED*** = this.context;
+  render() {
+    const { placeholder } = this.context;
     // this.previewHTML2(this.props.data);
     return (
-      <div className=***REMOVED***this.getClassName()***REMOVED***>
+      <div className={this.getClassName()}>
         <WysiwygEditor
-          blockStyleFn=***REMOVED***getBlockStyle***REMOVED***
-          editorState=***REMOVED***this.state.editorState***REMOVED***
-          onChange=***REMOVED***() => ***REMOVED******REMOVED******REMOVED***
-          placeholder=***REMOVED***placeholder***REMOVED***
+          blockStyleFn={getBlockStyle}
+          editorState={this.state.editorState}
+          onChange={() => {}}
+          placeholder={placeholder}
         />
-        <input className=***REMOVED***styles.editorInput***REMOVED*** value="" tabIndex="-1" />
+        <input className={styles.editorInput} value="" tabIndex="-1" />
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-PreviewWysiwyg.contextTypes = ***REMOVED***
+PreviewWysiwyg.contextTypes = {
   isFullscreen: PropTypes.bool,
   placeholder: PropTypes.string,
-***REMOVED***;
+};
 
-PreviewWysiwyg.defaultProps = ***REMOVED***
+PreviewWysiwyg.defaultProps = {
   data: '',
-***REMOVED***;
+};
 
-PreviewWysiwyg.propTypes = ***REMOVED***
+PreviewWysiwyg.propTypes = {
   data: PropTypes.string,
-***REMOVED***;
+};
 
 export default PreviewWysiwyg;

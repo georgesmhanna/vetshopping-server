@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "ConfigPage.title": "Cargar - Configuración",
   "ConfigPage.description": "Configurar el plugin de carga",
 
@@ -9,8 +9,8 @@
 
   "EmptyLi.message": "No hay archivos cargados",
 
-  "EntriesNumber.number": "***REMOVED***number***REMOVED*** archivo encontrado",
-  "EntriesNumber.number.plural": "***REMOVED***number***REMOVED*** archivos encontrados",
+  "EntriesNumber.number": "{number} archivo encontrado",
+  "EntriesNumber.number.plural": "{number} archivos encontrados",
 
   "HomePage.title": "Cargar",
   "HomePage.description": "Descubre todos los archivos subidos",
@@ -25,12 +25,12 @@
   "ListHeader.size": "Tamaño",
   "ListHeader.related": "Relacionado con",
 
-  "PluginInputFile.text": "Arrastre y suelte sus archivos en esta área o ***REMOVED***link***REMOVED*** desde un archivo para cargarlo",
+  "PluginInputFile.text": "Arrastre y suelte sus archivos en esta área o {link} desde un archivo para cargarlo",
   "PluginInputFile.link": "buscar",
   "PluginInputFile.loading": "Tus archivos están cargando....",
 
   "notification.config.success": "Se ha actualizado la configuración",
   "notification.delete.success": "El archivo ha sido borrado",
   "notification.dropFile.success": "Su archivo esta cargado",
-  "notification.dropFiles.success": "***REMOVED***number***REMOVED*** archivos han sido cargados"
-***REMOVED***
+  "notification.dropFiles.success": "{number} archivos han sido cargados"
+}

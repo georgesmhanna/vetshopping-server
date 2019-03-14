@@ -1,4 +1,4 @@
-***REMOVED***
+{
     "plugin.description.short": "Отсылка почты.",
     "plugin.description.long": "Отсылка почты.",
     "ConfigPage.title": "Email - Настройки",
@@ -8,5 +8,5 @@
     "EditForm.Input.select.inputDescription": "Письма могут быть отправлены стандартным провайдером (Sendmail), или внешними провайдерами",
     "EditForm.Input.toggle.label": "Активировать отправку писем",
     "notification.config.success": "Настройки успешно обновлены"
-***REMOVED***
+  }
   

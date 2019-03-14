@@ -5,44 +5,44 @@
 */
 
 import React from 'react';
-import ***REMOVED*** get ***REMOVED*** from 'lodash';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import ***REMOVED*** ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle ***REMOVED*** from 'reactstrap';
+import { ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import auth from 'utils/auth';
 
 import styles from './styles.scss';
 
-class Logout extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  state = ***REMOVED*** isOpen: false ***REMOVED***;
+class Logout extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  state = { isOpen: false };
 
-  handleGoTo = () => ***REMOVED***
+  handleGoTo = () => {
     const id = get(auth.getUserInfo(), 'id') || get(auth.getUserInfo(), '_id');
-    this.context.router.history.push(***REMOVED***
-      pathname: `/plugins/content-manager/user/$***REMOVED***id***REMOVED***`,
+    this.context.router.history.push({
+      pathname: `/plugins/content-manager/user/${id}`,
       search: '?redirectUrl=/plugins/content-manager/user/?page=0&limit=0&sort=id&source=users-permissions',
-***REMOVED***);
-***REMOVED***
+    });
+  }
 
-  handleLogout = () => ***REMOVED***
+  handleLogout = () => {
     auth.clearAppStorage();
     this.context.router.history.push('/plugins/users-permissions/auth/login');
-***REMOVED***
+  }
 
-  toggle = () => this.setState(***REMOVED*** isOpen: !this.state.isOpen ***REMOVED***);
+  toggle = () => this.setState({ isOpen: !this.state.isOpen });
 
-  render() ***REMOVED***
+  render() {
     return (
-      <div className=***REMOVED***styles.logout***REMOVED***>
-        <ButtonDropdown isOpen=***REMOVED***this.state.isOpen***REMOVED*** toggle=***REMOVED***this.toggle***REMOVED***>
+      <div className={styles.logout}>
+        <ButtonDropdown isOpen={this.state.isOpen} toggle={this.toggle}>
           <DropdownToggle>
-            ***REMOVED***get(auth.getUserInfo(), 'username')***REMOVED***
-            <i className="fa fa-caret-down" alt=***REMOVED***`$***REMOVED***this.state.isOpen***REMOVED***`***REMOVED*** />
+            {get(auth.getUserInfo(), 'username')}
+            <i className="fa fa-caret-down" alt={`${this.state.isOpen}`} />
           </DropdownToggle>
-          <DropdownMenu className=***REMOVED***styles.dropDownContent***REMOVED***>
-            <DropdownItem onClick=***REMOVED***this.handleGoTo***REMOVED*** className=***REMOVED***styles.item***REMOVED***>
+          <DropdownMenu className={styles.dropDownContent}>
+            <DropdownItem onClick={this.handleGoTo} className={styles.item}>
               Profile
             </DropdownItem>
-            <DropdownItem onClick=***REMOVED***this.handleLogout***REMOVED***>
+            <DropdownItem onClick={this.handleLogout}>
               Logout
               <i className="fa fa-sign-out" />
             </DropdownItem>
@@ -50,12 +50,12 @@ class Logout extends React.Component ***REMOVED*** // eslint-disable-line react/
         </ButtonDropdown>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
 
-Logout.contextTypes = ***REMOVED***
+Logout.contextTypes = {
   router: PropTypes.object,
-***REMOVED***;
+};
 
 export default Logout;

@@ -1,33 +1,33 @@
-***REMOVED***
-  "csrf": ***REMOVED***
+{
+  "csrf": {
     "enabled": false,
     "key": "_csrf",
     "secret": "_csrfSecret"
-***REMOVED***,
-  "csp": ***REMOVED***
+  },
+  "csp": {
     "enabled": false,
-    "policy": ***REMOVED***
+    "policy": {
       "default-src": "'self'"
-***REMOVED***
-***REMOVED***,
-  "p3p": ***REMOVED***
+    }
+  },
+  "p3p": {
     "enabled": false,
     "value": ""
-***REMOVED***,
-  "hsts": ***REMOVED***
+  },
+  "hsts": {
     "enabled": false,
     "maxAge": 31536000,
     "includeSubDomains": true
-***REMOVED***,
-  "xframe": ***REMOVED***
+  },
+  "xframe": {
     "enabled": false,
     "value": "SAMEORIGIN"
-***REMOVED***,
-  "xss": ***REMOVED***
+  },
+  "xss": {
     "enabled": false,
     "mode": "block"
-***REMOVED***,
-  "cors": ***REMOVED***
+  },
+  "cors": {
     "enabled": true,
     "origin": "*",
     "expose": [
@@ -51,10 +51,10 @@
       "X-Frame-Options",
       "Origin"
     ]
-***REMOVED***,
-  "ip": ***REMOVED***
+  },
+  "ip": {
     "enabled": false,
     "whiteList": [],
     "blackList": []
-***REMOVED***
-***REMOVED***
+  }
+}

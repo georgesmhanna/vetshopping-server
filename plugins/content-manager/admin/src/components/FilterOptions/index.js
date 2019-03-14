@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** get ***REMOVED*** from 'lodash';
+import { get } from 'lodash';
 import cn from 'classnames';
 
 import InputSelect from 'components/InputSelect/Loadable';
@@ -19,14 +19,14 @@ import styles from './styles.scss';
 
 import getFilters from './filterTypes';
 
-const defaultInputStyle = ***REMOVED*** width: '210px', marginRight: '10px', paddingTop: '4px' ***REMOVED***;
-const midSelectStyle = ***REMOVED*** minWidth: '130px', maxWidth: '200px', marginLeft: '10px', marginRight: '10px' ***REMOVED***;
+const defaultInputStyle = { width: '210px', marginRight: '10px', paddingTop: '4px' };
+const midSelectStyle = { minWidth: '130px', maxWidth: '200px', marginLeft: '10px', marginRight: '10px' };
 
-function FilterOptions(***REMOVED*** filter, filterToFocus, index, onChange, onClickAdd, onClickRemove, schema, show, showAddButton ***REMOVED***) ***REMOVED***
-  const selectStyle = ***REMOVED*** minWidth: '170px', maxWidth: '200px' ***REMOVED***;
+function FilterOptions({ filter, filterToFocus, index, onChange, onClickAdd, onClickRemove, schema, show, showAddButton }) {
+  const selectStyle = { minWidth: '170px', maxWidth: '200px' };
   const attrType = get(schema, [filter.attr, 'type'], 'string');
   const inputStyle = attrType === 'boolean' ?
-    Object.assign(selectStyle, ***REMOVED*** minWidth: '100px'***REMOVED***)
+    Object.assign(selectStyle, { minWidth: '100px'})
     : defaultInputStyle;
 
   // This component is needed in order to add the date icon inside the InputDate
@@ -37,63 +37,63 @@ function FilterOptions(***REMOVED*** filter, filterToFocus, index, onChange, onC
     .filter(x => schema[x].type !== 'json');
 
   return (
-    <Div borderLeft=***REMOVED***!showAddButton || get(filter, 'value', '') !== ''***REMOVED***>
-      <div className=***REMOVED***styles.filterOptionsWrapper***REMOVED***>
-        <Remove type="button" onClick=***REMOVED***() => onClickRemove(index)***REMOVED*** />
+    <Div borderLeft={!showAddButton || get(filter, 'value', '') !== ''}>
+      <div className={styles.filterOptionsWrapper}>
+        <Remove type="button" onClick={() => onClickRemove(index)} />
         <InputSelect
-          onChange=***REMOVED***onChange***REMOVED***
-          name=***REMOVED***`$***REMOVED***index***REMOVED***.attr`***REMOVED***
-          value=***REMOVED***get(filter, 'attr', '')***REMOVED***
-          selectOptions=***REMOVED***selectOptionsSchema***REMOVED***
-          style=***REMOVED***selectStyle***REMOVED***
+          onChange={onChange}
+          name={`${index}.attr`}
+          value={get(filter, 'attr', '')}
+          selectOptions={selectOptionsSchema}
+          style={selectStyle}
         />
         <InputSelect
-          onChange=***REMOVED***onChange***REMOVED***
-          name=***REMOVED***`$***REMOVED***index***REMOVED***.filter`***REMOVED***
-          value=***REMOVED***get(filter, 'filter', '=')***REMOVED***
-          selectOptions=***REMOVED***getFilters(attrType)***REMOVED***
-          style=***REMOVED***midSelectStyle***REMOVED***
+          onChange={onChange}
+          name={`${index}.filter`}
+          value={get(filter, 'filter', '=')}
+          selectOptions={getFilters(attrType)}
+          style={midSelectStyle}
         />
-        <div className=***REMOVED***cn(isDate ? styles.filterOptionsInputWrapper : '')***REMOVED***>
-          ***REMOVED***show && (
+        <div className={cn(isDate ? styles.filterOptionsInputWrapper : '')}>
+          {show && (
             <InputWithAutoFocus
-              filter=***REMOVED***filter***REMOVED***
-              filterToFocus=***REMOVED***filterToFocus***REMOVED***
-              index=***REMOVED***index***REMOVED***
-              inputStyle=***REMOVED***inputStyle***REMOVED***
-              name=***REMOVED***`$***REMOVED***index***REMOVED***.value`***REMOVED***
-              onChange=***REMOVED***onChange***REMOVED***
-              schema=***REMOVED***schema***REMOVED***
-              style=***REMOVED***inputStyle***REMOVED***
-              value=***REMOVED***get(filter, 'value')***REMOVED***
+              filter={filter}
+              filterToFocus={filterToFocus}
+              index={index}
+              inputStyle={inputStyle}
+              name={`${index}.value`}
+              onChange={onChange}
+              schema={schema}
+              style={inputStyle}
+              value={get(filter, 'value')}
             />
-          )***REMOVED***
+          )}
         </div>
-        ***REMOVED***showAddButton && (
+        {showAddButton && (
           <Add
-            onClick=***REMOVED***onClickAdd***REMOVED***
-            style=***REMOVED******REMOVED*** marginLeft: isBool? '14px': '6px' ***REMOVED******REMOVED***
+            onClick={onClickAdd}
+            style={{ marginLeft: isBool? '14px': '6px' }}
             type="button"
           />
-        )***REMOVED***
+        )}
       </div>
     </Div>
   );
-***REMOVED***
+}
 
-FilterOptions.defaultProps = ***REMOVED***
-  filter: ***REMOVED******REMOVED***,
+FilterOptions.defaultProps = {
+  filter: {},
   filterToFocus: null,
   index: 0,
-  onChange: () => ***REMOVED******REMOVED***,
-  onClickAdd: () => ***REMOVED******REMOVED***,
-  onClickRemove: () => ***REMOVED******REMOVED***,
-  schema: ***REMOVED******REMOVED***,
+  onChange: () => {},
+  onClickAdd: () => {},
+  onClickRemove: () => {},
+  schema: {},
   show: false,
   showAddButton: false,
-***REMOVED***;
+};
 
-FilterOptions.propTypes = ***REMOVED***
+FilterOptions.propTypes = {
   filter: PropTypes.object,
   filterToFocus: PropTypes.oneOfType([
     PropTypes.object,
@@ -106,6 +106,6 @@ FilterOptions.propTypes = ***REMOVED***
   schema: PropTypes.object,
   show: PropTypes.bool,
   showAddButton: PropTypes.bool,
-***REMOVED***;
+};
 
 export default FilterOptions;

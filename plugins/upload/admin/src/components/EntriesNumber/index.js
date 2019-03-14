@@ -6,26 +6,26 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import styles from './styles.scss';
 
-function EntriesNumber(***REMOVED*** number ***REMOVED***) ***REMOVED***
+function EntriesNumber({ number }) {
   const id = number > 1 ? 'number.plural' : 'number';
 
   return (
-    <div className=***REMOVED***styles.entriesNumberContainer***REMOVED***>
-      <FormattedMessage id=***REMOVED***`upload.EntriesNumber.$***REMOVED***id***REMOVED***`***REMOVED*** values=***REMOVED******REMOVED*** number ***REMOVED******REMOVED*** />
+    <div className={styles.entriesNumberContainer}>
+      <FormattedMessage id={`upload.EntriesNumber.${id}`} values={{ number }} />
     </div>
   );
-***REMOVED***
+}
 
-EntriesNumber.defaultProps = ***REMOVED***
+EntriesNumber.defaultProps = {
   number: 0,
-***REMOVED***;
+};
 
-EntriesNumber.propTypes = ***REMOVED***
+EntriesNumber.propTypes = {
   number: PropTypes.number,
-***REMOVED***;
+};
 
 export default EntriesNumber;

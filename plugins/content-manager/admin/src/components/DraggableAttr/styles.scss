@@ -1,4 +1,4 @@
-.draggableAttr ***REMOVED***
+.draggableAttr {
   position: relative;
   height: 30px;
   width: 100%;
@@ -11,48 +11,48 @@
   font-size: 13px;
   border: 1px solid #E3E9F3;
   border-radius: 2px;
-  &:hover***REMOVED***
+  &:hover{
     cursor: move;
-***REMOVED***
-  > img ***REMOVED***
+  }
+  > img {
     max-width: 8px;
     margin-right: 10px;
     margin-top: -1px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.draggableAttrOvered ***REMOVED***
+.draggableAttrOvered {
   border: 1px solid #AED4FB!important;
-***REMOVED***
+}
 
-.editingAttr ***REMOVED***
+.editingAttr {
   background: #E6F0FB!important;
   border: 1px solid #AED4FB!important;
   color: #007EFF;
   font-weight: 500;
-***REMOVED***
+}
 
-.info ***REMOVED***
+.info {
   position: absolute;
   top: 0;
   right: 40px;
   color: #B4B6BA;
   font-style: italic;
-***REMOVED***
+}
 
-.infoLabel ***REMOVED***
+.infoLabel {
   position: absolute;
   top: 0;
   right: 40px;
   color: #858B9A;
   font-weight: 400;
-***REMOVED***
+}
 
-.infoLabelHover***REMOVED***
+.infoLabelHover{
   color: #007EFF; 
-***REMOVED***
+}
 
-.dragged ***REMOVED***
+.dragged {
   position: relative;
   height: 30px !important;
   width: 100%;
@@ -67,13 +67,13 @@
   border-radius: 2px;
   cursor: move !important;
 
-  > i ***REMOVED***
+  > i {
     margin-right: 10px;
     font-size: 10px;
     color: #B3B5B9;
-***REMOVED***
+  }
 
-  > span:last-child ***REMOVED***
+  > span:last-child {
     background:#AED4FB;
-***REMOVED***
-***REMOVED***
+  }
+}

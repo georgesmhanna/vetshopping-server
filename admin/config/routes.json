@@ -1,52 +1,52 @@
-***REMOVED***
+{
   "routes": [
-    ***REMOVED***
+    {
       "method": "GET",
       "path": "/plugins",
       "handler": "Admin.plugins",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/currentEnvironment",
       "handler": "Admin.getCurrentEnvironment",
       "policies": []
-***REMOVED***,
-    ***REMOVED***
+    },
+    {
       "method": "GET",
       "path": "/gaConfig",
       "handler": "Admin.getGaConfig",
       "policies": []
-***REMOVED***,
-    ***REMOVED***
+    },
+    {
       "method": "GET",
       "path": "/strapiVersion",
       "handler": "Admin.getStrapiVersion",
       "policies": []
-***REMOVED***,
-    ***REMOVED***
+    },
+    {
       "method": "GET",
       "path": "/layout",
       "handler": "Admin.getLayout",
       "policies": []
-***REMOVED***,
-    ***REMOVED***
+    },
+    {
       "method": "POST",
       "path": "/plugins/install",
       "handler": "Admin.installPlugin",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "DELETE",
       "path": "/plugins/uninstall/:plugin",
       "handler": "Admin.uninstallPlugin",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***
+      }
+    }
   ]
-***REMOVED***
+}

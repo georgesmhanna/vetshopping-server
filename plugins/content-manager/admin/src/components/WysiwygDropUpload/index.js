@@ -8,19 +8,19 @@ import React from 'react';
 import styles from './styles.scss';
 
 /* eslint-disable jsx-a11y/label-has-for */
-const WysiwygDropUpload = (props) => ***REMOVED***
+const WysiwygDropUpload = (props) => {
   return (
     <label
-      ***REMOVED***...props***REMOVED***
-      className=***REMOVED***styles.wysiwygDropUpload***REMOVED***
+      {...props}
+      className={styles.wysiwygDropUpload}
     >
       <input
-        onChange=***REMOVED***() => ***REMOVED******REMOVED******REMOVED***
+        onChange={() => {}}
         type="file"
         tabIndex="-1"
       />
     </label>
   );
-***REMOVED***;
+};
 
 export default WysiwygDropUpload;

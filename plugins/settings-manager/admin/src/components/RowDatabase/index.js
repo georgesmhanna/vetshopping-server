@@ -6,132 +6,132 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 // modal
-import ***REMOVED*** Button, Modal, ModalHeader, ModalBody, ModalFooter ***REMOVED*** from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import PopUpForm from 'components/PopUpForm';
 import PopUpWarning from 'components/PopUpWarning';
 import styles from 'components/List/styles.scss';
 
 /* eslint-disable react/require-default-props  */
-class RowDatabase extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+class RowDatabase extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
     super(props);
-    this.state = ***REMOVED***
+    this.state = {
       modal: false,
       warning: false,
       loader: false,
-***REMOVED***;
-***REMOVED***
+    };
+  }
 
-  deleteDatabase = () => ***REMOVED***
-    this.setState(***REMOVED*** warning: !this.state.warning ***REMOVED***);
+  deleteDatabase = () => {
+    this.setState({ warning: !this.state.warning });
     this.props.onDeleteDatabase(this.props.data.name);
-***REMOVED***
+  }
 
-  handleShowDatabaseModal = (e) => ***REMOVED***
-    if (e.target.id !== 'trash') ***REMOVED***
-      this.setState(***REMOVED*** modal: !this.state.modal ***REMOVED***);
+  handleShowDatabaseModal = (e) => {
+    if (e.target.id !== 'trash') {
+      this.setState({ modal: !this.state.modal });
       this.props.getDatabase(this.props.data.name);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleSubmit = (e) => ***REMOVED***
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.setState(***REMOVED*** modal: false ***REMOVED***);
+    this.setState({ modal: false });
     this.props.onSubmit(this.props.data.name);
-***REMOVED***
+  }
 
-  handleToggle = () => ***REMOVED***
-    this.setState(***REMOVED*** modal: !this.state.modal ***REMOVED***);
-***REMOVED***
+  handleToggle = () => {
+    this.setState({ modal: !this.state.modal });
+  }
 
-  handleToggleWarning = () => this.setState(***REMOVED*** warning: !this.state.warning ***REMOVED***);
+  handleToggleWarning = () => this.setState({ warning: !this.state.warning });
 
-  toggle = () => ***REMOVED***
-    this.setState(***REMOVED*** modal: !this.state.modal ***REMOVED***);
-***REMOVED***
+  toggle = () => {
+    this.setState({ modal: !this.state.modal });
+  }
 
-  toggleWarning = () => this.setState(***REMOVED*** warning: !this.state.warning ***REMOVED***);
+  toggleWarning = () => this.setState({ warning: !this.state.warning });
 
-  render() ***REMOVED***
-    const content = ***REMOVED***
+  render() {
+    const content = {
       message: this.props.data.isUsed ? 'settings-manager.popUpWarning.databases.danger.message' : 'settings-manager.popUpWarning.databases.delete.message',
       confirm: this.props.data.isUsed ? 'settings-manager.popUpWarning.danger.ok.message' : '',
-***REMOVED***;
+    };
     const loader = this.state.loader
-      ? <Button onClick=***REMOVED***this.handleSubmit***REMOVED*** className=***REMOVED***styles.primary***REMOVED*** disabled=***REMOVED***this.state.loader***REMOVED***><p className=***REMOVED***styles.saving***REMOVED***><span>.</span><span>.</span><span>.</span></p></Button>
+      ? <Button onClick={this.handleSubmit} className={styles.primary} disabled={this.state.loader}><p className={styles.saving}><span>.</span><span>.</span><span>.</span></p></Button>
       : (
         <FormattedMessage id="settings-manager.form.button.save">
-          ***REMOVED***(message) => (
-            <Button onClick=***REMOVED***this.handleSubmit***REMOVED*** className=***REMOVED***styles.primary***REMOVED***>***REMOVED***message***REMOVED***</Button>
-          )***REMOVED***
+          {(message) => (
+            <Button onClick={this.handleSubmit} className={styles.primary}>{message}</Button>
+          )}
         </FormattedMessage>
       );
 
     return (
-      <li className=***REMOVED***`$***REMOVED***styles.databaseFont***REMOVED***`***REMOVED*** style=***REMOVED******REMOVED*** cursor: 'pointer'***REMOVED******REMOVED*** onClick=***REMOVED***this.handleShowDatabaseModal***REMOVED***>
-        <div className=***REMOVED***styles.flexLi***REMOVED***>
-          <div className=***REMOVED***styles.flexed***REMOVED***>
-            <div className=***REMOVED***styles.squared***REMOVED*** style=***REMOVED******REMOVED*** backgroundColor: this.props.data.color ***REMOVED******REMOVED***>
-              ***REMOVED***this.props.data.letter***REMOVED***
+      <li className={`${styles.databaseFont}`} style={{ cursor: 'pointer'}} onClick={this.handleShowDatabaseModal}>
+        <div className={styles.flexLi}>
+          <div className={styles.flexed}>
+            <div className={styles.squared} style={{ backgroundColor: this.props.data.color }}>
+              {this.props.data.letter}
             </div>
-            <div className=***REMOVED***styles.label***REMOVED*** style=***REMOVED******REMOVED*** fontWeight: '500'***REMOVED******REMOVED***>***REMOVED***this.props.data.name***REMOVED***</div>
+            <div className={styles.label} style={{ fontWeight: '500'}}>{this.props.data.name}</div>
           </div>
-          <div className=***REMOVED***styles.dbHost***REMOVED***>
-            ***REMOVED***this.props.data.host***REMOVED***
+          <div className={styles.dbHost}>
+            {this.props.data.host}
           </div>
-          <div className=***REMOVED***styles.centered***REMOVED*** style=***REMOVED******REMOVED*** width: '15rem'***REMOVED******REMOVED***>***REMOVED***this.props.data.database***REMOVED***</div>
-          <div className=***REMOVED***styles.flexed***REMOVED*** style=***REMOVED******REMOVED*** minWidth: '3rem', justifyContent: 'space-between'***REMOVED******REMOVED***>
-            <div className=***REMOVED***styles.ico***REMOVED***><i className="fa fa-pencil" id=***REMOVED***this.props.data.name***REMOVED*** /></div>
-            <div className=***REMOVED***`$***REMOVED***styles.leftSpaced***REMOVED*** $***REMOVED***styles.ico***REMOVED***`***REMOVED***><i id="trash" className="fa fa-trash" onClick=***REMOVED***this.handleToggleWarning***REMOVED*** /></div>
+          <div className={styles.centered} style={{ width: '15rem'}}>{this.props.data.database}</div>
+          <div className={styles.flexed} style={{ minWidth: '3rem', justifyContent: 'space-between'}}>
+            <div className={styles.ico}><i className="fa fa-pencil" id={this.props.data.name} /></div>
+            <div className={`${styles.leftSpaced} ${styles.ico}`}><i id="trash" className="fa fa-trash" onClick={this.handleToggleWarning} /></div>
           </div>
         </div>
         <div>
-          <Modal isOpen=***REMOVED***this.state.modal***REMOVED*** toggle=***REMOVED***this.toggle***REMOVED*** className=***REMOVED***styles.modalPosition***REMOVED***>
-            <ModalHeader toggle=***REMOVED***this.toggle***REMOVED*** className=***REMOVED***`$***REMOVED***styles.noBorder***REMOVED*** $***REMOVED***styles.padded***REMOVED*** $***REMOVED***styles.mHeader***REMOVED***`***REMOVED***>
+          <Modal isOpen={this.state.modal} toggle={this.toggle} className={styles.modalPosition}>
+            <ModalHeader toggle={this.toggle} className={`${styles.noBorder} ${styles.padded} ${styles.mHeader}`}>
               Databases
             </ModalHeader>
-            <div className=***REMOVED***styles.bordered***REMOVED*** />
+            <div className={styles.bordered} />
             <form autoComplete="off">
-              <ModalBody className=***REMOVED***styles.modalBody***REMOVED***>
-                <div className=***REMOVED***styles.spacerSmall***REMOVED*** />
-                <PopUpForm ***REMOVED***...this.props***REMOVED*** />
+              <ModalBody className={styles.modalBody}>
+                <div className={styles.spacerSmall} />
+                <PopUpForm {...this.props} />
               </ModalBody>
-              <ModalFooter className=***REMOVED***`$***REMOVED***styles.noBorder***REMOVED*** $***REMOVED***styles.modalFooter***REMOVED***`***REMOVED***>
+              <ModalFooter className={`${styles.noBorder} ${styles.modalFooter}`}>
                 <FormattedMessage id="settings-manager.form.button.cancel">
-                  ***REMOVED***(message) => (
-                    <Button onClick=***REMOVED***this.handleToggle***REMOVED*** className=***REMOVED***styles.secondary***REMOVED***>***REMOVED***message***REMOVED***</Button>
-                  )***REMOVED***
+                  {(message) => (
+                    <Button onClick={this.handleToggle} className={styles.secondary}>{message}</Button>
+                  )}
                 </FormattedMessage>
-                ***REMOVED***loader***REMOVED***
+                {loader}
               </ModalFooter>
             </form>
           </Modal>
         </div>
         <div>
           <PopUpWarning
-            isOpen=***REMOVED***this.state.warning***REMOVED***
-            toggleModal=***REMOVED***this.toggleWarning***REMOVED***
-            onConfirm=***REMOVED***this.props.data.isUsed ? this.toggleWarning : this.deleteDatabase***REMOVED***
-            content=***REMOVED***content***REMOVED***
-            popUpWarningType=***REMOVED***this.props.data.isUsed ? 'danger' : 'warning'***REMOVED***
-            onlyConfirmButton=***REMOVED***this.props.data.isUsed***REMOVED***
+            isOpen={this.state.warning}
+            toggleModal={this.toggleWarning}
+            onConfirm={this.props.data.isUsed ? this.toggleWarning : this.deleteDatabase}
+            content={content}
+            popUpWarningType={this.props.data.isUsed ? 'danger' : 'warning'}
+            onlyConfirmButton={this.props.data.isUsed}
           />
         </div>
       </li>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-RowDatabase.propTypes = ***REMOVED***
+RowDatabase.propTypes = {
   data: PropTypes.object,
   error: PropTypes.bool,
   formErrors: PropTypes.array,
   getDatabase: PropTypes.func,
   onDeleteDatabase: PropTypes.func,
   onSubmit: PropTypes.func,
-***REMOVED***;
+};
 
 export default RowDatabase;

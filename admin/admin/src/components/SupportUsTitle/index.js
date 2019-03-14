@@ -4,16 +4,16 @@
  */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import styles from './styles.scss';
 
-function SupportUsTitle() ***REMOVED***
+function SupportUsTitle() {
   return (
     <FormattedMessage id="app.components.HomePage.support">
-      ***REMOVED***message => <span className=***REMOVED***styles.supportUsTitle***REMOVED***>***REMOVED***message***REMOVED***</span>***REMOVED***
+      {message => <span className={styles.supportUsTitle}>{message}</span>}
     </FormattedMessage>
   );
-***REMOVED***
+}
 
 export default SupportUsTitle;

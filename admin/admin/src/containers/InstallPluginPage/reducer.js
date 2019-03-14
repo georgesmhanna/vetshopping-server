@@ -4,17 +4,17 @@
  *
  */
 
-import ***REMOVED*** fromJS, List ***REMOVED*** from 'immutable';
-import ***REMOVED***
+import { fromJS, List } from 'immutable';
+import {
   DOWNLOAD_PLUGIN,
   DOWNLOAD_PLUGIN_ERROR,
   DOWNLOAD_PLUGIN_SUCCEEDED,
   GET_AVAILABLE_PLUGINS_SUCCEEDED,
   GET_INSTALLED_PLUGINS_SUCCEEDED,
   ON_CHANGE,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   availablePlugins: List([]),
   installedPlugins: List([]),
   blockApp: false,
@@ -22,10 +22,10 @@ const initialState = fromJS(***REMOVED***
   didFetchInstalledPlugins: false,
   pluginToDownload: '',
   search: '',
-***REMOVED***);
+});
 
-function installPluginPageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function installPluginPageReducer(state = initialState, action) {
+  switch (action.type) {
     case DOWNLOAD_PLUGIN:
       return state
         .set('blockApp', true)
@@ -50,7 +50,7 @@ function installPluginPageReducer(state = initialState, action) ***REMOVED***
       return state.updateIn(action.keys, () => action.value);
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default installPluginPageReducer;

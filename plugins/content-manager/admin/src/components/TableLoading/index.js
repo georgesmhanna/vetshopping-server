@@ -8,19 +8,19 @@ import LoadingIndicator from 'components/LoadingIndicator';
 
 import styles from './styles.scss';
 
-function TableLoading(***REMOVED*** colspan ***REMOVED***) ***REMOVED***
+function TableLoading({ colspan }) {
   return (
-    <tr className=***REMOVED***styles.tableLoading***REMOVED***>
-      <td colSpan=***REMOVED***colspan + 1***REMOVED***>
+    <tr className={styles.tableLoading}>
+      <td colSpan={colspan + 1}>
         <LoadingIndicator />
       </td>
     </tr>
   );
-***REMOVED***
+}
 
 
-TableLoading.propTypes = ***REMOVED***
+TableLoading.propTypes = {
   colspan: PropTypes.number.isRequired,
-***REMOVED***;
+};
 
 export default TableLoading;

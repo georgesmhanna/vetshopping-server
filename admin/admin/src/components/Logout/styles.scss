@@ -1,13 +1,13 @@
-.logout ***REMOVED***
+.logout {
   position: relative;
   min-width: 19rem;
   -webkit-font-smoothing: antialiased;
-  > div ***REMOVED***
+  > div {
     height: 6rem;
     width: 100%;
     line-height: 5.8rem;
     z-index: 999;
-    > button ***REMOVED***
+    > button {
       width: 100%;
       padding-right: 20px;
       background: transparent;
@@ -20,23 +20,23 @@
       cursor: pointer;
       transition: background .2s ease-out;
 
-      &:hover, &:focus, &:active ***REMOVED***
+      &:hover, &:focus, &:active {
         color: #333740;
         background-color: #FAFAFB !important;
-***REMOVED***
+      }
 
-      > i ***REMOVED***
+      > i {
         margin-left: 10px;
         transition: transform .3s ease-out;
 
-        &[alt="true"] ***REMOVED***
+        &[alt="true"] {
           transform: rotateX(180deg);
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+      }
+    }
+  }
 
-  &:after ***REMOVED***
+  &:after {
     position: absolute;
     right: -1px;
     top: calc(50% - 10px);
@@ -46,14 +46,14 @@
     height: 20px;
     border-left: 1px solid #F3F4F4;
     transition: opacity .2s ease-out;
-***REMOVED***
+  }
 
-  &:hover:after ***REMOVED***
+  &:hover:after {
     opacity: 0;
-***REMOVED***
+  }
 
-***REMOVED***
-.dropDownContent ***REMOVED***
+}
+.dropDownContent {
   left: auto !important;
   min-width: 100%!important;
   margin: 0 !important;
@@ -66,7 +66,7 @@
   overflow: hidden;
   box-shadow: 0 1px 4px 0px rgba(40, 42, 49, 0.05);
 
-  &:before***REMOVED***
+  &:before{
     content: '';
     position: absolute;
     top: -3px;
@@ -74,40 +74,40 @@
     width: calc(100% + 1px);
     height: 3px;
     box-shadow: 0 1px 2px 0 rgba(40, 42, 49, 0.16);
-***REMOVED***
+  }
 
-  > button ***REMOVED***
+  > button {
     height: 40px;
     padding: 0px 15px;
     line-height: 40px;
-    &:hover, &:focus, &:active ***REMOVED***
+    &:hover, &:focus, &:active {
       background-color: #FAFAFB!important;
       border-radius: 0px;
       cursor: pointer;
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  > button:first-child ***REMOVED***
+  > button:first-child {
     height: 44px;
     line-height: 48px;
-    &:hover, &:active ***REMOVED***
+    &:hover, &:active {
       color: #333740;
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  > button:not(:first-child) ***REMOVED***
+  > button:not(:first-child) {
     color: #F75B1D;
-    > i ***REMOVED***
+    > i {
       margin-left: 10px
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.item ***REMOVED***
-  &:active ***REMOVED***
+.item {
+  &:active {
     color: black;
-***REMOVED***
-  &:hover ***REMOVED***
+  }
+  &:hover {
     background-color: #FAFAFB !important;
-***REMOVED***
-***REMOVED***
+  }
+}

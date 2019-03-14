@@ -1,8 +1,8 @@
-***REMOVED***
-  "gzip": ***REMOVED***
+{
+  "gzip": {
     "enabled": true
-***REMOVED***,
-  "responseTime": ***REMOVED***
+  },
+  "responseTime": {
     "enabled": false
-***REMOVED***
-***REMOVED***
+  }
+}

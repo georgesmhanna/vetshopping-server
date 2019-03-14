@@ -6,8 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** capitalize, get, has ***REMOVED*** from 'lodash';
+import { FormattedMessage } from 'react-intl';
+import { capitalize, get, has } from 'lodash';
 
 import PopUpWarning from 'components/PopUpWarning';
 import IcoContainer from 'components/IcoContainer';
@@ -28,11 +28,11 @@ import styles from './styles.scss';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-curly-brace-presence */
-class AttributeRow extends React.Component ***REMOVED***
+class AttributeRow extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+  constructor(props) {
     super(props);
-    this.asset = ***REMOVED***
+    this.asset = {
       boolean: IcoBoolean,
       date: IcoDate,
       media: IcoImage,
@@ -47,30 +47,30 @@ class AttributeRow extends React.Component ***REMOVED***
       email: IcoEmail,
       password: IcoPassword,
       enumeration: IcoEnum,
-***REMOVED***;
-    this.state = ***REMOVED***
+    };
+    this.state = {
       showWarning: false,
-***REMOVED***;
-***REMOVED***
+    };
+  }
 
   handleEdit = () => this.props.onEditAttribute(this.props.row.name);
 
-  handleDelete = () => ***REMOVED***
+  handleDelete = () => {
     this.props.onDelete(this.props.row.name);
-    this.setState(***REMOVED*** showWarning: false ***REMOVED***);
-***REMOVED***;
+    this.setState({ showWarning: false });
+  };
 
-  handleShowModalWarning = () => this.setState(***REMOVED*** showWarning: !this.state.showWarning ***REMOVED***);
+  handleShowModalWarning = () => this.setState({ showWarning: !this.state.showWarning });
 
-  toggleModalWarning = () => this.setState(***REMOVED*** showWarning: !this.state.showWarning ***REMOVED***);
+  toggleModalWarning = () => this.setState({ showWarning: !this.state.showWarning });
 
-  renderAttributesBox = () => ***REMOVED***
+  renderAttributesBox = () => {
     const attributeType = this.props.row.params.type || 'relation';
     const src = this.asset[attributeType];
-    return <img src=***REMOVED***src***REMOVED*** alt="ico" />;
-***REMOVED***;
+    return <img src={src} alt="ico" />;
+  };
 
-  render() ***REMOVED***
+  render() {
     const isNotEditable =
       has(this.props.row.params, 'configurable') && !this.props.row.params.configurable;
     const type =
@@ -79,67 +79,67 @@ class AttributeRow extends React.Component ***REMOVED***
         ? 'WYSIWYG'
         : this.props.row.params.type;
     const relationType = this.props.row.params.type ? (
-      <FormattedMessage id=***REMOVED***`content-type-builder.attribute.$***REMOVED***type***REMOVED***`***REMOVED*** />
+      <FormattedMessage id={`content-type-builder.attribute.${type}`} />
     ) : (
       <div>
         <FormattedMessage id="content-type-builder.modelPage.attribute.relationWith" />
         &nbsp;
         <FormattedMessage id="content-type-builder.from">
-          ***REMOVED***message => (
-            <span style=***REMOVED******REMOVED*** fontStyle: 'italic' ***REMOVED******REMOVED***>
-              ***REMOVED***capitalize(this.props.row.params.target)***REMOVED***&nbsp;
-              ***REMOVED***this.props.row.params.pluginValue
-                ? `($***REMOVED***message***REMOVED***: $***REMOVED***this.props.row.params.pluginValue***REMOVED***)`
-                : ''***REMOVED***
+          {message => (
+            <span style={{ fontStyle: 'italic' }}>
+              {capitalize(this.props.row.params.target)}&nbsp;
+              {this.props.row.params.pluginValue
+                ? `(${message}: ${this.props.row.params.pluginValue})`
+                : ''}
             </span>
-          )***REMOVED***
+          )}
         </FormattedMessage>
       </div>
     );
     const relationStyle = !this.props.row.params.type ? styles.relation : '';
     const icons = isNotEditable
-      ? [***REMOVED*** icoType: 'lock' ***REMOVED***]
+      ? [{ icoType: 'lock' }]
       : [
-        ***REMOVED*** icoType: 'pencil', onClick: this.handleEdit ***REMOVED***,
-        ***REMOVED***
+        { icoType: 'pencil', onClick: this.handleEdit },
+        {
           icoType: 'trash',
-          onClick: () => this.setState(***REMOVED*** showWarning: !this.state.showWarning ***REMOVED***),
-  ***REMOVED***
+          onClick: () => this.setState({ showWarning: !this.state.showWarning }),
+        },
       ];
     const editableStyle = isNotEditable ? '' : styles.editable;
 
     return (
       <li
-        className=***REMOVED***`$***REMOVED***styles.attributeRow***REMOVED*** $***REMOVED***editableStyle***REMOVED*** $***REMOVED***relationStyle***REMOVED***`***REMOVED***
-        onClick=***REMOVED***() => ***REMOVED***
-          isNotEditable ? () => ***REMOVED******REMOVED*** : this.handleEdit();
-  ***REMOVED******REMOVED***
+        className={`${styles.attributeRow} ${editableStyle} ${relationStyle}`}
+        onClick={() => {
+          isNotEditable ? () => {} : this.handleEdit();
+        }}
       >
-        <div className=***REMOVED***styles.flex***REMOVED***>
-          <div className=***REMOVED***styles.nameContainer***REMOVED***>
-            ***REMOVED***this.renderAttributesBox()***REMOVED***
-            <div>***REMOVED***this.props.row.name***REMOVED***</div>
+        <div className={styles.flex}>
+          <div className={styles.nameContainer}>
+            {this.renderAttributesBox()}
+            <div>{this.props.row.name}</div>
           </div>
-          <div className=***REMOVED***styles.relationContainer***REMOVED***>***REMOVED***relationType***REMOVED***</div>
-          <div className=***REMOVED***styles.mainField***REMOVED*** />
-          <IcoContainer icons=***REMOVED***icons***REMOVED*** />
+          <div className={styles.relationContainer}>{relationType}</div>
+          <div className={styles.mainField} />
+          <IcoContainer icons={icons} />
         </div>
         <PopUpWarning
-          isOpen=***REMOVED***this.state.showWarning***REMOVED***
-          toggleModal=***REMOVED***this.toggleModalWarning***REMOVED***
-          content=***REMOVED******REMOVED*** message: 'content-type-builder.popUpWarning.bodyMessage.attribute.delete' ***REMOVED******REMOVED***
-          popUpWarningType=***REMOVED***'danger'***REMOVED***
-          onConfirm=***REMOVED***this.handleDelete***REMOVED***
+          isOpen={this.state.showWarning}
+          toggleModal={this.toggleModalWarning}
+          content={{ message: 'content-type-builder.popUpWarning.bodyMessage.attribute.delete' }}
+          popUpWarningType={'danger'}
+          onConfirm={this.handleDelete}
         />
       </li>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-AttributeRow.propTypes = ***REMOVED***
+AttributeRow.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onEditAttribute: PropTypes.func.isRequired,
   row: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
 export default AttributeRow;

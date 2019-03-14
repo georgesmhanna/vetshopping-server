@@ -4,15 +4,15 @@
  *
  */
 
-import ***REMOVED*** ContentBlock, EditorState, genKey, Modifier ***REMOVED*** from 'draft-js';
-import ***REMOVED*** List ***REMOVED*** from 'immutable';
-import ***REMOVED*** DEFAULT_INDENTATION ***REMOVED*** from './constants';
+import { ContentBlock, EditorState, genKey, Modifier } from 'draft-js';
+import { List } from 'immutable';
+import { DEFAULT_INDENTATION } from './constants';
 
-export function createNewBlock(text = '', type = 'unstyled', key = genKey()) ***REMOVED***
-  return new ContentBlock(***REMOVED*** key, type, text, charaterList: List([]) ***REMOVED***);
-***REMOVED***
+export function createNewBlock(text = '', type = 'unstyled', key = genKey()) {
+  return new ContentBlock({ key, type, text, charaterList: List([]) });
+}
 
-export function getNextBlocksList(editorState, startKey) ***REMOVED***
+export function getNextBlocksList(editorState, startKey) {
   return editorState
     .getCurrentContent()
     .getBlockMap()
@@ -21,19 +21,19 @@ export function getNextBlocksList(editorState, startKey) ***REMOVED***
     .toList()
     .shift()
     .concat([createNewBlock()]);
-***REMOVED***
+}
 
 
-export function updateSelection(selection, blocks, offset) ***REMOVED***
-  return selection.merge(***REMOVED***
+export function updateSelection(selection, blocks, offset) {
+  return selection.merge({
     anchorKey: blocks.get(0).getKey(),
     focusKey: blocks.get(0).getKey(),
     anchorOffset: offset,
     focusOffset: offset,
-***REMOVED***);
-***REMOVED***
+  });
+}
 
-export function getSelectedBlocksList(editorState) ***REMOVED***
+export function getSelectedBlocksList(editorState) {
   const selectionState = editorState.getSelection();
   const contentState = editorState.getCurrentContent();
   const startKey = selectionState.getStartKey();
@@ -45,30 +45,30 @@ export function getSelectedBlocksList(editorState) ***REMOVED***
     .takeUntil((_, k) => k === endKey)
     .concat([[endKey, blockMap.get(endKey)]])
     .toList();
-***REMOVED***
+}
 
-export function onTab(editorState) ***REMOVED***
+export function onTab(editorState) {
   const contentState = editorState.getCurrentContent();
   const selection = editorState.getSelection();
   let newContentState;
 
-  if (selection.isCollapsed()) ***REMOVED***
+  if (selection.isCollapsed()) {
     newContentState = Modifier.insertText(
       contentState,
       selection,
       DEFAULT_INDENTATION,
     );
-***REMOVED*** else ***REMOVED***
+  } else {
     newContentState = Modifier.replaceText(
       contentState,
       selection,
       DEFAULT_INDENTATION,
     );
-***REMOVED***
+  }
 
   return EditorState.push(
     editorState,
     newContentState,
     'insert-characters'
   );
-***REMOVED***
+}

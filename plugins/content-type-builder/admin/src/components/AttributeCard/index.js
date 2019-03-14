@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import IcoBoolean from '../../assets/images/icon_boolean.png';
 import IcoDate from '../../assets/images/icon_date.png';
@@ -24,7 +24,7 @@ import styles from './styles.scss';
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-autofocus */
-const asset = ***REMOVED***
+const asset = {
   'boolean': IcoBoolean,
   'date': IcoDate,
   'email': IcoEmail,
@@ -36,83 +36,83 @@ const asset = ***REMOVED***
   'string': IcoString,
   'text': IcoText,
   'enumeration': IcoEnum,
-***REMOVED***;
+};
 
 
-class AttributeCard extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
+class AttributeCard extends React.Component {
+  constructor(props) {
     super(props);
     this.button = React.createRef();
-***REMOVED***
+  }
 
-  componentDidMount() ***REMOVED***
-    if (this.props.autoFocus) ***REMOVED***
-      return new Promise(resolve => ***REMOVED***
-        setTimeout(() => ***REMOVED***
+  componentDidMount() {
+    if (this.props.autoFocus) {
+      return new Promise(resolve => {
+        setTimeout(() => {
           this.focusNode();
           resolve();
-  ***REMOVED*** 300);
-***REMOVED***);
-***REMOVED***
-***REMOVED***
+        }, 300);
+      });
+    }
+  }
 
-  componentDidUpdate(prevProps) ***REMOVED***
-    const ***REMOVED*** nodeToFocus, tabIndex ***REMOVED*** = this.props;
+  componentDidUpdate(prevProps) {
+    const { nodeToFocus, tabIndex } = this.props;
 
-    if (prevProps.nodeToFocus !== nodeToFocus && tabIndex === nodeToFocus) ***REMOVED***
+    if (prevProps.nodeToFocus !== nodeToFocus && tabIndex === nodeToFocus) {
       this.focusNode();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentWillUnmount() ***REMOVED***
+  componentWillUnmount() {
     this.props.resetNodeToFocus();
-***REMOVED***
+  }
 
-  focusNode = () => ***REMOVED***
+  focusNode = () => {
     const node = this.button.current;
     return node.focus();
-***REMOVED***
+  }
 
-  render() ***REMOVED***
-    const ***REMOVED*** attribute, autoFocus, handleClick, tabIndex ***REMOVED*** = this.props;
+  render() {
+    const { attribute, autoFocus, handleClick, tabIndex } = this.props;
 
     return (
       <div className="col-md-6">
         <button
-          autoFocus=***REMOVED***autoFocus***REMOVED***
-          className=***REMOVED***styles.attributeCardContainer***REMOVED***
-          onClick=***REMOVED***() => handleClick(attribute.type)***REMOVED***
+          autoFocus={autoFocus}
+          className={styles.attributeCardContainer}
+          onClick={() => handleClick(attribute.type)}
           type="button"
-          tabIndex=***REMOVED***tabIndex + 1***REMOVED***
-          ref=***REMOVED***this.button***REMOVED***
+          tabIndex={tabIndex + 1}
+          ref={this.button}
         >
-          <div className=***REMOVED***styles.attributeCard***REMOVED***>
-            <img src=***REMOVED***asset[attribute.type]***REMOVED*** alt="ico" />
-            <FormattedMessage id=***REMOVED***`content-type-builder.popUpForm.attributes.$***REMOVED***attribute.type***REMOVED***.name`***REMOVED***>
-              ***REMOVED***(message) => <span className=***REMOVED***styles.attributeType***REMOVED***>***REMOVED***message***REMOVED***</span>***REMOVED***
+          <div className={styles.attributeCard}>
+            <img src={asset[attribute.type]} alt="ico" />
+            <FormattedMessage id={`content-type-builder.popUpForm.attributes.${attribute.type}.name`}>
+              {(message) => <span className={styles.attributeType}>{message}</span>}
             </FormattedMessage>
-            <FormattedMessage id=***REMOVED***attribute.description***REMOVED*** />
+            <FormattedMessage id={attribute.description} />
           </div>
         </button>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-AttributeCard.defaultProps = ***REMOVED***
+AttributeCard.defaultProps = {
   autoFocus: false,
   nodeToFocus: 0,
-  resetNodeToFocus: () => ***REMOVED******REMOVED***,
+  resetNodeToFocus: () => {},
   tabIndex: 0,
-***REMOVED***;
+};
 
-AttributeCard.propTypes = ***REMOVED***
+AttributeCard.propTypes = {
   attribute: PropTypes.object.isRequired,
   autoFocus: PropTypes.bool,
   handleClick: PropTypes.func.isRequired,
   nodeToFocus: PropTypes.number,
   resetNodeToFocus: PropTypes.func,
   tabIndex: PropTypes.number,
-***REMOVED***;
+};
 
 export default AttributeCard;

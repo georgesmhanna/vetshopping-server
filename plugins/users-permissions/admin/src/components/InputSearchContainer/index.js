@@ -5,8 +5,8 @@
 */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** findIndex, has, includes, isEmpty, map, toLower ***REMOVED*** from 'lodash';
+import { FormattedMessage } from 'react-intl';
+import { findIndex, has, includes, isEmpty, map, toLower } from 'lodash';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -15,128 +15,128 @@ import InputSearchLi from 'components/InputSearchLi';
 
 import styles from './styles.scss';
 
-class InputSearchContainer extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  state = ***REMOVED***
+class InputSearchContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  state = {
     errors: [],
     filteredUsers: this.props.values,
     isAdding: false,
     isFocused: false,
     users: this.props.values,
     value: '',
-***REMOVED***;
+  };
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (nextProps.didDeleteUser !== this.props.didDeleteUser) ***REMOVED***
-      this.setState(***REMOVED*** users: nextProps.values, filteredUsers: nextProps.values ***REMOVED***);
-***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.didDeleteUser !== this.props.didDeleteUser) {
+      this.setState({ users: nextProps.values, filteredUsers: nextProps.values });
+    }
 
-    if (nextProps.didGetUsers !== this.props.didGetUsers) ***REMOVED***
-      this.setState(***REMOVED*** users: nextProps.values, filteredUsers: nextProps.values ***REMOVED***);
-***REMOVED***
+    if (nextProps.didGetUsers !== this.props.didGetUsers) {
+      this.setState({ users: nextProps.values, filteredUsers: nextProps.values });
+    }
 
-    if (nextProps.didFetchUsers !== this.props.didFetchUsers) ***REMOVED***
-      this.setState(***REMOVED*** filteredUsers: nextProps.users, isAdding: true ***REMOVED***);
-***REMOVED***
-***REMOVED***
+    if (nextProps.didFetchUsers !== this.props.didFetchUsers) {
+      this.setState({ filteredUsers: nextProps.users, isAdding: true });
+    }
+  }
 
-  handleBlur = () => this.setState(***REMOVED*** isFocused: !this.state.isFocused ***REMOVED***);
+  handleBlur = () => this.setState({ isFocused: !this.state.isFocused });
 
-  handleChange = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleChange = ({ target }) => {
     const filteredUsers = isEmpty(target.value) ?
       this.state.users
       : this.state.users.filter((user) => includes(toLower(user.name), toLower(target.value)));
 
-    if (isEmpty(filteredUsers) && !isEmpty(target.value)) ***REMOVED***
+    if (isEmpty(filteredUsers) && !isEmpty(target.value)) {
       this.props.getUser(target.value);
-***REMOVED***
+    }
 
-    if (isEmpty(target.value)) ***REMOVED***
-      return this.setState(***REMOVED*** value: target.value, isAdding: false, users: this.props.values, filteredUsers: this.props.values ***REMOVED***);
-***REMOVED***
+    if (isEmpty(target.value)) {
+      return this.setState({ value: target.value, isAdding: false, users: this.props.values, filteredUsers: this.props.values });
+    }
 
-    this.setState(***REMOVED*** value: target.value, filteredUsers ***REMOVED***);
-***REMOVED***
+    this.setState({ value: target.value, filteredUsers });
+  }
 
-  handleFocus = () => this.setState(***REMOVED*** isFocused: !this.state.isFocused ***REMOVED***);
+  handleFocus = () => this.setState({ isFocused: !this.state.isFocused });
 
-  handleClick = (item) => ***REMOVED***
-    if (this.state.isAdding) ***REMOVED***
+  handleClick = (item) => {
+    if (this.state.isAdding) {
       const id = has(item, '_id') ? '_id' : 'id';
       const users = this.props.values;
       // Check if user is already associated with this role
-      if (findIndex(users, [id, item[id]]) === -1) ***REMOVED***
+      if (findIndex(users, [id, item[id]]) === -1) {
         this.props.onClickAdd(item);
         users.push(item);
-***REMOVED***
+      }
 
       // Reset the input focus
       this.searchInput.focus();
       // Empty the input and display users
-      this.setState(***REMOVED*** value: '', isAdding: false, users, filteredUsers: users ***REMOVED***);
-***REMOVED*** else ***REMOVED***
+      this.setState({ value: '', isAdding: false, users, filteredUsers: users });
+    } else {
       this.props.onClickDelete(item);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
-      <div className=***REMOVED***cn(styles.inputSearch, 'col-md-6')***REMOVED***>
-        <Label htmlFor=***REMOVED***this.props.name***REMOVED*** message=***REMOVED***this.props.label***REMOVED*** />
-        <div className=***REMOVED***cn('input-group')***REMOVED***>
-          <span className=***REMOVED***cn('input-group-addon', styles.addon, this.state.isFocused && styles.addonFocus,)***REMOVED*** />
+      <div className={cn(styles.inputSearch, 'col-md-6')}>
+        <Label htmlFor={this.props.name} message={this.props.label} />
+        <div className={cn('input-group')}>
+          <span className={cn('input-group-addon', styles.addon, this.state.isFocused && styles.addonFocus,)} />
           <FormattedMessage id="users-permissions.InputSearch.placeholder">
-            ***REMOVED***(message) => (
+            {(message) => (
               <input
-                className=***REMOVED***cn('form-control', !isEmpty(this.state.errors) ? 'is-invalid': '')***REMOVED***
-                id=***REMOVED***this.props.name***REMOVED***
-                name=***REMOVED***this.props.name***REMOVED***
-                onBlur=***REMOVED***this.handleBlur***REMOVED***
-                onChange=***REMOVED***this.handleChange***REMOVED***
-                onFocus=***REMOVED***this.handleFocus***REMOVED***
-                value=***REMOVED***this.state.value***REMOVED***
-                placeholder=***REMOVED***message***REMOVED***
+                className={cn('form-control', !isEmpty(this.state.errors) ? 'is-invalid': '')}
+                id={this.props.name}
+                name={this.props.name}
+                onBlur={this.handleBlur}
+                onChange={this.handleChange}
+                onFocus={this.handleFocus}
+                value={this.state.value}
+                placeholder={message}
                 type="text"
-                ref=***REMOVED***(input) => ***REMOVED*** this.searchInput = input; ***REMOVED******REMOVED***
+                ref={(input) => { this.searchInput = input; }}
               />
-            )***REMOVED***
+            )}
           </FormattedMessage>
         </div>
-        <div className=***REMOVED***cn(styles.ulContainer, this.state.isFocused && styles.ulFocused)***REMOVED***>
+        <div className={cn(styles.ulContainer, this.state.isFocused && styles.ulFocused)}>
           <ul>
-            ***REMOVED***map(this.state.filteredUsers, (user) => (
+            {map(this.state.filteredUsers, (user) => (
               <InputSearchLi
-                key=***REMOVED***user.id || user._id***REMOVED***
-                item=***REMOVED***user***REMOVED***
-                isAdding=***REMOVED***this.state.isAdding***REMOVED***
-                onClick=***REMOVED***this.handleClick***REMOVED***
+                key={user.id || user._id}
+                item={user}
+                isAdding={this.state.isAdding}
+                onClick={this.handleClick}
               />
-            ))***REMOVED***
+            ))}
           </ul>
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-InputSearchContainer.defaultProps = ***REMOVED***
+InputSearchContainer.defaultProps = {
   users: [],
   values: [],
-***REMOVED***;
+};
 
-InputSearchContainer.propTypes = ***REMOVED***
+InputSearchContainer.propTypes = {
   didDeleteUser: PropTypes.bool.isRequired,
   didFetchUsers: PropTypes.bool.isRequired,
   didGetUsers: PropTypes.bool.isRequired,
   getUser: PropTypes.func.isRequired,
-  label: PropTypes.shape(***REMOVED***
+  label: PropTypes.shape({
     id: PropTypes.string,
     params: PropTypes.object,
-***REMOVED***).isRequired,
+  }).isRequired,
   name: PropTypes.string.isRequired,
   onClickAdd: PropTypes.func.isRequired,
   onClickDelete: PropTypes.func.isRequired,
   users: PropTypes.array,
   values: PropTypes.array,
-***REMOVED***;
+};
 
 export default InputSearchContainer;

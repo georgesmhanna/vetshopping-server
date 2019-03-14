@@ -6,58 +6,58 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** isEmpty, startCase ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { isEmpty, startCase } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 import IcoContainer from 'components/IcoContainer';
 import ListRow from 'components/ListRow';
 import PopUpWarning from 'components/PopUpWarning';
 import styles from 'components/TableList/styles.scss';
-import ***REMOVED*** router ***REMOVED*** from 'app';
+import { router } from 'app';
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/jsx-curly-brace-presence */
 
-class TableListRow extends React.Component ***REMOVED***
+class TableListRow extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+  constructor(props) {
     super(props);
-    this.state = ***REMOVED***
+    this.state = {
       showWarning: false,
-***REMOVED***;
-***REMOVED***
+    };
+  }
 
-  handleEdit = () => ***REMOVED***
+  handleEdit = () => {
     router.push(
-      `/plugins/content-type-builder/#edit$***REMOVED***this.props.rowItem.name***REMOVED***::contentType::baseSettings`,
+      `/plugins/content-type-builder/#edit${this.props.rowItem.name}::contentType::baseSettings`,
     );
-***REMOVED***;
+  };
 
-  handleDelete = e => ***REMOVED***
+  handleDelete = e => {
     e.preventDefault();
     e.stopPropagation();
     this.props.onDelete(this.props.rowItem.name);
-    this.setState(***REMOVED*** showWarning: false ***REMOVED***);
-***REMOVED***;
+    this.setState({ showWarning: false });
+  };
 
-  handleGoTo = () => ***REMOVED***
+  handleGoTo = () => {
     router.push(
-      `/plugins/content-type-builder/models/$***REMOVED***this.props.rowItem.name***REMOVED***$***REMOVED***
-        this.props.rowItem.source ? `&source=$***REMOVED***this.props.rowItem.source***REMOVED***` : ''
-***REMOVED***`,
+      `/plugins/content-type-builder/models/${this.props.rowItem.name}${
+        this.props.rowItem.source ? `&source=${this.props.rowItem.source}` : ''
+      }`,
     );
-***REMOVED***;
+  };
 
-  toggleModalWarning = () => this.setState(***REMOVED*** showWarning: !this.state.showWarning ***REMOVED***);
+  toggleModalWarning = () => this.setState({ showWarning: !this.state.showWarning });
 
-  handleShowModalWarning = () => this.setState(***REMOVED*** showWarning: !this.state.showWarning ***REMOVED***);
+  handleShowModalWarning = () => this.setState({ showWarning: !this.state.showWarning });
 
-  render() ***REMOVED***
+  render() {
     const pluginSource = this.props.rowItem.source ? (
       <FormattedMessage id="content-type-builder.from">
-        ***REMOVED***message => (
-          <span style=***REMOVED******REMOVED*** fontStyle: 'italic', color: '#787E8F', fontWeight: '500' ***REMOVED******REMOVED***>
-            (***REMOVED***message***REMOVED***: ***REMOVED***this.props.rowItem.source***REMOVED***)
+        {message => (
+          <span style={{ fontStyle: 'italic', color: '#787E8F', fontWeight: '500' }}>
+            ({message}: {this.props.rowItem.source})
           </span>
-        )***REMOVED***
+        )}
       </FormattedMessage>
     ) : (
       ''
@@ -74,41 +74,41 @@ class TableListRow extends React.Component ***REMOVED***
     const icons = this.props.rowItem.source
       ? []
       : [
-        ***REMOVED*** icoType: 'pencil', onClick: this.handleEdit ***REMOVED***,
-        ***REMOVED*** icoType: 'trash', onClick: this.handleShowModalWarning ***REMOVED***,
+        { icoType: 'pencil', onClick: this.handleEdit },
+        { icoType: 'trash', onClick: this.handleShowModalWarning },
       ];
 
     return (
-      <ListRow onClick=***REMOVED***this.handleGoTo***REMOVED***>
-        <div className=***REMOVED***`col-md-4 $***REMOVED***styles.italic***REMOVED*** $***REMOVED***styles.nameContainer***REMOVED***`***REMOVED***>
-          <i className=***REMOVED***`fa $***REMOVED***this.props.rowItem.icon***REMOVED***`***REMOVED*** />
-          <span style=***REMOVED******REMOVED*** width: spanStyle ***REMOVED******REMOVED***>
-            ***REMOVED***startCase(this.props.rowItem.name)***REMOVED*** &nbsp;***REMOVED***pluginSource***REMOVED***
+      <ListRow onClick={this.handleGoTo}>
+        <div className={`col-md-4 ${styles.italic} ${styles.nameContainer}`}>
+          <i className={`fa ${this.props.rowItem.icon}`} />
+          <span style={{ width: spanStyle }}>
+            {startCase(this.props.rowItem.name)} &nbsp;{pluginSource}
           </span>
-          &nbsp;***REMOVED***temporary***REMOVED***
+          &nbsp;{temporary}
         </div>
-        <div className=***REMOVED***`col-md-5 text-center $***REMOVED***styles.descriptionContainer***REMOVED***`***REMOVED***>
-          <div>***REMOVED***description***REMOVED***</div>
+        <div className={`col-md-5 text-center ${styles.descriptionContainer}`}>
+          <div>{description}</div>
         </div>
-        <div className="col-md-2 text-center">***REMOVED***this.props.rowItem.fields***REMOVED***</div>
+        <div className="col-md-2 text-center">{this.props.rowItem.fields}</div>
         <div className="col-md-1">
-          <IcoContainer icons=***REMOVED***icons***REMOVED*** />
+          <IcoContainer icons={icons} />
         </div>
         <PopUpWarning
-          isOpen=***REMOVED***this.state.showWarning***REMOVED***
-          toggleModal=***REMOVED***this.toggleModalWarning***REMOVED***
-          content=***REMOVED******REMOVED*** message: 'content-type-builder.popUpWarning.bodyMessage.contentType.delete' ***REMOVED******REMOVED***
-          popUpWarningType=***REMOVED***'danger'***REMOVED***
-          onConfirm=***REMOVED***this.handleDelete***REMOVED***
+          isOpen={this.state.showWarning}
+          toggleModal={this.toggleModalWarning}
+          content={{ message: 'content-type-builder.popUpWarning.bodyMessage.contentType.delete' }}
+          popUpWarningType={'danger'}
+          onConfirm={this.handleDelete}
         />
       </ListRow>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-TableListRow.propTypes = ***REMOVED***
+TableListRow.propTypes = {
   onDelete: PropTypes.func.isRequired,
   rowItem: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
 export default TableListRow;

@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "app.components.Button.save": "Zapisz",
   "app.components.Button.cancel": "Anuluj",
 
@@ -40,7 +40,7 @@
   "app.components.InputFileDetails.originalName": "Oryginalna nazwa:",
   "app.components.InputFileDetails.size": "Rozmiar:",
 
-  "app.components.ImgPreview.hint": "Przeciągnij i upuść plik w tym obszarze lub ***REMOVED***browse***REMOVED***, aby przesłać plik",
+  "app.components.ImgPreview.hint": "Przeciągnij i upuść plik w tym obszarze lub {browse}, aby przesłać plik",
   "app.components.ImgPreview.hint.browse": "przeglądaj",
 
   "app.components.InstallPluginPage.helmet": "Sklep – Wtyczki",
@@ -69,8 +69,8 @@
   "app.components.ListPluginsPage.title": "Wtyczki",
   "app.components.ListPluginsPage.description": "Lista zainstalowanych wtyczek w projekcie.",
   "app.components.listPluginsPage.deletePlugin.error": "Wystąpił błąd podczas dezinstalacji wtyczki",
-  "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED*** wtyczka jest zainstalowana",
-  "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED*** wtyczek jest zainstalowanych",
+  "app.components.listPlugins.title.singular": "{number} wtyczka jest zainstalowana",
+  "app.components.listPlugins.title.plural": "{number} wtyczek jest zainstalowanych",
   "app.components.listPlugins.title.none": "Żadna wtyczka nie jest zainstalowana",
   "app.components.listPlugins.button": "Dodaj nową wtyczkę",
 
@@ -119,7 +119,7 @@
   "components.Input.error.attribute.key.taken": "Ta wartość już istnieje",
   "components.Input.error.attribute.sameKeyAndName": "Nie mogą być takie same",
   "components.Input.error.validation.minSupMax": "Nie może być większa",
-  "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+  "components.Input.error.custom-error": "{errorMessage} ",
 
   "components.ListRow.empty": "Nie ma żadnych danych do wyświetlenia.",
 
@@ -134,7 +134,7 @@
   "components.Wysiwyg.ToggleMode.markdown": "Przełącz na markdown",
   "components.Wysiwyg.ToggleMode.preview": "Przełącz na pogląd",
   "components.WysiwygBottomControls.charactersIndicators": "znaków",
-  "components.WysiwygBottomControls.uploadFiles": "Przeciągnij i upuść pliki, wklej ze schowka lub ***REMOVED***browse***REMOVED***.",
+  "components.WysiwygBottomControls.uploadFiles": "Przeciągnij i upuść pliki, wklej ze schowka lub {browse}.",
   "components.WysiwygBottomControls.uploadFiles.browse": "je wybierz",
   "components.WysiwygBottomControls.fullscreen": "Rozszerz",
   "HomePage.notification.newsLetter.success": "Pomyślnie zapisano do biuletynu",
@@ -156,4 +156,4 @@
   "request.error.model.unknown": "Ten model nie istnieje",
   "Users": "Użytkownicy",
   "Analytics": "Analityka"
-***REMOVED***
+}

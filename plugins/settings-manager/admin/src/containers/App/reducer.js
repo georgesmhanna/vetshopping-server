@@ -4,20 +4,20 @@
  *
  */
 
-import ***REMOVED*** fromJS, List ***REMOVED*** from 'immutable';
-import ***REMOVED***
+import { fromJS, List } from 'immutable';
+import {
   ENVIRONMENTS_FETCH_SUCCEEDED,
   MENU_FETCH_SUCCEEDED,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   sections: List([]),
   environments: List([]),
   loading: true,
-***REMOVED***);
+});
 
-function appReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function appReducer(state = initialState, action) {
+  switch (action.type) {
     case ENVIRONMENTS_FETCH_SUCCEEDED:
       return state
         .set('environments', List(action.environments.environments));
@@ -25,7 +25,7 @@ function appReducer(state = initialState, action) ***REMOVED***
       return state.set('sections', List(action.menu.sections)).set('loading', false);
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default appReducer;

@@ -3,22 +3,22 @@
  * HomePage reducer
  */
 
-import ***REMOVED*** fromJS, List, Map ***REMOVED*** from 'immutable';
+import { fromJS, List, Map } from 'immutable';
 
-import ***REMOVED*** GET_ARTICLES_SUCCEEDED, ON_CHANGE, SUBMIT_SUCCEEDED ***REMOVED*** from './constants';
+import { GET_ARTICLES_SUCCEEDED, ON_CHANGE, SUBMIT_SUCCEEDED } from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   articles: List([
-    ***REMOVED***content: '', title: '', link: ''***REMOVED***,
-    ***REMOVED***content: '', title: '', link: ''***REMOVED***,
+    {content: '', title: '', link: ''},
+    {content: '', title: '', link: ''},
   ]),
-  body: Map(***REMOVED***
+  body: Map({
     email: '',
-***REMOVED***),
-***REMOVED***);
+  }),
+});
 
-function homePageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function homePageReducer(state = initialState, action) {
+  switch (action.type) {
     case GET_ARTICLES_SUCCEEDED:
       return state.update('articles', () => List(action.articles));
     case ON_CHANGE:
@@ -27,7 +27,7 @@ function homePageReducer(state = initialState, action) ***REMOVED***
       return state.updateIn(['body', 'email'], () => '');
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default homePageReducer;

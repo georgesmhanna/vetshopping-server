@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Greife blitzschnell auf alle Daten in der Datenbank zu und änder sie.",
   "plugin.description.long": "Greife blitzschnell auf alle Daten in der Datenbank zu und änder sie.",
 
@@ -10,9 +10,9 @@
   "containers.Edit.delete": "Löschen",
   "containers.Edit.reset": "Abbrechen",
   "containers.Edit.returnList": "Zu Liste zurückkehren",
-  "containers.List.addAnEntry": "Füge ***REMOVED***entity***REMOVED*** hinzu",
-  "containers.List.pluginHeaderDescription": "***REMOVED***label***REMOVED*** Einträge gefunden",
-  "containers.List.pluginHeaderDescription.singular": "***REMOVED***label***REMOVED*** Eintrag gefunden",
+  "containers.List.addAnEntry": "Füge {entity} hinzu",
+  "containers.List.pluginHeaderDescription": "{label} Einträge gefunden",
+  "containers.List.pluginHeaderDescription.singular": "{label} Eintrag gefunden",
   "components.LimitSelect.itemsPerPage": "Einträge pro Seite",
   "containers.List.errorFetchRecords": "Fehler",
   "containers.SettingPage.addField": "Neues Feld hinzufügen",
@@ -45,12 +45,12 @@
   "components.FilterOptions.FILTER_TYPES._contains": "enthält",
   "components.FilterOptions.FILTER_TYPES._containss": "enthält (Groß-/Kleinschreibung beachten)",
   "components.Search.placeholder": "Suche nach einem Eintrag....",
-  "components.TableDelete.entries.plural": "***REMOVED***number***REMOVED*** ausgewählte Einträge",
-  "components.TableDelete.entries.singular": "***REMOVED***number***REMOVED*** ausgewählter Eintrag",
+  "components.TableDelete.entries.plural": "{number} ausgewählte Einträge",
+  "components.TableDelete.entries.singular": "{number} ausgewählter Eintrag",
   "components.TableDelete.delete": "Alle löschen",
-  "components.TableEmpty.withFilters": "Es gibt keinen ***REMOVED***contentType***REMOVED*** mit den verwendeten Filtern...",
-  "components.TableEmpty.withoutFilter": "Es gibt keinen ***REMOVED***contentType***REMOVED***...",
-  "components.TableEmpty.withSearch": "Es gibt keinen ***REMOVED***contentType***REMOVED***, der der Suche entspricht (***REMOVED***search***REMOVED***)...",
+  "components.TableEmpty.withFilters": "Es gibt keinen {contentType} mit den verwendeten Filtern...",
+  "components.TableEmpty.withoutFilter": "Es gibt keinen {contentType}...",
+  "components.TableEmpty.withSearch": "Es gibt keinen {contentType}, der der Suche entspricht ({search})...",
 
   "form.Input.label": "Label",
   "form.Input.label.inputDescription": "Dieser Wert überschreibt das im Kopf der Tabelle angezeigte Label.",
@@ -115,4 +115,4 @@
   "popUpWarning.warning.cancelAllSettings": "Bist du sicher, dass du deine Änderungen rückgängig machen willst?",
   "popUpWarning.warning.updateAllSettings": "Dadurch werden alle deine Einstellungen geändert."
 
-***REMOVED***
+}

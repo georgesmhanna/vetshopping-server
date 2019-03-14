@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "app.components.Button.save": "Save",
   "app.components.Button.cancel": "Cancel",
 
@@ -42,7 +42,7 @@
   "app.components.InputFileDetails.originalName": "Original name:",
   "app.components.InputFileDetails.size": "Size:",
 
-  "app.components.ImgPreview.hint": "Drag & drop your file into this area or ***REMOVED***browse***REMOVED*** for a file to upload",
+  "app.components.ImgPreview.hint": "Drag & drop your file into this area or {browse} for a file to upload",
   "app.components.ImgPreview.hint.browse": "browse",
 
   "app.components.InstallPluginPage.helmet": "Marketplace - Plugins",
@@ -71,8 +71,8 @@
   "app.components.ListPluginsPage.title": "Plugins",
   "app.components.ListPluginsPage.description": "List of the installed plugins in the project.",
   "app.components.listPluginsPage.deletePlugin.error": "An error occurred while uninstalling the plugin",
-  "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED*** plugin is installed",
-  "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED*** plugins are installed",
+  "app.components.listPlugins.title.singular": "{number} plugin is installed",
+  "app.components.listPlugins.title.plural": "{number} plugins are installed",
   "app.components.listPlugins.title.none": "No plugins installed",
   "app.components.listPlugins.button": "Add New Plugin",
 
@@ -123,7 +123,7 @@
   "components.Input.error.attribute.key.taken": "This value already exists",
   "components.Input.error.attribute.sameKeyAndName": "Can't be equal",
   "components.Input.error.validation.minSupMax": "Can't be superior",
-  "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+  "components.Input.error.custom-error": "{errorMessage} ",
   "components.Input.error.validation.json": "This doesn't match the JSON format",
 
   "components.ListRow.empty": "There is no data to be shown.",
@@ -139,7 +139,7 @@
   "components.Wysiwyg.ToggleMode.markdown": "Switch to markdown",
   "components.Wysiwyg.ToggleMode.preview": "Switch to preview",
   "components.WysiwygBottomControls.charactersIndicators": "characters",
-  "components.WysiwygBottomControls.uploadFiles": "Drag & drop files, paste from the clipboard or ***REMOVED***browse***REMOVED***.",
+  "components.WysiwygBottomControls.uploadFiles": "Drag & drop files, paste from the clipboard or {browse}.",
   "components.WysiwygBottomControls.uploadFiles.browse": "select them",
   "components.WysiwygBottomControls.fullscreen": "Expand",
 
@@ -164,4 +164,4 @@
   "request.error.model.unknown": "This model doesn't exist",
   "Users": "Users",
   "Analytics": "Analytics"
-***REMOVED***
+}

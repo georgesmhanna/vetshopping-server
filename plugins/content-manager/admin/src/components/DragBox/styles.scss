@@ -1,4 +1,4 @@
-.dragBox ***REMOVED***
+.dragBox {
   height: 30px !important;
   width: 100%;
   margin-bottom: 6px;
@@ -13,13 +13,13 @@
   color: #007EFF;
   font-weight: 500;
 
-  > img ***REMOVED***
+  > img {
     max-width: 8px;
     margin-right: 10px;
     margin-top: -1px;
-***REMOVED***
+  }
 
-  > span:last-child ***REMOVED***
+  > span:last-child {
     background:#AED4FB;
-***REMOVED***
-***REMOVED***
+  }
+}

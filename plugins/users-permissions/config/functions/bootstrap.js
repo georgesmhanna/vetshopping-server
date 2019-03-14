@@ -13,33 +13,33 @@ const fs = require('fs');
 const _ = require('lodash');
 const uuid = require('uuid/v4');
 
-module.exports = async cb => ***REMOVED***
-  if (!_.get(strapi.plugins['users-permissions'], 'config.jwtSecret')) ***REMOVED***
-    try ***REMOVED***
+module.exports = async cb => {
+  if (!_.get(strapi.plugins['users-permissions'], 'config.jwtSecret')) {
+    try {
       const jwtSecret = uuid();
 
-      fs.writeFileSync(path.join(strapi.config.appPath, 'plugins', 'users-permissions', 'config', 'jwt.json'), JSON.stringify(***REMOVED***
+      fs.writeFileSync(path.join(strapi.config.appPath, 'plugins', 'users-permissions', 'config', 'jwt.json'), JSON.stringify({
         jwtSecret
-***REMOVED*** null, 2), 'utf8');
+      }, null, 2), 'utf8');
 
       _.set(strapi.plugins['users-permissions'], 'config.jwtSecret', jwtSecret);
-***REMOVED*** catch(err) ***REMOVED***
+    } catch(err) {
       strapi.log.error(err);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  const pluginStore = strapi.store(***REMOVED***
+  const pluginStore = strapi.store({
     environment: '',
     type: 'plugin',
     name: 'users-permissions'
-***REMOVED***);
+  });
 
-  const grantConfig = ***REMOVED***
-    email: ***REMOVED***
+  const grantConfig = {
+    email: {
       enabled: true,
       icon: 'envelope'
-***REMOVED***,
-    discord: ***REMOVED***
+    },
+    discord: {
       enabled: false,
       icon: 'comments',
       key: '',
@@ -49,24 +49,24 @@ module.exports = async cb => ***REMOVED***
         'identify',
         'email'
       ]
-***REMOVED***,
-    facebook: ***REMOVED***
+    },
+    facebook: {
       enabled: false,
       icon: 'facebook-official',
       key: '',
       secret: '',
       callback: '/auth/facebook/callback',
       scope: ['email']
-***REMOVED***,
-    google: ***REMOVED***
+    },
+    google: {
       enabled: false,
       icon: 'google',
       key: '',
       secret: '',
       callback: '/auth/google/callback',
       scope: ['email']
-***REMOVED***,
-    github: ***REMOVED***
+    },
+    github: {
       enabled: false,
       icon: 'github',
       key: '',
@@ -76,47 +76,47 @@ module.exports = async cb => ***REMOVED***
         'user',
         'user:email'
       ]
-***REMOVED***,
-    microsoft: ***REMOVED***
+    },
+    microsoft: {
       enabled: false,
       icon: 'windows',
       key: '',
       secret: '',
       callback: '/auth/microsoft/callback',
       scope: ['user.read']
-***REMOVED***,
-    twitter: ***REMOVED***
+    },
+    twitter: {
       enabled: false,
       icon: 'twitter',
       key: '',
       secret: '',
       callback: '/auth/twitter/callback'
-***REMOVED***
-***REMOVED***;
-  const prevGrantConfig = await pluginStore.get(***REMOVED***key: 'grant'***REMOVED***) || ***REMOVED******REMOVED***;
+    }
+  };
+  const prevGrantConfig = await pluginStore.get({key: 'grant'}) || {};
   // store grant auth config to db
   // when plugin_users-permissions_grant is not existed in db
   // or we have added/deleted provider here.
-  if (!prevGrantConfig || !_.isEqual(_.keys(prevGrantConfig), _.keys(grantConfig))) ***REMOVED***
+  if (!prevGrantConfig || !_.isEqual(_.keys(prevGrantConfig), _.keys(grantConfig))) {
     // merge with the previous provider config.
-    _.keys(grantConfig).forEach((key) => ***REMOVED***
-      if (key in prevGrantConfig) ***REMOVED***
+    _.keys(grantConfig).forEach((key) => {
+      if (key in prevGrantConfig) {
         grantConfig[key] = _.merge(grantConfig[key], prevGrantConfig[key]);
-***REMOVED***
-***REMOVED***);
-    await pluginStore.set(***REMOVED***key: 'grant', value: grantConfig***REMOVED***);
-***REMOVED***
+      }
+    });
+    await pluginStore.set({key: 'grant', value: grantConfig});
+  }
 
-  if (!await pluginStore.get(***REMOVED***key: 'email'***REMOVED***)) ***REMOVED***
-    const value = ***REMOVED***
-      'reset_password': ***REMOVED***
+  if (!await pluginStore.get({key: 'email'})) {
+    const value = {
+      'reset_password': {
         display: 'Email.template.reset_password',
         icon: 'refresh',
-        options: ***REMOVED***
-          from: ***REMOVED***
+        options: {
+          from: {
             name: 'Administration Panel',
             email: 'no-reply@strapi.io'
-    ***REMOVED***
+          },
           response_email: '',
           object: '­Reset password',
           message: `<p>We heard that you lost your password. Sorry about that!</p>
@@ -126,16 +126,16 @@ module.exports = async cb => ***REMOVED***
 <p><%= URL %>?code=<%= TOKEN %></p>
 
 <p>Thanks.</p>`
-  ***REMOVED***
-***REMOVED***
-      'email_confirmation': ***REMOVED***
+        }
+      },
+      'email_confirmation': {
         display: 'Email.template.email_confirmation',
         icon: 'check-square-o',
-        options: ***REMOVED***
-          from: ***REMOVED***
+        options: {
+          from: {
             name: 'Administration Panel',
             email: 'no-reply@strapi.io'
-    ***REMOVED***
+          },
           response_email: '',
           object: 'Account confirmation',
           message: `<p>Thank you for registering!</p>
@@ -145,24 +145,24 @@ module.exports = async cb => ***REMOVED***
 <p><%= URL %>?confirmation=<%= CODE %></p>
 
 <p>Thanks.</p>`
-  ***REMOVED***
-***REMOVED***
-***REMOVED***;
+        }
+      }
+    };
 
-    await pluginStore.set(***REMOVED***key: 'email', value***REMOVED***);
-***REMOVED***
+    await pluginStore.set({key: 'email', value});
+  }
 
-  if (!await pluginStore.get(***REMOVED***key: 'advanced'***REMOVED***)) ***REMOVED***
-    const value = ***REMOVED***
+  if (!await pluginStore.get({key: 'advanced'})) {
+    const value = {
       unique_email: true,
       allow_register: true,
       email_confirmation: false,
-      email_confirmation_redirection: `http://$***REMOVED***strapi.config.currentEnvironment.server.host***REMOVED***:$***REMOVED***strapi.config.currentEnvironment.server.port***REMOVED***/admin`,
+      email_confirmation_redirection: `http://${strapi.config.currentEnvironment.server.host}:${strapi.config.currentEnvironment.server.port}/admin`,
       default_role: 'authenticated'
-***REMOVED***;
+    };
 
-    await pluginStore.set(***REMOVED***key: 'advanced', value***REMOVED***);
-***REMOVED***
+    await pluginStore.set({key: 'advanced', value});
+  }
 
   strapi.plugins['users-permissions'].services.userspermissions.initialize(cb);
-***REMOVED***;
+};

@@ -6,40 +6,40 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import NotificationsContainer from 'components/NotificationsContainer';
-import ***REMOVED*** selectNotifications ***REMOVED*** from './selectors';
-import ***REMOVED*** hideNotification ***REMOVED*** from './actions';
+import { selectNotifications } from './selectors';
+import { hideNotification } from './actions';
 
-export class NotificationProvider extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  render() ***REMOVED***
+export class NotificationProvider extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
     return (
       <NotificationsContainer
-        onHideNotification=***REMOVED***this.props.onHideNotification***REMOVED***
-        notifications=***REMOVED***this.props.notifications***REMOVED***
+        onHideNotification={this.props.onHideNotification}
+        notifications={this.props.notifications}
       />
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-NotificationProvider.propTypes = ***REMOVED***
+NotificationProvider.propTypes = {
   notifications: PropTypes.object.isRequired,
   onHideNotification: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
-const mapStateToProps = createStructuredSelector(***REMOVED***
+const mapStateToProps = createStructuredSelector({
   notifications: selectNotifications(),
-***REMOVED***);
+});
 
-function mapDispatchToProps(dispatch) ***REMOVED***
-  return ***REMOVED***
-    onHideNotification: (id) => ***REMOVED***
+function mapDispatchToProps(dispatch) {
+  return {
+    onHideNotification: (id) => {
       dispatch(hideNotification(id));
-***REMOVED***,
+    },
     dispatch,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationProvider);

@@ -2,7 +2,7 @@
 @import "variables/variables";
 @import "base/fonts";
 
-:global ***REMOVED***
+:global {
   // Expose libs styles
   @import "libs/bootstrap/bootstrap";
   @import "libs/fontawesome/fontawesome";
@@ -14,11 +14,11 @@
 
   // Set the global font-size in order
   // to be able to have `1rem = 10px`.
-  html ***REMOVED***
+  html {
     font-size: 62.5%;
-***REMOVED***
+  }
 
-  * ***REMOVED***
+  * {
     -webkit-font-smoothing: antialiased;
-***REMOVED***
-***REMOVED***
+  }
+}

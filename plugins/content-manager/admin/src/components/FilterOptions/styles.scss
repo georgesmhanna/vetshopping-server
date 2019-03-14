@@ -1,13 +1,13 @@
-.filterOptionsWrapper ***REMOVED***
+.filterOptionsWrapper {
   display: flex;
-  input, select***REMOVED***
+  input, select{
     margin: 0px 5px !important;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.filterOptionsInputWrapper ***REMOVED***
+.filterOptionsInputWrapper {
   position: relative;
-  &:before ***REMOVED***
+  &:before {
     content: '\f073';
     position: absolute;
     left: 6px; top: 1px;
@@ -22,13 +22,13 @@
     line-height: 32px;
     z-index: 999;
     -webkit-font-smoothing: none;
-***REMOVED***
-  input ***REMOVED***
+  }
+  input {
     width: 100%;
     padding-left: 42px;
     box-shadow: 0px 1px 1px rgba(104, 118, 142, 0.05);
-    &:focus***REMOVED***
+    &:focus{
       outline: none;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

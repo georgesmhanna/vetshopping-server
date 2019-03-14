@@ -1,6 +1,6 @@
-import ***REMOVED*** get, filter, isNumber, size, split, isEmpty, has, map, concat, includes ***REMOVED*** from 'lodash';
+import { get, filter, isNumber, size, split, isEmpty, has, map, concat, includes } from 'lodash';
 
-export default function checkAttributeValidations(errors) ***REMOVED***
+export default function checkAttributeValidations(errors) {
 
   const attributeIndex = split(this.props.hash, '::')[3];
   const sameAttributes = filter(this.props.contentTypeData.attributes, (attr) => attr.name === this.props.modifiedDataAttribute.name);
@@ -11,30 +11,30 @@ export default function checkAttributeValidations(errors) ***REMOVED***
   const isEditingParamsKey = this.props.modifiedDataAttribute.params.key !== get(this.props.contentTypeData.attributes, [attributeIndex, 'params', 'key']);
 
   // Check if params key is filled
-  if (has(this.props.modifiedDataAttribute, ['params', 'key'])) ***REMOVED***
-    if (isEmpty(this.props.modifiedDataAttribute.params.key)) ***REMOVED***
-      formErrors.push(***REMOVED*** name: 'params.key', errors: [***REMOVED*** id: 'content-type-builder.error.validation.required' ***REMOVED***] ***REMOVED***);
-***REMOVED***
-***REMOVED***
+  if (has(this.props.modifiedDataAttribute, ['params', 'key'])) {
+    if (isEmpty(this.props.modifiedDataAttribute.params.key)) {
+      formErrors.push({ name: 'params.key', errors: [{ id: 'content-type-builder.error.validation.required' }] });
+    }
+  }
 
   // Check attribute name uniqueness
-  if (size(sameAttributes) > 0 && this.props.modifiedDataAttribute.name !== get(this.props.contentTypeData.attributes, [attributeIndex, 'name'])) ***REMOVED***
-    formErrors.push(***REMOVED*** name: 'name', errors: [***REMOVED*** id: 'content-type-builder.error.attribute.taken' ***REMOVED***]***REMOVED***);
-***REMOVED***
+  if (size(sameAttributes) > 0 && this.props.modifiedDataAttribute.name !== get(this.props.contentTypeData.attributes, [attributeIndex, 'name'])) {
+    formErrors.push({ name: 'name', errors: [{ id: 'content-type-builder.error.attribute.taken' }]});
+  }
 
   // Check key uniqueness
-  if (size(sameParamsKey) > 0 && isEditingParamsKey) ***REMOVED***
-    formErrors.push(***REMOVED*** name: 'params.key', errors: [***REMOVED*** id: 'content-type-builder.error.attribute.key.taken' ***REMOVED***]***REMOVED***);
-***REMOVED***
+  if (size(sameParamsKey) > 0 && isEditingParamsKey) {
+    formErrors.push({ name: 'params.key', errors: [{ id: 'content-type-builder.error.attribute.key.taken' }]});
+  }
 
-  if (size(sameParamsKeyAndName) > 0 && isEditingParamsKey) ***REMOVED***
-    formErrors.push(***REMOVED*** name: 'params.key', errors: [***REMOVED*** id: 'content-type-builder.error.attribute.key.taken' ***REMOVED***]***REMOVED***);
-***REMOVED***
+  if (size(sameParamsKeyAndName) > 0 && isEditingParamsKey) {
+    formErrors.push({ name: 'params.key', errors: [{ id: 'content-type-builder.error.attribute.key.taken' }]});
+  }
 
 
-  if (get(this.props.modifiedDataAttribute, 'name') === get(this.props.modifiedDataAttribute.params, 'key') && this.props.modifiedDataAttribute.params.target === this.props.modelName) ***REMOVED***
-    formErrors.push(***REMOVED*** name: 'params.key', errors: [***REMOVED*** id: 'content-type-builder.error.attribute.sameKeyAndName' ***REMOVED***]***REMOVED***);
-***REMOVED***
+  if (get(this.props.modifiedDataAttribute, 'name') === get(this.props.modifiedDataAttribute.params, 'key') && this.props.modifiedDataAttribute.params.target === this.props.modelName) {
+    formErrors.push({ name: 'params.key', errors: [{ id: 'content-type-builder.error.attribute.sameKeyAndName' }]});
+  }
 
   const reserved = [
     'id',
@@ -60,15 +60,15 @@ export default function checkAttributeValidations(errors) ***REMOVED***
     '_posts',
   ];
 
-  if (includes(reserved, get(this.props.modifiedDataAttribute, 'name'))) ***REMOVED***
-    formErrors.push(***REMOVED*** name: 'name', errors: [***REMOVED*** id: 'content-type-builder.error.attribute.forbidden' ***REMOVED***]***REMOVED***);
-***REMOVED***
+  if (includes(reserved, get(this.props.modifiedDataAttribute, 'name'))) {
+    formErrors.push({ name: 'name', errors: [{ id: 'content-type-builder.error.attribute.forbidden' }]});
+  }
 
   return formErrors;
-***REMOVED***
+}
 
 
-const hasNestedValue = (attributeData) => ***REMOVED***
+const hasNestedValue = (attributeData) => {
   const formErrors = [];
   const keys = [
     'min',
@@ -77,21 +77,21 @@ const hasNestedValue = (attributeData) => ***REMOVED***
     'maxLength',
   ];
 
-  map(keys, (key) => ***REMOVED***
-    if (get(attributeData, ['params', key])) ***REMOVED***
-      if (!isNumber(get(attributeData, ['params', `$***REMOVED***key***REMOVED***Value`]))) ***REMOVED***
-        formErrors.push(***REMOVED*** name: `params.$***REMOVED***key***REMOVED***Value`, errors: [***REMOVED*** id: 'content-type-builder.error.validation.required' ***REMOVED***] ***REMOVED***);
-***REMOVED***
-***REMOVED***
-***REMOVED***);
+  map(keys, (key) => {
+    if (get(attributeData, ['params', key])) {
+      if (!isNumber(get(attributeData, ['params', `${key}Value`]))) {
+        formErrors.push({ name: `params.${key}Value`, errors: [{ id: 'content-type-builder.error.validation.required' }] });
+      }
+    }
+  });
 
-  if (isNumber(get(attributeData.params, 'maxValue')) && get(attributeData.params, ['minValue']) > get(attributeData.params, 'maxValue')) ***REMOVED***
-    formErrors.push(***REMOVED*** name: 'params.minValue', errors: [***REMOVED*** id: 'content-type-builder.error.validation.minSupMax' ***REMOVED*** ] ***REMOVED***);
-***REMOVED***
+  if (isNumber(get(attributeData.params, 'maxValue')) && get(attributeData.params, ['minValue']) > get(attributeData.params, 'maxValue')) {
+    formErrors.push({ name: 'params.minValue', errors: [{ id: 'content-type-builder.error.validation.minSupMax' } ] });
+  }
 
-  if (isNumber(get(attributeData.params, 'maxLengthValue')) && get(attributeData.params, ['minLengthValue']) > get(attributeData.params, 'maxLengthValue')) ***REMOVED***
-    formErrors.push(***REMOVED*** name: 'params.minLengthValue', errors: [***REMOVED*** id: 'content-type-builder.error.validation.minSupMax' ***REMOVED*** ] ***REMOVED***);
-***REMOVED***
+  if (isNumber(get(attributeData.params, 'maxLengthValue')) && get(attributeData.params, ['minLengthValue']) > get(attributeData.params, 'maxLengthValue')) {
+    formErrors.push({ name: 'params.minLengthValue', errors: [{ id: 'content-type-builder.error.validation.minSupMax' } ] });
+  }
 
   return formErrors;
-***REMOVED***;
+};

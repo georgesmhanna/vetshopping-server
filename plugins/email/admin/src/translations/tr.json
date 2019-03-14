@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "ConfigPage.title": "E-posta - Ayarlar",
   "ConfigPage.description": "E-posta eklentisini yapılandırma",
 
@@ -11,4 +11,4 @@
   "plugin.description.long": "E-posta gönder.",
 
   "notification.config.success": "Ayarlar güncellendi"
-***REMOVED***
+}

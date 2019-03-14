@@ -1,39 +1,39 @@
-import ***REMOVED*** get, isEmpty, isObject ***REMOVED*** from 'lodash';
+import { get, isEmpty, isObject } from 'lodash';
 
-export default function checkFormValidity(settingType, data, providerToEdit = '') ***REMOVED***
+export default function checkFormValidity(settingType, data, providerToEdit = '') {
   const formErrors = [];
 
-  switch (settingType) ***REMOVED***
-    case 'providers': ***REMOVED***
+  switch (settingType) {
+    case 'providers': {
       const isProviderEnabled = get(data, 'enabled');
       const keys = providerToEdit === 'email' ? [] : ['key', 'secret'];
 
-      keys.map(key => ***REMOVED***
-        if (isProviderEnabled && isEmpty(get(data, key))) ***REMOVED***
-          formErrors.push(***REMOVED*** name: key, errors: [***REMOVED*** id: 'components.Input.error.validation.required' ***REMOVED***] ***REMOVED***);
-  ***REMOVED***
-***REMOVED***);
+      keys.map(key => {
+        if (isProviderEnabled && isEmpty(get(data, key))) {
+          formErrors.push({ name: key, errors: [{ id: 'components.Input.error.validation.required' }] });
+        }
+      });
       break;
-***REMOVED***
-    case 'email-templates': ***REMOVED***
-      Object.keys(data.options).map((value) => ***REMOVED***
-        if (isObject(data.options[value])) ***REMOVED***
-          Object.keys(data.options[value]).map(subValue => ***REMOVED***
-            if (isEmpty(get(data, ['options', value, subValue]))) ***REMOVED***
-              formErrors.push(***REMOVED*** name: `options.$***REMOVED***value***REMOVED***.$***REMOVED***subValue***REMOVED***`, errors: [***REMOVED*** id: 'components.Input.error.validation.required' ***REMOVED***] ***REMOVED***);
-      ***REMOVED***
-    ***REMOVED***);
-  ***REMOVED***
+    }
+    case 'email-templates': {
+      Object.keys(data.options).map((value) => {
+        if (isObject(data.options[value])) {
+          Object.keys(data.options[value]).map(subValue => {
+            if (isEmpty(get(data, ['options', value, subValue]))) {
+              formErrors.push({ name: `options.${value}.${subValue}`, errors: [{ id: 'components.Input.error.validation.required' }] });
+            }
+          });
+        }
 
-        if (value !== 'response_email' && isEmpty(get(data, ['options', value]))) ***REMOVED***
-          formErrors.push(***REMOVED*** name: `options.$***REMOVED***value***REMOVED***`, errors: [***REMOVED*** id: 'components.Input.error.validation.required' ***REMOVED***] ***REMOVED***);
-  ***REMOVED***
-***REMOVED***);
+        if (value !== 'response_email' && isEmpty(get(data, ['options', value]))) {
+          formErrors.push({ name: `options.${value}`, errors: [{ id: 'components.Input.error.validation.required' }] });
+        }
+      });
       break;
-***REMOVED***
+    }
     default:
 
-***REMOVED***
+  }
 
   return formErrors;
-***REMOVED***
+}

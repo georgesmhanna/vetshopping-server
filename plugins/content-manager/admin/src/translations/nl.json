@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Snelle manier om data te zien, aan te passen en verwijderen in je database.",
   "plugin.description.long": "Snelle manier om data te zien, aan te passen en verwijderen in je database",
   "containers.Home.pluginHeaderTitle": "Inhoud Manager",
@@ -9,9 +9,9 @@
   "containers.Edit.delete": "Verwijderen",
   "containers.Edit.reset": "Resetten",
   "containers.Edit.returnList": "Terug naar lijst",
-  "containers.List.addAnEntry": "Nieuwe ***REMOVED***entity***REMOVED***",
-  "containers.List.pluginHeaderDescription": "***REMOVED***label***REMOVED*** item gevonden",
-  "containers.List.pluginHeaderDescription.singular": "***REMOVED***label***REMOVED*** items gevonden",
+  "containers.List.addAnEntry": "Nieuwe {entity}",
+  "containers.List.pluginHeaderDescription": "{label} item gevonden",
+  "containers.List.pluginHeaderDescription.singular": "{label} items gevonden",
   "components.LimitSelect.itemsPerPage": "Items per pagina",
   "containers.List.errorFetchRecords": "Fout",
 
@@ -51,14 +51,14 @@
 
   "components.Search.placeholder": "Zoek naar een item...",
 
-  "components.TableDelete.entries.plural": "***REMOVED***number***REMOVED*** items geselecteerd",
-  "components.TableDelete.entries.singular": "***REMOVED***number***REMOVED*** item geselecteerd",
+  "components.TableDelete.entries.plural": "{number} items geselecteerd",
+  "components.TableDelete.entries.singular": "{number} item geselecteerd",
   "components.TableDelete.delete": "Alles verwijderen",
 
 
-  "components.TableEmpty.withFilters": "Er is geen ***REMOVED***contentType***REMOVED*** met de gekozen filters...",
-  "components.TableEmpty.withoutFilter": "Er is geen ***REMOVED***contentType***REMOVED***...",
-  "components.TableEmpty.withSearch": "Er is geen ***REMOVED***contentType***REMOVED*** passend bij de zoekopdracht (***REMOVED***search***REMOVED***)...",
+  "components.TableEmpty.withFilters": "Er is geen {contentType} met de gekozen filters...",
+  "components.TableEmpty.withoutFilter": "Er is geen {contentType}...",
+  "components.TableEmpty.withSearch": "Er is geen {contentType} passend bij de zoekopdracht ({search})...",
 
   "EditRelations.title": "Gerelateerde data",
 
@@ -113,4 +113,4 @@
   "popUpWarning.bodyMessage.contentType.delete.all": "Weet je zeker dat je deze items wilt verwijderen?",
   "popUpWarning.warning.cancelAllSettings": "Weet je zeker dat je je wijzigingen wilt annuleren?",
   "popUpWarning.warning.updateAllSettings": "Dit zal al je instellingen aanpassen"
-***REMOVED***
+}

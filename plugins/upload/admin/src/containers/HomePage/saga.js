@@ -1,107 +1,107 @@
-import ***REMOVED*** LOCATION_CHANGE ***REMOVED*** from 'react-router-redux';
-import ***REMOVED*** Map ***REMOVED*** from 'immutable';
-import ***REMOVED*** isEmpty ***REMOVED*** from 'lodash';
-import ***REMOVED*** call, fork, put, select, take, takeLatest ***REMOVED*** from 'redux-saga/effects';
+import { LOCATION_CHANGE } from 'react-router-redux';
+import { Map } from 'immutable';
+import { isEmpty } from 'lodash';
+import { call, fork, put, select, take, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 
-import ***REMOVED***
+import {
   deleteSuccess,
   dropSuccess,
   getDataSuccess,
   onSearchSuccess,
   setLoading,
   unsetLoading,
-***REMOVED*** from './actions';
-import ***REMOVED***
+} from './actions';
+import {
   DELETE_DATA,
   GET_DATA,
   ON_DROP,
   ON_SEARCH,
-***REMOVED*** from './constants';
-import ***REMOVED***
+} from './constants';
+import {
   makeSelectParams,
   makeSelectSearch,
-***REMOVED*** from './selectors';
+} from './selectors';
 
-function* dataDelete(action) ***REMOVED***
-  try ***REMOVED***
+function* dataDelete(action) {
+  try {
     const dataId = action.dataToDelete.id || action.dataToDelete._id;
-    const requestURL = `/upload/files/$***REMOVED***dataId***REMOVED***`;
-    yield call(request, requestURL, ***REMOVED*** method: 'DELETE' ***REMOVED***);
+    const requestURL = `/upload/files/${dataId}`;
+    yield call(request, requestURL, { method: 'DELETE' });
     yield put(deleteSuccess());
     strapi.notification.success('upload.notification.delete.success');
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-function* dataGet() ***REMOVED***
-  try ***REMOVED***
+function* dataGet() {
+  try {
     const pageParams = yield select(makeSelectParams());
     const _start = ( pageParams._page - 1) * pageParams._limit;
-    const params = ***REMOVED***
+    const params = {
       _limit: pageParams._limit,
       _sort: pageParams._sort,
       _start,
-***REMOVED***;
+    };
     const data = yield [
-      call(request, '/upload/files', ***REMOVED*** method: 'GET', params ***REMOVED***),
-      call(request, '/upload/files/count', ***REMOVED*** method: 'GET' ***REMOVED***),
+      call(request, '/upload/files', { method: 'GET', params }),
+      call(request, '/upload/files/count', { method: 'GET' }),
     ];
     const entries = data[0].length === 0 ? [] : data[0].map(obj => Map(obj));
     yield put(getDataSuccess(entries, data[1].count));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-function* uploadFiles(action) ***REMOVED***
-  try ***REMOVED***
+function* uploadFiles(action) {
+  try {
     yield put(setLoading());
-    const headers = ***REMOVED***
+    const headers = {
       'X-Forwarded-Host': 'strapi',
-***REMOVED***;
-    const response = yield call(request, '/upload', ***REMOVED*** method: 'POST', headers, body: action.formData ***REMOVED***, false, false);
+    };
+    const response = yield call(request, '/upload', { method: 'POST', headers, body: action.formData }, false, false);
     const newFiles = response.map(file => Map(file));
 
     yield put(dropSuccess(newFiles));
 
-    if (newFiles.length > 1) ***REMOVED***
-      strapi.notification.success(***REMOVED*** id: 'upload.notification.dropFile.success' ***REMOVED***);
-***REMOVED*** else ***REMOVED***
-      strapi.notification.success(***REMOVED*** id: 'upload.notification.dropFiles.success', values: ***REMOVED*** number: newFiles.length ***REMOVED*** ***REMOVED***);
-***REMOVED***
+    if (newFiles.length > 1) {
+      strapi.notification.success({ id: 'upload.notification.dropFile.success' });
+    } else {
+      strapi.notification.success({ id: 'upload.notification.dropFiles.success', values: { number: newFiles.length } });
+    }
 
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('notification.error');
-***REMOVED*** finally ***REMOVED***
+  } finally {
     yield put(unsetLoading());
-***REMOVED***
-***REMOVED***
+  }
+}
 
-function* search() ***REMOVED***
-  try ***REMOVED***
+function* search() {
+  try {
     const search = yield select(makeSelectSearch());
     const pageParams = yield select(makeSelectParams());
     const _start = ( pageParams._page - 1) * pageParams._limit;
-    const requestURL = !isEmpty(search) ? `/upload/search/$***REMOVED***search***REMOVED***` : '/upload/files';
-    const params = isEmpty(search) ? ***REMOVED***
+    const requestURL = !isEmpty(search) ? `/upload/search/${search}` : '/upload/files';
+    const params = isEmpty(search) ? {
       _limit: pageParams._limit,
       _sort: pageParams._sort,
       _start,
-***REMOVED*** : ***REMOVED******REMOVED***;
-    const response = yield call(request, requestURL, ***REMOVED*** method: 'GET', params ***REMOVED***);
+    } : {};
+    const response = yield call(request, requestURL, { method: 'GET', params });
     const entries = response.length === 0 ? [] : response.map(obj => Map(obj));
 
     yield put(onSearchSuccess(entries));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
 
 // Individual exports for testing
-export function* defaultSaga() ***REMOVED***
+export function* defaultSaga() {
   yield fork(takeLatest, DELETE_DATA, dataDelete);
   yield fork(takeLatest, ON_DROP, uploadFiles);
   yield fork(takeLatest, ON_SEARCH, search);
@@ -111,7 +111,7 @@ export function* defaultSaga() ***REMOVED***
   yield take(LOCATION_CHANGE);
 
   yield cancel(loadDataWatcher);
-***REMOVED***
+}
 
 // All sagas to be loaded
 export default defaultSaga;

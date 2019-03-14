@@ -1,7 +1,7 @@
 const _ = require('lodash');
 
-module.exports = ***REMOVED***
-  find: async function (params, populate, raw = false) ***REMOVED***
+module.exports = {
+  find: async function (params, populate, raw = false) {
     const query = this
       .find(params.where)
       .limit(Number(params.limit))
@@ -10,149 +10,149 @@ module.exports = ***REMOVED***
       .populate(populate || this.associations.map(x => x.alias).join(' '));
 
     return raw ? query.lean() : query;
-***REMOVED***,
+  },
 
-  count: async function (params) ***REMOVED***
+  count: async function (params) {
     return Number(await this
       .where(params.where)
       .count());
-***REMOVED***,
+  },
 
-  search: async function (params, populate) ***REMOVED*** // eslint-disable-line  no-unused-vars
-    const $or = Object.keys(this.attributes).reduce((acc, curr) => ***REMOVED***
-      switch (this.attributes[curr].type) ***REMOVED***
+  search: async function (params, populate) { // eslint-disable-line  no-unused-vars
+    const $or = Object.keys(this.attributes).reduce((acc, curr) => {
+      switch (this.attributes[curr].type) {
         case 'integer':
         case 'float':
         case 'decimal':
-          if (!_.isNaN(_.toNumber(params.search))) ***REMOVED***
-            return acc.concat(***REMOVED*** [curr]: params.search ***REMOVED***);
-    ***REMOVED***
+          if (!_.isNaN(_.toNumber(params.search))) {
+            return acc.concat({ [curr]: params.search });
+          }
 
           return acc;
         case 'string':
         case 'text':
         case 'password':
-          return acc.concat(***REMOVED*** [curr]: ***REMOVED*** $regex: params.search, $options: 'i' ***REMOVED*** ***REMOVED***);
+          return acc.concat({ [curr]: { $regex: params.search, $options: 'i' } });
         case 'boolean':
-          if (params.search === 'true' || params.search === 'false') ***REMOVED***
-            return acc.concat(***REMOVED*** [curr]: params.search === 'true' ***REMOVED***);
-    ***REMOVED***
+          if (params.search === 'true' || params.search === 'false') {
+            return acc.concat({ [curr]: params.search === 'true' });
+          }
 
           return acc;
         default:
           return acc;
-***REMOVED***
-***REMOVED***, []);
+      }
+    }, []);
 
     return this
-      .find(***REMOVED*** $or ***REMOVED***)
+      .find({ $or })
       .limit(Number(params.limit))
       .sort(params.sort)
       .skip(Number(params.skip))
       .populate(populate || this.associations.map(x => x.alias).join(' '))
       .lean();
-***REMOVED***,
+  },
 
-  countSearch: async function (params = ***REMOVED******REMOVED***) ***REMOVED*** // eslint-disable-line  no-unused-vars
-    const $or = Object.keys(this.attributes).reduce((acc, curr) => ***REMOVED***
-      switch (this.attributes[curr].type) ***REMOVED***
+  countSearch: async function (params = {}) { // eslint-disable-line  no-unused-vars
+    const $or = Object.keys(this.attributes).reduce((acc, curr) => {
+      switch (this.attributes[curr].type) {
         case 'integer':
         case 'float':
         case 'decimal':
-          if (!_.isNaN(_.toNumber(params.search))) ***REMOVED***
-            return acc.concat(***REMOVED*** [curr]: params.search ***REMOVED***);
-    ***REMOVED***
+          if (!_.isNaN(_.toNumber(params.search))) {
+            return acc.concat({ [curr]: params.search });
+          }
 
           return acc;
         case 'string':
         case 'text':
         case 'password':
-          return acc.concat(***REMOVED*** [curr]: ***REMOVED*** $regex: params.search, $options: 'i' ***REMOVED*** ***REMOVED***);
+          return acc.concat({ [curr]: { $regex: params.search, $options: 'i' } });
         case 'boolean':
-          if (params.search === 'true' || params.search === 'false') ***REMOVED***
-            return acc.concat(***REMOVED*** [curr]: params.search === 'true' ***REMOVED***);
-    ***REMOVED***
+          if (params.search === 'true' || params.search === 'false') {
+            return acc.concat({ [curr]: params.search === 'true' });
+          }
 
           return acc;
         default:
           return acc;
-***REMOVED***
-***REMOVED***, []);
+      }
+    }, []);
 
     return this
-      .find(***REMOVED*** $or ***REMOVED***)
+      .find({ $or })
       .count();
-***REMOVED***,
+  },
 
-  findOne: async function (params, populate, raw = true) ***REMOVED***
+  findOne: async function (params, populate, raw = true) {
     const query = this
-      .findOne(***REMOVED***
+      .findOne({
         [this.primaryKey]: params[this.primaryKey] || params.id
-***REMOVED***)
+      })
       .populate(populate || this.associations.map(x => x.alias).join(' '));
 
     return raw ? query.lean() : query;
-***REMOVED***,
+  },
 
-  create: async function (params) ***REMOVED***
+  create: async function (params) {
     // Exclude relationships.
-    const values = Object.keys(params.values).reduce((acc, current) => ***REMOVED***
-      if (this._attributes[current] && this._attributes[current].type) ***REMOVED***
+    const values = Object.keys(params.values).reduce((acc, current) => {
+      if (this._attributes[current] && this._attributes[current].type) {
         acc[current] = params.values[current];
-***REMOVED***
+      }
 
       return acc;
-***REMOVED***, ***REMOVED******REMOVED***);
+    }, {});
 
     const request = await this.create(values)
-      .catch((err) => ***REMOVED***
+      .catch((err) => {
         const message = err.message.split('index:');
         const field = _.words(_.last(message).split('_')[0]);
-        const error = ***REMOVED*** message: `This $***REMOVED***field***REMOVED*** is already taken`, field ***REMOVED***;
+        const error = { message: `This ${field} is already taken`, field };
 
         throw error;
-***REMOVED***);
+      });
 
     // Transform to JSON object.
     const entry = request.toJSON ? request.toJSON() : request;
 
     // Extract relations.
-    const relations = this.associations.reduce((acc, association) => ***REMOVED***
-      if (params.values[association.alias]) ***REMOVED***
+    const relations = this.associations.reduce((acc, association) => {
+      if (params.values[association.alias]) {
         acc[association.alias] = params.values[association.alias];
-***REMOVED***
+      }
 
       return acc;
-***REMOVED***, ***REMOVED******REMOVED***);
+    }, {});
 
-    return module.exports.update.call(this, ***REMOVED***
+    return module.exports.update.call(this, {
       [this.primaryKey]: entry[this.primaryKey],
-      values: _.assign(***REMOVED***
+      values: _.assign({
         id: entry[this.primaryKey]
-***REMOVED*** relations)
-***REMOVED***);
-***REMOVED***,
+      }, relations)
+    });
+  },
 
-  update: async function (params) ***REMOVED***
+  update: async function (params) {
     // Call the business logic located in the hook.
     // This function updates no-relational and relational data.
     return this.updateRelations(params);
-***REMOVED***,
+  },
 
-  delete: async function (params) ***REMOVED***
+  delete: async function (params) {
     // Delete entry.
     return this
-      .remove(***REMOVED***
+      .remove({
         [this.primaryKey]: params.id
-***REMOVED***);
-***REMOVED***,
+      });
+  },
 
-  deleteMany: async function (params) ***REMOVED***
+  deleteMany: async function (params) {
     return this
-      .remove(***REMOVED***
-        [this.primaryKey]: ***REMOVED***
+      .remove({
+        [this.primaryKey]: {
           $in: params[this.primaryKey] || params.id
-  ***REMOVED***
-***REMOVED***);
-***REMOVED***
-***REMOVED***;
+        }
+      });
+  }
+};

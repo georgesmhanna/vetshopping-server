@@ -6,31 +6,31 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** map ***REMOVED*** from 'lodash';
+import { map } from 'lodash';
 import WithFormSection from 'components/WithFormSection';
 
 /* eslint-disable react/require-default-props  */
-class EditFormSectionSubNested extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  render() ***REMOVED***
+class EditFormSectionSubNested extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
     return (
-      <div className=***REMOVED***`$***REMOVED***this.props.styles.padded***REMOVED*** $***REMOVED***this.props.styles.subNestedFormContainer***REMOVED***`***REMOVED***>
+      <div className={`${this.props.styles.padded} ${this.props.styles.subNestedFormContainer}`}>
         <div className="row">
-          ***REMOVED***map(this.props.section, (item, key) => (
+          {map(this.props.section, (item, key) => (
             this.props.renderInput(item, key)
-          ))***REMOVED***
+          ))}
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-EditFormSectionSubNested.propTypes = ***REMOVED***
+EditFormSectionSubNested.propTypes = {
   renderInput: PropTypes.func,
   section: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
   ]),
   styles: PropTypes.object,
-***REMOVED***;
+};
 
 export default WithFormSection(EditFormSectionSubNested); // eslint-disable-line new-cap

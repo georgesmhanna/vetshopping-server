@@ -4,9 +4,9 @@
  *
  */
 
-import ***REMOVED*** fromJS, List, Map ***REMOVED*** from 'immutable';
-import ***REMOVED*** map ***REMOVED*** from 'lodash';
-import ***REMOVED***
+import { fromJS, List, Map } from 'immutable';
+import { map } from 'lodash';
+import {
   ADD_USER,
   GET_PERMISSIONS_SUCCEEDED,
   GET_POLICIES_SUCCEEDED,
@@ -28,9 +28,9 @@ import ***REMOVED***
   SET_SHOULD_DISPLAY_POLICIES_HINT,
   SUBMIT_ERROR,
   SUBMIT_SUCCEEDED,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   actionType: '',
   didCheckErrors: false,
   didDeleteUser: false,
@@ -38,18 +38,18 @@ const initialState = fromJS(***REMOVED***
   didFetchUsers: false,
   didSubmit: false,
   formErrors: List([]),
-  initialData: Map(***REMOVED******REMOVED***),
+  initialData: Map({}),
   inputPoliciesPath: '',
-  modifiedData: Map(***REMOVED******REMOVED***),
+  modifiedData: Map({}),
   policies: List([]),
   roleId: '',
   routes: Map([]),
   shouldDisplayPoliciesHint: true,
   users: List([]),
-***REMOVED***);
+});
 
-function editPageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function editPageReducer(state = initialState, action) {
+  switch (action.type) {
     case ADD_USER:
       return state
         .updateIn(['modifiedData', 'users'], list => list.push(action.newUser));
@@ -88,19 +88,19 @@ function editPageReducer(state = initialState, action) ***REMOVED***
         .updateIn(['modifiedData', 'users'], list => list.filter(o => o[o.id ? 'id' : '_id'] !== action.itemToDelete[o.id ? 'id' : '_id']));
     case RESET_PROPS:
       return state
-        .updateIn(['modifiedData'], () => Map(***REMOVED******REMOVED***))
-        .update('initialData', () => Map(***REMOVED******REMOVED***))
+        .updateIn(['modifiedData'], () => Map({}))
+        .update('initialData', () => Map({}))
         .update('users', () => List([]));
     case RESET_SHOULD_DISPLAY_POLICIES_HINT:
       return state.set('shouldDisplayPoliciesHint', true);
-    case SELECT_ALL_ACTIONS: ***REMOVED***
+    case SELECT_ALL_ACTIONS: {
       const controllerActions = state.getIn(action.keys).toJS();
-      map(controllerActions, (value, key) => ***REMOVED***
+      map(controllerActions, (value, key) => {
         controllerActions[key].enabled = action.shouldEnable;
-***REMOVED***);
+      });
       return state
         .updateIn(action.keys, () => Map(fromJS(controllerActions)));
-***REMOVED***
+    }
     case SET_ACTION_TYPE:
       return state
         .set('formErrors', List([]))
@@ -128,7 +128,7 @@ function editPageReducer(state = initialState, action) ***REMOVED***
         .set('didSubmit', !state.get('didSubmit'));
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default editPageReducer;

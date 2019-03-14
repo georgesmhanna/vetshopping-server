@@ -8,6 +8,6 @@
  * run jobs, or perform some special logic.
  */
 
-module.exports = cb => ***REMOVED***
+module.exports = cb => {
   cb();
-***REMOVED***;
+};

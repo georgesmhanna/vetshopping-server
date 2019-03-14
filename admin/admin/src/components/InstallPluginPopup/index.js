@@ -6,9 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** Modal, ModalHeader, ModalBody ***REMOVED*** from 'reactstrap';
-import ***REMOVED*** map ***REMOVED*** from 'lodash';
+import { FormattedMessage } from 'react-intl';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { map } from 'lodash';
 import cn from 'classnames';
 
 import Official from 'components/Official';
@@ -16,146 +16,146 @@ import Official from 'components/Official';
 
 import styles from './styles.scss';
 
-class InstallPluginPopup extends React.Component ***REMOVED***
-  handleClick = () => ***REMOVED***
-    this.props.history.push(***REMOVED*** pathname: this.props.history.location.pathname ***REMOVED***);
+class InstallPluginPopup extends React.Component {
+  handleClick = () => {
+    this.props.history.push({ pathname: this.props.history.location.pathname });
 
-    if (!this.props.isAlreadyInstalled) ***REMOVED***
+    if (!this.props.isAlreadyInstalled) {
       this.context.downloadPlugin(this.props.plugin.id);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  toggle = () => ***REMOVED***
-    this.props.history.push(***REMOVED***
+  toggle = () => {
+    this.props.history.push({
       pathname: this.props.history.location.pathname,
-***REMOVED***);
-***REMOVED***
+    });
+  }
 
   navLinks = [
-    ***REMOVED***
+    {
       content: 'app.components.InstallPluginPopup.navLink.description',
       name: 'description',
-***REMOVED***,
-    ***REMOVED***
+    },
+    {
       content: 'app.components.InstallPluginPopup.navLink.screenshots',
       name: 'screenshots',
-***REMOVED***,
-    ***REMOVED***
+    },
+    {
       content: 'app.components.InstallPluginPopup.navLink.avis',
       name: 'avis',
-***REMOVED***,
-    ***REMOVED***
+    },
+    {
       content: 'app.components.InstallPluginPopup.navLink.faq',
       name: 'faq',
-***REMOVED***,
-    ***REMOVED***
+    },
+    {
       content: 'app.components.InstallPluginPopup.navLink.changelog',
       name: 'changelog',
-***REMOVED***,
+    },
   ];
 
-  render() ***REMOVED***
-    const descriptions = ***REMOVED***
-      short: this.props.plugin.id === 'support-us' ? <FormattedMessage id=***REMOVED***this.props.plugin.description.short***REMOVED*** /> : this.props.plugin.description.short,
-      long: this.props.plugin.id === 'support-us' ? <FormattedMessage id=***REMOVED***this.props.plugin.description.long || this.props.plugin.description.short***REMOVED*** /> : this.props.plugin.description.long || this.props.plugin.description.short,
-***REMOVED***;
+  render() {
+    const descriptions = {
+      short: this.props.plugin.id === 'support-us' ? <FormattedMessage id={this.props.plugin.description.short} /> : this.props.plugin.description.short,
+      long: this.props.plugin.id === 'support-us' ? <FormattedMessage id={this.props.plugin.description.long || this.props.plugin.description.short} /> : this.props.plugin.description.long || this.props.plugin.description.short,
+    };
     const buttonName = this.props.isAlreadyInstalled ? 'app.components.PluginCard.Button.label.install' : 'app.components.InstallPluginPopup.downloads';
 
     return (
-      <Modal isOpen=***REMOVED***this.props.isOpen***REMOVED*** toggle=***REMOVED***this.toggle***REMOVED*** className=***REMOVED***styles.modalPosition***REMOVED***>
-        <ModalHeader toggle=***REMOVED***this.toggle***REMOVED*** className=***REMOVED***styles.modalHeader***REMOVED*** />
-        <ModalBody className=***REMOVED***styles.modalBody***REMOVED***>
-          <div className=***REMOVED***styles.wrapper***REMOVED***>
+      <Modal isOpen={this.props.isOpen} toggle={this.toggle} className={styles.modalPosition}>
+        <ModalHeader toggle={this.toggle} className={styles.modalHeader} />
+        <ModalBody className={styles.modalBody}>
+          <div className={styles.wrapper}>
 
-            <div className=***REMOVED***styles.headerWrapper***REMOVED***>
-              <div className=***REMOVED***styles.logo***REMOVED***><img src=***REMOVED***`$***REMOVED***this.props.plugin.logo***REMOVED***`***REMOVED*** alt="icon" /></div>
-              <div className=***REMOVED***styles.headerInfo***REMOVED***>
-                <div className=***REMOVED***styles.name***REMOVED***>***REMOVED***this.props.plugin.name***REMOVED***</div>
-                <div className=***REMOVED***styles.ratings***REMOVED***>
-                  ***REMOVED***/****REMOVED***
-                  <StarsContainer ratings=***REMOVED***this.props.plugin.ratings***REMOVED*** />
+            <div className={styles.headerWrapper}>
+              <div className={styles.logo}><img src={`${this.props.plugin.logo}`} alt="icon" /></div>
+              <div className={styles.headerInfo}>
+                <div className={styles.name}>{this.props.plugin.name}</div>
+                <div className={styles.ratings}>
+                  {/*}
+                  <StarsContainer ratings={this.props.plugin.ratings} />
                   <div>
-                    <span style=***REMOVED******REMOVED*** fontWeight: '600', color: '#333740', fontSize: '12px'***REMOVED******REMOVED***>***REMOVED***this.props.plugin.ratings***REMOVED***</span>
-                    <span style=***REMOVED******REMOVED*** fontWeight: '500', color: '#666666', fontSize: '11px' ***REMOVED******REMOVED***>/5</span>
+                    <span style={{ fontWeight: '600', color: '#333740', fontSize: '12px'}}>{this.props.plugin.ratings}</span>
+                    <span style={{ fontWeight: '500', color: '#666666', fontSize: '11px' }}>/5</span>
                   </div>
-                  */***REMOVED***
-                  <Official style=***REMOVED******REMOVED*** marginTop: '0' ***REMOVED******REMOVED*** />
+                  */}
+                  <Official style={{ marginTop: '0' }} />
                 </div>
-                <div className=***REMOVED***styles.headerDescription***REMOVED***>
-                  ***REMOVED***descriptions.short***REMOVED***
+                <div className={styles.headerDescription}>
+                  {descriptions.short}
                 </div>
-                <div className=***REMOVED***styles.headerButtonContainer***REMOVED***>
+                <div className={styles.headerButtonContainer}>
                   <div>
-                    <i className=***REMOVED***`fa fa-$***REMOVED***this.props.plugin.isCompatible ? 'check' : 'times'***REMOVED***`***REMOVED*** />
-                    <FormattedMessage id=***REMOVED***`app.components.PluginCard.compatible$***REMOVED***this.props.plugin.id === 'support-us' ? 'Community' : ''***REMOVED***`***REMOVED*** />
+                    <i className={`fa fa-${this.props.plugin.isCompatible ? 'check' : 'times'}`} />
+                    <FormattedMessage id={`app.components.PluginCard.compatible${this.props.plugin.id === 'support-us' ? 'Community' : ''}`} />
                   </div>
                   <div>
                     <div>
-                      ***REMOVED***/****REMOVED***
-                      <span style=***REMOVED******REMOVED*** fontWeight: '600' ***REMOVED******REMOVED***>+***REMOVED***this.props.plugin.downloads_nb***REMOVED***k&nbsp;</span><FormattedMessage id="app.components.InstallPluginPopup.downloads" />
-                      */***REMOVED***
+                      {/*}
+                      <span style={{ fontWeight: '600' }}>+{this.props.plugin.downloads_nb}k&nbsp;</span><FormattedMessage id="app.components.InstallPluginPopup.downloads" />
+                      */}
                     </div>
-                    <div className=***REMOVED***styles.buttonWrapper***REMOVED*** onClick=***REMOVED***this.handleClick***REMOVED***>
+                    <div className={styles.buttonWrapper} onClick={this.handleClick}>
                       <div>
-                        <FormattedMessage id=***REMOVED***buttonName***REMOVED*** />
+                        <FormattedMessage id={buttonName} />
                       </div>
-                      ***REMOVED***/* Uncomment whebn prices are running***REMOVED***
-                      <div>***REMOVED***this.props.plugin.price***REMOVED***&nbsp;€</div>
-                    */***REMOVED***
+                      {/* Uncomment whebn prices are running}
+                      <div>{this.props.plugin.price}&nbsp;€</div>
+                    */}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className=***REMOVED***styles.navContainer***REMOVED***>
-            ***REMOVED***map(this.navLinks, link => ***REMOVED***
+          <div className={styles.navContainer}>
+            {map(this.navLinks, link => {
               const isActive = this.props.history.location.hash.split('::')[1] === link.name;
 
               return (
                 <div
-                  key=***REMOVED***link.name***REMOVED***
-                  className=***REMOVED***cn(isActive ? styles.navLink : '', link.name !== 'description' ? styles.notAllowed : '')***REMOVED***
-                  onClick=***REMOVED***() => ***REMOVED***
-                    if (link.name === 'description') ***REMOVED***
-                      this.props.history.push(***REMOVED*** pathname: this.props.history.location.pathname, hash: `$***REMOVED***this.props.plugin.id***REMOVED***::$***REMOVED***link.name***REMOVED***` ***REMOVED***);
-              ***REMOVED***
-            ***REMOVED******REMOVED***
-                  style=***REMOVED***isActive ? ***REMOVED*** paddingTop: '4px'***REMOVED*** : ***REMOVED*** paddingTop: '6px' ***REMOVED******REMOVED***
+                  key={link.name}
+                  className={cn(isActive ? styles.navLink : '', link.name !== 'description' ? styles.notAllowed : '')}
+                  onClick={() => {
+                    if (link.name === 'description') {
+                      this.props.history.push({ pathname: this.props.history.location.pathname, hash: `${this.props.plugin.id}::${link.name}` });
+                    }
+                  }}
+                  style={isActive ? { paddingTop: '4px'} : { paddingTop: '6px' }}
                 >
-                  <FormattedMessage id=***REMOVED***link.content***REMOVED*** />
+                  <FormattedMessage id={link.content} />
                 </div>
               );
-      ***REMOVED***)***REMOVED***
+            })}
           </div>
-          <div className=***REMOVED***styles.pluginDescription***REMOVED***>
-            ***REMOVED***descriptions.long***REMOVED***
+          <div className={styles.pluginDescription}>
+            {descriptions.long}
           </div>
         </ModalBody>
       </Modal>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-InstallPluginPopup.contextTypes = ***REMOVED***
+InstallPluginPopup.contextTypes = {
   downloadPlugin: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
-InstallPluginPopup.defaultProps = ***REMOVED***
-  description: ***REMOVED***
+InstallPluginPopup.defaultProps = {
+  description: {
     short: 'app.Components.InstallPluginPopup.noDescription',
-***REMOVED***,
-***REMOVED***;
+  },
+};
 
-InstallPluginPopup.propTypes = ***REMOVED***
-  description: PropTypes.shape(***REMOVED***
+InstallPluginPopup.propTypes = {
+  description: PropTypes.shape({
     long: PropTypes.string,
     short: PropTypes.string,
-***REMOVED***),
+  }),
   history: PropTypes.object.isRequired,
   isAlreadyInstalled: PropTypes.bool.isRequired,
   isOpen: PropTypes.bool.isRequired,
   plugin: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
 export default InstallPluginPopup;

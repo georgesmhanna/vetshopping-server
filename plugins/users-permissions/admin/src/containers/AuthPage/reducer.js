@@ -4,27 +4,27 @@
  *
  */
 
-import ***REMOVED*** fromJS, List, Map ***REMOVED*** from 'immutable';
-import ***REMOVED***
+import { fromJS, List, Map } from 'immutable';
+import {
   HIDE_LOGIN_ERRORS_INPUT,
   ON_CHANGE_INPUT,
   SET_ERRORS,
   SET_FORM,
   SUBMIT_ERROR,
   SUBMIT_SUCCEEDED,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   didCheckErrors: false,
   formErrors: List([]),
   formType: 'login',
   noErrorsDescription: false,
-  modifiedData: Map(***REMOVED******REMOVED***),
+  modifiedData: Map({}),
   submitSuccess: false,
-***REMOVED***);
+});
 
-function authPageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function authPageReducer(state = initialState, action) {
+  switch (action.type) {
     case HIDE_LOGIN_ERRORS_INPUT:
       return state.set('noErrorsDescription', action.value);
     case ON_CHANGE_INPUT:
@@ -48,7 +48,7 @@ function authPageReducer(state = initialState, action) ***REMOVED***
         .set('submitSuccess', true);
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default authPageReducer;

@@ -14,16 +14,16 @@ import PropTypes from 'prop-types';
 
 import NotFound from 'components/NotFound';
 
-export default class NotFoundPage extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  render() ***REMOVED***
+export default class NotFoundPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
     return (
-      <NotFound ***REMOVED***...this.props***REMOVED*** />
+      <NotFound {...this.props} />
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-NotFoundPage.propTypes = ***REMOVED***
-  history: PropTypes.shape(***REMOVED***
+NotFoundPage.propTypes = {
+  history: PropTypes.shape({
     goBack: PropTypes.func.isRequired,
-***REMOVED***).isRequired,
-***REMOVED***;
+  }).isRequired,
+};

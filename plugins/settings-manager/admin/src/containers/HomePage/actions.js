@@ -4,10 +4,10 @@
 *
 */
 
-import ***REMOVED*** includes, forEach, has, remove, get, split ***REMOVED*** from 'lodash';
-import ***REMOVED*** getInputsValidationsFromConfigs ***REMOVED*** from '../../utils/inputValidations';
+import { includes, forEach, has, remove, get, split } from 'lodash';
+import { getInputsValidationsFromConfigs } from '../../utils/inputValidations';
 import translations from '../../translations/en.json';
-import ***REMOVED***
+import {
   CONFIG_FETCH,
   LANGUAGES_FETCH,
   CONFIG_FETCH_SUCCEEDED,
@@ -36,283 +36,283 @@ import ***REMOVED***
   SET_ERRORS,
   SET_LOADER,
   UNSET_LOADER,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function defaultAction() ***REMOVED***
-  return ***REMOVED***
+export function defaultAction() {
+  return {
     type: DEFAULT_ACTION,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function configFetch(endPoint) ***REMOVED***
-  return ***REMOVED***
+export function configFetch(endPoint) {
+  return {
     type: CONFIG_FETCH,
     endPoint,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function configFetchSucceded(configs) ***REMOVED***
+export function configFetchSucceded(configs) {
   const data = getDataFromConfigs(configs);
   const formValidations = getInputsValidationsFromConfigs(configs);
-  return ***REMOVED***
+  return {
     type: CONFIG_FETCH_SUCCEEDED,
     configs,
     data,
     formValidations,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function changeInput(key, value) ***REMOVED***
-  return ***REMOVED***
+export function changeInput(key, value) {
+  return {
     type: CHANGE_INPUT,
     key,
     value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function cancelChanges() ***REMOVED***
-  return ***REMOVED***
+export function cancelChanges() {
+  return {
     type: CANCEL_CHANGES,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function closeModal() ***REMOVED***
-  return ***REMOVED***
+export function closeModal() {
+  return {
     type: CLOSE_MODAL,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function languagesFetch() ***REMOVED***
-  return ***REMOVED***
+export function languagesFetch() {
+  return {
     type: LANGUAGES_FETCH,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function languagesFetchSucceeded(appLanguages, listLanguages) ***REMOVED***
-  const configs = ***REMOVED***
+export function languagesFetchSucceeded(appLanguages, listLanguages) {
+  const configs = {
     name: listLanguages.name,
     description: listLanguages.description,
     sections: appLanguages.languages,
-***REMOVED***;
+  };
 
   const selectOptionsObject = listLanguages.sections[0].items[0];
 
-  const selectOptions = ***REMOVED***
+  const selectOptions = {
     name: selectOptionsObject.name,
     target: selectOptionsObject.target,
     type: selectOptionsObject.type,
     options: [],
-***REMOVED***;
+  };
 
-  forEach(selectOptionsObject.items, (item) => ***REMOVED***
-    selectOptions.options.push(***REMOVED***
+  forEach(selectOptionsObject.items, (item) => {
+    selectOptions.options.push({
       value: item.value,
       label: translations[item.name],
-***REMOVED***);
-***REMOVED***);
+    });
+  });
 
   // Init the react-select
-  const selectedLanguage = ***REMOVED*** 'language.defaultLocale': selectOptionsObject.items[0].value ***REMOVED***;
+  const selectedLanguage = { 'language.defaultLocale': selectOptionsObject.items[0].value };
 
-  return ***REMOVED***
+  return {
     type: LANGUAGES_FETCH_SUCCEEDED,
     configs,
     listLanguages,
     selectOptions,
     selectedLanguage,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
 
-export function editSettings(newSettings, endPoint) ***REMOVED***
-  return ***REMOVED***
+export function editSettings(newSettings, endPoint) {
+  return {
     type: EDIT_SETTINGS,
     newSettings,
     endPoint,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function editSettingsSucceeded() ***REMOVED***
-  return ***REMOVED***
+export function editSettingsSucceeded() {
+  return {
     type: EDIT_SETTINGS_SUCCEEDED,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-function getDataFromConfigs(configs) ***REMOVED***
-  const data = ***REMOVED******REMOVED***;
+function getDataFromConfigs(configs) {
+  const data = {};
 
-  forEach(configs.sections, (section) => ***REMOVED***
-    forEach(section.items, (item) => ***REMOVED***
+  forEach(configs.sections, (section) => {
+    forEach(section.items, (item) => {
       data[item.target] = item.value;
 
-      if (has(item, 'items')) ***REMOVED***
-        forEach(item.items, (itemValue) => ***REMOVED***
+      if (has(item, 'items')) {
+        forEach(item.items, (itemValue) => {
           data[itemValue.target] = itemValue.value;
-  ***REMOVED***);
-***REMOVED***
-***REMOVED***);
-***REMOVED***);
+        });
+      }
+    });
+  });
 
-  if (configs.name === 'form.security.name' && includes(split(get(data, 'security.xframe.value'), ' '), 'ALLOW-FROM')) ***REMOVED***
+  if (configs.name === 'form.security.name' && includes(split(get(data, 'security.xframe.value'), ' '), 'ALLOW-FROM')) {
     const allowFromValue = split(get(data, 'security.xframe.value'), ' ')[0];
     const allowFromValueNested = split(get(data, 'security.xframe.value'), ' ')[1];
     data['security.xframe.value'] = allowFromValue;
     data['security.xframe.value.nested'] = allowFromValueNested;
-***REMOVED***
+  }
   return data;
-***REMOVED***
+}
 
-export function changeDefaultLanguage(configsDisplay, newLanguage) ***REMOVED***
-  return ***REMOVED***
+export function changeDefaultLanguage(configsDisplay, newLanguage) {
+  return {
     type: CHANGE_DEFAULT_LANGUAGE,
     configsDisplay,
     newLanguage,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function newLanguagePost() ***REMOVED***
-  return ***REMOVED***
+export function newLanguagePost() {
+  return {
     type: NEW_LANGUAGE_POST,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
 
-export function languageActionSucceeded() ***REMOVED***
-  return ***REMOVED***
+export function languageActionSucceeded() {
+  return {
     type: LANGUAGE_ACTION_SUCCEEDED,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function languageActionError() ***REMOVED***
-  return ***REMOVED***
+export function languageActionError() {
+  return {
     type: LANGUAGE_ACTION_ERROR,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function languageDelete(languageToDelete) ***REMOVED***
-  return ***REMOVED***
+export function languageDelete(languageToDelete) {
+  return {
     type: LANGUAGE_DELETE,
     languageToDelete,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function databasesFetch(environment) ***REMOVED***
-  return ***REMOVED***
+export function databasesFetch(environment) {
+  return {
     type: DATABASES_FETCH,
     environment,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function databasesFetchSucceeded(listDatabases, availableDatabases) ***REMOVED***
+export function databasesFetchSucceeded(listDatabases, availableDatabases) {
   // form.database.item.connector
   const appDatabases = availableDatabases;
   remove(appDatabases.sections[0].items, (item) => item.name === 'form.database.item.connector');
-  const configsDisplay = ***REMOVED***
+  const configsDisplay = {
     name: 'form.databases.name',
     description: 'form.databases.description',
     sections: listDatabases.databases,
-***REMOVED***;
+  };
 
-  const modifiedData = ***REMOVED***
+  const modifiedData = {
     'database.defaultConnection': availableDatabases.sections[1].items[0].value,
-***REMOVED***;
+  };
 
   const dbNameTarget = availableDatabases.sections[0].items[0].target;
   const formValidations = getInputsValidationsFromConfigs(availableDatabases);
 
-  return ***REMOVED***
+  return {
     type: DATABASES_FETCH_SUCCEEDED,
     configsDisplay,
     appDatabases,
     modifiedData,
     dbNameTarget,
     formValidations,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function newDatabasePost(endPoint, data) ***REMOVED***
-  return ***REMOVED***
+export function newDatabasePost(endPoint, data) {
+  return {
     type: NEW_DATABASE_POST,
     endPoint,
     data,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function databaseActionSucceeded() ***REMOVED***
-  return ***REMOVED***
+export function databaseActionSucceeded() {
+  return {
     type: DATABASE_ACTION_SUCCEEDED,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function databaseActionError(formErrors) ***REMOVED***
-  return ***REMOVED***
+export function databaseActionError(formErrors) {
+  return {
     type: DATABASE_ACTION_ERROR,
     formErrors,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function databaseDelete(databaseToDelete, endPoint, context) ***REMOVED***
-  return ***REMOVED***
+export function databaseDelete(databaseToDelete, endPoint, context) {
+  return {
     type: DATABASE_DELETE,
     databaseToDelete,
     endPoint,
     context,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function specificDatabaseFetch(databaseName, endPoint) ***REMOVED***
-  return ***REMOVED***
+export function specificDatabaseFetch(databaseName, endPoint) {
+  return {
     type: SPECIFIC_DATABASE_FETCH,
     databaseName,
     endPoint,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function specificDatabaseFetchSucceeded(db) ***REMOVED***
+export function specificDatabaseFetchSucceeded(db) {
   const database = db;
   const data = getDataFromConfigs(database);
   const name = database.sections[0].items[0].value;
-  remove(database.sections[0].items, (item) => item.target === `database.connections.$***REMOVED***name***REMOVED***.connector`);
+  remove(database.sections[0].items, (item) => item.target === `database.connections.${name}.connector`);
   const dbNameTarget = database.sections[0].items[0].target;
   const formValidations = getInputsValidationsFromConfigs(database);
-  return ***REMOVED***
+  return {
     type: SPECIFIC_DATABASE_FETCH_SUCCEEDED,
     database,
     data,
     dbNameTarget,
     formValidations,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function databaseEdit(data, apiUrl) ***REMOVED***
-  return ***REMOVED***
+export function databaseEdit(data, apiUrl) {
+  return {
     type: DATABASE_EDIT,
     data,
     apiUrl,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function emptyDbModifiedData() ***REMOVED***
-  return ***REMOVED***
+export function emptyDbModifiedData() {
+  return {
     type: EMPTY_DB_MODIFIED_DATA,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setErrors(errors) ***REMOVED***
-  return ***REMOVED***
+export function setErrors(errors) {
+  return {
     type: SET_ERRORS,
     errors,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setLoader() ***REMOVED***
-  return ***REMOVED***
+export function setLoader() {
+  return {
     type: SET_LOADER,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function unsetLoader() ***REMOVED***
-  return ***REMOVED***
+export function unsetLoader() {
+  return {
     type: UNSET_LOADER,
-***REMOVED***;
-***REMOVED***
+  };
+}

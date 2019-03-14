@@ -6,108 +6,108 @@
  * @description: A set of functions called "actions" for managing `Product`.
  */
 
-module.exports = ***REMOVED***
+module.exports = {
 
   /**
    * Retrieve product records.
    *
-   * @return ***REMOVED***Object|Array***REMOVED***
+   * @return {Object|Array}
    */
 
-  find: async (ctx) => ***REMOVED***
-    if (ctx.query._q) ***REMOVED***
+  find: async (ctx) => {
+    if (ctx.query._q) {
       return strapi.services.product.search(ctx.query);
-***REMOVED*** else ***REMOVED***
+    } else {
       return strapi.services.product.fetchAll(ctx.query);
-***REMOVED***
-***REMOVED***,
+    }
+  },
 
   /**
    * Retrieve a product record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  findOne: async (ctx) => ***REMOVED***
-    if (!ctx.params._id.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***
+  findOne: async (ctx) => {
+    if (!ctx.params._id.match(/^[0-9a-fA-F]{24}$/)) {
       return ctx.notFound();
-***REMOVED***
+    }
 
     return strapi.services.product.fetch(ctx.params);
-***REMOVED***,
+  },
 
 
-  findOneByCategory: async (ctx) => ***REMOVED***
-    if (!ctx.params._id.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***
+  findOneByCategory: async (ctx) => {
+    if (!ctx.params._id.match(/^[0-9a-fA-F]{24}$/)) {
       return ctx.notFound();
-***REMOVED***
+    }
     let products = [];
-    const categoryProducts = await strapi.services.product.fetchAll(***REMOVED***category: ctx.params._id***REMOVED***);
+    const categoryProducts = await strapi.services.product.fetchAll({category: ctx.params._id});
     products.push(...categoryProducts);
     let subcategories = await strapi.services.category.fetchSubCategories(ctx.params);
-    for (const sc of subcategories) ***REMOVED***
-      const currentProducts = await strapi.services.product.fetchAll(***REMOVED***category: sc._id***REMOVED***);
-      if (currentProducts && currentProducts.length > 0) ***REMOVED***
+    for (const sc of subcategories) {
+      const currentProducts = await strapi.services.product.fetchAll({category: sc._id});
+      if (currentProducts && currentProducts.length > 0) {
         products.push(...currentProducts);
-***REMOVED***
-      if (sc.hasSubCategory) ***REMOVED***
+      }
+      if (sc.hasSubCategory) {
         let subsubcategories = await strapi.services.category.fetchSubCategories(sc._id);
-        for (const ssc of subsubcategories) ***REMOVED***
-          const currentSSCProducts = await strapi.services.product.fetchAll(***REMOVED***category: ssc._id***REMOVED***);
-          if (currentSSCProducts && currentSSCProducts.length > 0) ***REMOVED***
+        for (const ssc of subsubcategories) {
+          const currentSSCProducts = await strapi.services.product.fetchAll({category: ssc._id});
+          if (currentSSCProducts && currentSSCProducts.length > 0) {
             products.push(...currentSSCProducts);
-    ***REMOVED***
-          if (ssc.hasSubCategory) ***REMOVED***
+          }
+          if (ssc.hasSubCategory) {
             let finalcategories = await strapi.services.category.fetchSubCategories(ssc._id);
-            for (const fc of finalcategories) ***REMOVED***
-              const fProducts = await strapi.services.product.fetchAll(***REMOVED***category: fc._id***REMOVED***);
-              if (fProducts && fProducts.length > 0) ***REMOVED***
+            for (const fc of finalcategories) {
+              const fProducts = await strapi.services.product.fetchAll({category: fc._id});
+              if (fProducts && fProducts.length > 0) {
                 products.push(...fProducts);
-        ***REMOVED***
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
+              }
+            }
+          }
+        }
+      }
+    }
     return products;
-***REMOVED***,
+  },
   /**
    * Count product records.
    *
-   * @return ***REMOVED***Number***REMOVED***
+   * @return {Number}
    */
 
-  count: async (ctx) => ***REMOVED***
+  count: async (ctx) => {
     return strapi.services.product.count(ctx.query);
-***REMOVED***,
+  },
 
   /**
    * Create a/an product record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  create: async (ctx) => ***REMOVED***
+  create: async (ctx) => {
     return strapi.services.product.add(ctx.request.body);
-***REMOVED***,
+  },
 
   /**
    * Update a/an product record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  update: async (ctx, next) => ***REMOVED***
+  update: async (ctx, next) => {
     return strapi.services.product.edit(ctx.params, ctx.request.body) ;
-***REMOVED***,
+  },
 
   /**
    * Destroy a/an product record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  destroy: async (ctx, next) => ***REMOVED***
+  destroy: async (ctx, next) => {
     return strapi.services.product.remove(ctx.params);
-***REMOVED***
-***REMOVED***;
+  }
+};

@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "為您的 API 定義資料結構",
   "plugin.description.long":
     "為您的 API 定義資料結構，使你輕鬆新增欄位和關聯結構，你所做的修改會自動更新專案。",
@@ -82,7 +82,7 @@
 
   "form.contentType.item.connections": "連線",
   "form.contentType.item.name": "名稱",
-  "form.contentType.item.name.description": "資料結構名稱必須要單數: ***REMOVED***link***REMOVED***",
+  "form.contentType.item.name.description": "資料結構名稱必須要單數: {link}",
   "form.contentType.item.name.link.description": "請看我們的文件",
   "form.contentType.item.description": "說明",
   "form.contentType.item.description.placeholder": "請在這裡寫一些說明...",
@@ -106,7 +106,7 @@
   "modelPage.contentType.list.relationShipTitle.singular": "關係",
   "modelPage.attribute.relationWith": "關聯到",
 
-  "noTableWarning.description": "請勿忘記建立在您的資料庫建立 `***REMOVED***modelName***REMOVED***`",
+  "noTableWarning.description": "請勿忘記建立在您的資料庫建立 `{modelName}`",
   "noTableWarning.infos": "更多資訊",
 
   "notification.error.message": "有錯誤發生了",
@@ -170,4 +170,4 @@
   "relation.manyToOne": "有許多",
   "relation.manyToMany": "有而且屬於許多",
   "relation.attributeName.placeholder": "Ex: 作者, 類別, tag"
-***REMOVED***
+}

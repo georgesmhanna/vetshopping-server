@@ -1,39 +1,39 @@
-***REMOVED***
+{
   "connection": "default",
-  "info": ***REMOVED***
+  "info": {
     "name": "permission",
     "description": ""
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "type": ***REMOVED***
+  },
+  "attributes": {
+    "type": {
       "type": "string",
       "required": true,
       "configurable": false
-***REMOVED***,
-    "controller": ***REMOVED***
+    },
+    "controller": {
       "type": "string",
       "required": true,
       "configurable": false
-***REMOVED***,
-    "action": ***REMOVED***
+    },
+    "action": {
       "type": "string",
       "required": true,
       "configurable": false
-***REMOVED***,
-    "enabled": ***REMOVED***
+    },
+    "enabled": {
       "type": "boolean",
       "required": true,
       "configurable": false
-***REMOVED***,
-    "policy": ***REMOVED***
+    },
+    "policy": {
       "type": "string",
       "configurable": false
-***REMOVED***,
-    "role": ***REMOVED***
+    },
+    "role": {
       "model": "role",
       "via": "permissions",
       "plugin": "users-permissions",
       "configurable": false
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

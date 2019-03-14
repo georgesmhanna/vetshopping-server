@@ -9,57 +9,57 @@
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 
-const defaultJwtOptions = ***REMOVED*** expiresIn: '30d' ***REMOVED***;
+const defaultJwtOptions = { expiresIn: '30d' };
 
-module.exports = ***REMOVED***
-  getToken: function (ctx) ***REMOVED***
-    const params = _.assign(***REMOVED******REMOVED***, ctx.request.body, ctx.request.query);
+module.exports = {
+  getToken: function (ctx) {
+    const params = _.assign({}, ctx.request.body, ctx.request.query);
 
     let token = '';
 
-    if (ctx.request && ctx.request.header && ctx.request.header.authorization) ***REMOVED***
+    if (ctx.request && ctx.request.header && ctx.request.header.authorization) {
       const parts = ctx.request.header.authorization.split(' ');
 
-      if (parts.length === 2) ***REMOVED***
+      if (parts.length === 2) {
         const scheme = parts[0];
         const credentials = parts[1];
-        if (/^Bearer$/i.test(scheme)) ***REMOVED***
+        if (/^Bearer$/i.test(scheme)) {
           token = credentials;
-  ***REMOVED***
-***REMOVED*** else ***REMOVED***
+        }
+      } else {
         throw new Error('Invalid authorization header format. Format is Authorization: Bearer [token]');
-***REMOVED***
-***REMOVED*** else if (params.token) ***REMOVED***
+      }
+    } else if (params.token) {
       token = params.token;
-***REMOVED*** else ***REMOVED***
+    } else {
       throw new Error('No authorization header was found');
-***REMOVED***
+    }
 
     return this.verify(token);
-***REMOVED***,
+  },
 
-  issue: (payload, jwtOptions = ***REMOVED******REMOVED***) => ***REMOVED***
+  issue: (payload, jwtOptions = {}) => {
     _.defaults(jwtOptions, defaultJwtOptions);
     return jwt.sign(
       _.clone(payload.toJSON ? payload.toJSON() : payload),
       process.env.JWT_SECRET || _.get(strapi.plugins['users-permissions'], 'config.jwtSecret') || 'oursecret',
       jwtOptions,
     );
-***REMOVED***,
+  },
 
-  verify: (token) => ***REMOVED***
-    return new Promise(function (resolve, reject) ***REMOVED***
+  verify: (token) => {
+    return new Promise(function (resolve, reject) {
       jwt.verify(
         token,
         process.env.JWT_SECRET || _.get(strapi.plugins['users-permissions'], 'config.jwtSecret') || 'oursecret',
-        ***REMOVED******REMOVED***,
-        function (err, tokenPayload = ***REMOVED******REMOVED***) ***REMOVED***
-          if (err) ***REMOVED***
+        {},
+        function (err, tokenPayload = {}) {
+          if (err) {
             return reject(new Error('Invalid token.'));
-    ***REMOVED***
+          }
           resolve(tokenPayload);
-  ***REMOVED***
+        }
       );
-***REMOVED***);
-***REMOVED***
-***REMOVED***;
+    });
+  }
+};

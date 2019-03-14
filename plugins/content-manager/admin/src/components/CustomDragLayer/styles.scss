@@ -1,4 +1,4 @@
-.layer ***REMOVED***
+.layer {
   position: fixed;
   pointer-events: none;
   z-index: 100;
@@ -6,9 +6,9 @@
   top: 0;
   width: 100%;
   height: 100%;
-***REMOVED***
+}
 
-.customDragLayer ***REMOVED***
+.customDragLayer {
   height: 30px !important;
   width: 100%;
   margin-bottom: 6px;
@@ -22,13 +22,13 @@
   border-radius: 2px;
   // cursor: move !important;
 
-  > i ***REMOVED***
+  > i {
     margin-right: 10px;
     font-size: 10px;
     color: #B3B5B9;
-***REMOVED***
+  }
 
-  > span:last-child ***REMOVED***
+  > span:last-child {
     background:#AED4FB;
-***REMOVED***
-***REMOVED***
+  }
+}

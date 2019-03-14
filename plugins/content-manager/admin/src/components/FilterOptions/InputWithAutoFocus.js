@@ -5,15 +5,15 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** get ***REMOVED*** from 'lodash';
+import { get } from 'lodash';
 
 import InputDate from 'components/InputDate/Loadable';
 import InputNumber from 'components/InputNumber/Loadable';
 import InputSelect from 'components/InputSelect/Loadable';
 import InputText from 'components/InputText/Loadable';
 
-const getInputType = (attrType) => ***REMOVED***
-  switch (attrType) ***REMOVED***
+const getInputType = (attrType) => {
+  switch (attrType) {
     case 'boolean':
       return InputSelect;
     case 'date':
@@ -26,48 +26,48 @@ const getInputType = (attrType) => ***REMOVED***
       return InputNumber;
     default:
       return InputText;
-***REMOVED***
-***REMOVED***;
+  }
+};
 
 
-class InputWithAutoFocus extends React.Component ***REMOVED***
-  componentDidMount() ***REMOVED***
-    if (this.props.filterToFocus === this.props.index) ***REMOVED***
-      return new Promise(resolve => ***REMOVED***
-        setTimeout(() => ***REMOVED***
-          if (this.inputEl.hasOwnProperty('openCalendar')) ***REMOVED***
+class InputWithAutoFocus extends React.Component {
+  componentDidMount() {
+    if (this.props.filterToFocus === this.props.index) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          if (this.inputEl.hasOwnProperty('openCalendar')) {
             this.inputEl.openCalendar();
-    ***REMOVED*** else ***REMOVED***
+          } else {
             this.inputEl.focus();
-    ***REMOVED***
+          }
           resolve();
-  ***REMOVED*** 300);
-***REMOVED***);
-***REMOVED***
-***REMOVED***
+        }, 300);
+      });
+    }
+  }
 
-  render() ***REMOVED***
-    const ***REMOVED*** filter, inputStyle, name, onChange, schema ***REMOVED*** = this.props;
+  render() {
+    const { filter, inputStyle, name, onChange, schema } = this.props;
     const Input = getInputType(get(schema, [filter.attr, 'type'], 'string'));
 
     return (
       <Input
-        inputRef=***REMOVED***input => this.inputEl = input***REMOVED***
-        name=***REMOVED***name***REMOVED***
-        onChange=***REMOVED***onChange***REMOVED***
-        selectOptions=***REMOVED***['true', 'false']***REMOVED***
-        style=***REMOVED***inputStyle***REMOVED***
-        value=***REMOVED***get(filter, 'value')***REMOVED***
+        inputRef={input => this.inputEl = input}
+        name={name}
+        onChange={onChange}
+        selectOptions={['true', 'false']}
+        style={inputStyle}
+        value={get(filter, 'value')}
       />
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-InputWithAutoFocus.defaultProps = ***REMOVED***
+InputWithAutoFocus.defaultProps = {
   filterToFocus: null,
-***REMOVED***;
+};
 
-InputWithAutoFocus.propTypes = ***REMOVED***
+InputWithAutoFocus.propTypes = {
   filter: PropTypes.object.isRequired,
   filterToFocus: PropTypes.oneOfType([
     PropTypes.object,
@@ -78,6 +78,6 @@ InputWithAutoFocus.propTypes = ***REMOVED***
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   schema: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
 export default InputWithAutoFocus;

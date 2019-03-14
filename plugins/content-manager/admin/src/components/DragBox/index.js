@@ -12,22 +12,22 @@ import GrabIcon from 'assets/images/icon_grab_blue.svg';
 import styles from './styles.scss';
 
 
-function DragBox(***REMOVED*** name ***REMOVED***) ***REMOVED***
+function DragBox({ name }) {
   return (
-    <div className=***REMOVED***styles.dragBox***REMOVED***>
-      <img src=***REMOVED***GrabIcon***REMOVED*** alt="Grab Icon Active" />
-      <span>***REMOVED***name***REMOVED***</span>
+    <div className={styles.dragBox}>
+      <img src={GrabIcon} alt="Grab Icon Active" />
+      <span>{name}</span>
       <DraggedRemovedIcon isDragging />
     </div>
   );
-***REMOVED***
+}
 
-DragBox.defaultProps = ***REMOVED***
+DragBox.defaultProps = {
   name: '',
-***REMOVED***;
+};
 
-DragBox.propTypes = ***REMOVED***
+DragBox.propTypes = {
   name: PropTypes.string,
-***REMOVED***;
+};
 
 export default DragBox;

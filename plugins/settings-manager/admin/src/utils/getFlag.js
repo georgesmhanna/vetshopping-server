@@ -1,19 +1,19 @@
-import ***REMOVED*** toLower, size, forEach, upperCase, split ***REMOVED*** from 'lodash';
+import { toLower, size, forEach, upperCase, split } from 'lodash';
 
-export default function getFlag(languageArray) ***REMOVED***
+export default function getFlag(languageArray) {
   return toLower(languageArray[size(languageArray) -1]);
-***REMOVED***
+}
 
-export function formatLanguageLocale(data) ***REMOVED***
+export function formatLanguageLocale(data) {
   const array = [];
 
-  forEach(split(data, '_'), (value, key) => ***REMOVED***
-    if (key === 0)***REMOVED***
+  forEach(split(data, '_'), (value, key) => {
+    if (key === 0){
       array.push(toLower(value));
-***REMOVED*** else ***REMOVED***
+    } else {
       array.push(upperCase(value));
-***REMOVED***
-***REMOVED***);
+    }
+  });
 
   return array;
-***REMOVED***
+}

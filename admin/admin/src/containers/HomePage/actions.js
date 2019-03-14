@@ -1,39 +1,39 @@
-import ***REMOVED***
+import {
   GET_ARTICLES,
   GET_ARTICLES_SUCCEEDED,
   ON_CHANGE,
   SUBMIT,
   SUBMIT_SUCCEEDED,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function getArticles() ***REMOVED***
-  return ***REMOVED***
+export function getArticles() {
+  return {
     type: GET_ARTICLES,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getArticlesSucceeded(articles) ***REMOVED***
-  return ***REMOVED***
+export function getArticlesSucceeded(articles) {
+  return {
     type: GET_ARTICLES_SUCCEEDED,
     articles,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onChange(***REMOVED*** target ***REMOVED***) ***REMOVED***
-  return ***REMOVED***
+export function onChange({ target }) {
+  return {
     type: ON_CHANGE,
     value: target.value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submit() ***REMOVED***
-  return ***REMOVED***
+export function submit() {
+  return {
     type: SUBMIT,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submitSucceeded() ***REMOVED***
-  return ***REMOVED***
+export function submitSucceeded() {
+  return {
     type: SUBMIT_SUCCEEDED,
-***REMOVED***;
-***REMOVED***
+  };
+}

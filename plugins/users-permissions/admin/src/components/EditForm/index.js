@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** get ***REMOVED*** from 'lodash';
+import { get } from 'lodash';
 import cn from 'classnames';
 
 import LoadingIndicator from 'components/LoadingIndicator';
@@ -14,64 +14,64 @@ import Input from 'components/InputsIndex';
 
 import styles from './styles.scss';
 
-class EditForm extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
+class EditForm extends React.Component { // eslint-disable-line react/prefer-stateless-function
   generateSelectOptions = () => (
-    Object.keys(get(this.props.values, 'roles', [])).reduce((acc, current) => ***REMOVED***
-      const option = ***REMOVED***
+    Object.keys(get(this.props.values, 'roles', [])).reduce((acc, current) => {
+      const option = {
         id: get(this.props.values.roles, [current, 'name']),
         value: get(this.props.values.roles, [current, 'type']),
-***REMOVED***;
+      };
       acc.push(option);
       return acc;
-***REMOVED***, [])
+    }, [])
   )
 
-  render() ***REMOVED***
-    if (this.props.showLoaders) ***REMOVED***
+  render() {
+    if (this.props.showLoaders) {
       return (
-        <div className=***REMOVED***cn(styles.editForm, this.props.showLoaders && styles.loadIndicatorContainer)***REMOVED***>
+        <div className={cn(styles.editForm, this.props.showLoaders && styles.loadIndicatorContainer)}>
           <LoadingIndicator />
         </div>
       );
-***REMOVED***
+    }
 
     return (
-      <div className=***REMOVED***styles.editForm***REMOVED***>
+      <div className={styles.editForm}>
         <div className="row">
           <Input
-            inputDescription=***REMOVED******REMOVED*** id: 'users-permissions.EditForm.inputSelect.description.role' ***REMOVED******REMOVED***
-            inputClassName=***REMOVED***styles.inputStyle***REMOVED***
-            label=***REMOVED******REMOVED*** id: 'users-permissions.EditForm.inputSelect.label.role' ***REMOVED******REMOVED***
+            inputDescription={{ id: 'users-permissions.EditForm.inputSelect.description.role' }}
+            inputClassName={styles.inputStyle}
+            label={{ id: 'users-permissions.EditForm.inputSelect.label.role' }}
             name="advanced.settings.default_role"
-            onChange=***REMOVED***this.props.onChange***REMOVED***
-            selectOptions=***REMOVED***this.generateSelectOptions()***REMOVED***
+            onChange={this.props.onChange}
+            selectOptions={this.generateSelectOptions()}
             type="select"
-            value=***REMOVED***get(this.props.values.settings, 'default_role')***REMOVED***
+            value={get(this.props.values.settings, 'default_role')}
           />
         </div>
-        <div className=***REMOVED***styles.separator***REMOVED*** />
+        <div className={styles.separator} />
         <div className="row">
           <Input
-            label=***REMOVED******REMOVED*** id: 'users-permissions.EditForm.inputToggle.label.email' ***REMOVED******REMOVED***
-            inputDescription=***REMOVED******REMOVED*** id: 'users-permissions.EditForm.inputToggle.description.email' ***REMOVED******REMOVED***
+            label={{ id: 'users-permissions.EditForm.inputToggle.label.email' }}
+            inputDescription={{ id: 'users-permissions.EditForm.inputToggle.description.email' }}
             name="advanced.settings.unique_email"
-            onChange=***REMOVED***this.props.onChange***REMOVED***
+            onChange={this.props.onChange}
             type="toggle"
-            value=***REMOVED***get(this.props.values.settings, 'unique_email')***REMOVED***
+            value={get(this.props.values.settings, 'unique_email')}
           />
         </div>
-        <div className=***REMOVED***styles.separator***REMOVED*** />
-        ***REMOVED***/****REMOVED***
+        <div className={styles.separator} />
+        {/*}
         <div className="row">
           <Input
             customBootstrapClass="col-md-3"
             label="users-permissions.EditForm.inputSelect.subscriptions.label"
             inputDescription="users-permissions.EditForm.inputSelect.subscriptions.description"
             name="subscriptions"
-            onChange=***REMOVED***this.props.onChange***REMOVED***
+            onChange={this.props.onChange}
             type="number"
-            validations=***REMOVED******REMOVED******REMOVED******REMOVED***
-            value=***REMOVED***get(this.props.values, 'subscriptions')***REMOVED***
+            validations={{}}
+            value={get(this.props.values, 'subscriptions')}
           />
           <div className="col-md-3" />
           <Input
@@ -79,54 +79,54 @@ class EditForm extends React.Component ***REMOVED*** // eslint-disable-line reac
             label="users-permissions.EditForm.inputSelect.durations.label"
             inputDescription="users-permissions.EditForm.inputSelect.durations.description"
             name="durations"
-            onChange=***REMOVED***this.props.onChange***REMOVED***
+            onChange={this.props.onChange}
             type="number"
-            validations=***REMOVED******REMOVED******REMOVED******REMOVED***
-            value=***REMOVED***get(this.props.values, 'durations')***REMOVED***
+            validations={{}}
+            value={get(this.props.values, 'durations')}
           />
         </div>
-        <div className=***REMOVED***styles.separator***REMOVED*** />
-        */***REMOVED***
+        <div className={styles.separator} />
+        */}
         <div className="row">
           <Input
-            label=***REMOVED******REMOVED*** id: 'users-permissions.EditForm.inputToggle.label.sign-up' ***REMOVED******REMOVED***
-            inputDescription=***REMOVED******REMOVED*** id: 'users-permissions.EditForm.inputToggle.description.sign-up' ***REMOVED******REMOVED***
+            label={{ id: 'users-permissions.EditForm.inputToggle.label.sign-up' }}
+            inputDescription={{ id: 'users-permissions.EditForm.inputToggle.description.sign-up' }}
             name="advanced.settings.allow_register"
-            onChange=***REMOVED***this.props.onChange***REMOVED***
+            onChange={this.props.onChange}
             type="toggle"
-            value=***REMOVED***get(this.props.values.settings, 'allow_register')***REMOVED***
+            value={get(this.props.values.settings, 'allow_register')}
           />
         </div>
-        <div className=***REMOVED***styles.separator***REMOVED*** />
+        <div className={styles.separator} />
         <div className="row">
           <Input
-            label=***REMOVED******REMOVED*** id: 'users-permissions.EditForm.inputToggle.label.email-confirmation' ***REMOVED******REMOVED***
-            inputDescription=***REMOVED******REMOVED*** id: 'users-permissions.EditForm.inputToggle.description.email-confirmation' ***REMOVED******REMOVED***
+            label={{ id: 'users-permissions.EditForm.inputToggle.label.email-confirmation' }}
+            inputDescription={{ id: 'users-permissions.EditForm.inputToggle.description.email-confirmation' }}
             name="advanced.settings.email_confirmation"
-            onChange=***REMOVED***this.props.onChange***REMOVED***
+            onChange={this.props.onChange}
             type="toggle"
-            value=***REMOVED***get(this.props.values.settings, 'email_confirmation')***REMOVED***
+            value={get(this.props.values.settings, 'email_confirmation')}
           />
         </div>
         <div className="row">
           <Input
-            label=***REMOVED******REMOVED*** id: 'users-permissions.EditForm.inputToggle.label.email-confirmation-redirection' ***REMOVED******REMOVED***
-            inputDescription=***REMOVED******REMOVED*** id: 'users-permissions.EditForm.inputToggle.description.email-confirmation-redirection' ***REMOVED******REMOVED***
+            label={{ id: 'users-permissions.EditForm.inputToggle.label.email-confirmation-redirection' }}
+            inputDescription={{ id: 'users-permissions.EditForm.inputToggle.description.email-confirmation-redirection' }}
             name="advanced.settings.email_confirmation_redirection"
-            onChange=***REMOVED***this.props.onChange***REMOVED***
+            onChange={this.props.onChange}
             type="text"
-            value=***REMOVED***get(this.props.values.settings, 'email_confirmation_redirection')***REMOVED***
+            value={get(this.props.values.settings, 'email_confirmation_redirection')}
           />
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-EditForm.propTypes = ***REMOVED***
+EditForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   showLoaders: PropTypes.bool.isRequired,
   values: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
 export default EditForm;

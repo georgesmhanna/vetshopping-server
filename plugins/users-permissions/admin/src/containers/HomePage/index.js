@@ -6,11 +6,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** injectIntl ***REMOVED*** from 'react-intl';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
+import { connect } from 'react-redux';
+import { injectIntl } from 'react-intl';
+import { bindActionCreators, compose } from 'redux';
 import cn from 'classnames';
-import ***REMOVED*** clone, get, includes, isEqual, isEmpty ***REMOVED*** from 'lodash';
+import { clone, get, includes, isEqual, isEmpty } from 'lodash';
 
 // Design
 import EditForm from 'components/EditForm';
@@ -30,7 +30,7 @@ import selectHomePage from './selectors';
 import styles from './styles.scss';
 
 // Actions
-import ***REMOVED***
+import {
   cancelChanges,
   deleteData,
   fetchData,
@@ -40,7 +40,7 @@ import ***REMOVED***
   setFormErrors,
   submit,
   unsetDataToEdit,
-***REMOVED*** from './actions';
+} from './actions';
 
 import reducer from './reducer';
 import saga from './saga';
@@ -49,174 +49,174 @@ import checkFormValidity from './checkFormValidity';
 
 const keyBoardShortCuts = [18, 78];
 
-export class HomePage extends React.Component ***REMOVED***
-  state = ***REMOVED*** mapKey: ***REMOVED******REMOVED***, showModalEdit: false ***REMOVED***;
+export class HomePage extends React.Component {
+  state = { mapKey: {}, showModalEdit: false };
 
   getChildContext = () => (
-    ***REMOVED***
+    {
       setDataToEdit: this.props.setDataToEdit,
       unsetDataToEdit: this.props.unsetDataToEdit,
-***REMOVED***
+    }
   );
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     this.props.fetchData(this.props.match.params.settingType);
     document.addEventListener('keydown', this.handleKeyBoardShortCut);
     document.addEventListener('keyup', this.handleKeyBoardShortCut);
-***REMOVED***
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (nextProps.dataToEdit !== this.props.dataToEdit) ***REMOVED***
-      this.setState(***REMOVED*** showModalEdit: !isEmpty(nextProps.dataToEdit) ***REMOVED***);
-***REMOVED***
-***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.dataToEdit !== this.props.dataToEdit) {
+      this.setState({ showModalEdit: !isEmpty(nextProps.dataToEdit) });
+    }
+  }
 
-  componentWillUpdate(nextProps) ***REMOVED***
+  componentWillUpdate(nextProps) {
     const allowedPaths = ['roles', 'providers', 'email-templates', 'advanced'];
     const shouldRedirect = allowedPaths.filter(el => el === nextProps.match.params.settingType).length === 0;
 
-    if (shouldRedirect) ***REMOVED***
+    if (shouldRedirect) {
       this.props.history.push('/404');
-***REMOVED***
+    }
 
-    if (nextProps.didDeleteData !== this.props.didDeleteData) ***REMOVED***
+    if (nextProps.didDeleteData !== this.props.didDeleteData) {
       this.props.fetchData(nextProps.match.params.settingType);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentDidUpdate(prevProps) ***REMOVED***
-    if (prevProps.match.params.settingType !== this.props.match.params.settingType) ***REMOVED***
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.settingType !== this.props.match.params.settingType) {
       this.props.fetchData(this.props.match.params.settingType);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentWillUnmount() ***REMOVED***
+  componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyBoardShortCut);
     document.removeEventListener('keyup', this.handleKeyBoardShortCut);
     this.props.resetProps();
-***REMOVED***
+  }
 
   getEndPoint = () => this.props.match.params.settingType;
 
-  handleKeyBoardShortCut = (e) => ***REMOVED***
-    if (includes(keyBoardShortCuts, e.keyCode)) ***REMOVED***
+  handleKeyBoardShortCut = (e) => {
+    if (includes(keyBoardShortCuts, e.keyCode)) {
       const mapKey = clone(this.state.mapKey);
       mapKey[e.keyCode] = e.type === 'keydown';
-      this.setState(***REMOVED*** mapKey ***REMOVED***);
+      this.setState({ mapKey });
 
       // Check if user pressed option + n;
-      if (mapKey[18] && mapKey[78]) ***REMOVED***
-        this.setState(***REMOVED*** mapKey: ***REMOVED******REMOVED*** ***REMOVED***);
+      if (mapKey[18] && mapKey[78]) {
+        this.setState({ mapKey: {} });
         this.handleButtonClick();
-***REMOVED***
-***REMOVED***
+      }
+    }
 
-***REMOVED***
+  }
 
-  handleButtonClick = () => ***REMOVED***
+  handleButtonClick = () => {
     // TODO change open modal URL
-    if (this.props.match.params.settingType === 'roles') ***REMOVED***
-      this.props.history.push(`$***REMOVED***this.props.location.pathname***REMOVED***/create`);
-***REMOVED*** else if (this.props.match.params.settingType === 'providers') ***REMOVED***
-      this.props.history.push(`$***REMOVED***this.props.location.pathname***REMOVED***#add::$***REMOVED***this.props.match.params.settingType***REMOVED***`);
-***REMOVED***
-***REMOVED***
+    if (this.props.match.params.settingType === 'roles') {
+      this.props.history.push(`${this.props.location.pathname}/create`);
+    } else if (this.props.match.params.settingType === 'providers') {
+      this.props.history.push(`${this.props.location.pathname}#add::${this.props.match.params.settingType}`);
+    }
+  }
 
-  handleSubmit = (e) => ***REMOVED***
+  handleSubmit = (e) => {
     e.preventDefault();
     const modifiedObject = get(this.props.modifiedData, [this.getEndPoint(), this.props.dataToEdit]);
     const initObject = get(this.props.initialData, [this.getEndPoint(), this.props.dataToEdit]);
     const formErrors = checkFormValidity(this.props.match.params.settingType, modifiedObject, this.props.dataToEdit);
 
-    if (isEqual(initObject, modifiedObject)) ***REMOVED***
+    if (isEqual(initObject, modifiedObject)) {
       return this.props.unsetDataToEdit();
-***REMOVED***
+    }
 
-    if (isEmpty(formErrors)) ***REMOVED***
-      this.setState(***REMOVED*** showModalEdit: false ***REMOVED***);
+    if (isEmpty(formErrors)) {
+      this.setState({ showModalEdit: false });
       this.props.submit(this.props.match.params.settingType);
-***REMOVED*** else ***REMOVED***
+    } else {
       this.props.setFormErrors(formErrors);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   pluginHeaderActions = [
-    ***REMOVED***
+    {
       label: 'users-permissions.EditPage.cancel',
       kind: 'secondary',
       onClick: () => this.props.cancelChanges(),
       type: 'button',
-***REMOVED***,
-    ***REMOVED***
+    },
+    {
       kind: 'primary',
       label: 'users-permissions.EditPage.submit',
       onClick: () => this.props.submit(this.props.match.params.settingType),
       type: 'submit',
-***REMOVED***,
+    },
   ];
 
-  showLoaders = () => ***REMOVED***
-    const ***REMOVED*** data, isLoading, modifiedData ***REMOVED*** = this.props;
+  showLoaders = () => {
+    const { data, isLoading, modifiedData } = this.props;
     const isAdvanded = this.getEndPoint() === 'advanced';
     
     return isLoading && get(data, this.getEndPoint()) === undefined && !isAdvanded || isLoading && isAdvanded &&  get(modifiedData, this.getEndPoint()) === undefined;
-***REMOVED***
+  }
 
-  render() ***REMOVED***
-    const ***REMOVED*** data, didCheckErrors, formErrors, modifiedData, initialData, match, dataToEdit ***REMOVED*** = this.props;
+  render() {
+    const { data, didCheckErrors, formErrors, modifiedData, initialData, match, dataToEdit } = this.props;
     const headerActions = match.params.settingType === 'advanced' && !isEqual(modifiedData, initialData) ?
       this.pluginHeaderActions : [];
     const noButtonList = match.params.settingType === 'email-templates' || match.params.settingType === 'providers';
     const component = match.params.settingType === 'advanced' ?
-      <EditForm onChange=***REMOVED***this.props.onChange***REMOVED*** values=***REMOVED***get(modifiedData, this.getEndPoint(), ***REMOVED******REMOVED***)***REMOVED*** showLoaders=***REMOVED***this.showLoaders()***REMOVED*** /> : (
+      <EditForm onChange={this.props.onChange} values={get(modifiedData, this.getEndPoint(), {})} showLoaders={this.showLoaders()} /> : (
         <List
-          data=***REMOVED***get(data, this.getEndPoint(), [])***REMOVED***
-          deleteData=***REMOVED***this.props.deleteData***REMOVED***
-          noButton=***REMOVED***noButtonList***REMOVED***
-          onButtonClick=***REMOVED***this.handleButtonClick***REMOVED***
-          settingType=***REMOVED***match.params.settingType***REMOVED***
-          showLoaders=***REMOVED***this.showLoaders()***REMOVED***
-          values=***REMOVED***get(modifiedData, this.getEndPoint(), ***REMOVED******REMOVED***)***REMOVED***
+          data={get(data, this.getEndPoint(), [])}
+          deleteData={this.props.deleteData}
+          noButton={noButtonList}
+          onButtonClick={this.handleButtonClick}
+          settingType={match.params.settingType}
+          showLoaders={this.showLoaders()}
+          values={get(modifiedData, this.getEndPoint(), {})}
         />
       );
     
     return (
       <div>
-        <form onSubmit=***REMOVED***(e) => e.preventDefault()***REMOVED***>
-          <div className=***REMOVED***cn('container-fluid', styles.containerFluid)***REMOVED***>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <div className={cn('container-fluid', styles.containerFluid)}>
             <PluginHeader
-              title=***REMOVED******REMOVED*** id: 'users-permissions.HomePage.header.title' ***REMOVED******REMOVED***
-              description=***REMOVED******REMOVED*** id: 'users-permissions.HomePage.header.description' ***REMOVED******REMOVED***
-              actions=***REMOVED***headerActions***REMOVED***
+              title={{ id: 'users-permissions.HomePage.header.title' }}
+              description={{ id: 'users-permissions.HomePage.header.description' }}
+              actions={headerActions}
             />
             <HeaderNav />
-            ***REMOVED***component***REMOVED***
+            {component}
           </div>
           <PopUpForm
             actionType="edit"
-            isOpen=***REMOVED***this.state.showModalEdit***REMOVED***
-            dataToEdit=***REMOVED***dataToEdit***REMOVED***
-            didCheckErrors=***REMOVED***didCheckErrors***REMOVED***
-            formErrors=***REMOVED***formErrors***REMOVED***
-            onChange=***REMOVED***this.props.onChange***REMOVED***
-            onSubmit=***REMOVED***this.handleSubmit***REMOVED***
-            settingType=***REMOVED***match.params.settingType***REMOVED***
-            values=***REMOVED***get(modifiedData,[this.getEndPoint(), dataToEdit], ***REMOVED******REMOVED***)***REMOVED***
+            isOpen={this.state.showModalEdit}
+            dataToEdit={dataToEdit}
+            didCheckErrors={didCheckErrors}
+            formErrors={formErrors}
+            onChange={this.props.onChange}
+            onSubmit={this.handleSubmit}
+            settingType={match.params.settingType}
+            values={get(modifiedData,[this.getEndPoint(), dataToEdit], {})}
           />
         </form>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-HomePage.childContextTypes = ***REMOVED***
+HomePage.childContextTypes = {
   setDataToEdit: PropTypes.func,
   unsetDataToEdit: PropTypes.func,
-***REMOVED***;
+};
 
-HomePage.defaultProps = ***REMOVED******REMOVED***;
+HomePage.defaultProps = {};
 
-HomePage.propTypes = ***REMOVED***
+HomePage.propTypes = {
   cancelChanges: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
   dataToEdit: PropTypes.string.isRequired,
@@ -237,12 +237,12 @@ HomePage.propTypes = ***REMOVED***
   setFormErrors: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
   unsetDataToEdit: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
 
-function mapDispatchToProps(dispatch) ***REMOVED***
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       cancelChanges,
       deleteData,
       fetchData,
@@ -252,17 +252,17 @@ function mapDispatchToProps(dispatch) ***REMOVED***
       setFormErrors,
       submit,
       unsetDataToEdit,
-***REMOVED***,
+    },
     dispatch,
   );
-***REMOVED***
+}
 
 const mapStateToProps = selectHomePage();
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer(***REMOVED*** key: 'homePage', reducer ***REMOVED***);
-const withSaga = injectSaga(***REMOVED*** key: 'homePage', saga ***REMOVED***);
+const withReducer = injectReducer({ key: 'homePage', reducer });
+const withSaga = injectSaga({ key: 'homePage', saga });
 
 export default compose(
   withReducer,

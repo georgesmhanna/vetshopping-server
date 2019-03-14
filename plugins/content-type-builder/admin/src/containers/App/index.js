@@ -6,13 +6,13 @@
  */
 
 import React from 'react';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-// import ***REMOVED*** withRouter ***REMOVED*** from 'react-router';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
-import ***REMOVED*** Switch, Route, withRouter ***REMOVED*** from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+// import { withRouter } from 'react-router';
+import { createStructuredSelector } from 'reselect';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ***REMOVED*** pluginId ***REMOVED*** from 'app';
+import { pluginId } from 'app';
 
 import HomePage from 'containers/HomePage';
 import ModelPage from 'containers/ModelPage';
@@ -21,80 +21,80 @@ import formSaga from 'containers/Form/sagas';
 import formReducer from 'containers/Form/reducer';
 
 // Other containers actions
-import ***REMOVED*** makeSelectShouldRefetchContentType ***REMOVED*** from 'containers/Form/selectors';
+import { makeSelectShouldRefetchContentType } from 'containers/Form/selectors';
 
 // Utils
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import ***REMOVED*** storeData ***REMOVED*** from '../../utils/storeData';
+import { storeData } from '../../utils/storeData';
 
 import styles from './styles.scss';
-import ***REMOVED*** modelsFetch ***REMOVED*** from './actions';
+import { modelsFetch } from './actions';
 import saga from './sagas';
 
 /* eslint-disable consistent-return */
-class App extends React.Component ***REMOVED***
-  componentDidMount() ***REMOVED***
+class App extends React.Component {
+  componentDidMount() {
     this.props.modelsFetch();
-***REMOVED***
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (nextProps.shouldRefetchContentType !== this.props.shouldRefetchContentType) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.shouldRefetchContentType !== this.props.shouldRefetchContentType) {
       this.props.modelsFetch();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
 
-  componentWillUnmount() ***REMOVED***
+  componentWillUnmount() {
     // Empty the app localStorage
     storeData.clearAppStorage();
-***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
-      <div className=***REMOVED***`$***REMOVED***pluginId***REMOVED*** $***REMOVED***styles.app***REMOVED***`***REMOVED***>
+      <div className={`${pluginId} ${styles.app}`}>
         <Switch>
-          <Route exact path="/plugins/content-type-builder" component=***REMOVED***HomePage***REMOVED*** />
-          <Route exact path="/plugins/content-type-builder/models/:modelName" component=***REMOVED***ModelPage***REMOVED*** />
-          <Route path="" component=***REMOVED***NotFoundPage***REMOVED*** />
+          <Route exact path="/plugins/content-type-builder" component={HomePage} />
+          <Route exact path="/plugins/content-type-builder/models/:modelName" component={ModelPage} />
+          <Route path="" component={NotFoundPage} />
         </Switch>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-App.contextTypes = ***REMOVED***
+App.contextTypes = {
   plugins: PropTypes.object,
   router: PropTypes.object.isRequired,
   updatePlugin: PropTypes.func,
-***REMOVED***;
+};
 
-App.propTypes = ***REMOVED***
+App.propTypes = {
   modelsFetch: PropTypes.func.isRequired,
   shouldRefetchContentType: PropTypes.bool,
-***REMOVED***;
+};
 
-App.defaultProps = ***REMOVED***
+App.defaultProps = {
   shouldRefetchContentType: false,
-***REMOVED***;
+};
 
-export function mapDispatchToProps(dispatch) ***REMOVED***
+export function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       modelsFetch,
-***REMOVED***,
+    },
     dispatch
   );
-***REMOVED***
+}
 
-const mapStateToProps = createStructuredSelector(***REMOVED***
+const mapStateToProps = createStructuredSelector({
   shouldRefetchContentType: makeSelectShouldRefetchContentType(),
-***REMOVED***);
+});
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withSaga = injectSaga(***REMOVED*** key: 'global', saga ***REMOVED***);
-const withFormReducer = injectReducer(***REMOVED*** key: 'form', reducer: formReducer ***REMOVED***);
-const withFormSaga = injectSaga(***REMOVED*** key: 'form', saga: formSaga ***REMOVED***);
+const withSaga = injectSaga({ key: 'global', saga });
+const withFormReducer = injectReducer({ key: 'form', reducer: formReducer });
+const withFormSaga = injectSaga({ key: 'form', saga: formSaga });
 export default compose(
   withFormReducer,
   withFormSaga,

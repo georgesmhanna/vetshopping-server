@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "app.components.Button.save": "Guardar",
   "app.components.Button.cancel": "Cancelar",
 
@@ -40,7 +40,7 @@
   "app.components.InputFileDetails.originalName": "Nombre original:",
   "app.components.InputFileDetails.size": "Tamaño:",
 
-  "app.components.ImgPreview.hint": "Arrastre y suelte el archivo en esta área o ***REMOVED***browse***REMOVED*** para cargar un archivo.",
+  "app.components.ImgPreview.hint": "Arrastre y suelte el archivo en esta área o {browse} para cargar un archivo.",
   "app.components.ImgPreview.hint.browse": "buscar",
 
   "app.components.InstallPluginPage.helmet": "Tienda - Plugins",
@@ -69,8 +69,8 @@
   "app.components.ListPluginsPage.title": "Plugins",
   "app.components.ListPluginsPage.description": "Lista de los plugins instalados en el proyecto.",
   "app.components.listPluginsPage.deletePlugin.error": "Se ha producido un error al desinstalar el plugin",
-  "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED*** plugin está instalado",
-  "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED*** plugins están instalados",
+  "app.components.listPlugins.title.singular": "{number} plugin está instalado",
+  "app.components.listPlugins.title.plural": "{number} plugins están instalados",
   "app.components.listPlugins.title.none": "No hay plugins instalados",
   "app.components.listPlugins.button": "Añadir nuevo plugin",
 
@@ -121,7 +121,7 @@
   "components.Input.error.attribute.key.taken": "Este valor ya existe",
   "components.Input.error.attribute.sameKeyAndName": "No puede ser igual",
   "components.Input.error.validation.minSupMax": "No puede ser superior",
-  "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+  "components.Input.error.custom-error": "{errorMessage} ",
   "components.Input.error.validation.json": "Esto no coincide con el formato JSON",
 
   "components.ListRow.empty": "No hay datos que mostrar.",
@@ -137,7 +137,7 @@
   "components.Wysiwyg.ToggleMode.markdown": "Cambiar a markdown",
   "components.Wysiwyg.ToggleMode.preview": "Cambiar a vista previa",
   "components.WysiwygBottomControls.charactersIndicators": "caracteres",
-  "components.WysiwygBottomControls.uploadFiles": "Arrastrar y soltar archivos, pegar desde el portapapeles o ***REMOVED***browse***REMOVED***.",
+  "components.WysiwygBottomControls.uploadFiles": "Arrastrar y soltar archivos, pegar desde el portapapeles o {browse}.",
   "components.WysiwygBottomControls.uploadFiles.browse": "seleccionarlos",
   "components.WysiwygBottomControls.fullscreen": "Expandir",
 
@@ -162,4 +162,4 @@
   "request.error.model.unknown": "Este modelo no existe",
   "Users": "Usuarios",
   "Analytics": "Analytics"
-***REMOVED***
+}

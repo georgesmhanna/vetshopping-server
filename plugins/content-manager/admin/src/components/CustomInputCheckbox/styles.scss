@@ -1,16 +1,16 @@
-.customSpan ***REMOVED***
+.customSpan {
   margin-left: -15px;
-***REMOVED***
+}
 
-.customLabel ***REMOVED***
+.customLabel {
   cursor: pointer;
-  > input ***REMOVED***
+  > input {
     display: none;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.customLabelHeader ***REMOVED***
-  &:before ***REMOVED***
+.customLabelHeader {
+  &:before {
     content: '';
     position: absolute;
     left:15px; top: 5px;
@@ -18,11 +18,11 @@
     border: 1px solid rgba(16,22,34,0.15);
     background-color: #FDFDFD;
     border-radius: 3px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.customLabelRow ***REMOVED***
-  &:before ***REMOVED***
+.customLabelRow {
+  &:before {
     content: '';
     position: absolute;
     left:15px; top: 19px;
@@ -30,11 +30,11 @@
     border: 1px solid rgba(16,22,34,0.15);
     background-color: #FDFDFD;
     border-radius: 3px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.customLabelCheckedHeader ***REMOVED***
-  &:after ***REMOVED***
+.customLabelCheckedHeader {
+  &:after {
     content: '\f00c';
     position: absolute;
     top: 5px; left: 17px;
@@ -44,11 +44,11 @@
     color: #1C5DE7;
     transition: all .2s;
 
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.customLabelCheckedRow ***REMOVED***
-  &:after ***REMOVED***
+.customLabelCheckedRow {
+  &:after {
     content: '\f00c';
     position: absolute;
     top: 0px; left: 17px;
@@ -58,11 +58,11 @@
     color: #1C5DE7;
     transition: all .2s;
 
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.customLabelUnCheckedHeader ***REMOVED***
-  &:after ***REMOVED***
+.customLabelUnCheckedHeader {
+  &:after {
     content: '\f068';
     position: absolute;
     top: 5px; left: 18px;
@@ -70,5 +70,5 @@
     font-family: 'FontAwesome';
     font-weight: 100;
     color: #1C5DE7;
-***REMOVED***
-***REMOVED***
+  }
+}

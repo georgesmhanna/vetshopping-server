@@ -4,46 +4,46 @@
 
 // Alignment
 
-.text-justify  ***REMOVED*** text-align: justify !important; ***REMOVED***
-.text-nowrap   ***REMOVED*** white-space: nowrap !important; ***REMOVED***
-.text-truncate ***REMOVED*** @include text-truncate; ***REMOVED***
+.text-justify  { text-align: justify !important; }
+.text-nowrap   { white-space: nowrap !important; }
+.text-truncate { @include text-truncate; }
 
 // Responsive alignment
 
-@each $breakpoint in map-keys($grid-breakpoints) ***REMOVED***
-  @include media-breakpoint-up($breakpoint) ***REMOVED***
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-    .text#***REMOVED***$infix***REMOVED***-left   ***REMOVED*** text-align: left !important; ***REMOVED***
-    .text#***REMOVED***$infix***REMOVED***-right  ***REMOVED*** text-align: right !important; ***REMOVED***
-    .text#***REMOVED***$infix***REMOVED***-center ***REMOVED*** text-align: center !important; ***REMOVED***
-***REMOVED***
-***REMOVED***
+    .text#{$infix}-left   { text-align: left !important; }
+    .text#{$infix}-right  { text-align: right !important; }
+    .text#{$infix}-center { text-align: center !important; }
+  }
+}
 
 // Transformation
 
-.text-lowercase  ***REMOVED*** text-transform: lowercase !important; ***REMOVED***
-.text-uppercase  ***REMOVED*** text-transform: uppercase !important; ***REMOVED***
-.text-capitalize ***REMOVED*** text-transform: capitalize !important; ***REMOVED***
+.text-lowercase  { text-transform: lowercase !important; }
+.text-uppercase  { text-transform: uppercase !important; }
+.text-capitalize { text-transform: capitalize !important; }
 
 // Weight and italics
 
-.font-weight-normal ***REMOVED*** font-weight: $font-weight-normal; ***REMOVED***
-.font-weight-bold   ***REMOVED*** font-weight: $font-weight-bold; ***REMOVED***
-.font-italic        ***REMOVED*** font-style: italic; ***REMOVED***
+.font-weight-normal { font-weight: $font-weight-normal; }
+.font-weight-bold   { font-weight: $font-weight-bold; }
+.font-italic        { font-style: italic; }
 
 // Contextual colors
 
-.text-white ***REMOVED*** color: #fff !important; ***REMOVED***
+.text-white { color: #fff !important; }
 
-@each $color, $value in $theme-colors ***REMOVED***
-  @include text-emphasis-variant('.text-#***REMOVED***$color***REMOVED***', $value);
-***REMOVED***
+@each $color, $value in $theme-colors {
+  @include text-emphasis-variant('.text-#{$color}', $value);
+}
 
-.text-muted ***REMOVED*** color: $text-muted !important; ***REMOVED***
+.text-muted { color: $text-muted !important; }
 
 // Misc
 
-.text-hide ***REMOVED***
+.text-hide {
   @include text-hide();
-***REMOVED***
+}

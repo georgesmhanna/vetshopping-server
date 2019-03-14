@@ -5,26 +5,26 @@
 */
 
 import React from 'react';
-import ***REMOVED*** defineMessages, FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** PropTypes ***REMOVED*** from 'prop-types';
+import { defineMessages, FormattedMessage } from 'react-intl';
+import { PropTypes } from 'prop-types';
 
 import styles from './styles.scss';
 import messages from './messages.json';
 defineMessages(messages);
 
-function LeftMenuFooter(***REMOVED*** version ***REMOVED***) ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
+function LeftMenuFooter({ version }) { // eslint-disable-line react/prefer-stateless-function
   return (
-    <div className=***REMOVED***styles.leftMenuFooter***REMOVED***>
+    <div className={styles.leftMenuFooter}>
       <div>
-        <FormattedMessage ***REMOVED***...messages.poweredBy***REMOVED*** />
-        <a href="https://strapi.io" target="_blank">v***REMOVED***version***REMOVED***</a>
+        <FormattedMessage {...messages.poweredBy} />
+        <a href="https://strapi.io" target="_blank">v{version}</a>
       </div>
     </div>
   );
-***REMOVED***
+}
 
-LeftMenuFooter.propTypes = ***REMOVED***
+LeftMenuFooter.propTypes = {
   version: PropTypes.string.isRequired,
-***REMOVED***;
+};
 
 export default LeftMenuFooter;

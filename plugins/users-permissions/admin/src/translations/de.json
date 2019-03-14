@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "Auth.form.button.register-success": "Erneut schicken",
   "Auth.form.button.forgot-password.success": "Erneut schicken",
   "Auth.form.button.forgot-password": "E-Mail versenden",
@@ -53,7 +53,7 @@
 
   "components.Input.error.password.noMatch": "Passwörter stimmen nicht überein",
 
-  "Controller.input.label": "***REMOVED***label***REMOVED*** ",
+  "Controller.input.label": "{label} ",
   "Controller.selectAll": "Alle auswählen",
 
   "EditForm.inputSelect.label.role": "Standardrolle für authentifizierte Benutzer",
@@ -73,11 +73,11 @@
   "EditPage.form.roles": "Details zu Rollen",
   "EditPage.form.roles.label.description": "Beschreibung",
   "EditPage.form.roles.label.name": "Name",
-  "EditPage.form.roles.label.users": "Benutzer mit dieser Rolle (***REMOVED***number***REMOVED***)",
+  "EditPage.form.roles.label.users": "Benutzer mit dieser Rolle ({number})",
   "EditPage.form.roles.name.error": "Dieser Wert ist erforderlich.",
-  "EditPage.header.title": "***REMOVED***name***REMOVED*** ",
+  "EditPage.header.title": "{name} ",
   "EditPage.header.title.create": "Erstelle eine neue Rolle",
-  "EditPage.header.description": "***REMOVED***description***REMOVED*** ",
+  "EditPage.header.description": "{description} ",
   "EditPage.header.description.create": " ",
 
   "EditPage.notification.permissions.error": "Beim Abruf von Befugnissen ist ein Fehler aufgetreten",
@@ -97,16 +97,16 @@
   "List.button.roles": "Neue Rolle hinzufügen",
   "List.button.providers": "Neue Methode hinzufügen",
 
-  "List.title.emailTemplates.singular": "***REMOVED***number***REMOVED*** E-Mail-Template ist verfügbar",
-  "List.title.emailTemplates.plural": "***REMOVED***number***REMOVED*** E-Mail-Templates sind verfügbar",
+  "List.title.emailTemplates.singular": "{number} E-Mail-Template ist verfügbar",
+  "List.title.emailTemplates.plural": "{number} E-Mail-Templates sind verfügbar",
 
-  "List.title.providers.disabled.singular": "***REMOVED***number***REMOVED*** ist deaktiviert",
-  "List.title.providers.disabled.plural": "***REMOVED***number***REMOVED*** sind deaktiviert",
-  "List.title.providers.enabled.singular": "***REMOVED***number***REMOVED*** Methode ist aktiviert und",
-  "List.title.providers.enabled.plural": "***REMOVED***number***REMOVED*** Methoden sind aktiviert und",
+  "List.title.providers.disabled.singular": "{number} ist deaktiviert",
+  "List.title.providers.disabled.plural": "{number} sind deaktiviert",
+  "List.title.providers.enabled.singular": "{number} Methode ist aktiviert und",
+  "List.title.providers.enabled.plural": "{number} Methoden sind aktiviert und",
 
-  "List.title.roles.singular": "***REMOVED***number***REMOVED*** Rolle ist verfügbar",
-  "List.title.roles.plural": "***REMOVED***number***REMOVED*** Rollen sind verfügbar",
+  "List.title.roles.singular": "{number} Rolle ist verfügbar",
+  "List.title.roles.plural": "{number} Rollen sind verfügbar",
 
   "notification.error.delete": "Beim Löschen des Objekts ist ein Fehler aufgetreten",
   "notification.error.fetch": "Beim Abruf von Daten ist ein Fehler aufgetreten",
@@ -119,7 +119,7 @@
   "plugin.description.long": "Beschütze deine API mit einem vollständigen Authentifikationsprozess basierend auf JWT. Zudem bietet dieses Plugin eine ACL-Strategie, die erlaubt, die Befugnisse zwischen Benutzergruppen festzulegen.",
 
   "Plugin.permissions.application.description": "Definiere die möglichen Aktionen deines Projekts.",
-  "Plugin.permissions.plugins.description": "Definiere die möglichen Aktionen des ***REMOVED***name***REMOVED*** Plugins.",
+  "Plugin.permissions.plugins.description": "Definiere die möglichen Aktionen des {name} Plugins.",
 
   "Plugins.header.title": "Befugnisse",
   "Plugins.header.description": "Nur Aktionen, die an einen Pfad gebunden sind, werden hier gelistet.",
@@ -139,7 +139,7 @@
   "PopUpForm.button.save": "Speichern",
   "PopUpForm.header.add.providers": "Neue Methode hinzufügen",
   "PopUpForm.header.edit.email-templates": "E-Mail-Templates bearbeiten",
-  "PopUpForm.header.edit.providers": "Methode ***REMOVED***provider***REMOVED*** bearbeiten",
+  "PopUpForm.header.edit.providers": "Methode {provider} bearbeiten",
   "PopUpForm.inputSelect.providers.label": "Wähle die Methode aus",
   "PopUpForm.Email.options.from.name.label": "Name des Absenders",
   "PopUpForm.Email.options.from.email.label": "E-Mail-Adresse des Absenders",
@@ -172,6 +172,6 @@
   "PopUpForm.Providers.twitter.providerConfig.redirectURL": "Die URL, die in den Einstellungen deiner Twitter-App gesetzt wird",
 
   "PopUpForm.Providers.callback.placeholder": "TEXT",
-  "PopUpForm.Email.email_templates.inputDescription": "Für mehr Informationen, ***REMOVED***link***REMOVED***",
+  "PopUpForm.Email.email_templates.inputDescription": "Für mehr Informationen, {link}",
   "PopUpForm.Email.link.documentation": "schau in unsere Dokumentation."
-***REMOVED***
+}

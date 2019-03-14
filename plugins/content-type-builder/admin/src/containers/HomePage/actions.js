@@ -4,12 +4,12 @@
  *
  */
 
-import ***REMOVED***
+import {
   DEFAULT_ACTION,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function defaultAction() ***REMOVED***
-  return ***REMOVED***
+export function defaultAction() {
+  return {
     type: DEFAULT_ACTION,
-***REMOVED***;
-***REMOVED***
+  };
+}

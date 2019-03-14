@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** isEmpty, isFunction ***REMOVED*** from 'lodash';
+import { isEmpty, isFunction } from 'lodash';
 import cn from 'classnames';
 
 // Design
@@ -21,60 +21,60 @@ import validateInput from 'utils/inputsValidations';
 
 import styles from './styles.scss';
 
-class InputJSONWithErrors extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  state = ***REMOVED*** errors: [], hasInitialValue: false ***REMOVED***;
+class InputJSONWithErrors extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  state = { errors: [], hasInitialValue: false };
 
-  componentDidMount() ***REMOVED***
-    const ***REMOVED*** value, errors ***REMOVED*** = this.props;
+  componentDidMount() {
+    const { value, errors } = this.props;
 
     // Prevent the input from displaying an error when the user enters and leaves without filling it
-    if (!isEmpty(value)) ***REMOVED***
-      this.setState(***REMOVED*** hasInitialValue: true ***REMOVED***);
-***REMOVED***
+    if (!isEmpty(value)) {
+      this.setState({ hasInitialValue: true });
+    }
 
     // Display input error if it already has some
-    if (!isEmpty(errors)) ***REMOVED***
-      this.setState(***REMOVED*** errors ***REMOVED***);
-***REMOVED***
-***REMOVED***
+    if (!isEmpty(errors)) {
+      this.setState({ errors });
+    }
+  }
 
-  componentDidUpdate(prevProps) ***REMOVED***
+  componentDidUpdate(prevProps) {
     // Show required error if the input's value is received after the compo is mounted
-    if (!isEmpty(this.props.value) && !this.state.hasInitialValue) ***REMOVED***
+    if (!isEmpty(this.props.value) && !this.state.hasInitialValue) {
       this.setInit();
-***REMOVED***
+    }
 
     // Check if errors have been updated during validations
-    if (prevProps.didCheckErrors !== this.props.didCheckErrors) ***REMOVED***
+    if (prevProps.didCheckErrors !== this.props.didCheckErrors) {
       // Remove from the state the errors that have already been set
       const errors = isEmpty(this.props.errors) ? [] : this.props.errors;
       this.setErrors(errors);
-***REMOVED***
-***REMOVED***
-  setErrors = errors => this.setState(***REMOVED*** errors ***REMOVED***);
+    }
+  }
+  setErrors = errors => this.setState({ errors });
 
-  setInit = () => this.setState(***REMOVED*** hasInitialValue: true ***REMOVED***);
+  setInit = () => this.setState({ hasInitialValue: true });
 
   /**
    * Set the errors depending on the validations given to the input
-   * @param  ***REMOVED***Object***REMOVED*** target
+   * @param  {Object} target
    */
-  handleBlur = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleBlur = ({ target }) => {
     // Prevent from displaying error if the input is initially isEmpty
-    if (!isEmpty(target.value) || this.state.hasInitialValue) ***REMOVED***
+    if (!isEmpty(target.value) || this.state.hasInitialValue) {
       const errors = validateInput(target.value, this.props.validations);
       this.setErrors(errors);
       this.setInit();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleChange = (e) => ***REMOVED***
-    this.setState(***REMOVED*** errors: [] ***REMOVED***);
+  handleChange = (e) => {
+    this.setState({ errors: [] });
     this.props.onChange(e);
-***REMOVED***
+  }
 
-  render() ***REMOVED***
-    const ***REMOVED***
+  render() {
+    const {
       autoFocus,
       className,
       customBootstrapClass,
@@ -97,61 +97,61 @@ class InputJSONWithErrors extends React.Component ***REMOVED*** // eslint-disabl
       style,
       tabIndex,
       value,
-***REMOVED*** = this.props;
+    } = this.props;
     const handleBlur = isFunction(onBlur) ? onBlur : this.handleBlur;
 
     let spacer = !isEmpty(inputDescription) ? <InputSpacer /> : <div />;
 
-    if (!noErrorsDescription && !isEmpty(this.state.errors)) ***REMOVED***
+    if (!noErrorsDescription && !isEmpty(this.state.errors)) {
       spacer = <div />;
-***REMOVED***
+    }
 
     return (
       <div
-        className=***REMOVED***cn(
+        className={cn(
           styles.containerJSON,
           customBootstrapClass,
           !isEmpty(className) && className,
-        )***REMOVED***
-        style=***REMOVED***style***REMOVED***
+        )}
+        style={style}
       >
         <Label
-          className=***REMOVED***labelClassName***REMOVED***
-          htmlFor=***REMOVED***name***REMOVED***
-          message=***REMOVED***label***REMOVED***
-          style=***REMOVED***labelStyle***REMOVED***
+          className={labelClassName}
+          htmlFor={name}
+          message={label}
+          style={labelStyle}
         />
         <InputJSON
-          autoFocus=***REMOVED***autoFocus***REMOVED***
-          className=***REMOVED***inputClassName***REMOVED***
-          disabled=***REMOVED***disabled***REMOVED***
-          deactivateErrorHighlight=***REMOVED***deactivateErrorHighlight***REMOVED***
-          name=***REMOVED***name***REMOVED***
-          onBlur=***REMOVED***handleBlur***REMOVED***
-          onChange=***REMOVED***this.handleChange***REMOVED***
-          placeholder=***REMOVED***placeholder***REMOVED***
-          resetProps=***REMOVED***resetProps***REMOVED***
-          style=***REMOVED***inputStyle***REMOVED***
-          tabIndex=***REMOVED***tabIndex***REMOVED***
-          value=***REMOVED***value***REMOVED***
+          autoFocus={autoFocus}
+          className={inputClassName}
+          disabled={disabled}
+          deactivateErrorHighlight={deactivateErrorHighlight}
+          name={name}
+          onBlur={handleBlur}
+          onChange={this.handleChange}
+          placeholder={placeholder}
+          resetProps={resetProps}
+          style={inputStyle}
+          tabIndex={tabIndex}
+          value={value}
         />
         <InputDescription
-          className=***REMOVED***inputDescriptionClassName***REMOVED***
-          message=***REMOVED***inputDescription***REMOVED***
-          style=***REMOVED******REMOVED*** marginTop: '3.2rem'***REMOVED******REMOVED***
+          className={inputDescriptionClassName}
+          message={inputDescription}
+          style={{ marginTop: '3.2rem'}}
         />
         <InputErrors
-          className=***REMOVED***errorsClassName***REMOVED***
-          errors=***REMOVED***!noErrorsDescription && this.state.errors || []***REMOVED***
-          style=***REMOVED***errorsStyle***REMOVED***
+          className={errorsClassName}
+          errors={!noErrorsDescription && this.state.errors || []}
+          style={errorsStyle}
         />
-        ***REMOVED***spacer***REMOVED***
+        {spacer}
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-InputJSONWithErrors.defaultProps = ***REMOVED***
+InputJSONWithErrors.defaultProps = {
   autoFocus: false,
   className: '',
   customBootstrapClass: 'col-md-12',
@@ -160,25 +160,25 @@ InputJSONWithErrors.defaultProps = ***REMOVED***
   disabled: false,
   errors: [],
   errorsClassName: '',
-  errorsStyle: ***REMOVED******REMOVED***,
+  errorsStyle: {},
   inputClassName: '',
   inputDescription: '',
   inputDescriptionClassName: '',
-  inputStyle: ***REMOVED******REMOVED***,
+  inputStyle: {},
   label: '',
   labelClassName: '',
-  labelStyle: ***REMOVED******REMOVED***,
+  labelStyle: {},
   noErrorsDescription: false,
   onBlur: false,
   placeholder: '',
   resetProps: false,
-  style: ***REMOVED******REMOVED***,
+  style: {},
   tabIndex: '0',
-  validations: ***REMOVED******REMOVED***,
+  validations: {},
   value: null,
-***REMOVED***;
+};
 
-InputJSONWithErrors.propTypes = ***REMOVED***
+InputJSONWithErrors.propTypes = {
   autoFocus: PropTypes.bool,
   className: PropTypes.string,
   customBootstrapClass: PropTypes.string,
@@ -192,20 +192,20 @@ InputJSONWithErrors.propTypes = ***REMOVED***
   inputDescription: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
-    PropTypes.shape(***REMOVED***
+    PropTypes.shape({
       id: PropTypes.string,
       params: PropTypes.object,
-***REMOVED***),
+    }),
   ]),
   inputDescriptionClassName: PropTypes.string,
   inputStyle: PropTypes.object,
   label: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.func,
-    PropTypes.shape(***REMOVED***
+    PropTypes.shape({
       id: PropTypes.string,
       params: PropTypes.object,
-***REMOVED***),
+    }),
   ]),
   labelClassName: PropTypes.string,
   labelStyle: PropTypes.object,
@@ -222,6 +222,6 @@ InputJSONWithErrors.propTypes = ***REMOVED***
   tabIndex: PropTypes.string,
   validations: PropTypes.object,
   value: PropTypes.object,
-***REMOVED***;
+};
 
 export default InputJSONWithErrors;

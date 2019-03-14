@@ -8,55 +8,55 @@
 
 const _ = require('lodash');
 
-const createDefaultEnvConfig = async (env) => ***REMOVED***
-  const pluginStore = strapi.store(***REMOVED***
+const createDefaultEnvConfig = async (env) => {
+  const pluginStore = strapi.store({
     environment: env,
     type: 'plugin',
     name: 'email'
-***REMOVED***);
+  });
 
-  const provider = _.find(strapi.plugins.email.config.providers, ***REMOVED***provider: 'sendmail'***REMOVED***);
-  const value = _.assign(***REMOVED******REMOVED***, provider, ***REMOVED******REMOVED***);
+  const provider = _.find(strapi.plugins.email.config.providers, {provider: 'sendmail'});
+  const value = _.assign({}, provider, {});
 
-  await pluginStore.set(***REMOVED***key: 'provider', value***REMOVED***);
-  return await strapi.store(***REMOVED***
+  await pluginStore.set({key: 'provider', value});
+  return await strapi.store({
     environment: env,
     type: 'plugin',
     name: 'email'
-***REMOVED***).get(***REMOVED***key: 'provider'***REMOVED***);
-***REMOVED***;
+  }).get({key: 'provider'});
+};
 
-const getProviderConfig = async (env) => ***REMOVED***
-  let config = await strapi.store(***REMOVED***
+const getProviderConfig = async (env) => {
+  let config = await strapi.store({
     environment: env,
     type: 'plugin',
     name: 'email'
-***REMOVED***).get(***REMOVED***key: 'provider'***REMOVED***);
+  }).get({key: 'provider'});
 
-  if(!config) ***REMOVED***
+  if(!config) {
     config = await createDefaultEnvConfig(env);
-***REMOVED***
+  }
 
   return config;
-***REMOVED***;
+};
 
-module.exports = ***REMOVED***
+module.exports = {
   getProviderConfig,
-  send: async (options, config, cb) => ***REMOVED***
+  send: async (options, config, cb) => {
     // Get email provider settings to configure the provider to use.
-    if(!config) ***REMOVED***
+    if(!config) {
       config = await getProviderConfig(strapi.config.environment);
-***REMOVED***
+    }
 
-    const provider = _.find(strapi.plugins.email.config.providers, ***REMOVED*** provider: config.provider ***REMOVED***);
+    const provider = _.find(strapi.plugins.email.config.providers, { provider: config.provider });
 
-    if (!provider) ***REMOVED***
-      throw new Error(`The provider package isn't installed. Please run \`npm install strapi-email-$***REMOVED***config.provider***REMOVED***\``);
-***REMOVED***
+    if (!provider) {
+      throw new Error(`The provider package isn't installed. Please run \`npm install strapi-email-${config.provider}\``);
+    }
 
     const actions = provider.init(config);
 
     // Execute email function of the provider for all files.
     return actions.send(options, cb);
-***REMOVED***
-***REMOVED***;
+  }
+};

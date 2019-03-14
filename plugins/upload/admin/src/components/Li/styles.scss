@@ -1,11 +1,11 @@
-.liWrapper ***REMOVED***
+.liWrapper {
   height: 54px;
   background-color: #fff;
   padding-top: 5px;
   cursor: pointer;
-***REMOVED***
+}
 
-.liContainer ***REMOVED***
+.liContainer {
   display: flex;
   height: 100%;
   padding-left: 12px;
@@ -16,53 +16,53 @@
   border-bottom: 1px solid rgba(14,22,34,0.04);
   justify-content: space-between;
 
-  > div:first-child ***REMOVED***
+  > div:first-child {
     display: flex;
     width: 133px;
-    > div:first-child ***REMOVED***
+    > div:first-child {
       width: 51px;
-***REMOVED***
-    > div:last-child ***REMOVED***
+    }
+    > div:last-child {
       width: 82px;
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  > div:nth-child(2) ***REMOVED***
+  > div:nth-child(2) {
     width: calc(100% - 696px);
     padding-right: 20px;
-***REMOVED***
-  > div:nth-child(3) ***REMOVED***
+  }
+  > div:nth-child(3) {
     width: calc(100% - 596px);
-***REMOVED***
-  > div:nth-child(4) ***REMOVED***
+  }
+  > div:nth-child(4) {
     width: 184px;
     flex-shrink: 0;
-    > span ***REMOVED***
-      &:after ***REMOVED***
+    > span {
+      &:after {
         content: '\f0d8';
         margin-left: 10px;
         font-family: 'FontAwesome';
-***REMOVED***
-***REMOVED***
-***REMOVED***
-  > div:nth-child(5) ***REMOVED***
+      }
+    }
+  }
+  > div:nth-child(5) {
     flex-shrink: 0;
     width: 100px;
-***REMOVED***
-  > div:nth-child(6) ***REMOVED***
+  }
+  > div:nth-child(6) {
     width: 147px;
     flex-shrink: 0;
-***REMOVED***
-  > div:nth-child(7) ***REMOVED***
+  }
+  > div:nth-child(7) {
     width: 116px;
     flex-shrink: 0;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.copied ***REMOVED***
+.copied {
   background-color: #FAFAFB;
 
-  > div ***REMOVED***
+  > div {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -74,21 +74,21 @@
     line-height: 54px;
     text-transform: uppercase;
     letter-spacing: .05rem;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.checked ***REMOVED***
+.checked {
   padding-top: 20px;
   line-height: 54px;
   position: relative;
-  > div ***REMOVED***
+  > div {
     height: 14px;
     width: 14px;
     margin-right: 10px;
     background-color: #2DD210;
     border: 1px solid rgba(16,22,34,0.10);
     border-radius: 3px;
-    &:after ***REMOVED***
+    &:after {
       content: '\f00c';
       position: absolute;
       top: 0; left: 2px;
@@ -97,12 +97,12 @@
       font-weight: 100;
       color: #fff;
       transition: all .2s;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.truncate ***REMOVED***
+.truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-***REMOVED***
+}

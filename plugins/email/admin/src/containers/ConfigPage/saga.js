@@ -1,61 +1,61 @@
-// import ***REMOVED*** LOCATION_CHANGE ***REMOVED*** from 'react-router-redux';
-import ***REMOVED*** call, fork, put, select, takeLatest ***REMOVED*** from 'redux-saga/effects';
+// import { LOCATION_CHANGE } from 'react-router-redux';
+import { call, fork, put, select, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 
-import ***REMOVED***
+import {
   getSettingsSucceeded,
   submitSucceeded,
-***REMOVED*** from './actions';
-import ***REMOVED***
+} from './actions';
+import {
   GET_SETTINGS,
   SUBMIT,
-***REMOVED*** from './constants';
-import ***REMOVED***
+} from './constants';
+import {
   makeSelectEnv,
   makeSelectModifiedData,
-***REMOVED*** from './selectors';
+} from './selectors';
 
-export function* settingsGet(action) ***REMOVED***
-  try ***REMOVED***
-    const requestURL = `/email/settings/$***REMOVED***action.env***REMOVED***`;
+export function* settingsGet(action) {
+  try {
+    const requestURL = `/email/settings/${action.env}`;
     const response = yield [
-      call(request, requestURL, ***REMOVED*** method: 'GET' ***REMOVED***),
-      call(request, '/email/environments', ***REMOVED*** method: 'GET' ***REMOVED***),
+      call(request, requestURL, { method: 'GET' }),
+      call(request, '/email/environments', { method: 'GET' }),
     ];
 
     yield put(getSettingsSucceeded(response[0], response[1].environments));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* submit() ***REMOVED***
-  try ***REMOVED***
+export function* submit() {
+  try {
     const env = yield select(makeSelectEnv());
     let body = yield select(makeSelectModifiedData());
 
-    if (body.provider === 'local') ***REMOVED***
-      body = ***REMOVED***
+    if (body.provider === 'local') {
+      body = {
         enabled: body.enabled,
         provider: 'local',
         sizeLimit: body.sizeLimit,
-***REMOVED***;
-***REMOVED***
-    const requestURL = `/email/settings/$***REMOVED***env***REMOVED***`;
-    yield call(request, requestURL, ***REMOVED*** method: 'PUT', body ***REMOVED***);
+      };
+    }
+    const requestURL = `/email/settings/${env}`;
+    yield call(request, requestURL, { method: 'PUT', body });
 
     // Update reducer with optimisticResponse
     strapi.notification.success('email.notification.config.success');
     yield put(submitSucceeded(body));
-***REMOVED*** catch(err) ***REMOVED***
+  } catch(err) {
     strapi.notification.error('notification.error');
     // TODO handle error PUT
-***REMOVED***
-***REMOVED***
+  }
+}
 
-function* defaultSaga() ***REMOVED***
+function* defaultSaga() {
   yield fork(takeLatest, GET_SETTINGS, settingsGet);
   yield fork(takeLatest, SUBMIT, submit);
-***REMOVED***
+}
 
 export default defaultSaga;

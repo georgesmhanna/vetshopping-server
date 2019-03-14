@@ -8,24 +8,24 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styles from './styles.scss';
 
-function VariableEditIcon(***REMOVED*** onClick, withLongerHeight, ...rest ***REMOVED***) ***REMOVED***
+function VariableEditIcon({ onClick, withLongerHeight, ...rest }) {
   return (
     <span
-      className=***REMOVED***cn(withLongerHeight ? styles.editIconLonger : styles.editIcon)***REMOVED***
-      onClick=***REMOVED***onClick***REMOVED***
-      ***REMOVED***...rest***REMOVED***
+      className={cn(withLongerHeight ? styles.editIconLonger : styles.editIcon)}
+      onClick={onClick}
+      {...rest}
     />
   );
-***REMOVED***
+}
 
-VariableEditIcon.defaultProps = ***REMOVED***
-  onClick: () => ***REMOVED******REMOVED***,
+VariableEditIcon.defaultProps = {
+  onClick: () => {},
   withLongerHeight: false,
-***REMOVED***;
+};
 
-VariableEditIcon.propTypes = ***REMOVED***
+VariableEditIcon.propTypes = {
   onClick: PropTypes.func,
   withLongerHeight: PropTypes.bool,
-***REMOVED***;
+};
 
 export default VariableEditIcon;

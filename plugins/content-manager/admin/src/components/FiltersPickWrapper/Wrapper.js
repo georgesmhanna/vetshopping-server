@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import styles from './wrapperStyles.scss';
 
-const Wrapper = (***REMOVED*** children ***REMOVED***) => <div className=***REMOVED***styles.wrapperStyle***REMOVED***>***REMOVED***children***REMOVED***</div>;
+const Wrapper = ({ children }) => <div className={styles.wrapperStyle}>{children}</div>;
 
-Wrapper.defaultProps = ***REMOVED***
+Wrapper.defaultProps = {
   children: null,
-***REMOVED***;
+};
 
-Wrapper.propTypes = ***REMOVED***
+Wrapper.propTypes = {
   children: PropTypes.any,
-***REMOVED***;
+};
 
 export default Wrapper;

@@ -1,4 +1,4 @@
-import ***REMOVED*** forEach, upperFirst, mapValues, pickBy, slice, findKey, keys, get, set ***REMOVED*** from 'lodash';
+import { forEach, upperFirst, mapValues, pickBy, slice, findKey, keys, get, set } from 'lodash';
 import pluralize from 'pluralize';
 
 /**
@@ -7,76 +7,76 @@ import pluralize from 'pluralize';
  *
  * @param models
  */
-const generateSchema = (responses) => ***REMOVED***
+const generateSchema = (responses) => {
   // Init `schema` object
-  const schema = ***REMOVED***
-    plugins: ***REMOVED******REMOVED***,
-***REMOVED***;
+  const schema = {
+    plugins: {},
+  };
 
-  const buildSchema = (model, name, plugin = false) => ***REMOVED***
+  const buildSchema = (model, name, plugin = false) => {
     // Model data
-    const schemaModel = ***REMOVED***
+    const schemaModel = {
       label: upperFirst(name),
       labelPlural: upperFirst(pluralize(name)),
       orm: model.orm || 'mongoose',
-***REMOVED***;
+    };
 
     // Fields (non relation)
     schemaModel.fields = mapValues(pickBy(model.attributes, attribute =>
       !attribute.model && !attribute.collection
-    ), (value, attribute) => (***REMOVED***
+    ), (value, attribute) => ({
       label: upperFirst(attribute),
       description: '',
       type: value.type || 'string',
-***REMOVED***));
+    }));
 
     // Select fields displayed in list view
     schemaModel.list = slice(keys(schemaModel.fields), 0, 4);
 
-    if (model.associations) ***REMOVED***
+    if (model.associations) {
       // Model relations
-      schemaModel.relations = model.associations.reduce((acc, current) => ***REMOVED***
+      schemaModel.relations = model.associations.reduce((acc, current) => {
         const displayedAttribute = current.plugin ?
           get(responses.plugins, [current.plugin, 'models', current.model || current.collection, 'info', 'mainField']) ||
-          findKey(get(responses.plugins, [current.plugin, 'models', current.model || current.collection, 'attributes']), ***REMOVED*** type : 'string'***REMOVED***) ||
+          findKey(get(responses.plugins, [current.plugin, 'models', current.model || current.collection, 'attributes']), { type : 'string'}) ||
           'id' :
           get(responses.models, [current.model || current.collection, 'info', 'mainField']) ||
-          findKey(get(responses.models, [current.model || current.collection, 'attributes']), ***REMOVED*** type : 'string'***REMOVED***) ||
+          findKey(get(responses.models, [current.model || current.collection, 'attributes']), { type : 'string'}) ||
           'id';
 
-        acc[current.alias] = ***REMOVED***
+        acc[current.alias] = {
           ...current,
           description: '',
           displayedAttribute,
-  ***REMOVED***;
+        };
 
         return acc;
-***REMOVED*** ***REMOVED******REMOVED***);
-***REMOVED***
+      }, {});
+    }
 
-    if (plugin) ***REMOVED***
-      return set(schema.plugins, `$***REMOVED***plugin***REMOVED***.$***REMOVED***name***REMOVED***`, schemaModel);
-***REMOVED***
+    if (plugin) {
+      return set(schema.plugins, `${plugin}.${name}`, schemaModel);
+    }
 
     // Set the formatted model to the schema
     schema[name] = schemaModel;
-***REMOVED***;
+  };
 
   // Generate schema for plugins.
-  forEach(responses.plugins, (plugin, pluginName) => ***REMOVED***
-    forEach(plugin.models, (model, name) => ***REMOVED***
+  forEach(responses.plugins, (plugin, pluginName) => {
+    forEach(plugin.models, (model, name) => {
       buildSchema(model, name, pluginName);
-***REMOVED***);
-***REMOVED***);
+    });
+  });
 
   // Generate schema for models.
-  forEach(responses.models, (model, name) => ***REMOVED***
+  forEach(responses.models, (model, name) => {
     buildSchema(model, name);
-***REMOVED***);
+  });
 
   return schema;
-***REMOVED***;
+};
 
-export ***REMOVED***
+export {
   generateSchema,
-***REMOVED***;
+};

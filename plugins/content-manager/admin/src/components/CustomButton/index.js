@@ -14,12 +14,12 @@ const CustomButton = styled.button`
   font-family: Lato;
   -webkit-font-smoothing-antialiased;
   cursor: pointer;
-  &:hover ***REMOVED***
+  &:hover {
     background: #F7F8F8;
-***REMOVED***
-  &:focus, &:active ***REMOVED***
+  }
+  &:focus, &:active {
     outline:0;
-***REMOVED***
+  }
 `;
 
 export default CustomButton;

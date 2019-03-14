@@ -1,269 +1,269 @@
-***REMOVED***
+{
   "routes": [
-    ***REMOVED***
+    {
       "method": "GET",
       "path": "/",
       "handler": "UsersPermissions.index",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/init",
       "handler": "UsersPermissions.init",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/search/:id",
       "handler": "UsersPermissions.searchUsers",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/permissions",
       "handler": "UsersPermissions.getPermissions",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/policies",
       "handler": "UsersPermissions.getPolicies",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/roles/:id",
       "handler": "UsersPermissions.getRole",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/roles",
       "handler": "UsersPermissions.getRoles",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/routes",
       "handler": "UsersPermissions.getRoutes",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/email-templates",
       "handler": "UsersPermissions.getEmailTemplate",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "PUT",
       "path": "/email-templates",
       "handler": "UsersPermissions.updateEmailTemplate",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/advanced",
       "handler": "UsersPermissions.getAdvancedSettings",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "PUT",
       "path": "/advanced",
       "handler": "UsersPermissions.updateAdvancedSettings",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/providers",
       "handler": "UsersPermissions.getProviders",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
+      }
+    },
 
-    ***REMOVED***
+    {
       "method": "PUT",
       "path": "/providers",
       "handler": "UsersPermissions.updateProviders",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
+      }
+    },
 
 
-    ***REMOVED***
+    {
       "method": "POST",
       "path": "/roles",
       "handler": "UsersPermissions.createRole",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "PUT",
       "path": "/roles/:role",
       "handler": "UsersPermissions.updateRole",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "DELETE",
       "path": "/roles/:role",
       "handler": "UsersPermissions.deleteRole",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "DELETE",
       "path": "/providers/:provider",
       "handler": "UsersPermissions.deleteProvider",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
+      }
+    },
 
-    ***REMOVED***
+    {
       "method": "GET",
       "path": "/connect/*",
       "handler": "Auth.connect",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["plugins.users-permissions.ratelimit"],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "POST",
       "path": "/auth/local",
       "handler": "Auth.callback",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["plugins.users-permissions.ratelimit"],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "POST",
       "path": "/auth/local/register",
       "handler": "Auth.register",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["plugins.users-permissions.ratelimit"],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/auth/:provider/callback",
       "handler": "Auth.callback",
-      "config": ***REMOVED***
+      "config": {
         "policies": [],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "POST",
       "path": "/auth/forgot-password",
       "handler": "Auth.forgotPassword",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["plugins.users-permissions.ratelimit"],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "POST",
       "path": "/auth/reset-password",
       "handler": "Auth.changePassword",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["plugins.users-permissions.ratelimit"],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/auth/email-confirmation",
       "handler": "Auth.emailConfirmation",
-      "config": ***REMOVED***
+      "config": {
         "policies": [],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/users",
       "handler": "User.find",
-      "config": ***REMOVED***
+      "config": {
         "policies": [],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/users/me",
       "handler": "User.me",
-      "config": ***REMOVED***
+      "config": {
         "policies": [],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/users/:_id",
       "handler": "User.findOne",
-      "config": ***REMOVED***
+      "config": {
         "policies": [],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "POST",
       "path": "/users",
       "handler": "User.create",
-      "config": ***REMOVED***
+      "config": {
         "policies": [],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "PUT",
       "path": "/users/:_id",
       "handler": "User.update",
-      "config": ***REMOVED***
+      "config": {
         "policies": [],
         "prefix": ""
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "DELETE",
       "path": "/users/:_id",
       "handler": "User.destroy",
-      "config": ***REMOVED***
+      "config": {
         "policies": [],
         "prefix": ""
-***REMOVED***
-***REMOVED***
+      }
+    }
   ]
-***REMOVED***
+}

@@ -12,24 +12,24 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
-import ***REMOVED*** Switch, Route ***REMOVED*** from 'react-router-dom';
-import ***REMOVED*** get, includes, isFunction, map, omit ***REMOVED*** from 'lodash';
-import ***REMOVED*** compose ***REMOVED*** from 'redux';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { Switch, Route } from 'react-router-dom';
+import { get, includes, isFunction, map, omit } from 'lodash';
+import { compose } from 'redux';
 
 // Actions required for disabling and enabling the OverlayBlocker
-import ***REMOVED*** disableGlobalOverlayBlocker, enableGlobalOverlayBlocker ***REMOVED*** from 'actions/overlayBlocker';
+import { disableGlobalOverlayBlocker, enableGlobalOverlayBlocker } from 'actions/overlayBlocker';
 
-import ***REMOVED*** pluginLoaded, updatePlugin ***REMOVED*** from 'containers/App/actions';
-import ***REMOVED***
+import { pluginLoaded, updatePlugin } from 'containers/App/actions';
+import {
   makeSelectBlockApp,
   makeSelectShowGlobalAppBlocker,
   selectHasUserPlugin,
   selectPlugins,
-***REMOVED*** from 'containers/App/selectors';
+} from 'containers/App/selectors';
 
-import ***REMOVED*** hideNotification ***REMOVED*** from 'containers/NotificationProvider/actions';
+import { hideNotification } from 'containers/NotificationProvider/actions';
 
 // Design
 import ComingSoonPage from 'containers/ComingSoonPage';
@@ -51,7 +51,7 @@ import auth from 'utils/auth';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-import ***REMOVED*** getGaStatus, getLayout ***REMOVED*** from './actions';
+import { getGaStatus, getLayout } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import selectAdminPage from './selectors';
@@ -60,82 +60,82 @@ import styles from './styles.scss';
 
 const PLUGINS_TO_BLOCK_PRODUCTION = ['content-type-builder', 'settings-manager'];
 
-export class AdminPage extends React.Component ***REMOVED***
+export class AdminPage extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
-  state = ***REMOVED*** hasAlreadyRegistereOtherPlugins: false ***REMOVED***;
+  state = { hasAlreadyRegistereOtherPlugins: false };
 
-  getChildContext = () => (***REMOVED***
+  getChildContext = () => ({
     disableGlobalOverlayBlocker: this.props.disableGlobalOverlayBlocker,
     enableGlobalOverlayBlocker: this.props.enableGlobalOverlayBlocker,
     plugins: this.props.plugins,
     updatePlugin: this.props.updatePlugin,
-***REMOVED***);
+  });
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     this.checkLogin(this.props);
     this.props.getGaStatus();
     this.props.getLayout();
     ReactGA.initialize('UA-54313258-9');
-***REMOVED***
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (nextProps.location.pathname !== this.props.location.pathname) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.pathname !== this.props.location.pathname) {
       this.checkLogin(nextProps);
 
-      if (nextProps.adminPage.allowGa) ***REMOVED***
+      if (nextProps.adminPage.allowGa) {
         ReactGA.pageview(nextProps.location.pathname);
-***REMOVED***
-***REMOVED***
+      }
+    }
 
     if (
       get(nextProps.plugins.toJS(), ['users-permissions', 'hasAdminUser']) !==
       get(this.props.plugins.toJS(), ['users-permissions', 'hasAdminUser'])
-    ) ***REMOVED***
+    ) {
       this.checkLogin(nextProps, true);
-***REMOVED***
+    }
 
-    if (!this.hasUserPluginLoaded(this.props) && this.hasUserPluginLoaded(nextProps)) ***REMOVED***
+    if (!this.hasUserPluginLoaded(this.props) && this.hasUserPluginLoaded(nextProps)) {
       this.checkLogin(nextProps);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  checkLogin = (props, skipAction = false) => ***REMOVED***
-    if (props.hasUserPlugin && this.isUrlProtected(props) && !auth.getToken()) ***REMOVED***
-      if (!this.hasUserPluginLoaded(props)) ***REMOVED***
+  checkLogin = (props, skipAction = false) => {
+    if (props.hasUserPlugin && this.isUrlProtected(props) && !auth.getToken()) {
+      if (!this.hasUserPluginLoaded(props)) {
         return;
-***REMOVED***
+      }
 
       const endPoint = this.hasAdminUser(props) ? 'login' : 'register';
-      this.props.history.push(`/plugins/users-permissions/auth/$***REMOVED***endPoint***REMOVED***`);
-***REMOVED***
+      this.props.history.push(`/plugins/users-permissions/auth/${endPoint}`);
+    }
 
     if (
       !this.isUrlProtected(props) &&
       includes(props.location.pathname, 'auth/register') &&
       this.hasAdminUser(props) &&
       !skipAction
-    ) ***REMOVED***
+    ) {
       this.props.history.push('/plugins/users-permissions/auth/login');
-***REMOVED***
+    }
 
     if (
       props.hasUserPlugin &&
       !this.isUrlProtected(props) &&
       !includes(props.location.pathname, 'auth/register') &&
       !this.hasAdminUser(props)
-    ) ***REMOVED***
+    ) {
       this.props.history.push('/plugins/users-permissions/auth/register');
-***REMOVED***
+    }
 
-    if (!props.hasUserPlugin || (auth.getToken() && !this.state.hasAlreadyRegistereOtherPlugins)) ***REMOVED***
-      map(omit(this.props.plugins.toJS(), ['users-permissions', 'email']), plugin => ***REMOVED***
-        switch (true) ***REMOVED***
+    if (!props.hasUserPlugin || (auth.getToken() && !this.state.hasAlreadyRegistereOtherPlugins)) {
+      map(omit(this.props.plugins.toJS(), ['users-permissions', 'email']), plugin => {
+        switch (true) {
           case isFunction(plugin.bootstrap) && isFunction(plugin.pluginRequirements):
             plugin
               .pluginRequirements(plugin)
-              .then(plugin => ***REMOVED***
+              .then(plugin => {
                 return plugin.bootstrap(plugin);
-        ***REMOVED***)
+              })
               .then(plugin => this.props.pluginLoaded(plugin));
             break;
           case isFunction(plugin.pluginRequirements):
@@ -145,12 +145,12 @@ export class AdminPage extends React.Component ***REMOVED***
             plugin.bootstrap(plugin).then(plugin => this.props.pluginLoaded(plugin));
             break;
           default:
-  ***REMOVED***
-***REMOVED***);
+        }
+      });
 
-      this.setState(***REMOVED*** hasAlreadyRegistereOtherPlugins: true ***REMOVED***);
-***REMOVED***
-***REMOVED***;
+      this.setState({ hasAlreadyRegistereOtherPlugins: true });
+    }
+  };
 
   hasUserPluginLoaded = props =>
     typeof get(props.plugins.toJS(), ['users-permissions', 'hasAdminUser']) !== 'undefined';
@@ -164,82 +164,82 @@ export class AdminPage extends React.Component ***REMOVED***
 
   showLeftMenu = () => !includes(this.props.location.pathname, 'users-permissions/auth/');
 
-  retrievePlugins = () => ***REMOVED***
-    const ***REMOVED***
-      adminPage: ***REMOVED*** currentEnvironment ***REMOVED***,
+  retrievePlugins = () => {
+    const {
+      adminPage: { currentEnvironment },
       plugins,
-***REMOVED*** = this.props;
+    } = this.props;
 
-    if (currentEnvironment === 'production') ***REMOVED***
+    if (currentEnvironment === 'production') {
       let pluginsToDisplay = plugins;
       PLUGINS_TO_BLOCK_PRODUCTION.map(plugin => (pluginsToDisplay = pluginsToDisplay.delete(plugin)));
 
       return pluginsToDisplay;
-***REMOVED***
+    }
 
     return plugins;
-***REMOVED***;
+  };
 
-  render() ***REMOVED***
-    const ***REMOVED*** adminPage ***REMOVED*** = this.props;
+  render() {
+    const { adminPage } = this.props;
     const header = this.showLeftMenu() ? <Header /> : '';
-    const style = this.showLeftMenu() ? ***REMOVED******REMOVED*** : ***REMOVED*** width: '100%' ***REMOVED***;
+    const style = this.showLeftMenu() ? {} : { width: '100%' };
 
-    if (adminPage.isLoading) ***REMOVED***
+    if (adminPage.isLoading) {
       return <div />;
-***REMOVED***
+    }
 
     return (
-      <div className=***REMOVED***styles.adminPage***REMOVED***>
-        ***REMOVED***this.showLeftMenu() && (
+      <div className={styles.adminPage}>
+        {this.showLeftMenu() && (
           <LeftMenu
-            plugins=***REMOVED***this.retrievePlugins()***REMOVED***
-            layout=***REMOVED***adminPage.layout***REMOVED***
-            version=***REMOVED***adminPage.strapiVersion***REMOVED***
+            plugins={this.retrievePlugins()}
+            layout={adminPage.layout}
+            version={adminPage.strapiVersion}
           />
-        )***REMOVED***
+        )}
         <CTAWrapper>
-          ***REMOVED***this.shouldDisplayLogout() && <Logout />***REMOVED***
-          <LocaleToggle isLogged=***REMOVED***this.shouldDisplayLogout() === true***REMOVED*** />
+          {this.shouldDisplayLogout() && <Logout />}
+          <LocaleToggle isLogged={this.shouldDisplayLogout() === true} />
         </CTAWrapper>
-        <div className=***REMOVED***styles.adminPageRightWrapper***REMOVED*** style=***REMOVED***style***REMOVED***>
-          ***REMOVED***header***REMOVED***
-          <Content ***REMOVED***...this.props***REMOVED*** showLeftMenu=***REMOVED***this.showLeftMenu()***REMOVED***>
+        <div className={styles.adminPageRightWrapper} style={style}>
+          {header}
+          <Content {...this.props} showLeftMenu={this.showLeftMenu()}>
             <Switch>
-              <Route path="/" component=***REMOVED***HomePage***REMOVED*** exact />
-              <Route path="/plugins/:pluginId" component=***REMOVED***PluginPage***REMOVED*** />
-              <Route path="/plugins" component=***REMOVED***ComingSoonPage***REMOVED*** />
-              <Route path="/list-plugins" component=***REMOVED***ListPluginsPage***REMOVED*** exact />
-              <Route path="/install-plugin" component=***REMOVED***InstallPluginPage***REMOVED*** exact />
-              <Route path="/configuration" component=***REMOVED***ComingSoonPage***REMOVED*** exact />
-              <Route path="" component=***REMOVED***NotFoundPage***REMOVED*** />
-              <Route path="404" component=***REMOVED***NotFoundPage***REMOVED*** />
+              <Route path="/" component={HomePage} exact />
+              <Route path="/plugins/:pluginId" component={PluginPage} />
+              <Route path="/plugins" component={ComingSoonPage} />
+              <Route path="/list-plugins" component={ListPluginsPage} exact />
+              <Route path="/install-plugin" component={InstallPluginPage} exact />
+              <Route path="/configuration" component={ComingSoonPage} exact />
+              <Route path="" component={NotFoundPage} />
+              <Route path="404" component={NotFoundPage} />
             </Switch>
           </Content>
         </div>
-        <OverlayBlocker isOpen=***REMOVED***this.props.blockApp && this.props.showGlobalAppBlocker***REMOVED*** />
+        <OverlayBlocker isOpen={this.props.blockApp && this.props.showGlobalAppBlocker} />
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-AdminPage.childContextTypes = ***REMOVED***
+AdminPage.childContextTypes = {
   disableGlobalOverlayBlocker: PropTypes.func,
   enableGlobalOverlayBlocker: PropTypes.func,
   plugins: PropTypes.object,
   updatePlugin: PropTypes.func,
-***REMOVED***;
+};
 
-AdminPage.contextTypes = ***REMOVED***
+AdminPage.contextTypes = {
   router: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
-AdminPage.defaultProps = ***REMOVED***
-  adminPage: ***REMOVED******REMOVED***,
+AdminPage.defaultProps = {
+  adminPage: {},
   hasUserPlugin: true,
-***REMOVED***;
+};
 
-AdminPage.propTypes = ***REMOVED***
+AdminPage.propTypes = {
   adminPage: PropTypes.object,
   blockApp: PropTypes.bool.isRequired,
   disableGlobalOverlayBlocker: PropTypes.func.isRequired,
@@ -253,46 +253,46 @@ AdminPage.propTypes = ***REMOVED***
   plugins: PropTypes.object.isRequired,
   showGlobalAppBlocker: PropTypes.bool.isRequired,
   updatePlugin: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
-const mapStateToProps = createStructuredSelector(***REMOVED***
+const mapStateToProps = createStructuredSelector({
   adminPage: selectAdminPage(),
   blockApp: makeSelectBlockApp(),
   hasUserPlugin: selectHasUserPlugin(),
   plugins: selectPlugins(),
   showGlobalAppBlocker: makeSelectShowGlobalAppBlocker(),
-***REMOVED***);
+});
 
-function mapDispatchToProps(dispatch) ***REMOVED***
-  return ***REMOVED***
-    disableGlobalOverlayBlocker: () => ***REMOVED***
+function mapDispatchToProps(dispatch) {
+  return {
+    disableGlobalOverlayBlocker: () => {
       dispatch(disableGlobalOverlayBlocker());
-***REMOVED***,
-    enableGlobalOverlayBlocker: () => ***REMOVED***
+    },
+    enableGlobalOverlayBlocker: () => {
       dispatch(enableGlobalOverlayBlocker());
-***REMOVED***,
-    getGaStatus: () => ***REMOVED***
+    },
+    getGaStatus: () => {
       dispatch(getGaStatus());
-***REMOVED***,
-    getLayout: () => ***REMOVED***
+    },
+    getLayout: () => {
       dispatch(getLayout());
-***REMOVED***,
-    onHideNotification: id => ***REMOVED***
+    },
+    onHideNotification: id => {
       dispatch(hideNotification(id));
-***REMOVED***,
-    pluginLoaded: plugin => ***REMOVED***
+    },
+    pluginLoaded: plugin => {
       dispatch(pluginLoaded(plugin));
-***REMOVED***,
-    updatePlugin: (pluginId, updatedKey, updatedValue) => ***REMOVED***
+    },
+    updatePlugin: (pluginId, updatedKey, updatedValue) => {
       dispatch(updatePlugin(pluginId, updatedKey, updatedValue));
-***REMOVED***,
+    },
     dispatch,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withReducer = injectReducer(***REMOVED*** key: 'adminPage', reducer ***REMOVED***);
-const withSaga = injectSaga(***REMOVED*** key: 'adminPage', saga ***REMOVED***);
+const withReducer = injectReducer({ key: 'adminPage', reducer });
+const withSaga = injectSaga({ key: 'adminPage', saga });
 
 export default compose(withReducer, withSaga, withConnect)(AdminPage);
 

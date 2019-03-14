@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import ***REMOVED*** isEmpty, isObject, toString ***REMOVED*** from 'lodash';
+import { isEmpty, isObject, toString } from 'lodash';
 import cn from 'classnames';
 
 import CustomInputCheckbox from 'components/CustomInputCheckbox';
@@ -15,23 +15,23 @@ import IcoContainer from 'components/IcoContainer';
 
 import styles from './styles.scss';
 
-class TableRow extends React.Component ***REMOVED***
-  constructor(props) ***REMOVED***
+class TableRow extends React.Component {
+  constructor(props) {
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
-***REMOVED***
+  }
 
   /**
    * Return a formatted value according to the
    * data type and value stored in database
    *
-   * @param type  ***REMOVED***String***REMOVED*** Data type
-   * @param value ***REMOVED*******REMOVED***      Value stored in database
-   * @returns ***REMOVED*******REMOVED***
+   * @param type  {String} Data type
+   * @param value {*}      Value stored in database
+   * @returns {*}
    */
-  getDisplayedValue(type, value, name) ***REMOVED***
-    switch (type.toLowerCase()) ***REMOVED***
+  getDisplayedValue(type, value, name) {
+    switch (type.toLowerCase()) {
       case 'string':
       case 'text':
       case 'email':
@@ -47,95 +47,95 @@ class TableRow extends React.Component ***REMOVED***
       case 'date':
       case 'time':
       case 'datetime':
-      case 'timestamp': ***REMOVED***
-        if (value === null) ***REMOVED***
+      case 'timestamp': {
+        if (value === null) {
           return '-';
-  ***REMOVED***
+        }
 
         const date = value && isObject(value) && value._isAMomentObject === true ?
           value :
           moment.utc(value);
 
         return date.format('YYYY-MM-DD HH:mm:ss');
-***REMOVED***
+      }
       case 'password':
         return '••••••••';
       default:
         return '-';
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   // Redirect to the edit page
-  handleClick() ***REMOVED***
-    this.context.router.history.push(`$***REMOVED***this.props.destination***REMOVED***$***REMOVED***this.props.redirectUrl***REMOVED***`);
-***REMOVED***
+  handleClick() {
+    this.context.router.history.push(`${this.props.destination}${this.props.redirectUrl}`);
+  }
 
   renderAction = () => (
-    <td key='action' className=***REMOVED***styles.actions***REMOVED***>
+    <td key='action' className={styles.actions}>
       <IcoContainer
-        icons=***REMOVED***[
-          ***REMOVED*** icoType: 'pencil', onClick: () => this.handleClick(this.props.destination) ***REMOVED***,
-          ***REMOVED*** id: this.props.record.id, icoType: 'trash', onClick: this.props.onDelete ***REMOVED***,
-        ]***REMOVED***
+        icons={[
+          { icoType: 'pencil', onClick: () => this.handleClick(this.props.destination) },
+          { id: this.props.record.id, icoType: 'trash', onClick: this.props.onDelete },
+        ]}
       />
     </td>
   );
 
-  renderCells = () => ***REMOVED***
-    const ***REMOVED*** headers ***REMOVED*** = this.props;
+  renderCells = () => {
+    const { headers } = this.props;
     return [this.renderDelete()]
       .concat(
         headers.map((header, i) => (
-          <td key=***REMOVED***i***REMOVED***>
-            <div className=***REMOVED***styles.truncate***REMOVED***>
-              <div className=***REMOVED***styles.truncated***REMOVED***>
-                ***REMOVED***this.getDisplayedValue(
+          <td key={i}>
+            <div className={styles.truncate}>
+              <div className={styles.truncated}>
+                {this.getDisplayedValue(
                   header.type,
                   this.props.record[header.name],
                   header.name,
-                )***REMOVED***
+                )}
               </div>
             </div>
           </td>
         )))
       .concat([this.renderAction()]);
-***REMOVED***
+  }
 
-  renderDelete = () => ***REMOVED***
-    if (this.props.enableBulkActions) ***REMOVED***
+  renderDelete = () => {
+    if (this.props.enableBulkActions) {
       return (
-        <td onClick=***REMOVED***(e) => e.stopPropagation()***REMOVED*** key="i">
+        <td onClick={(e) => e.stopPropagation()} key="i">
           <CustomInputCheckbox
-            name=***REMOVED***this.props.record.id***REMOVED***
-            onChange=***REMOVED***this.props.onChange***REMOVED***
-            value=***REMOVED***this.props.value***REMOVED***
+            name={this.props.record.id}
+            onChange={this.props.onChange}
+            value={this.props.value}
           />
         </td>
       );
-***REMOVED***
+    }
 
     return null;
-***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
-      <tr className=***REMOVED***cn(styles.tableRow, this.props.enableBulkActions && styles.tableRowWithBulk)***REMOVED*** onClick=***REMOVED***() => this.handleClick(this.props.destination)***REMOVED***>
-        ***REMOVED***this.renderCells()***REMOVED***
+      <tr className={cn(styles.tableRow, this.props.enableBulkActions && styles.tableRowWithBulk)} onClick={() => this.handleClick(this.props.destination)}>
+        {this.renderCells()}
       </tr>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-TableRow.contextTypes = ***REMOVED***
+TableRow.contextTypes = {
   router: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
-TableRow.defaultProps = ***REMOVED***
+TableRow.defaultProps = {
   enableBulkActions: true,
   value: false,
-***REMOVED***;
+};
 
-TableRow.propTypes = ***REMOVED***
+TableRow.propTypes = {
   destination: PropTypes.string.isRequired,
   enableBulkActions: PropTypes.bool,
   headers: PropTypes.array.isRequired,
@@ -144,10 +144,10 @@ TableRow.propTypes = ***REMOVED***
   record: PropTypes.object.isRequired,
   redirectUrl: PropTypes.string.isRequired,
   value: PropTypes.bool,
-***REMOVED***;
+};
 
-TableRow.defaultProps = ***REMOVED***
-  onDelete: () => ***REMOVED******REMOVED***,
-***REMOVED***;
+TableRow.defaultProps = {
+  onDelete: () => {},
+};
 
 export default TableRow;

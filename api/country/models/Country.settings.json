@@ -1,23 +1,23 @@
-***REMOVED***
+{
   "connection": "default",
   "collectionName": "",
-  "info": ***REMOVED***
+  "info": {
     "name": "country",
     "description": ""
-***REMOVED***,
-  "options": ***REMOVED***
+  },
+  "options": {
     "timestamps": true
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "name": ***REMOVED***
+  },
+  "attributes": {
+    "name": {
       "default": "",
       "type": "string",
       "required": true
-***REMOVED***,
-    "code": ***REMOVED***
+    },
+    "code": {
       "default": "",
       "type": "string",
       "required": true
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

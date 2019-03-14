@@ -5,89 +5,89 @@
 */
 
 import React from 'react';
-import ***REMOVED*** isEmpty, upperFirst ***REMOVED*** from 'lodash';
+import { isEmpty, upperFirst } from 'lodash';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import Logo from 'assets/images/icon_filter_blue.svg';
 import styles from './styles.scss';
 
 const WAIT = 400;
 
-class Search extends React.Component ***REMOVED***
-  state = ***REMOVED*** value: this.props.initValue ***REMOVED***;
+class Search extends React.Component {
+  state = { value: this.props.initValue };
 
-  componentDidUpdate(prevProps) ***REMOVED***
-    const ***REMOVED*** model, value ***REMOVED*** = this.props;
+  componentDidUpdate(prevProps) {
+    const { model, value } = this.props;
 
-    if (prevProps.model !== model || !isEmpty(prevProps.value) && isEmpty(value)) ***REMOVED***
+    if (prevProps.model !== model || !isEmpty(prevProps.value) && isEmpty(value)) {
       this.resetState();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   timer = null;
 
-  resetState = () => this.setState(***REMOVED*** value: '' ***REMOVED***);
+  resetState = () => this.setState({ value: '' });
 
-  handleChange = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleChange = ({ target }) => {
     clearTimeout(this.timer);
-    this.setState(***REMOVED*** value: target.value ***REMOVED***);
+    this.setState({ value: target.value });
     this.timer = setTimeout(() => this.triggerChange(target.value), WAIT);
-***REMOVED***
+  }
 
-  handleClick = () => ***REMOVED***
-    this.setState(***REMOVED*** value: '' ***REMOVED***);
+  handleClick = () => {
+    this.setState({ value: '' });
     this.triggerChange('');
-***REMOVED***
+  }
 
   triggerChange = (value) => (
-    this.props.changeParams(***REMOVED***
-      target: ***REMOVED***
+    this.props.changeParams({
+      target: {
         name: 'params._q',
         value,
-***REMOVED***
-***REMOVED***)
+      },
+    })
   );
 
-  render() ***REMOVED***
-    const ***REMOVED*** model ***REMOVED*** = this.props;
-    const ***REMOVED*** value ***REMOVED*** = this.state;
+  render() {
+    const { model } = this.props;
+    const { value } = this.state;
 
     return (
-      <div className=***REMOVED***styles.search***REMOVED***>
+      <div className={styles.search}>
         <div>
           <FormattedMessage id="content-manager.components.Search.placeholder">
-            ***REMOVED***(message) => (
+            {(message) => (
               <input
-                onChange=***REMOVED***this.handleChange***REMOVED***
-                placeholder=***REMOVED***message***REMOVED***
+                onChange={this.handleChange}
+                placeholder={message}
                 type="text"
-                value=***REMOVED***value***REMOVED***
+                value={value}
               />
-            )***REMOVED***
+            )}
           </FormattedMessage>
-          ***REMOVED***value !== '' && <div className=***REMOVED***styles.clearable***REMOVED*** onClick=***REMOVED***this.handleClick***REMOVED*** />***REMOVED***
+          {value !== '' && <div className={styles.clearable} onClick={this.handleClick} />}
         </div>
-        <div className=***REMOVED***styles.searchLabel***REMOVED***>
-          <img src=***REMOVED***Logo***REMOVED*** alt="filter_logo" />
-          ***REMOVED***upperFirst(model)***REMOVED***
+        <div className={styles.searchLabel}>
+          <img src={Logo} alt="filter_logo" />
+          {upperFirst(model)}
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-Search.defaultProps = ***REMOVED***
-  changeParams: () => ***REMOVED******REMOVED***,
+Search.defaultProps = {
+  changeParams: () => {},
   model: '',
   value: '',
-***REMOVED***;
+};
 
-Search.propTypes = ***REMOVED***
+Search.propTypes = {
   changeParams: PropTypes.func,
   initValue: PropTypes.string.isRequired,
   model: PropTypes.string,
   value: PropTypes.string,
-***REMOVED***;
+};
 
 export default Search;

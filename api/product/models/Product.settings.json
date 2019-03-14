@@ -1,70 +1,70 @@
-***REMOVED***
+{
   "connection": "default",
   "collectionName": "product",
-  "info": ***REMOVED***
+  "info": {
     "name": "product",
     "description": ""
-***REMOVED***,
-  "options": ***REMOVED***
+  },
+  "options": {
     "timestamps": true
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "name": ***REMOVED***
+  },
+  "attributes": {
+    "name": {
       "default": "",
       "type": "string",
       "required": true
-***REMOVED***,
-    "images": ***REMOVED***
+    },
+    "images": {
       "collection": "file",
       "via": "related",
       "plugin": "upload",
       "required": false
-***REMOVED***,
-    "oldPrice": ***REMOVED***
+    },
+    "oldPrice": {
       "default": 0,
       "type": "float"
-***REMOVED***,
-    "newPrice": ***REMOVED***
+    },
+    "newPrice": {
       "default": 0,
       "type": "float"
-***REMOVED***,
-    "discount": ***REMOVED***
+    },
+    "discount": {
       "default": 0,
       "type": "float"
-***REMOVED***,
-    "description": ***REMOVED***
+    },
+    "description": {
       "default": "",
       "type": "text"
-***REMOVED***,
-    "availibilityCount": ***REMOVED***
+    },
+    "availibilityCount": {
       "default": 0,
       "type": "integer"
-***REMOVED***,
-    "weight": ***REMOVED***
+    },
+    "weight": {
       "default": 0,
       "type": "float"
-***REMOVED***,
-    "colors": ***REMOVED***
+    },
+    "colors": {
       "collection": "color",
       "via": "products",
       "dominant": true
-***REMOVED***,
-    "category": ***REMOVED***
+    },
+    "category": {
       "model": "category",
       "via": "products"
-***REMOVED***,
-    "wishlists": ***REMOVED***
+    },
+    "wishlists": {
       "collection": "wishlist",
       "via": "products"
-***REMOVED***,
-    "sizes": ***REMOVED***
+    },
+    "sizes": {
       "collection": "size",
       "via": "products",
       "dominant": true
-***REMOVED***,
-    "brand": ***REMOVED***
+    },
+    "brand": {
       "model": "brand",
       "via": "products"
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

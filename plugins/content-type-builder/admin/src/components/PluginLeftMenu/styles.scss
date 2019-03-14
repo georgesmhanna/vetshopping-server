@@ -1,15 +1,15 @@
-.pluginLeftMenu ***REMOVED*** /* stylelint-disable */
+.pluginLeftMenu { /* stylelint-disable */
   min-height: calc(100vh - 6rem); // TODO should be a global variable
   border-radius: 1px;
   background-color: #F2F3F4;
   box-shadow: inset 0 0 0.2rem 0 rgba(0,0,0,0.05);
   padding-top: .4rem;
-***REMOVED***
+}
 
-.pluginLeftMenuSection ***REMOVED*** /* stylelint-disable */
+.pluginLeftMenuSection { /* stylelint-disable */
   margin-top: 3.3rem;
 
-  > p ***REMOVED***
+  > p {
     -webkit-font-smoothing: antialiased;
     margin: 0;
     padding-left: 1.5rem;
@@ -20,30 +20,30 @@
     font-size: 1.1rem;
     font-weight: bold;
     text-transform: uppercase;
-***REMOVED***
-  > ul ***REMOVED***
+  }
+  > ul {
     margin: 1rem 0 0 0rem;
     padding: 1rem 0 0 3rem;
     font-size: 1.3rem;
     color: #2D3138;
-    > li ***REMOVED***
+    > li {
       margin-right: .5rem;
       margin-bottom: 1.8rem;
       line-height: 1.8rem;
       overflow-wrap: break-word;
-      > a ***REMOVED***
+      > a {
         text-decoration: none;
         color: #1C8FE5;
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
+}
 
 
-.pluginLeftMenuLink ***REMOVED*** /* stylelint-disable */
+.pluginLeftMenuLink { /* stylelint-disable */
   color: #2D3138;
 
-  li:not(:first-child) ***REMOVED***
+  li:not(:first-child) {
     margin-top: 0.2rem;
-***REMOVED***
-***REMOVED***
+  }
+}

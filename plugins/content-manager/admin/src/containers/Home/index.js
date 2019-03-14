@@ -3,27 +3,27 @@
  */
 
 import React from 'react';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { FormattedMessage } from 'react-intl';
 
 import PluginHeader from 'components/PluginHeader';
 
 import styles from './styles.scss';
 
-export class Home extends React.Component ***REMOVED***
-  render() ***REMOVED***
+export class Home extends React.Component {
+  render() {
     return (
       <div>
-        <div className=***REMOVED***`container-fluid $***REMOVED***styles.containerFluid***REMOVED***`***REMOVED***>
+        <div className={`container-fluid ${styles.containerFluid}`}>
           <PluginHeader
-            title=***REMOVED******REMOVED***
+            title={{
               id: 'content-manager.containers.Home.pluginHeaderTitle',
-      ***REMOVED******REMOVED***
-            description=***REMOVED******REMOVED***
+            }}
+            description={{
               id: 'content-manager.containers.Home.pluginHeaderDescription',
-      ***REMOVED******REMOVED***
-            actions=***REMOVED***[]***REMOVED***
+            }}
+            actions={[]}
           />
           <p>
             <FormattedMessage id="content-manager.containers.Home.introduction" />
@@ -31,16 +31,16 @@ export class Home extends React.Component ***REMOVED***
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-Home.propTypes = ***REMOVED******REMOVED***;
+Home.propTypes = {};
 
-export function mapDispatchToProps() ***REMOVED***
-  return ***REMOVED******REMOVED***;
-***REMOVED***
+export function mapDispatchToProps() {
+  return {};
+}
 
-const mapStateToProps = createStructuredSelector(***REMOVED******REMOVED***);
+const mapStateToProps = createStructuredSelector({});
 
 // Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

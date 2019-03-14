@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 
 import styles from './styles.scss';
 
-function ListHeader(***REMOVED*** changeSort, sort ***REMOVED***) ***REMOVED***
+function ListHeader({ changeSort, sort }) {
   const titles = [
     'hash',
     'name',
@@ -24,54 +24,54 @@ function ListHeader(***REMOVED*** changeSort, sort ***REMOVED***) ***REMOVED***
     '',
   ];
 
-  const handleChangeSort = (name) => ***REMOVED***
-    if (sort === name) ***REMOVED***
-      changeSort(`-$***REMOVED***name***REMOVED***`);
-***REMOVED*** else if (sort === `-$***REMOVED***name***REMOVED***`) ***REMOVED***
+  const handleChangeSort = (name) => {
+    if (sort === name) {
+      changeSort(`-${name}`);
+    } else if (sort === `-${name}`) {
       changeSort('hash');
-***REMOVED*** else if (name === 'updated' || name === 'related') ***REMOVED***
+    } else if (name === 'updated' || name === 'related') {
       changeSort('hash');
-***REMOVED*** else ***REMOVED***
+    } else {
       changeSort(name);
-***REMOVED***
-***REMOVED***;
+    }
+  };
 
-  const shouldDisplaySort = (title) => sort === title && styles.icon || sort === `-$***REMOVED***title***REMOVED***` && styles.iconDesc || '';
+  const shouldDisplaySort = (title) => sort === title && styles.icon || sort === `-${title}` && styles.iconDesc || '';
 
   return (
-    <li className=***REMOVED***styles.listheaderWrapper***REMOVED***>
-      <div className=***REMOVED***cn(styles.listHeader)***REMOVED***>
+    <li className={styles.listheaderWrapper}>
+      <div className={cn(styles.listHeader)}>
         <div>
           <div />
-          <div className=***REMOVED***shouldDisplaySort('type')***REMOVED*** onClick=***REMOVED***() => handleChangeSort('type')***REMOVED***>
+          <div className={shouldDisplaySort('type')} onClick={() => handleChangeSort('type')}>
             <FormattedMessage id="upload.ListHeader.type" />
             <span />
           </div>
         </div>
-        ***REMOVED***titles.map((title, key) => ***REMOVED***
-          if (title !== '') ***REMOVED***
+        {titles.map((title, key) => {
+          if (title !== '') {
             return (
-              <div key=***REMOVED***key***REMOVED*** className=***REMOVED***shouldDisplaySort(title)***REMOVED*** onClick=***REMOVED***() => handleChangeSort(title)***REMOVED***>
-                <FormattedMessage id=***REMOVED***`upload.ListHeader.$***REMOVED***title***REMOVED***`***REMOVED*** />
+              <div key={key} className={shouldDisplaySort(title)} onClick={() => handleChangeSort(title)}>
+                <FormattedMessage id={`upload.ListHeader.${title}`} />
                 <span />
               </div>
             );
-    ***REMOVED***
+          }
 
-          return <div key=***REMOVED***key***REMOVED*** />;
-  ***REMOVED***)***REMOVED***
+          return <div key={key} />;
+        })}
       </div>
     </li>
   );
-***REMOVED***
+}
 
-ListHeader.defaultProps = ***REMOVED***
-  changeSort: () => ***REMOVED******REMOVED***,
-***REMOVED***;
+ListHeader.defaultProps = {
+  changeSort: () => {},
+};
 
-ListHeader.propTypes = ***REMOVED***
+ListHeader.propTypes = {
   changeSort: PropTypes.func,
   sort: PropTypes.string.isRequired,
-***REMOVED***;
+};
 
 export default ListHeader;

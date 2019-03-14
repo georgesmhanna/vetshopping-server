@@ -6,8 +6,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** map, omitBy, size ***REMOVED*** from 'lodash';
+import { FormattedMessage } from 'react-intl';
+import { map, omitBy, size } from 'lodash';
 import cn from 'classnames';
 
 // Components from strapi-helper-plugin
@@ -20,84 +20,84 @@ import ListRow from 'components/ListRow';
 
 import styles from './styles.scss';
 
-const generateListTitle = (data, settingType) => ***REMOVED***
-  switch (settingType) ***REMOVED***
-    case 'roles': ***REMOVED***
+const generateListTitle = (data, settingType) => {
+  switch (settingType) {
+    case 'roles': {
       const title = size(data) < 2 ?
-        <FormattedMessage id="users-permissions.List.title.roles.singular" values=***REMOVED******REMOVED*** number: size(data) ***REMOVED******REMOVED*** />
-        : <FormattedMessage id="users-permissions.List.title.roles.plural" values=***REMOVED******REMOVED*** number: size(data) ***REMOVED******REMOVED*** />;
+        <FormattedMessage id="users-permissions.List.title.roles.singular" values={{ number: size(data) }} />
+        : <FormattedMessage id="users-permissions.List.title.roles.plural" values={{ number: size(data) }} />;
 
       return title;
-***REMOVED***
-    case 'providers': ***REMOVED***
+    }
+    case 'providers': {
       const enabledProvidersSize = data.filter(o => o.enabled).length;
 
       const enabledProviders = enabledProvidersSize > 1 ?
-        <FormattedMessage id="users-permissions.List.title.providers.enabled.plural" values=***REMOVED******REMOVED*** number: enabledProvidersSize ***REMOVED******REMOVED*** />
-        : <FormattedMessage id="users-permissions.List.title.providers.enabled.singular" values=***REMOVED******REMOVED*** number: enabledProvidersSize ***REMOVED******REMOVED*** />;
+        <FormattedMessage id="users-permissions.List.title.providers.enabled.plural" values={{ number: enabledProvidersSize }} />
+        : <FormattedMessage id="users-permissions.List.title.providers.enabled.singular" values={{ number: enabledProvidersSize }} />;
 
       const disabledProviders = size(data) - enabledProvidersSize > 1 ?
-        <FormattedMessage id="users-permissions.List.title.providers.disabled.plural" values=***REMOVED******REMOVED*** number: size(data) - enabledProvidersSize ***REMOVED******REMOVED*** />
-        : <FormattedMessage id="users-permissions.List.title.providers.disabled.plural" values=***REMOVED******REMOVED*** number: size(data) - enabledProvidersSize ***REMOVED******REMOVED*** />;
+        <FormattedMessage id="users-permissions.List.title.providers.disabled.plural" values={{ number: size(data) - enabledProvidersSize }} />
+        : <FormattedMessage id="users-permissions.List.title.providers.disabled.plural" values={{ number: size(data) - enabledProvidersSize }} />;
 
-      return <div>***REMOVED***enabledProviders***REMOVED***&nbsp;***REMOVED***disabledProviders***REMOVED***</div>;
+      return <div>{enabledProviders}&nbsp;{disabledProviders}</div>;
 
-***REMOVED***
-    case 'email-templates': ***REMOVED***
+    }
+    case 'email-templates': {
       return size(data) > 1 ?
-        <FormattedMessage id="users-permissions.List.title.emailTemplates.plural" values=***REMOVED******REMOVED*** number: size(data) ***REMOVED******REMOVED*** />
-        : <FormattedMessage id="users-permissions.List.title.emailTemplates.singular" values=***REMOVED******REMOVED*** number: size(data) ***REMOVED******REMOVED*** />;
-***REMOVED***
+        <FormattedMessage id="users-permissions.List.title.emailTemplates.plural" values={{ number: size(data) }} />
+        : <FormattedMessage id="users-permissions.List.title.emailTemplates.singular" values={{ number: size(data) }} />;
+    }
     default:
       return '';
-***REMOVED***
-***REMOVED***;
+  }
+};
 
-function List(***REMOVED*** data, deleteData, noButton, onButtonClick, settingType, showLoaders, values ***REMOVED***) ***REMOVED***
+function List({ data, deleteData, noButton, onButtonClick, settingType, showLoaders, values }) {
   const object = omitBy(data, (v) => v.name === 'server'); // Remove the server key when displaying providers
 
   return (
-    <div className=***REMOVED***styles.list***REMOVED***>
-      <div className=***REMOVED***styles.flex***REMOVED***>
-        <div className=***REMOVED***styles.titleContainer***REMOVED***>
-          ***REMOVED***showLoaders ? <LoadingBar style=***REMOVED******REMOVED*** marginTop: '0' ***REMOVED******REMOVED*** /> : generateListTitle(data, settingType)***REMOVED***
+    <div className={styles.list}>
+      <div className={styles.flex}>
+        <div className={styles.titleContainer}>
+          {showLoaders ? <LoadingBar style={{ marginTop: '0' }} /> : generateListTitle(data, settingType)}
         </div>
-        <div className=***REMOVED***styles.buttonContainer***REMOVED***>
-          ***REMOVED***noButton ? (
+        <div className={styles.buttonContainer}>
+          {noButton ? (
             ''
           ) : (
-            <Button onClick=***REMOVED***onButtonClick***REMOVED*** secondaryHotlineAdd>
-              <FormattedMessage id=***REMOVED***`users-permissions.List.button.$***REMOVED***settingType***REMOVED***`***REMOVED*** />
+            <Button onClick={onButtonClick} secondaryHotlineAdd>
+              <FormattedMessage id={`users-permissions.List.button.${settingType}`} />
             </Button>
-          )***REMOVED***
+          )}
         </div>
       </div>
-      <div className=***REMOVED***cn(styles.ulContainer, showLoaders && styles.loadingContainer, showLoaders && settingType === 'roles' && styles.loadingContainerRole )***REMOVED***>
-        ***REMOVED***showLoaders ? <LoadingIndicator /> : (
-          <ul className=***REMOVED***noButton ? styles.listPadded : ''***REMOVED***>
-            ***REMOVED***map(object, item => (
+      <div className={cn(styles.ulContainer, showLoaders && styles.loadingContainer, showLoaders && settingType === 'roles' && styles.loadingContainerRole )}>
+        {showLoaders ? <LoadingIndicator /> : (
+          <ul className={noButton ? styles.listPadded : ''}>
+            {map(object, item => (
               <ListRow
-                deleteData=***REMOVED***deleteData***REMOVED***
-                item=***REMOVED***item***REMOVED***
-                key=***REMOVED***item.name***REMOVED***
-                settingType=***REMOVED***settingType***REMOVED***
-                values=***REMOVED***values***REMOVED***
+                deleteData={deleteData}
+                item={item}
+                key={item.name}
+                settingType={settingType}
+                values={values}
               />
-            ))***REMOVED***
+            ))}
           </ul>
-        )***REMOVED***
+        )}
       </div>
     </div>
   );
-***REMOVED***
+}
 
-List.defaultProps = ***REMOVED***
+List.defaultProps = {
   noButton: false,
-  onButtonClick: () => ***REMOVED******REMOVED***,
+  onButtonClick: () => {},
   showLoaders: true,
-***REMOVED***;
+};
 
-List.propTypes = ***REMOVED***
+List.propTypes = {
   data: PropTypes.array.isRequired,
   deleteData: PropTypes.func.isRequired,
   noButton: PropTypes.bool,
@@ -105,6 +105,6 @@ List.propTypes = ***REMOVED***
   settingType: PropTypes.string.isRequired,
   showLoaders: PropTypes.bool,
   values: PropTypes.object.isRequired,
-***REMOVED***;
+};
 
 export default List;

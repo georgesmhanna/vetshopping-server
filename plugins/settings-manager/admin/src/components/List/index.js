@@ -17,126 +17,126 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** map ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { map } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 
-import ***REMOVED*** Button, Modal, ModalHeader, ModalBody, ModalFooter ***REMOVED*** from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import ButtonPrimaryHotline from 'components/Button';
 import PopUpForm from 'components/PopUpForm';
 import styles from './styles.scss';
 
 /* eslint-disable react/require-default-props  */
-class List extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+class List extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
     super(props);
-    this.state = ***REMOVED***
+    this.state = {
       modal: false,
       // isPopUpFormValid: true,
       requiredInputs: [],
       loader: false,
-***REMOVED***;
-***REMOVED***
+    };
+  }
 
-  toggle = () => ***REMOVED***
+  toggle = () => {
     if (this.props.actionBeforeOpenPopUp && !this.state.modal) this.props.actionBeforeOpenPopUp();
-    this.setState(***REMOVED*** modal: !this.state.modal ***REMOVED***);
-***REMOVED***
+    this.setState({ modal: !this.state.modal });
+  }
 
-  handleSubmit = (e) => ***REMOVED***
+  handleSubmit = (e) => {
     e.preventDefault();
-    this.setState(***REMOVED*** modal: false ***REMOVED***);
+    this.setState({ modal: false });
     this.props.handleListPopUpSubmit(e);
-***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     const handleToggle = this.toggle;
     const button = this.props.noListButtonPopUp
       ? ''
       : (
         <ButtonPrimaryHotline
-          buttonBackground=***REMOVED***'secondaryAddType'***REMOVED***
-          label=***REMOVED***this.props.listButtonLabel***REMOVED***
-          handlei18n=***REMOVED***this.props.handlei18n***REMOVED***
+          buttonBackground={'secondaryAddType'}
+          label={this.props.listButtonLabel}
+          handlei18n={this.props.handlei18n}
           addShape
-          onClick=***REMOVED***handleToggle***REMOVED***
+          onClick={handleToggle}
         />
       );
 
     const addListTitleMarginTop = this.props.addListTitleMarginTop ? styles.paddedTopList : '';
-    const titleSpacer = this.props.addListTitleMarginTop ? <div style=***REMOVED******REMOVED*** height: '.1rem'***REMOVED******REMOVED*** /> : '';
+    const titleSpacer = this.props.addListTitleMarginTop ? <div style={{ height: '.1rem'}} /> : '';
 
     const loader = this.state.loader
-      ? <Button onClick=***REMOVED***this.handleSubmit***REMOVED*** className=***REMOVED***styles.primary***REMOVED*** disabled=***REMOVED***this.state.loader***REMOVED***><p className=***REMOVED***styles.saving***REMOVED***><span>.</span><span>.</span><span>.</span></p></Button>
+      ? <Button onClick={this.handleSubmit} className={styles.primary} disabled={this.state.loader}><p className={styles.saving}><span>.</span><span>.</span><span>.</span></p></Button>
       : (
         <FormattedMessage id="settings-manager.form.button.save">
-          ***REMOVED***(message) => (
-            <Button onClick=***REMOVED***this.handleSubmit***REMOVED*** className=***REMOVED***styles.primary***REMOVED***>***REMOVED***message***REMOVED***</Button>
-          )***REMOVED***
+          {(message) => (
+            <Button onClick={this.handleSubmit} className={styles.primary}>{message}</Button>
+          )}
         </FormattedMessage>
       );
     return (
-      <div className=***REMOVED***styles.listContainer***REMOVED***>
-        <div className=***REMOVED***styles.listSubContainer***REMOVED***>
-          <div className=***REMOVED***`$***REMOVED***addListTitleMarginTop***REMOVED*** $***REMOVED***styles.flex***REMOVED***`***REMOVED***>
-            <div className=***REMOVED***styles.titleContainer***REMOVED***>
-              ***REMOVED***this.props.listTitle***REMOVED***
+      <div className={styles.listContainer}>
+        <div className={styles.listSubContainer}>
+          <div className={`${addListTitleMarginTop} ${styles.flex}`}>
+            <div className={styles.titleContainer}>
+              {this.props.listTitle}
             </div>
-            <div className=***REMOVED***styles.buttonContainer***REMOVED***>
-              ***REMOVED***button***REMOVED***
+            <div className={styles.buttonContainer}>
+              {button}
             </div>
           </div>
-          ***REMOVED***titleSpacer***REMOVED***
+          {titleSpacer}
         </div>
 
-        <div className=***REMOVED***styles.ulContainer***REMOVED***>
+        <div className={styles.ulContainer}>
           <ul>
-            ***REMOVED***map(this.props.listItems, (listItem, key) => ***REMOVED***
-              if (this.props.renderRow) ***REMOVED***
+            {map(this.props.listItems, (listItem, key) => {
+              if (this.props.renderRow) {
                 return this.props.renderRow(listItem, key, styles);
-        ***REMOVED***
+              }
               return (
-                <li key=***REMOVED***key***REMOVED***>
-                  <div className=***REMOVED***styles.flexLi***REMOVED***>
-                    ***REMOVED***map(listItem, (item, index) => (
-                      <div key=***REMOVED***index***REMOVED***>***REMOVED***item***REMOVED***</div>
-                    ))***REMOVED***
+                <li key={key}>
+                  <div className={styles.flexLi}>
+                    {map(listItem, (item, index) => (
+                      <div key={index}>{item}</div>
+                    ))}
                   </div>
                 </li>
               );
-      ***REMOVED***)***REMOVED***
+            })}
           </ul>
         </div>
 
-        ***REMOVED***/*  </div> */***REMOVED***
+        {/*  </div> */}
         <div>
-          <Modal isOpen=***REMOVED***this.state.modal***REMOVED*** toggle=***REMOVED***this.toggle***REMOVED*** className=***REMOVED***styles.modalPosition***REMOVED***>
-            <ModalHeader toggle=***REMOVED***this.toggle***REMOVED*** className=***REMOVED***`$***REMOVED***styles.noBorder***REMOVED*** $***REMOVED***styles.padded***REMOVED*** $***REMOVED***styles.mHeader***REMOVED***`***REMOVED***>
-              <FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***this.props.listButtonLabel***REMOVED***`***REMOVED*** />
+          <Modal isOpen={this.state.modal} toggle={this.toggle} className={styles.modalPosition}>
+            <ModalHeader toggle={this.toggle} className={`${styles.noBorder} ${styles.padded} ${styles.mHeader}`}>
+              <FormattedMessage id={`settings-manager.${this.props.listButtonLabel}`} />
             </ModalHeader>
-            <div className=***REMOVED***styles.bordered***REMOVED*** />
-            <form onSubmit=***REMOVED***this.handleSubmit***REMOVED***>
+            <div className={styles.bordered} />
+            <form onSubmit={this.handleSubmit}>
 
-              <ModalBody className=***REMOVED***styles.modalBody***REMOVED***>
-                <div className=***REMOVED***styles.spacerSmall***REMOVED*** />
-                <PopUpForm ***REMOVED***...this.props***REMOVED*** />
+              <ModalBody className={styles.modalBody}>
+                <div className={styles.spacerSmall} />
+                <PopUpForm {...this.props} />
               </ModalBody>
-              <ModalFooter className=***REMOVED***`$***REMOVED***styles.noBorder***REMOVED*** $***REMOVED***styles.modalFooter***REMOVED***`***REMOVED***>
+              <ModalFooter className={`${styles.noBorder} ${styles.modalFooter}`}>
                 <FormattedMessage id="settings-manager.form.button.cancel">
-                  ***REMOVED***(message) => (
-                    <Button onClick=***REMOVED***handleToggle***REMOVED*** className=***REMOVED***styles.secondary***REMOVED***>***REMOVED***message***REMOVED***</Button>
-                  )***REMOVED***
+                  {(message) => (
+                    <Button onClick={handleToggle} className={styles.secondary}>{message}</Button>
+                  )}
                 </FormattedMessage>
-                ***REMOVED***loader***REMOVED***
+                {loader}
               </ModalFooter>
             </form>
           </Modal>
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-List.propTypes = ***REMOVED***
+List.propTypes = {
   actionBeforeOpenPopUp: PropTypes.func,
   addListTitleMarginTop: PropTypes.bool,
   error: PropTypes.bool,
@@ -154,6 +154,6 @@ List.propTypes = ***REMOVED***
     PropTypes.bool,
     PropTypes.func,
   ]),
-***REMOVED***;
+};
 
 export default List;

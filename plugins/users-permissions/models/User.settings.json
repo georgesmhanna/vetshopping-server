@@ -1,85 +1,85 @@
-***REMOVED***
+{
   "connection": "default",
-  "info": ***REMOVED***
+  "info": {
     "name": "user",
     "description": ""
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "username": ***REMOVED***
+  },
+  "attributes": {
+    "username": {
       "type": "string",
       "minLength": 3,
       "unique": true,
       "configurable": false,
       "required": true
-***REMOVED***,
-    "email": ***REMOVED***
+    },
+    "email": {
       "type": "email",
       "minLength": 6,
       "configurable": false,
       "required": true
-***REMOVED***,
-    "password": ***REMOVED***
+    },
+    "password": {
       "type": "password",
       "minLength": 6,
       "configurable": false,
       "private": true
-***REMOVED***,
-    "confirmed": ***REMOVED***
+    },
+    "confirmed": {
       "type": "boolean",
       "default": false,
       "configurable": false
-***REMOVED***,
-    "blocked": ***REMOVED***
+    },
+    "blocked": {
       "type": "boolean",
       "default": false,
       "configurable": false
-***REMOVED***,
-    "role": ***REMOVED***
+    },
+    "role": {
       "model": "role",
       "via": "users",
       "plugin": "users-permissions",
       "configurable": false
-***REMOVED***,
-    "firstName": ***REMOVED***
+    },
+    "firstName": {
       "default": "",
       "type": "string",
       "required": true
-***REMOVED***,
-    "lastName": ***REMOVED***
+    },
+    "lastName": {
       "default": "",
       "type": "string",
       "required": true
-***REMOVED***,
-    "socialProvider": ***REMOVED***
+    },
+    "socialProvider": {
       "default": "",
       "type": "string"
-***REMOVED***,
-    "image": ***REMOVED***
+    },
+    "image": {
       "model": "file",
       "via": "related",
       "plugin": "upload",
       "required": false
-***REMOVED***,
-    "imageUrl": ***REMOVED***
+    },
+    "imageUrl": {
       "default": "",
       "type": "string"
-***REMOVED***,
-    "wishlist": ***REMOVED***
+    },
+    "wishlist": {
       "model": "wishlist",
       "via": "user"
-***REMOVED***,
-    "address": ***REMOVED***
+    },
+    "address": {
       "model": "address",
       "via": "user"
-***REMOVED***,
-    "cart": ***REMOVED***
+    },
+    "cart": {
       "model": "cart",
       "via": "user"
-***REMOVED***,
-    "order": ***REMOVED***
+    },
+    "order": {
       "model": "order",
       "via": "user"
-***REMOVED***
-***REMOVED***,
+    }
+  },
   "collectionName": "users-permissions_user"
-***REMOVED***
+}

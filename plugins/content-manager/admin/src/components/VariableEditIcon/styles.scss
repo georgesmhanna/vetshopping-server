@@ -1,4 +1,4 @@
-.editIcon ***REMOVED***
+.editIcon {
   width: 30px;
   background: #AED4FB;
   height: 28px;
@@ -6,7 +6,7 @@
   text-align: center;
   float: right;
 
-  &:after ***REMOVED***
+  &:after {
     display: inline-block;
     content: '';
     width: 10px;
@@ -14,10 +14,10 @@
     margin: auto;
     margin-top: -3px;
     background-image: url('../../assets/images/icon-edit-blue.svg');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.editIconLonger ***REMOVED***
+.editIconLonger {
   width: 30px;
   background:#AED4FB;
   height: 82px;
@@ -26,12 +26,12 @@
   text-align: center;
   float: right;
 
-  &:after ***REMOVED***
+  &:after {
     display: inline-block;
     content: '';
     width: 10px;
     height: 10px;
     margin: auto;
     background-image: url('../../assets/images/icon-edit-blue.svg');
-***REMOVED***
-***REMOVED***
+  }
+}

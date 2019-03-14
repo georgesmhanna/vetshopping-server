@@ -1,55 +1,55 @@
-module.exports = ***REMOVED***
-  type: ***REMOVED***
+module.exports = {
+  type: {
     UsersPermissionsPermission: false // Make this type NOT queriable.
-***REMOVED***,
-  resolver: ***REMOVED***
-    Query: ***REMOVED***
-      role: ***REMOVED***
+  },
+  resolver: {
+    Query: {
+      role: {
         resolverOf: 'UsersPermissions.getRole',
-        resolver: async (obj, options, ctx) => ***REMOVED***
+        resolver: async (obj, options, ctx) => {
           await strapi.plugins['users-permissions'].controllers.userspermissions.getRole(ctx);
 
           return ctx.body.role;
-  ***REMOVED***
-***REMOVED***
-      roles: ***REMOVED***
+        }
+      },
+      roles: {
         description: `Retrieve all the existing roles. You can't apply filters on this query.`,
         resolverOf: 'UsersPermissions.getRoles', // Apply the `getRoles` permissions on the resolver.
-        resolver: async (obj, options, ctx) => ***REMOVED***
+        resolver: async (obj, options, ctx) => {
           await strapi.plugins['users-permissions'].controllers.userspermissions.getRoles(ctx);
 
           return ctx.body.roles;
-  ***REMOVED***
-***REMOVED***
-***REMOVED***,
-    Mutation: ***REMOVED***
-      createRole: ***REMOVED***
+        }
+      }
+    },
+    Mutation: {
+      createRole: {
         description: 'Create a new role',
         resolverOf: 'UsersPermissions.createRole',
-        resolver: async (obj, options, ctx) => ***REMOVED***
+        resolver: async (obj, options, ctx) => {
           await strapi.plugins['users-permissions'].controllers.userspermissions.createRole(ctx);
 
-          return ***REMOVED*** ok: true ***REMOVED***;
-  ***REMOVED***
-***REMOVED***
-      updateRole: ***REMOVED***
+          return { ok: true };
+        }
+      },
+      updateRole: {
         description: 'Update an existing role',
         resolverOf: 'UsersPermissions.updateRole',
-        resolver: async (obj, options, ctx) => ***REMOVED***
+        resolver: async (obj, options, ctx) => {
           await strapi.plugins['users-permissions'].controllers.userspermissions.updateRole(ctx);
 
-          return ***REMOVED*** ok: true ***REMOVED***;
-  ***REMOVED***
-***REMOVED***
-      deleteRole: ***REMOVED***
+          return { ok: true };
+        }
+      },
+      deleteRole: {
         description: 'Delete an existing role',
         resolverOf: 'UsersPermissions.deleteRole',
-        resolver: async (obj, options, ctx) => ***REMOVED***
+        resolver: async (obj, options, ctx) => {
           await strapi.plugins['users-permissions'].controllers.userspermissions.deleteRole(ctx);
 
-          return ***REMOVED*** ok: true ***REMOVED***;
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***;
+          return { ok: true };
+        }
+      }
+    }
+  }
+};

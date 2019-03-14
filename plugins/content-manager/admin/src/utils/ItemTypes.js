@@ -1,5 +1,5 @@
-export default ***REMOVED***
+export default {
   NORMAL: 'normalAttr',
   SORTABLEITEM: 'sortableItem',
   VARIABLE: 'variableAttr',
-***REMOVED***;
+};

@@ -1,4 +1,4 @@
-.button ***REMOVED***
+.button {
   height: 26px;
   min-width: 89px !important;
   padding-top: 2px;
@@ -9,22 +9,22 @@
   font-size: 13px;
   font-weight: 500 !important;
   cursor: pointer;
-***REMOVED***
+}
 
-.cardDescription ***REMOVED***
+.cardDescription {
   height: 54px;
   margin-top: 27px;
   margin-bottom: 9px;
   font-size: 13px;
   font-weight: 400;
 
-  > span:last-child ***REMOVED***
+  > span:last-child {
     color: #1C5DE7;
-***REMOVED***
+  }
   -webkit-font-smoothing: antialiased;
-***REMOVED***
+}
 
-.cardFooter ***REMOVED***
+.cardFooter {
   cursor: initial;
   display: flex;
   justify-content: space-between;
@@ -34,57 +34,57 @@
   padding: 1.5rem 1.5rem 0 1.5rem;
   background-color: #FAFAFB;
 
-  &>div:first-of-type ***REMOVED***
+  &>div:first-of-type {
     margin-top: 3px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.cardPrice ***REMOVED***
+.cardPrice {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 10px;
   padding-top: 2rem;
-  > div:first-child ***REMOVED***
-    > i ***REMOVED***
+  > div:first-child {
+    > i {
       margin-right: 10px;
-***REMOVED***
+    }
     color: #5A9E06;
     font-size: 12px;
     font-style: italic;
     line-height: 2.1rem;
-***REMOVED***
+  }
 
-  > div:last-child ***REMOVED***
+  > div:last-child {
     font-size: 16px;
     font-weight: 700;
     line-height: 1.8rem;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.cardScreenshot ***REMOVED***
+.cardScreenshot {
   height: 78px;
   border-radius: 2px;
   background-size: cover;
-***REMOVED***
+}
 
-.cardTitle ***REMOVED***
+.cardTitle {
   display: flex;
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  > div:first-child ***REMOVED***
+  > div:first-child {
     margin-right: 14px;
-***REMOVED***
+  }
 
-  > div:last-child ***REMOVED***
+  > div:last-child {
     height: 36px;
     line-height: 36px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.frame ***REMOVED***
+.frame {
   width: 70px;
   height: 36px;
   margin: auto 0;
@@ -93,13 +93,13 @@
   border: 1px solid #F3F3F7;
   border-radius: 3px;
   white-space: nowrap;
-  > img ***REMOVED***
+  > img {
     max-height: 36px;
     vertical-align: middle;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.iconContainer ***REMOVED***
+.iconContainer {
   height: 36px;
   width: 70px;
   margin-right: 14px;
@@ -108,62 +108,62 @@
   border-radius: 3px;
   text-align: center;
   font-size: 20px;
-***REMOVED***
+}
 
 
-.helper ***REMOVED***
+.helper {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
-***REMOVED***
+}
 
-.pluginCard ***REMOVED***
+.pluginCard {
 
-***REMOVED***
+}
 
-.primary ***REMOVED***
+.primary {
   font-weight: 500;
   background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
   -webkit-font-smoothing: antialiased;
   color: white;
-  &:active ***REMOVED***
+  &:active {
    box-shadow: inset 1px 1px 3px rgba(0,0,0,.15);
- ***REMOVED***
-***REMOVED***
+ }
+}
 
-.ratings ***REMOVED***
+.ratings {
   // display: flex;
   // padding-top: 1px;
   // TODO uncomment when ratings
-  // > div:last-child ***REMOVED***
+  // > div:last-child {
   //   padding-top: 4px;
   //   font-size: 12px;
   //   font-style: italic;
-  // ***REMOVED***
-***REMOVED***
+  // }
+}
 
-.secondary ***REMOVED***
+.secondary {
   border: 1px solid #DFE0E1;
   font-weight: 600;
-***REMOVED***
+}
 
-.starsContainer ***REMOVED***
+.starsContainer {
   display: flex;
   margin-right: 10px;
-  > div ***REMOVED***
-    > i ***REMOVED***
+  > div {
+    > i {
       margin-right: 2px;
-***REMOVED***
-***REMOVED***
-  > div:first-child ***REMOVED***
+    }
+  }
+  > div:first-child {
     color: #EEA348;
-***REMOVED***
-  > div:last-child ***REMOVED***
+  }
+  > div:last-child {
     color: #B3B5B9;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.wrapper ***REMOVED***
+.wrapper {
   min-height: 320px;
   margin-bottom: 3.9rem;
   padding: 1.2rem 1.5rem;
@@ -172,4 +172,4 @@
   box-shadow: 0 2px 4px #E3E9F3;
   -webkit-font-smoothing: antialiased;
   cursor: pointer;
-***REMOVED***
+}

@@ -5,15 +5,15 @@
 */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import Icon from '../../assets/icons/icon_success.svg';
 import styles from './styles.scss';
 
-function DownloadInfo() ***REMOVED***
+function DownloadInfo() {
   return (
-    <div className=***REMOVED***styles.wrapper***REMOVED***>
-      <div className=***REMOVED***styles.content***REMOVED***>
-        <img src=***REMOVED***Icon***REMOVED*** alt="info" />
+    <div className={styles.wrapper}>
+      <div className={styles.content}>
+        <img src={Icon} alt="info" />
         <div>
           <FormattedMessage id="app.components.DownloadInfo.download" />
           <br />
@@ -22,6 +22,6 @@ function DownloadInfo() ***REMOVED***
       </div>
     </div>
   );
-***REMOVED***
+}
 
 export default DownloadInfo;

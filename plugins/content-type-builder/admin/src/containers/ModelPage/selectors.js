@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the modelPage state domain
@@ -30,8 +30,8 @@ const makeSelectPostContentTypeSuccess = () => createSelector(
 );
 
 export default selectModelPage;
-export ***REMOVED***
+export {
   selectModelPageDomain,
   makeSelectModel,
   makeSelectPostContentTypeSuccess,
-***REMOVED***;
+};

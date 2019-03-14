@@ -1,75 +1,75 @@
-***REMOVED***
+{
   "routes": [
-    ***REMOVED***
+    {
       "method": "GET",
       "path": "/models",
       "handler": "ContentManager.models",
-      "config": ***REMOVED***
+      "config": {
         "policies": []
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/explorer/:model",
       "handler": "ContentManager.find",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["routing"]
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/explorer/:model/count",
       "handler": "ContentManager.count",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["routing"]
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "PUT",
       "path": "/models",
       "handler": "ContentManager.updateSettings",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["routing"]
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "GET",
       "path": "/explorer/:model/:id",
       "handler": "ContentManager.findOne",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["routing"]
-***REMOVED***
-***REMOVED***,***REMOVED***
+      }
+    },{
       "method": "POST",
       "path": "/explorer/:model",
       "handler": "ContentManager.create",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["routing"]
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "PUT",
       "path": "/explorer/:model/:id",
       "handler": "ContentManager.update",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["routing"]
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "DELETE",
       "path": "/explorer/deleteAll/:model",
       "handler": "ContentManager.deleteAll",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["routing"]
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      }
+    },
+    {
       "method": "DELETE",
       "path": "/explorer/:model/:id",
       "handler": "ContentManager.delete",
-      "config": ***REMOVED***
+      "config": {
         "policies": ["routing"]
-***REMOVED***
-***REMOVED***
+      }
+    }
   ]
-***REMOVED***
+}

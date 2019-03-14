@@ -1,100 +1,100 @@
-import ***REMOVED*** trimEnd, trimStart ***REMOVED*** from 'lodash';
+import { trimEnd, trimStart } from 'lodash';
 /**
  * Override the editor css
- * @param  ***REMOVED***[type]***REMOVED*** block [description]
- * @return ***REMOVED***[type]***REMOVED***       [description]
+ * @param  {[type]} block [description]
+ * @return {[type]}       [description]
  */
 
-export function getBlockStyle() ***REMOVED***
+export function getBlockStyle() {
   return null;
-***REMOVED***
+}
 
-export function getBlockContent(style) ***REMOVED***
-  switch (style) ***REMOVED***
+export function getBlockContent(style) {
+  switch (style) {
     case 'IMG':
-      return ***REMOVED***
+      return {
         innerContent: 'link',
         endReplacer: ')',
         startReplacer: '![text](',
-***REMOVED***;
+      };
     case 'CODE':
-      return ***REMOVED***
+      return {
         innerContent: 'code block',
         endReplacer: '`',
         startReplacer: '`',
-***REMOVED***;
+      };
     case 'BLOCKQUOTE':
-      return ***REMOVED***
+      return {
         innerContent: 'quote',
         endReplacer: '',
         startReplacer: '> ',
-***REMOVED***;
+      };
     case 'BOLD':
-      return ***REMOVED***
+      return {
         innerContent: 'bold text',
         endReplacer: '*',
         startReplacer: '*',
-***REMOVED***;
+      };
     case 'ITALIC':
-      return ***REMOVED***
+      return {
         innerContent: 'italic text',
         endReplacer: '*',
         startReplacer: '*',
-***REMOVED***;
+      };
     case 'STRIKED':
-      return ***REMOVED***
+      return {
         innerContent: 'striked out',
         endReplacer: '~',
         startReplacer: '~',
-***REMOVED***;
+      };
     case 'UNDERLINE':
-      return ***REMOVED***
+      return {
         innerContent: 'underlined text',
         endReplacer: '_',
         startReplacer: '_',
-***REMOVED***;
+      };
     case 'LINK':
-      return ***REMOVED***
+      return {
         innerContent: 'link',
         endReplacer: ')',
         startReplacer: '[text](',
-***REMOVED***;
+      };
     default:
-      return ***REMOVED***
+      return {
         innerContent: '',
         endReplacer: '',
         startReplacer: '',
-***REMOVED***;
-***REMOVED***
-***REMOVED***
+      };
+  }
+}
 
 export const getDefaultSelectionOffsets = (
   content,
   startReplacer,
   endReplacer,
   initPosition = 0,
-) => (***REMOVED***
+) => ({
   anchorOffset: initPosition + content.length - trimStart(content, startReplacer).length,
   focusOffset: initPosition + trimEnd(content, endReplacer).length,
-***REMOVED***);
+});
 
 /**
  * Get the start and end offset
- * @param  ***REMOVED***Object***REMOVED*** selection
- * @return ***REMOVED***Object***REMOVED***
+ * @param  {Object} selection
+ * @return {Object}
  */
-export function getOffSets(selection) ***REMOVED***
-  return ***REMOVED***
+export function getOffSets(selection) {
+  return {
     end: selection.getEndOffset(),
     start: selection.getStartOffset(),
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getKeyCommandData(command) ***REMOVED***
+export function getKeyCommandData(command) {
   let content;
   let style;
 
-  switch (command) ***REMOVED***
+  switch (command) {
     case 'bold':
       content = '**textToReplace**';
       style = 'BOLD';
@@ -110,7 +110,7 @@ export function getKeyCommandData(command) ***REMOVED***
     default:
       content = '';
       style = '';
-***REMOVED***
+  }
 
-  return ***REMOVED*** content, style ***REMOVED***;
-***REMOVED***
+  return { content, style };
+}

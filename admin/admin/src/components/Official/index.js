@@ -5,26 +5,26 @@
 */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
-function Official(props) ***REMOVED***
+function Official(props) {
 
   return (
-    <button className=***REMOVED***styles.wrapper***REMOVED*** style=***REMOVED***props.style***REMOVED***>
+    <button className={styles.wrapper} style={props.style}>
       <i className="fa fa-star" />
       <FormattedMessage id="app.components.Official" />
     </button>
   );
-***REMOVED***
+}
 
-Official.defaultProps = ***REMOVED***
-  style: ***REMOVED******REMOVED***,
-***REMOVED***;
+Official.defaultProps = {
+  style: {},
+};
 
-Official.propTypes = ***REMOVED***
+Official.propTypes = {
   style: PropTypes.object,
-***REMOVED***;
+};
 
 export default Official;

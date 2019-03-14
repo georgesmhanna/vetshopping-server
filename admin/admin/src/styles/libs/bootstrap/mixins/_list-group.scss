@@ -1,26 +1,26 @@
 // List Groups
 
-@mixin list-group-item-variant($state, $background, $color) ***REMOVED***
-  .list-group-item-#***REMOVED***$state***REMOVED*** ***REMOVED***
+@mixin list-group-item-variant($state, $background, $color) {
+  .list-group-item-#{$state} {
     color: $color;
     background-color: $background;
-***REMOVED***
+  }
 
   //scss-lint:disable QualifyingElement
-  a.list-group-item-#***REMOVED***$state***REMOVED***,
-  button.list-group-item-#***REMOVED***$state***REMOVED*** ***REMOVED***
+  a.list-group-item-#{$state},
+  button.list-group-item-#{$state} {
     color: $color;
 
-    @include hover-focus ***REMOVED***
+    @include hover-focus {
       color: $color;
       background-color: darken($background, 5%);
-***REMOVED***
+    }
 
-    &.active ***REMOVED***
+    &.active {
       color: #fff;
       background-color: $color;
       border-color: $color;
-***REMOVED***
-***REMOVED***
+    }
+  }
   // scss-lint:enable QualifyingElement
-***REMOVED***
+}

@@ -1,6 +1,6 @@
 import showdown from 'showdown';
 
-const converterOptions = ***REMOVED***
+const converterOptions = {
   backslashEscapesHTMLTags: true,
   emoji: true,
   parseImgDimensions: true,
@@ -12,7 +12,7 @@ const converterOptions = ***REMOVED***
   tables: true,
   tasklists: true,
   underline: true,
-***REMOVED***;
+};
 
 const converter = new showdown.Converter(converterOptions);
 

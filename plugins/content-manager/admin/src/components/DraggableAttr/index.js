@@ -5,13 +5,13 @@
 
 /* eslint-disable react/no-find-dom-node */
 import React from 'react';
-import ***REMOVED*** findDOMNode ***REMOVED*** from 'react-dom';
-import ***REMOVED***
+import { findDOMNode } from 'react-dom';
+import {
   DragSource,
   DropTarget,
-***REMOVED*** from 'react-dnd';
-import ***REMOVED*** getEmptyImage ***REMOVED*** from 'react-dnd-html5-backend';
-import ***REMOVED*** flow ***REMOVED*** from 'lodash';
+} from 'react-dnd';
+import { getEmptyImage } from 'react-dnd-html5-backend';
+import { flow } from 'lodash';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import ClickOverHint from 'components/ClickOverHint';
@@ -24,31 +24,31 @@ import GrabIcon from 'assets/images/icon_grab.svg';
 
 import styles from './styles.scss';
 
-const draggableAttrSource = ***REMOVED***
-  beginDrag: (props) => ***REMOVED***
+const draggableAttrSource = {
+  beginDrag: (props) => {
     props.updateSiblingHoverState();
 
-    return ***REMOVED***
+    return {
       id: props.name, // This returns undefined
       index: props.index,
-***REMOVED***;
-***REMOVED***,
-  endDrag: (props) => ***REMOVED***
+    };
+  },
+  endDrag: (props) => {
     props.updateSiblingHoverState();
 
-    return ***REMOVED******REMOVED***;
-***REMOVED***,
-***REMOVED***;
+    return {};
+  },
+};
 
-const draggableAttrTarget = ***REMOVED***
-  hover: (props, monitor, component) => ***REMOVED***
+const draggableAttrTarget = {
+  hover: (props, monitor, component) => {
     const dragIndex = monitor.getItem().index;
     const hoverIndex = props.index;
 
     // Don't replace items with themselves
-    if (dragIndex === hoverIndex) ***REMOVED***
+    if (dragIndex === hoverIndex) {
       return;
-***REMOVED***
+    }
 
     // Determine rectangle on screen
     const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
@@ -67,14 +67,14 @@ const draggableAttrTarget = ***REMOVED***
     // When dragging upwards, only move when the cursor is above 50%
 
     // Dragging downwards
-    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) ***REMOVED***
+    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
       return;
-***REMOVED***
+    }
 
     // Dragging upwards
-    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) ***REMOVED***
+    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
       return;
-***REMOVED***
+    }
 
     // Time to actually perform the action
     props.moveAttr(dragIndex, hoverIndex, props.keys);
@@ -84,62 +84,62 @@ const draggableAttrTarget = ***REMOVED***
     // but it's good here for the sake of performance
     // to avoid expensive index searches.
     monitor.getItem().index = hoverIndex;
-***REMOVED***,
-***REMOVED***;
+  },
+};
 
-class DraggableAttr extends React.Component ***REMOVED***
-  state = ***REMOVED*** isOver: false, dragStart: false ***REMOVED***;
+class DraggableAttr extends React.Component {
+  state = { isOver: false, dragStart: false };
   
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     // Use empty image as a drag preview so browsers don't draw it
     // and we can draw whatever we want on the custom drag layer instead.
-    this.props.connectDragPreview(getEmptyImage(), ***REMOVED***
+    this.props.connectDragPreview(getEmptyImage(), {
       // IE fallback: specify that we'd rather screenshot the node
       // when it already knows it's being dragged so we can hide it with CSS.
       // Removginv the fallabck makes it handle variable height elements
       // captureDraggingState: true,
-***REMOVED***);
-***REMOVED***
+    });
+  }
 
-  componentDidUpdate(prevProps) ***REMOVED***
-    const ***REMOVED*** isDraggingSibling ***REMOVED*** = this.props;
+  componentDidUpdate(prevProps) {
+    const { isDraggingSibling } = this.props;
 
-    if (isDraggingSibling !== prevProps.isDraggingSibling && isDraggingSibling) ***REMOVED***
+    if (isDraggingSibling !== prevProps.isDraggingSibling && isDraggingSibling) {
       this.handleMouseLeave();
-***REMOVED***
+    }
 
-    if (prevProps.isDragging !== this.props.isDragging && this.props.isDragging) ***REMOVED***
+    if (prevProps.isDragging !== this.props.isDragging && this.props.isDragging) {
       this.props.onClickEdit(this.props.index);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleClickEdit = (e) => ***REMOVED***
+  handleClickEdit = (e) => {
     e.preventDefault();
     e.stopPropagation();
     this.props.onClickEdit(this.props.index);
-***REMOVED***
+  }
 
-  handleDragEnd = () => this.setState(***REMOVED*** dragStart: false ***REMOVED***);
+  handleDragEnd = () => this.setState({ dragStart: false });
 
-  handleDragStart = () => this.setState(***REMOVED*** dragStart: true ***REMOVED***);
+  handleDragStart = () => this.setState({ dragStart: true });
 
-  handleMouseEnter = () => ***REMOVED***
-    if (!this.props.isDraggingSibling) ***REMOVED***
-      this.setState(***REMOVED*** isOver: true ***REMOVED***);
-***REMOVED***
-***REMOVED***;
+  handleMouseEnter = () => {
+    if (!this.props.isDraggingSibling) {
+      this.setState({ isOver: true });
+    }
+  };
 
-  handleMouseLeave = () => this.setState(***REMOVED*** isOver: false ***REMOVED***);
+  handleMouseLeave = () => this.setState({ isOver: false });
 
-  handleRemove = (e) => ***REMOVED***
+  handleRemove = (e) => {
     e.preventDefault();
     e.stopPropagation();
     this.props.onRemove(this.props.index, this.props.keys);
-***REMOVED***
+  }
 
-  render() ***REMOVED***
-    const ***REMOVED*** label, name, isDragging, isEditing, connectDragSource, connectDropTarget ***REMOVED*** = this.props;
-    const ***REMOVED*** isOver, dragStart ***REMOVED*** = this.state;
+  render() {
+    const { label, name, isDragging, isEditing, connectDragSource, connectDropTarget } = this.props;
+    const { isOver, dragStart } = this.state;
     const opacity = isDragging ? 0.2 : 1;
     const overClass = isOver ? styles.draggableAttrOvered : '';
     const className = dragStart ? styles.dragged : styles.draggableAttr;
@@ -148,41 +148,41 @@ class DraggableAttr extends React.Component ***REMOVED***
       connectDragSource(
         connectDropTarget(
           <div
-            className=***REMOVED***cn(className, isEditing && styles.editingAttr, overClass)***REMOVED***
-            onDragStart=***REMOVED***this.handleDragStart***REMOVED***
-            onDragEnd=***REMOVED***this.handleDragEnd***REMOVED***
-            onMouseEnter=***REMOVED***this.handleMouseEnter***REMOVED***
-            onMouseLeave=***REMOVED***this.handleMouseLeave***REMOVED***
-            onClick=***REMOVED***this.handleClickEdit***REMOVED***
-            style=***REMOVED******REMOVED*** opacity ***REMOVED******REMOVED***
+            className={cn(className, isEditing && styles.editingAttr, overClass)}
+            onDragStart={this.handleDragStart}
+            onDragEnd={this.handleDragEnd}
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
+            onClick={this.handleClickEdit}
+            style={{ opacity }}
           >
-            <img src=***REMOVED***(isEditing ? GrabIconBlue : GrabIcon)***REMOVED*** alt="Grab Icon" />
-            <span>***REMOVED***name***REMOVED***</span>
-            <ClickOverHint show=***REMOVED***isOver && !isDragging && !isEditing***REMOVED*** />
-            ***REMOVED*** (!isOver || isEditing) && name.toLowerCase() !== label.toLowerCase() && (
-              <div className=***REMOVED***cn(styles.infoLabel, isEditing && styles.infoLabelHover)***REMOVED***>
-                ***REMOVED***label.toLowerCase() === 'id' ? 'ID' : label***REMOVED***
+            <img src={(isEditing ? GrabIconBlue : GrabIcon)} alt="Grab Icon" />
+            <span>{name}</span>
+            <ClickOverHint show={isOver && !isDragging && !isEditing} />
+            { (!isOver || isEditing) && name.toLowerCase() !== label.toLowerCase() && (
+              <div className={cn(styles.infoLabel, isEditing && styles.infoLabelHover)}>
+                {label.toLowerCase() === 'id' ? 'ID' : label}
               </div>
-            )***REMOVED***
-            ***REMOVED***isEditing && !isOver ? (
-              <VariableEditIcon onClick=***REMOVED***this.handleClickEdit***REMOVED*** />            
+            )}
+            {isEditing && !isOver ? (
+              <VariableEditIcon onClick={this.handleClickEdit} />            
             ) : (
               
-              <DraggedRemovedIcon isDragging=***REMOVED***dragStart || isEditing***REMOVED*** onRemove=***REMOVED***this.handleRemove***REMOVED*** />
-            )***REMOVED***
+              <DraggedRemovedIcon isDragging={dragStart || isEditing} onRemove={this.handleRemove} />
+            )}
           </div>
         ),
       )
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-DraggableAttr.defaultProps = ***REMOVED***
+DraggableAttr.defaultProps = {
   isEditing: false,
-  onRemove: () => ***REMOVED******REMOVED***,
-***REMOVED***;
+  onRemove: () => {},
+};
 
-DraggableAttr.propTypes = ***REMOVED***
+DraggableAttr.propTypes = {
   connectDragPreview: PropTypes.func.isRequired,
   connectDragSource: PropTypes.func.isRequired,
   connectDropTarget: PropTypes.func.isRequired,
@@ -195,16 +195,16 @@ DraggableAttr.propTypes = ***REMOVED***
   name: PropTypes.string.isRequired,
   onClickEdit: PropTypes.func.isRequired,
   onRemove: PropTypes.func,
-***REMOVED***;
+};
 
-const withDropTarget = DropTarget(ItemTypes.NORMAL, draggableAttrTarget, connect => (***REMOVED***
+const withDropTarget = DropTarget(ItemTypes.NORMAL, draggableAttrTarget, connect => ({
   connectDropTarget: connect.dropTarget(),
-***REMOVED***));
+}));
 
-const withDragSource = DragSource(ItemTypes.NORMAL, draggableAttrSource, (connect, monitor) => (***REMOVED***
+const withDragSource = DragSource(ItemTypes.NORMAL, draggableAttrSource, (connect, monitor) => ({
   connectDragPreview: connect.dragPreview(),
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging(),
-***REMOVED***));
+}));
 
 export default flow([withDropTarget, withDragSource])(DraggableAttr);

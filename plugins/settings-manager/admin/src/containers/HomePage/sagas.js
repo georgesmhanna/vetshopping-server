@@ -1,12 +1,12 @@
-import ***REMOVED*** LOCATION_CHANGE ***REMOVED*** from 'react-router-redux';
-import ***REMOVED*** forEach, set, map, replace ***REMOVED*** from 'lodash';
-import ***REMOVED*** call, take, put, fork, cancel, select, takeLatest ***REMOVED*** from 'redux-saga/effects';
+import { LOCATION_CHANGE } from 'react-router-redux';
+import { forEach, set, map, replace } from 'lodash';
+import { call, take, put, fork, cancel, select, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 
 // selectors
-import ***REMOVED*** makeSelectModifiedData ***REMOVED*** from './selectors';
+import { makeSelectModifiedData } from './selectors';
 
-import ***REMOVED***
+import {
   CONFIG_FETCH,
   EDIT_SETTINGS,
   LANGUAGE_DELETE,
@@ -17,9 +17,9 @@ import ***REMOVED***
   DATABASE_DELETE,
   SPECIFIC_DATABASE_FETCH,
   DATABASE_EDIT,
-***REMOVED*** from './constants';
+} from './constants';
 
-import ***REMOVED***
+import {
   configFetchSucceded,
   databasesFetchSucceeded,
   editSettingsSucceeded,
@@ -31,94 +31,94 @@ import ***REMOVED***
   databaseActionError,
   unsetLoader,
   setLoader,
-***REMOVED*** from './actions';
+} from './actions';
 
 /* eslint-disable no-template-curly-in-string */
 
-export function* editDatabase(action) ***REMOVED***
-  try ***REMOVED***
-    const body = ***REMOVED******REMOVED***;
+export function* editDatabase(action) {
+  try {
+    const body = {};
 
-    forEach(action.data, (value, key) => ***REMOVED***
+    forEach(action.data, (value, key) => {
       set(body, key, value);
-***REMOVED***);
+    });
 
-    const opts = ***REMOVED***
+    const opts = {
       method: 'PUT',
       body,
-***REMOVED***;
-    const requestUrl = `/settings-manager/configurations/databases/$***REMOVED***action.apiUrl***REMOVED***`;
+    };
+    const requestUrl = `/settings-manager/configurations/databases/${action.apiUrl}`;
 
     const resp = yield call(request, requestUrl, opts, true);
 
-    if (resp.ok) ***REMOVED***
+    if (resp.ok) {
       strapi.notification.success('settings-manager.strapi.notification.success.databaseEdit');
       yield put(databaseActionSucceeded());
-***REMOVED***
-***REMOVED*** catch(error) ***REMOVED***
-    const formErrors = map(error.response.payload.message, err => (***REMOVED*** target: err.target, errors: map(err.messages, mess => (***REMOVED*** id: `settings-manager.$***REMOVED***mess.id***REMOVED***`***REMOVED***)) ***REMOVED***));
+    }
+  } catch(error) {
+    const formErrors = map(error.response.payload.message, err => ({ target: err.target, errors: map(err.messages, mess => ({ id: `settings-manager.${mess.id}`})) }));
 
     yield put(databaseActionError(formErrors));
     strapi.notification.error('settings-manager.strapi.notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* deleteDatabase(action) ***REMOVED***
-  try ***REMOVED***
-    const opts = ***REMOVED*** method: 'DELETE' ***REMOVED***;
-    const requestUrl = `/settings-manager/configurations/databases/$***REMOVED***action.databaseToDelete***REMOVED***/$***REMOVED***action.endPoint***REMOVED***`;
+export function* deleteDatabase(action) {
+  try {
+    const opts = { method: 'DELETE' };
+    const requestUrl = `/settings-manager/configurations/databases/${action.databaseToDelete}/${action.endPoint}`;
 
     const resp = yield call(request, requestUrl, opts, true);
 
-    if (resp.ok) ***REMOVED***
+    if (resp.ok) {
       yield call(action.context.disableGlobalOverlayBlocker);
       strapi.notification.success('settings-manager.strapi.notification.success.databaseDeleted');
-***REMOVED***
-***REMOVED*** catch(error) ***REMOVED***
+    }
+  } catch(error) {
     yield call(action.context.disableGlobalOverlayBlocker);
     yield put(databaseActionError([]));
     strapi.notification.error('settings-manager.strapi.notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* deleteLanguage(action) ***REMOVED***
-  try ***REMOVED***
-    const opts = ***REMOVED***
+export function* deleteLanguage(action) {
+  try {
+    const opts = {
       method: 'DELETE',
-***REMOVED***;
-    const requestUrl = `/settings-manager/configurations/languages/$***REMOVED***action.languageToDelete***REMOVED***`;
+    };
+    const requestUrl = `/settings-manager/configurations/languages/${action.languageToDelete}`;
     const resp = yield call(request, requestUrl, opts, true);
 
-    if (resp.ok) ***REMOVED***
+    if (resp.ok) {
       strapi.notification.success('settings-manager.strapi.notification.success.languageDelete');
-***REMOVED***
-***REMOVED*** catch(error) ***REMOVED***
+    }
+  } catch(error) {
     yield put(languageActionError());
     strapi.notification.error('settings-manager.strapi.notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* fetchConfig(action) ***REMOVED***
-  try ***REMOVED***
-    const opts = ***REMOVED***
+export function* fetchConfig(action) {
+  try {
+    const opts = {
       method: 'GET',
-***REMOVED***;
-    const requestUrl = `/settings-manager/configurations/$***REMOVED***action.endPoint***REMOVED***`;
+    };
+    const requestUrl = `/settings-manager/configurations/${action.endPoint}`;
 
     const data = yield call(request, requestUrl, opts);
     yield put(configFetchSucceded(data));
-***REMOVED*** catch(error) ***REMOVED***
+  } catch(error) {
     strapi.notification.error('settings-manager.strapi.notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
 
-export function* fetchDatabases(action) ***REMOVED***
-  try ***REMOVED***
-    const opts = ***REMOVED***
+export function* fetchDatabases(action) {
+  try {
+    const opts = {
       method: 'GET',
-***REMOVED***;
-    const requestUrlListDatabases = `/settings-manager/configurations/databases/$***REMOVED***action.environment***REMOVED***`;
+    };
+    const requestUrlListDatabases = `/settings-manager/configurations/databases/${action.environment}`;
     const requestUrlAppDatabases = '/settings-manager/configurations/database/model';
 
     const [listDatabasesData, appDatabaseData] = yield [
@@ -126,16 +126,16 @@ export function* fetchDatabases(action) ***REMOVED***
       call(request, requestUrlAppDatabases, opts),
     ];
     yield put(databasesFetchSucceeded(listDatabasesData, appDatabaseData));
-***REMOVED*** catch(error) ***REMOVED***
+  } catch(error) {
     strapi.notification.error('settings-manager.strapi.notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* fetchLanguages() ***REMOVED***
-  try ***REMOVED***
-    const opts = ***REMOVED***
+export function* fetchLanguages() {
+  try {
+    const opts = {
       method: 'GET',
-***REMOVED***;
+    };
     const requestUrlAppLanguages = '/settings-manager/configurations/languages';
     const requestUrlListLanguages = '/settings-manager/configurations/i18n';
 
@@ -144,105 +144,105 @@ export function* fetchLanguages() ***REMOVED***
       call(request, requestUrlListLanguages, opts),
     ];
     yield put(languagesFetchSucceeded(appLanguagesData, listLanguagesData));
-***REMOVED*** catch(error) ***REMOVED***
+  } catch(error) {
     strapi.notification.error('settings-manager.strapi.notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* postLanguage() ***REMOVED***
-  try ***REMOVED***
+export function* postLanguage() {
+  try {
     const newLanguage = yield select(makeSelectModifiedData());
-    const body = ***REMOVED***
+    const body = {
       name: newLanguage['language.defaultLocale'],
-***REMOVED***;
-    const opts = ***REMOVED***
+    };
+    const opts = {
       body,
       method: 'POST',
-***REMOVED***;
+    };
     const requestUrl = '/settings-manager/configurations/languages';
     const resp = yield call(request, requestUrl, opts, true);
 
-    if (resp.ok) ***REMOVED***
+    if (resp.ok) {
       yield put(languageActionSucceeded());
       strapi.notification.success('settings-manager.strapi.notification.success.languageAdd');
-***REMOVED***
-***REMOVED*** catch(error) ***REMOVED***
+    }
+  } catch(error) {
     yield put(languageActionError());
     strapi.notification.error('settings-manager.strapi.notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* postDatabase(action) ***REMOVED***
-  try ***REMOVED***
-    const body = ***REMOVED******REMOVED***;
+export function* postDatabase(action) {
+  try {
+    const body = {};
 
-    forEach(action.data, (value, key) => ***REMOVED***
+    forEach(action.data, (value, key) => {
       set(body, key, value);
-***REMOVED***);
+    });
 
-    const opts = ***REMOVED***
+    const opts = {
       method: 'POST',
       body,
-***REMOVED***;
-    const requestUrl = `/settings-manager/configurations/databases/$***REMOVED***action.endPoint***REMOVED***`;
+    };
+    const requestUrl = `/settings-manager/configurations/databases/${action.endPoint}`;
     const resp = yield call(request, requestUrl, opts, true);
 
-    if (resp.ok) ***REMOVED***
+    if (resp.ok) {
       yield put(databaseActionSucceeded());
       strapi.notification.success('settings-manager.strapi.notification.success.databaseAdd');
-***REMOVED***
-***REMOVED*** catch(error) ***REMOVED***
-    const formErrors = map(error.response.payload.message, (err) => ***REMOVED***
-      const target = err.target ? replace(err.target, err.target.split('.')[2], '$***REMOVED***name***REMOVED***') : 'database.connections.$***REMOVED***name***REMOVED***.name';
+    }
+  } catch(error) {
+    const formErrors = map(error.response.payload.message, (err) => {
+      const target = err.target ? replace(err.target, err.target.split('.')[2], '${name}') : 'database.connections.${name}.name';
       return (
-        ***REMOVED*** target, errors: map(err.messages, mess => (***REMOVED*** id: `settings-manager.$***REMOVED***mess.id***REMOVED***`***REMOVED***)) ***REMOVED***
+        { target, errors: map(err.messages, mess => ({ id: `settings-manager.${mess.id}`})) }
       );
-***REMOVED***);
+    });
 
     yield put(databaseActionError(formErrors));
     strapi.notification.error('settings-manager.strapi.notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* settingsEdit(action) ***REMOVED***
-  try ***REMOVED***
+export function* settingsEdit(action) {
+  try {
     // Show button loader
     yield put(setLoader());
 
-    const opts = ***REMOVED***
+    const opts = {
       body: action.newSettings,
       method: 'PUT',
-***REMOVED***;
-    const requestUrl = `/settings-manager/configurations/$***REMOVED***action.endPoint***REMOVED***`;
+    };
+    const requestUrl = `/settings-manager/configurations/${action.endPoint}`;
     const resp = yield  call(request, requestUrl, opts, true);
 
-    if (resp.ok) ***REMOVED***
+    if (resp.ok) {
       yield put(editSettingsSucceeded());
       strapi.notification.success('settings-manager.strapi.notification.success.settingsEdit');
-***REMOVED***
-***REMOVED*** catch(error) ***REMOVED***
+    }
+  } catch(error) {
     strapi.notification.error('settings-manager.strapi.notification.error');
-***REMOVED*** finally ***REMOVED***
+  } finally {
     yield put(unsetLoader());
-***REMOVED***
-***REMOVED***
+  }
+}
 
-export function* fetchSpecificDatabase(action) ***REMOVED***
-  try ***REMOVED***
-    const opts = ***REMOVED***
+export function* fetchSpecificDatabase(action) {
+  try {
+    const opts = {
       method: 'GET',
-***REMOVED***;
-    const requestUrl = `/settings-manager/configurations/databases/$***REMOVED***action.databaseName***REMOVED***/$***REMOVED***action.endPoint***REMOVED***`;
+    };
+    const requestUrl = `/settings-manager/configurations/databases/${action.databaseName}/${action.endPoint}`;
     const data = yield call(request, requestUrl, opts);
 
     yield put(specificDatabaseFetchSucceeded(data));
-***REMOVED*** catch(error) ***REMOVED***
+  } catch(error) {
     strapi.notification.error('settings-manager.strapi.notification.error');
-***REMOVED***
-***REMOVED***
+  }
+}
 
 // Individual exports for testing
-export function* defaultSaga() ***REMOVED***
+export function* defaultSaga() {
   const loadConfigWatcher = yield fork(takeLatest, CONFIG_FETCH, fetchConfig);
   const loadLanguagesWatcher = yield fork(takeLatest, LANGUAGES_FETCH, fetchLanguages);
   const editConfigWatcher = yield fork(takeLatest, EDIT_SETTINGS, settingsEdit);
@@ -265,7 +265,7 @@ export function* defaultSaga() ***REMOVED***
   yield cancel(deleteDatabaseWatcher);
   yield cancel(fetchSpecificDatabaseWatcher);
   yield cancel(editDatabaseWatcher);
-***REMOVED***
+}
 
 // All sagas to be loaded
 export default defaultSaga;

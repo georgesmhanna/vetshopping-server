@@ -1,12 +1,12 @@
 // Typography
 
-@mixin text-emphasis-variant($parent, $color) ***REMOVED***
-  #***REMOVED***$parent***REMOVED*** ***REMOVED***
+@mixin text-emphasis-variant($parent, $color) {
+  #{$parent} {
     color: $color !important;
-***REMOVED***
-  a#***REMOVED***$parent***REMOVED*** ***REMOVED***
-    @include hover-focus ***REMOVED***
+  }
+  a#{$parent} {
+    @include hover-focus {
       color: darken($color, 10%) !important;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

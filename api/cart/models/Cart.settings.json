@@ -1,30 +1,30 @@
-***REMOVED***
+{
   "connection": "default",
   "collectionName": "cart",
-  "info": ***REMOVED***
+  "info": {
     "name": "cart",
     "description": ""
-***REMOVED***,
-  "options": ***REMOVED***
+  },
+  "options": {
     "timestamps": true
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "user": ***REMOVED***
+  },
+  "attributes": {
+    "user": {
       "model": "user",
       "via": "cart",
       "plugin": "users-permissions"
-***REMOVED***,
-    "name": ***REMOVED***
+    },
+    "name": {
       "default": "",
       "type": "string"
-***REMOVED***,
-    "orderitems2": ***REMOVED***
+    },
+    "orderitems2": {
       "collection": "orderitem",
       "via": "cart"
-***REMOVED***,
-    "orderItems": ***REMOVED***
+    },
+    "orderItems": {
       "default": "",
       "type": "json"
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

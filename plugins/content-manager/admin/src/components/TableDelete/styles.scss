@@ -1,9 +1,9 @@
-.tableDelete ***REMOVED***
+.tableDelete {
   width: 100%;
   height: 36px;
   background: #F7F8F8;
 
-  td***REMOVED***
+  td{
     height: 36px;
     line-height: 36px;
     font-size: 1.3rem;
@@ -12,26 +12,26 @@
     text-align: left;
     border-collapse: collapse;
     border-top: 1px solid #F1F1F2 !important;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.tableDeleteSpan ***REMOVED***
+.tableDeleteSpan {
   font-weight: 600;
-  &:after ***REMOVED***
+  &:after {
     content: '—';
     margin: 0 7px;
     font-size: 13px;
     font-weight: 600;
-***REMOVED***
+  }
   -webkit-font-smoothing: antialiased;
-***REMOVED***
+}
 
-.deleteAll ***REMOVED***
+.deleteAll {
   position: absolute;
   color: #F64D0A;
   font-weight: 500;
   cursor: pointer;
-  &:after ***REMOVED***
+  &:after {
     position: relative;
     top: -1px;
     content: '\f1f8';
@@ -40,5 +40,5 @@
     font-size: 13px;
     font-family: FontAwesome;
     -webkit-font-smoothing: antialiased;
-***REMOVED***
-***REMOVED***
+  }
+}

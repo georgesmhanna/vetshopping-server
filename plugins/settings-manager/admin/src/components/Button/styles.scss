@@ -1,4 +1,4 @@
-.button ***REMOVED***
+.button {
   height: 3rem;
   position: relative;
   border-radius: 0.3rem;
@@ -6,14 +6,14 @@
   margin-right: 1.8rem;
   cursor: pointer;
   font-family: Lato;
-  &:focus ***REMOVED***
+  &:focus {
     outline: 0;
-***REMOVED***
-  > i ***REMOVED***
+  }
+  > i {
     margin-right: 1.3rem;
-***REMOVED***
-  &:hover ***REMOVED***
-    &::after ***REMOVED***
+  }
+  &:hover {
+    &::after {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -23,40 +23,40 @@
       content: '';
       opacity: 0.1;
       background: #FFFFFF;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.buttonLg ***REMOVED***
+.buttonLg {
   width: 15rem;
-***REMOVED***
+}
 
-.buttonMd ***REMOVED***
+.buttonMd {
   width: 10rem;
-***REMOVED***
+}
 
-.primary ***REMOVED***
+.primary {
   font-weight: 500;
   background: linear-gradient(315deg, #0097F6 0%, #005EEA 100%);
   -webkit-font-smoothing: antialiased;
   color: white;
-  &:active ***REMOVED***
+  &:active {
     box-shadow: inset 1px 1px 3px rgba(0,0,0,.15);
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.secondary ***REMOVED***
+.secondary {
   color: #F64D0A;
   border: 0.1rem solid #F64D0A;
   position: relative;
   border-radius: 3px;
   overflow: hidden;
-  &:active ***REMOVED***
+  &:active {
     border: 0.15rem solid #F64D0A;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.secondaryAddType ***REMOVED***
+.secondaryAddType {
   height: 2.6rem;
   color: #1C5DE7;
   line-height: 1.6rem;
@@ -65,27 +65,27 @@
   font-size: 1.3rem;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
-***REMOVED***
+}
 
-@keyframes blink ***REMOVED***
-  0% ***REMOVED***
+@keyframes blink {
+  0% {
     opacity: .2;
-***REMOVED***
-  20% ***REMOVED***
+  }
+  20% {
     opacity: 1;
-***REMOVED***
-  100% ***REMOVED***
+  }
+  100% {
     opacity: .2;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.saving ***REMOVED***
+.saving {
   height: 3rem;
   display: flex;
   justify-content: center;
-***REMOVED***
+}
 
-.loader ***REMOVED***
+.loader {
   height: 3rem;
   padding: 0 0 0 1.2rem;
   line-height: 3.2rem;
@@ -97,27 +97,27 @@
   opacity: .65;
   width: 15rem;
   font-size: 1rem;
-  &:focus ***REMOVED***
+  &:focus {
     outline: 0;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.saving p ***REMOVED***
+.saving p {
   margin-bottom: 0;
   animation-name: blink;
   animation-duration: 1.4s;
   animation-iteration-count: infinite;
   animation-fill-mode: both;
-  &::before ***REMOVED***
+  &::before {
     content: '\F111';
     font-family: 'FontAwesome';
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.saving p:nth-child(2) ***REMOVED***
+.saving p:nth-child(2) {
   animation-delay: .2s;
-***REMOVED***
+}
 
-.saving p:nth-child(3) ***REMOVED***
+.saving p:nth-child(3) {
   animation-delay: .4s;
-***REMOVED***
+}

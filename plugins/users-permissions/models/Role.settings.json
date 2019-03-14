@@ -1,37 +1,37 @@
-***REMOVED***
+{
   "connection": "default",
-  "info": ***REMOVED***
+  "info": {
     "name": "role",
     "description": ""
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "name": ***REMOVED***
+  },
+  "attributes": {
+    "name": {
       "type": "string",
       "minLength": 3,
       "required": true,
       "configurable": false
-***REMOVED***,
-    "description": ***REMOVED***
+    },
+    "description": {
       "type": "string",
       "configurable": false
-***REMOVED***,
-    "type": ***REMOVED***
+    },
+    "type": {
       "type": "string",
       "unique": true,
       "configurable": false
-***REMOVED***,
-    "permissions": ***REMOVED***
+    },
+    "permissions": {
       "collection": "permission",
       "via": "role",
       "plugin": "users-permissions",
       "configurable": false,
       "isVirtual": true
-***REMOVED***,
-    "users": ***REMOVED***
+    },
+    "users": {
       "collection": "user",
       "via": "role",
       "plugin": "users-permissions"
-***REMOVED***
-***REMOVED***,
+    }
+  },
   "collectionName": "users-permissions_role"
-***REMOVED***
+}

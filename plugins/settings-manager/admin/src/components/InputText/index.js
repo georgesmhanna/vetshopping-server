@@ -29,45 +29,45 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** isEmpty, includes, mapKeys, reject, map, isObject, union, findIndex, uniqBy, size ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { isEmpty, includes, mapKeys, reject, map, isObject, union, findIndex, uniqBy, size } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 import WithInput from 'components/WithInput';
 
 /* eslint-disable react/require-default-props  */
-class InputText extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+class InputText extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
     super(props);
-    this.state = ***REMOVED***
+    this.state = {
       errors: [],
       hasInitialValue: false,
-***REMOVED***;
-***REMOVED***
+    };
+  }
 
-  componentDidMount() ***REMOVED***
-    if (this.props.value && !isEmpty(this.props.value)) ***REMOVED***
-      this.setState(***REMOVED*** hasInitialValue: true ***REMOVED***);
-***REMOVED***
-***REMOVED***
+  componentDidMount() {
+    if (this.props.value && !isEmpty(this.props.value)) {
+      this.setState({ hasInitialValue: true });
+    }
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (!this.isSame(nextProps)) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (!this.isSame(nextProps)) {
       const errors = isEmpty(nextProps.errors) ? [] : uniqBy(union(this.state.errors, nextProps.errors), 'id');
 
       // if (isEmpty(nextProps.errors)) remove(errors, (error) => error.id === 'settings-manager.request.error.database.exist');
-      this.setState(***REMOVED*** errors ***REMOVED***);
-***REMOVED***
-    if (isEmpty(nextProps.errors)) ***REMOVED***
-      this.setState(***REMOVED*** errors: [] ***REMOVED***);
-***REMOVED***
-***REMOVED***
+      this.setState({ errors });
+    }
+    if (isEmpty(nextProps.errors)) {
+      this.setState({ errors: [] });
+    }
+  }
 
-  isSame = (nextProps) => ***REMOVED***
+  isSame = (nextProps) => {
     return size(this.props.errors) === size(nextProps.errors) && this.props.errors.every((error, index) => error.id === nextProps.errors[index].id);
-***REMOVED***
+  }
 
-  handleBlur = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleBlur = ({ target }) => {
     // prevent error display if input is initially empty
-    if (!isEmpty(target.value) || this.state.hasInitialValue) ***REMOVED***
+    if (!isEmpty(target.value) || this.state.hasInitialValue) {
       // validates basic string validations
       // add custom logic here such as alerts...
       // specific check for db
@@ -75,84 +75,84 @@ class InputText extends React.Component ***REMOVED*** // eslint-disable-line rea
       const errors = indexErrorDbExist !== -1 ?
         uniqBy(union(this.props.errors, this.validate(target.value)), 'id') : this.validate(target.value);
 
-      this.setState(***REMOVED*** errors, hasInitialValue: true ***REMOVED***);
-***REMOVED***
-***REMOVED***
+      this.setState({ errors, hasInitialValue: true });
+    }
+  }
 
   // Basic string validations
-  validate = (value) => ***REMOVED***
+  validate = (value) => {
     let errors = [];
     // handle i18n
-    const requiredError = ***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***;
-    mapKeys(this.props.validations, (validationValue, validationKey) => ***REMOVED***
-      switch (validationKey) ***REMOVED***
+    const requiredError = { id: 'settings-manager.request.error.validation.required' };
+    mapKeys(this.props.validations, (validationValue, validationKey) => {
+      switch (validationKey) {
         case 'maxLength':
-          if (value.length > validationValue) ***REMOVED***
-            errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.maxLength' ***REMOVED***);
-    ***REMOVED***
+          if (value.length > validationValue) {
+            errors.push({ id: 'settings-manager.request.error.validation.maxLength' });
+          }
           break;
         case 'minLength':
-          if (value.length < validationValue) ***REMOVED***
-            errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.minLength' ***REMOVED***);
-    ***REMOVED***
+          if (value.length < validationValue) {
+            errors.push({ id: 'settings-manager.request.error.validation.minLength' });
+          }
           break;
         case 'required':
-          if (value.length === 0) ***REMOVED***
-            errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***);
-    ***REMOVED***
+          if (value.length === 0) {
+            errors.push({ id: 'settings-manager.request.error.validation.required' });
+          }
           break;
         case 'regex':
-          if (!new RegExp(validationValue).test(value)) ***REMOVED***
-            errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.regex' ***REMOVED***);
-    ***REMOVED***
+          if (!new RegExp(validationValue).test(value)) {
+            errors.push({ id: 'settings-manager.request.error.validation.regex' });
+          }
           break;
         default:
           errors = [];
-***REMOVED***
-***REMOVED***);
+      }
+    });
 
-    if (includes(errors, requiredError)) ***REMOVED***
+    if (includes(errors, requiredError)) {
       errors = reject(errors, (error) => error !== requiredError);
-***REMOVED***
+    }
     return errors;
-***REMOVED***
+  }
 
-  renderErrors = () => ***REMOVED*** // eslint-disable-line consistent-return
-    if (!this.props.noErrorsDescription) ***REMOVED***
+  renderErrors = () => { // eslint-disable-line consistent-return
+    if (!this.props.noErrorsDescription) {
       return (
-        map(this.state.errors, (error, key) => ***REMOVED***
+        map(this.state.errors, (error, key) => {
           const displayError = isObject(error) && error.id
-            ? <FormattedMessage ***REMOVED***...error***REMOVED*** />
+            ? <FormattedMessage {...error} />
             : error;
           return (
-            <div key=***REMOVED***key***REMOVED*** className="form-control-feedback invalid-feedback" style=***REMOVED******REMOVED***marginBottom: '1.8rem', fontSize: '1.3rem' ***REMOVED******REMOVED***>***REMOVED***displayError***REMOVED***</div>
+            <div key={key} className="form-control-feedback invalid-feedback" style={{marginBottom: '1.8rem', fontSize: '1.3rem' }}>{displayError}</div>
           );
-  ***REMOVED***)
+        })
       );
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   renderFormattedInput = (handleBlur, inputValue, placeholder, marginBottom) => (
-    <FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***placeholder***REMOVED***`***REMOVED***>
-      ***REMOVED***(message) => (
+    <FormattedMessage id={`settings-manager.${placeholder}`}>
+      {(message) => (
         <input
-          name=***REMOVED***this.props.target***REMOVED***
-          id=***REMOVED***this.props.name***REMOVED***
-          onBlur=***REMOVED***handleBlur***REMOVED***
-          onFocus=***REMOVED***this.props.handleFocus***REMOVED***
-          onChange=***REMOVED***this.props.handleChange***REMOVED***
-          value=***REMOVED***inputValue***REMOVED***
+          name={this.props.target}
+          id={this.props.name}
+          onBlur={handleBlur}
+          onFocus={this.props.handleFocus}
+          onChange={this.props.handleChange}
+          value={inputValue}
           type="text"
-          className=***REMOVED***`form-control $***REMOVED***!isEmpty(this.state.errors) ? 'form-control-danger is-invalid' : ''***REMOVED***`***REMOVED***
-          placeholder=***REMOVED***message***REMOVED***
+          className={`form-control ${!isEmpty(this.state.errors) ? 'form-control-danger is-invalid' : ''}`}
+          placeholder={message}
           autoComplete="off"
-          style=***REMOVED******REMOVED***marginBottom***REMOVED******REMOVED***
+          style={{marginBottom}}
         />
-      )***REMOVED***
+      )}
     </FormattedMessage>
   )
 
-  render() ***REMOVED***
+  render() {
     const inputValue = this.props.value || '';
     // override default onBlur
     const handleBlur = this.props.handleBlur || this.handleBlur;
@@ -162,23 +162,23 @@ class InputText extends React.Component ***REMOVED*** // eslint-disable-line rea
     const bootStrapClassDanger = !this.props.deactivateErrorHighlight && !isEmpty(this.state.errors) ? 'has-danger' : '';
     const placeholder = this.props.placeholder || this.props.name;
 
-    const label = this.props.name ? <label htmlFor=***REMOVED***this.props.name***REMOVED***><FormattedMessage id=***REMOVED***`settings-manager.$***REMOVED***this.props.name***REMOVED***`***REMOVED*** /></label> : '';
-    const spacer = !this.props.name ? ***REMOVED***marginTop: '2.4rem'***REMOVED*** : ***REMOVED***marginTop: ''***REMOVED***;
+    const label = this.props.name ? <label htmlFor={this.props.name}><FormattedMessage id={`settings-manager.${this.props.name}`} /></label> : '';
+    const spacer = !this.props.name ? {marginTop: '2.4rem'} : {marginTop: ''};
     const marginBottomInput = isEmpty(this.state.errors) ? '4.3rem' : '2.4rem';
     const input = placeholder
       ? this.renderFormattedInput(handleBlur, inputValue, placeholder, marginBottomInput)
       : (
         <input
-          name=***REMOVED***this.props.target***REMOVED***
-          id=***REMOVED***this.props.name***REMOVED***
-          onBlur=***REMOVED***handleBlur***REMOVED***
-          onFocus=***REMOVED***this.props.handleFocus***REMOVED***
-          onChange=***REMOVED***this.props.handleChange***REMOVED***
-          value=***REMOVED***inputValue***REMOVED***
+          name={this.props.target}
+          id={this.props.name}
+          onBlur={handleBlur}
+          onFocus={this.props.handleFocus}
+          onChange={this.props.handleChange}
+          value={inputValue}
           type="text"
-          className=***REMOVED***`form-control $***REMOVED***!isEmpty(this.state.errors) ? 'form-control-danger is-invalid' : ''***REMOVED***`***REMOVED***
-          placeholder=***REMOVED***placeholder***REMOVED***
-          style=***REMOVED******REMOVED***marginBottom: marginBottomInput ***REMOVED******REMOVED***
+          className={`form-control ${!isEmpty(this.state.errors) ? 'form-control-danger is-invalid' : ''}`}
+          placeholder={placeholder}
+          style={{marginBottom: marginBottomInput }}
         />
       );
 
@@ -186,17 +186,17 @@ class InputText extends React.Component ***REMOVED*** // eslint-disable-line rea
     let marginTopSmall = this.props.inputDescription ? '-3rem' : '-1.5rem';
     if (!isEmpty(this.state.errors) && this.props.inputDescription) marginTopSmall = '-1.2rem';
     return (
-      <div className=***REMOVED***`$***REMOVED***this.props.styles.inputText***REMOVED*** $***REMOVED***bootStrapClass***REMOVED*** $***REMOVED***requiredClass***REMOVED*** $***REMOVED***bootStrapClassDanger***REMOVED***`***REMOVED*** style=***REMOVED***spacer***REMOVED***>
-        ***REMOVED***label***REMOVED***
-        ***REMOVED***input***REMOVED***
-        <small style=***REMOVED******REMOVED*** marginTop: marginTopSmall ***REMOVED******REMOVED***>***REMOVED***this.props.inputDescription***REMOVED***</small>
-        ***REMOVED***this.renderErrors()***REMOVED***
+      <div className={`${this.props.styles.inputText} ${bootStrapClass} ${requiredClass} ${bootStrapClassDanger}`} style={spacer}>
+        {label}
+        {input}
+        <small style={{ marginTop: marginTopSmall }}>{this.props.inputDescription}</small>
+        {this.renderErrors()}
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-InputText.propTypes = ***REMOVED***
+InputText.propTypes = {
   addRequiredInputDesign: PropTypes.bool,
   customBootstrapClass: PropTypes.string,
   deactivateErrorHighlight: PropTypes.bool,
@@ -212,6 +212,6 @@ InputText.propTypes = ***REMOVED***
   target: PropTypes.string,
   validations: PropTypes.object,
   value: PropTypes.string,
-***REMOVED***;
+};
 
 export default WithInput(InputText); // eslint-disable-line new-cap

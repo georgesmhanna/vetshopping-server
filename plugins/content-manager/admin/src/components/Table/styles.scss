@@ -1,20 +1,20 @@
-.table ***REMOVED*** /* stylelint-disable */
+.table { /* stylelint-disable */
   border-radius: 3px;
   border-collapse: initial;
   overflow: hidden;
   box-shadow: 0 2px 4px #E3E9F3;
   table-layout: fixed;
 
-  tr, th, td***REMOVED***
+  tr, th, td{
     border: none;
     padding: 0;
-***REMOVED***
+  }
 
-  th***REMOVED***
+  th{
     padding: 0 25px;
-***REMOVED***
+  }
 
-  td***REMOVED***
+  td{
     padding: 0 25px;
-***REMOVED***
-***REMOVED***
+  }
+}

@@ -5,9 +5,9 @@
  */
 
 import React from 'react';
-import ***REMOVED*** bindActionCreators ***REMOVED*** from 'redux';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED***
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import {
   camelCase,
   compact,
   concat,
@@ -25,14 +25,14 @@ import ***REMOVED***
   take,
   toNumber,
   replace,
-***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+} from 'lodash';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import ***REMOVED*** router ***REMOVED*** from 'app';
+import { router } from 'app';
 
-import ***REMOVED*** temporaryContentTypeFieldsUpdated, storeTemporaryMenu ***REMOVED*** from 'containers/App/actions';
-import ***REMOVED*** addAttributeToContentType, addAttributeRelationToContentType, editContentTypeAttribute, editContentTypeAttributeRelation, updateContentType ***REMOVED*** from 'containers/ModelPage/actions';
+import { temporaryContentTypeFieldsUpdated, storeTemporaryMenu } from 'containers/App/actions';
+import { addAttributeToContentType, addAttributeRelationToContentType, editContentTypeAttribute, editContentTypeAttributeRelation, updateContentType } from 'containers/ModelPage/actions';
 
 import AttributeCard from 'components/AttributeCard';
 import InputCheckboxWithNestedInputs from 'components/InputCheckboxWithNestedInputs';
@@ -40,12 +40,12 @@ import PopUpForm from 'components/PopUpForm';
 import PopUpRelations from 'components/PopUpRelations';
 
 // Utils
-import ***REMOVED*** checkFormValidity ***REMOVED*** from '../../utils/formValidations';
-import ***REMOVED*** storeData ***REMOVED*** from '../../utils/storeData';
+import { checkFormValidity } from '../../utils/formValidations';
+import { storeData } from '../../utils/storeData';
 
 import checkAttributeValidations from './utils/attributeValidations';
-import setParallelAttribute, ***REMOVED*** setTempAttribute ***REMOVED*** from './utils/setAttribute';
-import ***REMOVED***
+import setParallelAttribute, { setTempAttribute } from './utils/setAttribute';
+import {
   changeInput,
   changeInputAttribute,
   connectionsFetch,
@@ -60,7 +60,7 @@ import ***REMOVED***
   setAttributeFormEdit,
   setForm,
   setFormErrors,
-***REMOVED*** from './actions';
+} from './actions';
 import selectForm from './selectors';
 
 import styles from './styles.scss';
@@ -70,100 +70,100 @@ import forms from './forms.json';
 /* eslint-disable consistent-return */
 /* eslint-disable react/jsx-wrap-multilines */
 
-export class Form extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+export class Form extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
     super(props);
-    this.state = ***REMOVED***
+    this.state = {
       showModal: false,
       popUpTitleEdit: '',
       nodeToFocus: 0,
-***REMOVED***;
+    };
 
     this.checkAttributeValidations = checkAttributeValidations.bind(this);
     this.setParallelAttribute = setParallelAttribute.bind(this);
     this.setTempAttribute = setTempAttribute.bind(this);
-***REMOVED***
+  }
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     // Get available db connections
     this.props.connectionsFetch();
     this.initComponent(this.props, true);
     document.addEventListener('keydown', this.handleKeyBinding);
-***REMOVED***
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (nextProps.hash !== this.props.hash) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.hash !== this.props.hash) {
       this.initComponent(nextProps, !nextProps.isFormSet);
-***REMOVED***
+    }
 
     // Close modal when updating a content type && success updating
-    if (nextProps.shouldRefetchContentType !== this.props.shouldRefetchContentType) ***REMOVED***
+    if (nextProps.shouldRefetchContentType !== this.props.shouldRefetchContentType) {
       // Check if localStorage because the PluginLeftMenu is based on the localStorage
-      if (storeData.getMenu()) ***REMOVED***
+      if (storeData.getMenu()) {
         // Update localStorage
         const oldMenu = storeData.getMenu();
         const index = findIndex(oldMenu, ['name', replace(this.props.hash.split('::')[0], '#edit', '')]);
-        const modifiedContentType = ***REMOVED***
+        const modifiedContentType = {
           name: this.props.modifiedDataEdit.name,
           icon: 'fa-caret-square-o-right',
-  ***REMOVED***;
+        };
 
         oldMenu.splice(index, 1, modifiedContentType);
         const newMenu = oldMenu;
         storeData.setMenu(newMenu);
-***REMOVED***
+      }
       // Close Modal
-      const redirectToModelPage = includes(this.props.redirectRoute, 'models') ? `/$***REMOVED***this.props.modifiedDataEdit.name***REMOVED***` : '';
-      router.push(`$***REMOVED***this.props.redirectRoute***REMOVED***$***REMOVED***redirectToModelPage***REMOVED***`);
+      const redirectToModelPage = includes(this.props.redirectRoute, 'models') ? `/${this.props.modifiedDataEdit.name}` : '';
+      router.push(`${this.props.redirectRoute}${redirectToModelPage}`);
       // Reset props
       this.props.resetIsFormSet();
 
       // Sagas are cancelled on location change so to update the content type description and collectionName we have to force it
-      if (this.props.isModelPage) ***REMOVED***
+      if (this.props.isModelPage) {
         this.props.updateContentType(this.props.modifiedDataEdit);
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
 
-  componentDidUpdate(prevProps) ***REMOVED***
-    if (prevProps.modelLoading !== this.props.modelLoading && !isEmpty(this.props.hash)) ***REMOVED***
+  componentDidUpdate(prevProps) {
+    if (prevProps.modelLoading !== this.props.modelLoading && !isEmpty(this.props.hash)) {
       this.initComponent(this.props, true);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentWillUnmount() ***REMOVED***
+  componentWillUnmount() {
     document.removeEventListener('keyup', this.handleKeyBinding);
-***REMOVED***
+  }
 
-  addAttributeToContentType = (redirectToChoose = false) => ***REMOVED***
+  addAttributeToContentType = (redirectToChoose = false) => {
     const formErrors = this.checkAttributeValidations(checkFormValidity(this.props.modifiedDataAttribute, this.props.formValidations));
 
-    if (!isEmpty(formErrors)) ***REMOVED***
+    if (!isEmpty(formErrors)) {
       return this.props.setFormErrors(formErrors);
-***REMOVED***
+    }
 
     // Check if user is adding a relation with the same content type
 
-    if (includes(this.props.hash, 'attributerelation') && this.props.modifiedDataAttribute.params.target === this.props.modelName && get(this.props.modifiedDataAttribute, ['params', 'nature'], '') !== 'oneWay') ***REMOVED***
+    if (includes(this.props.hash, 'attributerelation') && this.props.modifiedDataAttribute.params.target === this.props.modelName && get(this.props.modifiedDataAttribute, ['params', 'nature'], '') !== 'oneWay') {
       // Insert two attributes
       this.props.addAttributeRelationToContentType(this.props.modifiedDataAttribute);
-***REMOVED*** else ***REMOVED***
+    } else {
       // Update the parent container (ModelPage)
       this.props.addAttributeToContentType(this.props.modifiedDataAttribute);
-***REMOVED***
+    }
     // Empty the store
     this.props.resetIsFormSet();
     // Empty errors
     this.props.resetFormErrors();
     this.redirectAfterSave(redirectToChoose);
-***REMOVED***
+  }
 
-  addAttributeToTempContentType = (redirectToChoose = false) => ***REMOVED***
+  addAttributeToTempContentType = (redirectToChoose = false) => {
     const formErrors = this.checkAttributeValidations(checkFormValidity(this.props.modifiedDataAttribute, this.props.formValidations));
 
-    if (!isEmpty(formErrors)) ***REMOVED***
+    if (!isEmpty(formErrors)) {
       return this.props.setFormErrors(formErrors);
-***REMOVED***
+    }
 
     // Get the entire content type from the reducer
     const contentType = this.props.modifiedDataEdit;
@@ -183,35 +183,35 @@ export class Form extends React.Component ***REMOVED*** // eslint-disable-line r
     storeData.setModel(model);
     this.props.resetFormErrors();
     this.redirectAfterSave(redirectToChoose);
-***REMOVED***
+  }
 
-  createContentType = (data) => ***REMOVED***
+  createContentType = (data) => {
     // Check form errors
     const formErrors = checkFormValidity(data, this.props.formValidations);
     // Check if content type name already exists
     const sameContentTypeNames = filter(this.props.menuData[0].items, (contentType) => contentType.name === data.name);
 
-    if (size(sameContentTypeNames) > 0 && (includes(this.props.hash, '#create') || data.name !== replace(split(this.props.hash, '::')[0], '#edit', ''))) ***REMOVED***
-      formErrors.push(***REMOVED*** name: 'name', errors: [***REMOVED*** id: 'content-type-builder.error.contentTypeName.taken' ***REMOVED***]***REMOVED***);
-***REMOVED***
+    if (size(sameContentTypeNames) > 0 && (includes(this.props.hash, '#create') || data.name !== replace(split(this.props.hash, '::')[0], '#edit', ''))) {
+      formErrors.push({ name: 'name', errors: [{ id: 'content-type-builder.error.contentTypeName.taken' }]});
+    }
 
-    if (!isEmpty(formErrors)) ***REMOVED***
+    if (!isEmpty(formErrors)) {
       return this.props.setFormErrors(formErrors);
-***REMOVED***
+    }
     const oldMenu = !isEmpty(this.props.menuData) ? this.props.menuData[0].items : [];
     // Check if link already exist in the menu to remove it
     const index = findIndex(oldMenu, [ 'name', replace(split(this.props.hash, '::')[0], '#edit', '')]);
     // Insert at a specific position or before the add button the not saved contentType
     const position = index !== -1 ? index  : size(oldMenu) - 1;
-    oldMenu.splice(position, index !== -1 ? 1 : 0, ***REMOVED*** icon: 'fa-cube', fields: 0, description: data.description, name: data.name, isTemporary: true ***REMOVED***);
+    oldMenu.splice(position, index !== -1 ? 1 : 0, { icon: 'fa-cube', fields: 0, description: data.description, name: data.name, isTemporary: true });
     const newMenu = oldMenu;
     const contentType = data;
 
-    map(contentType.attributes, (attr, key) => ***REMOVED***
-      if (get(attr.params, 'target') === this.props.modelName) ***REMOVED***
+    map(contentType.attributes, (attr, key) => {
+      if (get(attr.params, 'target') === this.props.modelName) {
         contentType.attributes[key].params.target = data.name;
-***REMOVED***
-***REMOVED***);
+      }
+    });
     // Store the temporary contentType in the localStorage
     this.props.contentTypeCreate(contentType);
     // Store new menu in localStorage and update App leftMenu
@@ -222,92 +222,92 @@ export class Form extends React.Component ***REMOVED*** // eslint-disable-line r
     this.props.resetFormErrors();
     // Close modal
     const modelPage = includes(this.props.redirectRoute, 'models') ? '' : '/models';
-    router.push(`$***REMOVED***this.props.redirectRoute***REMOVED***$***REMOVED***modelPage***REMOVED***/$***REMOVED***data.name***REMOVED***`);
-***REMOVED***
+    router.push(`${this.props.redirectRoute}${modelPage}/${data.name}`);
+  }
 
-  checkForNestedInput = (item) => ***REMOVED***
+  checkForNestedInput = (item) => {
     const hasNestedInput = item.items && item.type !== 'select';
     return hasNestedInput;
-***REMOVED***
+  }
 
-  checkInputContentType = (item) => ***REMOVED***
+  checkInputContentType = (item) => {
     const shouldOverrideHandleBlur = item.name === 'name' && includes(this.props.hash, 'contentType');
     return shouldOverrideHandleBlur;
-***REMOVED***
+  }
 
   // Function used when modified the name of the content type and not the attributes
   // Fires Form sagas
-  contentTypeEdit = () => ***REMOVED***
+  contentTypeEdit = () => {
     const formErrors = checkFormValidity(this.props.modifiedDataEdit, this.props.formValidations);
     const sameContentTypeNames = filter(this.props.menuData[0].items, (contentType) => contentType.name === this.props.modifiedDataEdit.name);
 
 
-    if (size(sameContentTypeNames) > 0 && this.props.modifiedDataEdit.name !== replace(split(this.props.hash, '::')[0], '#edit', '')) ***REMOVED***
-    // if (size(sameContentTypeNames) > 0 && this.props.modifiedDataEdit.name !== this.props.modelName) ***REMOVED***
-      formErrors.push(***REMOVED*** name: 'name', errors: [***REMOVED*** id: 'content-type-builder.error.contentTypeName.taken' ***REMOVED***]***REMOVED***);
-***REMOVED***
+    if (size(sameContentTypeNames) > 0 && this.props.modifiedDataEdit.name !== replace(split(this.props.hash, '::')[0], '#edit', '')) {
+    // if (size(sameContentTypeNames) > 0 && this.props.modifiedDataEdit.name !== this.props.modelName) {
+      formErrors.push({ name: 'name', errors: [{ id: 'content-type-builder.error.contentTypeName.taken' }]});
+    }
 
-    if (!isEmpty(formErrors)) ***REMOVED***
+    if (!isEmpty(formErrors)) {
       return this.props.setFormErrors(formErrors);
-***REMOVED***
+    }
 
     const contentType = storeData.getContentType();
 
     // Update relation key of the temporary contentType
-    if (contentType) ***REMOVED***
-      map(contentType.attributes, (attr, key) => ***REMOVED***
-        if (get(attr.params, 'target') === replace(split(this.props.hash, '::')[0], '#edit', '')) ***REMOVED***
+    if (contentType) {
+      map(contentType.attributes, (attr, key) => {
+        if (get(attr.params, 'target') === replace(split(this.props.hash, '::')[0], '#edit', '')) {
           contentType.attributes[key].params.target = this.props.modifiedDataEdit.name;
-  ***REMOVED***
-***REMOVED***);
+        }
+      });
       this.props.contentTypeCreate(contentType);
-***REMOVED***
+    }
 
-    this.setState(***REMOVED*** showModal: false ***REMOVED***);
+    this.setState({ showModal: false });
     return this.props.contentTypeEdit(this.context);
-***REMOVED***
+  }
 
-  editContentTypeAttribute = (redirectTochoose = false) => ***REMOVED***
+  editContentTypeAttribute = (redirectTochoose = false) => {
     const formErrors = this.checkAttributeValidations(checkFormValidity(this.props.modifiedDataAttribute, this.props.formValidations));
     const hashArray = split(this.props.hash, '::');
 
-    if (!isEmpty(formErrors)) ***REMOVED***
+    if (!isEmpty(formErrors)) {
       return this.props.setFormErrors(formErrors);
-***REMOVED***
+    }
 
-    if (!isUndefined(hashArray[4])) ***REMOVED***
+    if (!isUndefined(hashArray[4])) {
       // Update the parent container (ModelPage)
       this.props.editContentTypeAttributeRelation(this.props.modifiedDataAttribute, hashArray[3], hashArray[4], this.props.modifiedDataAttribute.params.target !== this.props.modelName);
-***REMOVED*** else ***REMOVED***
+    } else {
       this.props.editContentTypeAttribute(this.props.modifiedDataAttribute, hashArray[3], this.props.modifiedDataAttribute.params.target === this.props.modelName);
-***REMOVED***
+    }
     // Empty the store
     this.props.resetIsFormSet();
     // Empty errors
     this.props.resetFormErrors();
     this.redirectAfterSave(redirectTochoose);
-***REMOVED***
+  }
 
-  editTempContentTypeAttribute = (redirectToChoose = false) => ***REMOVED***
+  editTempContentTypeAttribute = (redirectToChoose = false) => {
     const formErrors = this.checkAttributeValidations(checkFormValidity(this.props.modifiedDataAttribute, this.props.formValidations));
 
-    if (!isEmpty(formErrors)) ***REMOVED***
+    if (!isEmpty(formErrors)) {
       return this.props.setFormErrors(formErrors);
-***REMOVED***
+    }
 
     const contentType = storeData.getContentType();
     const newAttribute = this.setTempAttribute();
     const oldAttribute = contentType.attributes[this.props.hash.split('::')[3]];
     contentType.attributes[this.props.hash.split('::')[3]] = newAttribute;
 
-    if (newAttribute.params.target === this.props.modelName) ***REMOVED***
+    if (newAttribute.params.target === this.props.modelName) {
       const parallelAttribute = this.setParallelAttribute(newAttribute);
       contentType.attributes[findIndex(contentType.attributes, ['name', oldAttribute.params.key])] = parallelAttribute;
-***REMOVED***
+    }
 
-    if (oldAttribute.params.target === this.props.modelName && newAttribute.params.target !== this.props.modelName) ***REMOVED***
+    if (oldAttribute.params.target === this.props.modelName && newAttribute.params.target !== this.props.modelName) {
       contentType.attributes.splice(findIndex(contentType.attributes, ['name', oldAttribute.params.key]), 1);
-***REMOVED***
+    }
 
     this.editContentTypeAttribute(redirectToChoose);
 
@@ -315,49 +315,49 @@ export class Form extends React.Component ***REMOVED*** // eslint-disable-line r
     // Empty errors
     this.props.resetFormErrors();
     storeData.setContentType(newContentType);
-***REMOVED***
+  }
 
-  fetchModel = (contentTypeName) => ***REMOVED***
+  fetchModel = (contentTypeName) => {
     this.testContentType(
       contentTypeName,
       this.props.contentTypeFetchSucceeded,
-      ***REMOVED*** model: storeData.getContentType() ***REMOVED***,
+      { model: storeData.getContentType() },
       this.props.contentTypeFetch,
       contentTypeName
     );
-***REMOVED***
+  }
 
-  generatePopUpTitle = (popUpFormType) => ***REMOVED***
+  generatePopUpTitle = (popUpFormType) => {
     let popUpTitle;
 
     const type = split(this.props.hash, '::')[0];
     const isCreating = includes(type, 'create');
 
-    switch (true) ***REMOVED***
+    switch (true) {
       case isCreating && popUpFormType === 'contentType':
-        popUpTitle = `content-type-builder.popUpForm.create.$***REMOVED***popUpFormType***REMOVED***.header.title`;
+        popUpTitle = `content-type-builder.popUpForm.create.${popUpFormType}.header.title`;
         break;
       case isCreating:
         popUpTitle = 'content-type-builder.popUpForm.create';
         break;
       case includes(type, 'choose'):
-        popUpTitle = `content-type-builder.popUpForm.choose.$***REMOVED***popUpFormType***REMOVED***.header.title`;
+        popUpTitle = `content-type-builder.popUpForm.choose.${popUpFormType}.header.title`;
         break;
       case includes(type, 'edit') && popUpFormType === 'contentType':
-        popUpTitle = `content-type-builder.popUpForm.edit.$***REMOVED***popUpFormType***REMOVED***.header.title`;
+        popUpTitle = `content-type-builder.popUpForm.edit.${popUpFormType}.header.title`;
         break;
       default:
         popUpTitle = 'content-type-builder.popUpForm.edit';
-***REMOVED***
+    }
 
     return popUpTitle;
-***REMOVED***
+  }
 
-  getValues = () => ***REMOVED***
+  getValues = () => {
     let values;
     // Three kinds of values are available modifiedData and modifiedDataEdit
     // Allows the user to start creating a contentType and modifying an existing one at the same time
-    switch (true) ***REMOVED***
+    switch (true) {
       case includes(this.props.hash, 'edit') && !includes(this.props.hash, 'attribute'):
         values = this.props.modifiedDataEdit;
         break;
@@ -366,77 +366,77 @@ export class Form extends React.Component ***REMOVED*** // eslint-disable-line r
         break;
       default:
         values = this.props.modifiedData;
-***REMOVED***
+    }
 
     return values;
-***REMOVED***
+  }
 
-  goToAttributeTypeView = (attributeType) => ***REMOVED***
+  goToAttributeTypeView = (attributeType) => {
     const settings = attributeType === 'relation' ? 'defineRelation' : 'baseSettings';
-    router.push(`$***REMOVED***this.props.routePath***REMOVED***#create$***REMOVED***this.props.modelName***REMOVED***::attribute$***REMOVED***attributeType***REMOVED***::$***REMOVED***settings***REMOVED***`);
-***REMOVED***
+    router.push(`${this.props.routePath}#create${this.props.modelName}::attribute${attributeType}::${settings}`);
+  }
 
-  handleBlur = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
-    if (target.name === 'name') ***REMOVED***
+  handleBlur = ({ target }) => {
+    if (target.name === 'name') {
       this.props.changeInput(target.name, camelCase(target.value), includes(this.props.hash, 'edit'));
-      if (!isEmpty(target.value)) ***REMOVED***
+      if (!isEmpty(target.value)) {
         // The input name for content type doesn't have the default handleBlur validation so we need to manually remove the error
         this.props.removeContentTypeRequiredError();
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
 
-  handleChange = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleChange = ({ target }) => {
     let value = target.type === 'number' && target.value !== '' ? toNumber(target.value) : target.value;
 
     // Parse enumeration textarea to transform it into a array
-    if (target.name === 'params.enumValue') ***REMOVED***
+    if (target.name === 'params.enumValue') {
       value = target.value.split(',');
-***REMOVED***
+    }
 
-    if (isObject(target.value) && target.value._isAMomentObject === true) ***REMOVED***
+    if (isObject(target.value) && target.value._isAMomentObject === true) {
       value = moment(target.value, 'YYYY-MM-DD HH:mm:ss').format();
-***REMOVED***
+    }
 
-    if (includes(this.props.hash.split('::')[1], 'attribute')) ***REMOVED***
+    if (includes(this.props.hash.split('::')[1], 'attribute')) {
       this.props.changeInputAttribute(target.name, value);
 
-      if (target.name === 'params.nature' && target.value === 'manyToMany') ***REMOVED***
+      if (target.name === 'params.nature' && target.value === 'manyToMany') {
         this.props.changeInputAttribute('params.dominant', true);
-***REMOVED***
+      }
 
-      if (target.name === 'params.nature' && target.value === 'oneWay') ***REMOVED***
+      if (target.name === 'params.nature' && target.value === 'oneWay') {
         this.props.changeInputAttribute('params.key', '-');
-***REMOVED***
+      }
 
-***REMOVED*** else ***REMOVED***
+    } else {
       this.props.changeInput(target.name, value, includes(this.props.hash, 'edit'));
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleKeyBinding = (e) => ***REMOVED***
-    if (includes(this.props.hash, 'choose')) ***REMOVED***
-      const ***REMOVED*** nodeToFocus ***REMOVED*** = this.state;
+  handleKeyBinding = (e) => {
+    if (includes(this.props.hash, 'choose')) {
+      const { nodeToFocus } = this.state;
       let toAdd = 0;
 
-      switch(e.keyCode) ***REMOVED***
+      switch(e.keyCode) {
         case 37: // Left arrow
         case 39: // Right arrow
           toAdd = nodeToFocus % 2 === 0 ? 1 : -1;
           break;
         case 38:
-          if (nodeToFocus === 0 || nodeToFocus === 1) ***REMOVED***
+          if (nodeToFocus === 0 || nodeToFocus === 1) {
             toAdd = 8;
-    ***REMOVED*** else ***REMOVED***
+          } else {
             toAdd = -2;
-    ***REMOVED***
+          }
           break;
         case 40:
-          if (nodeToFocus === forms.attributesDisplay.items.length - 1 || nodeToFocus === forms.attributesDisplay.items.length - 2) ***REMOVED***
+          if (nodeToFocus === forms.attributesDisplay.items.length - 1 || nodeToFocus === forms.attributesDisplay.items.length - 2) {
             toAdd = -8;
-    ***REMOVED*** else ***REMOVED***
+          } else {
             toAdd = 2;
-    ***REMOVED***
+          }
           break;
         case 9: // Tab
           e.preventDefault();
@@ -445,13 +445,13 @@ export class Form extends React.Component ***REMOVED*** // eslint-disable-line r
         default:
           toAdd = 0;
           break;
-***REMOVED***
+      }
 
-      this.setState(prevState => (***REMOVED*** nodeToFocus: prevState.nodeToFocus + toAdd ***REMOVED***));
-***REMOVED***
-***REMOVED***
+      this.setState(prevState => ({ nodeToFocus: prevState.nodeToFocus + toAdd }));
+    }
+  }
 
-  handleSubmit = (e, redirectToChoose = true) => ***REMOVED***
+  handleSubmit = (e, redirectToChoose = true) => {
     e.preventDefault();
     const hashArray = split(this.props.hash, ('::'));
     const valueToReplace = includes(this.props.hash, '#create') ? '#create' : '#edit';
@@ -460,72 +460,72 @@ export class Form extends React.Component ***REMOVED*** // eslint-disable-line r
     let dataSucces = null;
     let cbFail;
 
-    switch (true) ***REMOVED***
-      case includes(hashArray[0], '#edit'): ***REMOVED***
+    switch (true) {
+      case includes(hashArray[0], '#edit'): {
         // Check if the user is editing the attribute
         const isAttribute = includes(hashArray[1], 'attribute');
         cbSuccess = isAttribute ? () => this.editTempContentTypeAttribute(redirectToChoose) : this.createContentType;
         dataSucces = isAttribute ? null : this.getModelWithCamelCaseName(this.props.modifiedDataEdit);
         cbFail = isAttribute ? () => this.editContentTypeAttribute(redirectToChoose) : this.contentTypeEdit;
         return this.testContentType(contentTypeName, cbSuccess, dataSucces, cbFail);
-***REMOVED***
-      case includes(hashArray[0], 'create') && includes(this.props.hash.split('::')[1], 'attribute'): ***REMOVED***
+      }
+      case includes(hashArray[0], 'create') && includes(this.props.hash.split('::')[1], 'attribute'): {
         cbSuccess = () => this.addAttributeToTempContentType(redirectToChoose);
         cbFail = () => this.addAttributeToContentType(redirectToChoose);
         return this.testContentType(contentTypeName, cbSuccess, dataSucces, cbFail);
-***REMOVED***
-      default: ***REMOVED***
+      }
+      default: {
         return this.createContentType(
           this.getModelWithCamelCaseName(this.props.modifiedData)
         );
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
 
-  getModelWithCamelCaseName = (model = ***REMOVED******REMOVED***) => ***REMOVED***
-    if (isEmpty(model) || isEmpty(model.name)) ***REMOVED***
+  getModelWithCamelCaseName = (model = {}) => {
+    if (isEmpty(model) || isEmpty(model.name)) {
       return;
-***REMOVED***
+    }
 
-    return ***REMOVED***
+    return {
       ...model,
       name: camelCase(model.name),
-***REMOVED***;
-***REMOVED***
+    };
+  }
 
-  initComponent = (props, condition) => ***REMOVED***
-    if (!isEmpty(props.hash)) ***REMOVED***
-      this.setState(***REMOVED*** showModal: true ***REMOVED***);
+  initComponent = (props, condition) => {
+    if (!isEmpty(props.hash)) {
+      this.setState({ showModal: true });
       const valueToReplace = includes(props.hash, '#create') ? '#create' : '#edit';
       const contentTypeName = replace(split(props.hash, '::')[0], valueToReplace, '');
       const isPopUpAttribute = includes(props.hash, 'attribute');
       const isCreating = valueToReplace === '#create';
 
-      if (condition && !isEmpty(contentTypeName) && contentTypeName !== '#choose') ***REMOVED***
+      if (condition && !isEmpty(contentTypeName) && contentTypeName !== '#choose') {
         this.fetchModel(contentTypeName);
-***REMOVED***
+      }
 
-      switch (true) ***REMOVED***
-        case isPopUpAttribute && contentTypeName !== '#choose': ***REMOVED***
-          if (isCreating) ***REMOVED***
+      switch (true) {
+        case isPopUpAttribute && contentTypeName !== '#choose': {
+          if (isCreating) {
             this.props.setAttributeForm(props.hash);
-    ***REMOVED*** else if (get(props.contentTypeData, 'name')) ***REMOVED***
-            this.setState(***REMOVED*** popUpTitleEdit: get(props.contentTypeData, ['attributes', split(props.hash, '::')[3], 'name']) ***REMOVED***);
+          } else if (get(props.contentTypeData, 'name')) {
+            this.setState({ popUpTitleEdit: get(props.contentTypeData, ['attributes', split(props.hash, '::')[3], 'name']) });
             this.props.setAttributeFormEdit(props.hash, props.contentTypeData);
-    ***REMOVED***
+          }
           break;
-  ***REMOVED***
+        }
         case includes(props.hash, 'contentType'):
           this.props.setForm(props.hash);
           break;
         default:
-***REMOVED***
-***REMOVED*** else ***REMOVED***
-      this.setState(***REMOVED*** showModal: false ***REMOVED***);
-***REMOVED***
-***REMOVED***
+      }
+    } else {
+      this.setState({ showModal: false });
+    }
+  }
 
-  renderModalBodyChooseAttributes = () => ***REMOVED***
+  renderModalBodyChooseAttributes = () => {
     const attributesDisplay = has(this.context.plugins.toJS(), 'upload')
       ? forms.attributesDisplay.items
       : forms.attributesDisplay.items.filter(obj => obj.type !== 'media'); // Don't display the media field if the upload plugin isn't installed
@@ -533,77 +533,77 @@ export class Form extends React.Component ***REMOVED*** // eslint-disable-line r
     return (
       map(attributesDisplay, (attribute, key) => (
         <AttributeCard
-          key=***REMOVED***key***REMOVED***
-          attribute=***REMOVED***attribute***REMOVED***
-          autoFocus=***REMOVED***key === 0***REMOVED***
-          routePath=***REMOVED***this.props.routePath***REMOVED***
-          handleClick=***REMOVED***this.goToAttributeTypeView***REMOVED***
-          nodeToFocus=***REMOVED***this.state.nodeToFocus***REMOVED***
-          tabIndex=***REMOVED***key***REMOVED***
-          resetNodeToFocus=***REMOVED***this.resetNodeToFocus***REMOVED***
+          key={key}
+          attribute={attribute}
+          autoFocus={key === 0}
+          routePath={this.props.routePath}
+          handleClick={this.goToAttributeTypeView}
+          nodeToFocus={this.state.nodeToFocus}
+          tabIndex={key}
+          resetNodeToFocus={this.resetNodeToFocus}
         />
       ))
     );
-***REMOVED***
+  }
 
-  redirectAfterSave = (shouldOpenAttributesModal = false) => ***REMOVED***
-    const ***REMOVED*** modelName, redirectRoute ***REMOVED*** = this.props;
+  redirectAfterSave = (shouldOpenAttributesModal = false) => {
+    const { modelName, redirectRoute } = this.props;
     const path = shouldOpenAttributesModal ? '#choose::attributes' : '';
 
-    router.push(`$***REMOVED***redirectRoute***REMOVED***/$***REMOVED***modelName***REMOVED***$***REMOVED***path***REMOVED***`);
-***REMOVED***
+    router.push(`${redirectRoute}/${modelName}${path}`);
+  }
 
-  resetNodeToFocus = () => this.setState(***REMOVED*** nodeToFocus: 0 ***REMOVED***);
+  resetNodeToFocus = () => this.setState({ nodeToFocus: 0 });
 
-  testContentType = (contentTypeName, cbSuccess, successData, cbFail, failData) => ***REMOVED***
+  testContentType = (contentTypeName, cbSuccess, successData, cbFail, failData) => {
     // Check if the content type is in the localStorage (not saved) to prevent request error
-    if (storeData.getIsModelTemporary() && get(storeData.getContentType(), 'name') === contentTypeName) ***REMOVED***
+    if (storeData.getIsModelTemporary() && get(storeData.getContentType(), 'name') === contentTypeName) {
       cbSuccess(successData);
-***REMOVED*** else ***REMOVED***
+    } else {
       cbFail(failData);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  toggle = () => ***REMOVED***
+  toggle = () => {
     this.props.toggle();
     // Set the isFormSet props to false when the modal is closing so the store is emptied
     this.props.resetIsFormSet();
     this.props.resetFormErrors();
-***REMOVED***
+  }
 
-  overrideCustomBootstrapClass = () => ***REMOVED***
+  overrideCustomBootstrapClass = () => {
     return includes(this.props.hash, 'attributenumber');
-***REMOVED***
+  }
 
   renderInput = (item, key) => (
     <InputCheckboxWithNestedInputs
-      key=***REMOVED***key***REMOVED***
-      data=***REMOVED***item***REMOVED***
-      value=***REMOVED***this.props.modifiedDataAttribute.params***REMOVED***
-      onChange=***REMOVED***this.handleChange***REMOVED***
-      errors=***REMOVED***this.props.formErrors***REMOVED***
-      didCheckErrors=***REMOVED***this.props.didCheckErrors***REMOVED***
+      key={key}
+      data={item}
+      value={this.props.modifiedDataAttribute.params}
+      onChange={this.handleChange}
+      errors={this.props.formErrors}
+      didCheckErrors={this.props.didCheckErrors}
     />
   )
 
-  renderCustomPopUpHeader = (startTitle) => ***REMOVED***
+  renderCustomPopUpHeader = (startTitle) => {
     const italicText = !includes(this.props.hash, '#edit') ?
-      <FormattedMessage id='popUpForm.header' defaultMessage='***REMOVED***title***REMOVED***' values=***REMOVED******REMOVED*** title: replace(split(this.props.hash, ('::'))[1], 'attribute', '') ***REMOVED******REMOVED***>
-        ***REMOVED***(message) => <span style=***REMOVED******REMOVED*** fontStyle: 'italic', textTransform: 'capitalize' ***REMOVED******REMOVED***>***REMOVED***message***REMOVED***</span>***REMOVED***
+      <FormattedMessage id='popUpForm.header' defaultMessage='{title}' values={{ title: replace(split(this.props.hash, ('::'))[1], 'attribute', '') }}>
+        {(message) => <span style={{ fontStyle: 'italic', textTransform: 'capitalize' }}>{message}</span>}
       </FormattedMessage>
-      : <span style=***REMOVED******REMOVED*** fontStyle: 'italic', textTransform: 'capitalize' ***REMOVED******REMOVED***>***REMOVED***this.state.popUpTitleEdit***REMOVED***</span>;
+      : <span style={{ fontStyle: 'italic', textTransform: 'capitalize' }}>{this.state.popUpTitleEdit}</span>;
     return (
       <div>
-        <FormattedMessage id=***REMOVED***startTitle***REMOVED*** />
+        <FormattedMessage id={startTitle} />
         &nbsp;
-        ***REMOVED***italicText***REMOVED***
+        {italicText}
         &nbsp;
         <FormattedMessage id="content-type-builder.popUpForm.field" />
       </div>
     );
-***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     // Ensure typeof(popUpFormType) is String
     const popUpFormType = split(this.props.hash, '::')[1] || '';
     const popUpTitle = this.generatePopUpTitle(popUpFormType);
@@ -619,77 +619,77 @@ export class Form extends React.Component ***REMOVED*** // eslint-disable-line r
     const edit = includes(this.props.hash, '#edit');
     const selectOptions = includes(this.props.hash, 'attributenumber') ? get(this.props.form, ['items', '1', 'items']) : this.props.selectOptions;
 
-    if (includes(popUpFormType, 'relation')) ***REMOVED***
+    if (includes(popUpFormType, 'relation')) {
       const contentType = this.props.modelName.split('&source=');
-      const contentTypeIndex = contentType.length === 2 ? ***REMOVED*** name: contentType[0], source: contentType[1] ***REMOVED*** : ***REMOVED*** name: contentType[0] ***REMOVED***;
+      const contentTypeIndex = contentType.length === 2 ? { name: contentType[0], source: contentType[1] } : { name: contentType[0] };
 
       return (
         <PopUpRelations
-          isOpen=***REMOVED***this.state.showModal***REMOVED***
-          toggle=***REMOVED***this.toggle***REMOVED***
-          renderCustomPopUpHeader=***REMOVED***renderCustomPopUpHeader***REMOVED***
-          popUpTitle=***REMOVED***popUpTitle***REMOVED***
-          routePath=***REMOVED***`$***REMOVED***this.props.routePath***REMOVED***/$***REMOVED***this.props.hash***REMOVED***`***REMOVED***
-          contentType=***REMOVED***get(dropDownItems, [findIndex(dropDownItems, contentTypeIndex)])***REMOVED***
-          form=***REMOVED***this.props.form***REMOVED***
-          showRelation=***REMOVED***includes(this.props.hash, 'defineRelation')***REMOVED***
-          onChange=***REMOVED***this.handleChange***REMOVED***
-          values=***REMOVED***this.props.modifiedDataAttribute***REMOVED***
-          dropDownItems=***REMOVED***dropDownItems***REMOVED***
-          onSubmit=***REMOVED***this.handleSubmit***REMOVED***
-          formErrors=***REMOVED***this.props.formErrors***REMOVED***
-          didCheckErrors=***REMOVED***this.props.didCheckErrors***REMOVED***
-          isEditting=***REMOVED***edit***REMOVED***
-          resetFormErrors=***REMOVED***this.props.resetFormErrors***REMOVED***
+          isOpen={this.state.showModal}
+          toggle={this.toggle}
+          renderCustomPopUpHeader={renderCustomPopUpHeader}
+          popUpTitle={popUpTitle}
+          routePath={`${this.props.routePath}/${this.props.hash}`}
+          contentType={get(dropDownItems, [findIndex(dropDownItems, contentTypeIndex)])}
+          form={this.props.form}
+          showRelation={includes(this.props.hash, 'defineRelation')}
+          onChange={this.handleChange}
+          values={this.props.modifiedDataAttribute}
+          dropDownItems={dropDownItems}
+          onSubmit={this.handleSubmit}
+          formErrors={this.props.formErrors}
+          didCheckErrors={this.props.didCheckErrors}
+          isEditting={edit}
+          resetFormErrors={this.props.resetFormErrors}
         />
       );
-***REMOVED***
+    }
 
     return (
-      <div className=***REMOVED***styles.form***REMOVED***>
+      <div className={styles.form}>
         <PopUpForm
-          isOpen=***REMOVED***this.state.showModal***REMOVED***
-          toggle=***REMOVED***this.toggle***REMOVED***
-          popUpFormType=***REMOVED***popUpFormType***REMOVED***
-          popUpTitle=***REMOVED***popUpTitle***REMOVED***
-          routePath=***REMOVED***`$***REMOVED***this.props.routePath***REMOVED***/$***REMOVED***this.props.hash***REMOVED***`***REMOVED***
-          popUpHeaderNavLinks=***REMOVED***this.props.popUpHeaderNavLinks***REMOVED***
-          form=***REMOVED***this.props.form***REMOVED***
-          values=***REMOVED***values***REMOVED***
-          selectOptions=***REMOVED***selectOptions***REMOVED***
-          onChange=***REMOVED***this.handleChange***REMOVED***
-          onBlur=***REMOVED***this.handleBlur***REMOVED***
-          onSubmit=***REMOVED***this.handleSubmit***REMOVED***
-          noNav=***REMOVED***noNav***REMOVED***
-          renderModalBody=***REMOVED***renderModalBody***REMOVED***
-          noButtons=***REMOVED***noButtons***REMOVED***
-          overrideRenderInputCondition=***REMOVED***this.checkForNestedInput***REMOVED***
-          overrideRenderInput=***REMOVED***this.renderInput***REMOVED***
-          buttonSubmitMessage=***REMOVED***buttonSubmitMessage***REMOVED***
-          showLoader=***REMOVED***this.props.showButtonLoading***REMOVED***
-          renderCustomPopUpHeader=***REMOVED***renderCustomPopUpHeader***REMOVED***
-          overrideHandleBlurCondition=***REMOVED***this.checkInputContentType***REMOVED***
-          formErrors=***REMOVED***this.props.formErrors***REMOVED***
-          didCheckErrors=***REMOVED***this.props.didCheckErrors***REMOVED***
+          isOpen={this.state.showModal}
+          toggle={this.toggle}
+          popUpFormType={popUpFormType}
+          popUpTitle={popUpTitle}
+          routePath={`${this.props.routePath}/${this.props.hash}`}
+          popUpHeaderNavLinks={this.props.popUpHeaderNavLinks}
+          form={this.props.form}
+          values={values}
+          selectOptions={selectOptions}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          onSubmit={this.handleSubmit}
+          noNav={noNav}
+          renderModalBody={renderModalBody}
+          noButtons={noButtons}
+          overrideRenderInputCondition={this.checkForNestedInput}
+          overrideRenderInput={this.renderInput}
+          buttonSubmitMessage={buttonSubmitMessage}
+          showLoader={this.props.showButtonLoading}
+          renderCustomPopUpHeader={renderCustomPopUpHeader}
+          overrideHandleBlurCondition={this.checkInputContentType}
+          formErrors={this.props.formErrors}
+          didCheckErrors={this.props.didCheckErrors}
           pluginID="content-type-builder"
-          overrideCustomBootstrapClass=***REMOVED***includes(this.props.hash, 'attributenumber') && includes(this.props.hash, 'baseSettings')***REMOVED***
+          overrideCustomBootstrapClass={includes(this.props.hash, 'attributenumber') && includes(this.props.hash, 'baseSettings')}
           customBootstrapClass='col-md-6'
         />
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-Form.contextTypes = ***REMOVED***
+Form.contextTypes = {
   plugins: PropTypes.object,
   updatePlugin: PropTypes.func,
-***REMOVED***;
+};
 
 const mapStateToProps = selectForm();
 
-function mapDispatchToProps(dispatch) ***REMOVED***
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       addAttributeRelationToContentType,
       addAttributeToContentType,
       editContentTypeAttribute,
@@ -711,12 +711,12 @@ function mapDispatchToProps(dispatch) ***REMOVED***
       storeTemporaryMenu,
       temporaryContentTypeFieldsUpdated,
       updateContentType,
-***REMOVED***,
+    },
     dispatch
   );
-***REMOVED***
+}
 
-Form.propTypes = ***REMOVED***
+Form.propTypes = {
   addAttributeRelationToContentType: PropTypes.func.isRequired,
   addAttributeToContentType: PropTypes.func.isRequired,
   changeInput: PropTypes.func.isRequired,
@@ -761,12 +761,12 @@ Form.propTypes = ***REMOVED***
   temporaryContentTypeFieldsUpdated: PropTypes.func.isRequired,
   toggle: PropTypes.func.isRequired,
   updateContentType: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
-Form.defaultProps = ***REMOVED***
+Form.defaultProps = {
   isModelPage: false,
   modelName: '',
-***REMOVED***;
+};
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 

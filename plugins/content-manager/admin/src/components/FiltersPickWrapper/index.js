@@ -6,8 +6,8 @@
 import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** isObject, size ***REMOVED*** from 'lodash';
+import { FormattedMessage } from 'react-intl';
+import { isObject, size } from 'lodash';
 import FilterOptions from 'components/FilterOptions/Loadable';
 
 // You can find these components in either
@@ -21,153 +21,153 @@ import SpanStyled from './SpanStyled';
 import Wrapper from './Wrapper';
 import styles from './wrapperStyles.scss';
 
-class FiltersPickWrapper extends React.PureComponent ***REMOVED***
-  state = ***REMOVED*** showInput: false ***REMOVED***;
+class FiltersPickWrapper extends React.PureComponent {
+  state = { showInput: false };
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     // Display the first filter
-    if (this.props.appliedFilters.length === 0) ***REMOVED***
+    if (this.props.appliedFilters.length === 0) {
       this.handleClickAdd();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   // Since the component is never unmounted we need this hook
-  componentDidUpdate(prevProps) ***REMOVED***
-    const ***REMOVED*** appliedFilters, show ***REMOVED*** = this.props;
+  componentDidUpdate(prevProps) {
+    const { appliedFilters, show } = this.props;
 
-    if (size(prevProps.appliedFilters) !== size(appliedFilters) && size(appliedFilters) === 0) ***REMOVED***
+    if (size(prevProps.appliedFilters) !== size(appliedFilters) && size(appliedFilters) === 0) {
       this.handleClickAdd();
-***REMOVED***
+    }
 
-    if (prevProps.show !== show) ***REMOVED***
-      if (show) ***REMOVED***
+    if (prevProps.show !== show) {
+      if (show) {
         this.mountInput();
-***REMOVED*** else ***REMOVED***
+      } else {
         this.unmountInput();
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
 
-  mountInput = () => this.setState(***REMOVED*** showInput: true ***REMOVED***);
+  mountInput = () => this.setState({ showInput: true });
 
-  unmountInput = () => ***REMOVED***
-    return new Promise(resolve => ***REMOVED***
-      setTimeout(() => ***REMOVED***
-        this.setState(***REMOVED*** showInput: false ***REMOVED***);
+  unmountInput = () => {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        this.setState({ showInput: false });
         resolve();
-***REMOVED*** 300);
-***REMOVED***);
-***REMOVED***
+      }, 300);
+    });
+  }
 
   generateActions = () => ([
-    ***REMOVED***
+    {
       label: 'content-manager.components.FiltersPickWrapper.PluginHeader.actions.clearAll',
       kind: 'secondary',
-      onClick: () => ***REMOVED***
+      onClick: () => {
         this.props.close();
         this.props.removeAllFilters();
-***REMOVED***
-***REMOVED***,
-    ***REMOVED***
+      },
+    },
+    {
       label: 'content-manager.components.FiltersPickWrapper.PluginHeader.actions.apply',
       kind: 'primary',
       type: 'submit',
       onClick: this.props.onSubmit,
-***REMOVED***,
+    },
   ]);
 
-  handleChange = (***REMOVED*** target ***REMOVED***) => ***REMOVED***
+  handleChange = ({ target }) => {
     const split = target.name.split('.');
     let value = target.value;
 
     // Reset the filter value when changing the field of the schema
-    if (split[1] === 'attr') ***REMOVED***
+    if (split[1] === 'attr') {
       // Always set the filter to true when the field is a boolean
       const valueToChange = this.props.schema[target.value].type === 'boolean' ? 'true' : '';
       this.props.onChange(split[0], 'value', valueToChange);
-***REMOVED***
+    }
 
-    if (split[1] === 'value' && isObject(target.value) && target.value._isAMomentObject === true ) ***REMOVED***
+    if (split[1] === 'value' && isObject(target.value) && target.value._isAMomentObject === true ) {
       value = moment(target.value, 'YYYY-MM-DD HH:mm:ss').format();
-***REMOVED***
+    }
 
     this.props.onChange(split[0], split[1], value);
-***REMOVED***
+  }
 
-  handleClickAdd = () => ***REMOVED***
-    const ***REMOVED*** addFilter, schema ***REMOVED*** = this.props;
-    const filter = ***REMOVED*** attr: Object.keys(schema)[0], filter: '=', value: '' ***REMOVED***;
+  handleClickAdd = () => {
+    const { addFilter, schema } = this.props;
+    const filter = { attr: Object.keys(schema)[0], filter: '=', value: '' };
 
     return addFilter(filter);
-***REMOVED***
+  }
 
   handleClickClose = () => this.props.close();
 
-  handleClickRemove = (index) => ***REMOVED***
-    if (this.props.appliedFilters.length == 1) ***REMOVED***
+  handleClickRemove = (index) => {
+    if (this.props.appliedFilters.length == 1) {
       this.props.close();
       this.props.removeFilter(index);
       this.props.onSubmit();
-***REMOVED***
+    }
 
     return this.props.removeFilter(index);
-***REMOVED***
+  }
 
-  shouldDisplayAddButton = (index) => ***REMOVED***
-    const ***REMOVED*** appliedFilters ***REMOVED*** = this.props;
+  shouldDisplayAddButton = (index) => {
+    const { appliedFilters } = this.props;
 
     return appliedFilters.length === 1 || index === appliedFilters.length - 1;
-***REMOVED***
+  }
 
   renderTitle = () => (
     <FormattedMessage id="content-manager.components.FiltersPickWrapper.PluginHeader.title.filter">
-      ***REMOVED***message => (
+      {message => (
         <span>
-          ***REMOVED***this.props.modelName***REMOVED***&nbsp;-&nbsp;
+          {this.props.modelName}&nbsp;-&nbsp;
           <SpanStyled>
-            ***REMOVED***message***REMOVED***
+            {message}
           </SpanStyled>
         </span>
-      )***REMOVED***
+      )}
     </FormattedMessage>
   );
 
-  render() ***REMOVED***
-    const ***REMOVED*** appliedFilters, filterToFocus, schema, show ***REMOVED*** = this.props;
-    const ***REMOVED*** showInput ***REMOVED*** = this.state;
+  render() {
+    const { appliedFilters, filterToFocus, schema, show } = this.props;
+    const { showInput } = this.state;
     const number = showInput ? (254 + ((size(appliedFilters) -1) * 44))   : 254;
 
     return (
-      <Div show=***REMOVED***show***REMOVED*** number=***REMOVED***number***REMOVED*** anim=***REMOVED***showInput***REMOVED***>
-        <form onSubmit=***REMOVED***this.handleSubmit***REMOVED*** autoComplete="off">
+      <Div show={show} number={number} anim={showInput}>
+        <form onSubmit={this.handleSubmit} autoComplete="off">
           <div>
             <PluginHeader
-              actions=***REMOVED***this.generateActions()***REMOVED***
-              description=***REMOVED******REMOVED***
+              actions={this.generateActions()}
+              description={{
                 id: 'content-manager.components.FiltersPickWrapper.PluginHeader.description',
-        ***REMOVED******REMOVED***
-              title=***REMOVED***this.renderTitle()***REMOVED***
+              }}
+              title={this.renderTitle()}
             />
             <Wrapper>
-              ***REMOVED*** showInput && appliedFilters.map((filter, key) => (
+              { showInput && appliedFilters.map((filter, key) => (
                 <FilterOptions
-                  key=***REMOVED***key***REMOVED***
-                  filter=***REMOVED***filter***REMOVED***
-                  filterToFocus=***REMOVED***filterToFocus***REMOVED***
-                  index=***REMOVED***key***REMOVED***
-                  onChange=***REMOVED***this.handleChange***REMOVED***
-                  onClickAdd=***REMOVED***this.handleClickAdd***REMOVED***
-                  onClickRemove=***REMOVED***this.handleClickRemove***REMOVED***
-                  schema=***REMOVED***schema***REMOVED***
-                  show=***REMOVED***showInput***REMOVED***
-                  showAddButton=***REMOVED***this.shouldDisplayAddButton(key)***REMOVED***
+                  key={key}
+                  filter={filter}
+                  filterToFocus={filterToFocus}
+                  index={key}
+                  onChange={this.handleChange}
+                  onClickAdd={this.handleClickAdd}
+                  onClickRemove={this.handleClickRemove}
+                  schema={schema}
+                  show={showInput}
+                  showAddButton={this.shouldDisplayAddButton(key)}
                 />
-              ))***REMOVED***
-              ***REMOVED***!showInput && <div style=***REMOVED******REMOVED***height: '34px'***REMOVED******REMOVED*** />***REMOVED***
+              ))}
+              {!showInput && <div style={{height: '34px'}} />}
             </Wrapper>
           </div>
           <Flex>
-            <span onClick=***REMOVED***this.handleClickClose***REMOVED*** className=***REMOVED***styles.spanStyled***REMOVED***>
+            <span onClick={this.handleClickClose} className={styles.spanStyled}>
               <FormattedMessage id="content-manager.components.FiltersPickWrapper.hide" />
               &nbsp;
             </span>
@@ -175,17 +175,17 @@ class FiltersPickWrapper extends React.PureComponent ***REMOVED***
         </form>
       </Div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-FiltersPickWrapper.defaultProps = ***REMOVED***
+FiltersPickWrapper.defaultProps = {
   appliedFilters: [],
   filterToFocus: null,
   modelName: '',
-  schema: ***REMOVED******REMOVED***,
-***REMOVED***;
+  schema: {},
+};
 
-FiltersPickWrapper.propTypes = ***REMOVED***
+FiltersPickWrapper.propTypes = {
   addFilter: PropTypes.func.isRequired,
   appliedFilters: PropTypes.array,
   close: PropTypes.func.isRequired,
@@ -200,6 +200,6 @@ FiltersPickWrapper.propTypes = ***REMOVED***
   removeFilter: PropTypes.func.isRequired,
   schema: PropTypes.object,
   show: PropTypes.bool.isRequired,
-***REMOVED***;
+};
 
 export default FiltersPickWrapper;

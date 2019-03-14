@@ -10,27 +10,27 @@ import cn from 'classnames';
 
 import styles from './styles.scss';
 
-function HomePageBlock(***REMOVED*** children, className ***REMOVED***) ***REMOVED***
+function HomePageBlock({ children, className }) {
   return (
     <div
-      className=***REMOVED***cn(
+      className={cn(
         className,
         styles.homePageBlock,
-      )***REMOVED***
+      )}
     >
-      ***REMOVED***children***REMOVED***
+      {children}
     </div>
   );
-***REMOVED***
+}
 
-HomePageBlock.defaultProps = ***REMOVED***
+HomePageBlock.defaultProps = {
   children: '',
   className: '',
-***REMOVED***;
+};
 
-HomePageBlock.propTypes = ***REMOVED***
+HomePageBlock.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-***REMOVED***;
+};
 
 export default HomePageBlock;

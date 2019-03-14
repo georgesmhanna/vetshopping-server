@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "app.components.Button.save": "保存",
   "app.components.Button.cancel": "取消",
 
@@ -40,7 +40,7 @@
   "app.components.InputFileDetails.originalName": "原名称：",
   "app.components.InputFileDetails.size": "大小：",
 
-  "app.components.ImgPreview.hint": "将文件拖放到该区域或***REMOVED***browse***REMOVED***以供文件上载",
+  "app.components.ImgPreview.hint": "将文件拖放到该区域或{browse}以供文件上载",
   "app.components.ImgPreview.hint.browse": "浏览",
 
   "app.components.InstallPluginPage.helmet": "市场-插件",
@@ -69,8 +69,8 @@
   "app.components.ListPluginsPage.title": "插件",
   "app.components.ListPluginsPage.description": "项目中已安装的插件列表",
   "app.components.listPluginsPage.deletePlugin.error": "卸载插件时出错",
-  "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED*** 个插件已安装",
-  "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED*** 个插件已安装",
+  "app.components.listPlugins.title.singular": "{number} 个插件已安装",
+  "app.components.listPlugins.title.plural": "{number} 个插件已安装",
   "app.components.listPlugins.title.none": "还没有安装插件",
   "app.components.listPlugins.button": "增加新插件",
 
@@ -121,7 +121,7 @@
   "components.Input.error.attribute.key.taken": "此值已经存在",
   "components.Input.error.attribute.sameKeyAndName": "不能相等",
   "components.Input.error.validation.minSupMax": "最小值超过最大值了",
-  "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+  "components.Input.error.custom-error": "{errorMessage} ",
 
   "components.ListRow.empty": "没有要显示的数据",
 
@@ -136,7 +136,7 @@
   "components.Wysiwyg.ToggleMode.markdown": "编辑",
   "components.Wysiwyg.ToggleMode.preview": "预览",
   "components.WysiwygBottomControls.charactersIndicators": "characters",
-  "components.WysiwygBottomControls.uploadFiles": "拖放文件，从剪贴板粘贴或 ***REMOVED***browse***REMOVED***.",
+  "components.WysiwygBottomControls.uploadFiles": "拖放文件，从剪贴板粘贴或 {browse}.",
   "components.WysiwygBottomControls.uploadFiles.browse": "从文件夹选取",
   "components.WysiwygBottomControls.fullscreen": "最大化",
 
@@ -159,4 +159,4 @@
   "request.error.model.unknown": "这个模型已不存在",
   "Users": "用户",
   "Analytics": "分析"
-***REMOVED***
+}

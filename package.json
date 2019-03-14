@@ -1,50 +1,50 @@
-***REMOVED***
+{
   "name": "vetshopping",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application.",
   "main": "./server.js",
-  "scripts": ***REMOVED***
+  "scripts": {
     "setup": "cd admin && npm run setup",
     "start": "node server.js",
     "strapi": "node_modules/strapi/bin/strapi.js",
     "lint": "node_modules/.bin/eslint api/**/*.js config/**/*.js plugins/**/*.js",
     "postinstall": "node node_modules/strapi/lib/utils/post-install.js"
-***REMOVED***,
-  "devDependencies": ***REMOVED***
+  },
+  "devDependencies": {
     "babel-eslint": "^7.1.1",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-react": "^6.8.0"
-***REMOVED***,
-  "dependencies": ***REMOVED***
+  },
+  "dependencies": {
     "heroku-releases-retry": "^1.0.3",
     "lodash": "4.x.x",
     "sanitize-html": "^1.19.1",
     "strapi": "3.0.0-alpha.14.2",
     "strapi-email-nodemailer": "^0.2.1",
     "strapi-hook-mongoose": "3.0.0-alpha.14.2"
-***REMOVED***,
-  "author": ***REMOVED***
+  },
+  "author": {
     "name": "A Strapi developer",
     "email": "",
     "url": ""
-***REMOVED***,
+  },
   "maintainers": [
-    ***REMOVED***
+    {
       "name": "A Strapi developer",
       "email": "",
       "url": ""
-***REMOVED***
+    }
   ],
-  "strapi": ***REMOVED***
+  "strapi": {
     "packageManager": "npm",
     "uuid": "826d732f-4676-484b-9a82-d78be990f025"
-***REMOVED***,
-  "engines": ***REMOVED***
+  },
+  "engines": {
     "node": ">= 9.0.0",
     "npm": ">= 5.0.0"
-***REMOVED***,
+  },
   "license": "MIT"
-***REMOVED***
+}

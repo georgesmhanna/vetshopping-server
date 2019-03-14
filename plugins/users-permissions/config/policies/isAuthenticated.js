@@ -1,7 +1,7 @@
-module.exports = async (ctx, next) => ***REMOVED***
-  if (!ctx.state.user) ***REMOVED***
+module.exports = async (ctx, next) => {
+  if (!ctx.state.user) {
     return ctx.unauthorized();
-***REMOVED***
+  }
 
   await next();
-***REMOVED***;
+};

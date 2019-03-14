@@ -1,24 +1,24 @@
-import ***REMOVED*** map, omit ***REMOVED*** from 'lodash';
+import { map, omit } from 'lodash';
 import request from 'utils/request';
 
 // This method is executed before the load of the plugin
-const bootstrap = (plugin) => new Promise((resolve, reject) => ***REMOVED***
-  request('/content-manager/models', ***REMOVED*** method: 'GET' ***REMOVED***)
-    .then(models => ***REMOVED***
-      const menu = [***REMOVED***
+const bootstrap = (plugin) => new Promise((resolve, reject) => {
+  request('/content-manager/models', { method: 'GET' })
+    .then(models => {
+      const menu = [{
         name: 'Content Types',
-        links: map(omit(models.models.models, 'plugins'), (model, key) => (***REMOVED***
+        links: map(omit(models.models.models, 'plugins'), (model, key) => ({
           label: model.labelPlural || model.label || key,
           destination: key,
-  ***REMOVED***)),
-***REMOVED***];
+        })),
+      }];
       plugin.leftMenuSections = menu;
       resolve(plugin);
-***REMOVED***)
-    .catch(e => ***REMOVED***
+    })
+    .catch(e => {
       strapi.notification.error('content-manager.error.model.fetch');
       reject(e);
-***REMOVED***);
-***REMOVED***);
+    });
+});
 
 export default bootstrap;

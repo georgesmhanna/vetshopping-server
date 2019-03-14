@@ -1,4 +1,4 @@
-***REMOVED***
+{
 	"plugin.description.short": "Modellizzare la struttura dei dati dell'API.",
 	"plugin.description.long": "Modellizzare la struttura dei dati dell'API. Creare nuovi campi e le relazioni che in un solo minuto. I file vengono automaticamente creati e aggiornati nel tuo progetto.",
 	"attribute.string": "String",
@@ -77,7 +77,7 @@
 	"form.button.save": "Salva",
 	"form.contentType.item.connections": "Collegamento",
 	"form.contentType.item.name": "Nome",
-	"form.contentType.item.name.description": "Tipo di contenuto nomi singolari: ***REMOVED***link***REMOVED***",
+	"form.contentType.item.name.description": "Tipo di contenuto nomi singolari: {link}",
 	"form.contentType.item.name.link.description": "Scopri la nostra documentazione",
 	"form.contentType.item.description": "Descrizione",
 	"form.contentType.item.description.placeholder": "Scrivi la tua piccola descrizione qui...",
@@ -97,7 +97,7 @@
 	"modelPage.contentType.list.relationShipTitle.plural": "relazioni",
 	"modelPage.contentType.list.relationShipTitle.singular": "rapporto",
 	"modelPage.attribute.relationWith": "Relazione con",
-	"noTableWarning.description": "Non dimenticare di creare la tabella \" ***REMOVED***modelName***REMOVED***` nel database",
+	"noTableWarning.description": "Non dimenticare di creare la tabella \" {modelName}` nel database",
 	"noTableWarning.infos": "Ulteriori informazioni",
 	"notification.error.message": "Si è verificato un errore",
 	"notification.info.contentType.creating.notSaved": "Si prega di salvare il Tipo di Contenuto prima di crearne uno nuovo",
@@ -154,4 +154,4 @@
 	"relation.manyToOne": "ha molti",
 	"relation.manyToMany": "e appartiene a molti",
 	"relation.attributeName.placeholder": "Ex: autore, categoria, tag"
-***REMOVED***
+}

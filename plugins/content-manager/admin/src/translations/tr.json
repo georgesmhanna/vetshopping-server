@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Veritabanındaki verileri görmek, düzenlemek ve silmek için hızlı bir yol.",
   "plugin.description.long": "Veritabanındaki verileri görmek, düzenlemek ve silmek için hızlı bir yol.",
   "containers.Home.pluginHeaderTitle": "İçerik Yönetimi",
@@ -9,9 +9,9 @@
   "containers.Edit.delete": "Sil",
   "containers.Edit.reset": "Reset",
   "containers.Edit.returnList": "Listeye dön",
-  "containers.List.addAnEntry": "Yeni ***REMOVED***entity***REMOVED*** ekle",
-  "containers.List.pluginHeaderDescription": "***REMOVED***label***REMOVED*** kayıt bulundu",
-  "containers.List.pluginHeaderDescription.singular": "***REMOVED***label***REMOVED*** kayıt bulundu",
+  "containers.List.addAnEntry": "Yeni {entity} ekle",
+  "containers.List.pluginHeaderDescription": "{label} kayıt bulundu",
+  "containers.List.pluginHeaderDescription.singular": "{label} kayıt bulundu",
   "components.LimitSelect.itemsPerPage": "Sayfa başı",
   "containers.List.errorFetchRecords": "Hata",
 
@@ -51,13 +51,13 @@
 
   "components.Search.placeholder": "Kayıt aramak için...",
 
-  "components.TableDelete.entries.plural": "***REMOVED***number***REMOVED*** kayıt seçildi",
-  "components.TableDelete.entries.singular": "***REMOVED***number***REMOVED*** kayıt seçildi",
+  "components.TableDelete.entries.plural": "{number} kayıt seçildi",
+  "components.TableDelete.entries.singular": "{number} kayıt seçildi",
   "components.TableDelete.delete": "Hepsini sil",
 
-  "components.TableEmpty.withFilters": "Uygulanan filtrelerle ***REMOVED***contentType***REMOVED*** yoktur...",
-  "components.TableEmpty.withoutFilter": "***REMOVED***contentType***REMOVED*** yoktur...",
-  "components.TableEmpty.withSearch": "Aramaya karşılık gelen ***REMOVED***contentType***REMOVED*** yoktur (***REMOVED***search***REMOVED***)...",
+  "components.TableEmpty.withFilters": "Uygulanan filtrelerle {contentType} yoktur...",
+  "components.TableEmpty.withoutFilter": "{contentType} yoktur...",
+  "components.TableEmpty.withSearch": "Aramaya karşılık gelen {contentType} yoktur ({search})...",
 
   "EditRelations.title": "İlişkili Data",
 
@@ -116,4 +116,4 @@
   "popUpWarning.bodyMessage.contentType.delete.all": "Bu kayıtları silmek istediğinizden emin misiniz?",
   "popUpWarning.warning.cancelAllSettings": "Değişikliklerinizi iptal etmek istediğinizden emin misiniz?",
   "popUpWarning.warning.updateAllSettings": "Bu bütün ayarlarınızı değiştirecektir"
-***REMOVED***
+}

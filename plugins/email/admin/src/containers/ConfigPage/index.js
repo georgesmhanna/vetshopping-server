@@ -6,9 +6,9 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-import ***REMOVED*** findIndex, get, isEmpty ***REMOVED*** from 'lodash';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import { findIndex, get, isEmpty } from 'lodash';
 
 // You can find these components in either
 // ./node_modules/strapi-helper-plugin/lib/src
@@ -26,128 +26,128 @@ import EditForm from 'components/EditForm';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 
-import ***REMOVED***
+import {
   getSettings,
   onCancel,
   onChange,
   setErrors,
   submit,
-***REMOVED*** from './actions';
+} from './actions';
 
 import reducer from './reducer';
 import saga from './saga';
 import selectConfigPage from './selectors';
 
-class ConfigPage extends React.Component ***REMOVED***
-  componentDidMount() ***REMOVED***
+class ConfigPage extends React.Component {
+  componentDidMount() {
     this.getSettings(this.props);
-***REMOVED***
+  }
 
-  componentDidUpdate(prevProps) ***REMOVED***
+  componentDidUpdate(prevProps) {
     // Get new settings on navigation change
-    if (prevProps.match.params.env !== this.props.match.params.env) ***REMOVED***
+    if (prevProps.match.params.env !== this.props.match.params.env) {
       this.getSettings(this.props);
-***REMOVED***
+    }
 
     // Redirect the user to the email list after modifying is provider
-    if (prevProps.submitSuccess !== this.props.submitSuccess) ***REMOVED***
-      this.props.history.push(`/plugins/email/configurations/$***REMOVED***this.props.match.params.env***REMOVED***`);
-***REMOVED***
-***REMOVED***
+    if (prevProps.submitSuccess !== this.props.submitSuccess) {
+      this.props.history.push(`/plugins/email/configurations/${this.props.match.params.env}`);
+    }
+  }
 
   getSelectedProviderIndex = () => findIndex(this.props.settings.providers, ['provider', get(this.props.modifiedData, 'provider')]);
 
   /**
    * Get Settings depending on the props
-   * @param  ***REMOVED***Object***REMOVED*** props
-   * @return ***REMOVED***Func***REMOVED***       calls the saga that gets the current settings
+   * @param  {Object} props
+   * @return {Func}       calls the saga that gets the current settings
    */
-  getSettings = (props) => ***REMOVED***
-    const ***REMOVED*** match: ***REMOVED*** params: ***REMOVED*** env***REMOVED*** ***REMOVED*** ***REMOVED*** = props;
+  getSettings = (props) => {
+    const { match: { params: { env} } } = props;
     this.props.getSettings(env);
-***REMOVED***
+  }
 
-  generateLinks = () => ***REMOVED***
-    const headerNavLinks = this.props.appEnvironments.reduce((acc, current) => ***REMOVED***
-      const link = Object.assign(current, ***REMOVED*** to: `/plugins/email/configurations/$***REMOVED***current.name***REMOVED***` ***REMOVED***);
+  generateLinks = () => {
+    const headerNavLinks = this.props.appEnvironments.reduce((acc, current) => {
+      const link = Object.assign(current, { to: `/plugins/email/configurations/${current.name}` });
       acc.push(link);
       return acc;
-***REMOVED***, []).sort(link => link.name === 'production');
+    }, []).sort(link => link.name === 'production');
 
     return headerNavLinks;
-***REMOVED***
+  }
 
-  handleSubmit = (e) => ***REMOVED***
+  handleSubmit = (e) => {
     e.preventDefault();
-    const formErrors = Object.keys(get(this.props.settings, ['providers', this.getSelectedProviderIndex(), 'auth'], ***REMOVED******REMOVED***)).reduce((acc, current) => ***REMOVED***
-      if (isEmpty(get(this.props.modifiedData, current, ''))) ***REMOVED***
-        acc.push(***REMOVED***
+    const formErrors = Object.keys(get(this.props.settings, ['providers', this.getSelectedProviderIndex(), 'auth'], {})).reduce((acc, current) => {
+      if (isEmpty(get(this.props.modifiedData, current, ''))) {
+        acc.push({
           name: current,
-          errors: [***REMOVED*** id: 'components.Input.error.validation.required' ***REMOVED***],
-  ***REMOVED***);
-***REMOVED***
+          errors: [{ id: 'components.Input.error.validation.required' }],
+        });
+      }
       return acc;
-***REMOVED***, []);
+    }, []);
 
-    if (!isEmpty(formErrors)) ***REMOVED***
+    if (!isEmpty(formErrors)) {
       return this.props.setErrors(formErrors);
-***REMOVED***
+    }
 
     return this.props.submit();
-***REMOVED***
+  }
 
   pluginHeaderActions = [
-    ***REMOVED***
+    {
       kind: 'secondary',
       label: 'app.components.Button.cancel',
       onClick: this.props.onCancel,
       type: 'button',
-***REMOVED***,
-    ***REMOVED***
+    },
+    {
       kind: 'primary',
       label: 'app.components.Button.save',
       onClick: this.handleSubmit,
       type: 'submit',
-***REMOVED***,
+    },
   ];
 
-  render() ***REMOVED***
+  render() {
     return (
       <div>
-        <form onSubmit=***REMOVED***this.handleSubmit***REMOVED***>
+        <form onSubmit={this.handleSubmit}>
           <ContainerFluid>
             <PluginHeader
-              actions=***REMOVED***this.pluginHeaderActions***REMOVED***
-              description=***REMOVED******REMOVED*** id: 'email.ConfigPage.description' ***REMOVED******REMOVED***
-              title=***REMOVED******REMOVED*** id: 'email.ConfigPage.title'***REMOVED******REMOVED***
+              actions={this.pluginHeaderActions}
+              description={{ id: 'email.ConfigPage.description' }}
+              title={{ id: 'email.ConfigPage.title'}}
             />
-            <HeaderNav links=***REMOVED***this.generateLinks()***REMOVED*** />
+            <HeaderNav links={this.generateLinks()} />
             <EditForm
-              didCheckErrors=***REMOVED***this.props.didCheckErrors***REMOVED***
-              formErrors=***REMOVED***this.props.formErrors***REMOVED***
-              modifiedData=***REMOVED***this.props.modifiedData***REMOVED***
-              onChange=***REMOVED***this.props.onChange***REMOVED***
-              selectedProviderIndex=***REMOVED***this.getSelectedProviderIndex()***REMOVED***
-              settings=***REMOVED***this.props.settings***REMOVED***
+              didCheckErrors={this.props.didCheckErrors}
+              formErrors={this.props.formErrors}
+              modifiedData={this.props.modifiedData}
+              onChange={this.props.onChange}
+              selectedProviderIndex={this.getSelectedProviderIndex()}
+              settings={this.props.settings}
             />
           </ContainerFluid>
         </form>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-ConfigPage.contextTypes = ***REMOVED******REMOVED***;
+ConfigPage.contextTypes = {};
 
-ConfigPage.defaultProps = ***REMOVED***
+ConfigPage.defaultProps = {
   appEnvironments: [],
   formErrors: [],
-  settings: ***REMOVED***
+  settings: {
     providers: [],
-***REMOVED***,
-***REMOVED***;
+  },
+};
 
-ConfigPage.propTypes = ***REMOVED***
+ConfigPage.propTypes = {
   appEnvironments: PropTypes.array,
   didCheckErrors: PropTypes.bool.isRequired,
   formErrors: PropTypes.array,
@@ -161,27 +161,27 @@ ConfigPage.propTypes = ***REMOVED***
   settings: PropTypes.object,
   submit: PropTypes.func.isRequired,
   submitSuccess: PropTypes.bool.isRequired,
-***REMOVED***;
+};
 
-function mapDispatchToProps(dispatch) ***REMOVED***
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       getSettings,
       onCancel,
       onChange,
       setErrors,
       submit,
-***REMOVED***,
+    },
     dispatch,
   );
-***REMOVED***
+}
 
 const mapStateToProps = selectConfigPage();
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer(***REMOVED*** key: 'configPage', reducer ***REMOVED***);
-const withSaga = injectSaga(***REMOVED*** key: 'configPage', saga ***REMOVED***);
+const withReducer = injectReducer({ key: 'configPage', reducer });
+const withSaga = injectSaga({ key: 'configPage', saga });
 
 export default compose(
   withReducer,

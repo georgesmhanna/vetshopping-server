@@ -8,14 +8,14 @@
  * [MINUTE] [HOUR] [DAY OF MONTH] [MONTH OF YEAR] [DAY OF WEEK] [YEAR (optional)]
  */
 
-module.exports = ***REMOVED***
+module.exports = {
 
   /**
    * Simple example.
    * Every monday at 1am.
    */
 
-  // '0 1 * * 1': () => ***REMOVED***
+  // '0 1 * * 1': () => {
   //
-  // ***REMOVED***
-***REMOVED***;
+  // }
+};

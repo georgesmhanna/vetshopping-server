@@ -6,64 +6,64 @@
 
 import React from 'react';
 import moment from 'moment';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import ***REMOVED*** get, toString, upperFirst ***REMOVED*** from 'lodash';
+import { get, toString, upperFirst } from 'lodash';
 import Flex from './Flex';
 import Remove from './Remove';
 import Separator from './Separator';
 
 
-function Filter(***REMOVED*** filter, index, onClick, onClickOpen, schema ***REMOVED***) ***REMOVED***
+function Filter({ filter, index, onClick, onClickOpen, schema }) {
   let value = filter.value;
 
-  if (get(schema, [filter.attr, 'type']) === 'date') ***REMOVED***
+  if (get(schema, [filter.attr, 'type']) === 'date') {
     const date = moment(filter.value.slice(0, -1), moment.ISO_8601);
     const format = date.valueOf() === date.startOf('day').valueOf() ?
       'MMMM Do YYYY' :'MMMM Do YYYY, h:mm:ss a' ;
     value = date.format(format);
-***REMOVED***
+  }
 
   return (
     <Flex
-      onClick=***REMOVED***(e) => ***REMOVED***
+      onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
         onClickOpen(index);
-***REMOVED******REMOVED***
+      }}
     >
-      <span>***REMOVED***upperFirst(filter.attr)***REMOVED***&nbsp;</span>
-      <FormattedMessage id=***REMOVED***`content-manager.components.FilterOptions.FILTER_TYPES.$***REMOVED***filter.filter***REMOVED***`***REMOVED*** />
-      <span>&nbsp;***REMOVED***toString(value)***REMOVED***</span>
+      <span>{upperFirst(filter.attr)}&nbsp;</span>
+      <FormattedMessage id={`content-manager.components.FilterOptions.FILTER_TYPES.${filter.filter}`} />
+      <span>&nbsp;{toString(value)}</span>
       <Separator />
       <Remove
-        onClick=***REMOVED***(e) => ***REMOVED***
+        onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
           onClick(index);
-  ***REMOVED******REMOVED***
+        }}
       />
     </Flex>
   );
-***REMOVED***
+}
 
-Filter.defaultProps = ***REMOVED***
-  filter: ***REMOVED******REMOVED***,
+Filter.defaultProps = {
+  filter: {},
   index: 0,
-  onClick: () => ***REMOVED******REMOVED***,
-  onClickOpen: (e) => ***REMOVED***
+  onClick: () => {},
+  onClickOpen: (e) => {
     e.preventDefault();
     e.stopPropagation();
-***REMOVED***,
-  schema: ***REMOVED******REMOVED***,
-***REMOVED***;
+  },
+  schema: {},
+};
 
-Filter.propTypes = ***REMOVED***
+Filter.propTypes = {
   filter: PropTypes.object,
   index: PropTypes.number,
   onClick: PropTypes.func,
   onClickOpen: PropTypes.func,
   schema: PropTypes.object,
-***REMOVED***;
+};
 
 export default Filter;

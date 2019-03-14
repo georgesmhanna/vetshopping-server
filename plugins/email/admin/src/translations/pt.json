@@ -1,4 +1,4 @@
-***REMOVED***
+{
     "ConfigPage.title": "Email - Definições",
     "ConfigPage.description": "Configure a extensão do email",
   
@@ -11,5 +11,5 @@
     "plugin.description.long": "Enviar emails.",
   
     "notification.config.success": "As configurações foram actualizadas"
-***REMOVED***
+  }
   

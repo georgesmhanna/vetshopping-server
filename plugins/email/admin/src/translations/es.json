@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "ConfigPage.title": "Correo electrónico - Configuración",
   "ConfigPage.description": "Configurar el plugin de correo electrónico",
 
@@ -11,4 +11,4 @@
   "plugin.description.long": "Enviar correos electrónicos.",
 
   "notification.config.success": "Se ha actualizado la configuración"
-***REMOVED***
+}

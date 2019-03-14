@@ -5,55 +5,55 @@
 */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** NavLink ***REMOVED*** from 'react-router-dom';
-import ***REMOVED*** map ***REMOVED*** from 'lodash';
+import { FormattedMessage } from 'react-intl';
+import { NavLink } from 'react-router-dom';
+import { map } from 'lodash';
 
 // Utils
-import ***REMOVED*** darken ***REMOVED*** from 'utils/colors';
+import { darken } from 'utils/colors';
 
 // Styles
 import styles from './styles.scss';
 
 const links = [
-  ***REMOVED***
+  {
     name: 'users-permissions.HeaderNav.link.roles',
     to: '/plugins/users-permissions/roles',
-***REMOVED***,
-  ***REMOVED***
+  },
+  {
     name: 'users-permissions.HeaderNav.link.providers',
     to: '/plugins/users-permissions/providers',
-***REMOVED***,
-  ***REMOVED***
+  },
+  {
     name: 'users-permissions.HeaderNav.link.emailTemplates',
     to: '/plugins/users-permissions/email-templates',
-***REMOVED***,
-  ***REMOVED***
+  },
+  {
     name: 'users-permissions.HeaderNav.link.advancedSettings',
     to: '/plugins/users-permissions/advanced',
-***REMOVED***,
+  },
 ];
 
-function HeaderNav() ***REMOVED***
+function HeaderNav() {
   let linkColor = '#F5F5F5';
 
   return (
-    <div className=***REMOVED***styles.headerContainer***REMOVED***>
-      ***REMOVED***map(links, (link) => ***REMOVED***
+    <div className={styles.headerContainer}>
+      {map(links, (link) => {
         linkColor = darken(linkColor, 1.5);
 
         return (
-          <NavLink key=***REMOVED***link.name***REMOVED*** className=***REMOVED***styles.headerLink***REMOVED*** style=***REMOVED******REMOVED*** backgroundColor: linkColor***REMOVED******REMOVED*** to=***REMOVED***link.to***REMOVED*** activeClassName=***REMOVED***styles.linkActive***REMOVED***>
-            <div className=***REMOVED***`$***REMOVED***styles.linkText***REMOVED*** text-center`***REMOVED***>
-              <FormattedMessage id=***REMOVED***link.name***REMOVED*** />
+          <NavLink key={link.name} className={styles.headerLink} style={{ backgroundColor: linkColor}} to={link.to} activeClassName={styles.linkActive}>
+            <div className={`${styles.linkText} text-center`}>
+              <FormattedMessage id={link.name} />
             </div>
           </NavLink>
         );
-***REMOVED***)***REMOVED***
+      })}
     </div>
   );
-***REMOVED***
+}
 
-HeaderNav.propTypes = ***REMOVED******REMOVED***;
+HeaderNav.propTypes = {};
 
 export default HeaderNav;

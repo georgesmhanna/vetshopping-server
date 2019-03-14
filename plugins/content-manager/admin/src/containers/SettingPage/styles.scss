@@ -1,80 +1,80 @@
-.containerFluid ***REMOVED***
+.containerFluid {
   padding: 18px 30px;
-  > div:first-child ***REMOVED***
+  > div:first-child {
     max-height: 33px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.container ***REMOVED***
+.container {
   padding-top: 18px;
-***REMOVED***
+}
 
-.main_wrapper***REMOVED***
+.main_wrapper{
   background: #ffffff;
   padding: 22px 28px 0px;
   border-radius: 2px;
   box-shadow: 0 2px 4px #E3E9F3;
-***REMOVED***
+}
 
-.ctmForm ***REMOVED***
+.ctmForm {
   padding-top: 2.6rem;
-***REMOVED***
+}
 
-.separator ***REMOVED***
+.separator {
   margin: 0 0 17px;
   border-top: 1px solid #F6F6F6;
-***REMOVED***
+}
 
-.separatorHigher***REMOVED***
+.separatorHigher{
   margin-top: 19px;
   border-top: 1px solid #F6F6F6;
-***REMOVED***
+}
 
-.draggedWrapper ***REMOVED***
+.draggedWrapper {
   display: flex;
-  > div:first-child ***REMOVED***
+  > div:first-child {
     height: 30px;
     width: 20px;
     margin-right: 10px;
     text-align: right;
     line-height: 30px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.listDisplayWrapper ***REMOVED***
+.listDisplayWrapper {
   padding-top: 21px;
-***REMOVED***
+}
 
-.draggedDescription ***REMOVED***
+.draggedDescription {
   color: #333740;
   font-size: 13px;
   font-weight: 500;
 
-  > p ***REMOVED***
+  > p {
     margin-bottom: 28px;
     color: #787E8F;
     font-weight: 400;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.editWrapper ***REMOVED***
+.editWrapper {
   min-height: 246px;
   padding: 24px 30px 0px;
   background-color: #FAFAFB;
   border-radius: 2px; 
-***REMOVED***
+}
 
-.dropDownNotAllowed ***REMOVED***
-  > div ***REMOVED***
-    > button ***REMOVED***
+.dropDownNotAllowed {
+  > div {
+    > button {
       cursor: not-allowed !important;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.dropdownWrapper ***REMOVED***
+.dropdownWrapper {
   margin-left: 29px;
-  > div ***REMOVED***
+  > div {
     height: 30px;
     width: 100%;
     justify-content: space-between;
@@ -82,7 +82,7 @@
     color: #333740;
     border: 1px solid #E3E9F3;
     border-radius: 2px;
-    > button ***REMOVED***
+    > button {
       position: relative;
       cursor: pointer;
       padding-left: 10px !important;
@@ -94,20 +94,20 @@
       border: none;
       font-size: 13px;
       font-weight: 500;
-      &:focus, &:active, &:hover, &:visited ***REMOVED***
+      &:focus, &:active, &:hover, &:visited {
         background-color: transparent!important;
         box-shadow: none;
         color: #333740;
-***REMOVED***
-      > p ***REMOVED***
+      }
+      > p {
         height: 100%;
         margin-left: 20px;
         margin-bottom: 0;
         margin-top: -1px;
         color: #007EFF !important;
         font-size: 13px !important;
-***REMOVED***
-      &:before ***REMOVED***
+      }
+      &:before {
         position: absolute;
         top: 0px;
         bottom: 0;
@@ -115,9 +115,9 @@
         font-family: FontAwesome;
         font-size: 10px;
         color: #007EFF;
-***REMOVED***
-***REMOVED***
-    > div ***REMOVED***
+      }
+    }
+    > div {
       max-height: 180px;
       min-width: calc(100% + 2px);
       margin-left: -1px;
@@ -131,65 +131,65 @@
 
       overflow: scroll;
       
-      button ***REMOVED***
+      button {
         height: 30px;
         padding-left:  10px !important;
         line-height: 26px;
         cursor: pointer;
         font-size: 13px !important;
-        &:hover ***REMOVED***
+        &:hover {
           background-color: #FAFAFB !important;
-  ***REMOVED*** 
-        div ***REMOVED***
+        } 
+        div {
           margin: 0;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+      }
+    }
+  }
+}
 
-.dropdownWrapperOpen ***REMOVED***
-  > div ***REMOVED***
+.dropdownWrapperOpen {
+  > div {
     background-color: #E6F0FB !important;
     border-color: #AED4FB !important;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.edit_settings ***REMOVED***
+.edit_settings {
   padding-top: 25px;
-***REMOVED***
+}
 
-.sort_wrapper ***REMOVED***
+.sort_wrapper {
   margin-top: 7px;
   margin-bottom: 10px;
   padding-top: 10px;
   padding-left: 15px !important;
   border: 1px dashed #E3E9F3;
   border-radius: 2px;
-  > div ***REMOVED***
+  > div {
     padding: 0 10px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.dropdownRelations ***REMOVED***
+.dropdownRelations {
   width: 100%;
   margin-left: 0 !important;
   margin-bottom: 10px;
-***REMOVED***
+}
 
-.noPadding ***REMOVED***
+.noPadding {
   padding: 0 !important;
   padding-right: 10px !important;
 
-  > div ***REMOVED***
+  > div {
     padding-left: 10px;
     padding-right: 0px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.padded ***REMOVED***
+.padded {
   padding-bottom: 1px;
-***REMOVED***
+}

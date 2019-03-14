@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the languageToggle state domain
@@ -14,7 +14,7 @@ const selectLocale = () => createSelector(
   (languageState) => languageState.get('locale')
 );
 
-export ***REMOVED***
+export {
   selectLanguage,
   selectLocale,
-***REMOVED***;
+};

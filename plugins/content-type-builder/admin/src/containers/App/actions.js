@@ -6,21 +6,21 @@
 
 /* eslint-disable new-cap */
 
-import ***REMOVED*** List, Map ***REMOVED*** from 'immutable';
-import ***REMOVED*** concat, get, size, map, findIndex, isEmpty ***REMOVED*** from 'lodash';
+import { List, Map } from 'immutable';
+import { concat, get, size, map, findIndex, isEmpty } from 'lodash';
 
-import ***REMOVED*** storeData ***REMOVED*** from '../../utils/storeData';
+import { storeData } from '../../utils/storeData';
 
-import ***REMOVED***
+import {
   DELETE_CONTENT_TYPE,
   MODELS_FETCH,
   MODELS_FETCH_SUCCEEDED,
   STORE_TEMPORARY_MENU,
   TEMPORARY_CONTENT_TYPE_FIELDS_UPDATED,
   TEMPORARY_CONTENT_TYPE_POSTED,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function deleteContentType(itemToDelete, context) ***REMOVED***
+export function deleteContentType(itemToDelete, context) {
   const oldMenu = storeData.getMenu();
   const leftMenuContentTypes = get(context.plugins.toJS(), ['content-manager', 'leftMenuSections']);
   const leftMenuContentTypesIndex = !isEmpty(leftMenuContentTypes) ? findIndex(leftMenuContentTypes[0].links, ['destination', itemToDelete]) : -1;
@@ -28,94 +28,94 @@ export function deleteContentType(itemToDelete, context) ***REMOVED***
   let updateLeftMenu = false;
   let sendRequest = true;
 
-  if (oldMenu) ***REMOVED***
+  if (oldMenu) {
     const index = findIndex(oldMenu, ['name', itemToDelete]);
-    if (oldMenu[index].isTemporary) ***REMOVED***
+    if (oldMenu[index].isTemporary) {
       sendRequest = false;
       storeData.clearAppStorage();
-***REMOVED***else ***REMOVED***
+    }else {
       oldMenu.splice(index, 1);
       const newMenu = oldMenu;
       storeData.setMenu(newMenu);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   // Update Admin left menu content types
-  if (leftMenuContentTypesIndex !== -1) ***REMOVED***
+  if (leftMenuContentTypesIndex !== -1) {
     updateLeftMenu = true;
     leftMenuContentTypes[0].links.splice(leftMenuContentTypesIndex, 1);
-***REMOVED***
+  }
 
-  return ***REMOVED***
+  return {
     type: DELETE_CONTENT_TYPE,
     itemToDelete,
     sendRequest,
     leftMenuContentTypes,
     updateLeftMenu,
     updatePlugin: context.updatePlugin,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function modelsFetch() ***REMOVED***
-  return ***REMOVED***
+export function modelsFetch() {
+  return {
     type: MODELS_FETCH,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function modelsFetchSucceeded(models) ***REMOVED***
+export function modelsFetchSucceeded(models) {
   const modelNumber = size(models.models) > 1 ? 'plural' : 'singular';
 
-  const sections = storeData.getMenu() || map(models.models, (model) => (***REMOVED***icon: 'fa-caret-square-o-right', name: model.name, source: model.source ***REMOVED***));
+  const sections = storeData.getMenu() || map(models.models, (model) => ({icon: 'fa-caret-square-o-right', name: model.name, source: model.source }));
 
-  if (!storeData.getMenu())***REMOVED***
-    sections.push(***REMOVED*** icon: 'fa-plus', name: 'button.contentType.add' ***REMOVED***);
-***REMOVED***
+  if (!storeData.getMenu()){
+    sections.push({ icon: 'fa-plus', name: 'button.contentType.add' });
+  }
 
-  const menu = ***REMOVED***
+  const menu = {
     sections: [
-      Map(***REMOVED***
-        name: `menu.section.contentTypeBuilder.name.$***REMOVED***modelNumber***REMOVED***`,
+      Map({
+        name: `menu.section.contentTypeBuilder.name.${modelNumber}`,
         items: List(sections),
-***REMOVED***),
+      }),
     ],
-***REMOVED***;
+  };
 
-  const data = storeData.getModel() ? ***REMOVED*** models: concat(models.models, storeData.getModel()) ***REMOVED*** : models;
-  return ***REMOVED***
+  const data = storeData.getModel() ? { models: concat(models.models, storeData.getModel()) } : models;
+  return {
     type: MODELS_FETCH_SUCCEEDED,
     data,
     menu,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function storeTemporaryMenu(newMenu, position, nbElementToRemove) ***REMOVED***
+export function storeTemporaryMenu(newMenu, position, nbElementToRemove) {
 
   const newModel = newMenu[size(newMenu) - 2];
-  const newLink = ***REMOVED*** icon: 'fa-caret-square-o-right', name: newModel.name, isTemporary: true ***REMOVED***;
+  const newLink = { icon: 'fa-caret-square-o-right', name: newModel.name, isTemporary: true };
 
   storeData.setMenu(newMenu);
   storeData.setModel(newModel);
   storeData.setIsModelTemporary();
 
-  return ***REMOVED***
+  return {
     type: STORE_TEMPORARY_MENU,
     newModel,
     newLink,
     position,
     nbElementToRemove,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function temporaryContentTypeFieldsUpdated(fieldNumber) ***REMOVED***
-  return ***REMOVED***
+export function temporaryContentTypeFieldsUpdated(fieldNumber) {
+  return {
     type: TEMPORARY_CONTENT_TYPE_FIELDS_UPDATED,
     fieldNumber,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function temporaryContentTypePosted(fieldNumber) ***REMOVED***
-  return ***REMOVED***
+export function temporaryContentTypePosted(fieldNumber) {
+  return {
     type: TEMPORARY_CONTENT_TYPE_POSTED,
     fieldNumber,
-***REMOVED***;
-***REMOVED***
+  };
+}

@@ -1,21 +1,21 @@
-***REMOVED***
+{
   "connection": "default",
   "collectionName": "",
-  "info": ***REMOVED***
+  "info": {
     "name": "counter",
     "description": ""
-***REMOVED***,
-  "options": ***REMOVED***
+  },
+  "options": {
     "timestamps": true
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "fieldName": ***REMOVED***
+  },
+  "attributes": {
+    "fieldName": {
       "default": "",
       "type": "string"
-***REMOVED***,
-    "seq": ***REMOVED***
+    },
+    "seq": {
       "default": "",
       "type": "integer"
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

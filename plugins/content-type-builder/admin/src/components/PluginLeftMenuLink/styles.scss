@@ -1,12 +1,12 @@
-.pluginLeftMenuLink ***REMOVED*** /* stylelint-disable */
+.pluginLeftMenuLink { /* stylelint-disable */
   color: #2D3138;
-***REMOVED***
+}
 
-li:not(:first-child) ***REMOVED***
+li:not(:first-child) {
   margin-top: 0.2rem;
-***REMOVED***
+}
 
-.link ***REMOVED***
+.link {
   display: flex;
   margin-left: 2rem;
   margin-right: .5rem;
@@ -16,39 +16,39 @@ li:not(:first-child) ***REMOVED***
   color: #2C3138 !important;
   text-decoration: none !important;
   line-height: 1.6rem;
-  > div:first-child ***REMOVED***
+  > div:first-child {
     width: 1.3rem;
     margin-right: 1rem;
     font-size: 11px;
-    > i ***REMOVED***
+    > i {
       color: #666B74;
-***REMOVED***
-***REMOVED***
-  > span ***REMOVED***
+    }
+  }
+  > span {
     display: block;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.linkActive ***REMOVED***
+.linkActive {
   height: 3.4rem;
   border-radius: 0.2rem;
   background-color: #E9EAEB;;
   font-weight: bold;
   text-decoration: none;
   color: #2D3138 !important;
-  > div ***REMOVED***
-    > i ***REMOVED***
+  > div {
+    > i {
       color: #2D3138 !important
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
 
-.liInnerContainer ***REMOVED***
+.liInnerContainer {
   display: flex;
   margin-left: 2rem;
   margin-right: .5rem;
@@ -59,8 +59,8 @@ li:not(:first-child) ***REMOVED***
   text-decoration: none !important;
   line-height: 1.6rem;
   cursor: pointer;
-  > div ***REMOVED***
+  > div {
     width: 1.3rem;
     margin-right: 1rem;
-***REMOVED***
-***REMOVED***
+  }
+}

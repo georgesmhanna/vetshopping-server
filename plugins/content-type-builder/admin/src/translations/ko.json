@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "API를 위한 데이터 구조를 모델링 합니다.",
   "plugin.description.long": "API를 위한 데이터 구조를 모델링 합니다. 새로운 필드와 릴레이션을 간단히 만드세요. 자동으로 설정 파일이 만들어 지고 프로젝트에 추가됩니다.",
   "attribute.string": "문자(String)",
@@ -85,7 +85,7 @@
 
   "form.contentType.item.connections": "연결",
   "form.contentType.item.name": "이름",
-  "form.contentType.item.name.description": "콘텐츠 타입 이름은 단수형이어야 합니다. ***REMOVED***link***REMOVED***",
+  "form.contentType.item.name.description": "콘텐츠 타입 이름은 단수형이어야 합니다. {link}",
   "form.contentType.item.name.link.description": "문서를 참고하세요.",
   "form.contentType.item.description": "설명",
   "form.contentType.item.description.placeholder": "간략한 설명을 작성하세요.",
@@ -108,7 +108,7 @@
   "modelPage.contentType.list.relationShipTitle.singular": "관계",
   "modelPage.attribute.relationWith": "관계",
 
-  "noTableWarning.description": "데이터베이스에 `***REMOVED***modelName***REMOVED***` 테이블을 생성하세요.",
+  "noTableWarning.description": "데이터베이스에 `{modelName}` 테이블을 생성하세요.",
   "noTableWarning.infos": "더보기",
 
   "notification.error.message": "에러가 발생했습니다.",
@@ -173,4 +173,4 @@
   "relation.manyToOne": "N : 1",
   "relation.manyToMany": "N : N",
   "relation.attributeName.placeholder": "Ex: author, category, tag"
-***REMOVED***
+}

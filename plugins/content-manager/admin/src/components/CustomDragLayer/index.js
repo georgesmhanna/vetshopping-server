@@ -5,78 +5,78 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** DragLayer ***REMOVED*** from 'react-dnd';
-import ***REMOVED*** flow ***REMOVED*** from 'lodash';
+import { DragLayer } from 'react-dnd';
+import { flow } from 'lodash';
 import DragBox from 'components/DragBox';
 import SelectManyDraggedItem from 'components/SelectManyDraggedItem';
 import ItemTypes from 'utils/ItemTypes';
 import styles from './styles.scss';
 
-function getItemStyles(props) ***REMOVED***
-  const ***REMOVED*** initialOffset, currentOffset, mouseOffset ***REMOVED*** = props;
+function getItemStyles(props) {
+  const { initialOffset, currentOffset, mouseOffset } = props;
 
-  if (!initialOffset || !currentOffset) ***REMOVED***
-    return ***REMOVED*** display: 'none' ***REMOVED***;
-***REMOVED***
+  if (!initialOffset || !currentOffset) {
+    return { display: 'none' };
+  }
 
-  const ***REMOVED*** x, y ***REMOVED*** = mouseOffset;
-  const transform = `translate($***REMOVED***x -50***REMOVED***px, $***REMOVED***y-5***REMOVED***px)`;
+  const { x, y } = mouseOffset;
+  const transform = `translate(${x -50}px, ${y-5}px)`;
 
-  return ***REMOVED***
+  return {
     transform,
     WebkitTransform: transform,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-class CustomDragLayer extends React.Component ***REMOVED***
-  renderItem(type, item) ***REMOVED***
-    switch (type) ***REMOVED***
+class CustomDragLayer extends React.Component {
+  renderItem(type, item) {
+    switch (type) {
       case ItemTypes.VARIABLE:
       case ItemTypes.NORMAL:
-        return <DragBox name=***REMOVED***item.id***REMOVED*** />;
+        return <DragBox name={item.id} />;
       case ItemTypes.SORTABLEITEM:
-        return <SelectManyDraggedItem item=***REMOVED***item.data***REMOVED*** withLiWrapper />;
+        return <SelectManyDraggedItem item={item.data} withLiWrapper />;
       default:
         return null;
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  render() ***REMOVED***
-    const ***REMOVED*** item, itemType, isDragging ***REMOVED*** = this.props;
+  render() {
+    const { item, itemType, isDragging } = this.props;
 
-    if (!isDragging) ***REMOVED***
+    if (!isDragging) {
       return null;
-***REMOVED***
+    }
 
     return (
-      <div className=***REMOVED***styles.layer***REMOVED***>
-        <div style=***REMOVED***getItemStyles(this.props)***REMOVED*** className="col-md-2">
-          ***REMOVED***this.renderItem(itemType, item)***REMOVED***
+      <div className={styles.layer}>
+        <div style={getItemStyles(this.props)} className="col-md-2">
+          {this.renderItem(itemType, item)}
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-const withDragLayer = DragLayer(monitor => (***REMOVED***
+const withDragLayer = DragLayer(monitor => ({
   item: monitor.getItem(),
   itemType: monitor.getItemType(),
   initialOffset: monitor.getInitialSourceClientOffset(),
   currentOffset: monitor.getSourceClientOffset(),
   isDragging: monitor.isDragging(),
   mouseOffset: monitor.getClientOffset(),
-***REMOVED***));
+}));
 
-CustomDragLayer.defaultProps = ***REMOVED***
+CustomDragLayer.defaultProps = {
   isDragging: false,
   item: null,
   itemType: '',
-***REMOVED***;
+};
 
-CustomDragLayer.propTypes = ***REMOVED***
+CustomDragLayer.propTypes = {
   isDragging: PropTypes.bool,
   item: PropTypes.object,
   itemType: PropTypes.string,
-***REMOVED***;
+};
 
 export default flow([withDragLayer])(CustomDragLayer);

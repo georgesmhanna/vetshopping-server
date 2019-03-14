@@ -1,8 +1,8 @@
-.nameWrapper ***REMOVED***
+.nameWrapper {
   display: flex;
-***REMOVED***
+}
 
-.icoContainer ***REMOVED***
+.icoContainer {
   width: 70px;
   height: 36px;
   position: relative;
@@ -13,7 +13,7 @@
   border-radius: 3px;
   font-size: 20px;
 
-  > img ***REMOVED***
+  > img {
     max-width: 100%;
     max-height: 100%;
     width: auto;
@@ -24,29 +24,29 @@
     left: 0;
     right: 0;
     margin: auto;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.pluginContent ***REMOVED***
+.pluginContent {
   text-align: left !important;
-  > span:first-child ***REMOVED***
+  > span:first-child {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.7px;
     text-transform: uppercase;
-***REMOVED***
-  > span:last-child ***REMOVED***
+  }
+  > span:last-child {
     font-size: 13px;
 
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.actionContainer ***REMOVED***
+.actionContainer {
   display: flex;
   justify-content: flex-end;
-***REMOVED***
+}
 
-.frame ***REMOVED***
+.frame {
   width: 70px;
   height: 36px;
   margin: auto 0;
@@ -54,21 +54,21 @@
   border: 1px solid rgba(28,93,231,0.1);
   border-radius: 3px;
   white-space: nowrap;
-  > img ***REMOVED***
+  > img {
     max-height: 36px;
     vertical-align: baseline;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.helper ***REMOVED***
+.helper {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
-***REMOVED***
+}
 
-.icoWrapper ***REMOVED***
+.icoWrapper {
   display: flex;
   height: 100%;
   flex-direction: column;
   justify-content: space-around;
-***REMOVED***
+}

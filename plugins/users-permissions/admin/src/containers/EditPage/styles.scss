@@ -1,40 +1,40 @@
-.container ***REMOVED***
+.container {
   padding-top: 18px;
-***REMOVED***
+}
 
-.containerFluid ***REMOVED***
+.containerFluid {
   padding: 18px 30px;
-  > div:first-child ***REMOVED***
+  > div:first-child {
     max-height: 33px;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.form ***REMOVED***
+.form {
   padding-top: 2rem;
-***REMOVED***
+}
 
-.main_wrapper***REMOVED***
+.main_wrapper{
   background: #ffffff;
   padding: 22px 28px 0px;
   border-radius: 2px;
   box-shadow: 0 2px 4px #E3E9F3;
-***REMOVED***
+}
 
-.separator ***REMOVED***
+.separator {
   margin-top: 15px;
   border-top: 1px solid #F6F6F6;
-***REMOVED***
+}
 
-.titleContainer ***REMOVED***
+.titleContainer {
   font-size: 18px;
   font-weight: bold;
   line-height: 18px;
-***REMOVED***
+}
 
-.loaderWrapper ***REMOVED***
+.loaderWrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 260px;
   margin: auto;
-***REMOVED***
+}

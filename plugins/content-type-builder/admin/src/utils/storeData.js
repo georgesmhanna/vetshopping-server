@@ -6,74 +6,74 @@ const parse = JSON.parse;
 const stringify = JSON.stringify;
 /* eslint-disable consistent-return */
 
-export const storeData = ***REMOVED***
-  clearAppStorage() ***REMOVED***
-    if (localStorage) ***REMOVED***
+export const storeData = {
+  clearAppStorage() {
+    if (localStorage) {
       localStorage.removeItem(CONTENT_TYPE);
       localStorage.removeItem(IS_MODEL_TEMPORARY);
       localStorage.removeItem(MENU);
       return localStorage.removeItem(MODEL);
-***REMOVED***
-***REMOVED***,
+    }
+  },
 
-  clearContentType(contentType = CONTENT_TYPE) ***REMOVED***
-    if (localStorage) ***REMOVED***
+  clearContentType(contentType = CONTENT_TYPE) {
+    if (localStorage) {
       return localStorage.removeItem(contentType);
-***REMOVED***
-***REMOVED***,
+    }
+  },
 
-  clearMenu(menu = MENU) ***REMOVED***
-    if (localStorage) ***REMOVED***
+  clearMenu(menu = MENU) {
+    if (localStorage) {
       return localStorage.removeItem(menu);
-***REMOVED***
-***REMOVED***,
+    }
+  },
 
-  getContentType(contentType = CONTENT_TYPE) ***REMOVED***
+  getContentType(contentType = CONTENT_TYPE) {
     return parse(localStorage.getItem(contentType)) || null;
-***REMOVED***,
+  },
 
 
-  getIsModelTemporary(isModelTemporay = IS_MODEL_TEMPORARY) ***REMOVED***
+  getIsModelTemporary(isModelTemporay = IS_MODEL_TEMPORARY) {
     return localStorage.getItem(isModelTemporay) || null;
-***REMOVED***,
+  },
 
-  getMenu(menu = MENU) ***REMOVED***
+  getMenu(menu = MENU) {
     return parse(localStorage.getItem(menu)) || null;
-***REMOVED***,
+  },
 
-  getModel(model = MODEL) ***REMOVED***
+  getModel(model = MODEL) {
     return parse(localStorage.getItem(model)) || null;
-***REMOVED***,
+  },
 
-  setContentType(data, contentType = CONTENT_TYPE) ***REMOVED***
-    if (localStorage) ***REMOVED***
+  setContentType(data, contentType = CONTENT_TYPE) {
+    if (localStorage) {
       return localStorage.setItem(contentType, stringify(data));
-***REMOVED***
+    }
 
     return strapi.notification.info('content-type-builder.notification.info.optimized');
-***REMOVED***,
+  },
 
-  setMenu(data, menu = MENU) ***REMOVED***
-    if (localStorage) ***REMOVED***
+  setMenu(data, menu = MENU) {
+    if (localStorage) {
       return localStorage.setItem(menu, stringify(data));
-***REMOVED***
+    }
 
     return strapi.notification.info('content-type-builder.notification.info.optimized');
-***REMOVED***,
+  },
 
-  setModel(data, model = MODEL) ***REMOVED***
-    if (localStorage) ***REMOVED***
+  setModel(data, model = MODEL) {
+    if (localStorage) {
       return localStorage.setItem(model, stringify(data));
-***REMOVED***
+    }
 
     return strapi.notification.info('content-type-builder.notification.info.optimized');
-***REMOVED***,
+  },
 
-  setIsModelTemporary(isModelTemporay = IS_MODEL_TEMPORARY) ***REMOVED***
-    if (localStorage) ***REMOVED***
+  setIsModelTemporary(isModelTemporay = IS_MODEL_TEMPORARY) {
+    if (localStorage) {
       return localStorage.setItem(isModelTemporay, true);
-***REMOVED***
+    }
 
     return strapi.notification.info('content-type-builder.notification.info.optimized');
-***REMOVED***,
-***REMOVED***;
+  },
+};

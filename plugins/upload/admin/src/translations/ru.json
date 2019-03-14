@@ -1,4 +1,4 @@
-***REMOVED***
+{
     "ConfigPage.title": "Загрузка файлов - Настройки",
     "ConfigPage.description": "Настройте плагин загрузок",
   
@@ -9,8 +9,8 @@
   
     "EmptyLi.message": "Нет загруженных файлов",
   
-    "EntriesNumber.number": "***REMOVED***number***REMOVED*** файл найден",
-    "EntriesNumber.number.plural": "Количество найденных файлов: ***REMOVED***number***REMOVED***",
+    "EntriesNumber.number": "{number} файл найден",
+    "EntriesNumber.number.plural": "Количество найденных файлов: {number}",
   
     "HomePage.title": "Загрузка файлов",
     "HomePage.description": "Посмотреть все загруженные файлы",
@@ -25,13 +25,13 @@
     "ListHeader.size": "Размер",
     "ListHeader.related": "Связан с",
   
-    "PluginInputFile.text": "Претащите файлы на эту область или ***REMOVED***link***REMOVED*** локальный файл",
+    "PluginInputFile.text": "Претащите файлы на эту область или {link} локальный файл",
     "PluginInputFile.link": "выберите",
     "PluginInputFile.loading": "Ваши файлы загружаются...",
   
     "notification.config.success": "Настройки обновлены",
     "notification.delete.success": "Файл удален",
     "notification.dropFile.success": "Ваш файл загружен",
-    "notification.dropFiles.success": "Файлов загружено: ***REMOVED***number***REMOVED***"
-***REMOVED***
+    "notification.dropFiles.success": "Файлов загружено: {number}"
+  }
   

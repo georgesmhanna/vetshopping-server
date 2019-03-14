@@ -1,6 +1,6 @@
 // Sizing shortcuts
 
-@mixin size($width, $height: $width) ***REMOVED***
+@mixin size($width, $height: $width) {
   width: $width;
   height: $height;
-***REMOVED***
+}

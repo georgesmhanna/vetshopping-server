@@ -5,24 +5,24 @@
 */
 
 import React from 'react';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** has, map ***REMOVED*** from 'lodash';
+import { FormattedMessage } from 'react-intl';
+import { has, map } from 'lodash';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Plugin from 'components/Plugin';
 
 import styles from './styles.scss';
 
-class Plugins extends React.Component ***REMOVED***
-  state = ***REMOVED*** pluginSelected: '' ***REMOVED***;
+class Plugins extends React.Component {
+  state = { pluginSelected: '' };
 
-  changePluginSelected = (name) => this.setState(***REMOVED*** pluginSelected: name ***REMOVED***);
+  changePluginSelected = (name) => this.setState({ pluginSelected: name });
 
-  render() ***REMOVED***
+  render() {
     return (
-      <div className=***REMOVED***cn('col-md-7', styles.wrapper)***REMOVED***>
-        <div className=***REMOVED***styles.plugins***REMOVED***>
-          <div className=***REMOVED***styles.headerContainer***REMOVED***>
+      <div className={cn('col-md-7', styles.wrapper)}>
+        <div className={styles.plugins}>
+          <div className={styles.headerContainer}>
             <div>
               <FormattedMessage id="users-permissions.Plugins.header.title" />
             </div>
@@ -30,29 +30,29 @@ class Plugins extends React.Component ***REMOVED***
               <FormattedMessage id="users-permissions.Plugins.header.description" />
             </div>
           </div>
-          <div className=***REMOVED***cn(styles.pluginsContainer, !has(this.props.plugins, 'application') && styles.pluginsGradient)***REMOVED***>
-            ***REMOVED***map(Object.keys(this.props.plugins).sort(), (plugin) => (
+          <div className={cn(styles.pluginsContainer, !has(this.props.plugins, 'application') && styles.pluginsGradient)}>
+            {map(Object.keys(this.props.plugins).sort(), (plugin) => (
               <Plugin
-                changePluginSelected=***REMOVED***this.changePluginSelected***REMOVED***
-                key=***REMOVED***plugin***REMOVED***
-                name=***REMOVED***plugin***REMOVED***
-                plugin=***REMOVED***this.props.plugins[plugin]***REMOVED***
-                pluginSelected=***REMOVED***this.state.pluginSelected***REMOVED***
+                changePluginSelected={this.changePluginSelected}
+                key={plugin}
+                name={plugin}
+                plugin={this.props.plugins[plugin]}
+                pluginSelected={this.state.pluginSelected}
               />
-            ))***REMOVED***
+            ))}
           </div>
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-Plugins.defaultProps = ***REMOVED***
-  plugins: ***REMOVED******REMOVED***,
-***REMOVED***;
+Plugins.defaultProps = {
+  plugins: {},
+};
 
-Plugins.propTypes = ***REMOVED***
+Plugins.propTypes = {
   plugins: PropTypes.object,
-***REMOVED***;
+};
 
 export default Plugins;

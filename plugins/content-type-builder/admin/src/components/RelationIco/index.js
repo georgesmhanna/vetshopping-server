@@ -9,28 +9,28 @@ import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-class RelationIco extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  handleClick = () => ***REMOVED***
-    const target = ***REMOVED***
+class RelationIco extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  handleClick = () => {
+    const target = {
       name: 'params.nature',
       value: this.props.name,
       type: 'string',
-***REMOVED***;
+    };
 
-    this.props.onChange(***REMOVED*** target ***REMOVED***);
-***REMOVED***
+    this.props.onChange({ target });
+  }
 
-  render() ***REMOVED***
+  render() {
     return (
-      <img src=***REMOVED***this.props.ico***REMOVED*** alt="ico" onClick=***REMOVED***this.handleClick***REMOVED*** className=***REMOVED***styles.relationIco***REMOVED*** />
+      <img src={this.props.ico} alt="ico" onClick={this.handleClick} className={styles.relationIco} />
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-RelationIco.propTypes = ***REMOVED***
+RelationIco.propTypes = {
   ico: PropTypes.any.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
 export default RelationIco;

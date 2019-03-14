@@ -1,44 +1,44 @@
-***REMOVED***
+{
   "connection": "default",
   "collectionName": "order",
-  "info": ***REMOVED***
+  "info": {
     "name": "order",
     "description": ""
-***REMOVED***,
-  "options": ***REMOVED***
+  },
+  "options": {
     "timestamps": true
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "user": ***REMOVED***
+  },
+  "attributes": {
+    "user": {
       "model": "user",
       "via": "order",
       "plugin": "users-permissions"
-***REMOVED***,
-    "orderNo": ***REMOVED***
+    },
+    "orderNo": {
       "default": "",
       "type": "integer"
-***REMOVED***,
-    "orderDate": ***REMOVED***
+    },
+    "orderDate": {
       "default": "",
       "type": "date"
-***REMOVED***,
-    "cart": ***REMOVED***
+    },
+    "cart": {
       "default": "",
       "type": "json"
-***REMOVED***,
-    "deliveryMethod": ***REMOVED***
+    },
+    "deliveryMethod": {
       "default": "",
       "type": "json"
-***REMOVED***,
-    "paymentMethod": ***REMOVED***
+    },
+    "paymentMethod": {
       "default": "",
       "type": "string"
-***REMOVED***,
-    "address": ***REMOVED***
+    },
+    "address": {
       "default": "",
       "type": "json"
-***REMOVED***,
-    "status": ***REMOVED***
+    },
+    "status": {
       "default": "",
       "type": "enumeration",
       "enum": [
@@ -47,20 +47,20 @@
         "On Hold",
         "Completed"
       ]
-***REMOVED***,
-    "invoiceScan": ***REMOVED***
+    },
+    "invoiceScan": {
       "model": "file",
       "via": "related",
       "plugin": "upload",
       "required": false
-***REMOVED***,
-    "total": ***REMOVED***
+    },
+    "total": {
       "default": "",
       "type": "decimal"
-***REMOVED***,
-    "subTotal": ***REMOVED***
+    },
+    "subTotal": {
       "default": "",
       "type": "decimal"
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

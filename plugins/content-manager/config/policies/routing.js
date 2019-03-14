@@ -1,59 +1,59 @@
 const _ = require('lodash');
 
-module.exports = async (ctx, next) => ***REMOVED***
-  const ***REMOVED*** source ***REMOVED*** = ctx.request.query;
+module.exports = async (ctx, next) => {
+  const { source } = ctx.request.query;
 
-  if (source && _.get(strapi.plugins, [source, 'config', 'layout', ctx.params.model, 'actions', ctx.request.route.action])) ***REMOVED***
+  if (source && _.get(strapi.plugins, [source, 'config', 'layout', ctx.params.model, 'actions', ctx.request.route.action])) {
     const [ controller, action ] = _.get(strapi.plugins, [source, 'config', 'layout', ctx.params.model, 'actions', ctx.request.route.action], []).split('.');
 
-    if (controller && action) ***REMOVED***
+    if (controller && action) {
       // Redirect to specific controller.
-      if (ctx.request.body.hasOwnProperty('fields') && ctx.request.body.hasOwnProperty('files')) ***REMOVED***
-        let ***REMOVED***files, fields***REMOVED*** = ctx.request.body;
+      if (ctx.request.body.hasOwnProperty('fields') && ctx.request.body.hasOwnProperty('files')) {
+        let {files, fields} = ctx.request.body;
 
-        const parser = (value) => ***REMOVED***
-          try ***REMOVED***
+        const parser = (value) => {
+          try {
             value = JSON.parse(value);
-    ***REMOVED*** catch (e) ***REMOVED***
+          } catch (e) {
             // Silent.
-    ***REMOVED***
+          }
 
           return _.isArray(value) ? value.map(obj => parser(obj)) : value;
-  ***REMOVED***;
+        };
 
-        fields = Object.keys(fields).reduce((acc, current) => ***REMOVED***
+        fields = Object.keys(fields).reduce((acc, current) => {
           acc[current] = parser(fields[current]);
 
           return acc;
-  ***REMOVED*** ***REMOVED******REMOVED***);
+        }, {});
 
         ctx.request.body = fields;
 
         await strapi.plugins[source].controllers[controller.toLowerCase()][action](ctx);
         const resBody = ctx.body;
 
-        await Promise.all(Object.keys(files).map(async field => ***REMOVED***
-          ctx.request.body = ***REMOVED***
-            files: ***REMOVED***
+        await Promise.all(Object.keys(files).map(async field => {
+          ctx.request.body = {
+            files: {
               files: files[field]
-      ***REMOVED***
-            fields: ***REMOVED***
+            },
+            fields: {
               refId: resBody.id || resBody._id,
               ref: ctx.params.model,
               source,
               field
-      ***REMOVED***
-    ***REMOVED***;
+            }
+          };
 
           return strapi.plugins.upload.controllers.upload.upload(ctx);
-  ***REMOVED***));
+        }));
 
         return ctx.send(resBody);
-***REMOVED***
+      }
 
       return await strapi.plugins[source].controllers[controller.toLowerCase()][action](ctx);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
   await next();
-***REMOVED***;
+};

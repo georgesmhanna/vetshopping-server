@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "components.DownloadDb.download": "正在安裝中...",
   "components.DownloadDb.text": "這會需要幾分鐘的時間，感謝您的耐心。",
   "plugin.description.short": "只需要幾秒鐘的時間就可以設定好您的專案",
@@ -651,4 +651,4 @@
   "language.zu_ZA": "isiZulu (iNingizimu Afrika)",
 
   "pageNotFound": "Page not found"
-***REMOVED***
+}

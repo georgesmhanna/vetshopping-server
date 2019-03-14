@@ -9,113 +9,113 @@
 /* eslint-disable no-useless-escape */
 const crypto = require('crypto');
 const _ = require('lodash');
-const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]***REMOVED***1,3***REMOVED***\.[0-9]***REMOVED***1,3***REMOVED***\.[0-9]***REMOVED***1,3***REMOVED***\.[0-9]***REMOVED***1,3***REMOVED***\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]***REMOVED***2,***REMOVED***))$/;
+const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-module.exports = ***REMOVED***
-  callback: async (ctx) => ***REMOVED***
+module.exports = {
+  callback: async (ctx) => {
     const provider = ctx.params.provider || 'local';
     const params = ctx.request.body;
 
-    const store = await strapi.store(***REMOVED***
+    const store = await strapi.store({
       environment: '',
       type: 'plugin',
       name: 'users-permissions'
-***REMOVED***);
+    });
 
-    if (provider === 'local') ***REMOVED***
-      if (!_.get(await store.get(***REMOVED***key: 'grant'***REMOVED***), 'email.enabled') && !ctx.request.admin) ***REMOVED***
+    if (provider === 'local') {
+      if (!_.get(await store.get({key: 'grant'}), 'email.enabled') && !ctx.request.admin) {
         return ctx.badRequest(null, 'This provider is disabled.');
-***REMOVED***
+      }
 
       // The identifier is required.
-      if (!params.identifier) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.email.provide'***REMOVED***]***REMOVED***] : 'Please provide your username or your e-mail.');
-***REMOVED***
+      if (!params.identifier) {
+        return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.email.provide'}]}] : 'Please provide your username or your e-mail.');
+      }
 
       // The password is required.
-      if (!params.password) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.password.provide'***REMOVED***]***REMOVED***] : 'Please provide your password.');
-***REMOVED***
+      if (!params.password) {
+        return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.password.provide'}]}] : 'Please provide your password.');
+      }
 
-      const query = ***REMOVED******REMOVED***;
+      const query = {};
 
       // Check if the provided identifier is an email or not.
       const isEmail = emailRegExp.test(params.identifier);
 
       // Set the identifier to the appropriate query field.
-      if (isEmail) ***REMOVED***
+      if (isEmail) {
         query.email = params.identifier.toLowerCase();
-***REMOVED*** else ***REMOVED***
+      } else {
         query.username = params.identifier;
-***REMOVED***
+      }
 
       // Check if the user exists.
       const user = await strapi.query('user', 'users-permissions').findOne(query, ['role', 'address']);
 
-      if (_.get(await store.get(***REMOVED***key: 'advanced'***REMOVED***), 'email_confirmation') && user && user.confirmed !== true) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.confirmed'***REMOVED***]***REMOVED***] : 'Your account email is not confirmed.');
-***REMOVED***
+      if (_.get(await store.get({key: 'advanced'}), 'email_confirmation') && user && user.confirmed !== true) {
+        return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.confirmed'}]}] : 'Your account email is not confirmed.');
+      }
 
-      if (!user) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.invalid'***REMOVED***]***REMOVED***] : 'Identifier or password invalid.');
-***REMOVED***
+      if (!user) {
+        return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.invalid'}]}] : 'Identifier or password invalid.');
+      }
 
-      if (user.blocked === true) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.blocked'***REMOVED***]***REMOVED***] : 'Your account has been blocked by the administrator.');
-***REMOVED***
+      if (user.blocked === true) {
+        return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.blocked'}]}] : 'Your account has been blocked by the administrator.');
+      }
 
-      if (user.role.type !== 'root' && ctx.request.admin) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.noAdminAccess'***REMOVED***]***REMOVED***] : `You're not an administrator.`);
-***REMOVED***
+      if (user.role.type !== 'root' && ctx.request.admin) {
+        return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.noAdminAccess'}]}] : `You're not an administrator.`);
+      }
 
       // The user never authenticated with the `local` provider.
-      if (!user.password) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.password.local'***REMOVED***]***REMOVED***] : 'This user never set a local password, please login thanks to the provider used during account creation.');
-***REMOVED***
+      if (!user.password) {
+        return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.password.local'}]}] : 'This user never set a local password, please login thanks to the provider used during account creation.');
+      }
 
       const validPassword = strapi.plugins['users-permissions'].services.user.validatePassword(params.password, user.password);
 
-      if (!validPassword) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.invalid'***REMOVED***]***REMOVED***] : 'Identifier or password invalid.');
-***REMOVED*** else ***REMOVED***
-        ctx.send(***REMOVED***
+      if (!validPassword) {
+        return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.invalid'}]}] : 'Identifier or password invalid.');
+      } else {
+        ctx.send({
           jwt: strapi.plugins['users-permissions'].services.jwt.issue(_.pick(user.toJSON ? user.toJSON() : user, ['_id', 'id'])),
           user: _.omit(user.toJSON ? user.toJSON() : user, ['password', 'resetPasswordToken'])
-  ***REMOVED***);
-***REMOVED***
-***REMOVED*** else ***REMOVED***
-      if (!_.get(await store.get(***REMOVED***key: 'grant'***REMOVED***), [provider, 'enabled'])) ***REMOVED***
+        });
+      }
+    } else {
+      if (!_.get(await store.get({key: 'grant'}), [provider, 'enabled'])) {
         return ctx.badRequest(null, 'This provider is disabled.');
-***REMOVED***
+      }
 
       // Connect the user thanks to the third-party provider.
       let user, error;
-      try ***REMOVED***
+      try {
         [user, error] = await strapi.plugins['users-permissions'].services.providers.connect(provider, ctx.query);
-***REMOVED*** catch ([user, error]) ***REMOVED***
+      } catch ([user, error]) {
         return ctx.badRequest(null, (error === 'array') ? (ctx.request.admin ? error[0] : error[1]) : error);
-***REMOVED***
+      }
 
-      if (!user) ***REMOVED***
+      if (!user) {
         return ctx.badRequest(null, (error === 'array') ? (ctx.request.admin ? error[0] : error[1]) : error);
-***REMOVED***
+      }
 
-      ctx.send(***REMOVED***
+      ctx.send({
         jwt: strapi.plugins['users-permissions'].services.jwt.issue(_.pick(user, ['_id', 'id'])),
         user: _.omit(user.toJSON ? user.toJSON() : user, ['password', 'resetPasswordToken'])
-***REMOVED***);
-***REMOVED***
-***REMOVED***,
+      });
+    }
+  },
 
-  changePassword: async (ctx) => ***REMOVED***
-    const params = _.assign(***REMOVED******REMOVED***, ctx.request.body, ctx.params);
+  changePassword: async (ctx) => {
+    const params = _.assign({}, ctx.request.body, ctx.params);
 
-    if (params.password && params.passwordConfirmation && params.password === params.passwordConfirmation && params.code) ***REMOVED***
-      const user = await strapi.query('user', 'users-permissions').findOne(***REMOVED***resetPasswordToken: params.code***REMOVED***);
+    if (params.password && params.passwordConfirmation && params.password === params.passwordConfirmation && params.code) {
+      const user = await strapi.query('user', 'users-permissions').findOne({resetPasswordToken: params.code});
 
-      if (!user) ***REMOVED***
-        return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.code.provide'***REMOVED***]***REMOVED***] : 'Incorrect code provided.');
-***REMOVED***
+      if (!user) {
+        return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.code.provide'}]}] : 'Incorrect code provided.');
+      }
 
       // Delete the current code
       user.resetPasswordToken = null;
@@ -128,55 +128,55 @@ module.exports = ***REMOVED***
       // Update the user.
       await strapi.query('user', 'users-permissions').update(data);
 
-      ctx.send(***REMOVED***
+      ctx.send({
         jwt: strapi.plugins['users-permissions'].services.jwt.issue(_.pick(user.toJSON ? user.toJSON() : user, ['_id', 'id'])),
         user: _.omit(user.toJSON ? user.toJSON() : user, ['password', 'resetPasswordToken'])
-***REMOVED***);
-***REMOVED*** else if (params.password && params.passwordConfirmation && params.password !== params.passwordConfirmation) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.password.matching'***REMOVED***]***REMOVED***] : 'Passwords do not match.');
-***REMOVED*** else ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.params.provide'***REMOVED***]***REMOVED***] : 'Incorrect params provided.');
-***REMOVED***
-***REMOVED***,
+      });
+    } else if (params.password && params.passwordConfirmation && params.password !== params.passwordConfirmation) {
+      return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.password.matching'}]}] : 'Passwords do not match.');
+    } else {
+      return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.params.provide'}]}] : 'Incorrect params provided.');
+    }
+  },
 
-  connect: async (ctx, next) => ***REMOVED***
-    const grantConfig = await strapi.store(***REMOVED***
+  connect: async (ctx, next) => {
+    const grantConfig = await strapi.store({
       environment: '',
       type: 'plugin',
       name: 'users-permissions',
       key: 'grant'
-***REMOVED***).get();
+    }).get();
 
-    _.defaultsDeep(grantConfig, ***REMOVED***
-      server: ***REMOVED***
+    _.defaultsDeep(grantConfig, {
+      server: {
         protocol: 'http',
-        host: `$***REMOVED***strapi.config.currentEnvironment.server.host***REMOVED***:$***REMOVED***strapi.config.currentEnvironment.server.port***REMOVED***`
-***REMOVED***
-***REMOVED***);
+        host: `${strapi.config.currentEnvironment.server.host}:${strapi.config.currentEnvironment.server.port}`
+      }
+    });
 
     const provider = process.platform === 'win32' ? ctx.request.url.split('\\')[2] : ctx.request.url.split('/')[2];
     const config = grantConfig[provider];
 
-    if (!_.get(config, 'enabled')) ***REMOVED***
+    if (!_.get(config, 'enabled')) {
       return ctx.badRequest(null, 'This provider is disabled.');
-***REMOVED***
+    }
 
     const Grant = require('grant-koa');
     const grant = new Grant(grantConfig);
 
     return strapi.koaMiddlewares.compose(grant.middleware)(ctx, next);
-***REMOVED***,
+  },
 
-  forgotPassword: async (ctx) => ***REMOVED***
-    const ***REMOVED***email, url***REMOVED*** = ctx.request.body;
+  forgotPassword: async (ctx) => {
+    const {email, url} = ctx.request.body;
 
     // Find the user user thanks to his email.
-    const user = await strapi.query('user', 'users-permissions').findOne(***REMOVED***email***REMOVED***);
+    const user = await strapi.query('user', 'users-permissions').findOne({email});
 
     // User not found.
-    if (!user) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.user.not-exist'***REMOVED***]***REMOVED***] : 'This email does not exist.');
-***REMOVED***
+    if (!user) {
+      return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.user.not-exist'}]}] : 'This email does not exist.');
+    }
 
     // Generate random token.
     const resetPasswordToken = crypto.randomBytes(64).toString('hex');
@@ -184,35 +184,35 @@ module.exports = ***REMOVED***
     // Set the property code.
     user.resetPasswordToken = resetPasswordToken;
 
-    const settings = (await strapi.store(***REMOVED***
+    const settings = (await strapi.store({
       environment: '',
       type: 'plugin',
       name: 'users-permissions'
-***REMOVED***).get(***REMOVED***key: 'email'***REMOVED***))['reset_password'].options;
+    }).get({key: 'email'}))['reset_password'].options;
 
-    settings.message = await strapi.plugins['users-permissions'].services.userspermissions.template(settings.message, ***REMOVED***
+    settings.message = await strapi.plugins['users-permissions'].services.userspermissions.template(settings.message, {
       URL: url,
       USER: _.omit(user.toJSON ? user.toJSON() : user, ['password', 'resetPasswordToken', 'role', 'provider']),
       TOKEN: resetPasswordToken
-***REMOVED***);
+    });
 
-    settings.object = await strapi.plugins['users-permissions'].services.userspermissions.template(settings.object, ***REMOVED***
+    settings.object = await strapi.plugins['users-permissions'].services.userspermissions.template(settings.object, {
       USER: _.omit(user.toJSON ? user.toJSON() : user, ['password', 'resetPasswordToken', 'role', 'provider'])
-***REMOVED***);
+    });
 
-    try ***REMOVED***
+    try {
       // Send an email to the user.
-      await strapi.plugins['email'].services.email.send(***REMOVED***
+      await strapi.plugins['email'].services.email.send({
         to: user.email,
-        from: (settings.from.email || settings.from.name) ? `"$***REMOVED***settings.from.name***REMOVED***" <$***REMOVED***settings.from.email***REMOVED***>` : undefined,
+        from: (settings.from.email || settings.from.name) ? `"${settings.from.name}" <${settings.from.email}>` : undefined,
         replyTo: settings.response_email,
         subject: settings.object,
         text: settings.message,
         html: settings.message
-***REMOVED***);
-***REMOVED*** catch (err) ***REMOVED***
+      });
+    } catch (err) {
       return ctx.badRequest(null, err);
-***REMOVED***
+    }
 
     // Remove relations data to update user code.
     const data = _.omit(user, strapi.plugins['users-permissions'].models.user.associations.map(ast => ast.alias));
@@ -220,143 +220,143 @@ module.exports = ***REMOVED***
     // Update the user.
     await strapi.query('user', 'users-permissions').update(data);
 
-    ctx.send(***REMOVED***ok: true***REMOVED***);
-***REMOVED***,
+    ctx.send({ok: true});
+  },
 
-  register: async (ctx) => ***REMOVED***
-    const pluginStore = await strapi.store(***REMOVED***
+  register: async (ctx) => {
+    const pluginStore = await strapi.store({
       environment: '',
       type: 'plugin',
       name: 'users-permissions'
-***REMOVED***);
+    });
 
-    const settings = await pluginStore.get(***REMOVED***
+    const settings = await pluginStore.get({
       key: 'advanced'
-***REMOVED***);
+    });
 
-    if (!settings.allow_register) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.advanced.allow_register'***REMOVED***]***REMOVED***] : 'Register action is currently disabled.');
-***REMOVED***
+    if (!settings.allow_register) {
+      return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.advanced.allow_register'}]}] : 'Register action is currently disabled.');
+    }
 
-    const params = _.assign(ctx.request.body, ***REMOVED***
+    const params = _.assign(ctx.request.body, {
       provider: 'local'
-***REMOVED***);
+    });
 
     // Password is required.
-    if (!params.password) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.password.provide'***REMOVED***]***REMOVED***] : 'Please provide your password.');
-***REMOVED***
+    if (!params.password) {
+      return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.password.provide'}]}] : 'Please provide your password.');
+    }
 
     // Throw an error if the password selected by the user
     // contains more than two times the symbol '$'.
-    if (strapi.plugins['users-permissions'].services.user.isHashed(params.password)) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.password.format'***REMOVED***]***REMOVED***] : 'Your password cannot contain more than three times the symbol `$`.');
-***REMOVED***
+    if (strapi.plugins['users-permissions'].services.user.isHashed(params.password)) {
+      return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.password.format'}]}] : 'Your password cannot contain more than three times the symbol `$`.');
+    }
 
     // Retrieve root role.
-    const root = await strapi.query('role', 'users-permissions').findOne(***REMOVED***type: 'root'***REMOVED***, ['users']);
+    const root = await strapi.query('role', 'users-permissions').findOne({type: 'root'}, ['users']);
     const users = root.users || [];
 
     // First, check if the user is the first one to register as admin.
     const hasAdmin = users.length > 0;
 
     // Check if the user is the first to register
-    const role = hasAdmin === false ? root : await strapi.query('role', 'users-permissions').findOne(***REMOVED***type: settings.default_role***REMOVED***, []);
+    const role = hasAdmin === false ? root : await strapi.query('role', 'users-permissions').findOne({type: settings.default_role}, []);
 
-    if (!role) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.role.notFound'***REMOVED***]***REMOVED***] : 'Impossible to find the root role.');
-***REMOVED***
+    if (!role) {
+      return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.role.notFound'}]}] : 'Impossible to find the root role.');
+    }
 
     // Check if the provided email is valid or not.
     const isEmail = emailRegExp.test(params.email);
 
-    if (isEmail) ***REMOVED***
+    if (isEmail) {
       params.email = params.email.toLowerCase();
-***REMOVED***
+    }
 
     params.role = role._id || role.id;
     params.password = await strapi.plugins['users-permissions'].services.user.hashPassword(params);
 
-    const user = await strapi.query('user', 'users-permissions').findOne(***REMOVED***
+    const user = await strapi.query('user', 'users-permissions').findOne({
       email: params.email
-***REMOVED***);
+    });
 
-    if (user && user.provider === params.provider) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.email.taken'***REMOVED***]***REMOVED***] : 'Email is already taken.');
-***REMOVED***
+    if (user && user.provider === params.provider) {
+      return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.email.taken'}]}] : 'Email is already taken.');
+    }
 
-    if (user && user.provider !== params.provider && settings.unique_email) ***REMOVED***
-      return ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: 'Auth.form.error.email.taken'***REMOVED***]***REMOVED***] : 'Email is already taken.');
-***REMOVED***
+    if (user && user.provider !== params.provider && settings.unique_email) {
+      return ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: 'Auth.form.error.email.taken'}]}] : 'Email is already taken.');
+    }
 
-    try ***REMOVED***
-      if (!settings.email_confirmation) ***REMOVED***
+    try {
+      if (!settings.email_confirmation) {
         params.confirmed = true;
-***REMOVED***
+      }
 
       const user = await strapi.query('user', 'users-permissions').create(params);
 
       const jwt = strapi.plugins['users-permissions'].services.jwt.issue(_.pick(user.toJSON ? user.toJSON() : user, ['_id', 'id']));
 
-      if (settings.email_confirmation) ***REMOVED***
-        const storeEmail = (await pluginStore.get(***REMOVED***
+      if (settings.email_confirmation) {
+        const storeEmail = (await pluginStore.get({
           key: 'email'
-  ***REMOVED***)) || ***REMOVED******REMOVED***;
+        })) || {};
 
-        const settings = storeEmail['email_confirmation'] ? storeEmail['email_confirmation'].options : ***REMOVED******REMOVED***;
+        const settings = storeEmail['email_confirmation'] ? storeEmail['email_confirmation'].options : {};
 
-        const url = (strapi.config.currentEnvironment.server.port !== 0) ? `http://$***REMOVED***strapi.config.currentEnvironment.server.host***REMOVED***:$***REMOVED***strapi.config.currentEnvironment.server.port***REMOVED***/auth/email-confirmation`
-          : `http://$***REMOVED***strapi.config.currentEnvironment.server.host***REMOVED***/auth/email-confirmation`;
-        settings.message = await strapi.plugins['users-permissions'].services.userspermissions.template(settings.message, ***REMOVED***
+        const url = (strapi.config.currentEnvironment.server.port !== 0) ? `http://${strapi.config.currentEnvironment.server.host}:${strapi.config.currentEnvironment.server.port}/auth/email-confirmation`
+          : `http://${strapi.config.currentEnvironment.server.host}/auth/email-confirmation`;
+        settings.message = await strapi.plugins['users-permissions'].services.userspermissions.template(settings.message, {
           URL: url,
           USER: _.omit(user.toJSON ? user.toJSON() : user, ['password', 'resetPasswordToken', 'role', 'provider']),
           CODE: jwt
-  ***REMOVED***);
+        });
 
-        settings.object = await strapi.plugins['users-permissions'].services.userspermissions.template(settings.object, ***REMOVED***
+        settings.object = await strapi.plugins['users-permissions'].services.userspermissions.template(settings.object, {
           USER: _.omit(user.toJSON ? user.toJSON() : user, ['password', 'resetPasswordToken', 'role', 'provider'])
-  ***REMOVED***);
+        });
 
-        try ***REMOVED***
+        try {
           // Send an email to the user.
-          await strapi.plugins['email'].services.email.send(***REMOVED***
+          await strapi.plugins['email'].services.email.send({
             to: user.email,
-            from: (settings.from.email && settings.from.name) ? `"$***REMOVED***settings.from.name***REMOVED***" <$***REMOVED***settings.from.email***REMOVED***>` : undefined,
+            from: (settings.from.email && settings.from.name) ? `"${settings.from.name}" <${settings.from.email}>` : undefined,
             replyTo: settings.response_email,
             subject: settings.object,
             text: settings.message,
             html: settings.message
-    ***REMOVED***);
-  ***REMOVED*** catch (err) ***REMOVED***
+          });
+        } catch (err) {
           return ctx.badRequest(null, err);
-  ***REMOVED***
-***REMOVED***
+        }
+      }
 
-      ctx.send(***REMOVED***
+      ctx.send({
         jwt,
         user: _.omit(user.toJSON ? user.toJSON() : user, ['password', 'resetPasswordToken'])
-***REMOVED***);
-***REMOVED*** catch (err) ***REMOVED***
+      });
+    } catch (err) {
       const adminError = _.includes(err.message, 'username') ? 'Auth.form.error.username.taken' : 'Auth.form.error.email.taken';
 
-      ctx.badRequest(null, ctx.request.admin ? [***REMOVED***messages: [***REMOVED***id: adminError***REMOVED***]***REMOVED***] : err.message);
-***REMOVED***
-***REMOVED***,
+      ctx.badRequest(null, ctx.request.admin ? [{messages: [{id: adminError}]}] : err.message);
+    }
+  },
 
-  emailConfirmation: async (ctx) => ***REMOVED***
+  emailConfirmation: async (ctx) => {
     const params = ctx.query;
 
     const user = await strapi.plugins['users-permissions'].services.jwt.verify(params.confirmation);
 
-    await strapi.plugins['users-permissions'].services.user.edit(_.pick(user, ['_id', 'id']), ***REMOVED***confirmed: true***REMOVED***);
+    await strapi.plugins['users-permissions'].services.user.edit(_.pick(user, ['_id', 'id']), {confirmed: true});
 
-    const settings = await strapi.store(***REMOVED***
+    const settings = await strapi.store({
       environment: '',
       type: 'plugin',
       name: 'users-permissions',
       key: 'advanced'
-***REMOVED***).get();
+    }).get();
 
     ctx.redirect(settings.email_confirmation_redirection || '/');
-***REMOVED***
-***REMOVED***;
+  }
+};

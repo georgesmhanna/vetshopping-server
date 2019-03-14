@@ -1,4 +1,4 @@
-***REMOVED***
+{
     "app.components.Button.save": "Сохранить",
     "app.components.Button.cancel": "Отменить",
 
@@ -40,7 +40,7 @@
     "app.components.InputFileDetails.originalName": "Первоначальное название:",
     "app.components.InputFileDetails.size": "Размер:",
 
-    "app.components.ImgPreview.hint": "Перетащите файл в эту область или ***REMOVED***browse***REMOVED*** для загрузки файла",
+    "app.components.ImgPreview.hint": "Перетащите файл в эту область или {browse} для загрузки файла",
     "app.components.ImgPreview.hint.browse": "просмотреть",
 
     "app.components.InstallPluginPage.helmet": "Магазин - Плагины",
@@ -69,8 +69,8 @@
     "app.components.ListPluginsPage.title": "Плагины",
     "app.components.ListPluginsPage.description": "Список установленых плагинов.",
     "app.components.listPluginsPage.deletePlugin.error": "Возникла ошибка при установке плагина",
-    "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED*** плагин установлен",
-    "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED*** плагинов установленно",
+    "app.components.listPlugins.title.singular": "{number} плагин установлен",
+    "app.components.listPlugins.title.plural": "{number} плагинов установленно",
     "app.components.listPlugins.title.none": "Нет установленых плагинов",
     "app.components.listPlugins.button": "Добавить новый плагин",
 
@@ -122,7 +122,7 @@
     "components.Input.error.attribute.key.taken": "Это значение уже существует",
     "components.Input.error.attribute.sameKeyAndName": "Не может быть одинаковым",
     "components.Input.error.validation.minSupMax": "Не может быть выше",
-    "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+    "components.Input.error.custom-error": "{errorMessage} ",
 
     "components.ListRow.empty": "Нет данных для отображения.",
 
@@ -137,7 +137,7 @@
     "components.Wysiwyg.ToggleMode.markdown": "Переключить в режим markdown",
     "components.Wysiwyg.ToggleMode.preview": "Переключить в режим предпросмотра",
     "components.WysiwygBottomControls.charactersIndicators": "букв",
-    "components.WysiwygBottomControls.uploadFiles": "Перетащите файлы в эту область, добавляйте из буфер обмена или ***REMOVED***browse***REMOVED***.",
+    "components.WysiwygBottomControls.uploadFiles": "Перетащите файлы в эту область, добавляйте из буфер обмена или {browse}.",
     "components.WysiwygBottomControls.uploadFiles.browse": "выделите их",
     "components.WysiwygBottomControls.fullscreen": "Развернуть",
     "Files Upload": "Загрузка файлов",
@@ -163,4 +163,4 @@
     "request.error.model.unknown": "Модель данных не существует",
     "Users": "Пользователи",
     "Analytics": "Аналитика"
-***REMOVED***
+  }

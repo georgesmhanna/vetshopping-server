@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Modelliere die Datenstruktur deiner API.",
   "plugin.description.long":
     "Modelliere die Datenstruktur deiner API. Lege neue Felder und Beziehungen innerhalb von einer Minute an. Erforderliche Dateien werden automatisch in deinem Projekt angelegt und aktualisiert.",
@@ -85,7 +85,7 @@
 
   "form.contentType.item.connections": "Verbindung",
   "form.contentType.item.name": "Name",
-  "form.contentType.item.name.description": "Der Name des Inhaltstyps sollte Singular sein. ***REMOVED***link***REMOVED***",
+  "form.contentType.item.name.description": "Der Name des Inhaltstyps sollte Singular sein. {link}",
   "form.contentType.item.name.link.description": "Schau dir unsere Dokumentation an.",
   "form.contentType.item.description": "Beschreibung",
   "form.contentType.item.description.placeholder": "Beschreibe deinen Inhaltstyp",
@@ -108,7 +108,7 @@
   "modelPage.contentType.list.relationShipTitle.singular": "Beziehung",
   "modelPage.attribute.relationWith": "Beziehung mit",
 
-  "noTableWarning.description": "Vergiss nicht, die Tabelle `***REMOVED***modelName***REMOVED***` in deiner Datenbank zu erstellen",
+  "noTableWarning.description": "Vergiss nicht, die Tabelle `{modelName}` in deiner Datenbank zu erstellen",
   "noTableWarning.infos": "Mehr Informationen",
 
   "notification.error.message": "Ein Fehler ist aufgetreten",
@@ -176,4 +176,4 @@
   "relation.manyToMany": "hat und gehört zu vielen",
   "relation.attributeName.placeholder": "z.B.: Autor, Kategorie"
 
-***REMOVED***
+}

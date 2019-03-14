@@ -4,13 +4,13 @@
  *
  */
 
-import ***REMOVED***
+import {
   CHANGE_LOCALE,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function changeLocale(languageLocale) ***REMOVED***
-  return ***REMOVED***
+export function changeLocale(languageLocale) {
+  return {
     type: CHANGE_LOCALE,
     locale: languageLocale,
-***REMOVED***;
-***REMOVED***
+  };
+}

@@ -1,7 +1,7 @@
 // Import
 @import "../../styles/variables/variables";
 
-.leftMenu ***REMOVED*** /* stylelint-ignore */
+.leftMenu { /* stylelint-ignore */
   background: $left-menu-bg;
   height: 100vh;
   width: $left-menu-width;
@@ -9,4 +9,4 @@
   position: fixed;
   top: 0;
   left: 0;
-***REMOVED***
+}

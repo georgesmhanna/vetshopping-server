@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the languageToggle state domain
@@ -29,10 +29,10 @@ const makeSelectBlockApp = () => createSelector(
   (appState) => appState.get('blockApp'),
 );
 
-export ***REMOVED***
+export {
   selectApp,
   selectHasUserPlugin,
   selectPlugins,
   makeSelectBlockApp,
   makeSelectShowGlobalAppBlocker,
-***REMOVED***;
+};

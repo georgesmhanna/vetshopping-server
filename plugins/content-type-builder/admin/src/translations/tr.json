@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Servisinizin veri yapısını modelleyin.",
   "plugin.description.long":
     "Servisinizin veri yapısını modelleyin. Bir dakika içinde yeni alanlar ve ilişkiler yaratın. Dosyalar, projenizde otomatik olarak oluşturulur ve güncellenir.",
@@ -89,7 +89,7 @@
 
   "form.contentType.item.connections": "Bağlantı",
   "form.contentType.item.name": "İsim",
-  "form.contentType.item.name.description": "İçerik Türü isimleri tekil olmalıdır: ***REMOVED***link***REMOVED***",
+  "form.contentType.item.name.description": "İçerik Türü isimleri tekil olmalıdır: {link}",
   "form.contentType.item.name.link.description": "Dokümana göz atın",
   "form.contentType.item.description": "Açıklama",
   "form.contentType.item.description.placeholder": "Küçük açıklama yaz...",
@@ -114,7 +114,7 @@
   "modelPage.contentType.list.relationShipTitle.singular": "ilişki",
   "modelPage.attribute.relationWith": "İlişkili",
 
-  "noTableWarning.description": "Veritabanında `***REMOVED***modelName***REMOVED***` tablosunu oluşturmayı unutmayın",
+  "noTableWarning.description": "Veritabanında `{modelName}` tablosunu oluşturmayı unutmayın",
   "noTableWarning.infos": "Daha fazla bilgi",
 
   "notification.error.message": "Bir hata oluştu.",
@@ -181,4 +181,4 @@
   "relation.manyToOne": "Birçok var",
   "relation.manyToMany": "birçok kişiye ait ve ait",
   "relation.attributeName.placeholder": "Örnek: yazar, katagori, etiket"
-***REMOVED***
+}

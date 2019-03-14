@@ -1,53 +1,53 @@
-.containerFluid ***REMOVED*** /* stylelint-disable */
+.containerFluid { /* stylelint-disable */
   position: relative;
   padding: 18px 30px;
-  .modal-content***REMOVED***
+  .modal-content{
     padding: 0;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.row***REMOVED***
+.row{
   padding-bottom: 36px;
-***REMOVED***
+}
 
-.noPadding ***REMOVED***
+.noPadding {
   padding-left: 0 !important;
   padding-right: 0 !important;
-***REMOVED***
+}
 
 
-.wrapper***REMOVED***
+.wrapper{
   position: absolute;
   top: 100px;
   left: 30px;
   width: calc(100% - 60px);
-***REMOVED***
+}
 
-.listPageDropdownWrapper ***REMOVED***
+.listPageDropdownWrapper {
   display: flex;
   justify-content: flex-end;
   font-family: Lato;
   margin-top: -2px;
   -webkit-font-smoothing: antialiased;
   
-  > div ***REMOVED***
+  > div {
     height: 30px;
 
-    > button ***REMOVED***
+    > button {
       padding: 0 10px;
 
-      &:hover ***REMOVED***
+      &:hover {
         cursor: pointer;
-***REMOVED***
-***REMOVED***
+      }
+    }
 
-    button ***REMOVED***
-      &:focus ***REMOVED***
+    button {
+      &:focus {
         outline: 0;
-***REMOVED***
-***REMOVED***
+      }
+    }
 
-    > div ***REMOVED***
+    > div {
       min-width: 230px;
       top: 28px !important; left: 53px !important;
       padding-bottom: 5px !important;
@@ -55,54 +55,54 @@
       border: 1px solid #E3E9F3;
       box-shadow: 0px 2px 4px rgba(227, 233, 243, .5);
 
-      > button ***REMOVED***
-        &:active, :focus ***REMOVED***
+      > button {
+        &:active, :focus {
           background-color: #f7f7f9 !important;
           color: #333740;
           font-weight: 500; 
-  ***REMOVED***
+        }
         
-        &:hover***REMOVED***
+        &:hover{
           cursor: pointer;
-  ***REMOVED***
+        }
 
-        &:not(:first-child) ***REMOVED***
+        &:not(:first-child) {
           padding: 0;
-  ***REMOVED***
+        }
 
-        &:first-of-type***REMOVED***
+        &:first-of-type{
           margin-top: 2px;
-  ***REMOVED***
+        }
 
-        &:first-child ***REMOVED***
+        &:first-child {
           margin-bottom: 2px;
           font-weight: 600;
           font-size: 1.3rem;
   
-          &:hover ***REMOVED***
+          &:hover {
             background-color: #ffffff !important;
-    ***REMOVED***
-          > div ***REMOVED***
-            > span:last-child ***REMOVED***
+          }
+          > div {
+            > span:last-child {
               color: #007EFF;
               font-weight: 400;
               cursor: pointer;
-      ***REMOVED***
-    ***REMOVED***
-  ***REMOVED***
+            }
+          }
+        }
 
-        label***REMOVED***
+        label{
           width: 100%;
           outline: none;
-  ***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+        }
+      }
+    }
+  }
+}
 
-.listPageDropdownWrapperOpen ***REMOVED***
-  > div ***REMOVED***
-    > button ***REMOVED***
+.listPageDropdownWrapperOpen {
+  > div {
+    > button {
       background: #E6F0FB;
       border: 1px solid #AED4FB !important;
       border-radius: 2px;
@@ -110,13 +110,13 @@
       border-bottom-left-radius: 0 !important;
       border-top-right-radius: 2px !important;
 
-      &:before ***REMOVED***
+      &:before {
         content: '\f0db';
         font-family: FontAwesome;
         color: #007EFF;
-***REMOVED***
+      }
 
-      &:after ***REMOVED***
+      &:after {
         content: '\f0d7';
         display: inline-block;
         margin-top: -1px;
@@ -125,34 +125,34 @@
         color: #007EFF;
         transform: rotateX(180deg);
         transition: transform .3s ease-out;
-***REMOVED***
+      }
 
-      &:hover, :active, :focus ***REMOVED***
+      &:hover, :active, :focus {
         background: #E6F0FB;
         border: 1px solid #AED4FB;
-***REMOVED***
+      }
 
-***REMOVED***
-    > div ***REMOVED***
+    }
+    > div {
       border-top-color: #AED4FB !important;
       border-top-right-radius: 0;
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
 
-.listPageDropdownWrapperClose ***REMOVED***
-  > div ***REMOVED***
-    > button ***REMOVED***
+.listPageDropdownWrapperClose {
+  > div {
+    > button {
       background: #ffffff !important;
       border: 1px solid #E3E9F3;
       border-radius: 2px !important;
 
-      &:before ***REMOVED***
+      &:before {
         content: '\f0db';
         font-family: FontAwesome;
         color: #323740;
-***REMOVED***
-      &:after ***REMOVED***
+      }
+      &:after {
         content: '\f0d7';
         display: inline-block;
         margin-top: -1px;
@@ -160,11 +160,11 @@
         font-family: FontAwesome;
         color: #323740;
         transition: transform .3s ease-out;
-***REMOVED***
-      &:hover, :focus, :active  ***REMOVED***
+      }
+      &:hover, :focus, :active  {
         background: #ffffff !important;
         border: 1px solid #E3E9F3;
-***REMOVED***
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Quick way to see, edit and delete the data in your database.",
   "plugin.description.long": "Quick way to see, edit and delete the data in your database.",
   "containers.Home.pluginHeaderTitle": "Content Manager",
@@ -12,9 +12,9 @@
   "containers.Edit.addAnItem": "Add an item...",
   "containers.Edit.clickToJump": "Click to jump to the entry",
   "containers.Edit.seeDetails": "Details",
-  "containers.List.addAnEntry": "Add New ***REMOVED***entity***REMOVED***",
-  "containers.List.pluginHeaderDescription": "***REMOVED***label***REMOVED*** entries found",
-  "containers.List.pluginHeaderDescription.singular": "***REMOVED***label***REMOVED*** entry found",
+  "containers.List.addAnEntry": "Add New {entity}",
+  "containers.List.pluginHeaderDescription": "{label} entries found",
+  "containers.List.pluginHeaderDescription.singular": "{label} entry found",
   "components.LimitSelect.itemsPerPage": "Items per page",
   "containers.List.errorFetchRecords": "Error",
   "containers.ListPage.displayedFields": "Displayed Fields",
@@ -63,14 +63,14 @@
 
   "components.Search.placeholder": "Search for an entry...",
 
-  "components.TableDelete.entries.plural": "***REMOVED***number***REMOVED*** entries selected",
-  "components.TableDelete.entries.singular": "***REMOVED***number***REMOVED*** entry selected",
+  "components.TableDelete.entries.plural": "{number} entries selected",
+  "components.TableDelete.entries.singular": "{number} entry selected",
   "components.TableDelete.delete": "Delete all",
 
 
-  "components.TableEmpty.withFilters": "There is no ***REMOVED***contentType***REMOVED*** with the applied filters...",
-  "components.TableEmpty.withoutFilter": "There is no ***REMOVED***contentType***REMOVED***...",
-  "components.TableEmpty.withSearch": "There is no ***REMOVED***contentType***REMOVED*** corresponding to the search (***REMOVED***search***REMOVED***)...",
+  "components.TableEmpty.withFilters": "There is no {contentType} with the applied filters...",
+  "components.TableEmpty.withoutFilter": "There is no {contentType}...",
+  "components.TableEmpty.withSearch": "There is no {contentType} corresponding to the search ({search})...",
 
   "EditRelations.title": "Relational data",
 
@@ -131,4 +131,4 @@
   "popUpWarning.bodyMessage.contentType.delete.all": "Are you sure you want to delete theses entries?",
   "popUpWarning.warning.cancelAllSettings": "Are you sure you want to cancel your modifications?",
   "popUpWarning.warning.updateAllSettings": "This will modify all your settings"
-***REMOVED***
+}

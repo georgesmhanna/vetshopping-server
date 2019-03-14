@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "app.components.Button.save": "Salva",
   "app.components.Button.cancel": "Annulla",
   "app.components.ComingSoonPage.comingSoon": "In arrivo",
@@ -33,7 +33,7 @@
   "app.components.InputFileDetails.remove": "Rimuovi questo file",
   "app.components.InputFileDetails.originalName": "Nome originale:",
   "app.components.InputFileDetails.size": "Dimensione:",
-  "app.components.ImgPreview.hint": "Trascina il tuo file in quest'area o ***REMOVED***browse***REMOVED*** un file da caricare.",
+  "app.components.ImgPreview.hint": "Trascina il tuo file in quest'area o {browse} un file da caricare.",
   "app.components.ImgPreview.hint.browse": "cerca",
   "app.components.InstallPluginPage.helmet": "Marketplace - Plugins",
   "app.components.InstallPluginPage.title": "Marketplace - Plugins",
@@ -59,8 +59,8 @@
   "app.components.ListPluginsPage.title": "Plugins",
   "app.components.ListPluginsPage.description": "Lista dei plugin installati nel progetto.",
   "app.components.listPluginsPage.deletePlugin.error": "Si è verificato un errore durante l'installazione del plugin",
-  "app.components.listPlugins.title.singular": "***REMOVED***number***REMOVED*** plugin installato",
-  "app.components.listPlugins.title.plural": "***REMOVED***number***REMOVED*** plugin installati",
+  "app.components.listPlugins.title.singular": "{number} plugin installato",
+  "app.components.listPlugins.title.plural": "{number} plugin installati",
   "app.components.listPlugins.title.none": "Nessun plugin installato",
   "app.components.listPlugins.button": "Aggiungi Nuovo Plugin",
   "app.components.NotFoundPage.description": "Non trovato",
@@ -101,7 +101,7 @@
   "components.Input.error.attribute.key.taken": "Valore già esistente",
   "components.Input.error.attribute.sameKeyAndName": "Non può essere uguale",
   "components.Input.error.validation.minSupMax": "Non può essere superiore a",
-  "components.Input.error.custom-error": "***REMOVED***errorMessage***REMOVED*** ",
+  "components.Input.error.custom-error": "{errorMessage} ",
   "components.ListRow.empty": "Non ci sono dati da mostrare.",
   "components.Wysiwyg.collapse": "Chiudi",
   "components.Wysiwyg.selectOptions.title": "Aggiungi un titolo",
@@ -114,7 +114,7 @@
   "components.Wysiwyg.ToggleMode.markdown": "Passa a Markdown",
   "components.Wysiwyg.ToggleMode.preview": "Passa a Anteprima",
   "components.WysiwygBottomControls.charactersIndicators": "lettere",
-  "components.WysiwygBottomControls.uploadFiles": "Trascina file, incolla dagli appunti o ***REMOVED***browse***REMOVED***.",
+  "components.WysiwygBottomControls.uploadFiles": "Trascina file, incolla dagli appunti o {browse}.",
   "components.WysiwygBottomControls.uploadFiles.browse": "selezionali",
   "components.WysiwygBottomControls.fullscreen": "Espandi",
   "HomePage.notification.newsLetter.success": "Iscritto con successo alla newsletter",
@@ -137,4 +137,4 @@
   "request.error.model.unknow": "Questo modello non esiste",
   "Users": "Utenti",
   "Analytics": "Analytics"
-***REMOVED***
+}

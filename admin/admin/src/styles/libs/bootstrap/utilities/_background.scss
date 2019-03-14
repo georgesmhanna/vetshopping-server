@@ -1,6 +1,6 @@
-@each $color, $value in $theme-colors ***REMOVED***
-  @include bg-variant('.bg-#***REMOVED***$color***REMOVED***', $value);
-***REMOVED***
+@each $color, $value in $theme-colors {
+  @include bg-variant('.bg-#{$color}', $value);
+}
 
-.bg-white ***REMOVED*** background-color: $white !important; ***REMOVED***
-.bg-transparent ***REMOVED*** background-color: transparent !important; ***REMOVED***
+.bg-white { background-color: $white !important; }
+.bg-transparent { background-color: transparent !important; }

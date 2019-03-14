@@ -1,16 +1,16 @@
-***REMOVED***
+{
   "host": "localhost",
   "port": 1337,
-  "proxy": ***REMOVED***
+  "proxy": {
     "enabled": false
-***REMOVED***,
-  "autoReload": ***REMOVED***
+  },
+  "autoReload": {
     "enabled": true
-***REMOVED***,
-  "cron": ***REMOVED***
+  },
+  "cron": {
     "enabled": false
-***REMOVED***,
-  "admin": ***REMOVED***
+  },
+  "admin": {
     "autoOpen": true
-***REMOVED***
-***REMOVED***
+  }
+}

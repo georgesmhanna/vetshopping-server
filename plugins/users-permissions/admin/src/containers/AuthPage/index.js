@@ -6,11 +6,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-import ***REMOVED*** Link ***REMOVED*** from 'react-router-dom';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** findIndex, get, isBoolean, isEmpty, map, replace ***REMOVED*** from 'lodash';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+import { findIndex, get, isBoolean, isEmpty, map, replace } from 'lodash';
 import cn from 'classnames';
 
 // Logo
@@ -24,13 +24,13 @@ import Input from 'components/InputsIndex';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
-import ***REMOVED***
+import {
   hideLoginErrorsInput,
   onChangeInput,
   setErrors,
   setForm,
   submit,
-***REMOVED*** from './actions';
+} from './actions';
 import form from './form.json';
 import reducer from './reducer';
 import saga from './saga';
@@ -38,21 +38,21 @@ import makeSelectAuthPage from './selectors';
 
 import styles from './styles.scss';
 
-export class AuthPage extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  componentDidMount() ***REMOVED***
+export class AuthPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  componentDidMount() {
     const params = this.props.location.search ? replace(this.props.location.search, '?code=', '') : this.props.match.params.id;
     this.props.setForm(this.props.match.params.authType, params);
-***REMOVED***
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
-    if (this.props.match.params.authType !== nextProps.match.params.authType) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.authType !== nextProps.match.params.authType) {
       const params = nextProps.location.search ? replace(nextProps.location.search, '?code=', '') : nextProps.match.params.id;
       this.props.setForm(nextProps.match.params.authType, params);
       this.props.hideLoginErrorsInput(false);
-***REMOVED***
+    }
 
-    if (nextProps.submitSuccess) ***REMOVED***
-      switch (this.props.match.params.authType) ***REMOVED***
+    if (nextProps.submitSuccess) {
+      switch (this.props.match.params.authType) {
         case 'login':
         case 'reset-password':
           this.props.history.push('/');
@@ -60,172 +60,172 @@ export class AuthPage extends React.Component ***REMOVED*** // eslint-disable-li
         case 'register':
           this.props.history.push('/');
           // NOTE: prepare for comfirm email;
-          // this.props.history.push(`/plugins/users-permissions/auth/register-success/$***REMOVED***this.props.modifiedData.email***REMOVED***`);
+          // this.props.history.push(`/plugins/users-permissions/auth/register-success/${this.props.modifiedData.email}`);
           break;
         default:
 
-***REMOVED***
-***REMOVED***
-***REMOVED***
+      }
+    }
+  }
 
-  handleSubmit = (e) => ***REMOVED***
+  handleSubmit = (e) => {
     e.preventDefault();
-    const formErrors = Object.keys(this.props.modifiedData).reduce((acc, key) => ***REMOVED***
-      if (isEmpty(get(this.props.modifiedData, key)) && !isBoolean(get(this.props.modifiedData, key))) ***REMOVED***
-        acc.push(***REMOVED*** name: key, errors: [***REMOVED*** id: 'components.Input.error.validation.required' ***REMOVED***] ***REMOVED***);
-***REMOVED***
+    const formErrors = Object.keys(this.props.modifiedData).reduce((acc, key) => {
+      if (isEmpty(get(this.props.modifiedData, key)) && !isBoolean(get(this.props.modifiedData, key))) {
+        acc.push({ name: key, errors: [{ id: 'components.Input.error.validation.required' }] });
+      }
 
-      if (!isEmpty(get(this.props.modifiedData, 'password')) && !isEmpty(get(this.props.modifiedData, 'confirmPassword')) && findIndex(acc, ['name', 'confirmPassword']) === -1) ***REMOVED***
-        if (get(this.props.modifiedData, 'password') !== get(this.props.modifiedData, 'confirmPassword')) ***REMOVED***
-          acc.push(***REMOVED*** name: 'confirmPassword', errors: [***REMOVED*** id: 'users-permissions.components.Input.error.password.noMatch' ***REMOVED***] ***REMOVED***);
-  ***REMOVED***
-***REMOVED***
+      if (!isEmpty(get(this.props.modifiedData, 'password')) && !isEmpty(get(this.props.modifiedData, 'confirmPassword')) && findIndex(acc, ['name', 'confirmPassword']) === -1) {
+        if (get(this.props.modifiedData, 'password') !== get(this.props.modifiedData, 'confirmPassword')) {
+          acc.push({ name: 'confirmPassword', errors: [{ id: 'users-permissions.components.Input.error.password.noMatch' }] });
+        }
+      }
 
       return acc;
-***REMOVED***, []);
+    }, []);
 
     this.props.setErrors(formErrors);
 
-    if (isEmpty(formErrors)) ***REMOVED***
+    if (isEmpty(formErrors)) {
       this.props.submit(this.context);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  renderButton = () => ***REMOVED***
-    const ***REMOVED*** match: ***REMOVED*** params: ***REMOVED*** authType ***REMOVED*** ***REMOVED***, submitSuccess ***REMOVED*** = this.props;
+  renderButton = () => {
+    const { match: { params: { authType } }, submitSuccess } = this.props;
 
-    if (this.props.match.params.authType === 'login') ***REMOVED***
+    if (this.props.match.params.authType === 'login') {
       return (
-        <div className=***REMOVED***cn('col-md-6', styles.loginButton)***REMOVED***>
+        <div className={cn('col-md-6', styles.loginButton)}>
           <Button primary label="users-permissions.Auth.form.button.login" type="submit" />
         </div>
       );
-***REMOVED***
+    }
     const isEmailForgotSent = authType === 'forgot-password' && submitSuccess;
-    const label = isEmailForgotSent ? 'users-permissions.Auth.form.button.forgot-password.success' : `users-permissions.Auth.form.button.$***REMOVED***this.props.match.params.authType***REMOVED***`;
+    const label = isEmailForgotSent ? 'users-permissions.Auth.form.button.forgot-password.success' : `users-permissions.Auth.form.button.${this.props.match.params.authType}`;
   
     return (
-      <div className=***REMOVED***cn('col-md-12', styles.buttonContainer)***REMOVED***>
+      <div className={cn('col-md-12', styles.buttonContainer)}>
         <Button
-          className=***REMOVED***cn(isEmailForgotSent && styles.buttonForgotSuccess)***REMOVED***
-          label=***REMOVED***label***REMOVED***
-          style=***REMOVED******REMOVED*** width: '100%' ***REMOVED******REMOVED***
-          primary=***REMOVED***!isEmailForgotSent***REMOVED***
+          className={cn(isEmailForgotSent && styles.buttonForgotSuccess)}
+          label={label}
+          style={{ width: '100%' }}
+          primary={!isEmailForgotSent}
           type="submit"
         />
       </div>
     );
-***REMOVED***
+  }
 
-  renderLink = () => ***REMOVED***
+  renderLink = () => {
 
-    if (this.props.match.params.authType === 'login') ***REMOVED***
+    if (this.props.match.params.authType === 'login') {
       return (
         <Link to="/plugins/users-permissions/auth/forgot-password">
           <FormattedMessage id="users-permissions.Auth.link.forgot-password" />
         </Link>
       );
-***REMOVED***
+    }
 
-    if (this.props.match.params.authType === 'forgot-password' || this.props.match.params.authType === 'register-success') ***REMOVED***
+    if (this.props.match.params.authType === 'forgot-password' || this.props.match.params.authType === 'register-success') {
       return (
         <Link to="/plugins/users-permissions/auth/login">
           <FormattedMessage id="users-permissions.Auth.link.ready" />
         </Link>
       );
-***REMOVED***
+    }
 
     return <div />;
-***REMOVED***
+  }
 
-  renderInputs = () => ***REMOVED***
-    const ***REMOVED*** match: ***REMOVED*** params: ***REMOVED*** authType ***REMOVED*** ***REMOVED*** ***REMOVED*** = this.props;
+  renderInputs = () => {
+    const { match: { params: { authType } } } = this.props;
     const inputs = get(form, ['form', authType]);
 
     return map(inputs, (input, key) => (
       <Input
-        autoFocus=***REMOVED***key === 0***REMOVED***
-        customBootstrapClass=***REMOVED***get(input, 'customBootstrapClass')***REMOVED***
-        didCheckErrors=***REMOVED***this.props.didCheckErrors***REMOVED***
-        errors=***REMOVED***get(this.props.formErrors, [findIndex(this.props.formErrors, ['name', input.name]), 'errors'])***REMOVED***
-        key=***REMOVED***get(input, 'name')***REMOVED***
-        label=***REMOVED***authType === 'forgot-password' && this.props.submitSuccess? ***REMOVED*** id: 'users-permissions.Auth.form.forgot-password.email.label.success' ***REMOVED*** : get(input, 'label')***REMOVED***
-        name=***REMOVED***get(input, 'name')***REMOVED***
-        onChange=***REMOVED***this.props.onChangeInput***REMOVED***
-        placeholder=***REMOVED***get(input, 'placeholder')***REMOVED***
-        type=***REMOVED***get(input, 'type')***REMOVED***
-        validations=***REMOVED******REMOVED*** required: true ***REMOVED******REMOVED***
-        value=***REMOVED***get(this.props.modifiedData, get(input, 'name'), get(input, 'value'))***REMOVED***
-        noErrorsDescription=***REMOVED***this.props.noErrorsDescription***REMOVED***
+        autoFocus={key === 0}
+        customBootstrapClass={get(input, 'customBootstrapClass')}
+        didCheckErrors={this.props.didCheckErrors}
+        errors={get(this.props.formErrors, [findIndex(this.props.formErrors, ['name', input.name]), 'errors'])}
+        key={get(input, 'name')}
+        label={authType === 'forgot-password' && this.props.submitSuccess? { id: 'users-permissions.Auth.form.forgot-password.email.label.success' } : get(input, 'label')}
+        name={get(input, 'name')}
+        onChange={this.props.onChangeInput}
+        placeholder={get(input, 'placeholder')}
+        type={get(input, 'type')}
+        validations={{ required: true }}
+        value={get(this.props.modifiedData, get(input, 'name'), get(input, 'value'))}
+        noErrorsDescription={this.props.noErrorsDescription}
       />
     ));
-***REMOVED***
+  }
 
-  render() ***REMOVED***
-    const ***REMOVED*** match: ***REMOVED*** params: ***REMOVED*** authType ***REMOVED*** ***REMOVED***, modifiedData, submitSuccess ***REMOVED*** = this.props;
-    let divStyle = authType === 'register' ? ***REMOVED*** marginTop: '3.2rem' ***REMOVED*** : ***REMOVED*** marginTop: '.9rem' ***REMOVED***;
+  render() {
+    const { match: { params: { authType } }, modifiedData, submitSuccess } = this.props;
+    let divStyle = authType === 'register' ? { marginTop: '3.2rem' } : { marginTop: '.9rem' };
 
-    if (authType === 'forgot-password' && submitSuccess) ***REMOVED***
-      divStyle = ***REMOVED*** marginTop: '.9rem', minHeight: '18.2rem' ***REMOVED***;
-***REMOVED***
+    if (authType === 'forgot-password' && submitSuccess) {
+      divStyle = { marginTop: '.9rem', minHeight: '18.2rem' };
+    }
 
     return (
-      <div className=***REMOVED***styles.authPage***REMOVED***>
-        <div className=***REMOVED***styles.wrapper***REMOVED***>
-          <div className=***REMOVED***styles.headerContainer***REMOVED***>
-            ***REMOVED***this.props.match.params.authType === 'register' ? (
+      <div className={styles.authPage}>
+        <div className={styles.wrapper}>
+          <div className={styles.headerContainer}>
+            {this.props.match.params.authType === 'register' ? (
               <FormattedMessage id="users-permissions.Auth.form.header.register" />
             ) : (
-              <img src=***REMOVED***LogoStrapi***REMOVED*** alt="logo" />
-            )***REMOVED***
+              <img src={LogoStrapi} alt="logo" />
+            )}
           </div>
-          <div className=***REMOVED***styles.headerDescription***REMOVED***>
-            ***REMOVED***authType === 'register' && <FormattedMessage id="users-permissions.Auth.header.register.description" />***REMOVED***
+          <div className={styles.headerDescription}>
+            {authType === 'register' && <FormattedMessage id="users-permissions.Auth.header.register.description" />}
           </div>
 
           <div
-            className=***REMOVED***cn(
+            className={cn(
               styles.formContainer,
               authType === 'forgot-password' && submitSuccess ? styles.borderedSuccess : styles.bordered,
-            )***REMOVED***
-            style=***REMOVED***divStyle***REMOVED***
+            )}
+            style={divStyle}
           >
-            <form onSubmit=***REMOVED***this.handleSubmit***REMOVED***>
+            <form onSubmit={this.handleSubmit}>
               <div className="container-fluid">
-                ***REMOVED***this.props.noErrorsDescription && !isEmpty(get(this.props.formErrors, ['0', 'errors', '0', 'id']))? (
-                  <div className=***REMOVED***styles.errorsContainer***REMOVED***>
-                    <FormattedMessage id=***REMOVED***get(this.props.formErrors, ['0', 'errors', '0', 'id'])***REMOVED*** />
+                {this.props.noErrorsDescription && !isEmpty(get(this.props.formErrors, ['0', 'errors', '0', 'id']))? (
+                  <div className={styles.errorsContainer}>
+                    <FormattedMessage id={get(this.props.formErrors, ['0', 'errors', '0', 'id'])} />
                   </div>
-                ): ''***REMOVED***
-                <div className="row" style=***REMOVED******REMOVED*** textAlign: 'start' ***REMOVED******REMOVED***>
-                  ***REMOVED***!submitSuccess && this.renderInputs()***REMOVED***
-                  ***REMOVED*** authType === 'forgot-password' && submitSuccess && (
-                    <div className=***REMOVED***styles.forgotSuccess***REMOVED***>
+                ): ''}
+                <div className="row" style={{ textAlign: 'start' }}>
+                  {!submitSuccess && this.renderInputs()}
+                  { authType === 'forgot-password' && submitSuccess && (
+                    <div className={styles.forgotSuccess}>
                       <FormattedMessage id="users-permissions.Auth.form.forgot-password.email.label.success" />
                       <br />
-                      <p>***REMOVED***get(modifiedData, 'email', '')***REMOVED***</p>
+                      <p>{get(modifiedData, 'email', '')}</p>
                     </div>
-                  )***REMOVED***
-                  ***REMOVED***this.renderButton()***REMOVED***
+                  )}
+                  {this.renderButton()}
                 </div>
               </div>
             </form>
           </div>
-          <div className=***REMOVED***styles.linkContainer***REMOVED***>
-            ***REMOVED***this.renderLink()***REMOVED***
+          <div className={styles.linkContainer}>
+            {this.renderLink()}
           </div>
         </div>
-        ***REMOVED***authType === 'register' && <div className=***REMOVED***styles.logoContainer***REMOVED***><img src=***REMOVED***LogoStrapi***REMOVED*** alt="logo" /></div>***REMOVED***
+        {authType === 'register' && <div className={styles.logoContainer}><img src={LogoStrapi} alt="logo" /></div>}
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-AuthPage.contextTypes = ***REMOVED***
+AuthPage.contextTypes = {
   updatePlugin: PropTypes.func,
-***REMOVED***;
+};
 
-AuthPage.propTypes = ***REMOVED***
+AuthPage.propTypes = {
   didCheckErrors: PropTypes.bool.isRequired,
   formErrors: PropTypes.array.isRequired,
   hideLoginErrorsInput: PropTypes.func.isRequired,
@@ -239,34 +239,34 @@ AuthPage.propTypes = ***REMOVED***
   setForm: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
   submitSuccess: PropTypes.bool.isRequired,
-***REMOVED***;
+};
 
 const mapStateToProps = makeSelectAuthPage();
 
-function mapDispatchToProps(dispatch) ***REMOVED***
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       hideLoginErrorsInput,
       onChangeInput,
       setErrors,
       setForm,
       submit,
-***REMOVED***,
+    },
     dispatch
   );
-***REMOVED***
+}
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 /* Remove this line if the container doesn't have a route and
 *  check the documentation to see how to create the container's store
 */
-const withReducer = injectReducer(***REMOVED*** key: 'authPage', reducer ***REMOVED***);
+const withReducer = injectReducer({ key: 'authPage', reducer });
 
 /* Remove the line below the container doesn't have a route and
 *  check the documentation to see how to create the container's store
 */
-const withSaga = injectSaga(***REMOVED*** key: 'authPage', saga ***REMOVED***);
+const withSaga = injectSaga({ key: 'authPage', saga });
 
 export default compose(
   withReducer,

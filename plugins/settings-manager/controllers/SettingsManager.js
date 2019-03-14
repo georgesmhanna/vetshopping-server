@@ -4,77 +4,77 @@ const path = require('path');
 const fs = require('fs');
 const _ = require('lodash');
 
-module.exports = ***REMOVED***
-  menu: async ctx => ***REMOVED***
+module.exports = {
+  menu: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
 
     ctx.send(Service.menu);
-***REMOVED***,
+  },
 
-  environments: async ctx => ***REMOVED***
+  environments: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
 
-    ctx.send(***REMOVED*** environments: Service.getEnvironments() ***REMOVED***);
-***REMOVED***,
+    ctx.send({ environments: Service.getEnvironments() });
+  },
 
-  languages: async ctx => ***REMOVED***
+  languages: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
 
-    ctx.send(***REMOVED*** languages: Service.getLanguages() ***REMOVED***);
-***REMOVED***,
+    ctx.send({ languages: Service.getLanguages() });
+  },
 
-  databases: async ctx => ***REMOVED***
+  databases: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
-    const ***REMOVED*** env ***REMOVED*** = ctx.params;
+    const { env } = ctx.params;
 
-    if (!env || _.isEmpty(_.find(Service.getEnvironments(), ***REMOVED*** name: env ***REMOVED***))) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.environment.unknow' ***REMOVED***] ***REMOVED***]);
+    if (!env || _.isEmpty(_.find(Service.getEnvironments(), { name: env }))) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.environment.unknow' }] }]);
 
-    ctx.send(***REMOVED*** databases: Service.getDatabases(env) ***REMOVED***);
-***REMOVED***,
+    ctx.send({ databases: Service.getDatabases(env) });
+  },
 
-  database: async ctx => ***REMOVED***
+  database: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
-    const ***REMOVED*** name, env ***REMOVED*** = ctx.params;
+    const { name, env } = ctx.params;
 
-    if (!env || _.isEmpty(_.find(Service.getEnvironments(), ***REMOVED*** name: env ***REMOVED***))) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.environment.unknow' ***REMOVED***] ***REMOVED***]);
-    if (!name || _.isEmpty(_.find(Service.getDatabases(env), ***REMOVED*** name ***REMOVED***))) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.database.unknow' ***REMOVED***] ***REMOVED***]);
+    if (!env || _.isEmpty(_.find(Service.getEnvironments(), { name: env }))) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.environment.unknow' }] }]);
+    if (!name || _.isEmpty(_.find(Service.getDatabases(env), { name }))) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.database.unknow' }] }]);
 
     const model = Service.databases(name, env);
 
     ctx.send(model);
-***REMOVED***,
+  },
 
-  databaseModel: async ctx => ***REMOVED***
+  databaseModel: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
     const env = strapi.config.environment;
 
-    const model = Service.databases('$***REMOVED***name***REMOVED***', env);
+    const model = Service.databases('${name}', env);
 
     ctx.send(model);
-***REMOVED***,
+  },
 
-  get: async ctx => ***REMOVED***
+  get: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
-    const ***REMOVED*** slug, env ***REMOVED*** = ctx.params;
+    const { slug, env } = ctx.params;
 
-    if (env && _.isEmpty(_.find(Service.getEnvironments(), ***REMOVED*** name: env ***REMOVED***))) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.environment.unknow' ***REMOVED***] ***REMOVED***]);
+    if (env && _.isEmpty(_.find(Service.getEnvironments(), { name: env }))) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.environment.unknow' }] }]);
 
-    _.has(Service, slug) ? ctx.send(await Service[slug](env)) : ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.config' ***REMOVED***] ***REMOVED***]);
-***REMOVED***,
+    _.has(Service, slug) ? ctx.send(await Service[slug](env)) : ctx.badRequest(null, [{ messages: [{ id: 'request.error.config' }] }]);
+  },
 
-  update: async ctx => ***REMOVED***
+  update: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
-    const ***REMOVED*** slug, env ***REMOVED*** = ctx.params;
+    const { slug, env } = ctx.params;
     let params = ctx.request.body;
 
-    if (env && _.isEmpty(_.find(Service.getEnvironments(), ***REMOVED*** name: env ***REMOVED***))) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.environment.unknow' ***REMOVED***] ***REMOVED***]);
+    if (env && _.isEmpty(_.find(Service.getEnvironments(), { name: env }))) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.environment.unknow' }] }]);
 
     let model;
-    if (_.has(Service, slug)) ***REMOVED***
+    if (_.has(Service, slug)) {
       model = await Service[slug](env);
-***REMOVED*** else ***REMOVED***
-      return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.config' ***REMOVED***] ***REMOVED***]);
-***REMOVED***
+    } else {
+      return ctx.badRequest(null, [{ messages: [{ id: 'request.error.config' }] }]);
+    }
 
     const items = Service.getItems(model);
 
@@ -89,76 +89,76 @@ module.exports = ***REMOVED***
 
     const updateErrors = await Service.updateSettings(params, items, env);
 
-    !_.isEmpty(updateErrors) ? ctx.badRequest(null, Service.formatErrors(updateErrors)) : ctx.send(***REMOVED*** ok: true ***REMOVED***);
+    !_.isEmpty(updateErrors) ? ctx.badRequest(null, Service.formatErrors(updateErrors)) : ctx.send({ ok: true });
 
     strapi.reload();
-***REMOVED***,
+  },
 
-  createLanguage: async ctx => ***REMOVED***
+  createLanguage: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
-    const ***REMOVED*** name ***REMOVED*** = ctx.request.body;
+    const { name } = ctx.request.body;
 
     const languages = Service.getLanguages();
     const availableLanguages = strapi.plugins['settings-manager'].services.languages;
 
-    if (_.find(languages, ***REMOVED*** name: _.lowerCase(name).replace(' ', '_') ***REMOVED***)) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.languages.exist' ***REMOVED***] ***REMOVED***]);
-    if (!_.find(availableLanguages, ***REMOVED*** value: name ***REMOVED***)) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.languages.incorrect' ***REMOVED***] ***REMOVED***]);
+    if (_.find(languages, { name: _.lowerCase(name).replace(' ', '_') })) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.languages.exist' }] }]);
+    if (!_.find(availableLanguages, { value: name })) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.languages.incorrect' }] }]);
 
-    const filePath = path.join(strapi.config.appPath, 'config', 'locales', `$***REMOVED***name***REMOVED***.json`);
+    const filePath = path.join(strapi.config.appPath, 'config', 'locales', `${name}.json`);
 
-    try ***REMOVED***
-      fs.writeFileSync(filePath, '***REMOVED******REMOVED***');
+    try {
+      fs.writeFileSync(filePath, '{}');
 
-      ctx.send(***REMOVED*** ok: true ***REMOVED***);
+      ctx.send({ ok: true });
 
       strapi.reload();
-***REMOVED*** catch (e) ***REMOVED***
-      ctx.badRequest(null, Service.formatErrors([***REMOVED***
+    } catch (e) {
+      ctx.badRequest(null, Service.formatErrors([{
         target: 'name',
         message: 'request.error.config',
-        params: ***REMOVED***
+        params: {
           filePath: filePath
-  ***REMOVED***
-***REMOVED***]));
-***REMOVED***
-***REMOVED***,
+        }
+      }]));
+    }
+  },
 
-  deleteLanguage: async ctx => ***REMOVED***
+  deleteLanguage: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
-    const ***REMOVED*** name ***REMOVED*** = ctx.params;
+    const { name } = ctx.params;
 
     const languages = Service.getLanguages();
 
-    if (!_.find(languages, ***REMOVED*** name ***REMOVED***)) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.languages.unknow' ***REMOVED***] ***REMOVED***]);
+    if (!_.find(languages, { name })) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.languages.unknow' }] }]);
 
-    const filePath = path.join(strapi.config.appPath, 'config', 'locales', `$***REMOVED***name***REMOVED***.json`);
+    const filePath = path.join(strapi.config.appPath, 'config', 'locales', `${name}.json`);
 
-    try ***REMOVED***
+    try {
       fs.unlinkSync(filePath);
 
-      ctx.send(***REMOVED*** ok: true ***REMOVED***);
+      ctx.send({ ok: true });
       strapi.reload();
-***REMOVED*** catch (e) ***REMOVED***
-      ctx.badRequest(null, Service.formatErrors([***REMOVED***
+    } catch (e) {
+      ctx.badRequest(null, Service.formatErrors([{
         target: 'name',
         message: 'request.error.config',
-        params: ***REMOVED***
+        params: {
           filePath: filePath
-  ***REMOVED***
-***REMOVED***]));
-***REMOVED***
-***REMOVED***,
+        }
+      }]));
+    }
+  },
 
-  createDatabase: async ctx => ***REMOVED***
+  createDatabase: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
-    const ***REMOVED*** env ***REMOVED*** = ctx.params;
+    const { env } = ctx.params;
     let params = ctx.request.body;
 
-    if (!env || _.isEmpty(_.find(Service.getEnvironments(), ***REMOVED*** name: env ***REMOVED***))) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.environment.unknow' ***REMOVED***] ***REMOVED***]);
+    if (!env || _.isEmpty(_.find(Service.getEnvironments(), { name: env }))) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.environment.unknow' }] }]);
 
     const [name] = _.keys(params.database.connections);
 
-    if (!name || _.find(Service.getDatabases(env), ***REMOVED*** name ***REMOVED***)) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.database.exist' ***REMOVED***] ***REMOVED***]);
+    if (!name || _.find(Service.getDatabases(env), { name })) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.database.exist' }] }]);
 
     const model = Service.databases(name, env);
     const items = Service.getItems(model);
@@ -172,12 +172,12 @@ module.exports = ***REMOVED***
 
     if (!_.isEmpty(validationErrors)) return ctx.badRequest(null, Service.formatErrors(validationErrors));
 
-    if (_.isEmpty(_.keys(strapi.config.environments[env].database.connections)) || _.isEmpty(strapi.config.environments[env].database.defaultConnection)) ***REMOVED***
+    if (_.isEmpty(_.keys(strapi.config.environments[env].database.connections)) || _.isEmpty(strapi.config.environments[env].database.defaultConnection)) {
       params.database.defaultConnection = name;
-      items.push(***REMOVED***
+      items.push({
         target: 'database.defaultConnection'
-***REMOVED***);
-***REMOVED***
+      });
+    }
 
     Service.installDependency(params, name);
 
@@ -187,18 +187,18 @@ module.exports = ***REMOVED***
 
     if (!_.isEmpty(updateErrors)) return ctx.badRequest(null, Service.formatErrors(updateErrors));
 
-    ctx.send(***REMOVED*** ok: true ***REMOVED***);
+    ctx.send({ ok: true });
 
     strapi.reload();
-***REMOVED***,
+  },
 
-  updateDatabase: async ctx => ***REMOVED***
+  updateDatabase: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
-    const ***REMOVED*** name, env ***REMOVED*** = ctx.params;
+    const { name, env } = ctx.params;
     let params = ctx.request.body;
 
-    if (!env || _.isEmpty(_.find(Service.getEnvironments(), ***REMOVED*** name: env ***REMOVED***))) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.environment.unknow' ***REMOVED***] ***REMOVED***]);
-    if (!name || _.isEmpty(_.find(Service.getDatabases(env), ***REMOVED*** name ***REMOVED***))) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.database.unknow' ***REMOVED***] ***REMOVED***]);
+    if (!env || _.isEmpty(_.find(Service.getEnvironments(), { name: env }))) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.environment.unknow' }] }]);
+    if (!name || _.isEmpty(_.find(Service.getDatabases(env), { name }))) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.database.unknow' }] }]);
 
     const model = Service.databases(name, env);
     let items = Service.getItems(model);
@@ -210,79 +210,79 @@ module.exports = ***REMOVED***
 
     if (!_.isEmpty(validationErrors)) return ctx.badRequest(null, Service.formatErrors(validationErrors));
 
-    const newName = _.get(params, `database.connections.$***REMOVED***name***REMOVED***.name`);
+    const newName = _.get(params, `database.connections.${name}.name`);
     const defaultConnection = params.database.defaultConnection;
 
-    if (params.database.connections) ***REMOVED***
+    if (params.database.connections) {
       const settings = _.assign(_.clone(strapi.config.environments[env].database.connections[name].settings), params.database.connections[name].settings);
       const options = _.assign(_.clone(strapi.config.environments[env].database.connections[name].options), params.database.connections[name].options);
       params = _.assign(_.clone(strapi.config.environments[env].database.connections[name]), params.database.connections[name]);
       params.settings = settings;
       params.options = options;
-***REMOVED***
+    }
 
     delete params.name;
 
     const connections = _.clone(strapi.config.environments[env].database.connections);
 
 
-    if (newName && newName !== name) ***REMOVED***
+    if (newName && newName !== name) {
       connections[newName] = params;
       connections[name] = undefined;
 
-      _.forEach(strapi.models, (model, modelName) => ***REMOVED***
-        if (name === model.connection) ***REMOVED***
+      _.forEach(strapi.models, (model, modelName) => {
+        if (name === model.connection) {
           const [searchFilePath, getModelPathErrors] = Service.getModelPath(modelName);
 
-          if (!_.isEmpty(getModelPathErrors)) ***REMOVED***
+          if (!_.isEmpty(getModelPathErrors)) {
             return ctx.badRequest(null, Service.formatErrors(getModelPathErrors));
-    ***REMOVED***
+          }
 
-          try ***REMOVED***
+          try {
             const modelJSON = require(searchFilePath);
             modelJSON.connection = newName;
 
-            try ***REMOVED***
+            try {
               fs.writeFileSync(searchFilePath, JSON.stringify(modelJSON, null, 2), 'utf8');
-      ***REMOVED*** catch (e) ***REMOVED***
-              return ctx.badRequest(null, Service.formatErrors([***REMOVED***
+            } catch (e) {
+              return ctx.badRequest(null, Service.formatErrors([{
                 id: 'request.error.mode.write',
-                params: ***REMOVED***
+                params: {
                   filePath: searchFilePath
-          ***REMOVED***
-        ***REMOVED***]));
-      ***REMOVED***
-    ***REMOVED*** catch (e) ***REMOVED***
-            return ctx.badRequest(null, Service.formatErrors([***REMOVED***
+                }
+              }]));
+            }
+          } catch (e) {
+            return ctx.badRequest(null, Service.formatErrors([{
               id: 'request.error.mode.read',
-              params: ***REMOVED***
+              params: {
                 filePath: searchFilePath
-        ***REMOVED***
-      ***REMOVED***]));
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***);
-***REMOVED*** else if (params.settings) ***REMOVED***
+              }
+            }]));
+          }
+        }
+      });
+    } else if (params.settings) {
       connections[name] = params;
-***REMOVED***
+    }
 
-    params = ***REMOVED*** database: ***REMOVED*** connections ***REMOVED******REMOVED***;
+    params = { database: { connections }};
 
-    items = [***REMOVED*** target: 'database.connections' ***REMOVED***];
+    items = [{ target: 'database.connections' }];
 
-    if (newName && newName !== name && strapi.config.environments[env].database.defaultConnection === name) ***REMOVED***
+    if (newName && newName !== name && strapi.config.environments[env].database.defaultConnection === name) {
       params.database.defaultConnection = newName;
-      items.push(***REMOVED***
+      items.push({
         target: 'database.defaultConnection'
-***REMOVED***);
-***REMOVED*** else if (defaultConnection) ***REMOVED***
+      });
+    } else if (defaultConnection) {
       params.database.defaultConnection = defaultConnection;
-      items.push(***REMOVED***
+      items.push({
         target: 'database.defaultConnection'
-***REMOVED***);
-***REMOVED***
+      });
+    }
 
-    const newClient = _.get(params, `database.connections.$***REMOVED***name***REMOVED***.settings.client`);
+    const newClient = _.get(params, `database.connections.${name}.settings.client`);
 
     if (newClient) params.database.connections[name].connector = Service.getClientConnector(newClient);
 
@@ -290,52 +290,52 @@ module.exports = ***REMOVED***
 
     const cleanErrors = Service.cleanDependency(env, params);
 
-    if (!_.isEmpty(cleanErrors)) ***REMOVED***
+    if (!_.isEmpty(cleanErrors)) {
       return ctx.badRequest(null, Service.formatErrors(cleanErrors));
-***REMOVED***
+    }
 
     Service.installDependency(params, name);
 
     const updateErrors = Service.updateSettings(params, items, env);
 
-    !_.isEmpty(updateErrors) ? ctx.badRequest(null, Service.formatErrors(updateErrors)) : ctx.send(***REMOVED*** ok: true ***REMOVED***);
+    !_.isEmpty(updateErrors) ? ctx.badRequest(null, Service.formatErrors(updateErrors)) : ctx.send({ ok: true });
 
     strapi.reload();
-***REMOVED***,
+  },
 
-  deleteDatabase: async ctx => ***REMOVED***
+  deleteDatabase: async ctx => {
     const Service = strapi.plugins['settings-manager'].services.settingsmanager;
-    const ***REMOVED*** name, env ***REMOVED*** = ctx.params;
+    const { name, env } = ctx.params;
 
-    if (!env || _.isEmpty(_.find(Service.getEnvironments(), ***REMOVED*** name: env ***REMOVED***))) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.environment.unknow' ***REMOVED***] ***REMOVED***]);
-    if (!name || _.isEmpty(_.find(Service.getDatabases(env), ***REMOVED*** name ***REMOVED***))) return ctx.badRequest(null, [***REMOVED*** messages: [***REMOVED*** id: 'request.error.database.unknow' ***REMOVED***] ***REMOVED***]);
+    if (!env || _.isEmpty(_.find(Service.getEnvironments(), { name: env }))) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.environment.unknow' }] }]);
+    if (!name || _.isEmpty(_.find(Service.getDatabases(env), { name }))) return ctx.badRequest(null, [{ messages: [{ id: 'request.error.database.unknow' }] }]);
 
     const connections = _.clone(strapi.config.environments[env].database.connections);
     connections[name] = undefined;
 
-    const params = ***REMOVED*** database: ***REMOVED*** connections ***REMOVED******REMOVED***;
-    const items = [***REMOVED*** target: 'database.connections' ***REMOVED***];
+    const params = { database: { connections }};
+    const items = [{ target: 'database.connections' }];
 
-    if (strapi.config.environments[env].database.defaultConnection === name) ***REMOVED***
+    if (strapi.config.environments[env].database.defaultConnection === name) {
       params.database.defaultConnection = '';
-      items.push(***REMOVED***
+      items.push({
         target: 'database.defaultConnection'
-***REMOVED***);
-***REMOVED***
+      });
+    }
 
     strapi.reload.isWatching = false;
 
     const updateErrors = Service.updateSettings(params, items, env);
 
-    !_.isEmpty(updateErrors) ? ctx.badRequest(null, Service.formatErrors(updateErrors)) : ctx.send(***REMOVED*** ok: true ***REMOVED***);
+    !_.isEmpty(updateErrors) ? ctx.badRequest(null, Service.formatErrors(updateErrors)) : ctx.send({ ok: true });
 
     strapi.reload();
-***REMOVED***,
+  },
 
-  autoReload: async ctx => ***REMOVED***
-    ctx.send(***REMOVED***
-      autoReload: _.get(strapi.config.currentEnvironment, 'server.autoReload', ***REMOVED*** enabled: false ***REMOVED***),
+  autoReload: async ctx => {
+    ctx.send({
+      autoReload: _.get(strapi.config.currentEnvironment, 'server.autoReload', { enabled: false }),
       environment: strapi.config.environment
-***REMOVED***);
-***REMOVED***
-***REMOVED***;
+    });
+  }
+};

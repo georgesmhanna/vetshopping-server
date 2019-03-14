@@ -5,13 +5,13 @@
  */
 
 import React from 'react';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
+import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
+import { FormattedMessage } from 'react-intl';
+import { bindActionCreators, compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import ***REMOVED*** get, isEmpty, upperFirst ***REMOVED*** from 'lodash';
+import { get, isEmpty, upperFirst } from 'lodash';
 import cn from 'classnames';
 
 import Block from 'components/HomePageBlock';
@@ -21,7 +21,7 @@ import Input from 'components/InputText';
 import SupportUsCta from 'components/SupportUsCta';
 import SupportUsTitle from 'components/SupportUsTitle';
 
-import ***REMOVED*** selectPlugins ***REMOVED*** from 'containers/App/selectors';
+import { selectPlugins } from 'containers/App/selectors';
 
 import auth from 'utils/auth';
 import injectReducer from 'utils/injectReducer';
@@ -34,188 +34,188 @@ import CreateContent from './CreateContent';
 import SocialLink from './SocialLink';
 import WelcomeContent from './WelcomeContent';
 
-import ***REMOVED*** getArticles, onChange, submit ***REMOVED*** from './actions';
+import { getArticles, onChange, submit } from './actions';
 import makeSelectHomePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import styles from './styles.scss';
 
 const FIRST_BLOCK = [
-  ***REMOVED***
-    title: ***REMOVED***
+  {
+    title: {
       id: 'app.components.HomePage.welcome',
-***REMOVED***,
+    },
     content: () => <WelcomeContent />,
-***REMOVED***,
-  ***REMOVED***
-    title: ***REMOVED***
+  },
+  {
+    title: {
       id: 'app.components.HomePage.create',
-***REMOVED***,
+    },
     content: () => <CreateContent />,
-***REMOVED***,
+  },
 ];
 
 const FIRST_BLOCK_LINKS = [
-  ***REMOVED***
+  {
     link: 'https://strapi.io/documentation/',
-    content: ***REMOVED***
+    content: {
       id: 'app.components.BlockLink.documentation.content',
-***REMOVED***,
+    },
     isDocumentation: true,
-    title: ***REMOVED***
+    title: {
       id: 'app.components.BlockLink.documentation',
-***REMOVED***,
-***REMOVED***,
-  ***REMOVED***
+    },
+  },
+  {
     link: 'https://github.com/strapi/strapi-examples',
-    content: ***REMOVED***
+    content: {
       id: 'app.components.BlockLink.code.content',
-***REMOVED***,
+    },
     isDocumentation: false,
-    title: ***REMOVED***
+    title: {
       id: 'app.components.BlockLink.code',
-***REMOVED***,
-***REMOVED***,
+    },
+  },
 ];
 
-const SECOND_BLOCK = ***REMOVED***
-  title: ***REMOVED***
+const SECOND_BLOCK = {
+  title: {
     id: 'app.components.HomePage.community',
-***REMOVED***,
+  },
   content: () => <CommunityContent />,
-***REMOVED***;
+};
 
 const SOCIAL_LINKS = [
-  ***REMOVED***
+  {
     name: 'GitHub',
     link: 'https://github.com/strapi/strapi/',
-***REMOVED***,
-  ***REMOVED***
+  },
+  {
     name: 'Slack',
     link: 'https://slack.strapi.io/',
-***REMOVED***,
-  ***REMOVED***
+  },
+  {
     name: 'Medium',
     link: 'https://medium.com/@strapi',
-***REMOVED***,
-  ***REMOVED***
+  },
+  {
     name: 'Twitter',
     link: 'https://twitter.com/strapijs',
-***REMOVED***,
-  ***REMOVED***
+  },
+  {
     name: 'Reddit',
     link: 'https://www.reddit.com/r/node/search?q=strapi',
-***REMOVED***,
-  ***REMOVED***
+  },
+  {
     name: 'Stack Overflow',
     link: 'https://stackoverflow.com/questions/tagged/strapi',
-***REMOVED***,
+  },
 ];
 
-export class HomePage extends React.PureComponent ***REMOVED***
+export class HomePage extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
-  state = ***REMOVED*** errors: [] ***REMOVED***;
+  state = { errors: [] };
 
-  componentDidMount() ***REMOVED***
+  componentDidMount() {
     this.props.getArticles();
-***REMOVED***
+  }
 
-  handleSubmit = e => ***REMOVED***
+  handleSubmit = e => {
     e.preventDefault();
-    const errors = validateInput(this.props.homePage.body.email, ***REMOVED*** required: true ***REMOVED***, 'email');
-    this.setState(***REMOVED*** errors ***REMOVED***);
+    const errors = validateInput(this.props.homePage.body.email, { required: true }, 'email');
+    this.setState({ errors });
 
-    if (isEmpty(errors)) ***REMOVED***
+    if (isEmpty(errors)) {
       return this.props.submit();
-***REMOVED***
-***REMOVED***;
+    }
+  };
 
   showFirstBlock = () =>
     get(this.props.plugins.toJS(), 'content-manager.leftMenuSections.0.links', []).length === 0;
 
-  renderButton = () => ***REMOVED***
+  renderButton = () => {
     const data = this.showFirstBlock()
-      ? ***REMOVED***
+      ? {
         className: styles.homePageTutorialButton,
         href: 'https://strapi.io/documentation/getting-started/quick-start.html#create-your-first-api',
         id: 'app.components.HomePage.button.quickStart',
         primary: true,
-***REMOVED***
-      : ***REMOVED***
+      }
+      : {
         className: styles.homePageBlogButton,
         id: 'app.components.HomePage.button.blog',
         href: 'https://blog.strapi.io/',
         primary: false,
-***REMOVED***;
+      };
 
     return (
-      <a href=***REMOVED***data.href***REMOVED*** target="_blank">
-        <Button className=***REMOVED***data.className***REMOVED*** primary=***REMOVED***data.primary***REMOVED***>
-          <FormattedMessage id=***REMOVED***data.id***REMOVED*** />
+      <a href={data.href} target="_blank">
+        <Button className={data.className} primary={data.primary}>
+          <FormattedMessage id={data.id} />
         </Button>
       </a>
     );
-***REMOVED***;
+  };
 
-  render() ***REMOVED***
-    const ***REMOVED*** homePage: ***REMOVED*** articles, body ***REMOVED*** ***REMOVED*** = this.props;
+  render() {
+    const { homePage: { articles, body } } = this.props;
     const WELCOME_AGAIN_BLOCK = [
-      ***REMOVED***
-        title: ***REMOVED***
+      {
+        title: {
           id: 'app.components.HomePage.welcome.again',
-  ***REMOVED***
-        name: upperFirst(`$***REMOVED***get(auth.getUserInfo(), 'username')***REMOVED***!`),
+        },
+        name: upperFirst(`${get(auth.getUserInfo(), 'username')}!`),
         content: () => <WelcomeContent hasContent />,
-***REMOVED***
+      },
     ];
 
     return (
-      <div className=***REMOVED***cn('container-fluid', styles.containerFluid)***REMOVED***>
+      <div className={cn('container-fluid', styles.containerFluid)}>
         <Helmet title="Home Page" />
         <div className="row">
           <div className="col-md-8 col-lg-8">
             <Block>
-              ***REMOVED***this.showFirstBlock() &&
+              {this.showFirstBlock() &&
                 FIRST_BLOCK.map((value, key) => (
-                  <Sub key=***REMOVED***key***REMOVED*** ***REMOVED***...value***REMOVED*** underline=***REMOVED***key === 0***REMOVED*** bordered=***REMOVED***key === 0***REMOVED*** />
-                ))***REMOVED***
-              ***REMOVED***!this.showFirstBlock() &&
+                  <Sub key={key} {...value} underline={key === 0} bordered={key === 0} />
+                ))}
+              {!this.showFirstBlock() &&
                 WELCOME_AGAIN_BLOCK.concat(articles).map((value, key) => (
                   <Sub
-                    key=***REMOVED***key***REMOVED***
-                    ***REMOVED***...value***REMOVED***
-                    bordered=***REMOVED***key === 0***REMOVED***
-                    style=***REMOVED***key === 1 ? ***REMOVED*** marginBottom: '33px' ***REMOVED*** : ***REMOVED******REMOVED******REMOVED***
-                    underline=***REMOVED***key === 0***REMOVED***
+                    key={key}
+                    {...value}
+                    bordered={key === 0}
+                    style={key === 1 ? { marginBottom: '33px' } : {}}
+                    underline={key === 0}
                   />
-                ))***REMOVED***
-              ***REMOVED***this.renderButton()***REMOVED***
-              <div className=***REMOVED***styles.homePageFlex***REMOVED***>
-                ***REMOVED***FIRST_BLOCK_LINKS.map((value, key) => <BlockLink ***REMOVED***...value***REMOVED*** key=***REMOVED***key***REMOVED*** />)***REMOVED***
+                ))}
+              {this.renderButton()}
+              <div className={styles.homePageFlex}>
+                {FIRST_BLOCK_LINKS.map((value, key) => <BlockLink {...value} key={key} />)}
               </div>
             </Block>
             <Block>
-              <Sub ***REMOVED***...SECOND_BLOCK***REMOVED*** />
-              <div className=***REMOVED***styles.homePageFlex***REMOVED***>
-                <div className="row" style=***REMOVED******REMOVED*** width: '100%', marginRight: '0' ***REMOVED******REMOVED***>
-                  ***REMOVED***SOCIAL_LINKS.map((value, key) => <SocialLink key=***REMOVED***key***REMOVED*** ***REMOVED***...value***REMOVED*** />)***REMOVED***
+              <Sub {...SECOND_BLOCK} />
+              <div className={styles.homePageFlex}>
+                <div className="row" style={{ width: '100%', marginRight: '0' }}>
+                  {SOCIAL_LINKS.map((value, key) => <SocialLink key={key} {...value} />)}
                 </div>
-                <div className=***REMOVED***styles.newsLetterWrapper***REMOVED***>
+                <div className={styles.newsLetterWrapper}>
                   <div>
                     <FormattedMessage id="app.components.HomePage.newsLetter" />
                   </div>
-                  <form onSubmit=***REMOVED***this.handleSubmit***REMOVED***>
-                    <div className=***REMOVED***cn(styles.homePageForm, 'row')***REMOVED***>
+                  <form onSubmit={this.handleSubmit}>
+                    <div className={cn(styles.homePageForm, 'row')}>
                       <div className="col-md-12">
                         <Input
-                          value=***REMOVED***body.email***REMOVED***
-                          onChange=***REMOVED***this.props.onChange***REMOVED***
+                          value={body.email}
+                          onChange={this.props.onChange}
                           name=""
                           placeholder="johndoe@gmail.com"
-                          error=***REMOVED***!isEmpty(this.state.errors)***REMOVED***
+                          error={!isEmpty(this.state.errors)}
                         />
                         <FormattedMessage id="app.components.HomePage.cta">
-                          ***REMOVED***message => <button type="submit">***REMOVED***message***REMOVED***</button>***REMOVED***
+                          {message => <button type="submit">{message}</button>}
                         </FormattedMessage>
                       </div>
                     </div>
@@ -225,11 +225,11 @@ export class HomePage extends React.PureComponent ***REMOVED***
             </Block>
           </div>
           <div className="col-lg-4 col-md-4">
-            <Block className=***REMOVED***styles.blockShirt***REMOVED***>
+            <Block className={styles.blockShirt}>
               <div>
                 <SupportUsTitle />
                 <FormattedMessage id="app.components.HomePage.support.content">
-                  ***REMOVED***message => <p>***REMOVED***message***REMOVED***</p>***REMOVED***
+                  {message => <p>{message}</p>}
                 </FormattedMessage>
                 <SupportUsCta />
               </div>
@@ -238,37 +238,37 @@ export class HomePage extends React.PureComponent ***REMOVED***
         </div>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-HomePage.propTypes = ***REMOVED***
+HomePage.propTypes = {
   getArticles: PropTypes.func.isRequired,
   homePage: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   plugins: PropTypes.object.isRequired,
   submit: PropTypes.func.isRequired,
-***REMOVED***;
+};
 
-const mapStateToProps = createStructuredSelector(***REMOVED***
+const mapStateToProps = createStructuredSelector({
   homePage: makeSelectHomePage(),
   plugins: selectPlugins(),
-***REMOVED***);
+});
 
-function mapDispatchToProps(dispatch) ***REMOVED***
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       getArticles,
       onChange,
       submit,
-***REMOVED***,
+    },
     dispatch,
   );
-***REMOVED***
+}
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer(***REMOVED*** key: 'homePage', reducer ***REMOVED***);
-const withSaga = injectSaga(***REMOVED*** key: 'homePage', saga ***REMOVED***);
+const withReducer = injectReducer({ key: 'homePage', reducer });
+const withSaga = injectSaga({ key: 'homePage', saga });
 
 // export default connect(mapDispatchToProps)(HomePage);
 export default compose(withReducer, withSaga, withConnect)(HomePage);

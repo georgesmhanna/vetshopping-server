@@ -1,12 +1,12 @@
-.contentHeader ***REMOVED*** /* stylelint-disable */
+.contentHeader { /* stylelint-disable */
   position: relative;
   margin: 2.3rem 0rem 3.3rem 0rem;
   font-family: Lato;
   display: flex;
   justify-content: space-between;
-***REMOVED***
+}
 
-.title ***REMOVED***
+.title {
   color: #333740;
   font-family: Lato;
   font-size: 2.4rem;
@@ -14,40 +14,40 @@
   font-weight: 600;
   margin-bottom: 2px;
 
-  > i ***REMOVED***
+  > i {
     margin-top: 1.1rem;
     margin-left: 1rem;
     font-size: 1.4rem;
     color: rgba(16,22,34,0.35);
     cursor: pointer;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.subTitle ***REMOVED***
+.subTitle {
   margin-top: 0rem;
   color: #787E8F;
   font-size: 1.3rem;
   line-height: 1.5rem;
-***REMOVED***
+}
 
-.flex ***REMOVED***
+.flex {
   display: flex;
   flex-direction: row;
-***REMOVED***
+}
 
-.icoContainer ***REMOVED***
+.icoContainer {
   // padding-top: .3rem;
   font-size: 1.2rem;
   color: rgba(16,22,34,0.35);;
-  > i ***REMOVED***
+  > i {
     margin-left: 1rem;
-***REMOVED***
+  }
   // color: #101622;
-***REMOVED***
+}
 
-.buttonContainer ***REMOVED***
+.buttonContainer {
   padding-top: .4rem;
-  > button:last-child ***REMOVED***
+  > button:last-child {
     margin-right: 0;
-***REMOVED***
-***REMOVED***
+  }
+}

@@ -4,7 +4,7 @@
  *
  */
 
-import ***REMOVED***
+import {
   ADD_ATTR,
   ADD_FILTER,
   CHANGE_PARAMS,
@@ -28,170 +28,170 @@ import ***REMOVED***
   SET_DISPLAYED_FIELDS,
   SET_PARAMS,
   SUBMIT,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function addAttr(attr, index) ***REMOVED***
-  return ***REMOVED***
+export function addAttr(attr, index) {
+  return {
     type: ADD_ATTR,
     attr,
     index,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function addFilter(filter) ***REMOVED***
-  return ***REMOVED***
+export function addFilter(filter) {
+  return {
     type: ADD_FILTER,
     filter,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function changeParams(***REMOVED*** target ***REMOVED***) ***REMOVED***
-  return ***REMOVED***
+export function changeParams({ target }) {
+  return {
     type: CHANGE_PARAMS,
     keys: target.name.split('.'),
     value: target.value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function deleteData(id, modelName, source) ***REMOVED***
-  return ***REMOVED***
+export function deleteData(id, modelName, source) {
+  return {
     type: DELETE_DATA,
     id,
     modelName,
     source,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function deleteDataSuccess(id) ***REMOVED***
-  return ***REMOVED***
+export function deleteDataSuccess(id) {
+  return {
     type: DELETE_DATA_SUCCESS,
     id,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function deleteSeveralData(entriesToDelete, model, source) ***REMOVED***
-  return ***REMOVED***
+export function deleteSeveralData(entriesToDelete, model, source) {
+  return {
     type: DELETE_SEVERAL_DATA,
     entriesToDelete,
     model,
     source,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function deleteSeveralDataSuccess() ***REMOVED***
-  return ***REMOVED***
+export function deleteSeveralDataSuccess() {
+  return {
     type: DELETE_SEVERAL_DATA_SUCCESS,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getData(currentModel, source, setUpdatingParams = false) ***REMOVED***
-  return ***REMOVED***
+export function getData(currentModel, source, setUpdatingParams = false) {
+  return {
     type: GET_DATA,
     currentModel,
     setUpdatingParams,
     source,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function getDataSucceeded(data) ***REMOVED***
-  return ***REMOVED***
+export function getDataSucceeded(data) {
+  return {
     type: GET_DATA_SUCCEEDED,
     data,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onChange(index, key, value) ***REMOVED***
-  return ***REMOVED***
+export function onChange(index, key, value) {
+  return {
     type: ON_CHANGE,
     index,
     key,
     value,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onClickRemove(index) ***REMOVED***
-  return ***REMOVED***
+export function onClickRemove(index) {
+  return {
     type: ON_CLICK_REMOVE,
     index,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onClickSelect(***REMOVED*** target ***REMOVED***) ***REMOVED***
-  return ***REMOVED***
+export function onClickSelect({ target }) {
+  return {
     type: ON_CLICK_SELECT,
     id: target.name,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onClickSelectAll() ***REMOVED***
-  return ***REMOVED***
+export function onClickSelectAll() {
+  return {
     type: ON_CLICK_SELECT_ALL,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function openFiltersWithSelections(index) ***REMOVED***
-  return ***REMOVED***
+export function openFiltersWithSelections(index) {
+  return {
     type: OPEN_FILTERS_WITH_SELECTION,
     index,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onToggleDeleteAll() ***REMOVED***
-  return ***REMOVED***
+export function onToggleDeleteAll() {
+  return {
     type: ON_TOGGLE_DELETE_ALL,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function onToggleFilters() ***REMOVED***
-  return ***REMOVED***
+export function onToggleFilters() {
+  return {
     type: ON_TOGGLE_FILTERS,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function removeAllFilters() ***REMOVED***
-  return ***REMOVED***
+export function removeAllFilters() {
+  return {
     type: REMOVE_ALL_FILTERS,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function removeAttr(index) ***REMOVED***
-  return ***REMOVED***
+export function removeAttr(index) {
+  return {
     type: REMOVE_ATTR,
     index,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function removeFilter(index) ***REMOVED***
-  return ***REMOVED***
+export function removeFilter(index) {
+  return {
     type: REMOVE_FILTER,
     index,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function resetDisplayedFields(fields) ***REMOVED***
-  return ***REMOVED***
+export function resetDisplayedFields(fields) {
+  return {
     type: RESET_DISPLAYED_FIELDS,
     fields,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setDisplayedFields(fields) ***REMOVED***
-  return ***REMOVED***
+export function setDisplayedFields(fields) {
+  return {
     type: SET_DISPLAYED_FIELDS,
     fields,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function setParams(params, filters) ***REMOVED***
-  return ***REMOVED***
+export function setParams(params, filters) {
+  return {
     type: SET_PARAMS,
     params,
     filters,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function submit() ***REMOVED***
-  return ***REMOVED***
+export function submit() {
+  return {
     type: SUBMIT,
-***REMOVED***;
-***REMOVED***
+  };
+}

@@ -6,11 +6,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import ***REMOVED*** findIndex, get, isEmpty, map, take, takeRight ***REMOVED*** from 'lodash';
-import ***REMOVED*** FormattedMessage ***REMOVED*** from 'react-intl';
+import { findIndex, get, isEmpty, map, take, takeRight } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 import pluralize from 'pluralize';
 
-import ***REMOVED*** Button, Modal, ModalHeader, ModalBody, ModalFooter ***REMOVED*** from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Input from 'components/InputsIndex';
 import PopUpHeaderNavLink from 'components/PopUpHeaderNavLink';
 import RelationBox from 'components/RelationBox';
@@ -18,42 +18,42 @@ import RelationNaturePicker from 'components/RelationNaturePicker';
 import styles from './styles.scss';
 
 /* eslint-disable jsx-a11y/tabindex-no-positive */
-class PopUpRelations extends React.Component ***REMOVED***
+class PopUpRelations extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+  constructor(props) {
     super(props);
     this.popUpHeaderNavLinks = [
-      ***REMOVED***
+      {
         name: 'defineRelation',
         message: 'content-type-builder.popUpForm.navContainer.relation',
         nameToReplace: 'advancedSettings',
-***REMOVED***
-      ***REMOVED***
+      },
+      {
         name: 'advancedSettings',
         message: 'content-type-builder.popUpForm.navContainer.advanced',
         nameToReplace: 'defineRelation',
-***REMOVED***
+      },
     ];
-***REMOVED***
+  }
 
-  componentDidMount() ***REMOVED***
-    if (!isEmpty(this.props.dropDownItems) && !this.props.isEditting) ***REMOVED***
+  componentDidMount() {
+    if (!isEmpty(this.props.dropDownItems) && !this.props.isEditting) {
       this.init(this.props);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  componentWillReceiveProps(nextProps) ***REMOVED***
+  componentWillReceiveProps(nextProps) {
     if (
       isEmpty(this.props.dropDownItems) &&
       !isEmpty(nextProps.dropDownItems) &&
       !this.props.isEditting
-    ) ***REMOVED***
+    ) {
       this.init(nextProps);
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  setPlaceholders = (firstCTName, secondCTName, relationType, values = this.props.values) => ***REMOVED***
-    switch (relationType) ***REMOVED***
+  setPlaceholders = (firstCTName, secondCTName, relationType, values = this.props.values) => {
+    switch (relationType) {
       case 'oneToMany':
         firstCTName = pluralize(firstCTName);
         break;
@@ -66,168 +66,168 @@ class PopUpRelations extends React.Component ***REMOVED***
         break;
       default:
         // Do nothing
-***REMOVED***
+    }
 
-    if (get(this.props.contentType, 'name') !== get(values, 'params.target')) ***REMOVED***
-      this.props.onChange(***REMOVED*** target: ***REMOVED*** name: 'name', value: firstCTName ***REMOVED*** ***REMOVED***);
-      this.props.onChange(***REMOVED*** target: ***REMOVED*** name: 'params.key', value: secondCTName ***REMOVED*** ***REMOVED***);
+    if (get(this.props.contentType, 'name') !== get(values, 'params.target')) {
+      this.props.onChange({ target: { name: 'name', value: firstCTName } });
+      this.props.onChange({ target: { name: 'params.key', value: secondCTName } });
       this.props.resetFormErrors();
-***REMOVED*** else ***REMOVED***
-      this.props.onChange(***REMOVED*** target: ***REMOVED*** name: 'name', value: '' ***REMOVED*** ***REMOVED***);
-      this.props.onChange(***REMOVED*** target: ***REMOVED*** name: 'params.key', value: '' ***REMOVED*** ***REMOVED***);
-***REMOVED***
-***REMOVED***
+    } else {
+      this.props.onChange({ target: { name: 'name', value: '' } });
+      this.props.onChange({ target: { name: 'params.key', value: '' } });
+    }
+  }
 
-  handleChange = e => ***REMOVED***
+  handleChange = e => {
     this.props.onChange(e);
     const shouldResetKeyParams = e.target.value === 'oneWay';
 
-    if (!this.props.isEditting && !shouldResetKeyParams) ***REMOVED***
+    if (!this.props.isEditting && !shouldResetKeyParams) {
       this.setPlaceholders(
         get(this.props.values, ['params', 'target']),
         get(this.props.contentType, 'name'),
         e.target.value,
       );
-***REMOVED***
+    }
 
-    if (shouldResetKeyParams) ***REMOVED***
-      this.props.onChange(***REMOVED*** target: ***REMOVED*** name: 'params.key', value: '-' ***REMOVED*** ***REMOVED***);
-***REMOVED***
-***REMOVED***
+    if (shouldResetKeyParams) {
+      this.props.onChange({ target: { name: 'params.key', value: '-' } });
+    }
+  }
 
-  handleClick = e => ***REMOVED***
+  handleClick = e => {
     const value = e.target.id.split('.');
     [
-      ***REMOVED***
-        target: ***REMOVED***
+      {
+        target: {
           type: 'string',
           value: value[0],
           name: 'params.target',
-  ***REMOVED***
-***REMOVED***
-      ***REMOVED***
-        target: ***REMOVED***
+        },
+      },
+      {
+        target: {
           type: 'string',
           value: value[1] !== 'undefined' ? value[1] : '',
           name: 'params.pluginValue',
-  ***REMOVED***
-***REMOVED***
+        },
+      },
     ].map(target => this.props.onChange(target));
 
-    if (!this.props.isEditting) ***REMOVED***
-      if (get(this.props.contentType, 'name') !== value[0]) ***REMOVED***
+    if (!this.props.isEditting) {
+      if (get(this.props.contentType, 'name') !== value[0]) {
         this.setPlaceholders(
           value[0],
           get(this.props.contentType, 'name'),
           get(this.props.values, ['params', 'nature']),
           value[0],
         );
-***REMOVED*** else ***REMOVED***
+      } else {
         const keyValue = get(this.props.values, 'params.nature') === 'oneWay' ? '-' : '';
-        this.props.onChange(***REMOVED*** target: ***REMOVED*** name: 'name', value: '' ***REMOVED*** ***REMOVED***);
-        this.props.onChange(***REMOVED*** target: ***REMOVED*** name: 'params.key', value: keyValue ***REMOVED*** ***REMOVED***);
-***REMOVED***
-***REMOVED***
-***REMOVED***;
+        this.props.onChange({ target: { name: 'name', value: '' } });
+        this.props.onChange({ target: { name: 'params.key', value: keyValue } });
+      }
+    }
+  };
 
-  init = props => ***REMOVED***
-    const target = ***REMOVED***
+  init = props => {
+    const target = {
       name: 'params.target',
       type: 'string',
       value: get(props.dropDownItems[0], 'name'),
-***REMOVED***;
+    };
 
-    this.props.onChange(***REMOVED*** target ***REMOVED***);
+    this.props.onChange({ target });
 
-    if (get(props.dropDownItems[0], 'source')) ***REMOVED***
-      this.props.onChange(***REMOVED***
-        target: ***REMOVED***
+    if (get(props.dropDownItems[0], 'source')) {
+      this.props.onChange({
+        target: {
           type: 'string',
           name: 'params.pluginValue',
           value: get(props.dropDownItems[0], 'source'),
-  ***REMOVED***
-***REMOVED***);
-***REMOVED***
+        },
+      });
+    }
 
-    if (get(props.contentType, 'name') !== get(props.dropDownItems, ['0', 'name'])) ***REMOVED***
+    if (get(props.contentType, 'name') !== get(props.dropDownItems, ['0', 'name'])) {
       [
-        ***REMOVED*** target: ***REMOVED*** name: 'name', value: get(props.dropDownItems, ['0', 'name']) ***REMOVED*** ***REMOVED***,
-        ***REMOVED*** target: ***REMOVED*** name: 'params.key', value: get(props.contentType, 'name') ***REMOVED*** ***REMOVED***,
+        { target: { name: 'name', value: get(props.dropDownItems, ['0', 'name']) } },
+        { target: { name: 'params.key', value: get(props.contentType, 'name') } },
       ].map(target => this.props.onChange(target));
-***REMOVED***
-***REMOVED***;
+    }
+  };
 
   renderNavContainer = () => (
-    <div className=***REMOVED***styles.navContainer***REMOVED***>
-      ***REMOVED***map(this.popUpHeaderNavLinks, (link, key) => (
+    <div className={styles.navContainer}>
+      {map(this.popUpHeaderNavLinks, (link, key) => (
         <PopUpHeaderNavLink
-          key=***REMOVED***key***REMOVED***
-          message=***REMOVED***link.message***REMOVED***
-          name=***REMOVED***link.name***REMOVED***
-          nameToReplace=***REMOVED***link.nameToReplace***REMOVED***
-          routePath=***REMOVED***this.props.routePath***REMOVED***
+          key={key}
+          message={link.message}
+          name={link.name}
+          nameToReplace={link.nameToReplace}
+          routePath={this.props.routePath}
         />
-      ))***REMOVED***
+      ))}
     </div>
   );
 
   renderModalBodyAdvanced = () => (
-    <ModalBody className=***REMOVED***`$***REMOVED***styles.modalBodyAdvanced***REMOVED***`***REMOVED***>
+    <ModalBody className={`${styles.modalBodyAdvanced}`}>
       <div className="container-fluid">
         <div className="row">
-          ***REMOVED***map(take(this.props.form.items, 1), (input, key) => (
+          {map(take(this.props.form.items, 1), (input, key) => (
             <Input
-              key=***REMOVED***key***REMOVED***
+              key={key}
               customBootstrapClass="col-md-6 offset-md-6 mr-md-5"
-              type=***REMOVED***input.type***REMOVED***
-              value=***REMOVED***get(this.props.values, ['params', input.name.split('.')[1]])***REMOVED***
-              name=***REMOVED***input.name***REMOVED***
-              label=***REMOVED***input.label***REMOVED***
-              title=***REMOVED***input.title***REMOVED***
-              validations=***REMOVED***input.validations***REMOVED***
-              inputDescription=***REMOVED***input.inputDescription***REMOVED***
-              ***REMOVED***...this.props***REMOVED***
+              type={input.type}
+              value={get(this.props.values, ['params', input.name.split('.')[1]])}
+              name={input.name}
+              label={input.label}
+              title={input.title}
+              validations={input.validations}
+              inputDescription={input.inputDescription}
+              {...this.props}
             />
-          ))***REMOVED***
-          <div className=***REMOVED***styles.divider***REMOVED*** />
+          ))}
+          <div className={styles.divider} />
         </div>
-        <div className=***REMOVED***styles.inputContainer***REMOVED***>
+        <div className={styles.inputContainer}>
           <div className="row">
-            ***REMOVED***map(takeRight(this.props.form.items, 2), (value, index) => ***REMOVED***
+            {map(takeRight(this.props.form.items, 2), (value, index) => {
               const addon =
                 index === 0
                   ? get(this.props.values, 'name')
                   : get(this.props.values, ['params', 'key']);
               return (
                 <Input
-                  key=***REMOVED***index***REMOVED***
-                  type=***REMOVED***value.type***REMOVED***
-                  value=***REMOVED***get(this.props.values, ['params', value.name.split('.')[1]])***REMOVED***
-                  name=***REMOVED***value.name***REMOVED***
-                  label=***REMOVED***value.label***REMOVED***
-                  title=***REMOVED***value.title***REMOVED***
-                  validations=***REMOVED***value.validations***REMOVED***
-                  inputDescription=***REMOVED***value.inputDescription***REMOVED***
-                  ***REMOVED***...this.props***REMOVED***
-                  addon=***REMOVED***addon***REMOVED***
+                  key={index}
+                  type={value.type}
+                  value={get(this.props.values, ['params', value.name.split('.')[1]])}
+                  name={value.name}
+                  label={value.label}
+                  title={value.title}
+                  validations={value.validations}
+                  inputDescription={value.inputDescription}
+                  {...this.props}
+                  addon={addon}
                   placeholder=" "
-                  disabled=***REMOVED***isEmpty(addon)***REMOVED***
+                  disabled={isEmpty(addon)}
                 />
               );
-      ***REMOVED***)***REMOVED***
+            })}
           </div>
         </div>
       </div>
     </ModalBody>
   );
 
-  renderModalBodyRelations = () => ***REMOVED***
+  renderModalBodyRelations = () => {
     const header = get(this.props.values, ['params', 'pluginValue'])
       ? get(this.props.dropDownItems, [
-        findIndex(this.props.dropDownItems, ***REMOVED***
+        findIndex(this.props.dropDownItems, {
           name: get(this.props.values, ['params', 'target']),
           source: get(this.props.values, ['params', 'pluginValue']),
-  ***REMOVED***),
+        }),
       ])
       : get(this.props.dropDownItems, [
         findIndex(this.props.dropDownItems, [
@@ -242,89 +242,89 @@ class PopUpRelations extends React.Component ***REMOVED***
     const contentTypeTargetValue = get(this.props.values, 'params.nature') === 'oneWay' ? '-' : get(this.props.values, ['params', 'key']);
 
     return (
-      <ModalBody className=***REMOVED***`$***REMOVED***styles.modalBody***REMOVED*** $***REMOVED***styles.flex***REMOVED***`***REMOVED***>
+      <ModalBody className={`${styles.modalBody} ${styles.flex}`}>
         <RelationBox
           autoFocus
           tabIndex="1"
-          relationType=***REMOVED***get(this.props.values, ['params', 'nature'])***REMOVED***
-          contentTypeTargetPlaceholder=***REMOVED***get(this.props.values, ['params', 'target'])***REMOVED***
+          relationType={get(this.props.values, ['params', 'nature'])}
+          contentTypeTargetPlaceholder={get(this.props.values, ['params', 'target'])}
           isFirstContentType
-          header=***REMOVED***this.props.contentType***REMOVED***
-          input=***REMOVED***get(this.props.form, ['items', '0'])***REMOVED***
-          value=***REMOVED***get(this.props.values, 'name')***REMOVED***
-          onSubmit=***REMOVED***this.props.onSubmit***REMOVED***
-          onChange=***REMOVED***this.props.onChange***REMOVED***
-          didCheckErrors=***REMOVED***this.props.didCheckErrors***REMOVED***
-          errors=***REMOVED***errs***REMOVED***
+          header={this.props.contentType}
+          input={get(this.props.form, ['items', '0'])}
+          value={get(this.props.values, 'name')}
+          onSubmit={this.props.onSubmit}
+          onChange={this.props.onChange}
+          didCheckErrors={this.props.didCheckErrors}
+          errors={errs}
         />
         <RelationNaturePicker
-          selectedIco=***REMOVED***get(this.props.values, ['params', 'nature'])***REMOVED***
-          onChange=***REMOVED***this.handleChange***REMOVED***
-          contentTypeName=***REMOVED***get(this.props.contentType, 'name')***REMOVED***
-          contentTypeTarget=***REMOVED***get(this.props.values, ['params', 'target'])***REMOVED***
+          selectedIco={get(this.props.values, ['params', 'nature'])}
+          onChange={this.handleChange}
+          contentTypeName={get(this.props.contentType, 'name')}
+          contentTypeTarget={get(this.props.values, ['params', 'target'])}
         />
         <RelationBox
           tabIndex="2"
-          contentTypeTargetPlaceholder=***REMOVED***contentTypeTargetPlaceholder***REMOVED***
-          relationType=***REMOVED***get(this.props.values, ['params', 'nature'])***REMOVED***
-          onSubmit=***REMOVED***this.props.onSubmit***REMOVED***
-          header=***REMOVED***header***REMOVED***
-          input=***REMOVED***get(this.props.form, ['items', '1'])***REMOVED***
-          value=***REMOVED***contentTypeTargetValue***REMOVED***
-          onChange=***REMOVED***this.props.onChange***REMOVED***
-          didCheckErrors=***REMOVED***this.props.didCheckErrors***REMOVED***
-          errors=***REMOVED***errors***REMOVED***
-          dropDownItems=***REMOVED***this.props.dropDownItems***REMOVED***
-          onClick=***REMOVED***this.handleClick***REMOVED***
+          contentTypeTargetPlaceholder={contentTypeTargetPlaceholder}
+          relationType={get(this.props.values, ['params', 'nature'])}
+          onSubmit={this.props.onSubmit}
+          header={header}
+          input={get(this.props.form, ['items', '1'])}
+          value={contentTypeTargetValue}
+          onChange={this.props.onChange}
+          didCheckErrors={this.props.didCheckErrors}
+          errors={errors}
+          dropDownItems={this.props.dropDownItems}
+          onClick={this.handleClick}
         />
       </ModalBody>
     );
-***REMOVED***;
+  };
 
-  render() ***REMOVED***
+  render() {
     const modalBody = this.props.showRelation
       ? this.renderModalBodyRelations()
       : this.renderModalBodyAdvanced();
     const handleToggle = this.props.toggle;
 
     return (
-      <div className=***REMOVED***styles.popUpRelations***REMOVED***>
+      <div className={styles.popUpRelations}>
         <Modal
-          isOpen=***REMOVED***this.props.isOpen***REMOVED***
-          toggle=***REMOVED***this.props.toggle***REMOVED***
-          className=***REMOVED***`$***REMOVED***styles.modalPosition***REMOVED***`***REMOVED***
+          isOpen={this.props.isOpen}
+          toggle={this.props.toggle}
+          className={`${styles.modalPosition}`}
         >
-          <ModalHeader toggle=***REMOVED***this.props.toggle***REMOVED*** className=***REMOVED***styles.popUpFormHeader***REMOVED*** />
-          <div className=***REMOVED***styles.headerContainer***REMOVED***>
-            <div className=***REMOVED***styles.titleContainer***REMOVED***>
+          <ModalHeader toggle={this.props.toggle} className={styles.popUpFormHeader} />
+          <div className={styles.headerContainer}>
+            <div className={styles.titleContainer}>
               <div>
-                <FormattedMessage id=***REMOVED***this.props.popUpTitle***REMOVED*** />
+                <FormattedMessage id={this.props.popUpTitle} />
                 &nbsp;
                 <FormattedMessage id="content-type-builder.popUpRelation.title" />
               </div>
             </div>
 
-            ***REMOVED***this.renderNavContainer()***REMOVED***
+            {this.renderNavContainer()}
           </div>
 
-          ***REMOVED***modalBody***REMOVED***
+          {modalBody}
 
-          <ModalFooter className=***REMOVED***styles.modalFooter***REMOVED***>
-            <Button onClick=***REMOVED***handleToggle***REMOVED*** className=***REMOVED***styles.secondary***REMOVED***>
+          <ModalFooter className={styles.modalFooter}>
+            <Button onClick={handleToggle} className={styles.secondary}>
               <FormattedMessage id="content-type-builder.form.button.cancel" />
             </Button>
-            <Button type="submit" onClick=***REMOVED***this.props.onSubmit***REMOVED*** className=***REMOVED***styles.primaryAddShape***REMOVED***><FormattedMessage id="content-type-builder.button.attributes.add" /></Button>
-            <Button type="button" onClick=***REMOVED***(e) => this.props.onSubmit(e, false)***REMOVED*** className=***REMOVED***styles.primary***REMOVED***>
+            <Button type="submit" onClick={this.props.onSubmit} className={styles.primaryAddShape}><FormattedMessage id="content-type-builder.button.attributes.add" /></Button>
+            <Button type="button" onClick={(e) => this.props.onSubmit(e, false)} className={styles.primary}>
               <FormattedMessage id="content-type-builder.form.button.continue" />
-            </Button>***REMOVED***' '***REMOVED***
+            </Button>{' '}
           </ModalFooter>
         </Modal>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-PopUpRelations.propTypes = ***REMOVED***
+PopUpRelations.propTypes = {
   contentType: PropTypes.object,
   didCheckErrors: PropTypes.bool.isRequired,
   dropDownItems: PropTypes.array,
@@ -341,14 +341,14 @@ PopUpRelations.propTypes = ***REMOVED***
   showRelation: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
   values: PropTypes.object,
-***REMOVED***;
+};
 
-PopUpRelations.defaultProps = ***REMOVED***
-  contentType: ***REMOVED******REMOVED***,
+PopUpRelations.defaultProps = {
+  contentType: {},
   dropDownItems: [],
   isEditting: false,
   showLoader: false,
-  values: ***REMOVED******REMOVED***,
-***REMOVED***;
+  values: {},
+};
 
 export default PopUpRelations;

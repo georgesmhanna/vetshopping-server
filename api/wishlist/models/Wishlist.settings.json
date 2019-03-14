@@ -1,27 +1,27 @@
-***REMOVED***
+{
   "connection": "default",
   "collectionName": "wishlist",
-  "info": ***REMOVED***
+  "info": {
     "name": "wishlist",
     "description": ""
-***REMOVED***,
-  "options": ***REMOVED***
+  },
+  "options": {
     "timestamps": true
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "products": ***REMOVED***
+  },
+  "attributes": {
+    "products": {
       "collection": "product",
       "dominant": true,
       "via": "wishlists"
-***REMOVED***,
-    "name": ***REMOVED***
+    },
+    "name": {
       "default": "",
       "type": "string"
-***REMOVED***,
-    "user": ***REMOVED***
+    },
+    "user": {
       "model": "user",
       "via": "wishlist",
       "plugin": "users-permissions"
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}

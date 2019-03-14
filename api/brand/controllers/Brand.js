@@ -6,73 +6,73 @@
  * @description: A set of functions called "actions" for managing `Brand`.
  */
 
-module.exports = ***REMOVED***
+module.exports = {
 
   /**
    * Retrieve brand records.
    *
-   * @return ***REMOVED***Object|Array***REMOVED***
+   * @return {Object|Array}
    */
 
-  find: async (ctx) => ***REMOVED***
-    if (ctx.query._q) ***REMOVED***
+  find: async (ctx) => {
+    if (ctx.query._q) {
       return strapi.services.brand.search(ctx.query);
-***REMOVED*** else ***REMOVED***
+    } else {
       return strapi.services.brand.fetchAll(ctx.query);
-***REMOVED***
-***REMOVED***,
+    }
+  },
 
   /**
    * Retrieve a brand record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  findOne: async (ctx) => ***REMOVED***
-    if (!ctx.params._id.match(/^[0-9a-fA-F]***REMOVED***24***REMOVED***$/)) ***REMOVED***
+  findOne: async (ctx) => {
+    if (!ctx.params._id.match(/^[0-9a-fA-F]{24}$/)) {
       return ctx.notFound();
-***REMOVED***
+    }
 
     return strapi.services.brand.fetch(ctx.params);
-***REMOVED***,
+  },
 
   /**
    * Count brand records.
    *
-   * @return ***REMOVED***Number***REMOVED***
+   * @return {Number}
    */
 
-  count: async (ctx) => ***REMOVED***
+  count: async (ctx) => {
     return strapi.services.brand.count(ctx.query);
-***REMOVED***,
+  },
 
   /**
    * Create a/an brand record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  create: async (ctx) => ***REMOVED***
+  create: async (ctx) => {
     return strapi.services.brand.add(ctx.request.body);
-***REMOVED***,
+  },
 
   /**
    * Update a/an brand record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  update: async (ctx, next) => ***REMOVED***
+  update: async (ctx, next) => {
     return strapi.services.brand.edit(ctx.params, ctx.request.body) ;
-***REMOVED***,
+  },
 
   /**
    * Destroy a/an brand record.
    *
-   * @return ***REMOVED***Object***REMOVED***
+   * @return {Object}
    */
 
-  destroy: async (ctx, next) => ***REMOVED***
+  destroy: async (ctx, next) => {
     return strapi.services.brand.remove(ctx.params);
-***REMOVED***
-***REMOVED***;
+  }
+};

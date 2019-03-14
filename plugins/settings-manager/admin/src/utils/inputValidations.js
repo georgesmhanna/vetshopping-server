@@ -1,140 +1,140 @@
-import ***REMOVED*** findIndex, mapKeys, forEach, includes, has, isUndefined, reject, isEmpty, size, remove, union ***REMOVED*** from 'lodash';
+import { findIndex, mapKeys, forEach, includes, has, isUndefined, reject, isEmpty, size, remove, union } from 'lodash';
 
 /*
 * @method : check invalid inputs
 *
-* @params ***REMOVED***object, object***REMOVED*** formData, formValidations
+* @params {object, object} formData, formValidations
 *
-* @return ***REMOVED***array***REMOVED*** returns errors[***REMOVED*** target: inputTarget, errors: [***REMOVED***id: 'settings-manager.errorId'***REMOVED***]***REMOVED***]
+* @return {array} returns errors[{ target: inputTarget, errors: [{id: 'settings-manager.errorId'}]}]
 *
 */
 
-export function checkFormValidity(formData, formValidations, formErrors) ***REMOVED***
+export function checkFormValidity(formData, formValidations, formErrors) {
   const errors = [];
-  forEach(formData, (value, key) => ***REMOVED*** // eslint-disable-line consistent-return
+  forEach(formData, (value, key) => { // eslint-disable-line consistent-return
     let valueValidations = formValidations[findIndex(formValidations, ['target', key])];
     let inputErrors = [];
 
-    if (!valueValidations) ***REMOVED***
-      forEach(formValidations, (data) => ***REMOVED***
+    if (!valueValidations) {
+      forEach(formValidations, (data) => {
 
-        if (data.nestedValidations) ***REMOVED***
-          forEach(data.nestedValidations, (nestedData) => ***REMOVED***
+        if (data.nestedValidations) {
+          forEach(data.nestedValidations, (nestedData) => {
             if (nestedData.target === key) valueValidations = nestedData;
-    ***REMOVED***);
-  ***REMOVED***
-***REMOVED***);
-***REMOVED***
+          });
+        }
+      });
+    }
 
     // If section is disabled don't need further checks
     if (includes(key, 'enabled') && !value || !valueValidations) return false;
 
-    forEach(valueValidations.nestedValidations, (nestedValidations) => ***REMOVED***
-      if (nestedValidations.validations.required && !has(formData, nestedValidations.target)) ***REMOVED***
-        errors.push(***REMOVED*** target: nestedValidations.target, errors: [***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***] ***REMOVED***);
-***REMOVED***
-***REMOVED***);
+    forEach(valueValidations.nestedValidations, (nestedValidations) => {
+      if (nestedValidations.validations.required && !has(formData, nestedValidations.target)) {
+        errors.push({ target: nestedValidations.target, errors: [{ id: 'settings-manager.request.error.validation.required' }] });
+      }
+    });
 
-    if (!isUndefined(valueValidations)) ***REMOVED***
+    if (!isUndefined(valueValidations)) {
       inputErrors = validate(value, valueValidations.validations);
-***REMOVED***
+    }
 
-    if (!isEmpty(inputErrors)) errors.push(***REMOVED*** target: key, errors: inputErrors ***REMOVED***);
+    if (!isEmpty(inputErrors)) errors.push({ target: key, errors: inputErrors });
 
-    if (formData['security.xframe.value'] && formData['security.xframe.value'] === 'ALLOW-FROM' || formData['security.xframe.value'] === 'ALLOW-FROM.ALLOW-FROM ') ***REMOVED***
-      errors.push(***REMOVED*** target: 'security.xframe.value.nested', errors: [***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***] ***REMOVED***);
-***REMOVED***
-***REMOVED***);
+    if (formData['security.xframe.value'] && formData['security.xframe.value'] === 'ALLOW-FROM' || formData['security.xframe.value'] === 'ALLOW-FROM.ALLOW-FROM ') {
+      errors.push({ target: 'security.xframe.value.nested', errors: [{ id: 'settings-manager.request.error.validation.required' }] });
+    }
+  });
 
   return union(formErrors, errors);
-***REMOVED***
+}
 
 
-function validate(value, validations) ***REMOVED***
+function validate(value, validations) {
   let errors = [];
   // Handle i18n
-  const requiredError = ***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***;
-  mapKeys(validations, (validationValue, validationKey) => ***REMOVED***
-    switch (validationKey) ***REMOVED***
+  const requiredError = { id: 'settings-manager.request.error.validation.required' };
+  mapKeys(validations, (validationValue, validationKey) => {
+    switch (validationKey) {
       case 'maxLength':
-        if (value.length > validationValue) ***REMOVED***
-          errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.maxLength' ***REMOVED***);
-  ***REMOVED***
+        if (value.length > validationValue) {
+          errors.push({ id: 'settings-manager.request.error.validation.maxLength' });
+        }
         break;
       case 'minLength':
-        if (value.length < validationValue) ***REMOVED***
-          errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.minLength' ***REMOVED***);
-  ***REMOVED***
+        if (value.length < validationValue) {
+          errors.push({ id: 'settings-manager.request.error.validation.minLength' });
+        }
         break;
       case 'required':
-        if (value.length === 0) ***REMOVED***
-          errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***);
-  ***REMOVED***
+        if (value.length === 0) {
+          errors.push({ id: 'settings-manager.request.error.validation.required' });
+        }
         break;
       case 'regex':
-        if (!new RegExp(validationValue).test(value)) ***REMOVED***
-          errors.push(***REMOVED*** id: 'settings-manager.request.error.validation.regex' ***REMOVED***);
-  ***REMOVED***
+        if (!new RegExp(validationValue).test(value)) {
+          errors.push({ id: 'settings-manager.request.error.validation.regex' });
+        }
         break;
       default:
         errors = [];
-***REMOVED***
-***REMOVED***);
+    }
+  });
 
-  if (includes(errors, requiredError)) ***REMOVED***
+  if (includes(errors, requiredError)) {
     errors = reject(errors, (error) => error !== requiredError);
-***REMOVED***
+  }
   return errors;
-***REMOVED***
+}
 
 
 /*
 * @method : get input validations from configs
-* @param ***REMOVED***object***REMOVED*** configs
+* @param {object} configs
 *
-* @return ***REMOVED***array***REMOVED*** returns formValidations
+* @return {array} returns formValidations
 */
 
 
-export function getInputsValidationsFromConfigs(configs) ***REMOVED***
+export function getInputsValidationsFromConfigs(configs) {
   const formValidations = [];
 
-  forEach(configs.sections, (section) => ***REMOVED***
-    forEach(section.items, (item) => ***REMOVED***
+  forEach(configs.sections, (section) => {
+    forEach(section.items, (item) => {
 
-      if (!isUndefined(item.target)) ***REMOVED***
-        const validations = ***REMOVED***
+      if (!isUndefined(item.target)) {
+        const validations = {
           target: item.target,
           validations: item.validations,
-  ***REMOVED***;
+        };
 
-        if (has(item, 'items') && item.type !== 'select') ***REMOVED***
+        if (has(item, 'items') && item.type !== 'select') {
           validations.nestedValidations = [];
 
-          forEach(item.items, (subItem, key) => ***REMOVED***
-            if (!isUndefined(subItem.target) && !isUndefined(subItem.validations)) ***REMOVED***
-              if (has(subItem, 'items')) ***REMOVED***
-                validations.nestedValidations.push(***REMOVED*** target: subItem.target, validations: subItem.validations, nestedValidations: [] ***REMOVED***);
-                forEach(subItem.items, (nestedSubItem) => ***REMOVED***
-                  if (!isUndefined(nestedSubItem.target)) ***REMOVED***
-                    validations.nestedValidations[key].nestedValidations.push(***REMOVED*** target: nestedSubItem.target, validations: nestedSubItem.validations ***REMOVED***);
-            ***REMOVED***
-          ***REMOVED***);
-        ***REMOVED*** else ***REMOVED***
-                validations.nestedValidations.push(***REMOVED*** target: subItem.target, validations: subItem.validations ***REMOVED***);
-        ***REMOVED***
-      ***REMOVED***
-    ***REMOVED***);
+          forEach(item.items, (subItem, key) => {
+            if (!isUndefined(subItem.target) && !isUndefined(subItem.validations)) {
+              if (has(subItem, 'items')) {
+                validations.nestedValidations.push({ target: subItem.target, validations: subItem.validations, nestedValidations: [] });
+                forEach(subItem.items, (nestedSubItem) => {
+                  if (!isUndefined(nestedSubItem.target)) {
+                    validations.nestedValidations[key].nestedValidations.push({ target: nestedSubItem.target, validations: nestedSubItem.validations });
+                  }
+                });
+              } else {
+                validations.nestedValidations.push({ target: subItem.target, validations: subItem.validations });
+              }
+            }
+          });
           formValidations.push(validations);
-  ***REMOVED*** else ***REMOVED***
+        } else {
           formValidations.push(validations);
-  ***REMOVED***
-***REMOVED***
-***REMOVED***);
-***REMOVED***);
+        }
+      }
+    });
+  });
 
   return formValidations;
-***REMOVED***
+}
 
 /* eslint-disable no-template-curly-in-string */
 
@@ -144,29 +144,29 @@ export function getInputsValidationsFromConfigs(configs) ***REMOVED***
 *
 * @method : check if all required inputs are filled for creating a new database
 *
-* @params ***REMOVED***object***REMOVED*** formData
+* @params {object} formData
 *
-* @return ***REMOVED***array***REMOVED*** returns errors[***REMOVED*** target: inputTarget, errors: [***REMOVED***id: 'settings-manager.errorId'***REMOVED***]***REMOVED***]
+* @return {array} returns errors[{ target: inputTarget, errors: [{id: 'settings-manager.errorId'}]}]
 *
 */
 
 
-export function getRequiredInputsDb(data, dbExistsErrors) ***REMOVED***
+export function getRequiredInputsDb(data, dbExistsErrors) {
   const formErrors = [
-    ***REMOVED*** target: 'database.connections.$***REMOVED***name***REMOVED***.name', errors: [***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***] ***REMOVED***,
-    ***REMOVED*** target: 'database.connections.$***REMOVED***name***REMOVED***.settings.host', errors: [***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***] ***REMOVED***,
-    ***REMOVED*** target: 'database.connections.$***REMOVED***name***REMOVED***.settings.port', errors: [***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***] ***REMOVED***,
-    ***REMOVED*** target: 'database.connections.$***REMOVED***name***REMOVED***.settings.database', errors: [***REMOVED*** id: 'settings-manager.request.error.validation.required' ***REMOVED***] ***REMOVED***,
+    { target: 'database.connections.${name}.name', errors: [{ id: 'settings-manager.request.error.validation.required' }] },
+    { target: 'database.connections.${name}.settings.host', errors: [{ id: 'settings-manager.request.error.validation.required' }] },
+    { target: 'database.connections.${name}.settings.port', errors: [{ id: 'settings-manager.request.error.validation.required' }] },
+    { target: 'database.connections.${name}.settings.database', errors: [{ id: 'settings-manager.request.error.validation.required' }] },
   ];
 
   // If size data === 2 user hasn't filled any input,
   if (size(data) === 2) return formErrors;
 
-  forEach(data, (value, target) => ***REMOVED***
-    if (value !== '') ***REMOVED***
+  forEach(data, (value, target) => {
+    if (value !== '') {
       remove(formErrors, (object) => object.target === target);
-***REMOVED***
-***REMOVED***);
+    }
+  });
 
   return union(dbExistsErrors, formErrors);
-***REMOVED***
+}

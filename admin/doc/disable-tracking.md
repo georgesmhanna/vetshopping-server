@@ -8,9 +8,9 @@ Note: The collected data are anonymous and aren't sold to anyone!
 If you don't want to share your data with us, you can simply modify the `strapi` object in the package.json as follows:
 
 ```json
-***REMOVED***
-  "strapi": ***REMOVED***
+{
+  "strapi": {
     "allowGa": false
-***REMOVED***
-***REMOVED***
+  }
+}
 ```

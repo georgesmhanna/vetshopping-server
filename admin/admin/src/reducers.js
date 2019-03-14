@@ -2,9 +2,9 @@
  * Combine all reducers in this file and export the combined reducers.
  */
 
-import ***REMOVED*** fromJS ***REMOVED*** from 'immutable';
-import ***REMOVED*** combineReducers ***REMOVED*** from 'redux-immutable';
-import ***REMOVED*** LOCATION_CHANGE ***REMOVED*** from 'react-router-redux';
+import { fromJS } from 'immutable';
+import { combineReducers } from 'redux-immutable';
+import { LOCATION_CHANGE } from 'react-router-redux';
 
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
@@ -19,34 +19,34 @@ import notificationProviderReducer from 'containers/NotificationProvider/reducer
  */
 
 // Initial routing state
-const routeInitialState = fromJS(***REMOVED***
+const routeInitialState = fromJS({
   location: null,
-***REMOVED***);
+});
 
 /**
  * Merge route into the global application state
  */
-function routeReducer(state = routeInitialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function routeReducer(state = routeInitialState, action) {
+  switch (action.type) {
     /* istanbul ignore next */
     case LOCATION_CHANGE:
-      return state.merge(***REMOVED***
+      return state.merge({
         location: action.payload,
-***REMOVED***);
+      });
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 /**
  * Creates the main reducer with the dynamically injected ones
  */
-export default function createReducer(injectedReducers) ***REMOVED***
-  return combineReducers(***REMOVED***
+export default function createReducer(injectedReducers) {
+  return combineReducers({
     route: routeReducer,
     app: globalReducer,
     language: languageProviderReducer,
     notification: notificationProviderReducer,
     ...injectedReducers,
-***REMOVED***);
-***REMOVED***
+  });
+}

@@ -1,4 +1,4 @@
-import ***REMOVED*** createSelector ***REMOVED*** from 'reselect';
+import { createSelector } from 'reselect';
 
 /**
  * Direct selector to the list state domain
@@ -9,21 +9,21 @@ const selectGlobalDomain = () => state => state.get('global');
  * Other specific selectors
  */
 
-const selectLocationState = () => ***REMOVED***
+const selectLocationState = () => {
   let prevRoutingState;
   let prevRoutingStateJS;
 
-  return state => ***REMOVED***
+  return state => {
     const routingState = state.get('route'); // or state.route
 
-    if (!routingState.equals(prevRoutingState)) ***REMOVED***
+    if (!routingState.equals(prevRoutingState)) {
       prevRoutingState = routingState;
       prevRoutingStateJS = routingState.toJS();
-***REMOVED***
+    }
 
     return prevRoutingStateJS;
-***REMOVED***;
-***REMOVED***;
+  };
+};
 
 const makeSelectAddedField = () =>
   createSelector(selectGlobalDomain(), globalState =>
@@ -56,7 +56,7 @@ const makeSelectShouldResetGrid = () =>
 const makeSelectSubmitSuccess = () =>
   createSelector(selectGlobalDomain(), substate => substate.get('submitSuccess'));
 
-export ***REMOVED***
+export {
   selectGlobalDomain,
   selectLocationState,
   makeSelectAddedField,
@@ -70,4 +70,4 @@ export ***REMOVED***
   makeSelectSchema,
   makeSelectShouldResetGrid,
   makeSelectSubmitSuccess,
-***REMOVED***;
+};

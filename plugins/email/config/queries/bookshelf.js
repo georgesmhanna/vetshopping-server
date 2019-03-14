@@ -1,134 +1,134 @@
 const _ = require('lodash');
 
-module.exports = ***REMOVED***
-  find: async function (params = ***REMOVED******REMOVED***, populate) ***REMOVED***
-    const records = await this.query(function(qb) ***REMOVED***
-      _.forEach(params.where, (where, key) => ***REMOVED***
+module.exports = {
+  find: async function (params = {}, populate) {
+    const records = await this.query(function(qb) {
+      _.forEach(params.where, (where, key) => {
         qb.where(key, where[0].symbol, where[0].value);
-***REMOVED***);
+      });
 
-      if (params.sort) ***REMOVED***
+      if (params.sort) {
         qb.orderBy(params.sort.key, params.sort.order);
-***REMOVED***
+      }
 
-      if (params.start) ***REMOVED***
+      if (params.start) {
         qb.offset(params.start);
-***REMOVED***
+      }
 
-      if (params.limit) ***REMOVED***
+      if (params.limit) {
         qb.limit(params.limit);
-***REMOVED***
-***REMOVED***).fetchAll(***REMOVED***
-      withRelated: populate || _.keys(_.groupBy(_.reject(this.associations, ***REMOVED*** autoPopulate: false ***REMOVED***), 'alias'))
-***REMOVED***);
+      }
+    }).fetchAll({
+      withRelated: populate || _.keys(_.groupBy(_.reject(this.associations, { autoPopulate: false }), 'alias'))
+    });
 
     return records ? records.toJSON() : records;
-***REMOVED***,
+  },
 
-  count: async function (params = ***REMOVED******REMOVED***) ***REMOVED***
+  count: async function (params = {}) {
     return await this
       .where(params)
       .count();
-***REMOVED***,
+  },
 
-  findOne: async function (params, populate) ***REMOVED***
+  findOne: async function (params, populate) {
     const primaryKey = params[this.primaryKey] || params.id;
 
-    if (primaryKey) ***REMOVED***
-      params = ***REMOVED***
+    if (primaryKey) {
+      params = {
         [this.primaryKey]: primaryKey
-***REMOVED***;
-***REMOVED***
+      };
+    }
 
     const record = await this
       .forge(params)
-      .fetch(***REMOVED***
+      .fetch({
         withRelated: populate || this.associations.map(x => x.alias)
-***REMOVED***);
+      });
 
     return record ? record.toJSON() : record;
-***REMOVED***,
+  },
 
-  create: async function (params) ***REMOVED***
+  create: async function (params) {
     return this
       .forge()
-      .save(Object.keys(params).reduce((acc, current) => ***REMOVED***
-        if (_.get(this._attributes, [current, 'type']) || _.get(this._attributes, [current, 'model'])) ***REMOVED***
+      .save(Object.keys(params).reduce((acc, current) => {
+        if (_.get(this._attributes, [current, 'type']) || _.get(this._attributes, [current, 'model'])) {
           acc[current] = params[current];
-  ***REMOVED***
+        }
 
         return acc;
-***REMOVED*** ***REMOVED******REMOVED***))
-      .catch((err) => ***REMOVED***
-        if (err.detail) ***REMOVED***
+      }, {}))
+      .catch((err) => {
+        if (err.detail) {
           const field = _.last(_.words(err.detail.split('=')[0]));
-          err = ***REMOVED*** message: `This $***REMOVED***field***REMOVED*** is already taken`, field ***REMOVED***;
-  ***REMOVED***
+          err = { message: `This ${field} is already taken`, field };
+        }
 
         throw err;
-***REMOVED***);
-***REMOVED***,
+      });
+  },
 
-  update: async function (search, params = ***REMOVED******REMOVED***) ***REMOVED***
-    if (_.isEmpty(params)) ***REMOVED***
+  update: async function (search, params = {}) {
+    if (_.isEmpty(params)) {
       params = search;
-***REMOVED***
+    }
 
     const primaryKey = search[this.primaryKey] || search.id;
 
-    if (primaryKey) ***REMOVED***
-      search = ***REMOVED***
+    if (primaryKey) {
+      search = {
         [this.primaryKey]: primaryKey
-***REMOVED***;
-***REMOVED*** else ***REMOVED***
+      };
+    } else {
       const entry = await module.exports.findOne.call(this, search);
 
-      search = ***REMOVED***
+      search = {
         [this.primaryKey]: entry[this.primaryKey] || entry.id
-***REMOVED***;
-***REMOVED***
+      };
+    }
 
     return this.forge(search)
-      .save(params, ***REMOVED***
+      .save(params, {
         patch: true
-***REMOVED***)
-      .catch((err) => ***REMOVED***
+      })
+      .catch((err) => {
         const field = _.last(_.words(err.detail.split('=')[0]));
-        const error = ***REMOVED*** message: `This $***REMOVED***field***REMOVED*** is already taken`, field ***REMOVED***;
+        const error = { message: `This ${field} is already taken`, field };
 
         throw error;
-***REMOVED***);
-***REMOVED***,
+      });
+  },
 
-  delete: async function (params) ***REMOVED***
+  delete: async function (params) {
     return await this
-      .forge(***REMOVED***
+      .forge({
         [this.primaryKey]: params[this.primaryKey] || params.id
-***REMOVED***)
+      })
       .destroy();
-***REMOVED***,
+  },
 
-  search: async function (params) ***REMOVED***
+  search: async function (params) {
     return this
-      .query(function(qb) ***REMOVED***
+      .query(function(qb) {
         qb
-          .whereRaw(`LOWER(hash) LIKE ?`, [`%$***REMOVED***params.id***REMOVED***%`])
-          .orWhereRaw(`LOWER(name) LIKE ?`, [`%$***REMOVED***params.id***REMOVED***%`]);
-***REMOVED***)
+          .whereRaw(`LOWER(hash) LIKE ?`, [`%${params.id}%`])
+          .orWhereRaw(`LOWER(name) LIKE ?`, [`%${params.id}%`]);
+      })
       .fetchAll();
-***REMOVED***,
+  },
 
-  addPermission: async function (params) ***REMOVED***
+  addPermission: async function (params) {
     return this
       .forge(params)
       .save();
-***REMOVED***,
+  },
 
-  removePermission: async function (params) ***REMOVED***
+  removePermission: async function (params) {
     return this
-      .forge(***REMOVED***
+      .forge({
         [this.primaryKey]: params[this.primaryKey] || params.id
-***REMOVED***)
+      })
       .destroy();
-***REMOVED***
-***REMOVED***;
+  }
+};

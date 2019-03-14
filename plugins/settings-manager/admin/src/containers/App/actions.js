@@ -4,35 +4,35 @@
  *
  */
 
-import ***REMOVED***
+import {
   ENVIRONMENTS_FETCH,
   ENVIRONMENTS_FETCH_SUCCEEDED,
   MENU_FETCH_SUCCEEDED,
   MENU_FETCH,
-***REMOVED*** from './constants';
+} from './constants';
 
-export function environmentsFetch() ***REMOVED***
-  return ***REMOVED***
+export function environmentsFetch() {
+  return {
     type: ENVIRONMENTS_FETCH,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function environmentsFetchSucceeded(environments) ***REMOVED***
-  return ***REMOVED***
+export function environmentsFetchSucceeded(environments) {
+  return {
     type: ENVIRONMENTS_FETCH_SUCCEEDED,
     environments,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function fetchMenuSucceeded(menu) ***REMOVED***
-  return ***REMOVED***
+export function fetchMenuSucceeded(menu) {
+  return {
     type: MENU_FETCH_SUCCEEDED,
     menu,
-***REMOVED***;
-***REMOVED***
+  };
+}
 
-export function menuFetch() ***REMOVED***
-  return ***REMOVED***
+export function menuFetch() {
+  return {
     type: MENU_FETCH,
-***REMOVED***;
-***REMOVED***
+  };
+}

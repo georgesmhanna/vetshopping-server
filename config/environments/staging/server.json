@@ -1,16 +1,16 @@
-***REMOVED***
+{
   "host": "localhost",
-  "port": "$***REMOVED***process.env.PORT || 1337***REMOVED***",
-  "proxy": ***REMOVED***
+  "port": "${process.env.PORT || 1337}",
+  "proxy": {
     "enabled": false
-***REMOVED***,
-  "autoReload": ***REMOVED***
+  },
+  "autoReload": {
     "enabled": false
-***REMOVED***,
-  "cron": ***REMOVED***
+  },
+  "cron": {
     "enabled": false
-***REMOVED***,
-  "admin": ***REMOVED***
+  },
+  "admin": {
     "autoOpen": false
-***REMOVED***
-***REMOVED***
+  }
+}

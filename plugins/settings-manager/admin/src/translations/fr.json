@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "components.DownloadDb.download": "Installation en cours...",
   "components.DownloadDb.text": "Cela peut prendre plusieurs minutes. Merci de patienter.",
   "plugin.description.short": "Configurez votre projet en quelques secondes.",
@@ -656,4 +656,4 @@
   "language.zu_ZA": "isiZulu (iNingizimu Afrika)",
 
   "pageNotFound": "Page introuvable"
-***REMOVED***
+}

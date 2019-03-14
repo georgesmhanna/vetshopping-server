@@ -7,15 +7,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
-import ***REMOVED*** trim ***REMOVED*** from 'lodash';
+import { trim } from 'lodash';
 
 import ext from './extensions.json';
 
 import styles from './styles.scss';
 
-function FileIcon(***REMOVED*** fileType ***REMOVED***) ***REMOVED***
-  const iconType = (() => ***REMOVED***
-    switch (true) ***REMOVED***
+function FileIcon({ fileType }) {
+  const iconType = (() => {
+    switch (true) {
       case ext.archive.includes(trim(fileType, '.')):
         return 'file-archive-o';
       case ext.code.includes(trim(fileType, '.')):
@@ -32,31 +32,31 @@ function FileIcon(***REMOVED*** fileType ***REMOVED***) ***REMOVED***
         return 'file-word-o';
       default:
         return 'file';
-***REMOVED***
-***REMOVED***)();
+    }
+  })();
 
   return (
     <div
-      className=***REMOVED***(cn(
+      className={(cn(
         styles.fileIconContainer,
         iconType === 'file-pdf-o' && styles.pdf,
         iconType === 'file-archive-o' && styles.zip,
         iconType === 'file-image-o' && styles.image,
         iconType === 'file-video-o' && styles.video,
         iconType === 'file-code-o' && styles.code,
-      ))***REMOVED***
+      ))}
     >
-      <i className=***REMOVED***`fa fa-$***REMOVED***iconType***REMOVED***`***REMOVED*** />
+      <i className={`fa fa-${iconType}`} />
     </div>
   );
-***REMOVED***
+}
 
-FileIcon.defaultProps = ***REMOVED***
+FileIcon.defaultProps = {
   fileType: 'zip',
-***REMOVED***;
+};
 
-FileIcon.propTypes = ***REMOVED***
+FileIcon.propTypes = {
   fileType: PropTypes.string,
-***REMOVED***;
+};
 
 export default FileIcon;

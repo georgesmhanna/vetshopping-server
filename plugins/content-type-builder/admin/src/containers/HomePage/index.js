@@ -5,16 +5,16 @@
  */
 
 import React from 'react';
-import ***REMOVED*** connect ***REMOVED*** from 'react-redux';
-import ***REMOVED*** bindActionCreators, compose ***REMOVED*** from 'redux';
-import ***REMOVED*** createStructuredSelector ***REMOVED*** from 'reselect';
-import ***REMOVED*** size ***REMOVED*** from 'lodash';
+import { connect } from 'react-redux';
+import { bindActionCreators, compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+import { size } from 'lodash';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
-import ***REMOVED*** router ***REMOVED*** from 'app';
+import { router } from 'app';
 
-import ***REMOVED*** makeSelectLoading, makeSelectMenu, makeSelectModels ***REMOVED*** from 'containers/App/selectors';
-import ***REMOVED*** deleteContentType ***REMOVED*** from 'containers/App/actions';
+import { makeSelectLoading, makeSelectMenu, makeSelectModels } from 'containers/App/selectors';
+import { deleteContentType } from 'containers/App/actions';
 
 import Form from 'containers/Form';
 
@@ -25,94 +25,94 @@ import TableList from 'components/TableList';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import ***REMOVED*** storeData ***REMOVED*** from '../../utils/storeData';
+import { storeData } from '../../utils/storeData';
 
 import selectHomePage from './selectors';
 import styles from './styles.scss';
 import saga from './sagas';
 import reducer from './reducer';
 
-export class HomePage extends React.Component ***REMOVED*** // eslint-disable-line react/prefer-stateless-function
-  constructor(props) ***REMOVED***
+export class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
     super(props);
 
     this.popUpHeaderNavLinks = [
-      ***REMOVED*** name: 'baseSettings', message: 'content-type-builder.popUpForm.navContainer.base', nameToReplace: 'advancedSettings' ***REMOVED***,
-      ***REMOVED*** name: 'advancedSettings', message: 'content-type-builder.popUpForm.navContainer.advanced', nameToReplace: 'baseSettings' ***REMOVED***,
+      { name: 'baseSettings', message: 'content-type-builder.popUpForm.navContainer.base', nameToReplace: 'advancedSettings' },
+      { name: 'advancedSettings', message: 'content-type-builder.popUpForm.navContainer.advanced', nameToReplace: 'baseSettings' },
     ];
-***REMOVED***
+  }
 
-  handleButtonClick = () => ***REMOVED***
-    if (storeData.getIsModelTemporary()) ***REMOVED***
+  handleButtonClick = () => {
+    if (storeData.getIsModelTemporary()) {
       strapi.notification.info('content-type-builder.notification.info.contentType.creating.notSaved');
-***REMOVED*** else ***REMOVED***
+    } else {
       this.toggleModal();
-***REMOVED***
-***REMOVED***
+    }
+  }
 
-  handleDelete = (contentTypeName) => ***REMOVED***
+  handleDelete = (contentTypeName) => {
     this.props.deleteContentType(contentTypeName, this.context);
-***REMOVED***
+  }
 
-  toggleModal = () => ***REMOVED***
+  toggleModal = () => {
     const locationHash = this.props.location.hash ? '' : '#create::contentType::baseSettings';
-    router.push(`/plugins/content-type-builder/$***REMOVED***locationHash***REMOVED***`);
-***REMOVED***
+    router.push(`/plugins/content-type-builder/${locationHash}`);
+  }
 
-  renderTableListComponent = () => ***REMOVED***
+  renderTableListComponent = () => {
     const availableNumber = size(this.props.models);
     const title = availableNumber > 1 ? 'content-type-builder.table.contentType.title.plural'
       : 'content-type-builder.table.contentType.title.singular';
     return (
       <TableList
-        availableNumber=***REMOVED***availableNumber***REMOVED***
-        title=***REMOVED***title***REMOVED***
+        availableNumber={availableNumber}
+        title={title}
         buttonLabel="content-type-builder.button.contentType.add"
-        onButtonClick=***REMOVED***this.handleButtonClick***REMOVED***
-        onHandleDelete=***REMOVED***this.handleDelete***REMOVED***
-        rowItems=***REMOVED***this.props.models***REMOVED***
+        onButtonClick={this.handleButtonClick}
+        onHandleDelete={this.handleDelete}
+        rowItems={this.props.models}
       />
     );
-***REMOVED***
+  }
 
-  render() ***REMOVED***
+  render() {
     const component = size(this.props.models) === 0 ?
-      <EmptyContentTypeView handleButtonClick=***REMOVED***this.toggleModal***REMOVED*** />
+      <EmptyContentTypeView handleButtonClick={this.toggleModal} />
       : this.renderTableListComponent();
 
     return (
-      <div className=***REMOVED***styles.homePage***REMOVED***>
+      <div className={styles.homePage}>
         <Helmet
           title="HomePage"
-          meta=***REMOVED***[
-            ***REMOVED*** name: 'description', content: 'Description of HomePage' ***REMOVED***,
-          ]***REMOVED***
+          meta={[
+            { name: 'description', content: 'Description of HomePage' },
+          ]}
         />
         <ContentHeader
           name="content-type-builder.home.contentTypeBuilder.name"
           description="content-type-builder.home.contentTypeBuilder.description"
-          styles=***REMOVED******REMOVED*** margin: '-1px 0 3rem 0'***REMOVED******REMOVED***
+          styles={{ margin: '-1px 0 3rem 0'}}
         />
-        ***REMOVED***component***REMOVED***
+        {component}
         <Form
-          hash=***REMOVED***this.props.location.hash***REMOVED***
-          toggle=***REMOVED***this.toggleModal***REMOVED***
-          routePath=***REMOVED***this.props.match.path***REMOVED***
-          popUpHeaderNavLinks=***REMOVED***this.popUpHeaderNavLinks***REMOVED***
-          menuData=***REMOVED***this.props.menu***REMOVED***
-          redirectRoute=***REMOVED***`$***REMOVED***this.props.match.path***REMOVED***`***REMOVED***
+          hash={this.props.location.hash}
+          toggle={this.toggleModal}
+          routePath={this.props.match.path}
+          popUpHeaderNavLinks={this.popUpHeaderNavLinks}
+          menuData={this.props.menu}
+          redirectRoute={`${this.props.match.path}`}
         />
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-HomePage.contextTypes = ***REMOVED***
+HomePage.contextTypes = {
   plugins: PropTypes.object,
   updatePlugin: PropTypes.func,
-***REMOVED***;
+};
 
-HomePage.propTypes =  ***REMOVED***
+HomePage.propTypes =  {
   deleteContentType: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
@@ -121,27 +121,27 @@ HomePage.propTypes =  ***REMOVED***
     PropTypes.object,
     PropTypes.array,
   ]).isRequired,
-***REMOVED***;
+};
 
-const mapStateToProps = createStructuredSelector(***REMOVED***
+const mapStateToProps = createStructuredSelector({
   homePage: selectHomePage(),
   modelsLoading: makeSelectLoading(),
   models: makeSelectModels(),
   menu: makeSelectMenu(),
-***REMOVED***);
+});
 
-function mapDispatchToProps(dispatch) ***REMOVED***
+function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    ***REMOVED***
+    {
       deleteContentType,
-***REMOVED***,
+    },
     dispatch,
   );
-***REMOVED***
+}
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
-const withReducer = injectReducer(***REMOVED*** key: 'homePage', reducer ***REMOVED***);
-const withSaga = injectSaga(***REMOVED*** key: 'homePage', saga ***REMOVED***);
+const withReducer = injectReducer({ key: 'homePage', reducer });
+const withSaga = injectSaga({ key: 'homePage', saga });
 
 export default compose(
   withReducer,

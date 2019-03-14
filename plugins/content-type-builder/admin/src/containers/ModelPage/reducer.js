@@ -4,11 +4,11 @@
  *
  */
 
-import ***REMOVED*** fromJS, Map, List ***REMOVED*** from 'immutable';
-import ***REMOVED*** get, size, differenceBy, findIndex ***REMOVED*** from 'lodash';
-import ***REMOVED*** storeData ***REMOVED*** from '../../utils/storeData';
+import { fromJS, Map, List } from 'immutable';
+import { get, size, differenceBy, findIndex } from 'lodash';
+import { storeData } from '../../utils/storeData';
 /* eslint-disable new-cap */
-import ***REMOVED***
+import {
   ADD_ATTRIBUTE_RELATION_TO_CONTENT_TYPE,
   ADD_ATTRIBUTE_TO_CONTENT_TYPE,
   CANCEL_CHANGES,
@@ -22,24 +22,24 @@ import ***REMOVED***
   SUBMIT_ACTION_SUCCEEDED,
   UNSET_BUTTON_LOADER,
   UPDATE_CONTENT_TYPE,
-***REMOVED*** from './constants';
+} from './constants';
 
-const initialState = fromJS(***REMOVED***
+const initialState = fromJS({
   didFetchModel: false,
-  initialModel: Map(***REMOVED***
+  initialModel: Map({
     attributes: List(),
-***REMOVED***),
-  model: Map(***REMOVED***
+  }),
+  model: Map({
     attributes: List(),
-***REMOVED***),
+  }),
   postContentTypeSuccess: false,
   showButtons: false,
   modelLoading: true,
   showButtonLoader: false,
-***REMOVED***);
+});
 
-function modelPageReducer(state = initialState, action) ***REMOVED***
-  switch (action.type) ***REMOVED***
+function modelPageReducer(state = initialState, action) {
+  switch (action.type) {
     case ADD_ATTRIBUTE_RELATION_TO_CONTENT_TYPE:
       return state
         .updateIn(['model', 'attributes'], (list) => list.push(action.newAttribute, action.parallelAttribute))
@@ -52,31 +52,31 @@ function modelPageReducer(state = initialState, action) ***REMOVED***
       return state
         .set('showButtons', false)
         .set('model', state.get('initialModel'));
-    case EDIT_CONTENT_TYPE_ATTRIBUTE: ***REMOVED***
-      if (action.shouldAddParralAttribute) ***REMOVED***
+    case EDIT_CONTENT_TYPE_ATTRIBUTE: {
+      if (action.shouldAddParralAttribute) {
         return state
           .set('showButtons', true)
           .updateIn(['model', 'attributes', action.attributePosition], () => action.modifiedAttribute)
           .updateIn(['model', 'attributes'], (list) => list.splice(action.attributePosition + 1, 0, action.parallelAttribute));
-***REMOVED***
+      }
 
       return state
         .set('showButtons', true)
         .updateIn(['model', 'attributes', action.attributePosition], () => action.modifiedAttribute);
-***REMOVED***
-    case EDIT_CONTENT_TYPE_ATTRIBUTE_RELATION: ***REMOVED***
-      if (action.shouldRemoveParallelAttribute) ***REMOVED***
+    }
+    case EDIT_CONTENT_TYPE_ATTRIBUTE_RELATION: {
+      if (action.shouldRemoveParallelAttribute) {
         return state
           .set('showButtons', true)
           .updateIn(['model', 'attributes', action.attributePosition], () => action.modifiedAttribute)
           .updateIn(['model', 'attributes'], (list) => list.splice(action.parallelAttributePosition, 1));
-***REMOVED***
+      }
       return state
         .set('showButtons', true)
         .updateIn(['model', 'attributes', action.attributePosition], () => action.modifiedAttribute)
         .updateIn(['model', 'attributes', action.parallelAttributePosition], () => action.parallelAttribute);
-***REMOVED***
-    case DELETE_ATTRIBUTE: ***REMOVED***
+    }
+    case DELETE_ATTRIBUTE: {
       const contentTypeAttributes = state.getIn(['model', 'attributes']).toJS();
       contentTypeAttributes.splice(action.position, 1);
       const updatedContentTypeAttributes = contentTypeAttributes;
@@ -84,23 +84,23 @@ function modelPageReducer(state = initialState, action) ***REMOVED***
       let showButtons = size(updatedContentTypeAttributes) !== size(state.getIn(['initialModel', 'attributes']).toJS())
         || size(differenceBy(state.getIn(['initialModel', 'attributes']).toJS(), updatedContentTypeAttributes, 'name')) > 0;
 
-      if (get(storeData.getContentType(), 'name') === state.getIn(['initialModel', 'name'])) ***REMOVED***
+      if (get(storeData.getContentType(), 'name') === state.getIn(['initialModel', 'name'])) {
         showButtons = size(get(storeData.getContentType(), 'attributes')) > 0;
-***REMOVED***
+      }
 
-      if (action.shouldRemoveParallelAttribute) ***REMOVED***
+      if (action.shouldRemoveParallelAttribute) {
         const attributeKey = state.getIn(['model', 'attributes', action.position]).params.key;
 
         return state
           .set('showButtons', showButtons)
           .updateIn(['model', 'attributes'], (list) => list.splice(action.position, 1))
           .updateIn(['model', 'attributes'], (list) => list.splice(findIndex(list.toJS(), ['name', attributeKey]), 1));
-***REMOVED***
+      }
 
       return state
         .set('showButtons', showButtons)
         .updateIn(['model', 'attributes'], (list) => list.splice(action.position, 1));
-***REMOVED***
+    }
     case MODEL_FETCH_SUCCEEDED:
       return state
         .set('didFetchModel', !state.get('didFetchModel'))
@@ -127,7 +127,7 @@ function modelPageReducer(state = initialState, action) ***REMOVED***
         .setIn(['initialModel', 'attributes'], List(action.data.attributes));
     default:
       return state;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 export default modelPageReducer;

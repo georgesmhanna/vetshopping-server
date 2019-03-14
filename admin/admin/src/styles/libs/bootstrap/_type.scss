@@ -3,59 +3,59 @@
 //
 
 h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 ***REMOVED***
+.h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: $headings-margin-bottom;
   font-family: $headings-font-family;
   font-weight: $headings-font-weight;
   line-height: $headings-line-height;
   color: $headings-color;
-***REMOVED***
+}
 
-h1, .h1 ***REMOVED*** font-size: $h1-font-size; ***REMOVED***
-h2, .h2 ***REMOVED*** font-size: $h2-font-size; ***REMOVED***
-h3, .h3 ***REMOVED*** font-size: $h3-font-size; ***REMOVED***
-h4, .h4 ***REMOVED*** font-size: $h4-font-size; ***REMOVED***
-h5, .h5 ***REMOVED*** font-size: $h5-font-size; ***REMOVED***
-h6, .h6 ***REMOVED*** font-size: $h6-font-size; ***REMOVED***
+h1, .h1 { font-size: $h1-font-size; }
+h2, .h2 { font-size: $h2-font-size; }
+h3, .h3 { font-size: $h3-font-size; }
+h4, .h4 { font-size: $h4-font-size; }
+h5, .h5 { font-size: $h5-font-size; }
+h6, .h6 { font-size: $h6-font-size; }
 
-.lead ***REMOVED***
+.lead {
   font-size: $lead-font-size;
   font-weight: $lead-font-weight;
-***REMOVED***
+}
 
 // Type display classes
-.display-1 ***REMOVED***
+.display-1 {
   font-size: $display1-size;
   font-weight: $display1-weight;
   line-height: $display-line-height;
-***REMOVED***
-.display-2 ***REMOVED***
+}
+.display-2 {
   font-size: $display2-size;
   font-weight: $display2-weight;
   line-height: $display-line-height;
-***REMOVED***
-.display-3 ***REMOVED***
+}
+.display-3 {
   font-size: $display3-size;
   font-weight: $display3-weight;
   line-height: $display-line-height;
-***REMOVED***
-.display-4 ***REMOVED***
+}
+.display-4 {
   font-size: $display4-size;
   font-weight: $display4-weight;
   line-height: $display-line-height;
-***REMOVED***
+}
 
 
 //
 // Horizontal rules
 //
 
-hr ***REMOVED***
+hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
   border-top: $hr-border-width solid $hr-border-color;
-***REMOVED***
+}
 
 
 //
@@ -63,37 +63,37 @@ hr ***REMOVED***
 //
 
 small,
-.small ***REMOVED***
+.small {
   font-size: $small-font-size;
   font-weight: $font-weight-normal;
-***REMOVED***
+}
 
 mark,
-.mark ***REMOVED***
+.mark {
   padding: $mark-padding;
   background-color: $mark-bg;
-***REMOVED***
+}
 
 
 //
 // Lists
 //
 
-.list-unstyled ***REMOVED***
+.list-unstyled {
   @include list-unstyled;
-***REMOVED***
+}
 
 // Inline turns list items into inline-block
-.list-inline ***REMOVED***
+.list-inline {
   @include list-unstyled;
-***REMOVED***
-.list-inline-item ***REMOVED***
+}
+.list-inline-item {
   display: inline-block;
 
-  &:not(:last-child) ***REMOVED***
+  &:not(:last-child) {
     margin-right: $list-inline-padding;
-***REMOVED***
-***REMOVED***
+  }
+}
 
 
 //
@@ -101,23 +101,23 @@ mark,
 //
 
 // Builds on `abbr`
-.initialism ***REMOVED***
+.initialism {
   font-size: 90%;
   text-transform: uppercase;
-***REMOVED***
+}
 
 // Blockquotes
-.blockquote ***REMOVED***
+.blockquote {
   margin-bottom: $spacer;
   font-size: $blockquote-font-size;
-***REMOVED***
+}
 
-.blockquote-footer ***REMOVED***
+.blockquote-footer {
   display: block;
   font-size: 80%; // back to default font-size
   color: $blockquote-small-color;
 
-  &::before ***REMOVED***
+  &::before {
     content: "\2014 \00A0"; // em dash, nbsp
-***REMOVED***
-***REMOVED***
+  }
+}

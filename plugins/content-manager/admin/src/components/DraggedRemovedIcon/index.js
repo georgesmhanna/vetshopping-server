@@ -8,38 +8,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
-function DraggedRemovedIcon(***REMOVED*** isDragging, onRemove, withLongerHeight, ...rest ***REMOVED***) ***REMOVED***
+function DraggedRemovedIcon({ isDragging, onRemove, withLongerHeight, ...rest }) {
   let className;
 
-  if (isDragging && withLongerHeight) ***REMOVED***
+  if (isDragging && withLongerHeight) {
     className = styles.removeIconLongerDragged;
-***REMOVED*** else if (withLongerHeight) ***REMOVED***
+  } else if (withLongerHeight) {
     className = styles.removeIconLonger;
-***REMOVED*** else if (isDragging) ***REMOVED***
+  } else if (isDragging) {
     className = styles.removeIconDragged;
-***REMOVED*** else ***REMOVED***
+  } else {
     className = styles.removeIcon;
-***REMOVED***
+  }
 
   return (
     <span
-      className=***REMOVED***className***REMOVED***
-      onClick=***REMOVED***onRemove***REMOVED***
-      ***REMOVED***...rest***REMOVED***
+      className={className}
+      onClick={onRemove}
+      {...rest}
     />
   );
-***REMOVED***
+}
 
-DraggedRemovedIcon.defaultProps = ***REMOVED***
+DraggedRemovedIcon.defaultProps = {
   isDragging: false,
-  onRemove: () => ***REMOVED******REMOVED***,
+  onRemove: () => {},
   withLongerHeight: false,
-***REMOVED***;
+};
 
-DraggedRemovedIcon.propTypes = ***REMOVED***
+DraggedRemovedIcon.propTypes = {
   isDragging: PropTypes.bool,
   onRemove: PropTypes.func,
   withLongerHeight: PropTypes.bool,
-***REMOVED***;
+};
 
 export default DraggedRemovedIcon;

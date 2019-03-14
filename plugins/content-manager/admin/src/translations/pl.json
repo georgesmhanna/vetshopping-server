@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "plugin.description.short": "Szybki sposób na przeglądanie, zmianę i usuwanie elementów z twojej bazy danych.",
   "plugin.description.long": "Szybki sposób na przeglądanie, zmianę i usuwanie elementów z twojej bazy danych.",
   "containers.Home.pluginHeaderTitle": "Treści",
@@ -9,9 +9,9 @@
   "containers.Edit.delete": "Usuń",
   "containers.Edit.reset": "Wyczyść",
   "containers.Edit.returnList": "Wróć do listy",
-  "containers.List.addAnEntry": "***REMOVED***entity***REMOVED***",
-  "containers.List.pluginHeaderDescription": "***REMOVED***label***REMOVED*** elementów znalezionych",
-  "containers.List.pluginHeaderDescription.singular": "***REMOVED***label***REMOVED*** element znaleziony",
+  "containers.List.addAnEntry": "{entity}",
+  "containers.List.pluginHeaderDescription": "{label} elementów znalezionych",
+  "containers.List.pluginHeaderDescription.singular": "{label} element znaleziony",
   "components.LimitSelect.itemsPerPage": "Elementów na stronę",
   "containers.List.errorFetchRecords": "Błąd",
 
@@ -40,14 +40,14 @@
 
   "components.Search.placeholder": "Szukaj elementu...",
 
-  "components.TableDelete.entries.plural": "***REMOVED***number***REMOVED*** wybrane elementy",
-  "components.TableDelete.entries.singular": "***REMOVED***number***REMOVED*** wybrany element",
+  "components.TableDelete.entries.plural": "{number} wybrane elementy",
+  "components.TableDelete.entries.singular": "{number} wybrany element",
   "components.TableDelete.delete": "Usuń",
 
 
-  "components.TableEmpty.withFilters": "Nie istnieją elementy ***REMOVED***contentType***REMOVED*** zgodne z zastosowanymi filtrami...",
-  "components.TableEmpty.withoutFilter": "Nie istnieją jeszcze elementy związane z ***REMOVED***contentType***REMOVED***... Stwórz pierwszy jak najszybciej!",
-  "components.TableEmpty.withSearch": "Nie istnieją elementy ***REMOVED***contentType***REMOVED*** zgodne z wyszukiwaną frazą (***REMOVED***search***REMOVED***)...",
+  "components.TableEmpty.withFilters": "Nie istnieją elementy {contentType} zgodne z zastosowanymi filtrami...",
+  "components.TableEmpty.withoutFilter": "Nie istnieją jeszcze elementy związane z {contentType}... Stwórz pierwszy jak najszybciej!",
+  "components.TableEmpty.withSearch": "Nie istnieją elementy {contentType} zgodne z wyszukiwaną frazą ({search})...",
 
   "EditRelations.title": "Relacje",
 
@@ -90,4 +90,4 @@
   "popUpWarning.button.confirm": "Tak",
   "popUpWarning.title": "Potwierdzenie",
   "popUpWarning.bodyMessage.contentType.delete": "Czy na pewno chcesz usunąć ten wpis?"
-***REMOVED***
+}

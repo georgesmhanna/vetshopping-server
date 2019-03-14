@@ -1,17 +1,17 @@
-***REMOVED***
+{
   "host": "207.154.229.78",
   "port": 1337,
-  "proxy": ***REMOVED***
+  "proxy": {
     "enabled": false
-***REMOVED***,
-  "autoReload": ***REMOVED***
+  },
+  "autoReload": {
     "enabled": false
-***REMOVED***,
-  "cron": ***REMOVED***
+  },
+  "cron": {
     "enabled": false
-***REMOVED***,
-  "admin": ***REMOVED***
+  },
+  "admin": {
     "autoOpen": false,
     "path": "/dashboard"
-***REMOVED***
-***REMOVED***
+  }
+}

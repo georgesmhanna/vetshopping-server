@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "Auth.form.button.register-success": "Enviar nuevamente",
   "Auth.form.button.forgot-password.success": "Enviar nuevamente",
   "Auth.form.button.forgot-password": "Enviar Email",
@@ -53,7 +53,7 @@
 
   "components.Input.error.password.noMatch": "Las contraseñas no coinciden",
 
-  "Controller.input.label": "***REMOVED***label***REMOVED*** ",
+  "Controller.input.label": "{label} ",
   "Controller.selectAll": "Seleccionar todo",
 
   "EditForm.inputSelect.label.role": "Rol predeterminado para usuarios autenticados",
@@ -73,11 +73,11 @@
   "EditPage.form.roles": "Detalles del rol",
   "EditPage.form.roles.label.description": "Descripción",
   "EditPage.form.roles.label.name": "Nombre",
-  "EditPage.form.roles.label.users": "Usuarios asociados a este rol (***REMOVED***number***REMOVED***)",
+  "EditPage.form.roles.label.users": "Usuarios asociados a este rol ({number})",
   "EditPage.form.roles.name.error": "Este valor es obligatorio.",
-  "EditPage.header.title": "***REMOVED***name***REMOVED*** ",
+  "EditPage.header.title": "{name} ",
   "EditPage.header.title.create": "Crear un nuevo rol",
-  "EditPage.header.description": "***REMOVED***description***REMOVED*** ",
+  "EditPage.header.description": "{description} ",
   "EditPage.header.description.create": " ",
 
   "EditPage.notification.permissions.error": "Se ha producido un error al obtener las autorizaciones",
@@ -97,16 +97,16 @@
   "List.button.roles": "Añadir nuevo rol",
   "List.button.providers": "Añadir nuevo proveedor",
 
-  "List.title.emailTemplates.singular": "***REMOVED***number***REMOVED*** plantilla de email está disponible",
-  "List.title.emailTemplates.plural": "***REMOVED***number***REMOVED*** plantillas de email disponibles",
+  "List.title.emailTemplates.singular": "{number} plantilla de email está disponible",
+  "List.title.emailTemplates.plural": "{number} plantillas de email disponibles",
 
-  "List.title.providers.disabled.singular": "***REMOVED***number***REMOVED*** está desactivado",
-  "List.title.providers.disabled.plural": "***REMOVED***number***REMOVED*** están desactivados",
-  "List.title.providers.enabled.singular": "***REMOVED***number***REMOVED*** está habilitado y",
-  "List.title.providers.enabled.plural": "***REMOVED***number***REMOVED*** proveedores están habilitados y",
+  "List.title.providers.disabled.singular": "{number} está desactivado",
+  "List.title.providers.disabled.plural": "{number} están desactivados",
+  "List.title.providers.enabled.singular": "{number} está habilitado y",
+  "List.title.providers.enabled.plural": "{number} proveedores están habilitados y",
 
-  "List.title.roles.singular": "***REMOVED***number***REMOVED*** rol disponible",
-  "List.title.roles.plural": "***REMOVED***number***REMOVED*** roles disponibles",
+  "List.title.roles.singular": "{number} rol disponible",
+  "List.title.roles.plural": "{number} roles disponibles",
 
   "notification.error.delete": "Se ha producido un error al intentar borrar el elemento",
   "notification.error.fetch": "Se ha producido un error al intentar recuperar los datos",
@@ -119,7 +119,7 @@
   "plugin.description.long": "Proteja su API con un proceso de autenticación completo basado en JWT. Este plugin viene también con una estrategia ACL que le permite administrar los permisos entre los grupos de usuarios.",
 
   "Plugin.permissions.application.description": "Defina todas las acciones permitidas de su proyecto.",
-  "Plugin.permissions.plugins.description": "Defina todas las acciones permitidas para el plugin ***REMOVED***name***REMOVED***.",
+  "Plugin.permissions.plugins.description": "Defina todas las acciones permitidas para el plugin {name}.",
 
   "Plugins.header.title": "Permisos",
   "Plugins.header.description": "Sólo las acciones vinculadas a una ruta se enumeran a continuación.",
@@ -139,7 +139,7 @@
   "PopUpForm.button.save": "Guardar",
   "PopUpForm.header.add.providers": "Añadir nuevo proveedor",
   "PopUpForm.header.edit.email-templates": "Editar Plantillas de Email",
-  "PopUpForm.header.edit.providers": "Editar Proveedor ***REMOVED***provider***REMOVED***",
+  "PopUpForm.header.edit.providers": "Editar Proveedor {provider}",
   "PopUpForm.inputSelect.providers.label": "Elija el proveedor",
   "PopUpForm.Email.options.from.name.label": "Nombre del remitente",
   "PopUpForm.Email.options.from.email.label": "Email del remitente",
@@ -170,6 +170,6 @@
   "PopUpForm.Providers.twitter.providerConfig.redirectURL": "La URL de redirección que se debe agregar en la configuración de la aplicación Twitter",
 
   "PopUpForm.Providers.callback.placeholder": "TEXTO",
-  "PopUpForm.Email.email_templates.inputDescription": "Si no estás seguro de cómo usar las variables, ***REMOVED***link***REMOVED***",
+  "PopUpForm.Email.email_templates.inputDescription": "Si no estás seguro de cómo usar las variables, {link}",
   "PopUpForm.Email.link.documentation": "consulte nuestra documentación."
-***REMOVED***
+}

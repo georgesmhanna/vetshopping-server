@@ -17,8 +17,8 @@ import Reddit from 'assets/images/social_reddit.png';
 import styles from './styles.scss';
 
 /* eslint-disable jsx-a11y/alt-text */
-function getSrc(name) ***REMOVED***
-  switch (name) ***REMOVED***
+function getSrc(name) {
+  switch (name) {
     case 'GitHub':
       return Gh;
     case 'Reddit':
@@ -33,35 +33,35 @@ function getSrc(name) ***REMOVED***
       return Twitter;
     default:
       return Gh;
-***REMOVED***
-***REMOVED***
+  }
+}
 
-class SocialLink extends React.PureComponent ***REMOVED***
-  state = ***REMOVED*** imgLoaded: false ***REMOVED***;
+class SocialLink extends React.PureComponent {
+  state = { imgLoaded: false };
 
-  handleImgLoaded = () => this.setState(***REMOVED*** imgLoaded: true ***REMOVED***);
+  handleImgLoaded = () => this.setState({ imgLoaded: true });
 
-  render() ***REMOVED***
-    const ***REMOVED*** link, name ***REMOVED*** = this.props;
-    const ***REMOVED*** imgLoaded ***REMOVED*** = this.state;
+  render() {
+    const { link, name } = this.props;
+    const { imgLoaded } = this.state;
 
     return (
-      <div className=***REMOVED***cn(styles.socialLink, 'col-md-6 col-lg-6')***REMOVED***>
-        <a href=***REMOVED***link***REMOVED*** target="_blank">
+      <div className={cn(styles.socialLink, 'col-md-6 col-lg-6')}>
+        <a href={link} target="_blank">
           <div>
-            ***REMOVED***!imgLoaded && <div className=***REMOVED***styles.spinner***REMOVED***><div /></div>***REMOVED***
-            <img src=***REMOVED***getSrc(name)***REMOVED*** onLoad=***REMOVED***this.handleImgLoaded***REMOVED*** />
+            {!imgLoaded && <div className={styles.spinner}><div /></div>}
+            <img src={getSrc(name)} onLoad={this.handleImgLoaded} />
           </div>
-          <span>***REMOVED***name***REMOVED***</span>
+          <span>{name}</span>
         </a>
       </div>
     );
-***REMOVED***
-***REMOVED***
+  }
+}
 
-SocialLink.propTypes = ***REMOVED***
+SocialLink.propTypes = {
   link: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-***REMOVED***;
+};
 
 export default SocialLink;

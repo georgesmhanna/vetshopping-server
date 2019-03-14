@@ -1,4 +1,4 @@
-.removeIcon ***REMOVED***
+.removeIcon {
   width: 30px;
   background: #F3F4F4;
   height: 28px;
@@ -7,17 +7,17 @@
   float: right;
   line-height: 28px !important;
 
-  &:after ***REMOVED***
+  &:after {
     display: inline-block;
     content: '';
     width: 8px;
     height: 8px;
     margin: auto;
     background-image: url('../../assets/images/icon-cross.svg');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.removeIconDragged ***REMOVED***
+.removeIconDragged {
   width: 30px;
   background: #AED4FB;
   height: 28px;
@@ -25,7 +25,7 @@
   text-align: center;
   float: right;
 
-  &:after ***REMOVED***
+  &:after {
     display: inline-block;
     content: '';
     width: 8px;
@@ -33,10 +33,10 @@
     margin: auto;
     margin-top: -3px;
     background-image: url('../../assets/images/icon-cross-blue.svg');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.removeIconLonger ***REMOVED***
+.removeIconLonger {
   width: 30px;
   background: #F3F4F4;
   height: 82px;
@@ -45,17 +45,17 @@
   text-align: center;
   float: right;
 
-  &:after ***REMOVED***
+  &:after {
     display: inline-block;
     content: '';
     width: 8px;
     height: 8px;
     margin: auto;
     background-image: url('../../assets/images/icon-cross.svg');
-***REMOVED***
-***REMOVED***
+  }
+}
 
-.removeIconLongerDragged ***REMOVED***
+.removeIconLongerDragged {
   width: 30px;
   background: #AED4FB;
   height: 82px;
@@ -64,12 +64,12 @@
   text-align: center;
   float: right;
 
-  &:after ***REMOVED***
+  &:after {
     display: inline-block;
     content: '';
     width: 8px;
     height: 8px;
     margin: auto;
     background-image: url('../../assets/images/icon-cross-blue.svg');
-***REMOVED***
-***REMOVED***
+  }
+}

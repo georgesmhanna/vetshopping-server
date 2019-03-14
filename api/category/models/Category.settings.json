@@ -1,35 +1,35 @@
-***REMOVED***
+{
   "connection": "default",
   "collectionName": "category",
-  "info": ***REMOVED***
+  "info": {
     "name": "category",
     "description": "Product Categories"
-***REMOVED***,
-  "options": ***REMOVED***
+  },
+  "options": {
     "timestamps": true
-***REMOVED***,
-  "attributes": ***REMOVED***
-    "name": ***REMOVED***
+  },
+  "attributes": {
+    "name": {
       "default": "",
       "type": "string",
       "required": true
-***REMOVED***,
-    "hasSubCategory": ***REMOVED***
+    },
+    "hasSubCategory": {
       "default": false,
       "type": "boolean"
-***REMOVED***,
-    "parent": ***REMOVED***
+    },
+    "parent": {
       "model": "category",
       "via": "subCategories"
-***REMOVED***,
-    "products": ***REMOVED***
+    },
+    "products": {
       "collection": "product",
       "via": "category"
-***REMOVED***,
-    "subCategories": ***REMOVED***
+    },
+    "subCategories": {
       "collection": "category",
       "via": "parent",
       "autoPopulate": true
-***REMOVED***
-***REMOVED***
-***REMOVED***
+    }
+  }
+}
